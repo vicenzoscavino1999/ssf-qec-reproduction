@@ -1,0 +1,484 @@
+H5-A · Qué fuentes pueden contribuir a una interacción de orden arbitrario
+17 de noviembre de 2026
+
+Resultado
+=========
+Para toda semilla binaria (17,18)-regular se obtiene el rectángulo
+0 ≤ p ≤ 10⁻⁴⁰, 0 ≤ q ≤ 2·10⁻¹¹. Para las semillas de esa clase sin
+ciclos de cuatro, el extremo llega a p=4·10⁻⁴⁰ con el mismo q. Ambas
+cotas son uniformes en el tamaño y dan acceso a las particiones físicas
+para toda precisión. El primer rectángulo mejora por un factor de un millón
+el de 10⁻⁴⁶ en la misma clase. El segundo añade la hipótesis geométrica
+de la limpieza R32 y cubre tamaños crecientes sin restricción de volumen.
+
+Se conserva el contrato del apéndice mixto, con la familia FGL completa,
+β=1/100, máximo global, orden fijo independiente del síndrome y una ronda
+Bernoulli independiente en datos y medidas. Se usan dos resultados
+distintos. Las secciones 1–3 identifican interacciones que se cancelan
+exactamente en la partición normalizada. Las secciones 4–7 convierten la
+restricción sobre las entradas en cotas de actividades que cierran el
+compilador del manuscrito. La sección 8 precisa lo pendiente en 10⁻⁶.
+
+1. Un dato que se puede retirar antes de cualquier paso imperfecto
+=================================================================
+Cada entrada es un conjunto S de sitios ocupados, de datos E y medidas D.
+La huella ψ_v de un dato VV(i,j) es {i}×N(j), de tamaño 17. La de
+CC(r,s) es N(r)×{s}, de tamaño 18. La de una medida es su propio check.
+Un sitio lee un generador g si su huella corta el rectángulo P_g de 18×17
+checks. Todos los lectores de un mismo g forman un clique en el host K.
+
+Definir un par de sitios distintos, al menos uno de datos, como un par de
+contacto si sus huellas se cortan o si, siendo disjuntas, existe una acción
+F cuya huella está contenida en su unión y corta a ambas. Esta definición
+es simétrica y sólo depende de los dos sitios y de la semilla. Miembros
+distintos de un generador forman un par de contacto. Si sus huellas son
+disjuntas, el par de miembros es él mismo un candidato FGL. Toda arista
+de contacto es también una arista de K.
+
+En la clase general poner k=3. Sin ciclos de cuatro se puede usar k=9.
+Un dato v de S queda señalado si tiene un compañero de contacto en S, o si
+lee un generador leído en total por al menos k sitios de S, incluido v.
+Ambas condiciones son crecientes con la entrada. Si se retiran todos los
+datos sin señalar, los testigos de los demás siguen presentes. Una pareja
+señala a sus dos datos y un generador con k lectores señala a todos sus
+lectores de datos. Las medidas se conservan en esta operación.
+
+Sea a(v) el singleton de menor rango entre los que tienen la misma huella
+que v. En una semilla con columnas o filas repetidas puede diferir de v.
+Para cualquier v sin señalar y cualquier U⊆S\{v}, las ejecuciones sobre
+U y U∪{v} difieren sólo por una acción adicional {a(v)} durante la fase
+inicial de puntuación uno. En particular
+
+  R(U∪{v})=R(U) ⊕ {v} ⊕ {a(v)},
+  Y(U∪{v})=Y(U) ∪ {v,a(v)}.                                      (1)
+
+Prueba en la clase general. Ninguna otra fuente ocupa un check de ψ_v,
+por ausencia de compañero. Al añadir v se encienden todos esos checks.
+Un candidato perfecto conmuta exclusivamente checks encendidos. Si toca
+ψ_v, en su generador hay a lo sumo otros k−2=1 lectores de la entrada.
+Si su huella sale de ψ_v, está cubierta por la unión de dos fuentes, corta
+ambas y certifica la pareja prohibida. Si está dentro de ψ_v, ha de ser
+un singleton de huella idéntica. Una acción múltiple tiene huella ≥33,
+un singleton de tipo opuesto sólo corta la línea en un check y las líneas
+del mismo tipo tienen tamaño fijo. Los candidatos perfectos que tocan ψ_v
+son, por tanto, exactamente sus singletons equivalentes.
+
+Mientras se elijan acciones de puntuación uno, el síndrome decrece por
+inclusión. El orden fijo recorre los candidatos perfectos iniciales y
+admite cada uno si su huella sigue encendida. Una acción descartada al
+perder un check no vuelve a ser perfecta durante esta fase. Los candidatos
+equivalentes a v están en huellas disjuntas de las demás, de modo que se
+inserta exactamente el primero de ellos. Después de la fase perfecta
+los dos síndromes coinciden y el decodificador tiene la misma continuación,
+incluso si más tarde vuelve a visitar v o a(v). Esto prueba (1).
+
+Prueba para k=9. Sin ciclos de cuatro, dos huellas de datos distintos se
+cortan en a lo sumo un check. En un generador con a lo sumo ocho lectores
+iniciales, una línea que no es fuente tiene a lo sumo ocho checks iniciales
+encendidos. Si una acción perfecta elige x filas y j columnas y elige una
+fila que no es fuente, los 17−j checks de su brazo deben estar encendidos,
+de modo que j≥9. Entre esas j columnas tiene que haber una que no es fuente,
+lo que exige 18−x≤8, es decir x≥10. El mismo argumento sirve empezando en
+una columna falsa. El filtro FGL exige 17x+19j−4xj≥0, imposible para
+x≥10, j≥9. Luego todos los miembros seleccionados son fuentes. Si la
+acción toca ψ_v, debe contener a v, pues cualquier otro miembro que lea
+ese mismo check da un compañero. Otro miembro junto con v también daría
+un par de contacto. Sólo queda el singleton v. El argumento de la fase
+perfecta da (1). Esta prueba es local al generador que lee a v y permite
+un número arbitrario de errores en el resto del código.
+
+2. Coeficientes de la partición y del logaritmo normalizados
+===========================================================
+Fijar un subhost J y una máscara física u. T(S) vale cero si se sale de J
+o falla el filtro, y en otro caso vale (−1)^(u·R(S)). Todas las corridas
+usan los rivales globales. Para i∈J poner η_i=T({i}). Una medida aislada
+tiene η_i=1. Un dato sin duplicado también tiene η_i=1. En presencia de
+duplicados, (1) incorpora el signo del residuo y la condición a(v)∈J.
+Para un dato sin señalar, T(U∪{v})=η_v T(U) para todo U⊆S\{v}.
+
+Usar odds z_i específicos de sitio como indeterminadas. Con b_i=z_i/(1+η_i z_i)
+se tiene la identidad exacta
+
+  Ξ(J) / ∏_{i∈J}(1+η_i z_i) = Σ_{S⊆J} b^S A(S),
+  A(S)=Σ_{U⊆S} T(U) ∏_{i∈S\U}(−η_i).                            (2)
+
+Al multiplicar por el denominador, el coeficiente de z^Q es T(Q) por
+inversión de subconjuntos. Esto incluye η_i=0. Sin duplicados la división
+coincide con Ξ/Z_libre del manuscrito. En general, el cociente de ambas
+normalizaciones es un producto conocido de factores de un solo sitio.
+En el rectángulo todos estos factores son positivos.
+
+Si S contiene un dato sin señalar, emparejar los sumandos de A(S) que
+difieren en ese dato. Su suma es cero. También se anula cualquier monomio
+del logaritmo formal de (2) cuyo soporte tenga tal dato. En cada producto
+de coeficientes que lo aportaría, un factor tendría que contener ese dato
+y su soporte está contenido en S. El mismo criterio descarta ese factor.
+El argumento admite potencias repetidas en el logaritmo. Volver de b_i a
+z_i preserva el soporte de cualquier término no constante en ese sitio.
+Así cada dato distinto de una interacción superviviente, a cualquier
+orden, requiere su propio contacto o su pertenencia a un grupo de lectores.
+Un mismo testigo puede servir a varios datos.
+
+Hay además una cancelación por componentes. En el soporte de fuentes S unir
+los pares de contacto y todos los lectores de cada generador con ≥k lectores.
+La fase inicial de puntuación uno se recompone sobre esas componentes para
+S y para cualquiera de sus subentradas. Los checks inicialmente encendidos
+de componentes distintas son disjuntos por la regla de contacto. Si un
+generador es suficientemente leído, ya se han unido todos sus lectores.
+Si no lo es, con k=3 una huella perfecta cubierta por dos fuentes que usa
+ambas certifica su contacto. Dos medidas por sí solas no la cubren. Con
+k=9 el argumento de las ocho líneas lectoras prueba que la acción perfecta
+consta de miembros verdaderos, todos en una componente por sus parejas,
+y todo sitio que aporte en su huella comparte un check con alguno de ellos.
+El razonamiento vale en la entrada local y en la unión. Los candidatos
+perfectos que existen en una parte siguen siendo perfectos en la unión:
+otro componente no puede modificar los checks que ya están cubiertos por
+fuentes de esa parte. La selección por orden fijo se intercala entre partes.
+
+Sea B una de esas componentes, formada sólo por datos, y supóngase que
+para todo U⊆B la fase perfecta aislada termina con síndrome cero. Para
+W⊆S\B se tiene T(U∪W)=T(U)T(W). Tras la fase perfecta queda el mismo
+síndrome que en W y en U el residuo tiene síndrome físico cero. La unión
+de soportes da la condición de J y el carácter se multiplica incluso si
+posteriormente se regresa a un sitio de U. Al poner a cero las variables
+fuera de S, la partición se factoriza entre B y su complemento. Todos
+los coeficientes mixtos del logaritmo entre ambas partes se anulan.
+Por ejemplo, sin ciclos de cuatro, un B con huellas de datos disjuntas y
+≤8 lectores suyos en cada generador cumple la premisa para todos sus
+subconjuntos. Todo ganador perfecto es un subconjunto verdadero, lo borra,
+y cada dato restante conserva su singleton perfecto. Esta condición de
+cancelación carece de corte en el tamaño de la componente.
+
+3. Cuántas parejas y cuántos grupos de lectores caben
+===================================================
+Las cotas (datos alrededor de un dato, medidas alrededor de un dato, datos
+alrededor de una medida) para el contacto de la sección 1 son
+
+  binaria regular general          (28200, 40, 800),
+  sin ciclos de longitud cuatro    (1242, 18, 35).
+
+Una huella tiene ≤18 checks y cada check tiene 35 datos lectores. Alrededor
+de un dato v hay ≤18·34=612 datos distintos que comparten un check con él.
+Si las huellas de dos fuentes son disjuntas, su unión tiene tamaño ≤36.
+Por FGL sólo un singleton o un par puede tener huella dentro de ella.
+En efecto, FGL limita el número de miembros a cuatro y con tres o cuatro
+el corte 17x+18j−2xj tiene tamaño superior a 36.
+
+Para un singleton u que intercala ambas huellas hay ≤612 posibilidades
+de u que toquen a v y salgan de su huella. Elegir un check fijo de ψ_u\ψ_v.
+Si faltan al menos dos, el otro dato tiene el mismo tipo de línea que u
+y se dispone de ≤18 lectores de ese tipo en el check fijo. Si falta uno,
+se permiten todos los 35. Hay ≤20 líneas casi idénticas a la de v que
+pueden aportar este incremento: son del mismo tipo y comparten al menos
+16 checks. Para VV hay a lo sumo ⌊17·17/16⌋=18 distintas de v si falta
+exactamente un check. En CC son a lo sumo ⌊18·16/17⌋=16. El total de
+posibles compañeros por este mecanismo es ≤612·18+20·17.
+
+Para un par de acción de un solo tipo, las dos líneas son paralelas y
+distintas. Cada una debe estar cubierta por una fuente de su tipo y
+coincidir con su huella. En VV la otra fila comparte vecino de la semilla
+con la de v, y hay ≤17·17 opciones y ≤18 duplicados de la columna. En CC
+hay ≤18·16 opciones y ≤17 duplicados. El mayor producto es 5202.
+
+Para un par de acción mixto, los dos brazos de 16 y 17 checks exigen una
+fuente horizontal y otra vertical. Fijada v=VV(i,j_v), la línea horizontal
+de la acción usa N(j)\{s}⊆N(j_v). Hay como mucho 17 posibilidades de s en
+N(j_v) y ≤⌊17·17/16⌋ fuera, una por cada j que difiera en un vecino. El
+generador tiene ≤17 posibilidades de r adyacente a i. El dato CC que cubre
+los 17 miembros de N(r)\{i} tiene ≤17 posibles primeras coordenadas por
+incidencia en cualquier miembro fijo. En total, ≤35·17². Con v de tipo CC
+hay ≤18+⌊18·16/17⌋=34 posibilidades de coordenada transversal y ≤18² para
+los otros dos índices. Así son ≤11016. La suma de los cuatro mecanismos
+queda por debajo de 28200. Para una medida junto a v, un candidato mixto
+en las fuentes sólo puede ser un singleton a un check de la línea de v.
+Se permiten los 18 checks propios y ≤20 nuevos. Desde una medida hay ≤35
+lectores directos y ≤35·20 datos casi idénticos a un lector directo.
+
+Sin ciclos de cuatro, dos líneas distintas se cortan en ≤1 check. Un
+singleton nuevo no puede cubrirse con dos huellas disjuntas. Un par puro
+exige sus dos miembros verdaderos. En uno mixto, cubrir cada brazo de
+longitud ≥16 también fuerza los miembros verdaderos. Valen entonces las
+cotas de compartir check (≤18·35), compartir generador como miembros
+(≤18·34) y los lectores directos para una pareja con una medida.
+
+Un dato lee ≤5508 generadores, una medida ≤306. En un mismo rectángulo
+hay ≤10133 datos lectores y 306 posiciones de medidas. Las cotas de la
+semilla son V₂≤290 y C₂≤289, de donde 18·290+17·289=10133. Por unión de
+testigos y suma sobre k−1 sitios distintos, condicionando sólo a v∈E,
+
+  Pr(v señalado | v∈E) ≤ d_VV p + d_VC q
+                       + 5508(10133 p+306 q)^(k−1)/(k−1)! .          (3)
+
+En p=10⁻⁶, q=2·10⁻¹¹, (3) es <0.312 en general y <0.001243 sin ciclos
+de cuatro. La desigualdad controla un dato fijado. Los sucesos para datos
+distintos pueden compartir exactamente los mismos testigos.
+
+4. Grupos de fuentes en una historia filtrada
+============================================
+Para la cota cuantitativa partir de una decoración conexa real del gas del
+manuscrito. Retirar sus datos sin señalar mediante (1). Cada uno se guarda
+como pieza exterior con la ubicación de la fuente. Su soporte real es
+{v,a(v)} y su residuo tiene síndrome físico cero. La unión de soportes y
+la suma XOR de residuos son exactas aunque un sitio se visite después.
+La historia restante sigue pasando el filtro. Los vecindarios cerrados
+de v y a(v) en K son idénticos porque tienen los mismos checks lectores
+en la fórmula del host como unión de cliques. A lo sumo 18 fuentes de
+un dato pueden producir una pieza exterior que cubra un ancla dada.
+
+Llamar ligada a cada medida que sea vecina en K de algún dato restante
+de la entrada. Formar grupos de fuentes con las componentes de las aristas
+dato–dato y dato–medida de K sobre esos datos y medidas ligadas. Cada
+grupo tiene un dato. Todo testigo que señala a uno de sus datos queda en
+ese mismo grupo. Para una pareja esto resulta del contacto en K. Para un
+grupo de k lectores, todos son vecinos del dato en el clique del generador.
+Una medida que participa en varios testigos pertenece a un solo grupo.
+
+Entre las medidas no ligadas, retirar las que ninguna acción de la historia
+restante conmuta. Están fuera de las huellas de sus datos fuente y siguen
+encendidas hasta el final. Quitarlas conserva las puntuaciones de todos
+los ganadores y sólo puede reducir las de los rivales. La inducción sobre
+la traza conserva la parada. Guardarlas como piezas exteriores individuales.
+Aplicar ahora la recomposición del manuscrito a las componentes de K del
+soporte restante. Denotarlas núcleos. Sus trazas aisladas son exactas y
+cada una pasa el filtro físico, pues los datos de componentes distintas
+tienen huellas disjuntas. Los grupos de entrada quedan íntegros. Cada
+núcleo contiene algún dato fuente. Con e=0 el filtro fuerza cero acciones
+por descenso y en ese caso tampoco habría medidas ligadas.
+
+En un núcleo registrar cada medida no ligada en el átomo de la primera
+acción que conmuta su check, incluidos eventuales usos sucesivos de un
+generador. Las ligadas se registran sólo en su grupo. Un dato de la acción
+que conmutó la medida lee ese check y su vecindario en K domina el del
+check. Esto preserva las ranuras de puente alrededor del átomo de acción.
+Las medidas ligadas, en cambio, tienen su propia fila de vecindario.
+
+5. Acciones y ramas que se incorporan a un grupo
+================================================
+Se usa el perfil y el árbol causal de H5A_cadenas_y_medidas.txt, secciones
+1, 3 y 4. Escribimos e,d para los números de fuentes de un núcleo, T para
+sus acciones y B para el número de acciones débiles en el sentido de esa
+nota. Las dos desigualdades que se heredan son
+
+ T+B ≤ (3446943/272272)e < (633/50)e si e>0,     |Y∩V|≤135e.       (4)
+
+El verificador de esta entrega contiene los multiplicadores racionales y
+recomprueba (4) desde las formas FGL y las desigualdades cronológicas por
+nivel. Se mantienen las reglas de candidatos y las hipótesis del perfil.
+Un múltiple sin recargo, que en su único uso encendió el check transmitido
+a un hijo posterior, tenía ≥4 checks de control encendidos en su misma
+fila o columna cuando hizo ese uso. Esto resulta de compararlo con el
+candidato que cambia exactamente una línea en el rectángulo.
+
+En la codificación cada grupo de fuentes es un solo origen. Cada átomo de
+acción representa un singleton usado o un generador usado para una acción
+múltiple, con la tabla fija para candidatos deduplicados. En su primer uso
+se lee un check encendido. Si ya cambió, la causa es la última acción que
+lo encendió. Si no cambió, se escoge un dato inicial lector por orden fijo
+o la propia medida ligada. En ambos casos se apunta al miembro del grupo.
+Los checks encendidos sin esas causas son medidas no ligadas intactas y
+se guardan en el átomo. Si en el primer uso hay tres o más de ellas, ese
+átomo pasa a ser un origen con al menos tres medidas. En otro caso tiene
+una causa ordinaria. Una primera acción tiene ≥9,10,17 checks encendidos
+según sea singleton VV, singleton CC o múltiple. Si no guarda medidas no
+ligadas dispone de todos ellos. Si guarda alguna y es ordinario dispone
+de al menos 7,8,15 en el primer uso. El número total guardado puede ser
+mayor si se repite el átomo.
+
+Como en el certificado previo se muestrea hacia el pasado, condicionando
+en los hijos cronológicos ya elegidos. La elección por defecto es uniforme
+en los checks con causa. Un múltiple fuerte de uso único, sin medidas
+guardadas y con un único hijo cronológico, elige uniformemente entre los
+checks con causa alineados con el check transmitido a ese hijo. Las flechas
+van a un origen o a un primer uso anterior y forman un bosque. Los grupos
+son soportes auxiliares conexos. Completar el bosque con puentes de K por
+orden fijo, conservar el subárbol mínimo que une raíz, orígenes y átomos
+con medidas guardadas, y comprimir los tramos de grado dos orientados
+monótonamente entre vértices visibles. El tramo conserva sus checks y la
+identidad de los extremos. En un grupo el extremo especifica el miembro
+en que entra y cada conexión exterior especifica el miembro por el que sale.
+
+Todos los datos y medidas quedan codificados. La ejecución determinista
+del núcleo recupera los átomos internos recorriendo cada tramo desde su
+extremo cronológicamente posterior, por el último encendido o la regla
+fija de lector inicial. Identificar todos los miembros de un grupo como
+un solo origen mantiene aciclicidad y una causa por acción ordinaria. El
+argumento de normalización del certificado previo sigue valiendo: por
+representación fija, las elecciones ocultas tienen masa condicional total
+≤1. Para cada excepción retenida se usa a lo sumo un crédito de una acción
+débil, un uso repetido o un hijo suprimido. Un hijo tiene sólo una causa,
+y los créditos de repeticiones de átomos retenidos son distintos de los
+primeros usos suprimidos. La factorización del conteo no supone que las
+acciones reales ni los testigos de los datos sean independientes.
+
+Para t=0.0051, en un tramo cada pareja consecutiva de checks alineados
+cuesta como máximo t/4. Si no es alineada se necesita un crédito extra y
+cuesta como máximo t²/17: el múltiple interior no guarda medidas, el caso
+excepcional usa su distribución uniforme y tiene al menos 17 opciones.
+Los singletons siempre están alineados. Para un vértice visible con cero
+hijos cronológicos retenidos y un hijo alineado suprimido, t/4≤1/17 paga
+la excepción. Desde un check hay ≤578 posiciones alineadas y ≤289·288 para
+las que difieren en ambas coordenadas. Así
+
+ Λ=t[578/4+289·288 t/17]=10803687/12500000 <1,
+ J_ij=f_i l_j/(1−Λ).
+
+J suma todos los largos posibles de una arista causal. El primer check
+tiene ≤f_i posiciones y su extremo final ≤l_j lectores o generadores.
+Los seis tipos son miembro fuente VV, CC, medida ligada, acción singleton
+VV, acción singleton CC y acción múltiple. Se usan f=(17,18,1,17,18,306),
+l=(18,17,1,18,17,306) y M, la matriz pq-M del manuscrito con sus filas
+y columnas en el orden (VV,CC,medida,VV,CC,generador).
+
+6. Suma con el testigo inicial incluido una sola vez
+=================================================
+S_i acota la masa de una rama entrada por un miembro de grupo o por la
+raíz o un puente de una acción. P_i y C_i acotan respectivamente entradas
+a una acción desde su causa y desde una acción cronológicamente posterior.
+Con I los tres tipos de acción y O los tres de miembro de origen, poner
+
+ L_i=Σ_{j∈I}J_ij P_j,      W_i=Σ_j M_ij S_j,      Z_i=L_i+W_i,
+ H_i=Σ_{j∈O}J_ij S_j + Σ_{j∈I}J_ij C_j.
+
+Para un origen, sus hijos exteriores se permiten en todos sus miembros.
+Cada miembro i paga por sus hijos un factor ≤exp(Z_i). Para contar los
+sitios dentro del grupo usar la submatriz N de M en O, con N_med,med=0.
+Sea U_i la cota para un árbol interno de miembros sin testigo exigido,
+incluidos los hijos exteriores. Si precios ω=(x,x,ξ), basta
+
+ U_i ≥ ω_i exp(Z_i+Σ_{j∈O}N_ij U_j).
+
+En la rama real de un grupo hay un testigo obligatorio. Escribir
+V=max(U_VV,U_CC), D=U_med, h=10133V+306D, y usar los grados de la
+sección 3. Para los tres posibles miembros de entrada basta exigir
+
+ b_V=d_VV V+d_VC D+5508 h^(k−1)/(k−1)!,
+ b_C=d_CV V+2766309 V b_V+306·10133 V h^(k−2)/(k−2)!,
+ S_VV ≥ U_VV b_V,         S_CC ≥ U_CC b_V,         S_med ≥ U_med b_C.    (5)
+
+Para un miembro de entrada dato se escoge un compañero de contacto, o bien
+k−1 lectores distintos en un generador que lee. Las aristas en estrella
+entre el dato y esos lectores existen en N. Los lectores se eligen sin
+orden y la suma de productos es ≤h^(k−1)/(k−1)!. Para una entrada medida c
+elegir un dato v vecino en el grupo. Si forma pareja con c basta d_CV V.
+Si su testigo excluye c, unir c a v y éste a su testigo, lo que da el
+segundo término de b_C. Si el testigo es de k lectores e incluye a c,
+escoger un generador de c, un lector dato v y k−2 lectores adicionales
+junto a v. Esto da el tercer término. Los vecinos datos de una medida en
+K son ≤2766309. En todos los casos las aristas prescritas forman un árbol
+sobre vértices distintos. En el grupo conexo se puede extender este árbol
+a uno abarcador y elegir la primera extensión en un orden fijo. Los demás
+hijos usan las ranuras ordinarias de U. Así (5) paga un testigo por grupo
+en el miembro por el que se entra. Se mantiene el derecho de cada miembro
+a tener sus propias ramas exteriores. Las medidas compartidas por varios
+datos tienen una sola etiqueta de entrada y un solo factor ξ.
+
+Para cada tipo de acción i, escribir G=exp(Z_i), Q=exp(W_i),
+A=exp(f_i ξ) y r=t(f_i ξ)³G. El último término permite un origen con al
+menos tres medidas guardadas, pues f_iξ<1/2 y la cola de exp(f_iξ) desde
+grado tres es ≤(f_iξ)³. Tomar b=(1/9,1/10,1/17), b'=(1/7,1/8,1/15),
+Δ=(0,0,1/4−1/17) según tipo y m=b'(A−1)G. Bastan
+
+ P_i ≥ t[b(G−1−L_i)+m+Δ L_i(Q−1)],
+ C_i ≥ r+t H_i[b(G−1)+m+Δ(Q−1)],
+ S_i ≥ r+t H_i[b G+m+Δ L_i Q].                                    (6)
+
+En P la causa ya es conocida. Sin medidas, hay que suprimir la rama vacía
+y la que sólo tiene un hijo causal, que se habrían podado o comprimido. Un
+hijo cronológico único sin medidas paga Δ si además queda algún puente.
+En C la entrada ya es un hijo cronológico y se distingue la arista hacia
+la causa. Se suprime la rama sin otro hijo en el caso sin medidas. El extra
+requiere cero hijos causales adicionales y al menos un puente. En la raíz
+o entrada por puente se permite cualquier aridad. El extra requiere un hijo
+cronológico único. El término m incluye todos los subconjuntos no vacíos
+de medidas guardadas en una acción ordinaria y usa su probabilidad máxima
+b'. La alternativa de origen r aparece sólo cuando no se entra desde una
+causa propia. Estas sustracciones se hacen por clases de hijos, antes de
+mayorar por las series exponenciales de coeficientes positivos. Inducción
+en árboles finitos y límite monótono justifican (5)–(6).
+
+7. Restauración de piezas exteriores, comprobación y transferencia
+================================================================
+Poner ξ=5.55·10⁻¹¹, x=2.95·10⁻¹¹ en la clase general, x=1.19·10⁻¹⁰ sin
+ciclos de cuatro. Las listas completas para U,S,P,C figuran en el programa
+autónomo verificar_H5A_interacciones.py. Cota anclada en un núcleo, con
+índices de S desde uno:
+
+ V₀=max(S₁+S₄+17S₆, S₂+S₅+18S₆),        C₀=S₃+35V₀.
+
+Un check del núcleo es una medida ligada o una medida registrada en una
+acción con un lector real entre sus datos. Para las piezas exteriores usar
+a_v=2·10⁻³⁹ y a_c=5.81·10⁻¹¹ por raíz fuente, y las cotas cerradas de K
+m_vv=46870021, m_vc=1420146, m_cv=2766309 y m_cc=83810. La conectividad
+del soporte original da un árbol sobre sus núcleos y sus piezas exteriores.
+Dos núcleos son componentes distintas después de retirarlas. Los contactos
+de un dato exterior se pueden leer desde su fuente, pues su corrección
+aislada tiene el mismo vecindario. Distintas piezas exteriores de datos
+tienen fuentes distintas y dos núcleos hijos se pueden anclar en sitios
+distintos de sus soportes. Las cotas que cierran la inducción exterior son
+
+ a_v ≥ s_p exp[m_vv(a_v+V₀)+m_vc(a_c+C₀)],
+ a_c ≥ s_q exp[m_cv(a_v+V₀)+m_cc(a_c+C₀)],
+ s_p exp[135(m_vv a_v+m_vc a_c)] ≤ x t^(633/50),
+ s_q exp[m_cv a_v+m_cc a_c] ≤ ξ,          s_r=[r/(1−r)]exp(1.01).
+
+En un núcleo, sus ≤135e sitios de datos y sus d medidas pagan así todos
+los hijos exteriores. Por (4), x^e ξ^d t^(T+B) domina el peso físico
+incluidas estas opciones. Los límites finales por sitio son
+
+ R_V=V₀+18a_v,     R_C=C₀+a_c,
+ K_E=135(m_vv R_V+m_vc R_C) < 0.011406,
+ K_D=m_cv R_V+m_cc R_C < 0.000004986.
+
+La fila de incompatibles cuesta ≤K_E e+K_D d en el soporte físico
+original, incluida la diagonal. Cada esquina pasa simultáneamente ambas
+conversiones y la monotonía cubre el rectángulo inferior. En los cálculos
+para p se usa un superior racional 2.79 para la inclinación exterior
+de datos y se elevan ambos lados a potencia 50. El perfil, las filas de
+árboles, la conversión de medidas y las dos cargas se deciden con aritmética
+racional. Las 9985 firmas locales del perfil dependen sólo de los grados.
+
+El compilador prop:kp-filtered-compiler da una cola de log-partición
+≤(nR_V+|C_X|R_C)exp[−(M+1)/13500] a corte M. Garantiza positividad y acceso
+determinista con error relativo elegible en tiempo de bits polinómico en
+N, la precisión inversa y la longitud de entrada, tras preparar el orden.
+La cota utiliza los pesos absolutos y admite todos los subhosts inducidos.
+Para el fallo silencioso positivo, thm:silent-conditioned requiere además
+un testigo lógico verificado de peso w y conserva el factor 1+z_p^(−w).
+El caso p=0 se rige por el caso cero del teorema. El nuevo rectángulo es
+una región garantizada de acceso a las particiones del decodificador.
+
+8. Distancia a la meta y dependencias
+=====================================
+A p=10⁻⁶, la cancelación algebraica y la cota local (3) siguen siendo
+válidas. El mayorante numérico de esta nota todavía paga t^(633/50) por
+cada dato que queda, incluso cuando su grupo de entrada acabaría por
+corregirse antes de la mayor parte de las acciones de puntuación baja.
+Se puede ver el límite de reajustar estas mismas desigualdades: Λ<1 exige
+t<4/578<0.007 y la fila interna VV obliga a U_VV≥x exp(22880420 U_VV),
+luego x≤1/[22880420 exp(1)]. La conversión impone p<x t^(633/50) <10⁻³⁵.
+La sección 7 de H5A_cadenas_y_medidas.txt da además la obstrucción propia
+de KP en el host original. Para alcanzar 10⁻⁶ continúa abierta una cola
+uniforme para las interacciones normalizadas entre grupos que conservan
+síndrome después de la fase perfecta. Contar separadamente la probabilidad
+local de cada dato señalado perdería el control de los testigos compartidos.
+
+En el manuscrito BORRADOR_INTRODUCCION_Y_RESULTADOS_EN_v2.tex se usan la
+definición de marcas físicas, thm:recomp, eq:pq-exact-host, eq:pq-M,
+eq:cleanup-expectation y los dos resultados de acceso citados en la sección 7.
+En las comprobaciones del proyecto, H5A_U1 ya formuló la identidad de
+defectos y una obstrucción en el host K. H5A_U3 y R32 demostraron limpieza
+hereditaria bajo sus guardas. H5_PODA_PREFIJOS_NEUTROS_Y_NUCLEOS desarrolló
+la retirada de bloques de síndrome cero y la fase perfecta. Se aprovechan
+estas ideas en la condición necesaria por cada dato del coeficiente, el
+agrupamiento con testigo pagado una sola vez y su transferencia cuantitativa.
+
+Ejecutar «python verificar_H5A_interacciones.py». El programa usa sólo
+la biblioteca estándar. La búsqueda de constantes fue numérica y todas
+las desigualdades que sustentan el resultado se comprueban con fracciones.
+Como contraste aritmético se tomó M del paquete original
+CERTIFICADO_PQ_REPRODUCIBLE_20261104.zip, se recontaron los lectores
+por tipo sin reposición y se sustituyó la cota de Taylor por el superior
+(1−z/2048)^(−2048). Ambas esquinas pasaron también ese contraste. Las cinco
+formas que admiten una huella de tamaño ≤36 se contrastaron con máscaras
+binarias de filas y columnas del rectángulo de un generador.
+La derivación combinatoria queda pendiente de revisión matemática independiente.

@@ -1,0 +1,92 @@
+H6 — UNIDAD 5: COMPARACION DE RECURSOS (G4) Y MATRIZ FINAL V1-V4
+Fijado el 12/11/2026 (Lima) ANTES de medir. Sesion Claude abierta por el
+usuario ("ok esta bien continua", tras la entrega de la unidad 4).
+Controles releidos: sin cambios desde DEC-028. Las unidades 3 y 4 no tienen
+contraste del revisor; el usuario decide seguir.
+
+1. CARENCIA QUE SE ATACA
+G4 = V4 en los dos contratos: no existe una tabla del estimador frente a la
+referencia exacta bajo el mismo evento, ruido y precision, con costes
+completos. Las unidades 3 y 4 dejaron mediciones de UNA ejecucion, con la
+memoria medida para la ejecucion entera y no en el corte de parada.
+Ademas la unidad cierra el paso P4 del plan de validacion: matriz final
+afirmacion-prueba de V1-V4.
+
+2. RESULTADO HEREDADO (no se presenta como nuevo; no se modifica)
+Programas sellados de las unidades 2, 3 y 4 y sus salidas. Nada de eso se
+edita: aqui solo se vuelven a ejecutar tal cual, con salidas nuevas.
+
+3. QUE SE HACE
+A. Mediciones (G4). Un programa conductor lanza, de uno en uno, los
+   programas sellados sin modificar:
+   - estimador de la unidad 3 con el corte de parada k=2: 5 veces;
+   - estimador de la unidad 4 con k=3 y con k=4: 5 veces cada uno;
+   - contraste de la unidad 3 y de la unidad 4 (que contienen la referencia
+     exacta de cada contrato): 5 veces cada uno;
+   - una reejecucion completa de: verificador de la unidad 2, estimador de la
+     unidad 3 (k=8) y estimador de la unidad 4 (k=5).
+   De cada ejecucion se toma el tiempo de reloj del proceso entero, los
+   tiempos internos por fase y el pico de memoria del proceso. Se informa
+   mediana, minimo y maximo. Los contadores (historias, sindromes, scores,
+   familias, bits) son deterministas y se toman de las salidas selladas.
+B. Tabla de comparacion, por contrato y con la garantia declarada:
+   estimador en el corte de parada (error relativo garantizado <= 10 %,
+   determinista), estimador en el mayor corte calculado, y referencia
+   exacta. Unidades comparables: decodificaciones, sindromes distintos,
+   evaluaciones de score, aritmetica, tiempo, memoria, preparacion.
+   Se anade, SIN ejecutarlo, el numero de muestras que necesitaria un Monte
+   Carlo directo para un error relativo del 10 % con confianza del 95 %
+   (aproximacion normal, 384(1-P)/P): es una cuenta, y su garantia seria
+   estadistica, no determinista.
+C. Control complementario de V1.4 en el contrato fenomenologico. La matriz
+   de la unidad 1 dejo esa celda PARCIAL: faltaba una cancelacion entre
+   componentes que hubieran ejecutado acciones. Justificacion de incluirlo
+   aqui: sin el la matriz final arrastraria un PARCIAL por una comprobacion
+   de segundos, y usa el decoder ya contrastado. Para todas las historias
+   (E,D) de peso 1 a 4 sobre los 37 sitios (74518): decoder global por
+   tabla, componentes en el host K, restriccion de cada componente, traza
+   local como subsucesion, XOR de residuos, huellas fisicas disjuntas y
+   recomposicion canonica por cabezas locales; se cuentan las historias con
+   cancelacion tras acciones.
+D. Matriz final V1-V4: documental, con el estado de cada celda tras las
+   unidades 1 a 5 y lo que sigue sin contraste del revisor.
+
+4. PREDICCIONES Y CRITERIOS (fijados de antemano)
+M1. Reproducibilidad: las reejecuciones completas dan salidas deterministas
+    identicas byte a byte a las selladas:
+      RESULTADO_H6_U2.json   e23905fb361a5a5d...
+      ESTIMACION_H6_U3.json  349658833be721cb...
+      RESULTADO_H6_U3.json   fe714cddb5dc5b9c...
+      ESTIMACION_H6_U4.json  654367777c23c83c...
+      RESULTADO_H6_U4.json   027973eb8c4a6cda...
+M2. Las ejecuciones con corte parcial dan, para cada k calculado, la misma
+    fila que la tabla sellada (certificado y contadores).
+C1. En el contrato fenomenologico, historias de peso <=3: 4705 con una
+    componente, 3234 con dos y 534 con tres; 3131 con dos o mas trazas
+    locales activas (cifras publicadas en el paquete de observables).
+C2. Las 66045 historias de peso 4 pasan todas las comprobaciones.
+C3. Historia E={1,2,9,10}, D vacio: traza = volteos de 0, 3, 8, 11; dos
+    componentes {0,1,2,3} y {8,9,10,11}; residuos locales 15 y 3840, ambos
+    con sindrome fisico nulo y fuera de S_X; residuo 3855 en S_X. Hay por
+    tanto al menos una cancelacion tras acciones en peso 4.
+Sobre el coste NO se predice ventaja: las ejecuciones unicas de las
+unidades 3 y 4 ya indican que la referencia exacta es igual de barata. El
+resultado de G4 puede ser "comparacion hecha, sin ventaja"; el plan de
+validacion admite cerrar V4 asi y deja pendiente el objetivo de
+diferenciacion.
+Una prediccion M1, M2, C1-C3 fallida detiene la unidad y se informa.
+
+5. PRESUPUESTO Y PARADA
+Python puro, biblioteca estandar, un proceso cada vez. Como maximo 30
+ejecuciones de programas sellados y 10 minutos en total; 1 GiB; 32 MiB de
+salidas. Ningun programa sellado se modifica. Cero censos, muestreos
+(el Monte Carlo no se ejecuta), agentes e instalaciones; nada sobre F17.
+Manuscrito, PDF y ZIP no se modifican.
+
+6. LO QUE ESTA UNIDAD NO PUEDE DAR
+No acredita ventaja de coste ni la niega en general: mide dos instancias
+minusculas donde la referencia exacta cabe en segundos. No compara con
+metodos especializados de eventos raros (splitting, muestreo de
+importancia): no se pretende una ventaja amplia. No ejecuta el algoritmo
+del teorema. No cierra H6: la consolidacion editorial y el contraste del
+revisor son del usuario.

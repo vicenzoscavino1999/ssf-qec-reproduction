@@ -1,0 +1,244 @@
+H5-A · Ramificaciones entre grupos en el HGP binario (3,4)
+Entrega v11 · 23 de noviembre de 2026
+
+En G3, p=10⁻⁶ y q=10⁻³, una parte adicional de la fila que quedaba
+abierta en v10 tiene mayorante 0.000593097. Las dos clases cubiertas
+admiten cualquier número de grupos originales. El subtotal que se puede
+acotar en la fila completa es <0.003496361. Para certificar G3 por esta
+vía basta un mayorante ≤0.0005036 en la clase delimitada en (4). Su
+contribución real sigue sin cota suficiente. El rectángulo uniforme de
+acceso a las particiones demostrado en v10 es p≤3.28·10⁻⁷, q≤10⁻³.
+
+Los parámetros, el logaritmo y las normas son los de
+H5A_3_4_exceso_sin_compensar.txt (v10). Se consideran todos los tamaños
+del producto de una semilla binaria (3,4) consigo misma, las máscaras y
+subhosts físicos inducidos, una ronda Bernoulli independiente y el SSF
+con todas las acciones FGL, β=.01, máximo global de descenso por tamaño
+de huella y desempate físico fijo. El filtro exige síndrome físico
+residual cero. La precisión relativa para fallo silencioso positivo
+requiere además el testigo y las hipótesis del Teorema 1 del manuscrito.
+
+1. Dos coordenadas y un saldo compartido
+========================================
+
+Sean n=|E| y m el número de componentes del grafo de lectores G[E].
+Cada especie nuclear c comprende un subconjunto de esas componentes
+junto con sus medidas activas. Tomar los techos físicos k(A) de v10 §2.
+En una especie no simple, los pasos lejanos, incluidas sus repeticiones,
+son a lo sumo K=Σ_{|A|≥2} k(A) − número de aislados (v7 §1). Un
+generador lejano tiene un rectángulo disjunto de las huellas originales.
+
+Para una especie con dos o más componentes, usar los árboles de v7 §2.
+Cada componente conserva un árbol interno. Las zonas de datos y los
+rectángulos lejanos usados se conectan en sus intersecciones. Podar las
+hojas de generador, conservando la marca física cuando sea necesaria,
+y comprimir las cadenas de generadores de grado dos. Para un enlace
+exterior e, los radios de base r₁,r₂ de la nota de medidas por historia son (4,6),
+(5,5), (6,4) para dos datos, (3,4) o (4,3) para dato y generador,
+y (2,2) para dos generadores, con los tipos en la orientación elegida.
+Si d₁,d₂ son las distancias de Tanner entre los extremos, poner
+
+ i=max(0,(d₁−r₁)/2), j=max(0,(d₂−r₂)/2), l=max(i,j), u=min(i,j).
+
+Son enteros por paridad. Cada extremo debe satisfacer ambos radios si
+la cadena tiene t interiores, de modo que l≤t. Definir, en el árbol T,
+
+ B_T = número de generadores lejanos visibles + Σ_e l_e,
+ J_T = Σ_e u_e,                 h_T = max(0,J_T−(K−B_T)).          (1)
+
+Los interiores de enlaces distintos son disjuntos. Cada tramo común
+se cuenta una sola vez. Si f cuenta los generadores lejanos distintos
+usados, B_T≤f≤K. Se admiten las raíces de dato y las marcas de cobertura
+físicas de v10 §1 para las que se pide un recuento de esta especie.
+Para cada raíz o marca requerida se puede elegir el árbol. Definir h(c)
+como el máximo, sobre esos requisitos, del mínimo de h_T. Para una
+especie de un solo grupo poner h(c)=0. Un certificado sin raíz física
+también puede usar la construcción con raíz de dato.
+
+Para cada E con coeficiente no nulo definir H(E) como el máximo de la
+suma de los h(c) sobre las particiones de sus componentes originales en
+especies nucleares admisibles en el monomio sin repeticiones. Se puede
+incluir cualquier elección admisible individualmente para cada parte,
+aunque las especies no coexistan en una ejecución. Se incluyen las
+elecciones de medidas activas y los estados admitidos en las fijaciones.
+En cada host finito es un máximo finito. Contribuciones imposibles valen
+cero. Esta definición conservadora permite sumar los valores absolutos
+antes de olvidar las especies y las medidas. Basta un árbol favorable
+por requisito de una especie, pero hace falta controlar todas las
+descomposiciones para clasificar el coeficiente físico completo.
+
+2. Suma a todos los órdenes
+===========================
+
+Introducir primero variables independientes por especie como en v10 §3.
+En una de las dos normas multiplicar la actividad de c por τ^m_c ξ^h(c),
+con τ=1.3, ξ=.15938, Y=(.6375)^6. En el árbol elegido, h(c)≥h_T.
+Como 0<Y<ξ<1, el peso ξ^h(c) es a lo sumo Y^(B_T−K) ξ^J_T.
+El factor Y^(−K) se reparte entre grupos como en v7. Cada generador
+visible cuesta Y y cada enlace ordinario aporta Y^l ξ^u. Al sustituir
+aristas por posiciones físicas, cada par de capas de Tanner se mayora
+por sus preimágenes geodésicas en los dos árboles de recubrimiento.
+
+Sean A,B los tamaños de ambas bolas de base y a,b sus incrementos al
+pasar de radio r a r+2. Los incrementos siguientes se multiplican por
+6. Sumando i=0 o j=0, la diagonal positiva y ambos lados de ella,
+
+ L = AB + (aB+bA)Y/(1−6Y)
+        + ab ξY [1+12Y/(1−6Y)]/(1−36ξY).                            (2)
+
+En el enlace distinguido quedan k=K−B_otros interiores disponibles,
+incluyendo el coste de todos los generadores visibles en B_otros. Si
+s_l suma ξ^min(i,j) sobre la capa max(i,j)=l, se puede usar
+
+ M = techo del supremo sobre k≥0 de (Y/ξ)^k Σ_{l=0}^k s_l ξ^l.
+
+En efecto, una posición del enlace debe tener l≤k y la marca se acota
+por ξ^(J_otros+u+l−k). Así se conservan Y^(B_otros−K) y ξ^J_otros
+para el resto. Con ξ=1, el mismo argumento da el enlace sin inclinación
+en las coordenadas. El programa suma (2) exactamente. Para M actualiza
+b_k=(Y/ξ)b_{k−1}+s_kY^k. Todos los valores posteriores son a lo sumo
+(Y/ξ)b_k + L−Σ_{l≤k}s_lY^l. Se usa L antes del redondeo en esa cota.
+
+Los polinomios de grupos usan el histograma acumulado de v10 §§1–2.
+Para los términos ordinarios su precio es Y^(−k) y, para un grupo solo
+y un generador físico fijado, f_i(k) de v10 §1. Son crecientes en k.
+La suma por partes mantiene la validez al contar grupos desde posiciones
+diferentes. El descuento por exposición de v7 §4 depende sólo de la
+composición. Para más de diez datos se mantienen las ramas débiles y
+fuertes de v6 con sus primeros diez grados sustraídos a los mismos
+pesos. En la raíz física los grupos únicos tienen marca uno. Añadir
+también para n≥11 su mayorante directo, usando f_i(k)≤2000n⁹ (v10 §4).
+La cabeza de esa cola es 2τ·2000·11⁹·(11⁹/10!) m_max(1297 m_max)^10.
+La razón es ≤e·1297 m_max(12/11)⁹<1. Dejar además su contribución en
+la estimación anterior sigue dando un mayorante.
+
+La fijación de especies y la variación de medidas pasivas son las de
+v10 §3 con α=.004, b=.001155, η=.0001. Para la proyección m≥2, si la
+especie raíz contiene varios grupos se distingue un hijo exterior. En
+la cola se usa la derivada positiva de las ramas débiles y fuertes y
+se restan los diez grados derivados a los mismos pesos (v10 §5). Si
+la especie raíz tiene un grupo de dos o más datos necesita una segunda
+especie. La variación está acotada por n[2(R+24I)+2160d_p], con el
+primer momento del árbol a los pesos de datos. Para los simples se usa
+(U_i−H_i) por el factor de respuesta de v10 §3. Aquí H_i es la masa
+mayorada de núcleos no simples, distinta de H(E). El verificador
+comprueba las supersoluciones, las contracciones y los restos racionales.
+
+La otra norma usa Y=(.52)^6 y ξ=1. Multiplica cada actividad nuclear
+por λ^n_c τ^m_c, con λ=.13 y τ=215/13. En todo el monomio esta marca es
+2.15^m·.13^(n−m), al menos uno si 8n≤11m porque 2.15⁸·.13³>1.
+En la norma de dos coordenadas se tiene 1.3⁷ ξ>1. Si 7H(E)≤m+4, el
+producto de las marcas en todo término es al menos 1.3^(−4). Esto
+permite el regreso a la fila física por desigualdad triangular. Las
+dos proyecciones ponderadas para m≥2 son, antes del redondeo final,
+
+  marca por número de datos y grupos         0.000120005336356…
+  marca por avance en las dos coordenadas    0.000165642539822…       (3)
+
+Los valores decimales de (3) son aproximados. Con las fracciones del
+verificador, la primera más 1.3⁴ veces la segunda es <0.000593097.
+Esto domina la unión, aunque las dos condiciones tengan intersección.
+La fila ya acotada en v10 tenía mayorante 0.002903264. El complemento
+para el cual bastaría ≤0.0005036 cumple simultáneamente
+
+ m≥3, n≤9m−10, L₁₀(E)<6Y₁₀, 8n>11m, 7H(E)>m+4.                     (4)
+
+Aquí L₁₀ es la marca de v10 (1) e Y₁₀=43/2000. No hay un corte en el
+tamaño del host ni de los grupos. El antiguo objetivo separado de
+0.001203 para el resto completo de v9 y la cota general de G3 siguen
+abiertos. El número 0.0005036 es el saldo suficiente para G3.
+
+3. Tres grupos que se unen en un generador lejano
+==================================================
+
+Como contraste separado, en los términos del resto de v10 con m=3
+acotar los que reúnen los tres grupos en un solo núcleo y admiten el
+árbol descrito a continuación con bifurcación lejana. Las medidas
+pasivas se suman proyectando a cero las otras especies nucleares en la
+fijación del núcleo raíz, como en el límite de v10 §4. Allí se verifican
+m_V=1.846·10⁻⁶, m_C=2.141·10⁻⁶, b=.001139, θ=.001145 y el precio de
+exposición ≥.001. La condición n≤9m−10 de v10 implica n≤17 cuando m=3. Esto da el
+límite de 15 datos por grupo en este cálculo.
+
+Conservar el árbol interno de cada grupo. Dar a cada generador lejano
+un padre de profundidad una unidad menor por un recorrido desde todas
+las zonas originales. Los padres forman un bosque, que se completa a un
+árbol y se poda hasta los tres grupos. Cada generador que sobrevive
+conserva su camino a algún original porque éste es un terminal. Así,
+en el árbol podado la distancia al grupo más cercano sigue siendo su
+profundidad física. Tras contraer cada grupo, o hay un grupo entre los
+otros dos, o hay una bifurcación lejana. En el segundo caso, si l_i es
+el número de interiores de cada brazo y d=1+min_i l_i, el centro está
+a profundidad d. El interior j contado desde el grupo i tiene profundidad
+min(j,l_i+1−j+d). Con a_j vértices necesarios en la capa j se necesitan
+por lo menos u pasos en total al aplicar u←u+max(a_j,techo(u/2)) desde
+el fondo con u=0, por la recurrencia de v7 §1. Para las longitudes
+mínimas de los extremos se toma la clausura hacia abajo de las ternas
+admisibles. Así se admiten también recorridos físicos más largos.
+
+Las tres capas de extremos se multiplican a raíz fija. En cada capa cero
+del brazo se descarta el producto de las dos bolas de radios r₁−2,r₂−2.
+Con esos radios el generador toca la huella del dato, por la forma de
+la franja VV o CC y del rectángulo. Todo extremo lejano nuevo tiene
+una preimagen fuera de esa bola incluso en presencia de ciclos.
+Contar los árboles de grupos por tipo de dato extremo; un grupo raíz
+con v datos VV y c datos CC da v o c elecciones. Los dos grupos hijos
+son distintos y permutables, de modo que el conteo ordenado se divide
+por dos. Sumar sus saldos k y usar la condición necesaria Σ j̄≥2, donde
+j̄=max(−1,k−|A|+1) desde tres datos y vale cero en los demás grupos.
+El techo individual 4 y el techo 3 en el par de hijos preservan el
+test de suma ≥2, ya que cada j̄≥−1. Es una prueba creciente en cada
+saldo y se combina con las capas por suma por partes (v10 §4). Desde
+11 a 15 datos individuales se usan los árboles ordinarios por composición
+y k≤piso((7v+10c)/6). La suma para la bifurcación es <0.000024016.
+Esta cifra ya puede solaparse con (3). No se añade al subtotal ni se usa
+para descontar presupuesto. Los casos con un grupo central o con varias
+especies también pueden contribuir al coeficiente físico de tres grupos.
+
+4. Obstrucción al ajuste de un peso y una condición física adicional
+====================================================================
+
+En las ecuaciones de ramas de esta nota, quitar las inclinaciones de
+talla, componente y doble coordenada pone λ=τ=ξ=1. Con α=.004 y estos
+polinomios y cola, ningún Y positivo cierra las filas completas en G3.
+Para Y≥1/36 diverge (2). Para Y<1/36 el programa divide el intervalo en
+32 partes racionales contiguas. La condición de datos de v7 §6 da
+m_i≥z exp(.001 Γ_i) con Γ=(504,628). Conservar sólo los monomios de
+uno y dos datos de h y las ecuaciones necesarias de las ramas d,e.
+En cada intervalo se evalúan los enlaces en el extremo bajo, Y^(−k)
+para parejas en el alto y Y del aislado en el bajo. Se subestima
+a⁻¹=Y^(−1/6) en el extremo alto y cada exponencial con su polinomio de Taylor de grado 14, truncando el argumento en 14. Con redondeos hacia abajo la
+iteración lleva e_C hasta 0.1 en 23 pasos o menos en todos los
+intervalos. Pero e_C≥1.90·10⁻⁶ exp(129 e_C) excluye e_C≥0.1, pues
+x exp(−129x) decrece en ese rango. Esto obstruye este cierre con una
+longitud y sin las dos marcas. La obstrucción no es un límite del SSF.
+
+Hay información de la ejecución que esas ecuaciones omiten. En un núcleo
+fijar un generador lejano usado P. Sea C_P la unión de las celdas de P
+conmutadas por acciones en otros generadores del mismo núcleo. La suma
+módulo dos de las huellas conmutadas en P por sus propias acciones está
+soportada en C_P: en P se parte y se acaba con los mismos bits de D.
+Es una suma de filas y columnas del rectángulo 4×3. Las 64 huellas
+resultantes tienen peso cero o al menos tres. Por tanto, si |C_P|≤2,
+la huella neta es cero y P se usa al menos dos veces. Si además los
+contactos no incluyen dos celdas de una misma fila, toda configuración
+restringida a esos contactos es estable, según la tabla de 4096
+síndromes. El primer paso en P requiere entonces apagar al menos un
+error de medida de D fuera de C_P. Esos errores privados son distintos
+en distintos P que los conmutan.
+
+Si ν_P es el número de usos de cada generador lejano, K−B_T≥Σ(ν_P−1)
+y J_T≤B_T≤f. Así h(c)≤número de P con ν_P=1, para cualquier raíz.
+Cada uso único requiere al menos tres celdas conmutadas por otros
+generadores. Acotar el peso conjunto de esos contactos en (4) atacaría
+directamente el mecanismo que deja abierta la fila. La observación de
+paridad por sí sola todavía no da ese mayorante.
+
+Reproducción desde 05_COMPROBACIONES, con Python 3.10 o posterior
+
+    python -I -B -X utf8 verificar_H5A_3_4_ramificaciones_dos_ejes.py
+
+Las decisiones del verificador se toman con enteros y fracciones. Las
+proyecciones, la suma y la bifurcación se
+muestran en forma decimal para la lectura. La derivación matemática
+queda pendiente de revisión independiente.

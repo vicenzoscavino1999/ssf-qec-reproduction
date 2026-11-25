@@ -1,0 +1,978 @@
+BORRADOR DEL PLAN DE T2-2: SPLITTING PARA EL MISMO P_SIL
+Version 4, para la revision del codigo v2. SIN SELLAR. 15/11/2026,
+America/Lima. Ejecutor.
+
+ESTADO DE ESTE DOCUMENTO
+- Es un borrador. No esta sellado y no autoriza ninguna ejecucion.
+- La v4 solo recoge lo que exigen R1 a R3 de
+  T2_2_REVISION_CODIGO_V1_20261115/DICTAMEN_CODIGO_T2_2_V1.txt
+  (marcadas "codigo v2"): el ancla con un bloque interrumpido queda
+  NO_EVALUADA (2.6 y 7.1), los plazos de la estimacion y de
+  --verificar y el disco tras la salida (seccion 6), y el riesgo de
+  memoria senalado en el punto 6 del dictamen (seccion 6). No cambia
+  evento, decoder, ruido, tasas, semillas, estimadores, criterios ni
+  dependencias, y no aumenta ningun techo. La v3 (SHA-256
+  e560f935...) se conserva sin cambios en versiones/v3/; la
+  diferencia esta en diferencias/. Los anexos no cambian.
+- La v3 incorporo C1 a C3 de T2_2_REVISION_PLAN_V2_20261115/
+  DICTAMEN_PLAN_T2_2_V2.txt y las precisiones que fijo la preparacion
+  del codigo (T2_2_CODIGO_PILOTO_20261115/; marcadas "codigo v1"). No
+  cambia evento, decoder, ruido, instancia, parametros cientificos,
+  criterios ni casos, y no aumenta ningun techo; solo los precisa. La
+  v2 (SHA-256 401e856e...) se conserva sin cambios en versiones/v2/ y
+  la v1 en versiones/v1/; las diferencias estan en diferencias/. Los
+  anexos no cambian en la v3.
+- La v2 corrigio la v1 segun T2_2_REVISION_PLAN_V1_20261115/
+  DICTAMEN_PLAN_T2_2_V1.txt (R1 a R5 y DC1 a DC11); respuesta punto por
+  punto en RESPUESTA_R1_R5_T2_2.txt.
+- Hay codigo preparado para revision, con autopruebas y pruebas de
+  humo sinteticas (modelos de juguete, sin decoder ni datos fisicos).
+  No se ha ejecutado ninguna etapa de T2-2: ni decoder, DP, ancla o
+  cadenas fisicas, C-tiempo, P-conex, Monte Carlo ni censos. No se
+  repite ningun resultado anterior.
+- No modifica el manuscrito, los archivos del revisor, los controles,
+  DEC-058, el plan sellado de T2-1 ni sus salidas congeladas.
+- Antecedente inmediato: T2-1 cerrada como experimento en su alcance
+  revisado (DEC-058). A4 NO se alcanzo. T2-2 no reevalua A4, no anade
+  cortes al certificado y no es una campana para reparar A4.
+- Las cifras de coste son previsiones o proyecciones hechas con
+  mediciones guardadas (PRESUPUESTO_Y_DUDAS_T2_2.txt). No son
+  resultados ni cotas demostradas.
+- Anexos: FUENTES_CONSULTADAS_T2_2.txt, RECURSOS_Y_PIEZAS_T2_2.txt y
+  PRESUPUESTO_Y_DUDAS_T2_2.txt (incluye las decisiones DC1 a DC11).
+
+0. PREGUNTA
+
+0.1 Lo que T2-1 respondio y lo que no
+T2-1 dio intervalos certificados de P_sil con k = 4 en 128 filas
+(cuatro tiras, ocho celdas), su coste y la comparacion con un rival de
+truncacion al mismo corte. D-mc no detecto incompatibilidad con un
+Monte Carlo directo (Clopper-Pearson al 99.9 % nominal) en una sola
+celda. T2-1 no midio la precision ni el coste de un estimador
+especializado de eventos raros para el mismo P_sil, ni si el error
+que declara ese estimador es fiable aqui.
+
+0.2 Pregunta de T2-2
+En TIRA_6x6, con r_m = r_c y las tasas de T2-1 (r_c = 1e-3, 1e-4,
+1e-5 y 1e-6):
+ Q1 que precision nominal y que coste consigue el splitting estandar
+    de Bravyi y Vargo, en la forma de Fail fast, para P_sil;
+ Q2 si, en esta realizacion, su error real, acotado con los
+    intervalos certificados de T2-1, queda dentro del error nominal
+    que el propio metodo declara (7.2, D-s4 y D-s7);
+ Q3 que complementariedad puede acreditarse frente al certificado, y
+    que parte de una posible ventaja de coste queda sin acreditar,
+    con criterios fijados antes de calcular (seccion 7).
+TIRA_48x6 queda fuera de este plan: solo con la regla de 7.3 y una
+orden posterior (DC5).
+Q2 es lo que T2-1 hace posible: intervalos certificados estrechos
+justo donde el splitting es mas dificil (tasas bajas, mezcla lenta).
+En m = 6, e_comp(4) = 0.59 % en 1e-5 y 0.0060 % en 1e-6. Siguen
+siendo intervalos, no valores exactos. Una sola realizacion no evalua
+la cobertura repetida del procedimiento estadistico.
+
+0.3 Que se toma de EVALUACION_T2.txt y que no
+- Se mantiene: el splitting como rival especializado opcional (iii);
+  su error es estadistico y necesita diagnosticos de mezcla (pieza h).
+- Queda superado por el contrato y los resultados de T2-1: los costes
+  previstos (ahora hay mediciones), la eleccion de celdas y tiras, y
+  la idea de que sin splitting la comparacion solo es cualitativa:
+  T2-1 ya tiene una comparacion cuantitativa con su rival. T2-2 anade
+  otra, con un estimador de otro tipo.
+- No se arrastra ninguna propuesta de cambiar ruido, decoder o evento.
+
+1. QUE NO CAMBIA
+- Instancias: tiras HGP(CAMINO_m, CAMINO_6) de B4 (b4_tiras.py).
+- Decoder: el SSF de b4_tiras.py, sin cambios ni parametros nuevos.
+- Evento: P_sil, el de B4, T2-0 y T2-1: el decoder termina con
+  H_X R = 0 y R queda fuera de S_X.
+- Circuito, calendario y una ronda de T2-0 (t2_calibracion.py).
+- Ley: la categorica del apendice C por ubicacion, con categorias
+  excluyentes en cada ubicacion; marginal X como en D-mc (t2_mc.py).
+- Sitios: cada ubicacion afecta a una sola fibra (T2-0). Por eso los
+  sitios son independientes y la ley de cada sitio es el push-forward
+  exacto (convolucion XOR) de las leyes de las ubicaciones de su fibra
+  (site_classes y law_of de t2_calibracion.py; C-ley de T2-0). El
+  evento depende solo de las clases de los sitios. Trabajar con sitios
+  no supone independencia entre categorias de una misma ubicacion: la
+  ley conjunta dentro de cada fibra se conserva.
+- Dinamica (DC1): la cadena cambia clases de sitio. Es una dinamica de
+  Metropolis distinta de una que cambiara categorias por ubicacion:
+  mismo objetivo pi_r(. | F) y mismo P_sil, pero otra mezcla. Ningun
+  resultado de mezcla se transfiere a esa otra implementacion.
+- Maquina, 14 procesos, prioridad y plan de energia: como en T2-1.
+
+2. METODO (a)
+
+2.1 Eleccion y justificacion
+Splitting de Bravyi y Vargo (BV, arXiv:1308.6270v3: sec. III, ec. 4
+a 10; sec. VII, ec. 17 y paso de Metropolis) en la forma general de
+Fail fast (FF, arXiv:2511.15177: sec. 5.1, algoritmos 2 y 3), con la
+siembra multiple de FF sec. 5.3. Motivos:
+- es el antecedente especializado que citan el manuscrito (BV13 y
+  BCCY25), PLAN_EXPERIMENTAL_NIVEL_PRX_QUANTUM.md (sec. 5) y la regla
+  V4 de H6 en PLAN_SEIS_HITOS.txt;
+- solo exige lo que este sistema tiene: pi_j(E) calculable para toda
+  E y una prueba de pertenencia a F (una llamada al decoder);
+- sus parametros tienen fuente publicada (2.12); no hay que ajustarlos.
+Desviacion declarada: la linea 23 del algoritmo 2 de FF escribe el
+cociente con sumas. Aqui se usan medias (BV ec. 6; FF ec. 17), que es
+la identidad correcta cuando las cadenas tienen longitudes distintas.
+No se implementan variantes mas recientes (intercambio de clusteres,
+remuestreo por subregiones, splitting por fallos de puertas: HM26,
+MWB26 y Mayer26 en el manuscrito). Un resultado negativo de T2-2 no
+las refuta y uno positivo no establece ventaja sobre ellas.
+
+2.2 Distribuciones
+Para una tasa r (con r_m = r_c = r), cada sitio s tiene una ley
+l_r(s, c) sobre {0} U C_s (0 = sin fallo visible; C_s = clases no
+nulas de s). Entonces
+  pi_r(E) = prod_s l_r(s, E_s),   P_sil(r) = sum_{E en F} pi_r(E),
+y la distribucion objetivo de cada nivel es
+  pi_r(E | F) = pi_r(E) / P_sil(r),   E en F,
+donde F es el conjunto de configuraciones de sitios silenciosas.
+Tamanos: NS = 91 sitios y 409 clases no nulas en m = 6; 763 sitios y
+3517 clases en m = 48 (T2-1). El soporte de cada l_r(s, .) es el
+mismo en todas las tasas de esta unidad (V3).
+
+2.3 Estados y firma de un estado
+E = (E_s) con E_s en {0} U C_s. La cadena solo visita estados de F.
+Firma: los pares (s, c) con c != 0 se agrupan en claves de peso
+kappa. Dos pares comparten clave si tienen la misma sucesion exacta
+de cocientes l_r(s, c)/l_r(s, 0) en los t + 1 niveles. N(E) es el
+vector de recuentos de E por clave. En cada nivel j,
+  pi_j(E) = pi_j(vacio) * prod_kappa a_j(kappa)^N_kappa(E),
+con a_j(kappa) el cociente comun y pi_j(vacio) = prod_s l_j(s, 0).
+Asi la firma N(E) determina pi_j(E) en todos los niveles y todos los
+cocientes de 2.8 a 2.11. La tabla de claves se construye con
+fracciones exactas al fijar la escalera (pieza P2) y se sella con su
+SHA-256. T2-1 registro 6 tipos de ley de sitio en m = 6 (campo
+rival.leyes_por_celda.tipos_de_ley), asi que se esperan pocas claves.
+Su numero exacto no se calcula en este borrador.
+
+2.4 Transiciones (algoritmo 3 de FF, adaptado a clases)
+Un paso desde E en F:
+ 1. elegir un sitio s uniforme entre los NS;
+ 2. elegir c' uniforme en ({0} U C_s) \ {E_s}. La propuesta es
+    simetrica: el numero de opciones de s no depende de E;
+ 3. rho = l_r(s, c') / l_r(s, E_s); seguir con probabilidad
+    min(1, rho); si no, quedarse en E;
+ 4. E' = E con E'_s = c'. Si E' tiene menos de 3 sitios con fallo,
+    quedarse en E sin llamar al decoder (atajo; su justificacion y
+    sus dependencias estan en V5);
+ 5. si no, decodificar E'. Si E' esta en F, moverse a E'; si no,
+    quedarse en E.
+El balance detallado respecto de pi_r(. | F) vale por construccion
+(V2), como en BV ec. 19 y FF ec. 15. Se cuentan pasos, aceptaciones
+por peso, llamadas al decoder, llamadas evitadas por el atajo y
+transiciones efectivas (cambios de estado).
+Implementacion (codigo v1, C2): s = randrange(NS); k = randrange(n_s),
+con n_s = |C_s| y las clases numeradas 0 a n_s; c' = k si k < E_s y
+c' = k + 1 si no. rho se compara como float correctamente redondeado
+desde la fraccion exacta: se sigue si rho >= 1 o si random() < rho.
+Cada paso da una muestra (el estado tras el paso). Flujos: MT19937 de
+Python sembrado con el SHA-256 completo de una etiqueta ASCII (2.6,
+2.7 y 6).
+
+2.5 Niveles (tasas intermedias)
+Regla de BV ec. 17 (FF ec. 18), hacia abajo:
+  r_{j+1} = r_j * 2^(-1/sqrt(w_j)),   w_j = max(3, lambda_j),
+  lambda_j = sum_s (1 - l_{r_j}(s, 0)),
+donde lambda_j es el numero esperado de sitios con fallo. BV usa
+w_j = max(d/2, p_j n) y, con priors no uniformes (BV sec. VIII),
+w_j = sum_e p_j(e). Aqui f_s = 3 (V5) hace el papel de d/2 y
+lambda_j el de la suma de priors.
+Segmentos: [1e-2, 1e-3], [1e-3, 1e-4], [1e-4, 1e-5] y [1e-5, 1e-6].
+En cada uno se itera la regla desde el extremo superior, y el punto
+que pasaria del extremo inferior se sustituye por ese extremo. Asi
+ningun paso es mayor que el de la regla y las cuatro tasas de T2-1
+son niveles. La escalera r_0 > r_1 > ... > r_t tiene t + 1 niveles:
+cada nivel tiene su cadena en cada repeticion, y los t cocientes usan
+pares de niveles consecutivos. Recuento previsto, con lambda
+aproximado por la proporcion de tipos de ubicacion: t = 24 (25
+niveles) en m = 6, con 6 pasos por decada. El recuento exacto se fija
+al sellar, con las leyes exactas de sitio.
+Representacion de las tasas (C2; codigo v1): r_{j+1} es el techo a 12
+cifras significativas de r_j 2^(-1/sqrt(w_j)) (1 + 1e-40), calculado
+con Decimal de 60 cifras desde lambda_j exacto. Cada tasa intermedia
+es asi un decimal exacto de 12 cifras, la regla se reproduce sin
+ambiguedad y ningun paso supera el de la regla; al sellar se comprueba
+con cotas dirigidas que sqrt(w_j) ln(r_j/r_{j+1}) <= ln 2. Leyes,
+claves y pi_j(vacio) son exactas para las tasas representadas. t sale
+de la escalera efectiva: el 24 de arriba es una prevision y ningun
+programa lo fija.
+r_0 = 1e-2 y la regla con w_j = max(3, lambda_j) son heuristicas
+prefijadas (DC2). No prometen que el ancla o la mezcla sean baratas;
+el solapamiento entre niveles se vigila con d8 (3.5).
+
+2.6 Ancla: orden, parada, estimador e intervalo
+- Tasa r_0 = 1e-2, con la misma ley, circuito y decoder que T2-1 y
+  el muestreo por ubicaciones de t2_mc.py (condicion 1 de FF
+  sec. 5.1). Una historia silenciosa se traduce a su configuracion de
+  sitios por XOR en cada fibra (V4).
+- Orden logico total, fijado antes de calcular: la historia n
+  (n = 1, 2, ...) es la posicion n - b B_a del bloque
+  b = floor((n - 1)/B_a), con B_a = 1e6. El flujo aleatorio del bloque
+  b se deriva por SHA-256 de ("T2-2", "ancla", semilla maestra, b),
+  como en t2_mc.py; etiqueta exacta "T2-2|ancla|20261115|b" (2.12).
+  Cada bloque devuelve la lista ordenada de las posiciones de sus
+  historias silenciosas y sus configuraciones de sitios. Como mucho
+  hay 14 bloques en vuelo.
+- Parada estadistica en el exito s = 2010. T es el indice logico de
+  la historia silenciosa numero s. El conductor reparte los bloques
+  en orden logico y deja de repartir en cuanto el prefijo contiguo de
+  bloques terminados contiene s silenciosas. Los bloques ya repartidos
+  se terminan y se cobran como trabajo fisico sobrante. Sus historias
+  quedan registradas, pero no entran en T, en la estimacion ni en las
+  semillas.
+- Interrupciones (codigo v2): si un bloque repartido se corta por un
+  techo (plazo, llamadas o memoria), por una medida fallida o por un
+  error de su proceso, o si el proceso principal alcanza un techo, la
+  etapa del ancla queda NO_EVALUADA aunque otros bloques ya den un
+  prefijo con el exito s, en cualquier orden de llegada. El ancla
+  queda ANCLA_ABORTADA: se guardan los registros de todos los bloques,
+  tambien los cortados, sus costes y picos, y el prefijo estadistico
+  disponible (T si existe), sin estimador, intervalo ni semillas, y no
+  se lanzan C-tiempo ni las cadenas. Un prefijo disponible no es una
+  etapa aceptada. Un bloque cortado porque otra parada lo ordena lleva
+  ese motivo propio (parada cooperativa), no el de un techo suyo.
+- Se guardan T, s, el recuento de cada bloque del prefijo, la
+  posicion y la configuracion de cada silenciosa del prefijo, y el
+  sobrante por separado.
+- Semillas: las silenciosas con indice logico 1 a 12, en ese orden;
+  nunca el orden de llegada de los procesos.
+- Estimador puntual: Phat_0 = (s - 1)/(T - 1). Con historias
+  Bernoulli(p) independientes es insesgado (V6). s/T no lo es y no se
+  usa.
+- Intervalo al 97.5 % (alfa = 0.025) por inversion conservadora de la
+  ley binomial negativa de T:
+    l = BetaQuantile(alfa/2; s, T - s + 1),
+    u = BetaQuantile(1 - alfa/2; s, T - s) si T > s; u = 1 si T = s.
+  Salen de Pr_p(T_s <= T) = Pr(Bin(T, p) >= s) y de
+  Pr_p(T_s >= T) = Pr(Bin(T - 1, p) <= s - 1). Equivalen a
+  l = cp_lower(s, T) y u = cp_upper(s - 1, T - 1) de t2_cp.py con
+  alfa/2 = 0.0125 en cada cola: redondeo dirigido (hacia abajo en l,
+  hacia arriba en u) y biseccion que solo avanza con signo
+  certificado, de modo que [l, u] nunca es mas estrecho que el exacto.
+  No se usa ningun intervalo de N fijo. De cada funcion se toma el
+  campo valor (lado conservador), no cp_interval(s, T); T = s da
+  u = 1; los argumentos se validan (enteros, s >= 2, T >= s,
+  s - 1 <= XMAX). t2_cp.py no se modifica.
+- Alcance (C3): V6 describe el procedimiento inverso sin truncacion,
+  con historias Bernoulli ideales. No garantiza cobertura ni
+  insesgadez condicionadas a que el ancla termine bajo el techo ni a
+  que la corrida pase los filtros de ampliacion. El estimador no
+  cambia.
+- Techo (seccion 6) alcanzado antes del exito s: ANCLA_INCOMPLETA. Se
+  guarda lo observado (historias del prefijo completo y sus
+  silenciosas), no se calcula ningun intervalo y T2-2 se detiene
+  antes de las cadenas.
+- Prevision: semiancho relativo de unos 2.2414/sqrt(2010) = 5.0 %
+  (aproximacion normal). Es una prevision, no una prueba de anchura.
+- El ancla aplica el atajo de 2.4 con la misma justificacion (V5) y
+  cuenta las llamadas evitadas.
+
+2.7 Siembra e inicializacion
+- Siembra multiple (FF sec. 5.3, pasos ii.a y ii.b): M = 3
+  repeticiones por semilla con flujos aleatorios distintos, derivados
+  por SHA-256 de "T2-2", la semilla maestra, la semilla, la
+  repeticion y el nivel. En cada repeticion, la cadena del nivel 0
+  parte de la semilla y la del nivel j parte del ultimo estado de la
+  del nivel j - 1. Solo hacia abajo; no hay cadenas hacia arriba.
+  Etiquetas exactas: "T2-2|20261115|l|i|j" (semilla l, repeticion i,
+  nivel j) y, para C-tiempo, "T2-2|c-tiempo|20261115|repeticion|j".
+- El estado inicial E_0 de cada cadena se excluye de las medias, como
+  en FF. Omitir E_0 no es un calentamiento probado. No hay ningun
+  descarte adicional y nada se optimiza a posteriori (DC4).
+- El estimador no usa ningun dato del certificado. Los resultados de
+  T2-1 solo entran en la evaluacion (secciones 3.5 y 7).
+
+2.8 Longitud de las cadenas (FF algoritmo 2, lineas 6 a 18)
+Para una cadena (nivel j, semilla, repeticion) con muestras E_1 a E_T
+(sin E_0), sean rho_j+(E) = pi_j(E)/pi_{j+1}(E) y
+rho_j-(E) = pi_j(E)/pi_{j-1}(E). Como en FF, con c = 1:
+  gm+- = (1/T) sum_a g(rho_j+-(E_a)),
+  s+-^2 = (1/(T - 1)) sum_a (g(rho_j+-(E_a)) - gm+-)^2,
+  sigma = max(s+/gm+, s-/gm-) / sqrt(T),
+  Delta = max(|gm+ - gm'+|/gm+, |gm- - gm'-|/gm-),
+con gm'+- la media de las primeras ceil(T/2) muestras. En los niveles
+0 y t solo existe uno de los dos signos.
+Mientras sigma + Delta > eps/sqrt(t + 1): T <- T + lambda' T_init y
+lambda' <- 2 lambda', con lambda' = 2 al empezar. Aqui t + 1 es el
+numero de niveles: FF escribe eps/sqrt(t) con t el numero de
+probabilidades de su escalera, que incluye la del ancla. T_init = 1e5 y
+eps = 0.05. Techo: 4 ampliaciones, es decir T <= 31 T_init = 3.1e6.
+Una cadena que llega al techo sin cumplir queda con
+CRITERIO_FF_NO_CUMPLE (7.2).
+Calculo (codigo v1, C2): medias y varianzas son exactas (enteros)
+sobre los valores float de g, escalados por su maximo; una varianza
+nula se detecta sin error de redondeo y se registra (3.5). La
+comparacion es certificada: sigma + Delta se acota por arriba y
+eps/sqrt(t + 1) por abajo (Decimal de 60 cifras, 2 ulps). Un valor no
+evaluable (no finito o subdesbordado) da NO_CUMPLE con el motivo.
+sigma usa la varianza de muestras independientes e ignora la
+autocorrelacion. El criterio es la regla de parada de FF, no una
+prueba de mezcla.
+
+2.9 Formula del estimador
+Para los niveles j y j+1 de una misma repeticion, con muestras E_a
+(a = 1 a T_j) del nivel j y E'_b (b = 1 a T_{j+1}) del nivel j+1, y
+g(x) = 1/(1+x) (BV ec. 6, 9 y 10; FF ec. 17):
+  qhat_j(C) = C * [ (1/T_j) sum_a g(C rho_j+(E_a)) ]
+            / [ (1/T_{j+1}) sum_b g(rho_{j+1}-(E'_b) / C) ],
+estimacion de P_sil(r_{j+1})/P_sil(r_j). Como en FF algoritmo 2,
+lineas 21 a 25: C <- 1 y tres veces q <- qhat_j(C), C <- q. Se usa
+la ultima q.
+- Por repeticion i y tasa objetivo r*: Qhat_i(r*) = producto de las q
+  de los cocientes entre r_0 y r*.
+- Por semilla l: Qbar_l = media de sus M = 3 repeticiones. Las tres
+  comparten E_0 y estan anidadas en la semilla; la unidad
+  independiente es la semilla, no las 36 cadenas (DC11).
+- Estimacion: Phat(r*) = Phat_0 * Qbar, con Qbar la media de las
+  L = 12 Qbar_l.
+- Intervalo nominal POR TASA:
+    [Q_lo, Q_hi] = Qbar -/+ t_{11; 0.9875} s_Q / sqrt(12),
+    I(r*) = [l * max(Q_lo, 0), u * Q_hi],
+  con s_Q la desviacion tipica de las Qbar_l y t_{11; 0.9875} el
+  cuantil de Student (C2): forma cerrada de grados impares en Decimal
+  de 60 cifras, biseccion y techo a 25 cifras, de modo que el valor
+  usado es >= el exacto; 2.593 es solo su vista. El semiancho se
+  redondea hacia arriba; si s_Q = 0, es 0 exacto y el caso cuenta
+  como diagnostico indeterminado (3.5).
+  Por Bonferroni, I(r*) tiene un 95 % nominal en cada tasa: el ancla
+  al 97.5 % (exacto bajo V6) y Student al 97.5 % (nominal, H1 a H3).
+  Las cuatro tasas comparten cadenas: no se afirma cobertura
+  simultanea. Bonferroni no repara el sesgo de mezcla ni la
+  aproximacion de Student. No se afirma insesgadez de Phat(r*).
+  Alcance (C3): el 95 % nominal es por tasa y sin condicionar; no pasa
+  a ser una cobertura condicionada a terminar bajo los techos ni a
+  pasar los filtros de 7.3.
+- Tratamiento numerico (C2; codigo v1): z_j(E) = ln(pi_j/pi_{j+1}) =
+  c0_j + sum_kappa N_kappa d_j(kappa), con c0_j y d_j(kappa) floats
+  correctamente redondeados desde 60 cifras y suma con math.fsum
+  (correctamente redondeada: el orden no influye). g y Bennett se
+  calculan en dominio logaritmico (log g = -softplus; log-suma-exp):
+  sin desbordamiento ni division por cero. Un termino por debajo de
+  2^-1022 se cuenta como subdesbordamiento: en Bennett detiene la
+  estimacion (NO_EVALUADO), en un diagnostico lo deja INDETERMINADO;
+  nunca se lee como 0 en silencio. Qhat_i es un float convertido
+  exactamente en fraccion; Qbar, s_Q, I, x y las medidas de 2.10 son
+  fracciones exactas. No hay cambios silenciosos de precision.
+
+2.10 Medidas de precision
+- Error relativo nominal de x = Phat(r*), si I_lo > 0:
+    E_nom = max(|x - I_lo|/I_lo, |x - I_hi|/I_hi).
+  Acota el error relativo de x solo si P_sil(r*) esta en I. Si
+  I_lo = 0, no hay precision relativa finita.
+- No se usa h = (I_hi - I_lo)/(2x): no acota el error relativo. Con
+  x = 1 e I = [0.9, 1.1], h = 0.1 y el error en el extremo inferior es
+  1/9.
+- Se publican aparte el centro armonico c_h = 2 I_lo I_hi/(I_lo + I_hi)
+  y su radio minimax rho_h = (I_hi - I_lo)/(I_hi + I_lo). x sigue
+  siendo el estimador, para analizar su sesgo.
+- Prevision, no garantia: el ancla aporta un 5.0 %. Si sigma mide bien
+  la dispersion de una repeticion, las cadenas aportan como mucho
+  2.593 * 0.05 / sqrt(12) = 3.7 %, incluso con las tres repeticiones
+  de una semilla totalmente correlacionadas. Entonces
+  E_nom = 1/((1 - 0.050)(1 - 0.037)) - 1 = 9.3 %. eps = 0.05 es un
+  parametro del procedimiento, no una garantia del 10 % (DC3).
+- E_nom, c_h, rho_h, E_min y E_max se calculan con fracciones exactas
+  (C2); las vistas decimales no deciden nada.
+
+2.11 Datos que se conservan
+Cada cadena se divide en bloques de B = 2000 muestras consecutivas (sin
+E_0). T_init y todas las ampliaciones son multiplos de 1e5, asi que T,
+T/2 y T/50 son multiplos de B.
+Registro por bloque:
+- histograma conjunto de firmas: pares (N(E), multiplicidad) de las
+  muestras del bloque, es decir, el vector de recuentos POR ESTADO;
+- pasos, aceptaciones por peso, llamadas, llamadas evitadas y
+  transiciones.
+Registro por cadena: flujo aleatorio, E_0 y el estado final (pares
+sitio-clase), T y numero de ampliaciones.
+Para toda funcion f de la firma, la suma de f y de f^2 en un bloque es
+sum_k m_k f(N_k) y sum_k m_k f(N_k)^2. Con eso se recalculan
+exactamente:
+ (i)   qhat_j(C) para cualquier C, y las tres iteraciones de C;
+ (ii)  gm, s, sigma y Delta del criterio de FF (para --verificar);
+ (iii) medias por lotes con 50 lotes de T/50 muestras (uniones de
+       bloques);
+ (iv)  el R-hat partido de d2;
+ (v)   la ocupacion por peso de d5, porque |E| = sum_kappa N_kappa(E);
+ (vi)  las tasas de d4.
+No se recuperan autocorrelaciones a desfases menores que B; ningun
+diagnostico las usa.
+Los recuentos marginales agregados (el total de cada clave en la
+cadena) NO bastan: g no es lineal y la media de g(C rho(E)) necesita
+la distribucion conjunta de N(E). Por eso se guarda el histograma
+conjunto por bloque y no se depende de una traza aclarada.
+Formato: cada entrada lleva la multiplicidad (4 bytes), el numero d de
+claves no nulas (1 byte) y d pares clave-recuento (3 bytes cada uno):
+5 + 3d bytes, con d <= |E|. Cabecera de bloque: 32 bytes. Se escribe
+al cerrar cada bloque, solo anadiendo, con SHA-256 por archivo.
+Disposicion (codigo v1, t2s_reg.py): cabecera little-endian
+<4sBBBBIHHIIII: magia T22B, version 1, nivel, semilla y repeticion
+(u8), indice de bloque (u32), entradas y muestras (u16), aceptaciones,
+llamadas, evitadas y transiciones (u32); en la entrada, clave u16 y
+recuento u8. Cada campo se valida contra su rango ANTES de escribir:
+un desbordamiento lanza un error y no se escribe nada (C2). Tambien se
+exigen claves crecientes, recuentos >= 1, suma de multiplicidades =
+muestras, aceptaciones = llamadas + evitadas y transiciones <=
+llamadas, y el lector comprueba lo mismo y la secuencia de bloques.
+Que m = 6 quepa (NS = 91 <= 255) no autoriza m = 48.
+Tamano previsto en PRESUPUESTO B8. C-tiempo proyecta el tamano antes
+de las cadenas. Si no cabe, o si lo escrito alcanza el techo de disco,
+se aplica la parada DATOS_NO_CABEN (7.1). Nunca se borra, aclara ni
+resume informacion necesaria para cumplir un techo.
+
+2.12 Parametros y su fuente (ninguno se ajusta tras ver datos)
+ parametro              valor        fuente
+ r_0 (ancla)            1e-2         heuristica prefijada; FF usa
+                                     p_0 = 0.03 (DC2)
+ regla de niveles       BV ec. 17    BV sec. VII y VIII; FF ec. 18
+ w_j                    max(3, lam)  f_s = 3 (V5) en lugar de d/2
+ g(x)                   1/(1+x)      BV ec. 9 (Bennett)
+ iteraciones de C       3            FF algoritmo 2
+ T_init, L, M           1e5, 12, 3   FF tabla 6 (sistemas de d = 6)
+ lambda                 2            FF algoritmo 2
+ eps                    0.05         parametro (2.10); no garantiza
+                                     el 10 % (DC3)
+ ampliaciones maximas   4            presupuesto (seccion 6)
+ s (exitos del ancla)   2010         prevision de 2.10
+ B (bloque)             2000         divide a T/50 (2.11)
+ confianza              95 %         nominal por tasa; eleccion nueva
+                                     de T2-2 (D-mc uso 99.9 %)
+ umbral de precision    10 %         el de A4, que era determinista
+ umbral de R-hat        1.1          convencional (Gelman-Rubin)
+ semilla maestra        20261115     fijada antes de calcular (no
+                                     figuraba en la v2; codigo v1)
+ cifras de las tasas    12 (techo)   representacion de 2.5 (C2)
+ precision decimal      60 cifras    constantes y cotas (C2)
+ cuantil de Student     25 cifras    techo; vista 2.593 (2.9; C2)
+ bloques en vuelo       14           uno por proceso (2.6)
+
+3. VALIDEZ (b)
+
+3.1 Lo que vale por construccion o por prueba (PRUEBA)
+ V1 Identidad del producto (BV ec. 4) y de Bennett (BV ec. 6 y 7)
+    para todo C > 0 y toda g con g(x) = g(1/x)/x, con medias
+    normalizadas: algebra exacta.
+ V2 Balance detallado respecto de pi_r(. | F): propuesta simetrica,
+    aceptacion de Metropolis y rechazo fuera de F (BV ec. 19). Con el
+    atajo vale solo si se cumple V5. La implementacion se comprobara
+    con la matriz de transicion completa en una instancia de juguete
+    (pieza P9).
+ V3 Soporte. Para 0 < r <= 1e-2, con r_m = r_c = r, toda categoria de
+    toda ubicacion tiene probabilidad estrictamente positiva, tambien
+    la ausencia de fallo: 2r/3 y 1 - 2r/3 (una cubit); 4r/15 por
+    categoria y 1 - 4r/5 (CNOT); w(1 - r) + (1 - w)r y su complemento,
+    con w = 2r/3 (lectura). l_r(s, c) es una suma, sobre las
+    asignaciones de la fibra con XOR c, de productos de factores
+    positivos: es positiva si y solo si alguna asignacion da c, lo
+    que no depende de r. El soporte de cada sitio es el mismo en todos
+    los niveles, en el ancla y en las celdas de T2-1 con r_m = r_c.
+    Al construir la escalera se comprobara (P2).
+ V4 Push-forward exacto a sitios (C-ley y C-resp de T2-0; controles
+    previos de t2_mc.py): mismo evento y misma ley.
+ V5 Atajo: ninguna configuracion de <= 2 sitios con fallo es
+    silenciosa.
+    - m = 6, sin el motor: el exhaustivo con circuito de T2-0
+      (RESULTADO_T2_0.json, instancias.TIRA_6x6.exhaustivo) da 0
+      silenciosas con 1 sitio (409 historias), 0 con 2 (82371) y 78
+      con 3 (10889483); f_s_exhaustivo = 3.
+    - m = 6 y m = 48, con el motor: en las 16 filas guardadas de
+      T2-1 con k = 2 (8 celdas por tira), H_comp = COMPLETO,
+      L_ing(2) = 0 y L_comp(2) = [0, 0] (transcritas por el revisor
+      en EVIDENCIA_LECTURA.json). Con completitud, masa 0 y toda
+      configuracion del soporte con probabilidad positiva (V3),
+      ninguna configuracion de <= 2 sitios es silenciosa. Por V3 vale
+      en todos los niveles y en el ancla. Esta via hereda los lemas
+      A, N, EO y R del motor y del catalogo de T2-1M, cuyo contraste
+      formal sigue abierto; no es una auditoria nueva de esas pruebas.
+    - Testigo positivo de peso 3 (f_s = 3 exacto): las 78 silenciosas
+      del exhaustivo en m = 6; en m = 48, L_ing(3) = 7.716992858e-16
+      > 0 en 1e-6 (T2-1, con el motor).
+    - L_lo(k = 2) = 0 por si solo no probaria la ausencia; no se usa
+      como argumento.
+    - Uso: el piloto (m = 6) aplica el atajo con las dos fuentes. En
+      m = 48 solo se aplicaria aceptando la dependencia del motor; si
+      una orden posterior no la acepta, el atajo se desactiva alli
+      (DC10).
+ V6 Ancla, con historias Bernoulli(p) independientes:
+    (a) E[(s - 1)/(T - 1)] = p. Pr(T = n) = C(n-1, s-1) p^s
+        (1-p)^(n-s) para n >= s, y (s-1)/(n-1) C(n-1, s-1) =
+        C(n-2, s-2). Entonces E[(s-1)/(T-1)] = p sum_{n >= s}
+        C(n-2, s-2) p^(s-1) (1-p)^(n-s) = p: la suma es la de la ley
+        del numero de ensayos hasta el exito s - 1, que vale 1.
+    (b) Pr(l <= p <= u) >= 1 - alfa. Pr_p(T_s <= n) crece con p y
+        Pr_p(T_s >= n) decrece con p. Si l(T) > p, entonces
+        Pr_p(T_s <= T) < alfa/2; los T con esa propiedad forman un
+        segmento inicial, de probabilidad < alfa/2. Igual para u, con
+        un segmento final. El redondeo dirigido solo ensancha.
+    Ambas suponen un generador pseudoaleatorio ideal.
+    (c) Alcance (C3): (a) y (b) describen el procedimiento inverso sin
+        truncacion. No dan cobertura al 97.5 % condicionada a terminar
+        bajo el techo, ni insesgadez entre las corridas aceptadas, ni
+        se conservan tras filtros de seleccion. ANCLA_INCOMPLETA no
+        tiene intervalo. No se anade teoria nueva.
+Nada de esto prueba que la cadena mezcle ni que las estimaciones con
+T finito sean correctas.
+
+3.2 Lo que no esta probado (HIPOTESIS)
+ H1 Ergodicidad: que F sea conexo bajo cambios de clase de un sitio
+    (condicion 3 de FF sec. 5.1). BV la prueba solo en casos
+    especiales de codigos de superficie (lemas 1 a 4); no hay prueba
+    para SSF en estas tiras, y T2-2 no la busca.
+ H2 Mezcla: que T_j sea mucho mayor que el tiempo de mezcla de cada
+    nivel (condicion 4 de FF; BV sec. VII: M >> N tau_j). BV sec. IX
+    conjetura tau = p^(-Omega(d)) cuando hay varios defectos.
+ H3 Independencia de las semillas y normalidad aproximada de sus
+    medias Qbar_l.
+Ademas, el cociente de medias de Bennett tiene un sesgo de orden 1/T
+y el producto de cocientes no es insesgado. No se afirma insesgadez.
+Por todo ello, I(r*) es un intervalo NOMINAL POR TASA, condicionado a
+H1, H2 y H3. Nunca se presentara como riguroso, como cobertura
+garantizada ni como cobertura simultanea de las cuatro tasas.
+
+3.3 Clases de fallos que pueden quedar desconectadas (riesgos)
+- Sectores por posicion: las configuraciones silenciosas minimas (3
+  sitios) se repiten a lo largo de la tira. Con k_log = 1, la union
+  de dos silenciosas que no interactuan no es silenciosa (los
+  caracteres se multiplican: (-1)(-1) = +1; I4 de T2-1M). Pasar de un
+  sector a otro exige estados silenciosos intermedios.
+- Entre dos configuraciones de 3 sitios con soportes distintos, todo
+  camino pasa por estados de 4 o mas sitios, porque los de 2 no estan
+  en F (V5). A tasas bajas esos estados pesan poco (BV sec. IX;
+  FF sec. 5.2).
+- Islas de peso alto: configuraciones silenciosas desde las que ningun
+  cambio de un sitio lleva a otra silenciosa. No se sabe si existen.
+- Aviso de 2R5: los ejemplos de mezcla lenta no prueban que F sea
+  disconexo para SSF. Esta lista son riesgos, no hechos.
+
+3.4 P-conex: testigo positivo opcional, solo en m = 6
+Grafo G_3: un nodo por configuracion silenciosa de 3 sitios; una
+arista si (a) difieren solo en la clase de un sitio, o (b) difieren
+en un sitio y su union (4 sitios) es silenciosa (camino de dos pasos
+dentro de F). Salida: componentes de G_3 y sus tamanos. Lectura:
+- G_3 conexo: entre los estados minimos enumerados hay caminos dentro
+  de F que no pasan de 4 sitios. Es un hecho finito sobre esa parte
+  de F; no prueba H1 ni H2.
+- G_3 no conexo: NO_CONCLUYENTE. No implica que cambiar de componente
+  exija 5 o mas sitios: puede haber varios cambios de clase seguidos
+  entre estados de 4 sitios. El dictamen da un contraejemplo
+  abstracto a esa inferencia (no calculado para SSF). Probarla
+  exigiria un lema para SSF o representar todos los caminos de peso
+  4; no se abre ese problema.
+- Ninguna lectura establece la conectividad de F ni la mezcla.
+  P-conex no entra en ninguna decision de la seccion 7.
+Coste en m = 6, con las aristas:
+- vertices: censo de las configuraciones de 3 sitios, unas 1.1e7
+  llamadas (10889483 en el exhaustivo de T2-0; 10972263 en el
+  recuento de T2-1). Debe reproducir las 78 silenciosas de T2-0; si
+  no, P-conex se detiene y se informa la discrepancia;
+- aristas (a): sin decoder, por comparacion de los 78 nodos;
+- aristas (b): una llamada por par de nodos que comparten dos pares
+  sitio-clase, como mucho C(78, 2) = 3003;
+- construccion y memoria: 78 nodos y como mucho 3003 aristas, menos
+  de 1 MB.
+Total <= 1.1e7 llamadas. Techo: 2e7 llamadas y 1 h, dentro del techo
+global (seccion 6). Se ejecuta al final y solo si queda tiempo; si
+no, queda NO_EJECUTADO, sin efecto en las decisiones.
+El codigo v1 no implementa P-conex: queda siempre NO_EJECUTADO, como
+permite este apartado, y no entra en la fase actual.
+En m = 48 no hay P-conex: se retira el censo de unas 8e9 llamadas.
+
+3.5 Diagnosticos empiricos (DIAGNOSTICO; no son pruebas)
+ d1 Discrepancia entre mitades Delta por cadena (FF algoritmo 2).
+ d2 R-hat partido. Por nivel j y por cantidad q = g(rho_j+) o
+    q = g(rho_j-) (c = 1), con las 36 cadenas del nivel:
+    n = minimo de floor(T/2) entre ellas (multiplo de B). De cada
+    cadena se toman sus ultimas 2n muestras, en dos series de n (72
+    series). Con medias qbar_k y varianzas s_k^2 de las series:
+      W = media de s_k^2,   Bm = n * varianza muestral de qbar_k,
+      V = (n - 1)/n * W + Bm/n,   R-hat = sqrt(V/W).
+    Alerta a1 si R-hat > 1.1. Las tres repeticiones de una semilla
+    comparten E_0, lo que puede hacer al R-hat menos sensible.
+    Casos degenerados (C1): W = 0 y Bm > 0 da R-hat infinito y alerta
+    a1; W = 0 y Bm = 0 da INDETERMINADO, nunca R-hat = 1. Un valor no
+    finito o subdesbordado tambien da INDETERMINADO. La comparacion
+    V/W > 1.21 es exacta.
+ d3 Medias por lotes: 50 lotes de T/50 muestras por cadena;
+    tau = (T/50) * varianza de las medias de lote / s^2 y tamano
+    efectivo T/tau. Informativo. s^2 = 0 o varianza de lotes nula
+    (tau = 0): tau y ESS INDETERMINADOS (C1).
+ d4 Tasas de transicion y de llamadas por paso (como FF fig. 20).
+ d5 Ocupacion por peso con intervalo condicionado, en cada tasa
+    objetivo r* y k = 3 y 4: ohat_k = media de las 12 fracciones por
+    semilla de muestras con |E| <= k (la de una semilla es la media de
+    las de sus 3 repeticiones), y se_k = su desviacion tipica
+    / sqrt(12). Fracciones exactas; con se_k = 0 la banda es la
+    referencia (no hay division: no es un caso degenerado). L_ing(k)
+    se lee de su vista de 25 cifras hacia abajo como [v, v + ulp].
+    Referencia: [L_ing(k)/U, min(1, L_ing(k)/L)], con
+    L_ing(k) guardado en T2-1, [L, U] el intervalo certificado y
+    redondeo hacia fuera. Alerta a2 si ohat_k queda fuera de esa
+    referencia ampliada en 3 se_k por cada lado. En 1e-6 la
+    referencia es estrecha: L_ing(3)/P_sil en [0.99970, 0.99983]
+    (m = 6). En 1e-3 y 1e-4 es ancha y a2 casi no puede saltar: es una
+    limitacion declarada.
+ d7 Sensibilidad a la semilla: dispersion entre las 12 semillas
+    frente a la que declara sigma en cada repeticion.
+ d8 Solapamiento entre niveles (DC2): por cociente j, las medias de
+    Bennett del numerador y del denominador con la C final, y la
+    fraccion de muestras de cada lado con |log(C rho)| <= log 10.
+    Informativo, sin umbral.
+ El d6 de la v1 (ocupacion por componente de G_3) se retira con la
+ lectura negativa de P-conex.
+ Diagnostico indeterminado (C1): en los niveles de r_0 a r* cuentan
+ como indeterminados un R-hat INDETERMINADO, una cadena con varianza
+ nula de g en un lado del criterio de FF (s^2 = 0; la misma s^2 de
+ d3) y s_Q = 0 en r*. No prueban mala mezcla, pero impiden SIN_ALERTA
+ (D-s5) y por tanto la ampliacion. Ningun valor no finito ni
+ denominador nulo pasa una comparacion como NaN > 1.1.
+Ni CRITERIO_FF_CUMPLE ni la ausencia de alertas prueban mezcla. Los
+diagnosticos clasifican el resultado (seccion 7); no lo hacen
+riguroso.
+
+3.6 Obstaculos ya documentados que el diseno no repite
+- 2R8 (ETAPA2R8_TRANSPORTE_REVISOR_20261104): para una cadena que
+  cambia la clase logica con sindrome fijo se probo una barrera de
+  conductancia; conectividad y balance detallado no prueban mezcla, y
+  falta demostrar un arranque bien repartido entre sectores. T2-2 no
+  usa esa cadena, no reclama mezcla y acota su error real con los
+  intervalos certificados.
+- 2R8, regla de rango: subdividir el camino y acotar los cocientes
+  por el rango global no acredita la precision. Con todos los sitios
+  posibles con fallo, esa cota seria inutil aqui; T2-2 no certifica
+  por esa via y sus intervalos son nominales.
+- 2R8 e informe de cinco rutas (sec. 3.4): el producto de medias solo
+  es insesgado con muestras exactas e independientes; la variante de
+  Bennett no se llama insesgada; el error de mezcla se separaria del
+  estadistico si hubiera una cota, y no la hay. T2-2 lo declara.
+- Cinco rutas, sec. 3.5: no simular para elegir la cadena y llamarlo
+  despues prueba de mezcla. T2-2 fija la cadena y sus parametros
+  antes de calcular, con fuente, y no los cambia tras verlos.
+- 2R5: no esta demostrado que subir la tasa vuelva comun el fallo
+  silencioso. Por eso el ancla tiene techo y parada, y no se prueba
+  otra r_0 tras ver el resultado.
+- Contexto distinto: esas unidades trataban M2 con F17 y tasas del
+  orden de 1e-79. Aqui las tasas recorren cuatro decadas en tiras
+  pequenas. Aquellas barreras no se transfieren como teoremas; se
+  usan como advertencias.
+- E06, E09, E12 y DIAGNOSTICO_RC_RM tratan otros transportes (fibras,
+  certificados KP) y no aplican a esta cadena.
+
+4. SELECCION DE CASOS (c)
+Justificacion fijada antes de calcular. Intervalos con k = 4 de T2-1.
+
+4.1 Control (piloto): TIRA_6x6, r_m = r_c, un recorrido de 1e-2 a 1e-6
+ r_c   intervalo certificado de P_sil        e_comp(4)  intervalo
+ 1e-6  [8.15182e-17, 8.15280e-17]             0.0060 %   estrecho
+ 1e-5  [8.13584e-14, 8.23317e-14]             0.59 %     estrecho
+ 1e-4  [7.97718e-11, 1.75135e-10]             37.4 %     ancho
+ 1e-3  [6.50981e-8,  7.85103e-6]              98.4 %     ancho
+En 1e-3 hay ademas D-mc: Clopper-Pearson al 99.9 % nominal
+[5.83418e-8, 7.90332e-8] (estadistico, x = 477 en N = 7e9).
+Por que m = 6: es la tira mas pequena y barata, la unica con Monte
+Carlo directo guardado y la unica con el exhaustivo de T2-0 que
+sostiene el atajo sin el motor (V5).
+
+4.2 TIRA_48x6: fuera de este plan
+Solo si 7.3 recomienda ampliar y llega una orden posterior, con su
+propio sello, C-tiempo y techos (propuesta en PRESUPUESTO, parte C),
+sin P-conex y con la decision de V5 sobre el atajo. Intervalos de
+referencia:
+ 1e-6  [7.72775e-16, 7.72963e-16]             0.0122 %   estrecho
+ 1e-5  [7.59681e-13, 7.78456e-13]             1.22 %     estrecho
+ 1e-4  [6.40203e-10, 2.47121e-9]              58.8 %     ancho
+ 1e-3  [1.13250e-7,  1.42837e-4]              99.8 %     ancho
+
+4.3 No se incluyen
+- m = 12 y m = 24: solo interpolarian entre los extremos.
+- r_m = 0: otra escalera; duplica el coste sin pregunta nueva (DC5).
+- Otras tasas, otras tiras, repetir D-mc o splitting hacia arriba.
+
+4.4 Ningun intervalo certificado es un valor exacto
+Ancho (1e-3 y 1e-4) o estrecho (1e-5 y 1e-6), el intervalo
+certificado J se usa siempre como intervalo: relaciones con I y
+[E_min, E_max] en 7.2. Nunca se usa como valor puntual.
+
+5. COMPARACION JUSTA (d)
+
+5.1 Igualdad de condiciones
+Mismo evento, ley, instancia y decoder (b4_tiras.py, sha b1a2cb8f...),
+misma maquina, 14 procesos y la misma politica de prioridad.
+
+5.2 Precision y confianza prefijadas
+- Splitting: E_nom <= 10 % con un 95 % nominal por tasa (2.10). El
+  95 % es una eleccion de T2-2.
+- Certificado: el que tiene, e_comp(4) de T2-1 (determinista; A4
+  pedia <= 10 % determinista).
+- D-mc: Clopper-Pearson al 99.9 % nominal (modelo binomial ideal).
+
+5.3 Tipos de garantia (no se mezclan)
+- Certificado: cota determinista, sin hipotesis estadisticas
+  (aritmetica de 384 bits; lemas del motor sin contraste formal).
+- Splitting: intervalo nominal por tasa, condicionado a H1 a H3 y al
+  generador pseudoaleatorio, sin cota de mezcla.
+- Monte Carlo directo: cobertura nominal del modelo binomial ideal.
+
+5.4 Contabilidad del coste (tres clases que no se mezclan)
+- MEDIDO en T2-2: reloj por etapa (perf_counter, con los 14
+  procesos), llamadas, pasos, memoria maxima por proceso y del arbol
+  de procesos, y bytes en disco.
+- REUTILIZADO: datos guardados que solo se leen (intervalos y L_ing
+  de T2-1, D-mc, exhaustivo de T2-0). Se mide el tiempo de lectura.
+- PROYECTADO: lo que no se mide aqui, incluido el coste del
+  certificado para estas cuatro celdas (5.5) y las previsiones del
+  presupuesto.
+Etapas del splitting que se cuentan, todas dentro del techo global
+(seccion 6): preparacion (instancia, decoder, leyes, claves y
+escalera); ancla, con el sobrante; C-tiempo; cadenas; estimacion y
+diagnosticos; almacenamiento. P-conex y --verificar se informan
+aparte, pero tambien cuentan en el techo global.
+Arranque en frio y reutilizacion no se mezclan. El splitting se mide
+en frio (no reutiliza datos de splitting). Para el certificado se dan
+por separado la proyeccion en frio (catalogo y DP) y la proyeccion
+con catalogo reutilizado (solo DP).
+Un recorrido da las cuatro tasas; su coste no se reparte por tasa.
+
+5.5 Coste del certificado para las mismas cuatro celdas: PROYECCIONES
+Los segundos de los trabajos de T2-1 son reloj transcurrido por
+trabajo (perf_counter), con 14 procesos a la vez; no son tiempo de
+CPU. RESULTADO_T2_1.json resume segundos_max y segundos_medio entre
+celdas.
+- m = 6: catalogo de T2-1M, 370.276 s; DP con k = 4, segundos_max
+  534.994 s y segundos_medio 523.387 s por celda.
+- m = 48: catalogo, 6445.408 s; DP, 15253.465 s y 15201.402 s.
+- En frio, catalogo mas DP de una celda, con las cuatro celdas a la
+  vez: 905.27 s (m = 6) y 21698.873 s (m = 48). El propio resultado
+  guardado lo marca como proyeccion informativa (campo
+  igual_tiempo.segundos_certificado_k4). Con catalogo reutilizado:
+  534.994 s y 15253.465 s. La suma de 2510 s de la v1 (catalogo y
+  cuatro maximos) tambien es solo una proyeccion.
+- Medida de otro alcance: la corrida 2 completa (m = 48, 33 trabajos,
+  ocho celdas y cuatro cortes) tardo 15504.641 s de reloj. No mide un
+  flujo de cuatro celdas.
+Ninguna de estas cifras sostiene una ventaja de coste medida ni un
+escalado de CPU; se retira el cociente 26.9 de la v1.
+
+5.6 Validacion separada
+P-conex, la lectura de las referencias y D-mc no entran en el coste
+del estimador (PLAN_EXPERIMENTAL_NIVEL_PRX_QUANTUM.md, sec. 5), pero
+si en el techo global.
+
+6. PRESUPUESTO (e)
+Es una propuesta; la revision del plan no la autoriza (DC9). Detalle
+y calculos en PRESUPUESTO_Y_DUDAS_T2_2.txt.
+Piloto (m = 6), con un solo techo global:
+- Reloj <= 8 h desde el inicio hasta el final de --verificar, con
+  todas las etapas y en este orden: preparacion; ancla; C-tiempo;
+  cadenas; estimacion y diagnosticos; P-conex (opcional);
+  --verificar. No hay presupuestos aparte.
+- Subtechos dentro del global:
+  - ancla <= 3e8 llamadas y <= 4 h;
+  - C-tiempo <= 6e4 pasos y <= 15 min;
+  - cadenas <= 4e8 llamadas y <= 3e9 pasos, y terminan como tarde a
+    las 7 h 15 min (reserva de 45 min);
+  - estimacion y diagnosticos <= 15 min;
+  - P-conex <= 2e7 llamadas y <= 1 h, solo si al empezar quedan al
+    menos 1 h 30 min;
+  - --verificar <= 30 min.
+- Memoria <= 1 GiB por proceso y <= 8 GiB en total; disco <= 2 GB para
+  todo (ancla, registros de bloques, consola y resultados); 14
+  procesos.
+- Aplicacion (codigo v1): contadores compartidos de llamadas, pasos y
+  bytes por etapa, con reserva antes de usar (el total nunca pasa del
+  techo); plazos compartidos consultados antes de cada llamada, al
+  empezar cada bloque y cada 4096 pasos; memoria de cada proceso
+  medida al empezar cada bloque (una medida fallida detiene, nunca
+  cuenta como 0). El supervisor pone el arbol en un Job Object con
+  limites duros de 1 GiB por proceso y 8 GiB en total, sondea memoria
+  y disco cada 5 s y da 7 h 30 min a la corrida (con 60 s de limpieza)
+  y hasta 8 h a --verificar. Para que el conductor termine dentro de
+  la fase 1, la estimacion acaba como tarde a las 7 h 28 min y el
+  ancla a min(4 h desde su inicio, 7 h 15 min). El techo de 6e4
+  llamadas de C-tiempo esta implicado por el de pasos. Ninguna de
+  estas precisiones aumenta un techo.
+- Aplicacion (codigo v2): el plazo de la estimacion se consulta
+  durante ella (en cada cadena, en cada R-hat y en cada cociente de
+  Bennett) y al terminar, antes de aceptar la etapa; un plazo vencido
+  la deja NO_EVALUADA. El plazo de --verificar, min(techo, 30 min),
+  cuenta desde su inicio e incluye la lectura, los hashes y la
+  reconstruccion; su proceso tiene el techo de 1 GiB del plan. El
+  supervisor mide el disco tambien tras la salida normal del
+  conductor y el cierre del arbol, antes de aceptarla.
+- Riesgo de memoria (punto 6 del dictamen del codigo v1; no es un
+  fallo demostrado): el conductor guarda los histogramas de todos los
+  bloques de cada cadena, la estimacion carga un registro completo y
+  agrega varias cadenas y niveles, y el ancla agrupa un bloque en
+  memoria. El formato binario compacto no acredita que todo quepa en
+  1 GiB por proceso. Si no cupiera, el techo de memoria detiene la
+  etapa (NO_EVALUADA) con su evidencia; no se pide mas memoria, no se
+  optimiza en esta version y no se abre otra campana.
+- C-tiempo, inicializacion instrumental acotada con valores
+  descartados: 1e4 pasos en 2 repeticiones y 3 niveles (r_0, el
+  central y r_t), con un flujo aleatorio propio. Proyecta tiempo,
+  llamadas y bytes de las cadenas con T = T_init en los t + 1 niveles.
+  Si la proyeccion no cabe en lo que queda del techo de tiempo o de
+  disco, la unidad se detiene antes de las cadenas.
+TIRA_48x6: fuera de este plan. Hay una propuesta de techos en
+PRESUPUESTO, parte C, solo para una orden posterior.
+
+7. DECISIONES Y PARADA (f)
+Notacion por tasa objetivo r*: x = Phat(r*); I = [I_lo, I_hi] el
+intervalo nominal (2.9); J = [L, U] el intervalo certificado de T2-1
+con k = 4.
+
+7.1 Paradas inmediatas (se guarda la evidencia y no se reintenta)
+- Control previo fallido, discrepancia de hash o cierre anormal.
+- Techo de tiempo, llamadas, pasos o memoria alcanzado: la etapa en
+  curso queda NO_EVALUADA y no se publica estimacion parcial.
+- ANCLA_INCOMPLETA (2.6): no se lanzan las cadenas. No se prueba otra
+  r_0 sin una orden nueva.
+- ANCLA_ABORTADA (2.6; codigo v2): un bloque del ancla o el proceso
+  principal se interrumpio. La etapa queda NO_EVALUADA aunque haya
+  prefijo con el exito s, y no se lanzan C-tiempo ni las cadenas.
+- C-tiempo proyecta que las cadenas no caben: parada antes de ellas.
+- DATOS_NO_CABEN: la proyeccion de bytes no cabe, o lo escrito llega
+  al techo de disco. Las cadenas se paran (NO_EVALUADO) y se conserva
+  todo lo escrito.
+
+7.2 Decisiones por tasa objetivo r*
+ D-s1 PRECISION NOMINAL: PRECISA_NOMINAL si I_lo > 0 y E_nom <= 0.10;
+      si no, IMPRECISA_NOMINAL. Es nominal: depende de que P_sil este
+      en I.
+ D-s2 CRITERIO DE FF: CRITERIO_FF_CUMPLE si todas las cadenas de
+      todos los niveles de r_0 a r* cumplieron sigma + Delta <=
+      eps/sqrt(t + 1) dentro del techo; si no, CRITERIO_FF_NO_CUMPLE, y
+      la estimacion solo se informa como diagnostico. No es una
+      prueba de convergencia.
+ D-s3 RELACION CON J (en las cuatro tasas):
+      CUBRE_EN_ESTA_REALIZACION si J esta contenido en I;
+      DISJUNTO si I y J no se cortan;
+      COBERTURA_INDETERMINADA en otro caso.
+      Ademas se informa COMPATIBLE si I y J se cortan; COMPATIBLE no
+      significa cobertura. Vale para esta realizacion, con las
+      dependencias del certificado; no mide la cobertura repetida.
+      Un DISJUNTO puede ocurrir con un metodo correcto al 95 %: se
+      registra, se investiga con los diagnosticos de esa tasa y se
+      para segun 7.3, pero no se concluye que la cobertura nominal
+      quede refutada.
+ D-s4 PRECISION REAL, acotada con J (si x > 0 y L > 0):
+      E_max = max(|x - L|/L, |x - U|/U);
+      E_min = 0 si x esta en J y, si no, el menor de esos dos valores.
+      [E_min, E_max] acota con rigor el error relativo de x en esta
+      realizacion. PRECISION_REAL_ACREDITADA si E_max <= 0.10;
+      PRECISION_REAL_DESCARTADA si E_min > 0.10;
+      PRECISION_REAL_INDETERMINADA en otro caso. Se calcula igual en
+      las cuatro tasas; donde J es ancho saldra INDETERMINADA. No
+      demuestra la cobertura repetida del procedimiento.
+ D-s5 ALERTAS: ALERTA_MEZCLA si salta a1 en algun nivel de r_0 a r*
+      o a2 en r*; si no, DIAGNOSTICO_INDETERMINADO si hay algun
+      diagnostico indeterminado de 3.5 (C1); si no, SIN_ALERTA.
+      SIN_ALERTA no prueba mezcla. Una alerta queda pendiente: no se
+      resuelve con nuevas corridas.
+ D-s6 D-mc (solo en 1e-3): COMPATIBLE_DMC si I corta
+      [5.83418e-8, 7.90332e-8]; si no, DISJUNTO_DMC. Decide con los
+      extremos completos p_inf y p_sup de RESULTADO_DMC.json; los de
+      aqui son vistas. Compara dos
+      intervalos estadisticos (95 % nominal y 99.9 % nominal);
+      ninguno es riguroso. Informativo.
+ D-s7 ERROR DECLARADO FRENTE A ERROR REAL (respuesta a Q2):
+      REAL_NO_SUPERA_DECLARADO si E_max <= E_nom;
+      REAL_SUPERA_DECLARADO si E_min > E_nom;
+      INDETERMINADO en otro caso.
+ Representacion (C2): J = [L, U] son los extremos exactos completos
+ (intervalo_P_sil_exacto de RESULTADO_T2_1.json, con su SHA-256), no
+ las tablas redondeadas de 4.1. Todas las decisiones comparan
+ fracciones exactas.
+
+7.3 Veredicto del piloto y regla de ampliacion
+ Veredicto operativo (se aplica el primero que se cumpla):
+ - PILOTO_INCOMPLETO: alguna parada de 7.1 dejo sin evaluar alguna
+   de las cuatro tasas.
+ - PILOTO_CON_DISJUNCION: D-s3 da DISJUNTO en alguna tasa.
+ - PILOTO_CON_ALERTA: alguna tasa con CRITERIO_FF_NO_CUMPLE o
+   ALERTA_MEZCLA.
+ - PILOTO_CON_DIAGNOSTICO_INDETERMINADO (C1): alguna tasa con
+   DIAGNOSTICO_INDETERMINADO. No prueba mala mezcla; impide la
+   ampliacion como una alerta.
+ - PILOTO_OPERATIVO_SIN_ALERTAS: en otro caso. Se lee: el
+   procedimiento se completo dentro de sus techos y, en esta
+   realizacion, no mostro ninguna de las senales de fallo vigiladas.
+   No significa que sea valido, que mezcle ni que su cobertura este
+   demostrada.
+ Regla de ampliacion a TIRA_48x6 (solo recomendacion; hace falta una
+ orden posterior y un plan sellado propio):
+ - RECOMENDAR_AMPLIACION si el veredicto es
+   PILOTO_OPERATIVO_SIN_ALERTAS y hay COMPLEMENTA_NOMINAL (7.4) en
+   1e-3 o en 1e-4 (rama de precision en tasas altas);
+ - si no, NO_RECOMENDAR_AMPLIACION, con el motivo.
+ La rama de coste (el splitting podria abaratar las tasas bajas) no
+ puede evaluarse aqui con evidencia comparable: el coste del
+ certificado para estas cuatro celdas solo es una proyeccion (5.5) y
+ esta unidad no repite T2-1. Limitar la ampliacion a la rama de
+ precision es una prioridad del proyecto para esta unidad; no
+ significa que el splitting no pueda ser mas barato en tasas bajas.
+ Una alerta pendiente impide recomendar la ampliacion.
+
+7.4 Lecturas de la comparacion (vocabulario fijado)
+- COMPLEMENTA_NOMINAL, por celda con e_comp(4) > 10 % (1e-3 y 1e-4):
+  PRECISA_NOMINAL, CRITERIO_FF_CUMPLE, SIN_ALERTA y D-s3 distinto de
+  DISJUNTO. Se lee: el splitting da una estimacion con error relativo
+  nominal <= 10 % (95 % nominal en esa tasa) donde el certificado con
+  k = 4 no baja del 10 %. No es una cota, no cambia A4 ni el
+  intervalo certificado.
+- ERROR_REAL (Q2): D-s4 y D-s7 en las cuatro tasas, sea cual sea el
+  veredicto. Solo en 1e-5 y 1e-6 se espera una respuesta decidida.
+- COSTE: tablas del coste MEDIDO del splitting por etapa, de las
+  PROYECCIONES del certificado (5.5) y de las llamadas al decoder.
+  VENTAJA_TEMPORAL = NO_ACREDITADA: no hay medida comparable del
+  certificado para estas cuatro celdas. Toda comparacion con las
+  proyecciones se etiqueta PROYECTADA y dice que las garantias son
+  distintas; nunca se convierte en una superioridad general.
+- SIN_VENTAJA_ACREDITADA: si no hay ningun COMPLEMENTA_NOMINAL. Es un
+  desenlace valido.
+- ESCALADO: solo si una orden posterior autoriza TIRA_48x6, y solo con
+  costes medidos del propio splitting.
+
+7.5 Sin ajustes a posteriori
+Criterios, umbrales, parametros, semillas, techos y casos quedan
+fijados en el sello. No se repite ninguna etapa con otros valores, no
+se amplian techos y no se anaden casos tras ver resultados. Un
+desenlace PILOTO_INCOMPLETO, PILOTO_CON_DISJUNCION, PILOTO_CON_ALERTA
+o SIN_VENTAJA_ACREDITADA se publica como tal.
+
+8. ENTREGA FUTURA (solo tras el sello y una orden del usuario)
+- Codigo en T2_2_CODIGO_PILOTO_20261115/ (version 2, corregida segun
+  el dictamen del codigo v1 y preparada para revision; la version 1
+  se conserva en versiones/v1/), con autopruebas (P9) y pruebas de
+  humo sin decoder; su
+  contrato de salidas esta en CONTRATO_SALIDAS_T2_2.txt. El sello
+  registrara el SHA-256 del plan, de todos los programas y de
+  ESCALERA_Y_CLAVES.json (escalera, claves y logaritmos), que se
+  calculara tras la revision del codigo.
+- Salidas: RESULTADO_T2_2.json (estimaciones, intervalos, decisiones,
+  diagnosticos y costes medidos, reutilizados y proyectados), registros
+  del ancla y de bloques (2.11), recursos, consola, codigos de
+  retorno, informe, lista de hashes y --verificar sobre la entrega
+  completa, que recalcula estimaciones y decisiones desde los
+  registros.
+- La DEC correspondiente la registra el ejecutor tras la recepcion
+  del revisor.
+
+9. DECISIONES DC1 A DC11 Y LO QUE QUEDA ABIERTO
+Las once dudas de la v1 quedan resueltas con la recomendacion del
+dictamen (PRESUPUESTO_Y_DUDAS_T2_2.txt, parte D). No se devuelve al
+usuario ninguna decision tecnica. Quedan para el usuario y el
+revisor solo:
+- la revision del codigo y de esta v4;
+- autorizar o no los techos propuestos (8 h para el piloto) al
+  sellar;
+- una eventual orden para TIRA_48x6, solo si 7.3 la recomienda.
+Lo retirado o indeterminado sin un resultado teorico nuevo:
+- la inferencia "G_3 no conexo => barrera de peso >= 5" (retirada);
+- cualquier cobertura simultanea de las cuatro tasas (no se afirma);
+- la ventaja temporal frente al certificado (NO_ACREDITADA);
+- la rama de coste de la regla de ampliacion (no evaluable aqui).

@@ -1,0 +1,454 @@
+{
+ "unit": "H3_BUSQUEDA_IMPLICITA_ORACULO_20261111",
+ "beta": "1/100",
+ "order": "(-|phi_F|, mascara fisica ascendente)",
+ "A_rectangles": {
+  "exhaustive": [
+   {
+    "rows": 1,
+    "cols": 1,
+    "matrices": 2,
+    "comparisons": 80
+   },
+   {
+    "rows": 1,
+    "cols": 2,
+    "matrices": 4,
+    "comparisons": 160
+   },
+   {
+    "rows": 2,
+    "cols": 1,
+    "matrices": 4,
+    "comparisons": 160
+   },
+   {
+    "rows": 2,
+    "cols": 2,
+    "matrices": 16,
+    "comparisons": 640
+   },
+   {
+    "rows": 1,
+    "cols": 3,
+    "matrices": 8,
+    "comparisons": 320
+   },
+   {
+    "rows": 3,
+    "cols": 1,
+    "matrices": 8,
+    "comparisons": 320
+   },
+   {
+    "rows": 2,
+    "cols": 3,
+    "matrices": 64,
+    "comparisons": 2560
+   },
+   {
+    "rows": 3,
+    "cols": 2,
+    "matrices": 64,
+    "comparisons": 2560
+   },
+   {
+    "rows": 3,
+    "cols": 3,
+    "matrices": 512,
+    "comparisons": 20480
+   },
+   {
+    "rows": 2,
+    "cols": 4,
+    "matrices": 256,
+    "comparisons": 10240
+   },
+   {
+    "rows": 4,
+    "cols": 2,
+    "matrices": 256,
+    "comparisons": 10240
+   },
+   {
+    "rows": 3,
+    "cols": 4,
+    "matrices": 4096,
+    "comparisons": 163840
+   },
+   {
+    "rows": 4,
+    "cols": 3,
+    "matrices": 4096,
+    "comparisons": 163840
+   }
+  ],
+  "sampled": [
+   {
+    "rows": 4,
+    "cols": 4,
+    "matrices": 102,
+    "comparisons": 4080
+   },
+   {
+    "rows": 5,
+    "cols": 4,
+    "matrices": 102,
+    "comparisons": 4080
+   },
+   {
+    "rows": 4,
+    "cols": 5,
+    "matrices": 102,
+    "comparisons": 4080
+   },
+   {
+    "rows": 5,
+    "cols": 5,
+    "matrices": 102,
+    "comparisons": 4080
+   },
+   {
+    "rows": 6,
+    "cols": 5,
+    "matrices": 102,
+    "comparisons": 4080
+   },
+   {
+    "rows": 5,
+    "cols": 6,
+    "matrices": 102,
+    "comparisons": 4080
+   }
+  ],
+  "total_comparisons": 399920,
+  "variants": [
+   "columnas sin compresion (2R9)",
+   "filas sin compresion",
+   "columnas con compresion",
+   "filas con compresion",
+   "lado automatico con compresion"
+  ],
+  "orders": [
+   "(-|phi|, mascara ascendente)",
+   "(|F|, mascara ascendente)"
+  ],
+  "filters": [
+   "FGL 2|phi|>=A|F|",
+   "sin filtro (solo huella no vacia)"
+  ]
+ },
+ "B_affine_planes": {
+  "q2": {
+   "n": 52,
+   "checks": 24,
+   "parents": 24,
+   "A": 2,
+   "B": 3,
+   "counts": {
+    "valid_pairs_xy": 8,
+    "K_valid_per_parent": 25,
+    "S1_per_parent": 84,
+    "parents": 24,
+    "n": 52,
+    "dedup_candidates": 532,
+    "inverse_list_entries": 1848,
+    "not_reading_full_row_per_parent": 4,
+    "distinct_candidates_reading_full_row": 230,
+    "touching_parents_full_row": 12
+   },
+   "explicit_list_built": 532,
+   "host": {
+    "vertices": 76,
+    "edges": 2550,
+    "max_degree": 75
+   },
+   "traces_order_footprint_mask": {
+    "inputs": 3535,
+    "accepted_actions": 5468,
+    "stops_with_nonzero_syndrome": 1872
+   },
+   "traces_order_size_mask": {
+    "inputs": 409,
+    "accepted_actions": 602,
+    "stops_with_nonzero_syndrome": 199
+   },
+   "oracle": {
+    "supports": 591,
+    "queries": 3563,
+    "outcomes": {
+     "accept": 352,
+     "smaller": 1598,
+     "exit": 1613
+    },
+    "sum_of_weight_coefficients_by_sources": {
+     "W0": {
+      "0": 24,
+      "1": 164,
+      "2": 119,
+      "3": 36,
+      "4": 7,
+      "5": 2
+     },
+     "WT": {
+      "0": 24,
+      "1": 155,
+      "2": 114,
+      "3": 34,
+      "4": 6,
+      "5": 1
+     },
+     "Wu": {
+      "0": 24,
+      "1": 155,
+      "2": 110,
+      "3": 18,
+      "4": 2,
+      "5": 1
+     }
+    }
+   }
+  },
+  "q3": {
+   "n": 225,
+   "checks": 108,
+   "parents": 108,
+   "A": 3,
+   "B": 4,
+   "counts": {
+    "valid_pairs_xy": 14,
+    "K_valid_per_parent": 101,
+    "S1_per_parent": 648,
+    "parents": 108,
+    "n": 225,
+    "dedup_candidates": 10377,
+    "inverse_list_entries": 68148,
+    "not_reading_full_row_per_parent": 8,
+    "distinct_candidates_reading_full_row": 3243,
+    "touching_parents_full_row": 36
+   },
+   "explicit_list_built": 10377,
+   "host": {
+    "vertices": 333,
+    "edges": 49986,
+    "max_degree": 332
+   },
+   "traces_order_footprint_mask": {
+    "inputs": 1845,
+    "accepted_actions": 4852,
+    "stops_with_nonzero_syndrome": 968
+   },
+   "traces_order_size_mask": {
+    "inputs": 276,
+    "accepted_actions": 750,
+    "stops_with_nonzero_syndrome": 140
+   },
+   "oracle": {
+    "supports": 634,
+    "queries": 2690,
+    "outcomes": {
+     "accept": 810,
+     "smaller": 1675,
+     "exit": 205
+    },
+    "sum_of_weight_coefficients_by_sources": {
+     "W0": {
+      "0": 121,
+      "1": 327,
+      "2": 104,
+      "3": 34,
+      "4": 157,
+      "5": 56,
+      "6": 11
+     },
+     "WT": {
+      "0": 121,
+      "1": 327,
+      "2": 104,
+      "3": 34,
+      "4": 157,
+      "5": 56,
+      "6": 11
+     },
+     "Wu": {
+      "0": 121,
+      "1": 327,
+      "2": 104,
+      "3": 30,
+      "4": 97,
+      "5": 32,
+      "6": 7
+     }
+    }
+   }
+  },
+  "q5": {
+   "n": 1525,
+   "checks": 750,
+   "parents": 750,
+   "A": 5,
+   "B": 6,
+   "counts": {
+    "valid_pairs_xy": 28,
+    "K_valid_per_parent": 1505,
+    "S1_per_parent": 23340,
+    "parents": 750,
+    "n": 1525,
+    "dedup_candidates": 1122025,
+    "inverse_list_entries": 17468250,
+    "not_reading_full_row_per_parent": 37,
+    "distinct_candidates_reading_full_row": 219455,
+    "touching_parents_full_row": 150
+   },
+   "explicit_list_built": null,
+   "traces_order_footprint_mask": {
+    "inputs": 16,
+    "accepted_actions": 45
+   },
+   "max_shared_qubits_between_parents": 1
+  }
+ },
+ "C_f17": {
+  "counts": {
+   "valid_pairs_xy": 225,
+   "K_valid_per_parent": 22601854523,
+   "S1_per_parent": 3491876048616,
+   "parents": 88434,
+   "n": 177157,
+   "dedup_candidates": 1998772399968949,
+   "inverse_list_entries": 308800566432280926,
+   "not_reading_full_row_per_parent": 140473,
+   "distinct_candidates_reading_full_row": 117574116399683,
+   "touching_parents_full_row": 5202,
+   "all_subsets_per_parent": 34359738367,
+   "implicit_groups_worst_case_per_parent": 2490368,
+   "ratio_valid_over_worst_groups_floor": 9075,
+   "ratio_all_subsets_over_worst_groups_floor": 13797,
+   "seed_incidences": 5202
+  },
+  "dense_rectangles": [
+   {
+    "pattern": "aleatorio densidad 1/2",
+    "syndrome_bits": 157,
+    "winner_h": 24,
+    "winner_footprint": 33,
+    "winner_size": 2,
+    "group_evaluations_by_columns": 1500785,
+    "group_evaluations_by_rows": 2859532
+   },
+   {
+    "pattern": "todo activo",
+    "syndrome_bits": 306,
+    "winner_h": 306,
+    "winner_footprint": 306,
+    "winner_size": 18,
+    "group_evaluations_by_columns": 1500785,
+    "group_evaluations_by_rows": 2859532
+   },
+   {
+    "pattern": "aleatorio densidad 1/5",
+    "syndrome_bits": 57,
+    "winner_h": 13,
+    "winner_footprint": 33,
+    "winner_size": 2,
+    "group_evaluations_by_columns": 1500785,
+    "group_evaluations_by_rows": 2859532
+   },
+   {
+    "pattern": "nueve filas iguales",
+    "syndrome_bits": 81,
+    "winner_h": 81,
+    "winner_footprint": 153,
+    "winner_size": 9,
+    "group_evaluations_by_columns": 55512,
+    "group_evaluations_by_rows": 59113
+   }
+  ],
+  "queries": {
+   "Q1": {
+    "sources": 1,
+    "support_size": 1,
+    "outcome": "accept",
+    "accepted_actions": 1,
+    "work": {
+     "rectangles": 4930,
+     "parents": 4930,
+     "steps": 1,
+     "group_evaluations": 2095284
+    }
+   },
+   "Q2": {
+    "sources": 1,
+    "support_size": 1,
+    "outcome": "accept",
+    "accepted_actions": 1,
+    "work": {
+     "rectangles": 5202,
+     "parents": 5202,
+     "steps": 1,
+     "group_evaluations": 2210850
+    }
+   },
+   "Q3": {
+    "sources": 1,
+    "support_size": 1,
+    "outcome": "accept",
+    "accepted_actions": 0,
+    "work": {
+     "rectangles": 306,
+     "parents": 306,
+     "steps": 1,
+     "group_evaluations": 130050
+    },
+    "best_rejected": {
+     "h": 1,
+     "footprint": 17,
+     "action": [
+      "VV(5,4)"
+     ]
+    }
+   },
+   "Q4": {
+    "sources": 17,
+    "support_size": 34,
+    "outcome": "accept",
+    "accepted_actions": 17,
+    "work": {
+     "rectangles": 83810,
+     "parents": 86122,
+     "steps": 17,
+     "group_evaluations": 35777044
+    },
+    "residual_weight": 34,
+    "protected_mask_weight": 34,
+    "explicit_candidates_reading_initial_syndrome": 117574116399683
+   },
+   "Q5": {
+    "sources": 17,
+    "support_size": 17,
+    "outcome": "exit",
+    "accepted_actions": 0,
+    "work": {
+     "rectangles": 5202,
+     "parents": 5202,
+     "steps": 1,
+     "group_evaluations": 2221254
+    }
+   },
+   "Q6": {
+    "sources": 17,
+    "support_size": 17,
+    "outcome": "accept",
+    "accepted_actions": 17,
+    "work": {
+     "rectangles": 83810,
+     "parents": 86122,
+     "steps": 17,
+     "group_evaluations": 35777044
+    }
+   }
+  }
+ },
+ "checks": 65,
+ "status": "PASS"
+}

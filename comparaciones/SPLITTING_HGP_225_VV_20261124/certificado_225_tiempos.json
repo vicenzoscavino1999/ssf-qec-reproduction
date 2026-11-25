@@ -1,0 +1,110 @@
+{
+  "rc": "2e-7",
+  "rm": "1e-5",
+  "orden": "VV primero",
+  "corridas": [
+    {
+      "determinista": {
+        "L": "3.33938803357307E-16",
+        "U": "8.56801868768948E-15",
+        "estimacion": "6.42823538662759E-16",
+        "error_relativo_pct_sup": "9.24974073692631E+1"
+      },
+      "intervalo_conjunto": {
+        "L": "3.33938803357307E-16",
+        "U": "3.34507871785099E-16",
+        "estimacion": "3.34223095338810E-16",
+        "error_relativo_pct_sup": "8.51329580882824E-2"
+      },
+      "estratos": {
+        "3": {
+          "ensayos": 120000,
+          "semilla": 2026113003,
+          "decodificados": 18558,
+          "silenciosos_con_marca_si_corresponde": 0,
+          "limite_exitos": 7
+        },
+        "4": {
+          "ensayos": 120000,
+          "semilla": 2026113004,
+          "decodificados": 21185,
+          "silenciosos_con_marca_si_corresponde": 1,
+          "limite_exitos": 16
+        }
+      },
+      "preparacion_s": 1.4266255000256933,
+      "evaluacion_s": 6.949930899951141,
+      "pico_MiB": 115.93359375,
+      "pared_s": 8.690465599996969
+    },
+    {
+      "determinista": {
+        "L": "3.33938803357307E-16",
+        "U": "8.56801868768948E-15",
+        "estimacion": "6.42823538662759E-16",
+        "error_relativo_pct_sup": "9.24974073692631E+1"
+      },
+      "intervalo_conjunto": {
+        "L": "3.33938803357307E-16",
+        "U": "3.34507871785099E-16",
+        "estimacion": "3.34223095338810E-16",
+        "error_relativo_pct_sup": "8.51329580882824E-2"
+      },
+      "estratos": {
+        "3": {
+          "ensayos": 120000,
+          "semilla": 2026113003,
+          "decodificados": 18558,
+          "silenciosos_con_marca_si_corresponde": 0,
+          "limite_exitos": 7
+        },
+        "4": {
+          "ensayos": 120000,
+          "semilla": 2026113004,
+          "decodificados": 21185,
+          "silenciosos_con_marca_si_corresponde": 1,
+          "limite_exitos": 16
+        }
+      },
+      "preparacion_s": 1.3613586000283249,
+      "evaluacion_s": 6.758481899974868,
+      "pico_MiB": 115.9453125,
+      "pared_s": 8.305534499988426
+    },
+    {
+      "determinista": {
+        "L": "3.33938803357307E-16",
+        "U": "8.56801868768948E-15",
+        "estimacion": "6.42823538662759E-16",
+        "error_relativo_pct_sup": "9.24974073692631E+1"
+      },
+      "intervalo_conjunto": {
+        "L": "3.33938803357307E-16",
+        "U": "3.34507871785099E-16",
+        "estimacion": "3.34223095338810E-16",
+        "error_relativo_pct_sup": "8.51329580882824E-2"
+      },
+      "estratos": {
+        "3": {
+          "ensayos": 120000,
+          "semilla": 2026113003,
+          "decodificados": 18558,
+          "silenciosos_con_marca_si_corresponde": 0,
+          "limite_exitos": 7
+        },
+        "4": {
+          "ensayos": 120000,
+          "semilla": 2026113004,
+          "decodificados": 21185,
+          "silenciosos_con_marca_si_corresponde": 1,
+          "limite_exitos": 16
+        }
+      },
+      "preparacion_s": 1.3573532999726012,
+      "evaluacion_s": 6.483766100020148,
+      "pico_MiB": 115.94921875,
+      "pared_s": 7.989833299943712
+    }
+  ],
+  "mediana_pared_s": 8.305534499988426
+}

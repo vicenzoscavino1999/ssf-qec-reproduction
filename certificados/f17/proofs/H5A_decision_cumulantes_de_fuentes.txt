@@ -1,0 +1,105 @@
+H5-A · Decisión sobre el recuento de interacciones cruzadas
+17 de noviembre de 2026
+
+El rectángulo general comprobado sigue siendo p≤2·10⁻³⁶, q≤2·10⁻¹¹.
+Para buscar una mejora sustancial conviene expresar las actividades en
+conjuntos de fuentes. Las cubiertas y las primeras fusiones sirven para
+acotar esas actividades. El criterio de convergencia al final es el mismo.
+
+Una razón para cambiar la representación ya está en la sección 7 de
+H5A_cadenas_y_medidas.txt. En una familia admitida, cada error individual
+de tipo VV es incompatible, en el soporte físico, con al menos 22 880 420
+decoraciones de un solo dato del mismo tipo. La desigualdad KP en esa representación,
+incluso con presupuestos diferentes por decoración, exige
+p≤1/[1+22 880 420 exp(1)]<1.62·10⁻⁸. Este techo es del criterio sobre
+el soporte original. La nota de primera fusión da además un techo más
+bajo para sus filas numéricas y su conversión unitaria concretas.
+
+1. Identidad para todos los tamaños
+
+Fijar un subhost J y una máscara. T(U)∈{−1,0,1} es la marca de la
+ejecución canónica para las fuentes U⊆J, con filtro físico y contención
+del soporte en J. T(∅)=1. Poner η_i=T({i}), z_i=r_i/(1−r_i) y
+b_i=z_i/(1+η_i z_i), con r_i=p o q según el tipo. Definir k(B) como
+el coeficiente de ∏_{i∈B} z_i en el logaritmo de Ξ_J=Σ_U T(U)z^U.
+Se toma cada variable exactamente una vez. La sección 5 de la nota de
+primera fusión ya da estos cumulantes y la identidad de particiones
+
+  T(U)=Σ_{π partición de U} ∏_{B∈π} k(B).
+
+Sumando en U, agrupando los bloques de al menos dos sitios y sumando
+libremente los singletons restantes se obtiene exactamente
+
+  Ξ_J / ∏_{i∈J}(1+η_i z_i)
+    = Σ_{familias de bloques B disjuntos, |B|≥2} ∏_B [ k(B) ∏_{i∈B} b_i ].
+
+Se incluye la familia vacía. Dos bloques son incompatibles precisamente
+si comparten una fuente. Las dependencias del decodificador, las marcas y
+el filtro están en k(B). La identidad es formal y sigue siendo válida con
+marcas nulas y signos. La normalización individual es positiva en la
+esquina física. La Unidad 1 ya había integrado un fondo de errores limpios
+en soportes físicos. Aquí la exclusión de los bloques actúa en las fuentes.
+
+2. Comprobación en el punto objetivo
+
+Para dos sitios, k({i,j})=T({i,j})−η_iη_j, luego |k|≤2. Un par con un dato
+que carece de contacto se factoriza por la retirada de ese dato. Un testigo
+de cubierta de tres o más sitios no cabe en el par. Dos medidas solas no
+permiten ninguna acción porque encienden a lo sumo dos checks y toda acción
+legal requiere al menos nueve. Así, los únicos pares a cobrar son los del
+contacto de H5A_interacciones_por_fuentes.txt, con grados máximos 28200
+dato–dato, 40 dato–medida y 800 medida–dato, uniformes en el tamaño.
+
+En p=10⁻⁶, q=2·10⁻¹¹, poner V=p/(1−2p), D=q/(1−2q), que mayoran |b_i|.
+Con presupuesto |B| e inclinación adicional 0.01|B|, la suma de los
+pesos absolutos inclinados de los bloques de dos que contienen un sitio
+fijo satisface
+
+  dato       L_v ≤ 2 exp(2.02) V (28200 V+40 D) < 4.26·10⁻⁷,
+  medida     L_c ≤ 2 exp(2.02) D (800 V)        < 2.42·10⁻¹³.
+
+Las cifras se comprobaron con fracciones, usando el Taylor de exp(2.02)
+hasta grado 24 y una cola mayorada por (2.02)^25/[25! (1−2.02/26)].
+Ambas cargas son inferiores a la unidad. Sumando sobre los sitios de un
+bloque se obtiene la desigualdad KP para el gas de pares. Por consiguiente,
+en la expansión del logaritmo converge absolutamente la subserie cuyos
+bloques efectivos son todos pares, con cualquier cantidad de pares,
+ciclos, solapamientos y repeticiones. No se identifica toda la contribución
+de un soporte de tres o más fuentes con esta subserie. Por ejemplo, en el
+trío de datos de huella idéntica y subhost restringido de la nota anterior,
+η_i=0, todos los k({i,j})=1 y k({1,2,3})=0. Su partición es exactamente
+1+z₁z₂+z₂z₃+z₁z₃. La representación incluye así los tres pares cruzados.
+
+3. Prueba que decidiría una nueva cota general
+
+Para cada subhost, máscara y sitio i hay que controlar en conjunto
+
+  Σ_{B contiene i, |B|≥3} |k(B)| ∏_{j∈B}|b_j| exp(1.01|B|).
+
+Si esta suma más la carga de pares es ≤1 uniformemente, sumar las filas
+por fuente da el criterio KP con presupuesto |B| para todos los bloques,
+incluidos los autoincompatibles. Esto da una cola exponencial en el grado
+total de fuentes. Falta demostrar esa desigualdad usando la dinámica real
+y conservando las cancelaciones entre particiones antes del valor absoluto.
+Se puede probar a cualquier p entre el certificado actual y la aspiración
+manteniendo q. Un catálogo de pares o tríos deja la cola de órdenes altos abierta.
+
+La evaluación a precisión elegible admite el mecanismo de enumeración que
+ya usa el proyecto. En el gas físico formal, k(B)≠0 exige alguna familia
+conexa de decoraciones filtradas. Al tomar el término con cada fuente una
+vez, su unión es un conjunto conexo de K que contiene B y tiene tamaño
+≤135|B|. En un cúmulo de los nuevos bloques, compartir una fuente conecta
+también esos conjuntos físicos. Hasta grado total m basta enumerar conjuntos
+conexos de K de tamaño ≤135m y sus subconjuntos, deduplicando. Con K de
+grado acotado esto cuesta N exp(O(m)). Para cada soporte S resultante se
+puede restringir b a cada V⊆S, calcular la partición normalizada con el
+oráculo original, tomar el logaritmo formal truncado tras sustituir b por
+t b y usar inclusión–exclusión en V para retener el soporte exacto S.
+Son operaciones exponenciales en O(m), con el coste polinómico del oráculo.
+Así la cuestión decisiva es obtener la cota uniforme de actividades.
+
+La prueba enraizada con presupuesto por bloque usa el teorema 1 de
+D. Ueltschi, Cluster expansions and correlation functions (2004),
+https://arxiv.org/pdf/math-ph/0304003 . La comprobación de pares y la
+reducción anterior son del proyecto. La revisión matemática independiente
+queda pendiente.

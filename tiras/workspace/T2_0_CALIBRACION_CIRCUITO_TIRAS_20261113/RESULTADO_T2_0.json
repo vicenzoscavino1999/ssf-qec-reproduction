@@ -1,0 +1,965 @@
+{
+ "D": "100000000000000",
+ "checks": [
+  {
+   "control": "TIRA_6x6_fen f=1: cada asignacion de cada candidato se decodifica una vez (91)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6_fen f=2: cada asignacion de cada candidato se decodifica una vez (1220)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6_fen f=3: cada asignacion de cada candidato se decodifica una vez (20097)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6_fen f=4: cada asignacion de cada candidato se decodifica una vez (348807)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 TIRA_6x6_fen: silenciosa <=> algun caracter logico vale -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-fen: validas por f iguales a B4 [91, 1220, 20097, 346926]",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-fen: polimeros distintos = 306389 (B4)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-fen: estructura de la DP con k=4 = [306389, 5355, 2972219] (B4)",
+   "detalle": [
+    306389,
+    5355,
+    2972219
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-fen: eps_comp(4) identico al sellado en B4 en las 12 celdas",
+   "detalle": 12,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-resp TIRA_6x6: N_loc = (L+2)(n+m_X) - h_X = 527",
+   "detalle": 527,
+   "pasa": true
+  },
+  {
+   "control": "C-resp TIRA_6x6: respuesta por formula = propagacion en las 747 ubicaciones y categorias visibles",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-resp TIRA_6x6: XOR de respuestas = propagacion conjunta en 2000 asignaciones aleatorias",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-ley TIRA_6x6: clases no nulas por sitio de dato 7 (d = 2) y 3 (d = 1); check 1",
+   "detalle": {
+    "1": [
+     3
+    ],
+    "2": [
+     7
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-ley TIRA_6x6: leyes de ubicacion y de fibra suman 1 en las 8 celdas",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-ley TIRA_6x6: soporte de cada ley de fibra = clases alcanzables (6 tipos de ley)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6 f=1: cada asignacion de cada candidato se decodifica una vez (409)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6 f=2: cada asignacion de cada candidato se decodifica una vez (29120)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6 f=3: cada asignacion de cada candidato se decodifica una vez (2569801)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6 f=4: cada asignacion de cada candidato se decodifica una vez (231156265)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 TIRA_6x6: silenciosa <=> algun caracter logico vale -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "I4 TIRA_6x6 exhaustivo: silenciosa <=> algun caracter logico vale -1",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-exh TIRA_6x6 f=1: decoraciones validas del exhaustivo = catalogo por crecimiento (409)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-exh TIRA_6x6 f=2: decoraciones validas del exhaustivo = catalogo por crecimiento (29120)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-exh TIRA_6x6 f=3: decoraciones validas del exhaustivo = catalogo por crecimiento (2500537)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "regla de suma TIRA_6x6 k=4: normalizacion de eval_fly T = (D+1)^NS, luego X0 = D^NS Xi(P)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "regla de suma NS=91 k=4: 0 <= T_cat - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-suma TIRA_6x6 k=4: el criterio dice COMPLETO",
+   "detalle": {
+    "cola_sobre_umbral": 0.0008168787089405148,
+    "condicion_previa": true,
+    "k": 4,
+    "margen_log10": 3.7565364629210762,
+    "peso_orden_siguiente_aprox": 17517153558.024696,
+    "segundos": 89.401,
+    "veredicto": "COMPLETO"
+   },
+   "pasa": true
+  },
+  {
+   "control": "regla de suma TIRA_6x6_menos_4 k=4: normalizacion de eval_fly T = (D+1)^NS, luego X0 = D^NS Xi(P)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "regla de suma NS=91 k=4: 0 <= T_cat - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-suma negativo TIRA_6x6: sin una decoracion de 4 sitios el criterio dice INCOMPLETO",
+   "detalle": {
+    "cola_sobre_umbral": 0.0008168787089405148,
+    "condicion_previa": true,
+    "k": 4,
+    "margen_log10": -7.606936992488045e-05,
+    "peso_orden_siguiente_aprox": 100017517153819.03,
+    "segundos": 90.882,
+    "veredicto": "INCOMPLETO"
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-rec TIRA_6x6: 10000 historias con >= 2 componentes con acciones; ejecucion global = suma de las componentes",
+   "detalle": {
+    "fallos": [],
+    "intentos": 15669
+   },
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-resp TIRA_12x6: N_loc = (L+2)(n+m_X) - h_X = 1079",
+   "detalle": 1079,
+   "pasa": true
+  },
+  {
+   "control": "C-resp TIRA_12x6: respuesta por formula = propagacion en las 1539 ubicaciones y categorias visibles",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-resp TIRA_12x6: XOR de respuestas = propagacion conjunta en 2000 asignaciones aleatorias",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-ley TIRA_12x6: clases no nulas por sitio de dato 7 (d = 2) y 3 (d = 1); check 1",
+   "detalle": {
+    "1": [
+     3
+    ],
+    "2": [
+     7
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-ley TIRA_12x6: leyes de ubicacion y de fibra suman 1 en las 8 celdas",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-ley TIRA_12x6: soporte de cada ley de fibra = clases alcanzables (6 tipos de ley)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6 f=1: cada asignacion de cada candidato se decodifica una vez (853)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6 f=2: cada asignacion de cada candidato se decodifica una vez (67892)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6 f=3: cada asignacion de cada candidato se decodifica una vez (6875875)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6 f=4: cada asignacion de cada candidato se decodifica una vez (744187220)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 TIRA_12x6: silenciosa <=> algun caracter logico vale -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "regla de suma TIRA_12x6 k=4: normalizacion de eval_fly T = (D+1)^NS, luego X0 = D^NS Xi(P)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "regla de suma NS=187 k=4: 0 <= T_cat - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-suma TIRA_12x6 k=4: el criterio dice COMPLETO",
+   "detalle": {
+    "cola_sobre_umbral": 0.03495253567522788,
+    "condicion_previa": true,
+    "k": 4,
+    "margen_log10": 3.141600306253167,
+    "peso_orden_siguiente_aprox": 72177144069.38199,
+    "segundos": 1683.477,
+    "veredicto": "COMPLETO"
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-rec TIRA_12x6: 10000 historias con >= 2 componentes con acciones; ejecucion global = suma de las componentes",
+   "detalle": {
+    "fallos": [],
+    "intentos": 12396
+   },
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-resp TIRA_24x6: N_loc = (L+2)(n+m_X) - h_X = 2183",
+   "detalle": 2183,
+   "pasa": true
+  },
+  {
+   "control": "C-resp TIRA_24x6: respuesta por formula = propagacion en las 3123 ubicaciones y categorias visibles",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-resp TIRA_24x6: XOR de respuestas = propagacion conjunta en 2000 asignaciones aleatorias",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-ley TIRA_24x6: clases no nulas por sitio de dato 7 (d = 2) y 3 (d = 1); check 1",
+   "detalle": {
+    "1": [
+     3
+    ],
+    "2": [
+     7
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-ley TIRA_24x6: leyes de ubicacion y de fibra suman 1 en las 8 celdas",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-ley TIRA_24x6: soporte de cada ley de fibra = clases alcanzables (6 tipos de ley)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6 f=1: cada asignacion de cada candidato se decodifica una vez (1741)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6 f=2: cada asignacion de cada candidato se decodifica una vez (145436)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6 f=3: cada asignacion de cada candidato se decodifica una vez (15488023)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 TIRA_24x6: silenciosa <=> algun caracter logico vale -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "regla de suma TIRA_24x6 k=3: normalizacion de eval_fly T = (D+1)^NS, luego X0 = D^NS Xi(P)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "regla de suma NS=379 k=3: 0 <= T_cat - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-suma TIRA_24x6 k=3: el criterio dice COMPLETO",
+   "detalle": {
+    "cola_sobre_umbral": 0.0037461514669528567,
+    "condicion_previa": true,
+    "k": 3,
+    "margen_log10": 4.783273412836934,
+    "peso_orden_siguiente_aprox": 1647125107.0241241,
+    "segundos": 113.003,
+    "veredicto": "COMPLETO"
+   },
+   "pasa": true
+  }
+ ],
+ "decision_D_c0": "PASS",
+ "decision_D_c1": {
+  "12": "CABE",
+  "24": "CABE",
+  "48": "CABE",
+  "6": "CABE"
+ },
+ "decision_D_c2": {
+  "TIRA_12x6": 3,
+  "TIRA_24x6": 3,
+  "TIRA_6x6": 3
+ },
+ "instancias": {
+  "C_fen": {
+   "catalogo_por_f": {
+    "1": 91,
+    "2": 1220,
+    "3": 20097,
+    "4": 346926
+   },
+   "celdas_identicas": 12,
+   "estructura_k4": [
+    306389,
+    5355,
+    2972219
+   ],
+   "polimeros": 306389
+  },
+  "TIRA_12x6": {
+   "P_sil_dominante": {
+    "1/1000000|0": {
+     "P_sil_dominante": 1.8035934590433928e-16,
+     "montecarlo_10pc_95": 2.1290829043240689e+18
+    },
+    "1/1000000|1/1000000": {
+     "P_sil_dominante": 1.8034852468565905e-16,
+     "montecarlo_10pc_95": 2.12921065292493e+18
+    },
+    "1/100000|0": {
+     "P_sil_dominante": 1.7914998985930136e-13,
+     "montecarlo_10pc_95": 2143455326464608.0
+    },
+    "1/100000|1/100000": {
+     "P_sil_dominante": 1.7904253383671422e-13,
+     "montecarlo_10pc_95": 2144741764826707.8
+    },
+    "1/10000|0": {
+     "P_sil_dominante": 1.6749398087057e-10,
+     "montecarlo_10pc_95": 2292619698953.444
+    },
+    "1/10000|1/10000": {
+     "P_sil_dominante": 1.664921868304397e-10,
+     "montecarlo_10pc_95": 2306414536984.107
+    },
+    "1/1000|0": {
+     "P_sil_dominante": 8.549269230483201e-08,
+     "montecarlo_10pc_95": 4491611968.784571
+    },
+    "1/1000|1/1000": {
+     "P_sil_dominante": 8.052178427175538e-08,
+     "montecarlo_10pc_95": 4768895814.628585
+    }
+   },
+   "catalogo": {
+    "llamadas": 751131840,
+    "polimeros_distintos": 8884859,
+    "por_f": {
+     "1": {
+      "asignaciones": 853,
+      "candidatos": 187,
+      "conjuntos_validos": 187,
+      "segundos": 0.092,
+      "validas": 853
+     },
+     "2": {
+      "asignaciones": 67892,
+      "candidatos": 2768,
+      "conjuntos_validos": 2768,
+      "segundos": 0.086,
+      "validas": 67892
+     },
+     "3": {
+      "asignaciones": 6875875,
+      "candidatos": 52737,
+      "conjuntos_validos": 52737,
+      "segundos": 2.536,
+      "validas": 6673987
+     },
+     "4": {
+      "asignaciones": 744187220,
+      "candidatos": 1101044,
+      "conjuntos_validos": null,
+      "segundos": 254.835,
+      "validas": 693439495
+     }
+    }
+   },
+   "circuito": {
+    "capas": 5,
+    "clases_por_sitio": {
+     "check": 1,
+     "dato_d1": 3,
+     "dato_d2": 7
+    },
+    "colores_usados": 4,
+    "grado_max_K": 42,
+    "h_X": 230,
+    "host_primitivo": 1206,
+    "tipos_de_ley": 6,
+    "ubicaciones": 1079
+   },
+   "cocientes_frente_a_B4": {
+    "1": {
+     "estados": 1.0,
+     "llamadas": 4.561497326203209,
+     "polimeros": 1.481283422459893,
+     "terminos": 1.6144827586206896
+    },
+    "2": {
+     "estados": 1.0108860759493672,
+     "llamadas": 23.263959390862944,
+     "polimeros": 2.6528423310690026,
+     "terminos": 2.896060374172098
+    },
+    "3": {
+     "estados": 1.0902340711406548,
+     "llamadas": 128.19101413962417,
+     "polimeros": 5.0445245698980115,
+     "terminos": 5.386752187211551
+    },
+    "4": {
+     "estados": 1.2068428539342666,
+     "llamadas": 693.9131495171175,
+     "polimeros": 9.755648154248194,
+     "terminos": 10.119816548478635
+    }
+   },
+   "estructura": {
+    "1": {
+     "estados": 1455,
+     "polimeros": 277,
+     "segundos": 1.05,
+     "terminos": 2341
+    },
+    "2": {
+     "estados": 3993,
+     "polimeros": 7420,
+     "segundos": 1.153,
+     "terminos": 109752
+    },
+    "3": {
+     "estados": 15417,
+     "polimeros": 244836,
+     "segundos": 6.181,
+     "terminos": 5246465
+    },
+    "4": {
+     "estados": 80599,
+     "polimeros": 8884859,
+     "segundos": 994.349,
+     "terminos": 279352061
+    }
+   },
+   "f_s_circuito": 3,
+   "recomposicion": {
+    "componentes_por_historia": {
+     "2": 713,
+     "3": 2644,
+     "4": 3741,
+     "5": 2106,
+     "6": 683,
+     "7": 108,
+     "8": 5
+    },
+    "historias_multicomponente": 10000,
+    "intentos": 12396,
+    "llamadas": 59673
+   },
+   "regla_de_suma": {
+    "cola_sobre_umbral": 0.03495253567522788,
+    "condicion_previa": true,
+    "k": 4,
+    "margen_log10": 3.141600306253167,
+    "peso_orden_siguiente_aprox": 72177144069.38199,
+    "segundos": 1683.477,
+    "veredicto": "COMPLETO"
+   },
+   "segundos": 2951.241,
+   "silenciosas_f_s_por_firma": 4,
+   "silenciosas_por_f": {
+    "1": 0,
+    "2": 0,
+    "3": 168,
+    "4": 19950
+   },
+   "sitios": 187,
+   "truncacion_ingenua_decodificaciones": {
+    "1": 853,
+    "2": 361996,
+    "3": 101545495,
+    "4": 21205958173
+   }
+  },
+  "TIRA_24x6": {
+   "P_sil_dominante": {
+    "1/1000000|0": {
+     "P_sil_dominante": 3.778376023840987e-16,
+     "montecarlo_10pc_95": 1.0163096461998952e+18
+    },
+    "1/1000000|1/1000000": {
+     "P_sil_dominante": 3.777922646626559e-16,
+     "montecarlo_10pc_95": 1.016431610485427e+18
+    },
+    "1/100000|0": {
+     "P_sil_dominante": 3.727189377227217e-13,
+     "montecarlo_10pc_95": 1030266941481977.1
+    },
+    "1/100000|1/100000": {
+     "P_sil_dominante": 3.7227195019699324e-13,
+     "montecarlo_10pc_95": 1031503984645635.2
+    },
+    "1/10000|0": {
+     "P_sil_dominante": 3.2519688114739374e-10,
+     "montecarlo_10pc_95": 1180823132882.2434
+    },
+    "1/10000|1/10000": {
+     "P_sil_dominante": 3.2131843928576507e-10,
+     "montecarlo_10pc_95": 1195076139587.772
+    },
+    "1/1000|0": {
+     "P_sil_dominante": 8.31771895908508e-08,
+     "montecarlo_10pc_95": 4616650332.728226
+    },
+    "1/1000|1/1000": {
+     "P_sil_dominante": 7.378534866758112e-08,
+     "montecarlo_10pc_95": 5204285226.461458
+    }
+   },
+   "catalogo": {
+    "llamadas": 15635200,
+    "polimeros_distintos": 548196,
+    "por_f": {
+     "1": {
+      "asignaciones": 1741,
+      "candidatos": 379,
+      "conjuntos_validos": 379,
+      "segundos": 0.198,
+      "validas": 1741
+     },
+     "2": {
+      "asignaciones": 145436,
+      "candidatos": 5864,
+      "conjuntos_validos": 5864,
+      "segundos": 0.089,
+      "validas": 145436
+     },
+     "3": {
+      "asignaciones": 15488023,
+      "candidatos": 116925,
+      "conjuntos_validos": null,
+      "segundos": 5.347,
+      "validas": 15020887
+     }
+    }
+   },
+   "circuito": {
+    "capas": 5,
+    "clases_por_sitio": {
+     "check": 1,
+     "dato_d1": 3,
+     "dato_d2": 7
+    },
+    "colores_usados": 4,
+    "grado_max_K": 42,
+    "h_X": 470,
+    "host_primitivo": 2442,
+    "tipos_de_ley": 6,
+    "ubicaciones": 2183
+   },
+   "cocientes_frente_a_B4": {
+    "1": {
+     "estados": 1.0,
+     "llamadas": 4.593667546174142,
+     "polimeros": 1.4907651715039578,
+     "terminos": 1.6167415009621553
+    },
+    "2": {
+     "estados": 1.011366144338998,
+     "llamadas": 23.574723690533396,
+     "polimeros": 2.6777082981240494,
+     "terminos": 2.9146175254544
+    },
+    "3": {
+     "estados": 1.096998324774119,
+     "llamadas": 130.6133360065494,
+     "polimeros": 5.096510881994738,
+     "terminos": 5.450353051347814
+    }
+   },
+   "estructura": {
+    "1": {
+     "estados": 3123,
+     "polimeros": 565,
+     "segundos": 0.077,
+     "terminos": 5041
+    },
+    "2": {
+     "estados": 9165,
+     "polimeros": 15844,
+     "segundos": 0.307,
+     "terminos": 254484
+    },
+    "3": {
+     "estados": 39945,
+     "polimeros": 548196,
+     "segundos": 12.933,
+     "terminos": 13479557
+    }
+   },
+   "f_s_circuito": 3,
+   "regla_de_suma": {
+    "cola_sobre_umbral": 0.0037461514669528567,
+    "condicion_previa": true,
+    "k": 3,
+    "margen_log10": 4.783273412836934,
+    "peso_orden_siguiente_aprox": 1647125107.0241241,
+    "segundos": 113.003,
+    "veredicto": "COMPLETO"
+   },
+   "segundos": 133.014,
+   "silenciosas_f_s_por_firma": 4,
+   "silenciosas_por_f": {
+    "1": 0,
+    "2": 0,
+    "3": 348
+   },
+   "sitios": 379,
+   "truncacion_ingenua_decodificaciones": {
+    "1": 1741,
+    "2": 1511836,
+    "3": 871574487
+   }
+  },
+  "TIRA_6x6": {
+   "P_sil_dominante": {
+    "1/1000000|0": {
+     "P_sil_dominante": 8.150636477142424e-17,
+     "montecarlo_10pc_95": 4.711288511969419e+18
+    },
+    "1/1000000|1/1000000": {
+     "P_sil_dominante": 8.150391962136963e-17,
+     "montecarlo_10pc_95": 4.711429852501455e+18
+    },
+    "1/100000|0": {
+     "P_sil_dominante": 8.124013297131603e-14,
+     "montecarlo_10pc_95": 4726727861654058.0
+    },
+    "1/100000|1/100000": {
+     "P_sil_dominante": 8.121576500648806e-14,
+     "montecarlo_10pc_95": 4728146068307347.0
+    },
+    "1/10000|0": {
+     "P_sil_dominante": 7.862527597308867e-11,
+     "montecarlo_10pc_95": 4883925623757.848
+    },
+    "1/10000|1/10000": {
+     "P_sil_dominante": 7.83897941146716e-11,
+     "montecarlo_10pc_95": 4898596868850.938
+    },
+    "1/1000|0": {
+     "P_sil_dominante": 5.669331209606787e-08,
+     "montecarlo_10pc_95": 6773285698.131463
+    },
+    "1/1000|1/1000": {
+     "P_sil_dominante": 5.502061972447425e-08,
+     "montecarlo_10pc_95": 6979201650.634794
+    }
+   },
+   "catalogo": {
+    "llamadas": 233755595,
+    "polimeros_distintos": 2866787,
+    "por_f": {
+     "1": {
+      "asignaciones": 409,
+      "candidatos": 91,
+      "conjuntos_validos": 91,
+      "segundos": 0.071,
+      "validas": 409
+     },
+     "2": {
+      "asignaciones": 29120,
+      "candidatos": 1220,
+      "conjuntos_validos": 1220,
+      "segundos": 0.048,
+      "validas": 29120
+     },
+     "3": {
+      "asignaciones": 2569801,
+      "candidatos": 20643,
+      "conjuntos_validos": 20643,
+      "segundos": 1.022,
+      "validas": 2500537
+     },
+     "4": {
+      "asignaciones": 231156265,
+      "candidatos": 371185,
+      "conjuntos_validos": null,
+      "segundos": 60.099,
+      "validas": 216824784
+     }
+    }
+   },
+   "circuito": {
+    "capas": 5,
+    "clases_por_sitio": {
+     "check": 1,
+     "dato_d1": 3,
+     "dato_d2": 7
+    },
+    "colores_usados": 4,
+    "grado_max_K": 42,
+    "h_X": 110,
+    "host_primitivo": 588,
+    "tipos_de_ley": 6,
+    "ubicaciones": 527
+   },
+   "cocientes_frente_a_B4": {
+    "1": {
+     "estados": 1.0,
+     "llamadas": 4.4945054945054945,
+     "polimeros": 1.4615384615384615,
+     "terminos": 1.6087662337662338
+    },
+    "2": {
+     "estados": 1.009325681492109,
+     "llamadas": 22.524027459954233,
+     "polimeros": 2.593371059013743,
+     "terminos": 2.834634923041929
+    },
+    "3": {
+     "estados": 1.0503103560927802,
+     "llamadas": 121.41862855007474,
+     "polimeros": 4.897534304190105,
+     "terminos": 5.044117192774966
+    },
+    "4": {
+     "estados": 1.0326797385620916,
+     "llamadas": 631.4049808894831,
+     "polimeros": 9.356690351154905,
+     "terminos": 8.696555334583353
+    }
+   },
+   "estructura": {
+    "1": {
+     "estados": 621,
+     "polimeros": 133,
+     "segundos": 0.336,
+     "terminos": 991
+    },
+    "2": {
+     "estados": 1407,
+     "polimeros": 3208,
+     "segundos": 0.378,
+     "terminos": 37386
+    },
+    "3": {
+     "estados": 3215,
+     "polimeros": 93156,
+     "segundos": 1.7,
+     "terminos": 1143002
+    },
+    "4": {
+     "estados": 5530,
+     "polimeros": 2866787,
+     "segundos": 104.583,
+     "terminos": 25848067
+    }
+   },
+   "exhaustivo": {
+    "1": {
+     "historias": 409,
+     "silenciosas": 0,
+     "validas": 409
+    },
+    "2": {
+     "historias": 82371,
+     "silenciosas": 0,
+     "validas": 29120
+    },
+    "3": {
+     "historias": 10889483,
+     "silenciosas": 78,
+     "validas": 2500537
+    }
+   },
+   "f_s_circuito": 3,
+   "f_s_exhaustivo": 3,
+   "recomposicion": {
+    "componentes_por_historia": {
+     "2": 3476,
+     "3": 4436,
+     "4": 1795,
+     "5": 276,
+     "6": 17
+    },
+    "historias_multicomponente": 10000,
+    "intentos": 15669,
+    "llamadas": 55291
+   },
+   "regla_de_suma": {
+    "cola_sobre_umbral": 0.0008168787089405148,
+    "condicion_previa": true,
+    "k": 4,
+    "margen_log10": 3.7565364629210762,
+    "peso_orden_siguiente_aprox": 17517153558.024696,
+    "segundos": 89.401,
+    "veredicto": "COMPLETO"
+   },
+   "regla_de_suma_negativo": {
+    "clave": [
+     4,
+     0
+    ],
+    "criterio": {
+     "cola_sobre_umbral": 0.0008168787089405148,
+     "condicion_previa": true,
+     "k": 4,
+     "margen_log10": -7.606936992488045e-05,
+     "peso_orden_siguiente_aprox": 100017517153819.03,
+     "segundos": 90.882,
+     "veredicto": "INCOMPLETO"
+    },
+    "d": 4,
+    "recuento_antes": 1029,
+    "soporte_hex": "0xf"
+   },
+   "segundos": 467.827,
+   "silenciosas_f_s_por_firma": 4,
+   "silenciosas_por_f": {
+    "1": 0,
+    "2": 0,
+    "3": 78,
+    "4": 8418
+   },
+   "sitios": 91,
+   "truncacion_ingenua_decodificaciones": {
+    "1": 409,
+    "2": 82780,
+    "3": 10972263,
+    "4": 1073861957
+   }
+  }
+ },
+ "lectura_global": "D-c0 PASS; D-c1 m=6 CABE, m=12 CABE, m=24 CABE, m=48 CABE; D-c2 f_s TIRA_6x6=3, TIRA_12x6=3, TIRA_24x6=3",
+ "limites_alcanzados": [],
+ "llamadas_totales": 1011980077,
+ "plan": "T2_0_CALIBRACION_CIRCUITO_TIRAS_20261113/PLAN_T2_0.txt",
+ "plan_sha256": "29c7c4949f314958db4f5a61d9b5e94d9a05e3c5face9359683be900312a0aa3",
+ "programa_sha256": "195bf3317f7af114f4cdc1daad714e828534ddd57abab29c81daa7126d17cc61",
+ "proyecciones_k4": {
+  "estados": {
+   "12": 80599,
+   "24_proyectado": 208829.67211519752,
+   "48_proyectado": 465291.01634559256,
+   "6": 5530
+  },
+  "llamadas": {
+   "12": 751131840,
+   "24_proyectado": 1691107151.2578082,
+   "48_proyectado": 3571057773.773424,
+   "6": 233755595
+  },
+  "terminos": {
+   "12": 279352061,
+   "24_proyectado": 717729371.932716,
+   "48_proyectado": 1594483993.7981482,
+   "6": 25848067
+  }
+ },
+ "prueba": false,
+ "referencias_sha256": {
+  "B4_TIRAS_ESCALADO_N_20261113/RESULTADO_B4.json": "640db376441656cfb72e16aa00e0e99e2fc2eb6047905dfe031f5d994634b5f7",
+  "B4_TIRAS_ESCALADO_N_20261113/b4_tiras.py": "b1a2cb8f93affcc3713eadd4ff860a2d74756b91752011cd6b16da44def2dd15",
+  "T2_0_CALIBRACION_CIRCUITO_TIRAS_20261113/PLAN_T2_0.txt": "29c7c4949f314958db4f5a61d9b5e94d9a05e3c5face9359683be900312a0aa3"
+ },
+ "status": "PASS",
+ "unit": "T2-0"
+}

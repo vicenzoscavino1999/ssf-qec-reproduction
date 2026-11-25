@@ -1,0 +1,340 @@
+H5-A · Cuánto puede propagarse la corrección lejos de los datos en HGP (3,4)
+22 de noviembre de 2026
+
+Para el producto de una semilla binaria de peso de columna 3 y peso de fila 4
+consigo misma, el rectángulo de acceso uniforme a las particiones filtradas es
+
+                      0 ≤ p ≤ 3.2·10⁻⁷,       0 ≤ q ≤ 10⁻³.             (1)
+
+El extremo anterior al mismo q era 2.6·10⁻⁷. La ganancia es 16/13 y queda
+un factor 25/8 hasta G3. En la esquina de (1) la fila de todos los tamaños
+es <0.00058067 frente a 0.001. La derivación tiene verificador racional y
+queda pendiente de revisión matemática independiente.
+
+Rigen las hipótesis de H5A_3_4_medidas_aisladas.txt, §§1–5. Se usa una
+ronda Bernoulli independiente, todas las acciones SSF/FGL del manuscrito,
+β=1/100, máximo global del descenso por tamaño de la huella y desempate
+físico fijo. El filtro exige síndrome físico residual cero. Se conservan
+todos los tamaños, máscaras y subhosts físicos inducidos J, así como el
+oráculo y la convención de orden del manuscrito. La transferencia a error
+relativo para un fallo silencioso positivo requiere además el testigo
+lógico y las demás hipótesis del Teorema 1.
+
+1. Cuántos pasos pueden quedar lejos de todas las fuentes
+=========================================================
+
+Para un núcleo aceptado, E denota los datos originales, D sus errores de
+medición activos y O la unión de las huellas ψ de E. Un generador cercano
+tiene un rectángulo P que toca O. Su rectángulo está en alguna zona
+B_x=N_L[ψ_x] de un dato x. Los demás generadores usados son lejanos.
+La ejecución parte del síndrome observado σ(E)△D y termina en D.
+Un paso con h luces en una huella de v sitios cuesta δ=2h−v≥1. Crea
+a lo sumo dos luces, como se comprueba en los 771 ganadores locales,
+incluidos los empates.
+
+Dar profundidad 1 a cada rectángulo lejano usado que toca alguna B_x.
+Para los demás, tomar la distancia mínima a las zonas por una cadena de
+rectángulos lejanos usados que se intersectan. Todos son alcanzables.
+Por estabilidad de D, un ganador ha de tocar la discrepancia física que
+procede de O o de una huella anterior. Escribir n_j para el número de
+pasos a profundidad j, incluidos usos repetidos, y T_j=Σ_{i≥j} n_i.
+Se tiene, para j≥2,
+
+                         T_j ≤ 2 n_{j−1}.                              (2)
+
+En la unión de los rectángulos de profundidad ≥j, el síndrome observado
+empieza y termina en los mismos bits de D, porque esa unión evita O. Cada
+paso de esas capas reduce el peso en la unión en al menos uno. Los cercanos
+y los de profundidad menor que j−1 la evitan. Cada paso de la capa j−1
+puede aumentar ese peso en a lo sumo dos. Sumar los cambios prueba (2).
+En particular T₂≤(2/3)T₁. Y si hay un paso de profundidad t, se necesitan
+al menos b_t pasos lejanos, donde b₁=1 y b_{t+1}=⌈3b_t/2⌉. Esto sigue
+hacia atrás de T_{j−1}≥⌈3T_j/2⌉. Los primeros costes son 1,2,3,5,8,12.
+
+El §2 de H5A_3_4_medidas_por_historia.txt acota T₁ por un saldo K.
+Se parte del descenso total, se descuentan los pasos cercanos reservados
+y cada paso lejano cuesta ≥1. Cada componente A de dos o más datos en
+el grafo de lectores G[E] aporta un saldo máximo k_A. Cada aislado
+excepcional consume una unidad por el primer contacto del Lema 14.
+Un núcleo simple tiene su recuento propio. En un núcleo no simple,
+
+               T₁ ≤ K = Σ_{|A|≥2} k_A − número de aislados,
+               T₂ ≤ (2/3)K.                                             (3)
+
+2. Posiciones permitidas por los dos presupuestos
+==================================================
+
+Como en la nota por historia, representar los originales por sus B_x y
+los generadores lejanos usados por sus rectángulos. Conservar primero un
+árbol interno en cada componente de G[E], conectando sus bloques fuertes
+internamente. Añadir para cada generador de profundidad 1 una sola arista
+a un dato cuya zona toca. Cada uno es un vértice nuevo y estas aristas
+prescritas forman un bosque con las anteriores. Completar a un árbol,
+podar las hojas de generador salvo la marca física requerida y comprimir
+los caminos de generadores de grado dos. Un generador de profundidad 1
+que sobrevive conserva su arista al dato, pues ese dato nunca se poda.
+
+Por ello, en un enlace con l interiores y d extremos de datos (d=0,1,2),
+al menos (l−d)₊ interiores tienen profundidad ≥2. Un interior de profundidad
+1 tiene como vecino un dato y éste sólo puede ser uno de los dos extremos.
+Los interiores de enlaces distintos son disjuntos. Introducir los pesos
+
+     a=.5488178589126, s=.86, Y=a⁶, u=Y/s², t=s³, ρ=u t=Y s.
+
+Aquí u≈.0369464, Y≈.0273256 y ρ≈.0235 con 36ρ<1. Un enlace paga
+w_d(l)=u^l t^((l−d)₊), y cada generador visible paga u. Por (3) el
+producto de estos pesos es ≥u^K t^(2K/3)=Y^K en toda realización.
+Luego sigue bastando el factor Y^(−k_A) por grupo y Y por aislado.
+
+Sea T(l) el producto de las dos bolas de Tanner correspondiente al enlace
+de H5A_3_4_medidas_por_historia.txt, §3. T(l)=c₁+c₆6^l+c₃₆36^l.
+Si se relaja a la menor longitud permitida por las coordenadas de los
+extremos, cada punto nuevo de su capa física tiene una preimagen nueva
+en el recubrimiento. Por tanto los dos costes por enlace son
+
+      L = ⌈T(0)+Σ_{l≥1} [T(l)−T(l−1)] w_d(l)⌉,
+      M ≥ sup_{l≥0} T(l) w_d(l).
+
+La cola de L es geométrica a partir de d. Para M, después de d+14
+basta T(l)≤c₃₆36^l y 36ρ<1. En un árbol físico con un enlace distinguido
+se usa M una sola vez. Fijados la forma, los tipos, los saldos y las
+longitudes mínimas del resto, si quedan k y k' interiores permitidos
+por los dos presupuestos, ese enlace requiere l≤k, (l−d)₊≤k'. El número
+de extremos es ≤T(l_máx)≤M u^(−k)t^(−k'). Si alguno de los dos saldos
+es negativo, el registro es imposible. Sumando las demás posiciones
+con sus cotas uniformes se recuperan los pesos ordinarios del resto.
+Se puede sumar sobre las elecciones de hijo distinguido.
+
+Por filas y columnas de tipos V=VV, C=CC, los resultados son
+
+        enlace         L                                        M
+        dato→dato      (338709,225913), (401622,267677)          (44554,29707), (52812,35205)
+        dato→g         (13085,15512)                            (1850,2193)
+        g→dato         (17447,11634)                            (2466,1645)
+        g→g            642                                      90
+
+3. Qué parejas pueden financiar un paso lejano
+==============================================
+
+Para dos CC en la misma columna con huellas disjuntas, fijar la posición
+del primer CC. Para cada posible centro
+intermedio de un rectángulo que lea ambos, sean u₁,u₂ las cantidades de
+celdas de las dos franjas en ese rectángulo. El centro da u₁u₂ caminos
+distintos, sin retroceso y de longitud cuatro entre los dos centros
+originales de la semilla. Los extremos disjuntos garantizan que los dos
+vértices internos elegidos a los lados del centro intermedio difieren.
+La suma sobre los destinos del máximo m=max_P u₁u₂ es ≤4·2·3·2=48.
+Se tiene m≤4 porque las dos franjas ocupan la misma columna local.
+
+La siguiente cuenta se hace en los bits observados de las dos huellas
+originales. Para cada D₀ permitido en su unión, empezar en D₀△ψ₁△ψ₂
+y terminar en D₀. La estabilidad exige |D₀∩ψ_i|≤⌊n_i/2⌋. Proyectar
+los 771 ganadores sobre todas las elecciones de hasta cuatro filas y
+tres columnas de la unión, completando lo que falte con coordenadas
+exteriores. Para una transición con huella φ, sus luces proyectadas
+han de coincidir con los bits actuales en la proyección de φ. Su coste
+es δ. Además h/v≥máx_i |estado∩ψ_i|/n_i por la competición de los
+singletons. Mientras haya una franja entera encendida sólo se admiten
+ganadores perfectos. Antes del primer paso imperfecto la parte de φ
+fuera de la unión que esté encendida procede de D, pues este rectángulo
+sólo lee originales de la pareja. Para los pasos perfectos en ese prefijo
+se exige que φ fuera de la unión sea estable como subconjunto local.
+Se permite abandonar ese prefijo en cuanto ninguna franja esté llena.
+Ignorar los pasos que no cambian bits proyectados sólo reduce el coste
+mínimo. Calcular caminos mínimos en este grafo finito da una cota inferior
+del descenso consumido en pasos cercanos de la pareja, en cualquier host.
+
+Restar esa distancia al saldo inicial |D₀△ψ₁△ψ₂|−|D₀| y maximizar.
+Para CC de la misma columna, los techos del saldo restante son 0 si m=1,
+1 si m≤3 y 2 si m≤4. Para una pareja mixta débil, las proyecciones de
+las dos franjas son disjuntas en los dos ejes. Si cada lector común
+sólo ve una celda de cada una, el mismo cálculo da saldo ≤0. Si alguno
+ve más, hay al menos dos pares distintos de caminos de longitud tres,
+uno por factor. Sus multiplicidades totales son ≤18² desde VV y ≤24²
+desde CC. Se conserva saldo ≤1 para las mixtas débiles restantes y las
+cotas heredadas para las demás relaciones. En los VV disjuntos de igual
+fila, los posibles destinos consumen al menos uno de 3·3·2·3=54 caminos
+de longitud cuatro.
+
+Para cualquier precio creciente f(k) usado abajo con 2f(0)≤f(1) y
+2f(1)≤f(2), los CC disjuntos de igual columna cuestan conjuntamente a
+lo sumo 48 máx(f(0),f(1)/2,f(2)/4)=12 f(2). Las mixtas débiles
+cuestan a lo sumo 162 f(1) o 288 f(1). Sumando las otras clases de las
+notas sobre franjas y medidas aisladas, las filas de pares quedan
+
+     VV→VV    576 f(0)+ 54 f(1)+ 9 f(2)     VV→CC    279 f(1)+ 9 f(2)
+     CC→VV             496 f(1)+16 f(2)     CC→CC    384 f(0)+72 f(1)+20 f(2).
+
+Un f es Y^(−k). El otro cuenta posiciones al marcar un generador físico
+y se define en el §5. El verificador comprueba las dos desigualdades de
+precios para ambos.
+
+4. Fuentes que puede leer un mismo rectángulo
+=============================================
+
+Sea r_i el número de primeras extinciones pendientes asignadas al dato i,
+de anchura n_i=3 o 4. En un paso con a_i primeras extinciones se cumple
+0≤a_i≤r_i, 0<Σa_i≤h y r_i v≤n_i h. Cada a_i cabe en una fila de H
+para VV y en una columna para CC, donde H son las celdas iluminadas de
+φ. Si queda algún r_i=n_i, todos los pasos del prefijo son perfectos.
+Entonces el resto de las v celdas está en D, que en un rectángulo estable
+ocupa ≤3 sitios y contiene ≤v/2 de φ. Esto exige v−Σa_i≤3 y 2Σa_i≥v.
+
+Para un grupo A sea j el máximo de sus originales que tocan un mismo
+rectángulo. Restringir a j la cantidad de a_i positivos en cada paso.
+En los grupos de tres a seis datos, calcular K_j mediante la recurrencia
+de coste mínimo desde r hasta cero con decrementos a y coste 2h−v.
+Se recorren las 25 órbitas locales y se maximiza el saldo inicial menos
+el coste. Una cota inicial es s₀−((n−s₀) mod 2) con s₀=Σr_i y n=Σn_i,
+porque el peso de σ(A) es al menos s₀ y tiene la paridad de n. Se puede
+tomar cero si la cota es negativa. Permutar fuentes del mismo tipo
+preserva la recurrencia. Por ejemplo, para cinco CC se obtiene K₂=7
+y K₃=K₄=K₅=8.
+
+El número de posiciones de grupos con al menos j lectores en un mismo
+rectángulo, con un dato físico de tipo i fijado, tiene mayorante D_i^(j).
+Escribir C_i=z_i exp((N C)_i) para los árboles ordinarios, con
+N=((640,441),(784,513)). Las dos filas de series positivas son
+
+  F_i^(j)=C_i R_i (40C_V+27C_C)^(j−1)/(j−1)!,   R_V=30, R_C=36,
+  D_i^(j)=F_i^(j)+C_i Σ_k N_ik D_k^(j).
+
+Un VV puede leer ≤3·10 rectángulos y un CC ≤9·4. Un rectángulo puede
+leer ≤40 VV y ≤27 CC. Desde el dato fijo elegir un camino que alcance
+por primera vez uno de los j lectores y conectar allí en estrella los
+otros j−1. Este bosque se extiende a un árbol de G[A]. Sus subárboles
+libres se cuentan con C. Dividir por (j−1)! olvida el orden de los
+lectores distintos. El segundo término permite cualquier longitud del
+camino hasta la estrella.
+
+Para el coste f(k) de cada monomio usar primero todos los árboles con
+el menor entre su saldo previo y K₂. Añadir para cada j≥3 la cota
+D_i^(j) multiplicada por f(K_j)−f(K_{j−1}). Por suma telescópica
+esto cubre todo el exceso de los grupos de ocupación alta. En el
+recuento de posiciones f del §5, las diferencias de volúmenes son cotas
+de las capas nuevas desde el generador fijado, por proyección de las
+bolas del recubrimiento. Se conserva el menor con el coeficiente previo
+completo del mismo monomio, incluidos los tríos ya estudiados.
+
+Hay también un ahorro en la fijación de medidas. Usar la cobertura F
+del §2 de H5A_3_4_medidas_aisladas.txt. El incremento de un paso es
+≤I_F=F(φ)−F(H), y el máximo de I_F/δ en las 25 órbitas es 138. Sea B_A
+el saldo de descenso inicial de la componente. La cobertura total está
+acotada por 258e_V+288e_C+99|D|, más la suma sobre las componentes de
+
+             138 B_A − Σ_{pasos con primeras extinciones en A}(138δ−I_F).
+
+Esto sigue de la suma de descensos y de 138δ−I_F≥0 en los pasos
+omitidos. Cada paso con primeras extinciones se atribuye a una única
+componente. La anterior cota por rangos en cada componente es
+246n_V+340n_C. Para componentes de uno a seis datos aplicar además la
+misma recurrencia sobre r con coste 138δ−I_F, multiplicando ahora
+por 138 el saldo inicial y permitiendo todos sus lectores. Sea Δ la
+parte positiva del ahorro frente a 246n_V+340n_C. Para cinco CC,
+Δ=74. Desde siete datos se toma Δ=0.
+
+En el testigo del §5, el precio A de F en la comparación de medidas
+satisface A≥.001. Multiplicar por χ=1/[Σ_{j=0}^5 (.001Δ)^j/j!]
+el peso anterior de la componente da un techo de exp(−AΔ) por
+componente. Δ queda fijado por los números de VV y CC y vale para
+todas sus historias. El argumento de eventos disjuntos de medidas de
+la nota anterior sigue permitiendo sumar D una sola vez por E fijo.
+
+5. Un dato o un generador físico marcado
+========================================
+
+Para cada tipo i de dato, escribir P_i(w) para el polinomio de grados
+uno a diez en pesos de rama w del grupo original. El aislado paga
+χYw_i. Para parejas usar el §3 y para los grados de tres a seis el §4.
+Los grados de siete a diez conservan el redondeo entero del saldo en
+sextos de la nota de medidas aisladas. El mismo precio χ se aplica al
+comparar cotas para el mismo monomio. Para la cola T_i desde once,
+se usan las dos ecuaciones positivas de ramas débiles y fuertes y la
+sustracción de los diez grados en los mismos w congelados de aquella
+nota. En particular, el cálculo incluye toda cardinalidad.
+
+Mantener los pesos de datos m, las medidas activas y los simples S_i
+del §3 de aquella nota. Con h entradas a grupos y v entradas a
+generadores visibles, poner w_i=m_i exp((L_dd h)_i+L_dg,i v),
+J=L_gd h+L_gg v. Bastan h_i≥P_i(w)+T_i y v≥u(exp(J)−1−J).
+Al fijar un dato en un núcleo con otra componente, la componente raíz
+tiene una conexión exterior. Como antes puede restarse P_i(m). También
+se puede distinguir uno de los hijos exteriores y aplicarle una sola
+vez el coste M del §2. Poner d_i=(M_dd h)_i+M_dg,i v. Cada monomio
+w_V^r w_C^k del polinomio se multiplica entonces por r d_V+k d_C.
+Los demás hijos opcionales ya están en w. Poner P'_i(w;d) para esta
+suma y usar el menor de los dos recuentos. Si E es conexo en G y el
+núcleo es no simple, hay al menos dos originales. Con z_i≥m_i exp((Nz)_i)
+sus posiciones suman ≤m_i(exp((Nz)_i)−1). Por tanto, para el dato fijo,
+
+ H_i* ≥ mín(P_i(w)−P_i(m), P'_i(w;d)) + T_i + m_i(exp((Nz)_i)−1),
+ U_i  ≥ S_i + H_i*.
+
+Si se fija un generador lejano g y E es conexo en G, al podar el árbol
+sólo queda una cadena desde g al grupo. Para ≤10 originales se puede
+contar directamente esta clase. Si k es el saldo del grupo y k≥1,
+algún original x está a distancia en capas ≤t donde t es el mayor
+índice con b_t≤k. La cantidad de posiciones de x es a lo sumo
+f_i(k)=T_gi(t−1) con T_gi la bola del §2. Poner f_i(0)=0. Para cada
+tipo de x usar f_i en los §§3–4 y las cotas enteras anteriores para
+los demás grupos hasta diez. Esto da los polinomios Q_i(m). El aislado
+carece de contribución. Está permitido sumar sobre el posible x.
+En (3), los interiores de esta cadena, con g en el extremo, pagan el
+mismo presupuesto que los demás. El cálculo directo usa en cambio (2).
+
+Al marcar un hijo de g en el recuento completo se obtiene u exp(J)
+multiplicado por M_gd h+M_gg v. La subclase formal con ese único hijo
+dato, hasta diez originales del grupo y ningún hijo exterior tiene
+peso u Σ_i M_gi P_i(m). El árbol de cualquier núcleo con otra
+componente queda fuera de esa subclase. Sustituirla por el recuento
+directo da la condición suficiente
+
+ G* ≥ u [exp(J)(M_gd h+M_gg v)−Σ_i M_gi P_i(m)] + Σ_i Q_i(m).
+
+En estas sustracciones se quitan coeficientes de la misma serie de
+ramas congelada antes de acotar el resto. Los factores de los hijos
+exteriores dependen sólo de los tipos de los originales, de modo que
+las cotas alternativas de los §§3–4 valen también al exigir un hijo.
+En la fila física se usa g_total=40H_V*+27H_C*+G*, como en la nota
+anterior. La subclase de más de diez datos continúa en la fila completa.
+
+6. Resultado y alcance de la obstrucción en G3
+==============================================
+
+El verificador da todos los valores racionales del testigo para
+α=.001, η=.0001 y b=.001155. La respuesta pasiva es <.995746 y la
+fila de medidas activas es <.999901. Los restos desde once datos son
+<8.844·10⁻¹¹ con raíz VV y <5.403·10⁻¹⁰ con raíz CC. El mayor cociente
+de las desigualdades es <.99999981. Resulta
+
+              R=max_i (NU)_i < .00058067 < α.
+
+Las actividades en la norma crecen con p y q, por lo que se cubre todo
+(1). Con las mismas marcas, a p=2.6·10⁻⁷ los núcleos de tres o más
+componentes de originales aportan ≤(13/16)³ R <.00031147. Se heredan
+la cola del logaritmo ≤N_sitios exp[−.015(m+1)] en grado total m y el
+cálculo de coeficientes del apéndice A.
+
+En G3 se obtiene una obstrucción para los pesos geométricos a,s y los
+descuentos χ empleados aquí. La condición pasiva exige b≥q y la de
+medidas activas exige θ≥y/(1+y)>q. Con los precios no negativos del §3
+de la nota de medidas aisladas, 2A+B₀≥2q y K_i≥Γ_i/2 para las
+coberturas K=(414,536), Γ=(504,628). Por ello m_i≥p exp(qΓ_i),
+cualquiera que sea α≥0. Omitir v y conservar sólo los grados uno y dos
+de P_i en h_i y las ecuaciones a granel d,e da condiciones necesarias.
+En p=10⁻⁶, q=.001, una iteración desde cero usando Taylor inferior de
+grado ocho y redondeo racional hacia abajo ya exige e_C≥.1 al paso 33.
+Pero e_C exp(−129e_C)≥m_C a^(−10) también es necesario por la fila
+fuerte CC. La izquierda decrece desde .1 y en .1 es menor que la
+derecha. Así fallan conjuntamente esas filas en G3 incluso permitiendo
+variar α. Otros pesos o una cota conjunta diferente para el saldo del
+grupo y sus hijos quedan por estudiar. La suma general en G3 sigue
+abierta.
+
+Reproducción desde 05_COMPROBACIONES con la biblioteca estándar
+
+    python -I -B -X utf8 verificar_H5A_3_4_propagacion_lejana.py
+
+Como antecedente de la familia de acciones SSF utilizada por el manuscrito,
+Fawzi, Grospellier y Leverrier, Constant overhead quantum fault-tolerance
+with quantum expander codes (https://arxiv.org/abs/1808.03821).

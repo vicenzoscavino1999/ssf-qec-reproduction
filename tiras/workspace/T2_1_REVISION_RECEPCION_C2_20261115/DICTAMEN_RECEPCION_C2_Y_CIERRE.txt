@@ -1,0 +1,144 @@
+T2-1: RECEPCION DE CORRIDA 2 Y CIERRE DEL EXPERIMENTO PREVISTO
+15/11/2026, America/Lima. Revisor principal.
+
+DICTAMEN
+
+Se acepta la corrida 2 y el resultado conjunto de T2-1 en el alcance
+fijado por el plan. No se encontraron discrepancias invalidantes en el
+contraste de los datos guardados. Las dos corridas previstas estan
+entregadas y verificadas; T2-1 esta listo para su registro de cierre.
+
+Puede registrarse como DEC-058 si sigue libre, sin exigir otra corrida
+para intentar que A4 pase. El cierre del experimento no equivale al
+cumplimiento de todas sus metas: A1, A2 y A3 cumplen los criterios
+finitos; A4 NO se alcanza. No se cierra por ello toda la experimentacion,
+la diferenciacion general, otros hitos o T2-2. Manuscrito intacto.
+
+1. EVIDENCIA REVISADA Y LIMITES DE ESTA RECEPCION
+
+Leidos plan sellado, sello, informe, resultado conjunto, recursos y
+consolas. El auxiliar contraste_c2_guardados.py efectua solo lectura,
+hashes y aritmetica escalar. No importa codigo del proyecto ni ejecuta
+decoder, DP, Monte Carlo, catalogos o el --verificar original.
+Pasan sus 904 comprobaciones de recepcion. Este numero no es una cuenta
+de pruebas independientes del algoritmo ni sustituye sus lemas.
+
+- Las 128 filas tienen la malla y los cortes esperados.
+- Las tres instancias heredadas coinciden completamente con corrida 1.
+- Desde B y los seis enteros de punto fijo de cada fila se recalcularon
+  eps = 1 - B U, L = B O, P_0 = B(E+O), el intervalo de P_sil y su
+  error garantizado (h-ell)/(h+ell). Las vistas decimales encierran los
+  valores racionales y los extremos exactos de k = 4 coinciden.
+- Coinciden sello, programa aprobado y enlaces a resultado/lectura C1.
+- Se reciben 241 controles PASS, 33 trabajos completos y cero llamadas
+  al decoder en el conductor. Los codigos de retorno son 0.
+- La salida de --verificar acredita 128 filas, contrato completo, sin
+  discrepancias; no volvi a ejecutar ese verificador.
+- Se contrastaron 22 identidades previas, 14 archivos de la entrega C1,
+  512 entradas de la unidad y las 11 entradas de HASHES_C2.sha256.txt.
+  Aclaracion: hay 12 archivos en la carpeta contando el propio manifiesto;
+  el manifiesto contiene 11 hashes, no 12. No falta un archivo del resultado.
+- La anchura de U de la suma m = 48, k = 4, recalculada desde sus enteros,
+  es aproximadamente 9.10324e-107, menor que 1e-76. Se recibe COMPLETO
+  bajo la regla sellada con D = 1e16. No se repiten sus 1953983141 terminos.
+- La completitud de catalogos y la DP se reciben bajo los contratos ya
+  revisados; aqui no se reconstruyen sus valores ni sus pruebas formales.
+
+Resultado conjunto revisado:
+T2_1_CORRIDA_2_EJECUCION_20261115/corrida_2/RESULTADO_T2_1.json
+SHA-256: 9769c76eae7d54a5377b0397d3ad0e0ee6f68207cef8f3c70ec4971fe9f6df69
+
+2. METAS Y LECTURA MATEMATICA
+
+A1: CUMPLE. Las envolventes guardadas de R_4 permiten confirmar
+crecimiento estricto en 24/24 pasos (8 celdas, 3 transiciones de tamano).
+En m = 48, R_4 esta entre 1642.47 y 16890.54. Es el cociente de masas
+omitidas eps_ing/eps_comp, no de tiempos ni de numeros de muestras.
+No se extrapola crecimiento monotono a otros tamanos no calculados.
+
+A2: CUMPLE SEGUN SU CRITERIO CUANTITATIVO. Recalculados los 16 cocientes
+e_comp(m)/e_comp(12), m = 24 y 48: minimo 1.00390113, maximo 1.27097927,
+todos menores que 2.
+Precision de redaccion: la frase informal del plan 'no crece con m'
+no es literal. Los cocientes son mayores que 1: el error garantizado
+si crece respecto de m = 12, como maximo un 27.10 % en estas comparaciones.
+La afirmacion recibida es crecimiento acotado bajo el criterio < 2,
+no constancia, decrecimiento, ni una cota uniforme para toda una familia.
+No modificar el plan sellado; usar la formulacion precisa al presentar.
+
+A3: CUMPLE. El control S2 recibido y verificado en C1 se conserva sin
+cambios, R_3 <= 1.00096351 < 2. No se hizo otra corrida de S2.
+
+A4: NO CUMPLE. Hay 16/24 celdas objetivo con error garantizado <= 10 %.
+Las ocho a r_c = 1e-4 fallan la meta, aproximadamente entre 30 % y 59 %.
+Esto es el error garantizado por el intervalo, no una medicion del error
+real de la estimacion contra una probabilidad exacta.
+Las dieciseis a r_c = 1e-5 o 1e-6 cumplen, con maximo 1.2206191225 %.
+Se permiten ambas r_m fijadas (r_m = r_c y r_m = 0), exclusivamente
+en las cuatro tiras y cortes estudiados.
+
+Precision de redondeo: para el maximo puede decirse 'aproximadamente
+1.22 %' o una cota conservadora <= 1.221 %. En la fila r_c = 1e-6,
+los limites <= 0.011 % y <= 0.012 % de m = 24 y 48 son ligeramente
+menores que los valores guardados. Usar respectivamente <= 0.0114 %
+y <= 0.0122 %, o aproximaciones sin simbolo de cota. Esto no cambia
+ninguna decision al 10 %.
+
+3. DIFERENCIACION ACREDITADA
+
+Para objetivos del 5 %, 10 % y 25 %, las celdas que cumplen con
+componentes y no con el rival al mismo corte k = 4 son:
+
+  m       5 %       10 %       25 %
+  6        0          0          0
+ 12        2          2          2
+ 24        4          3          2
+ 48        4          4          4
+
+Son nueve celdas con ventaja de certificacion al 10 %, frente a cinco
+tras la corrida 1. La prueba ejercita ruido de circuito del contrato
+sellado, una ronda y todas sus ubicaciones, en estas tiras.
+Es evidencia finita de utilidad de la representacion bajo un rival y
+presupuesto de corte definidos; no solo coincidencia entre dos calculos.
+
+La comparacion a igual tiempo sigue siendo una PROYECCION informativa.
+No se ejecutaron las 6.3e12 decodificaciones estimadas del rival a k = 4
+en m = 48 ni se demuestra una cota inferior para cualquier implementacion
+rival. No convertir R_4, el coste proyectado ni el conteo de celdas en
+una aceleracion medida o una ventaja sobre todos los metodos previos.
+El Monte Carlo C1 sigue siendo COMPATIBLE, no una certificacion nueva
+de precision del 10 % en toda la malla.
+
+4. RECURSOS Y PARADAS
+
+Tiempo de consola 15507 s (4.31 h); resultado 15504.641 s, dentro de
+9 h. Verificacion guardada: 12 s. Sin relanzamientos declarados.
+Picos guardados: principal 427839488 B; total lectura 3860770816 B;
+DP total 2886721536 B. El pico por trabajo esta bajo 4 GiB.
+La salida ocupa aproximadamente 2.33 MB. Se cumplen los techos
+observados de tiempo, memoria y disco. Son medidas del programa;
+no una reconstruccion independiente del consumo entre sondeos.
+La DP domina con 15254.19 s. No atribuir la utilizacion reducida de
+CPU a una causa concreta: la entrega no la establece.
+
+5. ACCION RECOMENDADA
+
+Registrar recepcion de corrida 2 y cierre experimental de T2-1 con
+DEC-058 si sigue libre. Releer controles para preservar escrituras
+concurrentes; conservar copias previas, diffs y hashes.
+Estado propuesto: T2-1 CERRADA EN SU ALCANCE; A1-A3 CUMPLEN SEGUN
+CRITERIOS FINITOS, A4 NO_ALCANZADA. No ampliar el corte ni repetir
+ruidos para intentar obtener una conclusion mas favorable.
+Anadir las precisiones documentales en el nuevo registro o adenda,
+sin sobrescribir resultados, manifiestos, informe sellado ni plan.
+
+No hace falta otra corrida para recibir esta entrega. El siguiente
+paso experimental es concretar el plan propio de T2-2 y su utilidad
+adicional antes de ejecutarlo; esta recepcion no autoriza iniciarlo.
+La integracion editorial y el alcance de los lemas se conservan como
+tareas distintas del cierre de estas dos corridas.
+
+Se actualizan solo ESTADO_ACTUAL y REGISTRO_HALLAZGOS del revisor,
+con copias, diffs y hashes. No se escriben los controles de hitos o
+decisiones del ejecutor. Los originales, codigo y manuscrito quedan
+intactos. Se adjunta inventario de proteccion antes/despues.

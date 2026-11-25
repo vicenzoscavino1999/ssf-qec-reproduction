@@ -1,0 +1,123 @@
+B4R: REGLA DE SUMA PARA CERTIFICAR EL CATALOGO DE B4 EN m = 24 Y 48
+13/11/2026 (Lima). Ultimo paso de la via de las tiras, por orden del
+usuario: "Ok terminemos esa via primero y luego vemos como pasamos a la via
+de tipo 2". Aplica METODOLOGIA_FIJACION_PARAMETROS.txt. Plan escrito y
+sellado (SELLO_PLAN.json) antes de escribir el programa; antes de sellarlo
+no se ha ejecutado nada de esta unidad. No cambia decoder, evento, ruido ni
+familia.
+
+PREGUNTA
+B4 (DEC-050) dio sus certificados en m = 24 y 48 con un catalogo por
+crecimiento cuya completitud solo se comprobo por recuento, bajo una
+hipotesis afin medida y no demostrada. Contiene ese catalogo todas las
+decoraciones validas con <= 4 fallos? Si las contiene, los certificados de
+B4 en m = 24 y 48 dejan de depender de esa hipotesis.
+
+AFIRMACION MEDIBLE (M1)
+A1. El catalogo por crecimiento de TIRA_24x6 y de TIRA_48x6 contiene todas
+    las decoraciones validas con <= 4 fallos. Negacion: en alguna de las
+    dos falta al menos una.
+
+LEMA (forma de orden dominante de la regla de suma de DISENO_B3.txt, 4a)
+Notacion. V: decoraciones validas; V4: las de <= 4 fallos; P: un
+subconjunto de V4 (por el Lema 1 de B2, el catalogo por crecimiento solo
+contiene decoraciones validas, cada una comprobada con el decoder). Se toma
+la misma razon x = p/(1-p) = q/(1-q) para datos y medicion, 0 < x <= 1.
+Xi(P): suma, sobre las familias de polimeros compatibles de P, del producto
+de x^(fallos). NS = N + M. S(P) = (1 + x)^NS - Xi(P).
+(a) Si P = V4: 0 <= S(P) <= sum_{j >= 5} C(NS, j) x^j.
+(b) Si P es distinto de V4: S(P) >= x^4.
+Prueba. Por thm:recomp, cada historia se parte de forma unica en
+decoraciones validas compatibles, con peso x^(fallos de la historia); asi
+(1 + x)^NS = Xi(V), y Xi(V) - Xi(P) es la suma de los pesos de las familias
+de V con algun miembro fuera de P. (a) Si P = V4, cada una de esas familias
+tiene un miembro con >= 5 fallos; por la biyeccion son historias distintas
+con >= 5 fallos en total, y su suma no pasa de sum_{j >= 5} C(NS, j) x^j.
+(b) Si falta gamma de V4, la familia {gamma} sola aporta x^|gamma|, que es
+>= x^4 porque x <= 1 y |gamma| <= 4.
+Criterio. Si sum_{j >= 5} C(NS, j) x^j < x^4 (condicion previa), entonces
+S(P) < x^4 si y solo si P = V4.
+Aritmetica. DP exacta de B1 (eval_fly de b1_exacto_k4.py, sin cambios) con
+p = q = 1/(D + 1), es decir x = 1/D, y NV = 1 (solo el canal trivial: X0 no
+usa los caracteres). En los enteros escalados de esa DP, T = (D + 1)^NS y
+X0 = D^NS Xi(P). El criterio es T - X0 < D^(NS-4), y la condicion previa,
+(D + 1)^NS - sum_{j <= 4} C(NS, j) D^(NS-j) < D^(NS-4). Todo en enteros
+exactos.
+
+PARAMETROS Y FUENTE (M2)
+- D = 10^14 (T, R): la menor potencia de 10 con C(763, 5)/D < 0.05
+  (C(763, 5) = 2.13e12 da 0.021), para cumplir la condicion previa con
+  margen en m = 48 sin agrandar los enteros mas de lo necesario. Con NS
+  menores la condicion es mas holgada.
+- k = 4 y orden de producto: los de B4. La estructura de la DP (polimeros,
+  estados y terminos) debe coincidir con la sellada en RESULTADO_B4.json.
+- Controles negativos con d = 1, 2, 3 y 4 fallos (T): todos los tamanos
+  de V4.
+
+INSTANCIAS Y ETAPAS (en este orden)
+- C0 (atajo NV = 1): en TIRA_6x6, eps_comp(4) = 1 - X0/T calculado con
+  NV = 1 en las 12 celdas de B4 debe ser identico (fraccion exacta) al
+  sellado en RESULTADO_B4.json.
+- C+ (positivos, resultado conocido): TIRA_6x6 (catalogo igual al de B1,
+  exhaustivo; controlado en C+ de B4) y TIRA_12x6 (igual al exhaustivo, V
+  de B4). El criterio debe decir COMPLETO. Si no, la unidad se detiene.
+- C- (negativos, M7): en TIRA_12x6, cuatro corridas separadas; en cada
+  una se quita del catalogo una sola decoracion valida con d fallos
+  (d = 1, 2, 3, 4). Regla fija: el soporte Y de menor valor entero con una
+  entrada (na, nb) tal que na + nb = d, y en el la menor de esas claves; se
+  resta 1 a su recuento total (y se borra la clave si queda en 0). El
+  criterio debe decir INCOMPLETO en las cuatro. Si no, se detiene.
+- E: TIRA_24x6 y TIRA_48x6. Catalogo regenerado con la regla de B2 (el
+  mismo codigo de B4, deterministico). Antes del criterio: validas por f,
+  polimeros distintos, P3 y estructura de la DP iguales a los sellados en
+  B4 (B4 no guardo el catalogo, asi que la reproduccion se comprueba por
+  esos recuentos).
+
+DECISION (fijada antes)
+D-r1: por tira de E, COMPLETO_CERTIFICADO si se cumple la condicion previa
+y T - X0 < D^(NS-4); INCOMPLETO si la condicion previa se cumple y
+T - X0 >= D^(NS-4). Si alguna tira sale INCOMPLETO, sus certificados de B4
+siguen siendo validos (Lema 2 de B2), pero no ajustados, y la hipotesis
+afin queda refutada en ella.
+
+METRICAS (informativas)
+- Margen por tira: log10(D^(NS-4) / (T - X0)).
+- (T - X0)/D^(NS-5): aproxima el peso de orden 5 de las familias con algun
+  miembro de >= 5 fallos. No decide.
+- Tiempo, memoria y llamadas por etapa.
+
+CONTROLES QUE DETIENEN
+- SHA-256 de PLAN_B4R.txt, b4_tiras.py y RESULTADO_B4.json de B4 (y los
+  que b4_tiras.py comprueba al cargar: control_exacto.py, b1_exacto_k4.py,
+  rect.py y demas).
+- C0, C+ y C- como arriba; reproduccion del catalogo y de la estructura de
+  la DP en las cuatro tiras; condicion previa en cada tira.
+
+TECHOS (R)
+4 h de reloj en total; a lo sumo 1.2e7 llamadas al decoder (el catalogo
+regenerado de las cuatro tiras usa 9.3e6); 18 GiB de memoria en total y
+12 GiB en el proceso principal (la maquina tiene 31.8 GiB); 14 procesos
+para el catalogo; la DP de cada tira en un solo proceso. Si el techo de
+tiempo se alcanza, la tira pendiente queda NO_DECIDIDA y se informa asi.
+Prevision (no medida): de 60 a 90 minutos, casi todo en la DP de m = 48
+(1.88e8 terminos, con enteros unas 2.3 veces mas largos que en la celda
+p = 1e-6 de B4, pero sin los canales de caracteres).
+
+LIMITES QUE PESAN IGUAL (M10)
+- El lema esta probado aqui por escrito, sin contraste del revisor; usa
+  thm:recomp del manuscrito y el Lema 1 de B2.
+- Certifica la completitud del catalogo; no amplia B4: misma seccion
+  (n = 6), familia de camino, k <= 4 y el mismo rival.
+- Desviacion declarada respecto de DISENO_B3.txt, 4a: alli la regla se
+  enuncia con los coeficientes de log Xi hasta grado k; aqui se usa la
+  forma equivalente de orden dominante sobre Xi a una tasa pequena, porque
+  reutiliza sin cambios la DP exacta de B1 ya validada.
+
+FUERA DE ALCANCE
+No se cambian decoder, evento, ruido ni familia; no se recalculan las 12
+celdas de B4; no se toca el manuscrito ni el paquete del revisor; no se
+inicia HGP5 ni nada de H5; no se descarga nada.
+
+ARCHIVOS
+Ahora: PLAN_B4R.txt y SELLO_PLAN.json. Despues: b4r_regla_suma.py,
+RESULTADO_B4R.json, RECURSOS_B4R.json, SALIDA_B4R.txt e INFORME_B4R.txt.

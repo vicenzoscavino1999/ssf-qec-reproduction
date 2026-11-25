@@ -1,0 +1,165 @@
+PILOTO CONECTADO PATH25 — RESULTADO, REFINAMIENTO Y DECISIÓN
+28/10/2026. Revisión interna; no incorporación al manuscrito.
+
+1. Conclusión
+
+El piloto acordado terminó en un solo intento y dentro de sus límites. Valida el
+oráculo y la recomposición en un host conectado que no es clique, incluyendo
+ejecuciones adaptativas con varias componentes. También permite demostrar para
+esta instancia una densidad uniforme 1/3, frente a la cota genérica 1/9. Esta
+mejora usa el orden fijado y el descenso entero del síndrome; no se infiere de
+extrapolar un catálogo parcial.
+
+La densidad 1/3 es óptima para las actividades originales de PATH25: una fuente de
+peso uno realiza un soporte de tamaño tres. La envolvente entrópica, con grado
+real 36 y margen 1/2, queda certificada al menos hasta p=4·10^(-9). Sigue siendo
+una tasa muy pequeña. A p=0.01 una actividad exacta incumple la condición uniforme.
+Por ello no se justifica ampliar el catálogo por fuerza bruta para intentar hacer
+práctico ese mismo certificado. Esto NO excluye otros criterios de convergencia,
+representaciones o estimadores.
+
+El valor inmediato es una validación adicional y una cota finita mejor explicada.
+No se ha demostrado una mejora para F17, una ventaja algorítmica práctica ni una
+contribución bibliográfica de gran novedad. No se ejecutó un estimador global.
+
+2. Contrato fijo y alcance de la referencia
+
+H0 tiene filas binarias 1100, 0110, 0011 (máscaras 3,6,12). Su HGP tiene 25 datos,
+12 checks X, rango H_X=rango H_Z=12 y un qubit lógico. La semilla no es regular.
+El decoder usa todos los subconjuntos de generadores H_Z con huella no nula,
+score (|s|-|s XOR phi_F|)/|phi_F|, beta=1/2 y desempate por (|F|,máscara) ascendente.
+Se mantuvieron todos los 103 candidatos en ambos motores y en el oráculo.
+
+El host completo tiene 37 vértices y grado máximo 36. El host inducido por los
+25 datos es conectado y omite 111 aristas: no se utilizó la simplificación a
+cliques de P2. El piloto es una prueba del contrato genérico, no un ejemplo de
+las hipótesis regulares FGL ni evidencia de buen rendimiento de corrección.
+
+Se reutilizaron, bajo hash congelado, las dos implementaciones P1: operaciones
+bitmask y matrices/conjuntos booleanos, con construcción de candidatos y scores
+separada. Coinciden las decisiones, trazas, correcciones y paradas de los 4096
+síndromes; cada motor evaluó 421888 scores. La longitud máxima fue 8 acciones.
+
+El cociente por estabilizadores tiene 8192 clases. La referencia exacta por peso
+usa una DP de 212992 celdas finales: 2662400 posiciones recorridas y 1732286 sumas
+enteras. Se verificaron los eventos en todas las clases, las normalizaciones por
+peso y la cardinalidad de cada clase. Hay UNA implementación de esa DP; no se
+afirma un doble cálculo independiente del espectro. La enumeración física de las
+326 fuentes de pesos 0,1,2 coincide además con sus tres primeros coeficientes.
+
+En esta instancia, el primer fallo total tiene peso 1 (cuatro fuentes), mientras
+el primer fallo silencioso tiene peso 2 (catorce fuentes). Un ejemplo de fallo
+detectable es E=2: se selecciona la acción 1 y queda R=3, con síndrome 2. Uno
+silencioso es E=6: las acciones 1 y 8 dejan R=15. Estos datos subrayan que PATH25
+es un caso diagnóstico no regular; no contradicen ni ilustran las garantías
+FGL de corrección o el primer sector de F17.
+
+3. Oráculo local y recomposición fuera de cliques
+
+Se examinaron exactamente 1664 soportes: 25 de tamaño 1, 189 de tamaño 2, 1446 de
+tamaño 3 y las cuatro filas VV predeterminadas de tamaño 4. Para cada uno se
+enumeraron todas sus fuentes, incluida la vacía: 12438 consultas frente al techo
+19714. Hubo 376 aceptaciones, 5819 soportes insuficientemente llenados y 6243
+primeras salidas. Todas coinciden con el prefijo de la ejecución completa; el
+oráculo incluye candidatos que leen el soporte pero pueden salir de él.
+
+El catálogo contiene exactamente las decoraciones de ESOS soportes. No contiene
+todas las decoraciones de PATH25 y nunca se usa como cota superior global.
+
+La revisión de restricción y recomposición cubrió 565 fuentes distintas elegidas
+por el diseño. En 123 casos el soporte se separa en varias componentes; 111 de
+ellos contienen acciones adaptativas. Se verificaron los soportes y subsecuencias
+locales, el XOR de residuos y la reconstrucción de la traza global escogiendo las
+cabezas locales por score exacto y rango original. Un testigo sencillo es E=9:
+componentes {0} y {3}, traza global de índices [0,3], síndrome inicial 5.
+
+Se comprobaron también los tres pares lógicos compatibles fijados en el preflight:
+  (15,3840), (15,61440), (240,61440).
+Cada miembro tiene síndrome cero y no pertenece al espacio estabilizador; su XOR
+sí pertenece. En estos testigos la traza es vacía: verifican cancelación global,
+pero no se presentan como cancelaciones durante una trayectoria adaptativa.
+Las dos clases de comprobación se mantienen separadas.
+
+4. Refinamiento matemático: candidatos que nunca pueden ganar
+
+El argumento completo está en LEMA_DENSIDAD_ORDEN.txt. Si dos candidatos tienen
+idéntica huella phi_F, sus scores son idénticos para TODO síndrome. Sólo puede
+ganar el primero en el orden fijado. Esto es un hecho de la ejecución original,
+no una modificación del decoder ni una inferencia de síndromes muestreados.
+
+En PATH25, los 103 candidatos se distribuyen en 43 huellas. Los otros 60 nunca
+ganan. Para una huella de tamaño d, el descenso g es entero, tiene la paridad de d
+y cumple g >= beta*d. Se define delta_beta(d) como el menor entero positivo que
+satisface esas condiciones. Si eta es el máximo de |F|/delta_beta(|phi_F|) sobre
+los primeros candidatos de cada huella, el descenso total da, a q=0,
+  |Y| <= |E| + eta*|H_X E| <= (1+eta*d_X)|E|.
+Así se obtiene una densidad uniforme 1/(1+eta*d_X), sin enumerar fuentes grandes.
+
+La recepción verifica d_X=2 y w_Z=4. Las tres cotas se distinguen:
+  genérica del manuscrito:                     1/(1+4*2) = 1/9;
+  descenso entero usando todos los candidatos: eta=2,   densidad 1/5;
+  además el orden por huellas:                  eta=1,   densidad 1/3.
+No se atribuye toda la mejora a descartar los 60 candidatos: también se usa la
+restricción de descenso entero. El preprocesamiento es polinómico en la lista
+explícita de candidatos, no necesariamente en una descripción implícita pequeña.
+
+El testigo E=65536 (el primer dato CC) tiene f=1, Y=65553 (bits 0,4,16), traza
+de índices [0,4] y R=Y, un generador estabilizador. Por tanto f/|Y|=1/3: esta
+densidad es ajustada en PATH25, incluso al filtrar a síndrome terminal cero.
+No se establece optimalidad para otras representaciones o clases de componentes.
+
+5. Certificado y límite cuantitativo
+
+Los pesos siguen siendo los originales. Con kappa=1/3, para todos los soportes,
+  W0(Y) <= [exp(h_bin(1/3))*z^(1/3)]^|Y|,  0<p<=1/3,
+por la cuenta binomial del manuscrito y el lema anterior. Para Delta=36, delta_alg=1/2,
+se toma alpha=2/657. La cota racional de la serie de e verifica
+e^(3/2)<9/2, luego alpha < 1/[e^(3/2)*(2*36+1)].
+
+A p=1/250000000, la comprobación exacta elevada al cubo es
+  (27/4)*z = 9/333333332 <= (2/657)^3 = 8/283593393.
+La positividad y monotonía extienden la envolvente a 0<=p<=4·10^(-9). La antigua
+envolvente con kappa=1/9 no pasa en ese mismo punto. No se presenta ese punto como
+el máximo óptimo ni se afirma que se haya ejecutado Mann–Waite o calculado una
+aproximación relativa de fallo. El acceso local conserva el contrato original.
+
+Este certificado sí es uniforme en los soportes de LA INSTANCIA porque deriva de
+un lema de descenso, no de completar el catálogo parcial. No demuestra una mejora
+uniforme para una familia creciente de códigos ni para F17.
+
+En contraste, la fibra exhaustiva Y=65553 tiene
+  W0=WT=z+2z^2+z^3=z(1+z)^2,    Ws=0.
+A p=0.01 su valor es 10000/970299 > (1/73)^3=1/389017. La condición uniforme MW
+para Delta=36 y cualquier margen positivo es aún más estricta. Ni contar esa
+fibra exactamente ni conservar sólo síndrome terminal cero arregla ese obstáculo.
+La actividad problemática es estabilizadora, no un fallo lógico. El incumplimiento
+de una condición suficiente no prueba divergencia ni imposibilidad algorítmica.
+
+Contrato externo utilizado: Mann–Waite, Approximate Counting in Local Lemma Regimes,
+arXiv:2512.10134v1, Teorema 1, https://arxiv.org/html/2512.10134v1#S3 . El acceso
+exponencial por tamaño, grado real y margen positivo siguen siendo necesarios.
+
+6. Recursos, recepción y decisión
+
+Un intento, cero reintentos. Tiempo externo de corrida: 0.8772211 s. Suma
+conservadora de picos de memoria del worker y supervisor: 55390208 bytes
+(aproximadamente 52.83 MiB). Salida antes del recibo del supervisor: 1183756 bytes.
+Límites: 60 s, 256 MiB y 32 MiB. Estos tiempos no incluyen desarrollo/redacción y
+no son una comparación de rendimiento con otros métodos.
+
+revisar_resultados.py hizo una recepción posterior de archivos, identidades,
+coeficientes, certificados racionales y cancelaciones. No ejecutó otro decoder
+u oráculo. La prueba del lema tiene revisión interna; no se etiqueta como revisión
+externa ni como una demostración novedosa acreditada por bibliografía.
+
+Se completan C1–C5 del diseño en el alcance fijado. La validación adicional sí
+se obtuvo, pero el ejemplo expone un límite ajustado de la densidad y de la
+envolvente original. Decisión: cerrar este piloto; no ampliar soportes ni abrir
+un censo para perseguir ese mismo certificado. Su evidencia y el refinamiento
+quedan disponibles para una futura decisión de integración editorial.
+
+Una eventual investigación siguiente tendría que justificar otra forma de tratar
+las actividades estabilizadoras o un criterio de convergencia menos uniforme,
+con una consecuencia cuantitativa concreta. Eso sería otra unidad, no una campaña
+activada por este informe. El paper, PDF y paquetes permanecen intactos; N11/N12
+pausados, M2 abierto y C3 aparcado. No se activaron agentes.

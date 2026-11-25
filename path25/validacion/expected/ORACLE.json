@@ -1,0 +1,90 @@
+{
+  "queried_supports_by_size": {
+    "1": 25,
+    "2": 189,
+    "3": 1446,
+    "4": 4
+  },
+  "queries": 12438,
+  "outcomes": {
+    "accept": 376,
+    "underfilled": 5819,
+    "exit": 6243
+  },
+  "examples": {
+    "accept": {
+      "Y": 1,
+      "E": 1,
+      "outcome": [
+        "accept",
+        [
+          0
+        ],
+        1,
+        0,
+        1
+      ],
+      "full_execution": {
+        "E": 1,
+        "f": 1,
+        "s0": 1,
+        "Y": 1,
+        "R": 0,
+        "syndrome": 0,
+        "class": 0,
+        "trace": [
+          0
+        ]
+      }
+    },
+    "underfilled": {
+      "Y": 1,
+      "E": 0,
+      "outcome": [
+        "underfilled",
+        [],
+        0,
+        0,
+        0
+      ],
+      "full_execution": {
+        "E": 0,
+        "f": 0,
+        "s0": 0,
+        "Y": 0,
+        "R": 0,
+        "syndrome": 0,
+        "class": 0,
+        "trace": []
+      }
+    },
+    "exit": {
+      "Y": 2,
+      "E": 2,
+      "outcome": [
+        "exit",
+        [
+          0
+        ],
+        0,
+        3,
+        2
+      ],
+      "full_execution": {
+        "E": 2,
+        "f": 1,
+        "s0": 3,
+        "Y": 3,
+        "R": 3,
+        "syndrome": 2,
+        "class": 3,
+        "trace": [
+          0
+        ]
+      }
+    }
+  },
+  "catalogue_decorations": 376,
+  "complete_only_for": "all connected data supports of size <=3, plus four fixed VV row supports of size 4",
+  "whole_instance_catalogue_complete": false
+}

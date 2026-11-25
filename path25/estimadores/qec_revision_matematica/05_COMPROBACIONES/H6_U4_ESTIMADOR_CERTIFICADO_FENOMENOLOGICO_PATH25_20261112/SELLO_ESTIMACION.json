@@ -1,0 +1,9 @@
+{
+ "archivo": "ESTIMACION_H6_U4.json",
+ "sha256": "654367777c23c83cdc6cccbbdb756544f85cca57ad0e86a680d6deec473304e9",
+ "sellado": "2026-11-12T15:31:54.532840-05:00",
+ "estimador_sha256": "620f8bea31171c1f2f7b7bd67f2415a2350018fb79cf1ab32f342bba893546b2",
+ "status": "PASS",
+ "kmax": 5,
+ "k_completados": 5
+}

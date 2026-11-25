@@ -1,0 +1,18 @@
+{
+ "nota": "tiempos de reloj en segundos y memoria; no deterministas; no son resultado",
+ "tiempos": {
+  "preparacion": 0.0005,
+  "catalogo_tamano_1": 0.0002,
+  "gas_k_1": 0.0022,
+  "catalogo_tamano_2": 0.0043,
+  "gas_k_2": 0.0137,
+  "catalogo_tamano_3": 0.0361,
+  "gas_k_3": 0.0943,
+  "catalogo_tamano_4": 0.177,
+  "gas_k_4": 0.6691,
+  "catalogo_tamano_5": 1.1486,
+  "gas_k_5": 7.8708,
+  "total": 10.2143
+ },
+ "pico_memoria_bytes": 274972672
+}

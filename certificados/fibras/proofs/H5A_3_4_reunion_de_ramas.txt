@@ -1,0 +1,282 @@
+HGP (3,4) · Reunión de ramas y grupos mixtos de datos
+23 de noviembre de 2026 · Derivación para revisión matemática independiente
+
+Regiones de acceso uniforme a las particiones filtradas
+-------------------------------------------------------
+En el autoproducto de cualquier semilla binaria de peso columna 3 y fila 4
+se obtienen los siguientes extremos, con todas las tasas no negativas.
+
+  Modelo de una ronda                       Extremo anterior    Nuevo extremo
+  Bernoulli, q ≤ 10⁻³                       p = 4.4·10⁻⁷        p = 5.05·10⁻⁷
+  Circuito, r_m ≤ 10⁻³, VV primero          r_c = 8.3·10⁻⁸      r_c = 9.1·10⁻⁸
+  Mismo circuito, todo orden de columnas    r_c = 7.5·10⁻⁸      r_c = 8.3·10⁻⁸
+
+La tercera fila también usa r_m ≤ 10⁻³. Se conservan el filtro de síndrome
+físico residual cero, el oráculo sobre todas las acciones FGL, β=1/100,
+el máximo global de descenso por tamaño de huella y un desempate físico
+fijo. Se admiten todos los tamaños, máscaras, ciclos de cuatro y subhosts
+inducidos del contrato. En circuito se usa la extracción Z del sector X,
+con el calendario voraz del manuscrito. El resultado de precisión relativa
+para un fallo silencioso positivo requiere además el testigo lógico y las
+otras hipótesis del teorema correspondiente.
+
+1. Ramas que se separan y vuelven a encontrarse
+-----------------------------------------------
+En un paso lejano, H son las luces que se apagan, φ su huella y φ fuera
+de H las nuevas luces. Cada entrada de H procede de su último encendido
+o de una medida inicial todavía intacta. Por estabilidad del fondo, al
+menos una tiene predecesor. Cada luz creada sirve como entrada a lo sumo
+una vez antes de que otra ocurrencia vuelva a crearla. Esto vale aunque
+dos pasos usen el mismo generador.
+
+Fijar antes de revelar las medidas una salida inicial de una o dos
+celdas, y considerar la existencia de una red de los siguientes tipos.
+Se puede añadir un paso que recibe luces de la última ocurrencia y de
+medidas intactas. En una salida doble se pueden separar las dos celdas
+en dos ramas. Sus interiores son disjuntos en ocurrencias y terminan en
+un paso común que recibe al menos una luz de cada rama. Un brazo puede
+ser directo, sin ningún paso intermedio. Las ramas pueden contener a
+su vez otras divisiones y reuniones. Se permiten intercalaciones en el
+tiempo y repeticiones de centros. Para esta cuenta, los predecesores que
+suministran entradas están en la red o son el paso de partida.
+
+Si los bits iniciales de medida relevantes son independientes con tasa
+≤0.0012, para h≥1 se obtiene
+
+  Pr(existe una red de esta clase con al menos h pasos desde la salida)
+      ≤ 0.979 (5/8)^h. Con una sola celda inicial vale 0.01664 (5/8)^h.
+
+La probabilidad es conjunta, antes de condicionar en el éxito del padre.
+Se aplica a bits auxiliares independientes en el recuento por historias.
+Para el circuito físico, fijadas las etiquetas de datos, fuera de sus
+franjas la tasa del bit de check está acotada por
+r_m+5(2r_c/3)+7·4r_c/(15−8r_c). Vale <0.0012 incluso en r_c=10⁻⁶,
+r_m=0.001 para esta estimación de redes.
+
+Derivación. Para una salida S los 771 pares ganadores locales se suman
+con peso z elevado a |H fuera de S| cuando H toca S. En una huella que
+sea franja física de un VV se divide por 3 y en una de CC por 4. Un
+ganador global con esa misma franja y esas mismas luces es competidor
+máximo en los tres o cuatro rectángulos que la representan. Se pueden
+incluir todos estos representantes al mayorar posiciones. La distancia
+de la historia real se usó antes para identificar las luces iniciales.
+Cada check tiene 12 lectores. Para dos celdas en distinta fila, k lectores
+dobles dejan 24−2k lectores simples. Maximizar en k=0,12 da la fila U
+de un paso por cada tipo de salida. Las salidas no vacías son una celda,
+dos en la misma columna o dos en diagonal.
+
+Para una reunión fijar una celda de entrada distinta de cada último brazo,
+con a,b∈{1,2} salidas respectivamente. Hay ≤ab selecciones de ese par
+y ≤12 rectángulos que lo leen. Para el par fijo se retienen los ganadores
+que contienen ambas celdas en H. El peso es z^max(0,|H|−a−b). Se toma el
+máximo sobre posiciones de par en una fila, una columna o una diagonal,
+para cada tipo de salida. Esto da la fila J_{a,b}. En todo registro
+realizable, los bits cobrados como medidas intactas en sus diferentes
+pasos son distintos. Para J basta el número indicado de esos bits. Al
+ampliar la suma a registros formales que se cruzan se conservan los
+pesos positivos. La probabilidad producto sólo se aplicó a los reales.
+
+Con t=8/5, cobrar t por ocurrencia. Sean v=(.01585,.00000170,.000776)
+los mayorantes de una rama no vacía que arranca en una celda y termina
+con una salida de los tres tipos. Poner a_i=1,2,2. Tras una salida doble,
+un bloque de bifurcación y reunión cuesta, por tipo de salida final,
+
+    t [2 Σ_i v_i J_(1,a_i) + Σ_ij v_i v_j J_(a_i,a_j)].
+
+El primer sumando deja un brazo directo. En el segundo, cada brazo sale
+de una celda determinada del padre. El padre se contó una vez y el paso
+de reunión también. Añadir tU, con la opción de bifurcar sólo para la
+salida doble, da una matriz M de tres filas y cuatro columnas, incluida
+la salida vacía. El verificador exhibe una matriz racional Z con
+M+M_+ Z ≤ Z, donde M_+ omite la columna vacía. La primera fila positiva
+de Z cabe en v y las sumas de filas son <.01664, <.979 y <.968. Una
+inducción por número de pasos domina las redes de cualquier longitud y
+anidación. Quitar el peso t^h da la probabilidad indicada.
+
+Un segundo origen de posición libre
+------------------------------------
+También se puede fijar la primera salida y sumar sobre todas las
+posiciones del origen de otro brazo que llega a la misma reunión. Aquí
+el primer brazo admite las anidaciones anteriores y el segundo admite
+cualquier longitud con un predecesor por paso. Pueden llegar directamente
+a la reunión. Se cuenta hasta esa reunión, con sus interiores disjuntos
+en ocurrencias. Para cada posible origen del segundo brazo, el evento
+con h o más pasos tiene una probabilidad. La suma de esas probabilidades
+es ≤77747 (5/8)^h, uniforme en el tamaño del host. Con una sola celda
+en la primera salida la constante baja a 11724. Las constantes cuentan
+posiciones del segundo origen sin multiplicarlas por una tasa de datos.
+
+Para verlo, representar una salida mediante su rectángulo y su máscara.
+Hay d=(12,18,36) máscaras de cada tipo por rectángulo y m=(1,3,6) que
+contienen una celda dada. Para un estado terminal de tipo j, la suma
+de los pesos de un paso lineal sobre las posiciones del estado padre
+de tipo i se acota por R_ji=(d_i/d_j)U_ij. U conserva aquí las tres
+columnas de salida no vacía. El verificador comprueba esta desigualdad
+en cada máscara terminal con el siguiente conteo. Para cada luz de H
+hay 12m_i estados padre que la contienen. Partir de su precio z^(|H|−1).
+Una pareja de celdas del tipo correspondiente contenida en H se habría
+contado dos veces a ese precio. Hay ≤12 centros padre para dicha pareja,
+y se añade por centro z^(|H|−2)(1−2z). Se mantiene el factor recíproco
+de multiplicidad de la franja ganadora. La desigualdad
+1+t R g ≤ g vale en las tres coordenadas con g=(1.191,1.001,1.156).
+Por inducción, g acota la suma hacia atrás de toda longitud, incluido
+el camino vacío, por estado terminal fijado.
+
+Por último, en el rectángulo de reunión, sea A la parte visible de la
+salida del primer brazo. Elegir una entrada y de H del segundo, distinta
+de alguna entrada de A. Para el otro extremo quedan e=|H fuera de
+(A∪{y})| medidas posibles. Cobrar 12m_i z^e por el estado de tipo i
+que suministra y. Si es doble, por cada segunda celda compatible en
+esas e luces se añade ≤12(1−z)z^(e−1). Multiplicar por g_i suma todas
+las posiciones de partida de ese brazo. Se suma sobre el ganador,
+sobre los rectángulos del primer brazo y sobre sus redes hasta ese
+punto, usando Z. El paso de reunión se cobra una vez. Las tres
+constantes que resultan son <11724, <74563 y <77747. El argumento suma
+posiciones respetando la entrada física común aun cuando el host tenga
+ciclos. La restricción al segundo brazo lineal es parte de esta cuenta.
+
+2. Cuánto saldo pueden aportar los grupos originales mixtos
+----------------------------------------------------------
+Se usa el saldo de H5A_3_4_confluencia_en_generador.txt. Es el descenso
+inicial de un grupo menos el de los pasos cercanos reservados a sus
+primeros apagados. El nuevo recuento opera hasta ocho datos de cualquier
+composición VV/CC. Los dos órdenes siguientes y la cola infinita se
+incluyen mediante los mayorantes analíticos existentes.
+
+En el grafo de lectores de los datos originales distinguir una arista de
+solapamiento de franjas, una fuerte sin solapamiento y una débil. Fuerte
+significa que las franjas comparten al menos una coordenada de proyección.
+Los grados dirigidos máximos en orden VV, CC son respectivamente
+
+    O = ((9,9),(16,8)),  S = ((144,108),(192,120)),
+    W = ((486,324),(576,384)).
+
+En VV hay hasta 54 vecinos disjuntos en la línea y 9·10 con otra línea
+y solape de proyección. En CC son 48 y 8·9. Para un par mixto fuerte
+disjunto hay un eje incidente y otro a distancia tres, con ≤2·3·18
+opciones desde VV y ≤2·4·24 desde CC. Son cuentas de caminos sin
+retroceso que siguen mayorando cuando la semilla identifica destinos.
+
+En cada grupo se forma la partición por aristas fuertes y, dentro de
+ella, la partición por solapamientos. Para cada forma etiquetada se
+conectan primero los bloques de solapamiento mediante O y después
+entre sí mediante S en cada componente fuerte. W une las componentes
+fuertes. Si d=(16,9), cada matriz D en esa cuenta cumple D_ij/d_j=D_ji/d_i.
+Se puede usar ese peso simétrico en los árboles y restituir ∏d_i sobre
+los vértices distintos de la raíz. La suma de los pesos de todas las
+elecciones de aristas entre dos bloques da su peso de enlace. Un cofactor
+del laplaciano suma sus árboles. Al olvidar etiquetas se divide por las
+permutaciones de datos de cada tipo distintos de la raíz y se cuentan las
+particiones de esa forma. El verificador recupera por composición la suma
+de árboles del grafo con grados O+S+W. Los árboles mayoran posiciones
+también si una posición admite varios árboles.
+
+Sea B un bloque de s datos de ancho sumado w. Si s=1 y quedan r primeros
+apagados iniciales asignados, su saldo inicial es 2r−w y la estabilidad
+exige 2r≥w. Para s≥2, si m_x es la multiplicidad en cada check de su
+unión, la conectividad implica Σ(m_x−1)≥s−1. La cancelación binaria
+quita 2Σ⌊m_x/2⌋ incidencias, un entero par ≥s−1. Luego r≤w−2⌊s/2⌋
+y el saldo inicial es ≤r−((w−r) mod 2). Las franjas de bloques de
+solapamiento distintos son disjuntas.
+
+Para cada ganador y subconjunto no vacío de H, asignar sus celdas a
+donantes VV o CC. Particionar por donantes las cantidades de una misma
+fila VV o columna CC. Un dato de anchura n con r apagados pendientes
+obliga a r|φ|≤n|H|. Mientras queda una franja de rango pleno, todos los
+ganadores anteriores sólo apagaron luces y H fuera de las asignaciones
+está en el fondo estable. El coste de una transición es δ=2|H|−|φ|.
+Minimizar el coste total por inducción en los rangos restantes y restarlo
+del saldo inicial produce un techo por forma.
+
+Se hacen dos restricciones adicionales. En el primer cálculo, si todos
+los pasos con primeros apagados reciben como máximo dos donantes, se usa
+su techo propio. Rebasarlo exige un trío leído en un mismo rectángulo.
+Hay hasta 30 lectores desde VV, 36 desde CC y hasta 40 VV y 27 CC por
+rectángulo. Se eligen los otros datos del trío sin repetición y se unen
+las ramas libres en los tres vértices. Si la raíz está fuera del trío,
+un camino desde ella con ramas laterales llega al primer vértice del
+trío. Su longitud es ≤n−3. Así se cubren las posiciones del caso restante.
+
+En el segundo cálculo se corta la partición fuerte en dos lados. Si ambos
+donan al mismo ganador, sus máscaras de primeros apagados tienen filas
+y columnas disjuntas entre lados. Una coordenada compartida en ese lector
+daría una arista fuerte entre ellos. Se vuelve a evaluar la recurrencia
+imponiendo esa condición y se usa el menor de los techos de los cortes
+verificados. En particular, con raíz CC, dos VV y tres CC, el mayorante
+de posiciones capaces de aportar saldo siete baja de 514715943744 a
+23961775104. Para cada composición se usa el mínimo de los mayorantes
+acumulados de saldo ≥k. Se introducen por suma por partes en los precios
+crecientes de grupo y raíz física de la prueba anterior.
+
+3. Qué cambia con las etiquetas de circuito
+-------------------------------------------
+Se distinguen la geometría de todas las fibras marcadas A y las fuentes
+reales E de paridad uno. Cuando E=A, toda la cuenta del §2 vale con el
+fondo estable D_c. En los demás casos también se cubren los subconjuntos
+reales propios. Su presupuesto es a lo sumo la suma de los techos de sus
+componentes, pues las franjas marcadas adicionales sólo añaden pasos al
+descuento cercano. La cota para cero o un real es cero. En una pareja
+mixta solapada de dos reales su síndrome es la cruz candidata de cinco
+checks, que tiene saldo ≤0 por H5A_3_4_sindrome_efectivo.txt, §2.
+
+Escribir T_k para el techo de posiciones con cualquier paridad y R_k≤T_k
+para el de paridad uno en todos los datos. Donde se usa un R_k más fino,
+se evalúa la fila de etiquetas de FASE5_CIRCUITO_3_4_SINDROME_OBSERVADO.txt
+con R_k y se añade a ese nivel T_k·Pr(múltiple). Si hay un marcado de
+paridad física cero, su fibra tiene al menos dos controles activos.
+Para una composición (v,c) se usa 1−(1−m_V)^v(1−m_C)^c, con m_i la
+masa múltiple en la ley producto mayorante por fibra. T_k es geométrico
+y antecede a la elección de las etiquetas. Se obtiene m_i directamente
+de las razones de control u=2r_c/(3−2r_c), w=8r_c/(15−8r_c) y la masa
+g_n=(1+u)^(12−n)(1+w)^n−1. Entonces m_i=1−[(12−n)u+n w]/g_n.
+Se coteja la ley entera con el verificador de fase 5 en la esquina
+anterior. En la nueva esquina canónica la mayor masa múltiple es
+<3.168·10⁻⁷. Se usa su valor racional al integrar las fibras.
+
+Para un marcado aislado en un núcleo no simple, un solo control con h
+lecturas omitidas tiene paridad uno. Si h=0, el fondo D_c coincide con
+la lectura independiente B en su franja y en las celdas de los posibles
+testigos cercanos de H5A_3_4_episodios_compartidos.txt, §2. Ningún otro
+marcado tiene franja en esos rectángulos. El primer contacto y el regreso
+a una franja limpia dan saldo ≤−2, salvo un testigo entre ≤7 sitios VV
+o ≤12 CC. El precio es ≤Y²+s_i θY, o Y si es mejor. Para varios grupos
+con excepción se pueden elegir testigos distintos. Uno exterior procede
+de la primera corrección perfecta pertinente al grupo y se apaga en el
+prefijo perfecto. Además está fuera de las franjas de los otros grupos.
+
+Con h>0, en la ley auxiliar el número de luces en la franja es
+n−h−X+Z, con X y Z binomiales independientes de parámetros (n−h,θ) y
+(h,θ). Se cobra Y por la probabilidad de alcanzar al menos n/2 luces.
+Con varios controles basta Y. La suma usa las doce ubicaciones reales
+del cable y las dos posibilidades equiprobables de la CNOT. Se maximiza
+sobre las secuencias de colores del cable admitidas por el calendario.
+Esta maximización evita suponer que el coste con cero omisiones es el
+mayor. El término de núcleos simples conserva su admisión propia.
+Los pesos primitivos positivos, evaluados en la esquina y antes de
+normalizar por fibra, cubren todas las tasas menores y subhosts.
+
+4. Cifras de la fila completa y estado en la meta
+------------------------------------------------
+Los precios del §2 y §3 entran en las ecuaciones completas de propagación
+y fijación de v15 y de fase 5, con inclinación de grado .015. Los mayores
+cocientes se comprueban estrictamente menores que uno con fracciones.
+
+  Esquina                     Fila R           Presupuesto α     Mayor cociente
+  p=5.05·10⁻⁷                 .000889009552    .004              .999511760931
+  r_c=9.1·10⁻⁸, VV primero    .000731809000    .002              .999520809899
+  r_c=8.3·10⁻⁸, todo orden    .000841366023    .002              .999522834186
+
+Los valores impresos se han redondeado. Las colas desde once, por raíz
+VV y CC, son menores que (4.659·10⁻¹⁰,2.602·10⁻⁹), (4.438·10⁻¹⁰,
+4.342·10⁻⁹) y (9.814·10⁻¹⁰,6.107·10⁻⁹), respectivamente.
+
+En p=10⁻⁶ y q=10⁻³ sigue abierta la masa del complemento de v14.
+Una cota ≤0.00078558 seguiría bastando por v15. El §1 permite sumar la
+posición de un segundo origen cuando su brazo es lineal. Para toda la
+fila falta incorporar el coste de los grupos que producen esos orígenes
+y las redes con más entradas o con enlaces adicionales entre ramas.
+Las esquinas de la tabla se obtienen con los §§2–3.
+
+Reproducción desde 05_COMPROBACIONES con Python y su biblioteca estándar
+
+    python -I -B -X utf8 verificar_H5A_3_4_reunion_de_ramas.py

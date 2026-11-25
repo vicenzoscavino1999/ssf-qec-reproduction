@@ -1,0 +1,847 @@
+{
+ "checks": [
+  {
+   "detail": {
+    "sellado": "2026-11-12T14:39:51.939670-05:00",
+    "sha256": "349658833be721cbe617ac7f0948d5b25184a46b2fc2b6d62a23790eafad8500"
+   },
+   "name": "S1 la estimacion existe, esta sellada, su hash coincide con el sello y el estimador no ha cambiado",
+   "pass": true
+  },
+  {
+   "name": "S2 verificador y resultado de la unidad 2 sin cambios (hashes fijados)",
+   "pass": true
+  },
+  {
+   "name": "R1 la referencia recorre las 524288 asignaciones y sus recuentos por tipo son los guardados en la unidad 2",
+   "pass": true
+  },
+  {
+   "name": "R2 e=1/100: las probabilidades de la referencia suman 1",
+   "pass": true
+  },
+  {
+   "name": "R2 e=1/1000: las probabilidades de la referencia suman 1",
+   "pass": true
+  },
+  {
+   "name": "S3 la estimacion declara que no leyo referencia ni resultados de la unidad 2",
+   "pass": true
+  },
+  {
+   "detail": [],
+   "name": "E1 los valores exactos de P_0, P_sil y Q_sil estan dentro de sus intervalos para todo k=1..8 y las dos tasas",
+   "pass": true
+  },
+  {
+   "name": "E2 en k=8, eps_8=0 y los tres valores coinciden exactamente con la referencia",
+   "pass": true
+  },
+  {
+   "detail": [],
+   "name": "E3 el error real del valor informado no supera el error garantizado (todo k con L>0, las tres cantidades)",
+   "pass": true
+  },
+  {
+   "name": "E4 L_k no decrece y eps_k no crece con k",
+   "pass": true
+  },
+  {
+   "detail": {
+    "1/100": 2,
+    "1/1000": 2
+   },
+   "name": "E5 la estimacion informada (k*) existe en las dos tasas y cumple el objetivo: error garantizado de P_sil <= 10 %",
+   "pass": true
+  },
+  {
+   "detail": {
+    "familias": 4374,
+    "polimeros": 2887
+   },
+   "name": "N2 en k=8 el estimador encuentra los mismos polimeros y familias que la unidad 2",
+   "pass": true
+  }
+ ],
+ "checks_failed": 0,
+ "checks_total": 12,
+ "contraste_por_k": [
+  {
+   "L": "9.802548210581E-1",
+   "U": "9.821032155440E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "9.419251999277E-4",
+   "error_real": "1.624187144621E-4",
+   "exacto": "9.813375353573E-1",
+   "k": 1
+  },
+  {
+   "L": "0.000000000000E+12",
+   "U": "1.848394485956E-3",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/100",
+   "exacto": "1.474106020350E-4",
+   "k": 1
+  },
+  {
+   "L": "0.000000000000E+12",
+   "U": "1.882077623514E-3",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/100",
+   "exacto": "1.502139648427E-4",
+   "k": 1
+  },
+  {
+   "L": "9.981221155216E-1",
+   "U": "9.981410635606E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "9.491754015418E-6",
+   "error_real": "1.751411592571E-6",
+   "exacto": "9.981333375935E-1",
+   "k": 1
+  },
+  {
+   "L": "0.000000000000E+12",
+   "U": "1.894803904589E-5",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "exacto": "1.507381057156E-6",
+   "k": 1
+  },
+  {
+   "L": "0.000000000000E+12",
+   "U": "1.898332784576E-5",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "exacto": "1.510200090892E-6",
+   "k": 1
+  },
+  {
+   "L": "9.813236355627E-1",
+   "U": "9.813546016097E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "1.577744449901E-5",
+   "error_real": "1.613088817144E-6",
+   "exacto": "9.813375353573E-1",
+   "k": 2
+  },
+  {
+   "L": "1.449261124074E-4",
+   "U": "1.758921593638E-4",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "9.652208019651E-2",
+   "error_real": "7.804106392577E-2",
+   "exacto": "1.474106020350E-4",
+   "k": 2
+  },
+  {
+   "L": "1.476796584738E-4",
+   "U": "1.792340496242E-4",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "9.652208019651E-2",
+   "error_real": "7.802231624697E-2",
+   "exacto": "1.502139648427E-4",
+   "k": 2
+  },
+  {
+   "L": "9.981333231778E-1",
+   "U": "9.981333550729E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "1.597740532044E-8",
+   "error_real": "1.534728837041E-9",
+   "exacto": "9.981333375935E-1",
+   "k": 2
+  },
+  {
+   "L": "1.504839332237E-6",
+   "U": "1.536734494083E-6",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "1.048640068181E-2",
+   "error_real": "8.782532603467E-3",
+   "exacto": "1.507381057156E-6",
+   "k": 2
+  },
+  {
+   "L": "1.507653586155E-6",
+   "U": "1.539608396286E-6",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "1.048640068181E-2",
+   "error_real": "8.782514937532E-3",
+   "exacto": "1.510200090892E-6",
+   "k": 2
+  },
+  {
+   "L": "9.813373752646E-1",
+   "U": "9.813378487097E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "2.412243766594E-7",
+   "error_real": "7.808705319895E-8",
+   "exacto": "9.813375353573E-1",
+   "k": 3
+  },
+  {
+   "L": "1.473583510923E-4",
+   "U": "1.478317961998E-4",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "1.603864870935E-3",
+   "error_real": "1.248837854986E-3",
+   "exacto": "1.474106020350E-4",
+   "k": 3
+  },
+  {
+   "L": "1.501606722762E-4",
+   "U": "1.506431209131E-4",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "1.603864870935E-3",
+   "error_real": "1.248518144813E-3",
+   "exacto": "1.502139648427E-4",
+   "k": 3
+  },
+  {
+   "L": "9.981333375769E-1",
+   "U": "9.981333376258E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "2.446178529986E-11",
+   "error_real": "7.877414467084E-12",
+   "exacto": "9.981333375935E-1",
+   "k": 3
+  },
+  {
+   "L": "1.507375672656E-6",
+   "U": "1.507424504903E-6",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "1.619750694376E-5",
+   "error_real": "1.262535960937E-5",
+   "exacto": "1.507381057156E-6",
+   "k": 3
+  },
+  {
+   "L": "1.510194696273E-6",
+   "U": "1.510243619844E-6",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "1.619750694376E-5",
+   "error_real": "1.262532726977E-5",
+   "exacto": "1.510200090892E-6",
+   "k": 3
+  },
+  {
+   "L": "9.813375341267E-1",
+   "U": "9.813375393686E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "2.670758135051E-9",
+   "error_real": "1.416785232604E-9",
+   "exacto": "9.813375353573E-1",
+   "k": 4
+  },
+  {
+   "L": "1.474100275243E-4",
+   "U": "1.474152693547E-4",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "1.777944591081E-5",
+   "error_real": "1.388202673107E-5",
+   "exacto": "1.474106020350E-4",
+   "k": 4
+  },
+  {
+   "L": "1.502133787923E-4",
+   "U": "1.502187203086E-4",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "1.777944591081E-5",
+   "error_real": "1.387793913097E-5",
+   "exacto": "1.502139648427E-4",
+   "k": 4
+  },
+  {
+   "L": "9.981333375935E-1",
+   "U": "9.981333375935E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "2.697043665220E-14",
+   "error_real": "1.430328074200E-14",
+   "exacto": "9.981333375935E-1",
+   "k": 4
+  },
+  {
+   "L": "1.507381051257E-6",
+   "U": "1.507381105097E-6",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "1.785884959134E-8",
+   "error_real": "1.394558648712E-8",
+   "exacto": "1.507381057156E-6",
+   "k": 4
+  },
+  {
+   "L": "1.510200084982E-6",
+   "U": "1.510200138923E-6",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "1.785884959134E-8",
+   "error_real": "1.394554521340E-8",
+   "exacto": "1.510200090892E-6",
+   "k": 4
+  },
+  {
+   "L": "9.813375353514E-1",
+   "U": "9.813375353866E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "1.793775522240E-11",
+   "error_real": "1.188160309124E-11",
+   "exacto": "9.813375353573E-1",
+   "k": 5
+  },
+  {
+   "L": "1.474105986159E-4",
+   "U": "1.474106338219E-4",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "1.194146863470E-7",
+   "error_real": "9.622058804107E-8",
+   "exacto": "1.474106020350E-4",
+   "k": 5
+  },
+  {
+   "L": "1.502139613542E-4",
+   "U": "1.502139972297E-4",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "1.194146863470E-7",
+   "error_real": "9.619076867989E-8",
+   "exacto": "1.502139648427E-4",
+   "k": 5
+  },
+  {
+   "L": "9.981333375935E-1",
+   "U": "9.981333375935E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "1.799361800278E-17",
+   "error_real": "1.193027984724E-17",
+   "exacto": "9.981333375935E-1",
+   "k": 5
+  },
+  {
+   "L": "1.507381057153E-6",
+   "U": "1.507381057189E-6",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "1.191472448660E-11",
+   "error_real": "9.604356862522E-12",
+   "exacto": "1.507381057156E-6",
+   "k": 5
+  },
+  {
+   "L": "1.510200090889E-6",
+   "U": "1.510200090925E-6",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "1.191472448660E-11",
+   "error_real": "9.604326938624E-12",
+   "exacto": "1.510200090892E-6",
+   "k": 5
+  },
+  {
+   "L": "9.813375353573E-1",
+   "U": "9.813375353574E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "6.532207083739E-14",
+   "error_real": "4.613165772894E-14",
+   "exacto": "9.813375353573E-1",
+   "k": 6
+  },
+  {
+   "L": "1.474106020247E-4",
+   "U": "1.474106021529E-4",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "4.348601734996E-10",
+   "error_real": "3.647133420633E-10",
+   "exacto": "1.474106020350E-4",
+   "k": 6
+  },
+  {
+   "L": "1.502139648322E-4",
+   "U": "1.502139649628E-4",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "4.348601734996E-10",
+   "error_real": "3.646018883347E-10",
+   "exacto": "1.502139648427E-4",
+   "k": 6
+  },
+  {
+   "L": "9.981333375935E-1",
+   "U": "9.981333375935E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "6.503142171015E-21",
+   "error_real": "4.597438518873E-21",
+   "exacto": "9.981333375935E-1",
+   "k": 6
+  },
+  {
+   "L": "1.507381057156E-6",
+   "U": "1.507381057156E-6",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "4.306146059873E-15",
+   "error_real": "3.613131941932E-15",
+   "exacto": "1.507381057156E-6",
+   "k": 6
+  },
+  {
+   "L": "1.510200090892E-6",
+   "U": "1.510200090892E-6",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "4.306146059873E-15",
+   "error_real": "3.613120841351E-15",
+   "exacto": "1.510200090892E-6",
+   "k": 6
+  },
+  {
+   "L": "9.813375353573E-1",
+   "U": "9.813375353573E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "1.013922288866E-16",
+   "error_real": "7.623270385778E-17",
+   "exacto": "9.813375353573E-1",
+   "k": 7
+  },
+  {
+   "L": "1.474106020350E-4",
+   "U": "1.474106020352E-4",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "6.749853716513E-13",
+   "error_real": "5.898181622510E-13",
+   "exacto": "1.474106020350E-4",
+   "k": 7
+  },
+  {
+   "L": "1.502139648427E-4",
+   "U": "1.502139648429E-4",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "6.749853716513E-13",
+   "error_real": "5.896405373182E-13",
+   "exacto": "1.502139648427E-4",
+   "k": 7
+  },
+  {
+   "L": "9.981333375935E-1",
+   "U": "9.981333375935E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "1.001369218275E-24",
+   "error_real": "7.535004953827E-25",
+   "exacto": "9.981333375935E-1",
+   "k": 7
+  },
+  {
+   "L": "1.507381057156E-6",
+   "U": "1.507381057156E-6",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "6.630705588710E-19",
+   "error_real": "5.796108538278E-19",
+   "exacto": "1.507381057156E-6",
+   "k": 7
+  },
+  {
+   "L": "1.510200090892E-6",
+   "U": "1.510200090892E-6",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "6.630705588710E-19",
+   "error_real": "5.796090989581E-19",
+   "exacto": "1.510200090892E-6",
+   "k": 7
+  },
+  {
+   "L": "9.813375353573E-1",
+   "U": "9.813375353573E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "0.000000000000E+12",
+   "error_real": "0.000000000000E+12",
+   "exacto": "9.813375353573E-1",
+   "k": 8
+  },
+  {
+   "L": "1.474106020350E-4",
+   "U": "1.474106020350E-4",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "0.000000000000E+12",
+   "error_real": "0.000000000000E+12",
+   "exacto": "1.474106020350E-4",
+   "k": 8
+  },
+  {
+   "L": "1.502139648427E-4",
+   "U": "1.502139648427E-4",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/100",
+   "error_garantizado": "0.000000000000E+12",
+   "error_real": "0.000000000000E+12",
+   "exacto": "1.502139648427E-4",
+   "k": 8
+  },
+  {
+   "L": "9.981333375935E-1",
+   "U": "9.981333375935E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "0.000000000000E+12",
+   "error_real": "0.000000000000E+12",
+   "exacto": "9.981333375935E-1",
+   "k": 8
+  },
+  {
+   "L": "1.507381057156E-6",
+   "U": "1.507381057156E-6",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "0.000000000000E+12",
+   "error_real": "0.000000000000E+12",
+   "exacto": "1.507381057156E-6",
+   "k": 8
+  },
+  {
+   "L": "1.510200090892E-6",
+   "U": "1.510200090892E-6",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "e": "1/1000",
+   "error_garantizado": "0.000000000000E+12",
+   "error_real": "0.000000000000E+12",
+   "exacto": "1.510200090892E-6",
+   "k": 8
+  }
+ ],
+ "estimacion_informada_frente_a_referencia": {
+  "1/100": {
+   "P_0": {
+    "L": "9.813236355627E-1",
+    "U": "9.813546016097E-1",
+    "anchura_relativa": "3.155538686139E-5",
+    "error_garantizado": "1.577744449901E-5",
+    "error_real": "1.613088817144E-6",
+    "exacto": "9.813375353573E-1",
+    "valor_informado": "9.813391183419E-1"
+   },
+   "P_sil": {
+    "L": "1.449261124074E-4",
+    "U": "1.758921593638E-4",
+    "anchura_relativa": "2.136678231550E-1",
+    "error_garantizado": "9.652208019651E-2",
+    "error_real": "7.804106392577E-2",
+    "exacto": "1.474106020350E-4",
+    "valor_informado": "1.589146822517E-4"
+   },
+   "Q_sil": {
+    "L": "1.476796584738E-4",
+    "U": "1.792340496242E-4",
+    "anchura_relativa": "2.136678231550E-1",
+    "error_garantizado": "9.652208019651E-2",
+    "error_real": "7.802231624697E-2",
+    "exacto": "1.502139648427E-4",
+    "valor_informado": "1.619340063124E-4"
+   },
+   "eps_k": "3.096604695641E-5",
+   "familias": 625,
+   "k": 2,
+   "polimeros": 72,
+   "recursos_acumulados": {
+    "ejecuciones_locales": 158,
+    "pasos_decoder": 141,
+    "pruebas_conexidad": 158,
+    "scores": 1850,
+    "sindromes_distintos": 47
+   }
+  },
+  "1/1000": {
+   "P_0": {
+    "L": "9.981333231778E-1",
+    "U": "9.981333550729E-1",
+    "anchura_relativa": "3.195481115143E-8",
+    "error_garantizado": "1.597740532044E-8",
+    "error_real": "1.534728837041E-9",
+    "exacto": "9.981333375935E-1",
+    "valor_informado": "9.981333391254E-1"
+   },
+   "P_sil": {
+    "L": "1.504839332237E-6",
+    "U": "1.536734494083E-6",
+    "anchura_relativa": "2.119506126856E-2",
+    "error_garantizado": "1.048640068181E-2",
+    "error_real": "8.782532603467E-3",
+    "exacto": "1.507381057156E-6",
+    "valor_informado": "1.520619680436E-6"
+   },
+   "Q_sil": {
+    "L": "1.507653586155E-6",
+    "U": "1.539608396286E-6",
+    "anchura_relativa": "2.119506126856E-2",
+    "error_garantizado": "1.048640068181E-2",
+    "error_real": "8.782514937532E-3",
+    "exacto": "1.510200090892E-6",
+    "valor_informado": "1.523463445749E-6"
+   },
+   "eps_k": "3.189516184610E-8",
+   "familias": 625,
+   "k": 2,
+   "polimeros": 72,
+   "recursos_acumulados": {
+    "ejecuciones_locales": 158,
+    "pasos_decoder": 141,
+    "pruebas_conexidad": 158,
+    "scores": 1850,
+    "sindromes_distintos": 47
+   }
+  }
+ },
+ "programa": "contraste",
+ "recursos_para_G4": {
+  "estimador_pico_memoria_bytes_no_determinista": 23146496,
+  "estimador_por_k": [
+   {
+    "asignaciones_retenidas": 386,
+    "bits_max": 60,
+    "ejecuciones_locales": 18,
+    "familias": 70,
+    "k": 1,
+    "pasos_decoder": 9,
+    "polimeros": 16,
+    "pruebas_compatibilidad": 371,
+    "pruebas_conexidad": 18,
+    "scores": 246,
+    "segundos_no_deterministas": 0.0017,
+    "sindromes_distintos": 11
+   },
+   {
+    "asignaciones_retenidas": 13250,
+    "bits_max": 114,
+    "ejecuciones_locales": 158,
+    "familias": 625,
+    "k": 2,
+    "pasos_decoder": 141,
+    "polimeros": 72,
+    "pruebas_compatibilidad": 14183,
+    "pruebas_conexidad": 158,
+    "scores": 1850,
+    "segundos_no_deterministas": 0.0076,
+    "sindromes_distintos": 47
+   },
+   {
+    "asignaciones_retenidas": 85268,
+    "bits_max": 164,
+    "ejecuciones_locales": 774,
+    "familias": 1540,
+    "k": 3,
+    "pasos_decoder": 961,
+    "polimeros": 233,
+    "pruebas_compatibilidad": 129011,
+    "pruebas_conexidad": 774,
+    "scores": 5032,
+    "segundos_no_deterministas": 0.0219,
+    "sindromes_distintos": 101
+   },
+   {
+    "asignaciones_retenidas": 145451,
+    "bits_max": 188,
+    "ejecuciones_locales": 2454,
+    "familias": 2176,
+    "k": 4,
+    "pasos_decoder": 3761,
+    "polimeros": 689,
+    "pruebas_compatibilidad": 670783,
+    "pruebas_conexidad": 2454,
+    "scores": 6784,
+    "segundos_no_deterministas": 0.0574,
+    "sindromes_distintos": 128
+   },
+   {
+    "asignaciones_retenidas": 191621,
+    "bits_max": 182,
+    "ejecuciones_locales": 5366,
+    "familias": 3036,
+    "k": 5,
+    "pasos_decoder": 9441,
+    "polimeros": 1549,
+    "pruebas_compatibilidad": 2339094,
+    "pruebas_conexidad": 5366,
+    "scores": 6784,
+    "segundos_no_deterministas": 0.1465,
+    "sindromes_distintos": 128
+   },
+   {
+    "asignaciones_retenidas": 304130,
+    "bits_max": 188,
+    "ejecuciones_locales": 8502,
+    "familias": 3894,
+    "k": 6,
+    "pasos_decoder": 16289,
+    "polimeros": 2407,
+    "pruebas_compatibilidad": 4808142,
+    "pruebas_conexidad": 8502,
+    "scores": 6784,
+    "segundos_no_deterministas": 0.2736,
+    "sindromes_distintos": 128
+   },
+   {
+    "asignaciones_retenidas": 447743,
+    "bits_max": 188,
+    "ejecuciones_locales": 10422,
+    "familias": 4302,
+    "k": 7,
+    "pasos_decoder": 20833,
+    "polimeros": 2815,
+    "pruebas_compatibilidad": 6258557,
+    "pruebas_conexidad": 10422,
+    "scores": 6784,
+    "segundos_no_deterministas": 0.3552,
+    "sindromes_distintos": 128
+   },
+   {
+    "asignaciones_retenidas": 524288,
+    "bits_max": 202,
+    "ejecuciones_locales": 10934,
+    "familias": 4374,
+    "k": 8,
+    "pasos_decoder": 22113,
+    "polimeros": 2887,
+    "pruebas_compatibilidad": 6533439,
+    "pruebas_conexidad": 10934,
+    "scores": 6784,
+    "segundos_no_deterministas": 0.3695,
+    "sindromes_distintos": 128
+   }
+  ],
+  "estimador_preparacion": {
+   "aristas_host_K": 388,
+   "candidatos": 103,
+   "capas": 5,
+   "entradas_listas_inversas": 210,
+   "ubicaciones": 217,
+   "vertices_host_primitivo_usados": 33
+  },
+  "nota": "tiempos y memoria de la referencia en el archivo de recursos del contraste",
+  "referencia_global": {
+   "asignaciones_propagadas": 524288,
+   "puertas_CNOT_aplicadas": 22020096,
+   "residuos_distintos": 48,
+   "scores_tabla_completa": 421888,
+   "sindromes_en_tabla": 4096
+  },
+  "referencia_por_clases_equivalente": "el estimador con k=8 ejecuta 10934 historias por clase: es la enumeracion exacta agrupada por clases de respuesta"
+ },
+ "referencia_exacta": {
+  "1/100": {
+   "P_0": {
+    "decimal": "9.813375353573E-1",
+    "exacto": "349313995739977/355957031250000"
+   },
+   "P_sil": {
+    "decimal": "1.474106020350E-4",
+    "exacto": "7870776041273/53393554687500000"
+   },
+   "Q_sil": {
+    "decimal": "1.502139648427E-4",
+    "exacto": "7870776041273/52397099360996550"
+   }
+  },
+  "1/1000": {
+   "P_0": {
+    "decimal": "9.981333375935E-1",
+    "exacto": "3552925796414316271627/3559570312500000000000"
+   },
+   "P_sil": {
+    "decimal": "1.507381057156E-6",
+    "exacto": "8048443291016540873/5339355468750000000000000"
+   },
+   "Q_sil": {
+    "decimal": "1.510200090892E-6",
+    "exacto": "8048443291016540873/5329388694621474407440500"
+   }
+  }
+ },
+ "sello": {
+  "archivo": "ESTIMACION_H6_U3.json",
+  "estimador_sha256": "6b6812fb1a315ae40f0a75d3b8f12d94fcd3bfdc417bc72936e0cabf79682ac2",
+  "kmax": 8,
+  "sellado": "2026-11-12T14:39:51.939670-05:00",
+  "sha256": "349658833be721cbe617ac7f0948d5b25184a46b2fc2b6d62a23790eafad8500",
+  "status": "PASS"
+ },
+ "status": "PASS",
+ "unit": "H6-U3"
+}

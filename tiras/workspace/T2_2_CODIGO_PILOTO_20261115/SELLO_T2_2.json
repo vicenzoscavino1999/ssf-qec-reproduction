@@ -1,0 +1,55 @@
+{
+ "alcance": "Solo preparacion del sello. No autoriza la corrida de 8 h ni el supervisor de la corrida, que necesitan una orden posterior del usuario. m = 48 fuera.",
+ "codigo": {
+  "t2_2.py": "bf503b95800c2b39fe2d8652d1c403daf0b4bd6f9c521f8fe5e7336124148e77",
+  "t2s_fisica.py": "2d7e47dcb385ff94b34dcdc27da6054987b9706f20ee7283e3a51dd0755804d9",
+  "t2s_juguete.py": "b01a260e7bcb8e8b50007e55a7e0a9dff69e1d0c67db2d0de3671146b07f7242",
+  "t2s_mat.py": "f635f997f016648bb15ef7cebd434a4dc5f6df67c3669989cf7158bf7e720c69",
+  "t2s_motor.py": "b989d3aee511a7bc6741894b709bd23840f1889337a7c4ef43c9d61b7ecb68fb",
+  "t2s_reg.py": "6f735b0525f5a7cd93eac8265884c7891a0208fba8a3b72eb941522f3222ec70",
+  "t2s_supervisor.py": "c1a3da4004281ad57e1a754b09e987b1cbbc4b614325331f29b30339ae58135d"
+ },
+ "cotejo": {
+  "archivo": "T2_2_PREPARACION_SELLO_20261115/COTEJO_ESCALERA.json",
+  "comprobaciones": 19,
+  "fallos": 0,
+  "sha256": "0501a09bbf28d9e46477250c35be7993ca98eab7b8f668bb09799e3bf7be9cbf"
+ },
+ "dictamen": {
+  "archivo": "T2_2_CIERRE_REVISION_CODIGO_V2_20261115/DICTAMEN_CIERRE_CODIGO_T2_2_V2.txt",
+  "sha256": "b2dafe81397c351dde9a9dad23f81a688cf7643a4a045e2dd0735a7f251fc168"
+ },
+ "escalera": {
+  "archivo": "T2_2_CODIGO_PILOTO_20261115/ESCALERA_Y_CLAVES.json",
+  "sha256": "15a937da74a809620a26f8c70f30029bbbfbb617274b4615b6cec4662014a941"
+ },
+ "escalera_resumen": {
+  "claves": 22,
+  "niveles": 25,
+  "sha256_escalera": "6a5f890bc875e18e49dd6a20b9ca4f2a6c710162239640c2abbb5e8a5323d149",
+  "shas": {
+   "claves": "5da08a082cc365853b269a795b8147e1bc87cd2de02248fd9bf36721a0252a7c",
+   "logaritmos": "17f92959a930953c80422fa5bf67ca3de22eacdbc13c7819c2a11766905de449"
+  },
+  "sitios": 91,
+  "t": 24
+ },
+ "orden": {
+  "archivo": "T2_2_CIERRE_REVISION_CODIGO_V2_20261115/PROMPT_SOLO_PREPARAR_SELLO_T2_2.txt",
+  "sha256": "ab5a05935d4b56696452947c63c7f226d33f8be87f96d3c821a0963602375191"
+ },
+ "plan": "T2_2_BORRADOR_PLAN_SPLITTING_20261115/BORRADOR_PLAN_T2_2.txt",
+ "preparacion": {
+  "codigo": 0,
+  "lanzador_sha256": "1372dd47f94cce550c35ff4f4b2e3bc16421eda8e2cef96aa008f70b934e2b18",
+  "retorno": "T2_2_PREPARACION_SELLO_20261115/RETORNO_PREPARAR_SELLO.json",
+  "retorno_sha256": "cb9fa4bfcfe797adc371447a03b7e4771f9b0b68b79d14694be6ddd8d17d80a5",
+  "segundos": 2.027
+ },
+ "pruebas_sha256": {
+  "t2s_pruebas.py": "a47e8fe95187096b5196bc97b5d34733a117807e9f35c2ab769b489a1b2d5edc"
+ },
+ "sellado": "T2-2 piloto TIRA_6x6 (m = 6): plan v4 y codigo v2 sellados por el ejecutor el 2026-11-15 15:39:31 (America/Lima), por orden del usuario (T2_2_CIERRE_REVISION_CODIGO_V2_20261115/PROMPT_SOLO_PREPARAR_SELLO_T2_2.txt) tras DICTAMEN_CIERRE_CODIGO_T2_2_V2.txt",
+ "sha256": "16941f31eca28a0429872b557d79c8f9aa85fd70201f86b32864f645725fb8a7",
+ "unidad": "T2-2 sello del piloto TIRA_6x6"
+}

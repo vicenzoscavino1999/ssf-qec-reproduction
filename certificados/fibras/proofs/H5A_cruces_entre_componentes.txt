@@ -1,0 +1,417 @@
+H5-A · Interacciones físicas entre componentes a p = 10⁻⁶
+18 de noviembre de 2026 · Nota de investigación
+
+Resultado
+=========
+
+En la esquina p = 10⁻⁶, q = 2·10⁻¹¹ se puede sumar una clase mayor de
+interacciones del decodificador FGL. Cada interacción incorporada usa la
+marca física exacta, incluidas las correcciones posteriores al encuentro.
+La prueba vale para toda semilla binaria (17,18)-regular, todo tamaño,
+todo orden de desempate fijo, máscara y subhost del contrato. Se conserva
+β = 1/100. Las tasas corresponden a una ronda Bernoulli independiente.
+
+• Dos componentes. Se incorpora la interacción cuando las huellas o los
+  checks alcanzados por ambos grupos cumplen las condiciones de la sección
+  2. Se permiten señales fuera de las huellas originales. Desde 32 000
+  fuentes totales se incorpora TODA interacción de dos componentes de G,
+  a cualquier distancia y puntuación. El límite baja a 720 si ambas
+  componentes son conexas por H. En estas dos colas se admiten singletons.
+  Cuando una componente es un único error de datos, basta que la otra
+  tenga ≥54 fuentes, o ≥3 si es conexa por H. En este caso el primer
+  contacto requiere una acción perfecta sobre luces originales.
+• Tres componentes o más. Los grupos pueden formar un árbol o un grafo con
+  ciclos. Se incorporan sus cumulantes físicos bajo la condición local de
+  la sección 2 o, independientemente de su evolución, en los rangos de la
+  sección 5. El número de grupos y el de fuentes pueden crecer sin límite.
+• Tras insertar todos los pares y tríos de fuentes físicos, las filas
+  absolutas de esta referencia son <1.907·10⁻⁶ por dato y <1.288·10⁻⁶
+  por medida. El presupuesto para el resto físico sigue siendo 0.004998.
+  La cota general demostrada para la partición completa continúa en
+  p ≤ 3.6·10⁻³⁶, q ≤ 2·10⁻¹¹. El nuevo resultado reduce el conjunto de
+  términos pendientes en la esquina objetivo. La derivación queda
+  disponible para revisión matemática independiente.
+
+1. Qué se suma
+==============
+
+Para una subentrada Q de fuentes, T(Q) es cero si falla el filtro físico
+o el soporte visitado sale del subhost. En otro caso es el signo del
+residuo y T(∅)=1. El grafo G es exactamente el de la sección 5 de
+H5A_retirada_y_primer_paso_exterior.txt, incluidas sus parejas distinguidas.
+Sus grados superiores, en columnas (datos, medidas), son (166159,93) desde
+VV, (179186,94) desde CC y (2695,83810) desde una medida. L une checks que
+comparten un rectángulo de generador. Su bola cerrada de radio uno contiene
+a lo sumo J = 290·289 = 83810 checks.
+
+Sea H el subgrafo que une dos fuentes si sus huellas iniciales se cortan,
+y también dos medidas si comparten rectángulo. Para H las tres filas
+son (578,17), (612,18) y (35,J). Por ejemplo, desde CC hay a lo sumo
+18·16 vecinos CC y 18·18 vecinos VV. Una medida tiene 35 lectores de datos.
+Una componente de G es conexa por H si H induce un grafo conexo en todos
+sus miembros. Una sola fuente cumple esa condición.
+
+Sean C₁,…,Cₘ las componentes de G[Q] y T(S)=T(⋃_{j∈S} Cⱼ) cuando S es
+un conjunto de índices de componentes. El bloque físico tiene coeficiente
+
+    d(Q) = Σ_{π partición de [m]} (−1)^(|π|−1)(|π|−1)! ∏_{S∈π} T(S).
+
+Para m=1 vale T(Q). Para m=2 se obtiene T(A∪B)−T(A)T(B), de módulo ≤2.
+La inversión sobre particiones de componentes expresa Σ_Q T(Q)z^Q como
+gas de estos bloques, con exclusión por sitio común o arista de G entre
+bloques. La identidad y la normalización individual se demostraron en
+H5A_cumulantes_y_componentes.txt, secciones 1 y 3. Se puede usar este G
+porque eliminar componentes enteras conserva las inducidas restantes.
+
+Conservar siempre los bloques m=1. Para m≥2 conservar d(Q) si se cumple
+al menos una de las reglas de las secciones 2, 4 o 5, una sola vez. El resto
+tiene actividad cero en la referencia. Denotar por k⋆(B) el coeficiente
+de z^B en el logaritmo formal de este gas, con cada fuente de B una vez.
+k(B) denota el cumulante del gas físico completo. En k−k⋆ sólo quedan
+clusters con alguna ocurrencia de un bloque omitido. Esto evita contar
+como independientes varias interacciones que comparten un error.
+
+2. Encuentros entre grupos
+==========================
+
+I(C) es la unión de las huellas originales de C, incluidas las medidas.
+En la ejecución aislada, guardar todos los checks encendidos hasta el
+final del prefijo inicial de puntuación ≥15/17, incluido el estado tras
+su último paso. Un dato suministra una ventana de 17 checks en una fila
+o de 18 en una columna. Definir W(C) como la unión de I(C), los checks
+guardados y las ventanas de la misma línea que compartan ≥8 checks con
+la ventana de algún dato de C. Definir V(C) igual, exigiendo que a la
+ventana de reemplazo le falte a lo sumo un check de la original. Si dos
+ventanas difieren en un check por cada lado, retirar el dato inicial
+tras el cambio deja exactamente esos dos checks de diferencia por XOR.
+Ambas envolventes conservan también los checks de la trayectoria alta.
+
+Para construir Γ se admite toda componente conexa por H con ≥2 fuentes
+y también una medida sola. A y B son vecinas si
+dos checks de I(A), I(B) comparten rectángulo, o si W(A) y W(B) se cortan.
+
+• Para dos grupos admitidos, basta que sean vecinos en Γ. Si ambos tienen
+  ≥2 fuentes, basta también que la distancia en L entre V(A) y V(B)
+  sea a lo sumo uno. Esto incluye para estos grupos un rectángulo que
+  pueda leer luz de ambos prefijos altos, aun después de varias acciones
+  internas. La acción que los une y todas las posteriores pueden tener
+  cualquier puntuación elegible. El coeficiente conservado se calcula con
+  las tres ejecuciones físicas completas.
+• Para m≥3, con todos los grupos admitidos, tomar Γ conexo si para
+  cada subfamilia S desconectada en Γ[S] se cumple T(S)=∏_D T(D),
+  con D recorriendo sus componentes.
+  Sólo intervienen subfamilias propias. La igualdad se puede comprobar
+  con el oráculo físico. Una condición geométrica suficiente es que, en
+  cada una de esas separaciones, los síndromes visitados en las ejecuciones
+  aisladas de los D, junto con sus checks iniciales, queden a distancia
+  mayor que uno entre familias. Cada candidato con luz lee entonces a una
+  sola familia. El máximo y el desempate intercalan las trazas aisladas,
+  los soportes se unen y el filtro y el carácter se multiplican. La
+  formulación mediante T admite además igualdades debidas a las marcas.
+
+Para cualquier grafo Γ que dé esa factorización en todas las subfamilias,
+
+                       |d(Q)| ≤ 2^(m−1) τ(Γ),                         (1)
+
+donde τ es el número de árboles abarcadores. Para verlo, el gas de los
+subconjuntos conexos de Γ tiene marcas de módulo ≤1. En el monomio con
+cada grupo una vez aparece una partición π en bloques conexos. La suma
+alternada de subgrafos conexos de la contracción se acota por el número
+de sus árboles. Al completar cada bloque con un árbol interno se cuenta
+un árbol de Γ con un subconjunto de sus m−1 aristas marcado para cortar.
+Esto da (1) también con signos y ceros. La demostración detallada está
+en H5A_arboles_de_dependencia.txt, sección 3. El argumento combinatorio
+se basa en Féray, Méliot y Nikeghbali, secciones 9.3–9.4.
+https://arxiv.org/pdf/1304.2934
+
+3. Geometría de una trayectoria y recuento inverso
+==================================================
+
+Escribir h para las luces apagadas por una acción, c para las encendidas,
+δ=h−c y área h+c. En el prefijo alto, h≥16c y δ≥15c. Si b=|C|, la suma
+de creaciones es ≤18b/15 por descenso. Una ventana horizontal tiene
+289 incidencias con otras ventanas de su línea, contando multiplicidad
+de checks y sitios repetidos de igual huella. Una vertical tiene 288.
+Las ventanas distintas del dato inicial que comparten al menos t checks
+son a lo sumo ⌊289/t⌋ o ⌊288/t⌋. Cada una añade a lo sumo 17−t o 18−t
+checks. Así |W(C)| ≤ (378+18/15)b y |V(C)| ≤ (35+18/15)b.
+
+Fijar ahora un check u y buscar C con u∈W(C). Para b=2,3, toda celda
+encendida por el prefijo alto está en una ventana que comparte, en su
+misma línea, al menos ocho o cuatro checks respectivamente con un dato
+original. En efecto, el área de una acción alta es ≤17·18b/16. En el
+rectángulo de 18×17, la huella tiene brazos de longitudes 17−y y 18−x y
+área 17x+18y−2xy. Se usa la representación más corta entre (x,y) y su
+complemento, x+y≤17. Con la cota de área, todo brazo no vacío mide ≥16
+para b=2 y ≥15 para b=3, como comprueba la enumeración de las 18×19
+formas. En un brazo, descontar las celdas apagadas antes de la acción y
+las luces que provienen de creaciones anteriores cuesta a lo sumo la
+suma de creaciones anteriores e inmediatas, ≤2 o ≤3. Por tanto hay ≥14
+o ≥12 checks cubiertos por fuentes originales. Alguna de las b fuentes
+cubre ≥7 o ≥4 y tiene que ser un dato de la misma línea. Una medida o
+una ventana transversal cubriría a lo sumo uno.
+
+Para b=2 se recupera un octavo check. Si las dos fuentes son datos de
+esa línea, el síndrome queda en ella durante toda la ejecución, por el
+lema de las ocho filas y columnas de H5A_cortes_y_huecos.txt. El brazo
+es entonces una ventana completa de al menos 17 checks, con ≥15 originales.
+Si las dos fuentes no son datos de esa línea, una de ellas cubre a lo
+sumo uno de los ≥14 originales. La otra cubre al menos 13.
+
+Por u pasan hasta 18 ventanas horizontales y 17 verticales. Así, para
+un solapamiento de t, los posibles datos originales son a lo sumo
+18(1+⌊289/t⌋)+17(1+⌊288/t⌋). Resultan 1295 para b=2 y 2555 para b=3.
+Una medida original en u añade una ancla. Estos límites incluyen la
+parte estática de W. V está contenida en W.
+
+A cualquier puntuación mínima u₀>0, el peso de un check a distancia d de
+I(C) es r^d, r=(1+u₀)/(1−u₀). Los pesos en el rectángulo de una acción
+difieren por un factor ≤r y h≥rc, así que la suma de pesos encendidos
+nunca sube. Cuando se alcanza distancia d≥1 hay h checks consumidos
+a distancia ≥d−1. En un componente de L separado de I(C) no puede
+iniciarse una acción. Para el prefijo alto se obtiene 16·16^(d−1)≤18b.
+Para b≤14 basta radio uno. Para b≥15, la bola que se debe recorrer al
+revés tiene tamaño ≤J(18b/16)^5, porque J<16⁵. Las ventanas añadidas
+estáticamente quedan a distancia ≤1 de las originales.
+
+4. Presupuesto en p = 10⁻⁶
+===========================
+
+Para una fuente i de tasa rᵢ, usar sᵢ=rᵢ exp(0.015)/(1−2rᵢ) y
+wᵢ=sᵢ exp(0.5). Escribir v,d para el precio de un dato y una medida.
+Los siguientes mayorantes se pueden evaluar a precios w o t=w exp(0.48).
+Sea M la mayor fila de H a esos precios, x=exp(1)M y
+c_b=b^(b−2)/(b−1)! para b≥2, c₁=1. Los grupos H-conexos de tamaño b
+que contienen i pesan en total ≤precioᵢ c_b M^(b−1). Se fija la etiqueta
+raíz, se suman los árboles etiquetados desde las hojas y se divide por
+(b−1)!. El cociente c_{b+1}/c_b≤exp(1).
+
+Con b≥2, la suma por raíz dividida por su precio, y la suma con factor b,
+quedan acotadas respectivamente por
+
+    S = M + (3/2)M² + (8/3)M³ + x⁴/(1−x),
+    F = 2M + x²(3−2x)/(1−x)².
+
+El peso de los grupos que pueden llegar a un check dado en W es ≤Z, con
+
+    Z = (1295v+d)M + (2555v+d)(3/2)M²
+        + J(35v+d)[(8/3)M³ + x⁴/(1−x)
+                       + (9/8)⁵ 15⁵ x¹⁴/(1−x(16/15)⁵)].
+
+Las dos primeras sumas usan las anclas de la sección 3. Desde cuatro
+fuentes se recorre la bola hasta una fuente que lea un check original.
+El último término permite el radio mayor desde b=15, usando
+b⁵≤15⁵(16/15)^{5(b−15)}. El sobreconteo de la cola anterior es admisible.
+
+Para un grupo A, el peso doble de sus posibles vecinos por Γ, incluido
+todo árbol que cuelgue de cada vecino, es a lo sumo
+
+    2|A| [18J((35v+d)S+d) + (378+18/15)(Z+d)] < 0.478623 |A|,      (2)
+
+con S,Z,v,d calculados a precios t. El primer término busca un check
+original de A, uno cercano de otro grupo y una fuente que lo lea. El
+segundo busca un check de W(A) en W del otro grupo. La medida aislada
+aporta d en cada búsqueda. Como el límite es
+menor que 0.48|A|, el peso de un árbol con grupo raíz A a precios w y
+factor 2 por arista es ≤w^A exp(0.48|A|). Se prueba por altura del árbol,
+sumando conjuntos de hijos mediante la exponencial. Se permite repetir
+grupos al mayorar. Por (1), los árboles cuyo grupo raíz tiene ≥2 fuentes
+cuestan a lo sumo wᵢ exp(0.48)S(t) < 0.002682 wᵢ. Si i es una medida
+se puede elegir también su singleton como raíz, a coste ≤wᵢ exp(0.48).
+
+Para la regla adicional de dos grupos con ≥2 fuentes cada uno, fijar i en su grupo A.
+Hay a lo sumo J|V(A)| checks que buscar en la envolvente del otro.
+A precios w el coste enraizado con |d(Q)|≤2 es a lo sumo
+
+                 wᵢ · 2J(35+18/15)F(w)Z(w) < 0.028175 wᵢ.           (3)
+
+Hay otra clase que se suma completa a (2)–(3). Supongamos que una de
+las dos componentes de G es un único dato i. Su huella está inicialmente
+encendida en su totalidad porque G incluye los solapamientos con todas
+las fuentes del otro grupo B. Hasta que se toca esa huella hay un
+singleton de puntuación uno. Cada acción anterior es perfecta, por lo
+que sólo apaga checks originales. Si la primera acción que toca la
+huella se alimenta únicamente de ella, su huella es toda la de i.
+En efecto, un corte no singleton tiene área ≥33 en su representación
+más corta, y una ventana contenida en una única línea sólo puede
+coincidir con la original. La desigualdad de la familia FGL excluye el
+complemento largo de un singleton. Este paso y su desempate son los
+mismos que en el dato aislado. Los pasos previos de B forman un prefijo
+canónico suyo y el resto ya ejecuta B con su síndrome aislado. El filtro,
+el subhost y el signo factorizan, incluso si ambas ejecuciones visitan
+un mismo sitio de corrección en momentos distintos.
+
+En consecuencia, d({i}∪B)≠0 exige un rectángulo que toque las huellas
+originales de ambos grupos. Incorporar el coeficiente físico de toda
+pareja de este tipo con |B|≥3 si B es H-conexo, o |B|≥54 en el caso
+general. No hay restricción sobre la evolución de B. Para K=H o G y
+corte b₀, poner S₀=Σ_{b≥b₀} c_b M_K^(b−1) y F₀=Σ_{b≥b₀} b c_b M_K^(b−1).
+El coste por peso de raíz es ≤36J[(35v+d)S₀+35v F₀]. El primer sumando
+ancla en el dato aislado. El segundo ancla en B y recorre sus ≤18b
+checks originales hasta el otro dato. Para H se conservan los términos
+exactos b=3,4 y la serie geométrica a partir de cinco. Para G se usa
+c₅₄ M_G⁵³ como primer término y cociente ≤41/50, con el factor b en F₀.
+Las dos clases juntas cuestan <0.004276 wᵢ. Esta regla concierne bloques
+de dos componentes. Las interacciones irreducibles de tres o más
+componentes que contengan un dato singleton siguen sujetas a la sección 5.
+
+5. Interacciones tardías sin hipótesis sobre el contacto
+=======================================================
+
+Para toda la trayectoria, sea U(A) la unión de I(A) con los checks
+alguna vez encendidos en la ejecución aislada. Con β=1/100,
+c≤(99/2)δ, luego |U(A)|≤(18+18·99/2)|A|=909|A|. La prueba de distancia
+de la sección 3 da 9(101/99)^(d−1)≤18b cuando se alcanza distancia d≥1.
+Con b fuentes basta un radio R(b)=1+⌊log_(101/99)(2b)⌋. Se tiene
+J^{R(b)}≤J(2b)^567 por (101/99)^567≥J.
+
+Si d(A∪B)≠0 para dos componentes, dos checks de U(A) y U(B) deben
+compartir rectángulo. De lo contrario las ejecuciones aisladas se
+intercalan exactamente y todas las marcas se multiplican, por la proyección
+de la sección 2. Fijar una fuente i en A. Desde los ≤909a checks de U(A)
+se buscan, en un paso de L, checks visitados por B. Desde allí se recorre
+la bola de radio R(b) hasta una fuente de B. Para n=a+b y conectividad
+interna en un grafo K igual a H o G, poner X≥exp(1)M_K(w). Sumando a
+sobre todos los cortes posibles y permitiendo a,b≥1 resulta
+
+    Σ_{Q∋i, |Q|=n, m=2} |d(Q)|w^Q
+      ≤ wᵢ · 2·909 J²(35v+d) n²(2n)^567 X^(n−2).                    (4)
+
+Sólo se incluyen aquí componentes conexas en K. La potencia X procede
+de los dos árboles internos. El factor n² cubre a y el número de cortes.
+Las dos colas (K=H, n≥720, X=1/350) y (K=G, n≥32000, X=41/50)
+suman <9.676·10⁻¹⁵ wᵢ. Se comprueba con el primer término de cada cola
+y el cociente superior X(1+1/n_inicial)^569. Este argumento cubre toda
+la traza y todas las parejas del rango, incluido un grupo de una fuente.
+
+Para m≥3 también hay una clase incondicional. Escribir k=m−1, n=|Q| y
+Lₙ=⌈log₂(2n)⌉. Se incorpora todo bloque físico de cualquiera de estas filas
+
+    Conexión interna     Tamaño mínimo       Condición sobre los grupos
+    H                    n≥256               k(51+1135Lₙ) ≤ 8(n−1)
+    G                    n≥1024              5k(43+1135Lₙ) ≤ n−1.     (5)
+
+Por ejemplo, con conexión interna H se cubren incondicionalmente tres
+grupos con 4096 fuentes totales y hasta 28 grupos con 65536 fuentes.
+
+Para probar (5), unir dos grupos si sus huellas originales distan
+≤2R(n)+1. En cada subfamilia desconectada, las bolas de radio R(n) de
+sus componentes están a distancia mayor que uno. Contienen las trazas
+aisladas de las uniones correspondientes, que tienen ≤n fuentes. Así
+la factorización exigida por (1) es automática en todas las subfamilias.
+La fila ponderada de una arista larga entre fuentes se acota por
+
+    M_largo = 18 J³(35v+d)(2n)^1134.
+
+En un árbol de los m grupos escoger por cada arista dos fuentes que la
+realicen y completar cada grupo con un árbol interno de K. Marcar las
+k aristas entre grupos en el árbol resultante de n fuentes. Cortarlas
+recupera la partición y el árbol de grupos. Para n,k fijos la fila
+absoluta dividida por wᵢ es por tanto ≤
+
+    2^k c_n binom(n−1,k) M_K^(n−1−k) M_largo^k
+    ≤ X^(n−1) [C(2n)^1135]^k.
+
+Aquí C=2⁵¹ para H o 2⁴³ para G, por las verificaciones de
+2 exp(1)·18J³(35v+d)/X. En cada fila de (5) domina respectivamente
+(256/350)^(n−1) o (19/20)^(n−1). Se suman hasta n valores de k a
+cada grado. La contribución de las dos colas es <3.40·10⁻¹⁹ wᵢ.
+
+6. Convergencia y condición pendiente
+====================================
+
+Para los bloques con una sola componente de G, la suma por fuente es
+≤1.632 wᵢ. La recursión de árboles en G da este número porque
+exp(1.632 M_G(w))≤1.632. Sea Pᵥ la suma de 1.632 y los coeficientes por
+peso de raíz de los árboles con raíz de tamaño ≥2, la pareja de (3), el
+dato aislado de la sección 4 y las colas de la sección 5. Usar los
+valores sin redondeo. Poner P_d=Pᵥ+exp(0.48) para cubrir también árboles
+con una medida sola como raíz. La masa con presupuesto interior 0.5 por
+fuente de los bloques que contienen i es ≤Pᵢ wᵢ, con Pᵢ según su tipo.
+Multiplicar las tres filas de la vecindad cerrada de G por
+(Pᵥ w_dato, P_d w_medida) da un máximo <0.499965<0.5. Se aplica el
+teorema 1 de Ueltschi al gas de bloques a precios s.
+https://arxiv.org/pdf/math-ph/0304003
+
+Por la estimación enraizada, los monomios con fuentes distintas que pasan
+por i suman en valor absoluto ≤Pᵢ wᵢ. Para acotar los de grado ≥4 se
+puede descontar sᵢ. En efecto, el mayorante positivo utiliza la unidad
+para todos los bloques de una componente. Su cluster de un único singleton
+en i pesa sᵢ y queda fuera de los grados ≥4, aunque la marca real esté
+anulada. Se pueden usar actividades mayores en este mayorante porque la
+cota enraizada se obtuvo para ellas. Para los grados dos y tres se usan
+todos los k físicos de H5A_cumulantes_y_componentes.txt, secciones 4–5.
+Así, tomando k en 2 y 3 y k⋆ desde 4, la fila a precios s está acotada
+por 1.906662·10⁻⁶ por dato y 1.287895·10⁻⁶ por medida. La monotonía de
+las sumas absolutas extiende la prueba al rectángulo inferior.
+
+Para el certificado de la partición física completa en la esquina basta
+la siguiente desigualdad uniforme para cada fuente i
+
+                 Σ_{B∋i, |B|≥4} |k(B)−k⋆(B)| s^B ≤ 0.004998.          (6)
+
+Sumada a las filas anteriores deja el total por debajo de 0.005, con
+inclinación adicional de 0.01 para la cola del logaritmo normalizado.
+Los bloques omitidos incluyen parejas por debajo de los cortes de (4)
+que escapan a las reglas de las secciones 2 y 4, y fusiones de varios
+grupos que escapan a (1) tal como se aplica en la sección 2 y a los
+rangos de (5). El soporte
+B de un cumulante puede ser mayor que el del bloque omitido. Un corte
+en n para dos componentes no trunca el orden de los cumulantes del resto.
+La demostración de (6) sigue abierta.
+
+7. Un cruce de dos grupos y una interacción irreducible de tres
+==============================================================
+
+En una fila, tomar conjuntos disjuntos P,Q de 13 checks, A₀,B₀ de
+cuatro y U₀ de dos. Sean l₁,l₂ los dos últimos checks de B₀ en el orden
+fijo de checks, L₀={l₁,l₂}. Dos datos fuente tienen ventanas
+A=P∪A₀ y V=Q∪A₀. Usar otros tres datos con ventanas W=P∪B₀,
+Z=Q∪B₀ e Y=Q∪(B₀∖L₀)∪U₀. Fijar prioridad W,Y,Z,A,V y después las
+demás columnas. Usar máscara cero y subhost completo.
+
+La semilla se completa con 17 copias disjuntas de estas cinco columnas.
+Para cada coordenada de check con grado parcial t, añadir 18−t columnas
+que lean las 17 copias de esa coordenada. Se obtiene una matriz binaria
+de 612×648, con 18 unos por fila y 17 por columna. Las columnas de relleno
+ven a lo sumo una luz de la copia activa. Por el lema de las ocho filas
+de H5A_cortes_y_huecos.txt, sección 1, sobre una sola fila iluminada sólo
+puede ganar un singleton de esa fila. La comparación de ventanas ejecuta
+el máximo global FGL con este desempate.
+
+Con los dos datos solos se ejecutan W,Z y se llega a cero. W ha encendido
+cuatro checks ausentes al inicio. Si se añaden ambas medidas L₀, se ejecutan
+W,Y y quedan los dos checks U₀, distintos de L₀. En el segundo paso Y lee
+también los checks de B₀∖L₀ que W acaba de encender. Cada una de las
+15 subentradas propias pasa y la entrada completa falla. Los datos
+comparten A₀ y las medidas comparten el rectángulo de W. En G no hay
+arista dato–medida entre ambos grupos. Para cada ventana de solapamiento
+≥8 se comprueban las dos celdas distinguidas del grafo previo. Las dos
+primeras de B₀ quedan fuera de L₀. Por tanto el cumulante anterior es
+cero. El bloque de dos componentes admitido ahora tiene d=−1 y el
+cumulante de las cuatro fuentes pasa a −1, igual al físico.
+
+Usar ahora U₀ como tercer grupo, con sus dos medidas. Ninguna ventana
+contiene un check de L₀ y otro de U₀. Ningún check de U₀ está distinguido
+para A o V en G. Las tres componentes son por tanto X={A,V}, L₀ y U₀.
+En Γ forman el camino L₀ — X — U₀, con encuentros en W e Y. Las cuatro
+medidas solas son estables y la única subfamilia desconectada factoriza.
+Cada grupo por separado tiene marca 1. Las marcas de X∪L₀, X∪U₀ y de la
+unión de los tres son 0. En X∪U₀ ganan Y,W y quedan los checks L₀. Con
+las seis fuentes ganan W,Y y el síndrome final es vacío con cuatro medidas
+originales. La marca de L₀∪U₀ es 1. De ahí que el cumulante de las tres
+componentes sea 0−0−0−1+2=+1. Las reglas también admiten las subentradas
+necesarias donde un grupo de medidas se reduce a una sola. El verificador
+reconstruye las 64 marcas y obtiene k⋆=k=−1 para el cumulante de las seis
+fuentes. El valor +1 corresponde al bloque de tres componentes.
+La uniformidad de la cota procede de las secciones 2–6.
+
+Reproducción
+============
+
+    python -I -B -X utf8 verificar_H5A_cruces_entre_componentes.py
+
+El verificador usa Python 3.10 o posterior y la biblioteca estándar.
+Comprueba las formas de los brazos, los mayorantes con fracciones, las
+colas infinitas por comparación geométrica, las 64 subentradas y los
+cumulantes del ejemplo, así como la regularidad de la semilla construida.

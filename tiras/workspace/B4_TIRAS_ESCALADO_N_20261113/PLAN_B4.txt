@@ -1,0 +1,234 @@
+B4: ESCALADO EN N A ORDEN SILENCIOSO FIJO (TIRAS HGP(CAMINO_m, CAMINO_6))
+13/11/2026 (Lima). Opcion A de DISENO_B3.txt, elegida por el usuario: "Ok
+continua con a como me dices". Aplica METODOLOGIA_FIJACION_PARAMETROS.txt
+(sha 65a68b08...). Plan escrito y sellado (SELLO_PLAN.json) antes de
+escribir el programa de la unidad. Fuera de la calibracion declarada abajo
+no se ha ejecutado nada. La unidad no se ejecuta sin orden del usuario.
+Cambio de alcance: familia nueva (tiras), decidida por el usuario.
+
+PREGUNTA
+En S1 escalar en L sube el orden silencioso minimo (piso(L/2)) y con k = 4
+el certificado se vacia desde L = 10 (DISENO_B3.txt, punto 2). En una tira
+HGP(camino_m, camino_6), con m creciente y el camino corto fijo, el orden
+silencioso queda en 3. Con el mismo catalogo (mismo k), se mantiene el
+error garantizado del certificado por componentes al crecer el numero de
+sitios, mientras el de la truncacion ingenua crece? Y cuanto crece el
+cociente R_k = eps_ing(k)/eps_comp(k)?
+
+AFIRMACIONES MEDIBLES (M1)
+A1. Con k = 4, R_4 crece estrictamente con m en las 12 celdas
+    (m = 6 -> 12 -> 24 -> 48). Negacion: en alguna celda R_4 no crece en
+    algun paso.
+A2. Con k = 4, el error relativo garantizado de las componentes no crece
+    con m: e_comp(4, m) / e_comp(4, 12) < 2 en las 12 celdas para m = 24 y
+    48. Negacion: el cociente es >= 2 en alguna celda.
+A3. Control negativo (M7): en S2, con el host casi completo, R_3 < 2 en
+    las 12 celdas por el mismo camino de calculo. Negacion: R_3 >= 2 en
+    alguna celda (indicaria que la ventaja no viene de la dispersion de K).
+
+DEFINICIONES (las de B1, B2 y D1-CE, sin cambios)
+- Decoder SSF, evento (fallo silencioso: el residuo de datos tiene
+  sindrome nulo y no esta en el espacio de filas de H_Z), ruido
+  fenomenologico de una ronda (p en datos, q en medicion), host K,
+  decoraciones validas, polimeros, gas Xi y certificado:
+  eps_comp(k) = 1 - B_0 Xi_0^(k), L_comp(k) y P_sil en
+  [L_comp, L_comp + eps_comp]; todo de control_exacto.py (sha c0030501...)
+  y de b1_exacto_k4.py (sha 3f0c3796...), sin cambios.
+- Rival ingenuo (M6, obligatorio): eps_ing(k) = Pr[|F| >= k+1] (cola
+  binomial exacta) y L_ing(k) = suma de las historias silenciosas con
+  <= k fallos (naive de control_exacto.py).
+- e = eps / (2 L + eps) para ambos rivales (err de control_exacto.py).
+- Tira TIRA_mx6: producto hipergrafo con primer factor el codigo de
+  repeticion de longitud m (largo) y segundo el de longitud 6 (corto).
+  N = 11m - 5, M = 5m, NS = 16m - 5, un qubit logico. Es un parche de
+  tipo superficie de m x 6; el peso logico relevante para el error que
+  corrige el SSF es el del segundo factor (6).
+
+PIEZAS NUEVAS Y SU PRUEBA
+P1. Construccion rectangular build_rect (calibracion/rect.py): generaliza
+    los indices de build() a dos factores distintos y copia su cola
+    literal (sindromes, candidatos, huellas, host K). Con h1 = h2 da los
+    20 campos de build() identicos en PATH25, S1 L = 6, 7, 8 y S2
+    (calibracion/SALIDA_val_rect.txt).
+P2. Catalogo por la regla de crecimiento de B2 (copiada): validez de lo
+    enumerado por el Lema 1 de B2; un catalogo incompleto da un
+    certificado valido y menos ajustado (Lema 2 de B2).
+P3. Recuento exacto de las historias silenciosas del rival ingenuo sin
+    enumerar los C(NS, f) conjuntos. Sea f_s el menor numero de fallos de
+    una decoracion valida silenciosa. Si k - f_s <= 1:
+      s(na, nb) = (silenciosas conexas con tipo (na, nb))
+        + #{(g, x): g silenciosa valida con f_s fallos, x singlete que
+           pasa con clase trivial, Y(x) disjunto de N_K[Y(g)],
+           tipo(g) + tipo(x) = (na, nb)}.
+    Prueba: por thm:recomp una historia se parte en sus decoraciones
+    validas compatibles y pasa con clase no trivial si y solo si todas
+    pasan y la suma de clases es no trivial. Ninguna componente con
+    < f_s fallos es silenciosa, asi que con <= f_s + 1 fallos solo caben
+    una silenciosa sola o una silenciosa de f_s fallos mas un singlete
+    compatible que pasa con clase trivial. Reproduce B1 en L = 6 y 7 y el
+    exhaustivo en TIRA_8x6 (calibracion). El programa exige k - f_s <= 1
+    y se detiene si no se cumple.
+P4. Orden del barrido de la DP: en las tiras, el orden por coordenadas de
+    producto (a lo largo del factor largo). El orden de la fase A elige
+    por ancho de frontera el voraz, que en las tiras cuesta mas (m = 10,
+    k = 3: 1.48e6 frente a 7.24e5 terminos). Xi no depende del orden; en
+    TIRA_6x6 se calculan ambos y deben dar los mismos valores.
+
+LO QUE YA SE SABE AL FIJARLO (M11; salidas en calibracion/)
+- TIRA_6x6 es S1 L=6 (mismas matrices, sha 6c01e01b...) y TIRA_7x7 es S1
+  L=7. Resultado sellado de B1 con k = 4: R_4 de 5.43 a 8.02 en L=6
+  (zona gris), 13.3 a 21.0 en L=7 y 31.3 a 52.2 en L=8; e_comp(4) de
+  9.7e-9 a 0.048 en L=6 y hasta 0.99 en L=8 (alli la masa silenciosa con
+  <= 4 fallos es pequena).
+- Tiras con n = 6 (m = 6, 8, 10, 14): f_s = 3; silenciosas conexas con 3
+  fallos 56, 78, 100, 144 (11m - 10); decoraciones validas con 4 fallos
+  346926, 572227, 797623, 1248415 (afines en m desde m = 8, pendiente
+  112698). Orientacion: HGP(camino_6, camino_8) tiene f_s = 4, asi que el
+  camino corto va en el segundo factor.
+- La formula P3 da {3,0: 56, 3,1: 713, 4,0: 3256} en TIRA_6x6 y
+  {7, 168, 1007} en TIRA_7x7 (los de B1) y {78, 1451, 6136} en TIRA_8x6,
+  igual que el exhaustivo; en TIRA_8x6 el catalogo por crecimiento es
+  identico al exhaustivo, conjunto a conjunto.
+- Coste de la DP con k = 4 y orden de producto: terminos 2.97e6, 9.80e6,
+  1.87e7, 3.65e7 y estados 5355, 21773, 44187, 89383 con m = 6, 8, 10,
+  14 (lineal desde m = 8: unos 4.46e6 terminos por unidad de m). Con
+  m = 14, 1.55 us por termino con p = 1e-3 y 2.25 us con p = 1e-6; pico
+  de 1.24 GiB. Con n = 7 el coste por unidad de m es unas 6 veces mayor
+  (3.13e7 y 8.59e7 terminos con m = 7 y 9).
+- La calibracion no leyo ni guardo eps ni L de ninguna tira con m > 6:
+  la DP se evaluo solo para medir tiempos (m = 8 y 14; celdas p = q =
+  1e-3 y 1e-6) y sus valores se descartaron sin imprimirlos.
+- Prediccion de teoria, solo para presupuestar y no decide (M5, M11):
+  eps_comp y L_comp crecen como m (decoraciones locales), asi que e_comp
+  deberia quedar casi fijo; eps_ing ~ C(NS, k+1) p^(k+1) crece como
+  m^(k+1), asi que R_k deberia crecer como m^k (unas 16 veces por cada
+  duplicacion con k = 4) y e_ing tender a 1 con p = 1e-3. Es el
+  comportamiento esperado de un desarrollo local frente a una truncacion
+  global (argumento estandar de polimeros; Kotecky y Preiss 1986): la
+  unidad lo mide con aritmetica exacta, no descubre un efecto nuevo.
+
+PARAMETROS Y FUENTE (M2)
+- n = 6 (T): el menor camino corto con f_s = 3 <= k - 1, de modo que el
+  certificado con k = 4 contiene el orden silencioso y el siguiente y P3
+  es exacta; y (R) la tira cuadrada coincide con S1 L=6 sellada.
+- m en {6, 12, 24, 48} (T): duplicaciones, puntos equiespaciados en
+  log m para la ley de potencia predicha; m = 6 es la replica sellada
+  (control positivo). El tope 48 lo fijan los recursos (R).
+- k = 1..4 (R): como B1; k = 4 es el mayor con catalogo y DP calibrados.
+- Malla (L, como B1): p en {1e-3, 1e-4, 1e-5, 1e-6}, q en {p, p/2, 0}:
+  12 celdas, todas informadas (M3).
+- Umbrales (T, M8): relevante R >= 10, nulo R < 2; para A2 el mismo 2
+  como crecimiento nulo; objetivos 10 % con sensibilidad 5 % y 25 % (M4).
+
+INSTANCIAS Y ETAPAS (en este orden)
+- C+ (control positivo, replica; no decide): TIRA_6x6. Matrices = S1_L6
+  de B1. Catalogo por crecimiento con 91, 1220, 20097 y 346926
+  decoraciones por f, 306389 polimeros (19021 con f <= 3); P3 =
+  {56, 713, 3256}. DP con el orden de la fase A: polimeros, estados y
+  terminos por k iguales a los sellados de B1. DP con el orden de
+  producto: eps_comp, L_comp, P_0, eps_ing y L_ing con k = 1..4 en las 12
+  celdas identicos (fracciones exactas) a RESULTADO_B1.json.
+- C- (control negativo, replica): S2_34_6x8 de D1-CE por el mismo camino
+  (build_rect con h1 = h2, catalogo por crecimiento con f <= 3, P3 con
+  k = 3, DP de B1 con el orden de la fase A). Matrices = FASE_A de D1.
+  Catalogo 148, 10682, 526848 y 522225 polimeros; P3 = {3,0: 376};
+  eps_comp, L_comp, eps_ing y L_ing con k = 1..3 en las 12 celdas
+  identicos a RESULTADO_CONTROL.json. Decide A3.
+- V (validacion fuera de muestra): TIRA_12x6 (NS = 187). En la misma
+  corrida, catalogo exhaustivo con f <= 4 (5.04e7 llamadas): las
+  decoraciones validas por f deben ser las mismas, conjunto a conjunto, y
+  el recuento exhaustivo de historias silenciosas por (na, nb) debe ser
+  igual a P3. Si V falla, la unidad informa la discrepancia y se detiene
+  (sin m = 24 ni 48).
+- E (escalado): TIRA_12x6, TIRA_24x6 y TIRA_48x6 (NS = 187, 379, 763):
+  catalogo por crecimiento, f_s, P3, DP con k = 1..4 en las 12 celdas.
+- Compuerta antes de la DP con k = 4 en cada tira de E (formula de B1):
+  memoria prevista por proceso con los estados y polimeros reales,
+  calibracion del tiempo por termino en la celda p = q = 1e-6 (2e7
+  terminos), procesos = min(3, memoria disponible / prevista). Si no cabe
+  ningun proceso o el tiempo previsto supera el 90 % del restante, esa
+  tira queda NO_EVALUADA con k = 4 (limite de recursos) y se informa asi.
+
+COMPLETITUD EN m = 24 Y 48 (informativa; no decide)
+Sin exhaustivo, se comprueba por recuento con una hipotesis declarada:
+las decoraciones validas con <= 4 fallos tienen extension acotada, asi
+que su numero es afin en m para m >= 8 (medido en m = 8, 10, 14; no
+demostrado). Con el exhaustivo de m = 8 (calibracion) y de m = 12 (V), la
+recta queda fijada; si el recuento del crecimiento en m = 24 y 48 cae
+exactamente en ella para f = 1..4, el catalogo es completo por el Lema 3
+de B2 bajo esa hipotesis. Si no cae, se informa; el certificado sigue
+valido (Lema 2 de B2), y eps_ing, que no depende del catalogo, tambien.
+
+METRICAS (continuas, M4)
+- Por tira, k y celda: eps_comp, L_comp, P_0, eps_ing, L_ing, e_comp,
+  e_ing y R_k, exactos (fraccion y decimal).
+- Pendientes locales log2(R_4(2m) / R_4(m)) (prediccion ~4; informativas).
+- k* para el 10 % (5 % y 25 %) de cada rival; para el ingenuo, con la
+  cota informativa de k = 5 de B1.
+- Coste: llamadas del catalogo por crecimiento, terminos y estados de la
+  DP, segundos y memoria; muestreo por subconjuntos (M6, formula de B1):
+  muestras para el 10 % al 95 % en el estrato w* (solo q = p; no da
+  certificado ni acota la cola) frente a las llamadas del catalogo.
+
+DECISIONES (fijadas antes)
+D-t1 (A1 y M8): por tira de E, categoria de R_4 en las 12 celdas
+     (RELEVANTE si >= 10 en todas; NULA si alguna < 2; ZONA_GRIS si no) y
+     CRECE_CON_N si R_4 crece estrictamente en cada paso 6 -> 12 -> 24 ->
+     48 en las 12 celdas; si no, NO_CRECE con el numero de celdas. Una
+     tira NO_EVALUADA se informa asi y el paso que la usa no se decide.
+D-t2 (A2): ESTABLE si e_comp(4, m) / e_comp(4, 12) < 2 en las 12 celdas
+     para m = 24 y 48; si no, CRECE con el numero de celdas. Se informan
+     tambien los cocientes de e_ing.
+D-t3 (secundaria, M4): por tira, celdas con ventaja a igual coste
+     (e_comp(4) <= 10 % < e_ing(4)), con sensibilidad al 5 % y al 25 %.
+D-t4 (A3, M7): PASA si R_3 < 2 en las 12 celdas de S2. Si no, se detiene
+     la lectura y se revisa antes de informar.
+
+CONTROLES QUE DETIENEN
+- SHA-256 de PLAN_B4.txt, control_exacto.py, b1_exacto_k4.py,
+  RESULTADO_B1.json, RESULTADO_CONTROL.json y FASE_A.json de D1, y de
+  calibracion/SALIDA_calib.txt (exhaustivo de m = 8).
+- build_rect con h1 = h2 igual a build() en S1 L=6 y S2 (20 campos).
+- Matrices de TIRA_6x6 y S2 iguales a las selladas; N, M, NS de cada
+  tira iguales a 11m - 5, 5m, 16m - 5; un qubit logico en cada tira.
+- Catalogo: f = 1 con los NS sitios; cada candidato distinto se
+  decodifica una vez; silenciosa <=> algun caracter logico vale -1 (I4).
+- P3 aplicable: ninguna decoracion valida silenciosa con < k - 1 fallos.
+- Desigualdades de B1 en cada tira, k y celda: 0 <= eps_comp <= eps_ing
+  (I2), L_ing <= L_comp (I5), e_comp <= e_ing (I6); L no decrece y eps no
+  crece con k (I3).
+- C+, C- y V como arriba.
+
+TECHOS (R)
+5 h de reloj en total; a lo sumo 8e7 llamadas al decoder; 18 GiB de
+memoria en total para la unidad (la maquina tiene 31.8 GiB), 9 GiB en el
+proceso principal; 14 procesos para el catalogo (0.5 GiB cada uno) y a lo
+sumo 3 para la DP. Prevision (no medida): unas 1.5 a 2.5 h, casi todo en
+la DP de TIRA_48x6 (del orden de 1.9e8 terminos y 6 GiB por proceso).
+
+LIMITES QUE PESAN IGUAL (M10)
+- Una sola seccion (n = 6, f_s = 3). Con n = 7 la DP cuesta unas 6 veces
+  mas por unidad de m; queda fuera (R). No se sabe si la conclusion vale
+  para otras secciones.
+- Familia de camino (tipo superficie), banco de pruebas; no es la familia
+  para la que el SSF esta pensado (expanders). k <= 4.
+- P3 solo vale con k - f_s <= 1. La completitud del catalogo en m = 24 y
+  48 depende de la hipotesis afin, medida y no demostrada.
+- El crecimiento de R_k con N es el esperado para un metodo local frente
+  a la truncacion global; la unidad no compara con otros metodos que
+  tambien explotan la localidad ni con los antecedentes del analisis del
+  SSF. El objetivo diferencial sigue PENDIENTE.
+- Sin contraste del revisor.
+
+FUERA DE ALCANCE
+No se cambian decoder, evento ni ruido; el orden de la DP solo cambia el
+coste (Xi no depende de el; se comprueba en TIRA_6x6). No se toca el
+manuscrito ni el paquete del revisor; no se inicia HGP5 ni nada de H5;
+no se reabre H5-A; no se descarga nada.
+
+ARCHIVOS
+Ahora: PLAN_B4.txt, SELLO_PLAN.json, calibracion/ (rect.py,
+val_rect.py, calib.py, dp_orders.py, correr_calibracion.sh y sus
+salidas SALIDA_val_rect.txt, SALIDA_calib.txt, SALIDA_ordenes.txt). Si se
+ordena la ejecucion: b4_tiras.py, RESULTADO_B4.json, RECURSOS_B4.json,
+SALIDA_B4.txt, INFORME_B4.txt.

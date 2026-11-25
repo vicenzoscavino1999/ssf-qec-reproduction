@@ -1,0 +1,107 @@
+{
+ "corrida": {
+  "aceptada": true,
+  "cierre_confirmado": true,
+  "codigo": 0,
+  "disco_tras_la_salida_bytes": 13995809,
+  "entorno": {
+   "bits": "64bit",
+   "interfaz": "Job Object (kernel32) y NtResumeProcess (ntdll); acreditada solo en este entorno",
+   "python": "3.12.10",
+   "sistema": "Windows-11-10.0.26200-SP0",
+   "windows": [
+    10,
+    0,
+    26200
+   ]
+  },
+  "errores_api": [],
+  "fase": "corrida",
+  "motivo": null,
+  "nota": "Job Object propio; null = no medido (una medida que falla nunca es 0)",
+  "pico_disco_bytes": 13995809,
+  "pico_memoria_comprometida": {
+   "proceso": 293904384,
+   "trabajo": 4116897792
+  },
+  "pico_memoria_proceso_bytes": 300617728,
+  "pico_memoria_total_bytes": 4225060864,
+  "pid": 41452,
+  "pids": [
+   12740,
+   14092,
+   17324,
+   18328,
+   23316,
+   25576,
+   36408,
+   37196,
+   37516,
+   39608,
+   39856,
+   40548,
+   41060,
+   41452,
+   41596
+  ],
+  "plazo_aceptacion_s_desde_inicio": 26939.894,
+  "plazo_duro_s_desde_inicio": 26999.894,
+  "problemas_de_cierre": [],
+  "procesos_activos_al_final": 0,
+  "procesos_totales": 15,
+  "salida_observada_s_desde_inicio": 8958.784,
+  "segundos": 8958.799,
+  "terminacion_forzada": false
+ },
+ "estado": "ACEPTADA",
+ "segundos": 8971.556,
+ "t0": 1794775895.1876495,
+ "techos": {
+  "disco_bytes": 2000000000,
+  "global_s": 28800.0,
+  "memoria_proceso": 1073741824,
+  "memoria_total": 8589934592,
+  "verificar_s": 1800.0
+ },
+ "unidad": "T2-2 supervision",
+ "verificar": {
+  "aceptada": true,
+  "cierre_confirmado": true,
+  "codigo": 0,
+  "disco_tras_la_salida_bytes": 14002196,
+  "entorno": {
+   "bits": "64bit",
+   "interfaz": "Job Object (kernel32) y NtResumeProcess (ntdll); acreditada solo en este entorno",
+   "python": "3.12.10",
+   "sistema": "Windows-11-10.0.26200-SP0",
+   "windows": [
+    10,
+    0,
+    26200
+   ]
+  },
+  "errores_api": [],
+  "fase": "verificar",
+  "motivo": null,
+  "nota": "Job Object propio; null = no medido (una medida que falla nunca es 0)",
+  "pico_disco_bytes": 14002196,
+  "pico_memoria_comprometida": {
+   "proceso": 80367616,
+   "trabajo": 80367616
+  },
+  "pico_memoria_proceso_bytes": 79892480,
+  "pico_memoria_total_bytes": 79892480,
+  "pid": 14488,
+  "pids": [
+   14488
+  ],
+  "plazo_aceptacion_s_desde_inicio": 19781.095,
+  "plazo_duro_s_desde_inicio": 19841.095,
+  "problemas_de_cierre": [],
+  "procesos_activos_al_final": 0,
+  "procesos_totales": 1,
+  "salida_observada_s_desde_inicio": 12.637,
+  "segundos": 12.651,
+  "terminacion_forzada": false
+ }
+}

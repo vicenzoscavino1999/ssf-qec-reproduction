@@ -1,0 +1,6 @@
+Checked 300 files
+Checked 600 files
+Checked 900 files
+Checked 1200 files
+INTEGRITY PASS: 1499 files, 6850158280 bytes, 1412 catalogue shards
+{"status": "PASS", "checks": 1279, "circuit_rows": 128, "separating_cells": 9, "low_rate_cells_passing": 16, "new_decoder_calls": 0, "new_DP_calls": 0, "new_Monte_Carlo_histories": 0, "scope": "Stored endpoints and scalar identities; does not reconstruct the catalogue or DP."}

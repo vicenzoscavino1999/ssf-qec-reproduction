@@ -1,0 +1,1 @@
+PASS contraste controles=11 fallidos=0 t=0.71s

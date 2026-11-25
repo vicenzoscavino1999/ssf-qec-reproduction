@@ -1,0 +1,334 @@
+H5-A · Datos y mediciones en la familia binaria de grados (3,4)
+18 de noviembre de 2026
+
+Para el producto de una semilla (3,4) consigo misma se deriva el rectángulo
+
+                        0 ≤ p ≤ 10⁻¹²,     0 ≤ q ≤ 10⁻³.                (1)
+
+En el borde q=10⁻³ el extremo anterior de p era 4·10⁻¹⁵. La mejora es de un
+factor 250. El hito p=10⁻⁶ a ese mismo q queda a seis órdenes de magnitud.
+El resultado es uniforme en el tamaño, la máscara y el subhost
+inducido. Se usa SSF con todos los candidatos FGL, β=1/100, máximo global de
+descenso dividido por el tamaño de la huella y desempate fijo independiente
+del síndrome. El ruido es Bernoulli independiente en una ronda. El objeto
+estimado es la partición con filtro de síndrome físico residual cero y
+precisión relativa elegible. La transferencia al fallo silencioso positivo
+requiere el testigo lógico y las condiciones adicionales del manuscrito.
+
+En la esquina mayor p=q=10⁻³, §4 suma todos los bloques con un solo dato y
+cualquier número de medidas. Junto con las clases previas, quedan filas
+<0.003604 y <0.003275 por dato y por medida. La suma aún abierta comprende
+los bloques de al menos tres fuentes con al menos dos datos. Se dan también
+las cifras en el hito intermedio p=10⁻⁶, q=10⁻³. La aritmética de ambos
+resultados es reproducible. La derivación combinatoria está pendiente de
+revisión independiente.
+
+1. Las medidas que puede alcanzar una ejecución
+===============================================
+
+Una decoración física conexa contiene errores de datos E (e₁ en VV y e₂
+en CC), errores de medida D y el soporte de datos W de todas sus fuentes
+y acciones. La huella ψ_w de un dato es la columna correspondiente de H_X.
+La huella φ_F de una acción es la diferencia simétrica de las ψ de sus
+miembros. En una ejecución filtrada el síndrome observado termina en D.
+Denotar por Γ(W) el conjunto de mediciones vecinas de W en el host K.
+
+Quitar simultáneamente las medidas fuera de todas las ψ de E y de todas
+las φ de las acciones elegidas. Se llaman pasivas. Permanecían encendidas
+y su retirada conserva la puntuación de todos los ganadores. Los rivales
+sólo pueden perder luces, incluso en la parada. Queda la misma secuencia.
+Las componentes del soporte restante en K son las ejecuciones canónicas
+aisladas de sus propias fuentes por el teorema de recomposición. El filtro
+se cumple por componente porque las huellas de datos de componentes
+distintas son disjuntas. Llamar núcleo a cada componente. Una medida que
+queda en un núcleo es activa y tiene un lector en su soporte W. Un núcleo
+tiene al menos un dato original, pues una ejecución filtrada sin datos
+empieza y termina en D y tiene cero pasos. Estos argumentos adaptan §2 de
+H5A_cadenas_y_medidas.txt. En lo que sigue, W,E,D_a son los del núcleo y
+d_a es su número de medidas activas.
+
+El host K es la unión de las cliques de los lectores de cada rectángulo de
+generador, incluyendo en él las propias celdas de medición. Si un dato lee
+un check c, la vecindad cerrada del dato contiene la vecindad cerrada de c. Una
+vecindad cerrada de dato contiene a lo sumo 1297 datos y 252 mediciones. La
+de un check contiene a lo sumo 469 datos y 90 mediciones. Una fuente VV
+tiene a lo sumo 210 vecinos de medición. Estas cifras se obtienen en §2
+de H5A_grados_3_4_cotas_y_obstruccion.txt.
+
+Para un paso en el rectángulo 4×3 sea A el conjunto de celdas de todas
+las franjas seleccionadas, incluidas las intersecciones que se cancelan en
+φ. Sea H=φ∩s el conjunto de celdas encendidas de la huella. Para B de
+celdas no vacío definir
+
+        g(B)=12+18 filas(B)+24 columnas(B)+36|B|,      g(∅)=0,
+        ρ=g(A)−g(H).
+
+En el árbol local de Tanner cada fila tiene cuatro posiciones centrales
+comunes y seis privadas, y cada columna tiene tres comunes y seis privadas.
+Los vecinos de medición de una celda son el producto de esos dos conjuntos.
+Contar los productos que tocan las celdas de B da g(B). En una semilla con
+ciclos algunas posiciones se identifican. La imagen de la diferencia de dos
+conjuntos anidados todavía cubre la diferencia de las imágenes. Por tanto
+ρ es cota superior para los vecinos de A que faltan tras cubrir H.
+
+Cubrir al inicio los vecinos de medición de los datos originales y de las
+medidas activas. Toda luz de H proviene de una de esas fuentes o de una
+huella conmutada previamente. Sus vecinos ya están cubiertos cuando se trata
+el paso. Al cubrir A se añaden a lo sumo ρ. Al final queda cubierto Γ(W).
+
+En cada uno de los 4096 síndromes locales se retienen todos los ganadores
+elegibles entre las 101 acciones FGL. Para v=|φ|, h=|H| y δ=2h−v, el
+máximo de ρ/δ es 150. El presupuesto de primer apagado de §1 de la nota
+anterior da Σρ≤318e₁+(1968/5)e₂. En detalle, asignar cada check inicial
+en H_XE fuera de D_a a un dato que lo lee. Con k luces asignadas aún sin
+apagar por primera vez, el singleton de un dato de anchura n compite y
+el ganador satisface nh≥kv. Para un coste b y K_b=max b/δ, cada rango k
+contribuye a lo sumo max[(K_b(v−h)+b)/h] sobre esas firmas. En el paso se
+cargan a lo sumo h primeros apagados y el descenso total es ≤ el número de
+luces asignadas. Para b=ρ las filas exactas de rangos son (150,144,24)
+y (150,150,348/5,24). Sumando las coberturas iniciales resulta
+
+              |Γ(W)| ≤ 528e₁+(3228/5)e₂+90d_a.                          (2)
+
+Para b=1 y b=|F| el mismo cálculo da el número de pasos T y el soporte
+
+              T ≤ (7/3)e₁+3e₂,     |W| ≤ (17/3)e₁+(103/15)e₂.           (3)
+
+2. Recuento del núcleo desde un dato físico
+==========================================
+
+Los átomos auxiliares son las fuentes VV y CC y los generadores usados.
+Fijar un contenedor por acción deduplicada. Guardar cada medida activa en
+un lector de E según un orden fijo o, a falta de tal lector, en el generador
+de la primera acción que la conmutó. Hay 3, 4 y 12 posiciones posibles para
+estas etiquetas según el tipo de átomo. En el primer uso de cada generador
+el ganador lee algún check de s fuera de D_a, ya que D_a es estable y el
+ganador supera allí su puntuación. Elegir uno por orden. Su causa es un dato
+si el check ha seguido encendido desde el inicio, o el generador del último
+paso que lo encendió. Así se obtiene un bosque que apunta a fuentes de datos.
+
+El soporte de un átomo generador para el recuento son sus siete qubits.
+Entre átomos con soportes que se cruzan o que son vecinos en K, añadir
+aristas en orden fijo hasta completar un árbol que extiende el bosque.
+Hay suficientes aristas porque los átomos cubren W y cada medida activa
+puede sustituirse por uno de sus lectores en un camino de K. Para un ancla
+física en W elegir un átomo que la cubre. Enraizar allí. Conservar el
+subárbol mínimo que contiene la raíz, todos los datos originales y todos
+los generadores que guardan medidas. Cada generador conservado aún tiene
+su camino causal hasta su fuente, por unicidad del camino en el árbol.
+Eliminar del registro los generadores interiores sin etiqueta que tienen
+dos aristas causales, una hacia su causa y otra hacia su hijo. Se conservan
+la raíz y los extremos de todo puente. El registro visible recupera E y
+D_a, que determinan el núcleo y su soporte real por el decoder original.
+
+En cada tramo comprimido basta guardar el extremo y el sentido. Para l
+generadores interiores, las coordenadas de dos generadores extremos están
+a distancia Tanner ≤2l+2 en cada eje. Un extremo VV tiene distancia ≤2l+1
+en el primer eje respecto de un generador, y un CC tiene ese acortamiento
+en el segundo. Se deduce de que los rectángulos causales consecutivos tienen
+un check común, o del contacto con la huella de la fuente al final del tramo.
+Dar precio y=11/1000 por generador. A una posición de extremo darle y^lmin,
+donde lmin es el menor l que admiten las distancias. Este peso domina y^l
+para todo tramo real. El código se lee por posiciones de hijos con orden
+fijo, manteniendo el tipo de cada arista. El borrado del interior conserva
+la inyección desde decoraciones con ancla fija, pues retiene todas las
+fuentes y medidas del núcleo.
+
+Las cotas de las dos bolas pares de radio 2l+2 son X_V=1+9(6^(l+1)−1)/5
+y X_C=1+8(6^(l+1)−1)/5. Las cotas impares de radio 2l+1 desde variable
+y check son O_V=3(6^(l+1)−1)/5 y O_C=4(6^(l+1)−1)/5. Contar caminos sin
+retroceso da estas fórmulas. Para las direcciones VV→g, CC→g, g→VV, g→CC
+y g→g los productos de bolas son, respectivamente,
+
+                 O_V X_V, X_C O_C, O_C X_V, X_C O_V, X_C X_V−1.
+
+En el último se descuenta el propio generador, que es un único átomo. Si
+S_l es cualquiera de esos productos, la masa de posibles extremos queda
+acotada por (1−y)Σ_{l≥0} y^l S_l. Cada posición admisible cuenta su peso
+y^lmin exactamente una vez en la suma por capas. Las cinco series geométricas
+son menores que sus respectivas cotas enteras
+
+                         j₁=55, j₂=65, k₁=73, k₂=49, j_g=155.           (4)
+
+El bloque de vecinos por puentes es la matriz M de la nota anterior sin la
+fila ni la columna de medidas. Sus filas son (640,441,1344), (784,513,1596)
+y (1792,1197,3648). Sean S=(u₁,u₂,u_g), W_i=(MS)_i, L_i=j_i v,
+H=k₁u₁+k₂u₂+j_g c y G=(1+s)^12 exp(W_g+L_g). En estas fórmulas s es el
+precio de una medida activa. Para fuentes y generadores son suficientes
+
+     u_i ≥ x_i(1+s)^n exp(W_i+L_i)       (i=1,2 y n=3,4),
+     v   ≥ y(G−1−L_g),       c ≥ y H(G−1),        u_g ≥ y H G.          (5)
+
+Una rama de generador alcanzada desde su causa tiene cota v. Si carece de
+medidas, se ha podado la hoja y se ha comprimido el caso de un único hijo
+causal sin puente. De ahí las dos sustracciones. Una rama alcanzada desde
+un hijo cronológico necesita una causa H y, si carece de etiquetas, algún
+otro hijo o puente para seguir visible, lo que da c. En la raíz o al entrar
+por puente basta la rama hacia la causa y cualquier conjunto de hijos, lo
+que da u_g. Las posiciones opcionales de hijos se acotan expandiendo su
+producto y usando la exponencial. Las sustracciones quitan clases concretas
+con coeficientes positivos antes de la mayoración. En particular G−1−L_g
+es creciente en L_g. Inducción en la altura prueba (5) para todo tamaño.
+
+3. Restitución de las medidas y certificado
+==========================================
+
+Los átomos del árbol exterior son núcleos y medidas pasivas individuales.
+Los núcleos son componentes diferentes después de la retirada. La unión
+original conexa se recupera por contactos núcleo–pasiva y pasiva–pasiva.
+Escoger un árbol de esos contactos en orden fijo. Sean U y P cotas para
+una decoración enraizada en un sitio de datos visitado o en un sitio de
+medición pasivo, respectivamente. Poner B=1297U y B_D=469U+90P. Para el
+criterio KP usar el presupuesto de la decoración
+
+           b_γ=Σ_{núcleos} [ B|W|+P|Γ(W)| ] + B_D d_pasivas.           (6)
+
+La vecindad cerrada de toda medida activa está contenida en la de su lector
+en W. En un contacto entre dos decoraciones se puede reemplazar cualquier
+extremo activo por ese lector, conservando contacto o coincidencia. Por
+tanto, con las cotas ancladas U,P, (6) mayorará la suma incompatible.
+
+Una pasiva recibe su peso Bernoulli en razones z_q=q/(1−q), su inclinación
+por fuente τ=1/100, su presupuesto B_D y sus hijos de masa ≤B_D.
+Un núcleo puede tener hijos pasivos en Γ(W). Una vez conocidas sus fuentes,
+su soporte real determina esas posiciones. El factor por los hijos es
+≤exp(P|Γ(W)|). Sumándolo al presupuesto (6), el coste exterior del núcleo
+es ≤exp(B|W|+2P|Γ(W)|). La contención de los soportes en J y las marcas
+de módulo ≤1 sólo suprimen términos de estos mayorantes.
+
+Tomar α=(7/3,3), σ=(17/3,103/15) y h=(528,3228/5). Con z_p=p/(1−p),
+(2) y (3) dan las condiciones suficientes de conversión y cierre
+
+      P ≥ z_q exp(τ+2B_D),       s ≥ z_q exp(τ+180P),
+      x_i y^α_i ≥ z_p exp(τ+σ_i B+2P h_i),
+      U ≥ max(u₁+3u_g,u₂+4u_g).                                        (7)
+
+En efecto, el número de generadores usados es ≤T y y≤1. Cada núcleo se
+cuenta desde su fuente en el ancla o desde uno de los ≤3 o ≤4 generadores
+que la contienen. Las elecciones del árbol enraizado conservan las fuentes
+de toda la decoración. Se aplica inducción en la altura del árbol exterior
+usando los mayorantes interiores de (5).
+
+Datos racionales exactos para (5) y (7) en la esquina de (1)
+
+        U=.00004,         P=.00135,       s=.00130,      y=.011,
+        x₁=2.31e−7,       x₂=6.85e−6,
+        u₁=2.476e−7,      u₂=7.423e−6,    u_g=7.255e−6,
+        v=.0007319,       c=1.1023e−6.
+
+Los diez cocientes de las comparaciones son <0.995, elevando al cubo la de
+x₁ para eliminar y^(7/3). Por monotonía cubren todo (1). La desigualdad
+KP con presupuesto (6) vale para las actividades inclinadas por exp(τF),
+donde F=e₁+e₂+d para la decoración completa. Cada soporte no vacío tiene
+algún dato visitado o alguna medida pasiva. Como U,P<1, al sumar por esas
+raíces se obtiene la cota N para la suma total enraizada. Por |Y|≤7F y el
+teorema 1 de Ueltschi,
+
+                      |log Ξ(J,u)−L_m(J,u)| ≤ N exp[−(m+1)/700].       (8)
+
+Aquí N es el número total de sitios y m cuenta soporte total con
+multiplicidades. El apéndice A del manuscrito construye la aproximación
+determinista a precisión elegible a partir de (8). Con grados fijos su
+coste es polinómico en N, la inversa de la precisión y la longitud de
+entrada, además de la preparación estipulada. El coste práctico a una
+precisión y tamaño seleccionados queda por medir.
+
+4. Un solo dato y cualquier número de mediciones
+================================================
+
+Para fuentes E={x} y D, poner n=|ψ_x| y t=|ψ_x∩D|. El filtro exige que D
+sea estable. El descenso total disponible antes de acabar en D es n−2t.
+El primer ganador tiene puntuación al menos (n−2t)/n si este número es
+positivo, pues compite con el singleton x. Cada huella tiene área ≥3. Las
+únicas de área 3 y 4 son los singletons VV y CC respectivamente.
+
+Para VV, la estabilidad de D da t≤1. Con t=0 el ganador debe ser perfecto
+y cabe en un saldo de 3. Con t=1 debe conseguir puntuación ≥1/3 con saldo
+1. En ambos casos debe ser VV y agota el saldo. Para CC se tiene t≤2.
+Con t=0 se exige perfección y caben áreas 3 o 4. Una huella VV sólo puede
+contener una luz de D y corta ψ_x en a lo sumo un check, así que carece de
+las tres luces que necesitaría. Con t=1 hay puntuación ≥1/2 y saldo 2,
+que sólo puede agotar un singleton CC. Con t=2 el saldo es cero y el
+síndrome inicial difiere de D, lo que impide pasar. En toda ejecución
+aceptada se da exactamente un paso con huella idéntica a ψ_x. Si hay
+gemelos gana el primero del orden fijo en dicha clase.
+
+Esta propiedad también explica una restricción interna. En el grafo de
+qubits de W que comparten checks, todo componente debe contener un dato
+original. Un paso mixto de filas y columnas tiene sus miembros conectados
+por solapamientos. Un paso de varias franjas paralelas tiene huellas
+disjuntas y su puntuación es el promedio ponderado de las individuales.
+Al ser máximo global, cada franja alcanza la misma puntuación y puede
+contabilizarse por separado. En un componente sin dato, el primer paso
+propio vería D en todos sus checks y la estabilidad lo impediría. Los
+checks de componentes distintos son disjuntos, de modo que la corrección
+en cada componente debe reproducir la paridad de sus datos originales.
+La prueba del rectángulo usa el primer apagado y la cobertura (2).
+
+Sea T(E,D) la marca aceptada y contenida en J o cero, y η_x=T({x},∅).
+Con B(D) el indicador de estabilidad se obtiene exactamente
+
+                         T({x},D)=η_x B(D) A_x(D∩Γ({x})).               (9)
+
+A_x comprueba que, entre los candidatos cuyas huellas tocan ψ_x, el
+primero que maximiza la puntuación es el singleton equivalente y pasa
+el umbral. Un candidato disjunto ve D y es inelegible en el fondo estable.
+Todas las comparaciones relevantes leen sólo las celdas de Γ({x}). Cuando
+el singleton gana deja D y el soporte de datos es el mismo que a D vacío.
+Esto incorpora el signo y el caso η_x=0 por salida del subhost.
+
+Para el gas de cumulantes de fuentes poner b_i=z_i/(1+T({i})z_i). En la
+fila de fuente i se suman |k(S)| exp(.015|S|)∏_{j∈S}|b_j|, S∋i y |S|≥2.
+El presupuesto es .005 por fuente, con inclinación .01. Para fuentes con a
+lo sumo un dato, los momentos de todos los subconjuntos factorizan sobre
+el grafo de checks K[C_X] ampliado por un vértice x con sus vecinos Γ({x}).
+En efecto, B(D) factoriza por componentes de checks y (9) sólo cambia el
+factor del componente de x. Así aplica |k(S)|≤2^(|S|−1) ST(G[S]), donde
+ST cuenta árboles generadores, como se demuestra en §5 de la nota anterior.
+
+Sean m=q exp(.015), b=[p/(1−2p)]exp(.015) y M=.00128. Como el grado
+check–check es ≤89, M≥m exp(178M) acota la suma positiva de árboles de
+medidas enraizados con la carga de la raíz. Se usa el factor 2 por arista.
+Para árboles con exactamente un dato en la raíz se dispone de
+T=b exp(504M), por los ≤252 vecinos de medida. Para una raíz de medición
+con un dato en algún lugar del árbol, distinguir la rama única que lleva
+al dato. Puede ir directamente a él (≤469 posiciones) o a una medida
+(≤89), y las restantes ramas son puras. La cota D₁ satisface por inducción
+en la altura D₁≤2·469 M T+178M D₁ en la iteración, por lo que basta
+938M T/(1−178M). La exponencial procede de hijos sin orden, permitiendo
+repetir posiciones sólo en estos mayorantes.
+
+Los bloques con dos datos y cero medidas añaden ≤2·1296 b² por dato. Para
+dos fuentes de datos sin contacto en K, sus ejecuciones aisladas con D vacío
+son singletons equivalentes y tienen soportes compatibles aun con gemelos.
+El cumulante del par es cero por recomposición. En todo par |k|≤2.
+Eligiendo cada clase una sola vez, las dos filas parciales resultan
+
+        dato       b[exp(504M)−1]+2·1296 b²,
+        medición   m[exp(178M)−1]+938M T/(1−178M).
+
+             p        q          raíz dato          raíz medición
+           10⁻⁶     10⁻³         <9.23·10⁻⁷          <0.000263
+           10⁻³     10⁻³         <0.003604           <0.003275.
+
+En las dos esquinas, el resto consiste en |S|≥3 con al menos dos datos.
+Para (7) de la nota anterior basta que este resto por raíz sea ≤0.004737
+en la primera esquina o ≤0.001396 en la segunda. Se admiten también los
+márgenes por tipo. Por (8), en el rectángulo (1) ya queda controlada la
+partición completa.
+
+Reproducción
+============
+
+           python -I -B -X utf8 verificar_H5A_3_4_medidas_y_un_dato.py
+
+El programa comprueba g por unión explícita de bolas, enumera todos los
+empates locales, calcula los perfiles, suma geométricamente las capas y
+verifica (5), (7) y las dos filas por fracciones y cotas superiores de Taylor.
+Las máscaras locales representan todos los estados de cualquier generador.
+La descripción del decoder, la recomposición y el compilador son los de
+BORRADOR_INTRODUCCION_Y_RESULTADOS_EN_v2.tex. La forma enraizada de KP
+está en D. Ueltschi, Cluster expansions and correlation functions, teorema 1,
+https://arxiv.org/pdf/math-ph/0304003. La cota combinatoria sobre el grafo
+contraído usada para los cumulantes también aparece en Féray, Méliot y
+Nikeghbali, Mod-φ convergence I, corolario 9.14, https://arxiv.org/pdf/1304.2934.

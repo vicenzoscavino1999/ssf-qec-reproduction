@@ -1,0 +1,338 @@
+HGP binario (3,4) · Balance de una pieza y primer contacto entre grupos
+23 de noviembre de 2026 · Nota de investigación para revisión independiente
+
+Resultado
+=========
+Fijar las posiciones de los originales de un grupo A y, en circuito, sus
+etiquetas. Explorar la ejecución aislada de A sobre los bits auxiliares del
+proyecto. La exploración admite bifurcaciones, reuniones y repeticiones de
+generadores. Se acota conjuntamente la posición de originales CC exteriores
+que pueden llegar desde sus propias franjas mediante brazos de cualquier
+longitud. La primera estimación usa brazos entrantes lineales, con un
+predecesor por paso. La segunda admite una sucesión arbitraria de
+bifurcaciones y reuniones en el lado entrante. En cada bifurcación al
+menos un brazo tiene dos pasos intermedios hasta la reunión. En ambos
+casos la ocurrencia de contacto puede ser una reunión en un lector que
+toca el soporte explorado.
+
+  Grupo fijo   E de checks  E de orígenes CC hasta el contacto    Pendiente con varias marcas CC
+                             Lineal       Con reuniones          Lineal       Con reuniones
+  1 VV + 3 CC    < 2 940    < 967 131     < 1 552 774          < 1 035 140    < 1 740 378
+  2 VV + 2 CC    < 2 734    < 899 476     < 1 443 965          <   962 706    < 1 618 386
+
+Una marca fija un dato de entrada en cada grupo exterior. Cada pendiente
+acota por exp(pendiente · h) la serie de conjuntos marcados admisibles de
+los §§4–5, para 0 ≤ h ≤ 10⁻⁶. El campo h pondera marcas CC y difiere de p.
+La comparación admite semillas con ciclos de cuatro, tamaño arbitrario y
+los subhosts del proyecto. Se mantienen la familia FGL completa, β=.01,
+la competición por descenso sobre tamaño de huella y la prioridad física
+fija. El resultado es para posiciones con A fijado y la ley auxiliar, antes
+de condicionar en el éxito del filtro.
+
+1. Balance de luces y exploración
+================================
+Para un paso v, H_v son las celdas que apaga y b_v las que enciende en su
+huella F_v. Su descenso es δ_v=|H_v|−|b_v|≥1. Una luz heredada se asigna
+al último paso que la encendió. Dentro de cualquier pieza de n pasos
+lejanos, m cuenta primeros apagados de bits iniciales intactos, I cuenta
+las luces heredadas desde fuera y O las producidas dentro que no consume
+la propia pieza. Se cuentan instancias de encendido, incluso al revisitar
+una celda. Cada consumo interno cancela una producción interna. Así
+
+                 m + I − O = Σ δ_v ≥ n.
+
+Los bits de m son distintos. Una pieza con entradas de otra rama puede
+tener I>0 aunque esa rama también sea lejana. La longitud geométrica de
+un enlace de v22, por sí sola, no fija m ni el número de pasos pagados.
+
+Sea U₀ la unión de las franjas originales, S la unión de U₀ y las huellas
+ya conmutadas, Q=N_L[S] la vecindad cerrada en el grafo de checks que
+comparten lector. Se lee Q al inicio y tras cada paso. Como en v6, se
+comparan las acciones cuya huella toca la discrepancia física X. Basta
+leer esos lectores, pues X está contenido en S. La regla usa las mismas
+prioridades físicas. Se para si X=0 o si no hay ganador elegible. Para
+una asignación auxiliar cualquiera, parar también antes de aplicar una
+pareja (H,F) ausente del catálogo físico, o antes de un paso que enciende
+alguna celda si una franja original está enteramente encendida. Un
+singleton completamente encendido tiene puntuación uno. Ambas guardas
+preservan cada historia aceptada aislada y sus cilindros de v6/v7, pues
+U₀ y todas las huellas de la historia están en S. H5A_3_4_medidas_por_historia.txt
+§1, H5A_3_4_medidas_aisladas.txt §1 y FASE5_CIRCUITO_3_4_PROPAGACION.txt §3
+justifican la comparación restringida por estabilidad del síndrome terminal.
+En las demás asignaciones basta la corrida así definida. Termina en el
+host finito porque cada paso aceptado disminuye el peso observado.
+
+Escribir v,c para el número de originales VV,CC. Sea U el conjunto de
+celdas de U₀ cuya luz inicial intacta es consumida por un paso que emite
+(b no vacío). Justo antes del primer paso que emite, todo U sigue
+encendido. Ninguna franja original entera puede estar en U. Como las
+franjas de los dos tipos tienen anchuras 3 y 4, |U|≤u=2v+3c, también si
+se solapan. Si no hay emisiones, U es vacío. Sea M el número de luces
+iniciales intactas consumidas fuera de U₀ en toda la exploración.
+Sumando sólo los pasos que emiten, sus entradas heredadas provienen de
+emisiones anteriores y cada instancia se consume una sola vez. Resulta
+
+                  Σ_{v que emite} δ_v ≤ u + M.                      (1)
+
+Para un subconjunto F no vacío de un lector 4×3, con r filas y c'
+columnas ocupadas, la cobertura en el producto de árboles es
+
+       K(F)=a₁a₂+b₁a₂ r+a₁b₂ c'+b₁b₂ |F|.
+
+En cada eje las bolas centradas en los vecinos de la raíz tienen una
+parte común y una parte privada por vecino. Al proyectar a la semilla,
+un centro físico nuevo de F respecto de H tiene una preimagen en el
+conjunto nuevo del recubrimiento. Para cubrir Q se usan los pares (4,6)
+y (3,6). Para contar posiciones CC y cuya zona B_y=N_L[ψ_y] toca Q
+se usan (57,72) y (21,36). En efecto ψ_y debe tocar N_L²[S], lo que
+da radios 5 y 4 hasta el centro CC desde una celda. Denotar por P₀ el
+número de esas posiciones. Los máximos de (K(F)−K(H))/δ se calculan
+sobre las 771 parejas ganadoras, incluidos los empates.
+
+   Cobertura  Franja VV  Franja CC  Una celda  Máximo por δ
+   Q               210        252         90            114
+   P₀           16 641     19 665      7 353          8 748
+
+Se puede iniciar el recuento geométrico con U₀ y las M celdas de primer
+apagado exterior, aunque el algoritmo sólo las descubre al avanzar.
+Entonces todo H está ya cubierto al añadir F. Un paso que no emite no
+añade cobertura en este recuento. Por (1), si Y es el número de unos
+descubiertos al consultar Q fuera de U₀, M≤Y y
+
+  |Q| ≤ C+204Y,       C=210v+252c+114u,
+  P₀  ≤ D+16 101Y,    D=16 641v+19 665c+8 748u.                     (2)
+
+2. La ley de los bits que aún no se han leído
+============================================
+Se pueden fijar todos los bits de U₀ de antemano. Los bits de check
+exteriores son independientes con probabilidades ≤z=.0012. Esta cota
+incluye θ=.00115 en las hojas auxiliares y, fuera de las franjas
+circuitales y fijadas las etiquetas, la tasa física del bit propio
+r_m+5(2r_c/3)+7·4r_c/(15−8r_c) hasta r_c=10⁻⁶, r_m=.001.
+Esta última comparación sólo comprueba la tasa utilizada en este lema.
+
+Sea T el número de consultas distintas fuera de U₀. El próximo sitio
+se elige con lo ya leído. Dado el registro de consultas y respuestas,
+los bits no leídos conservan su ley producto. Esto también se obtiene
+multiplicando las probabilidades a lo largo de cada rama del árbol de
+decisión. Así E[Y]≤z E[T]≤z E[|Q|], de donde
+
+           E[Y]≤z C/(1−204z),       E[|Q|]≤C/(1−204z).
+
+Schramm y Steif describen esta propiedad de la información revelada para
+bits uniformes en §2.2 de Quantitative noise sensitivity and exceptional
+times for percolation. Aquí el condicionamiento por hojas da directamente
+la versión de probabilidades distintas por sitio.
+https://annals.math.princeton.edu/wp-content/uploads/annals-v171-n2-p01-p.pdf
+
+Para t≥0, dividir exp(tY) por a(t)^T, con a(t)=1+z(exp(t)−1),
+da esperanza ≤1 por condicionamiento sucesivo. Hay como máximo tantos
+ensayos como checks en el host. Al sustituir T≤C+204Y se obtiene
+
+           E exp[(t−204 log a(t))Y] ≤ a(t)^C.                       (3)
+
+3. Un brazo de longitud arbitraria que llega desde el otro grupo
+===============================================================
+Marcar un original CC y. Una ocurrencia de partida situada en un lector
+que toca ψ_y puede emitir un estado b₀ de una o dos celdas. No se cobra
+su historia interna. Cada paso lejano subsiguiente recibe entradas de la
+salida inmediatamente precedente y de bits iniciales intactos exteriores
+a las franjas de datos. Es posible intercalar otras ocurrencias. Para un
+registro con estados dados, las celdas de H fuera del estado precedente
+requieren unos iniciales, todos distintos en un registro realizable.
+Los estados se representan por lector y máscara. Son una celda, dos en
+una columna o dos en diagonal. Un mismo check está en 12 lectores y en
+(1,3,6) máscaras de esos tipos por lector.
+
+Para un lector y estado terminal fijados, R_ji mayora la masa de un
+paso inverso desde ese estado de tipo j hasta estados padre de tipo i.
+Para cada ganador con salida fijada, escribir d=|H|, τ_i=(1,3,6)_i,
+p_i el número de pares del tipo i contenidos en H (cero para singleton).
+Se suma la cantidad siguiente y se divide por 3 para huella de fila,
+por 4 para columna, por 1 en los demás casos,
+
+             12 [τ_i d z^(d−1)+p_i(1−2z)z^(d−2)].
+
+Se incluyen las incidencias por una celda y se corrige un par contado
+dos veces. Cada par comparte hasta 12 lectores. La multiplicidad de una
+franja ganadora se puede dividir porque, con máximo global, es ganadora
+en cada lector que la representa. Las cargas dependen de las celdas, con
+independencia de esa representación. Es la cuenta inversa de v19 con
+evaluación por cada máscara, sin pasar por un máximo de filas hacia
+delante. El verificador comprueba 1+R g ≤ g con
+
+                   g=(1.1141,1.00040,1.0934).
+
+Por iteración, g−1 domina todo camino inverso no vacío, sin límite de
+longitud. También verifica 1+(8/5)R g'≤g' con el g' de v19. Un lector
+de partida toca franjas de hasta 3·9=27 originales CC. Para cualquier
+conjunto de checks T₀ determinado por las consultas de A, la suma,
+sobre y, de probabilidades condicionales de brazos no vacíos cuya salida
+alcanza T₀ y cuyos bits cobrados están fuera de Q está acotada por
+
+        12·27 [ (g₁−1)+3(g₂−1)+6(g₃−1) ] |T₀| < 219 |T₀|.          (4)
+
+El peso producto sólo se asigna a registros realizables con bits frescos
+distintos. La recursión positiva amplía después la suma a registros
+formales. La restricción «fuera de Q» se usa antes de ampliar la suma.
+
+Para el primer contacto permitir (i) que B_y toque Q, (ii) que una
+huella de un brazo entrante alcance Q, o (iii) que, tras dicho brazo,
+el lector de una ocurrencia de reunión toque S y reciba una luz del
+brazo. Se permite la conexión directa desde b₀. En (ii) tomar la primera
+huella F que toca Q. Todos los pasos anteriores tenían sus bits cobrados
+fuera de Q. Si F tampoco cobra un bit inicial en Q, o bien una de sus
+salidas toca Q, o bien el estado precedente ya lo toca como entrada de F.
+Si F cobra un bit inicial j de Q, el estado precedente toca N_L[j].
+Para j en S esta vecindad está en Q. Para j fuera de S, ese bit inicial
+es un uno leído, ya que S contiene U₀ y, por hipótesis, el paso es lejano
+a las demás franjas originales. En (iii) el estado que entra en el
+lector ya toca Q. Si algún paso anterior tocó Q primero, se aplica (ii)
+en ese instante. Se puede omitir la propia reunión aunque tenga más de
+dos entradas. Esto cubre la reunión en el contacto. Una reunión exterior
+anterior en la trayectoria entrante queda fuera de estas hipótesis.
+
+Por tanto basta aplicar (4) a T₀=Q ∪ ⋃ N_L[j], tomando sólo los unos
+leídos j de Q fuera de S. Así |T₀|≤|Q|+89Y. Para una cadena de longitud
+cero las posiciones de y cuya zona B_y toca T₀ son a lo sumo P₀+7 353Y.
+La constante 7 353 cuenta las zonas B_y que tocan N_L[j] para un check
+fijo y coincide con la cobertura de una celda en la segunda fila del §1.
+
+4. Varios orígenes
+==================
+Para k originales CC marcados de grupos distintos se cuenta el evento de
+que existen testimonios simultáneos de los tipos del §3, con registros
+cobrados disjuntos en ocurrencias y en bits iniciales. En una misma
+corrida, dos cadenas de predecesor único que parten de ocurrencias
+cercanas de grupos distintos no pueden compartir una ocurrencia lejana
+antes de su encuentro. De compartirla, retroceder por el predecesor único
+llevaría al mismo paso cercano. Un lector cercano sólo toca un grupo.
+Se puede cortar el testimonio en el primer contacto. Los cálculos
+condicionales también valen con esta disjunción impuesta explícitamente.
+
+Para cada conjunto de marcas, el registro conjunto requiere todos sus
+bits exteriores. Sus probabilidades se mayoran por los pesos producto
+por disjunción. Se amplía la suma de pesos a todas las elecciones y se
+divide por k! al olvidar el orden de las marcas distintas. Las marcas
+geométricas con camino vacío no consumen bits. Así el coeficiente de h^k
+de la serie condicional está acotado por G(Y)^k/k!, donde, por (2) y (4),
+
+     G(Y) = D+219C+87 621Y,
+     87 621 = 16 101+7 353+219(204+89).
+
+Se contabiliza una vez cada posición de origen marcada. La serie trata
+existencia simultánea y compatible. Multiplicar probabilidades de
+historias condicionadas por separado no justificaría esta cuenta.
+Para una marca se usa E G(Y). Para cualquier número se usa (3). Si
+0≤h≤10⁻⁶ tomar t=124 000h. Entonces t≤.124 y log a(t)≤zt/(1−t).
+Como 124 000[1−204z/(1−.124)]>87 621, resulta
+
+  E exp[h G(Y)] ≤ exp{ h [D+219C+C z·124 000/(1−.124)] }.          (5)
+
+(5) da las pendientes de las columnas lineales.
+
+5. Bifurcaciones y reuniones anteriores al contacto
+==================================================
+En el recorrido entrante se permiten ahora bloques consecutivos, con
+pasos lineales entre ellos. En cada bloque una misma ocurrencia emite
+dos luces. Una sigue cada uno de dos brazos lineales disjuntos en
+ocurrencias, que se reúnen en un paso con aportes de ambos. El primer
+paso de cada brazo que tiene interior hereda sólo su celda del padre.
+Un brazo directo no tiene paso interior. La reunión puede ser el padre
+de otro bloque. La ascendencia hasta la bifurcación se elige una sola
+vez y las entradas que no proceden de los padres indicados son bits
+iniciales intactos. Se conserva al menos un brazo con dos pasos
+interiores en cada bloque. El número de bloques y las longitudes de
+todos los brazos son arbitrarios.
+
+Sea U la matriz positiva de pasos lineales hacia delante de v19, omitiendo
+la salida vacía, y R la matriz inversa del §3. Para X=U,R el programa
+resuelve B_X=I+X B_X con fracciones y verifica B_X≥0. Por iteración B_X
+domina los recorridos de cualquier longitud, incluido el vacío. En
+w=e₁ᵀ U² B_U, la primera coordenada w₁ domina el peso de todo brazo
+secundario de al menos dos pasos iniciado en una celda y terminado en
+una celda. w₂+w₃ domina los que emiten una pareja. Son respectivamente
+<.000099872 y <.000022719. La última posición del brazo queda libre
+en esta cota.
+
+Para la reunión, calcular R^{(a)} con a=1,2 celdas adicionales que
+puede suministrar ese brazo. En la fórmula del §3 sustituir z^(d−1)
+por f₁=z^max(0,d−1−a), y (1−2z)z^(d−2) por
+max(0,f₂−2f₁), con f₂=z^max(0,d−2−a). Esto domina el precio real
+tanto si el padre principal suministra una celda como si suministra
+dos. Antes de esta relajación los bits cobrados por las dos ramas y
+por la reunión son distintos en toda realización de este tipo.
+
+Sea P=diag(0,1,1). Al recorrer hacia atrás, se cobra primero la reunión,
+luego el brazo principal hasta el punto de bifurcación. P exige que ese
+punto tenga dos salidas. Una vez fijado allí el estado físico se elige
+una de sus dos celdas para el brazo secundario y se lo suma hacia
+delante. Se permite olvidar su coincidencia geométrica final al aplicar
+w. Se continúa hacia atrás desde la bifurcación una única vez. Así la
+matriz positiva de un paso lineal o de un bloque completo queda acotada por
+
+       K = R + 2 [w₁R^{(1)}+(w₂+w₃)R^{(2)}] B_R P.                 (6)
+
+El factor 2 elige la celda de salida del brazo secundario. Cuando ambos
+brazos tienen dos pasos o más basta escoger uno de ellos y la suma ya
+incluye dicha elección. La ocurrencia de bifurcación sólo se paga al
+continuar hacia su padre, o queda como la emisión cercana exenta en
+el origen. Así se cuentan exactamente una vez las medidas del tronco
+compartido al asignar el peso a un testimonio realizable.
+
+Con g=(1.16470,1.01336,1.17105) se verifica 1+Kg≤g. Por (4), la
+constante de posiciones por check es <399 para estos recorridos. Si el
+primer contacto cae dentro de un bloque basta cortar en el brazo que
+tocó Q primero. El prefijo comprende bloques anteriores y un tramo
+lineal. Si cae en la reunión, se cobra el bloque completo cuando la
+salida toca Q y todos sus bits cobrados son exteriores. Al tocar Q una
+entrada heredada, se sigue el brazo que la suministró. Al cobrar en la
+reunión una luz inicial en Q, cualquiera de los dos padres toca la
+vecindad de esa luz. Esto reproduce las alternativas del §3. Para varias
+marcas se conservan los testimonios simultáneos con conjuntos de bits
+cobrados disjuntos entre grupos, como en §4.
+
+Sustituir 219 por 399 da G(Y)=D+399C+140 361Y. Aplicar (3) con
+t=204 000h, para 0≤h≤10⁻⁶. Se verifica
+204 000[1−204z/(1−.204)]>140 361. Las pendientes quedan acotadas por
+D+399C+Cz·204 000/(1−.204). Son las columnas con reuniones de la tabla.
+
+6. Qué continúa abierto en G3
+=============================
+En (.567,.685) las pendientes geométricas del diagnóstico de v22 eran
+2 799 115 y 2 679 614. El §5 cuenta contactos de la clase indicada.
+Para la fila completa falta controlar el complemento y componerlo con
+los pesos de medidas y de los grupos que siguen evolucionando tras
+una fusión. También hace falta justificar, al descomponer cada historia
+global, qué prefijo reproduce la exploración aislada de A hasta el
+contacto. La proyección a núcleos completos de la nota de contacto
+no da por sí sola esa propiedad para cada grupo de lectores de un
+núcleo. La sustitución numérica directa en v22 sigue pendiente.
+
+Se probó también (6) admitiendo un brazo secundario de un solo paso,
+con w=e₁ᵀ U B_U. La entrada diagonal de K para dos celdas en diagonal
+supera 1.58. Esa serie mayorante diverge. En un bloque genuino los
+casos nuevos tienen longitudes interiores (0,1) o (1,1), salvo permutar
+los brazos. Dos brazos vacíos proceden de una sola ocurrencia y el paso
+ya está en la fila lineal. Para los dos casos cortos hay que hacer
+intervenir la posición común de bifurcación y reunión, que (6) relajaba.
+La fila completa permite además aportes de distintos orígenes y
+reuniones que se cruzan o anidan sin formar bloques consecutivos.
+
+Una fila física de tres celdas con dos luces y una salida ilustra el
+riesgo de regalar un padre. Si dos padres diferentes pudieran aportar
+ambas luces, omitir el coste del segundo ya pone 2·12/3=8 en la
+transición relajada de singleton a singleton. Tanto 8 como 1.58 son
+diagnósticos de los mayorantes concretos, sin implicar divergencia física.
+
+Estado general. En Bernoulli el extremo previo sigue siendo p≤5.22·10⁻⁷
+a q≤.001. En circuito sigue siendo r_c≤9.75·10⁻⁸ con VV primero y
+r_c≤8.90·10⁻⁸ para cualquier orden admitido, a r_m≤.001. El complemento
+fenomenológico de G3 aún carece de una cota ≤.00078558. La reproducibilidad
+numérica de (2)–(6) y la revisión independiente de su uso en la prueba
+completa son cuestiones distintas.
+
+Reproducción desde 05_COMPROBACIONES, sólo con la biblioteca estándar
+
+    python -I -B -X utf8 verificar_H5A_3_4_balance_por_pieza.py
+

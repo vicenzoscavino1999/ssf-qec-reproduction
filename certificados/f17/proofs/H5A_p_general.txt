@@ -1,0 +1,225 @@
+H5-A · Mejora uniforme del extremo de ruido de datos
+17 de noviembre de 2026
+
+Resultado
+=========
+En el contrato fenomenológico del apéndice mixto del manuscrito se obtiene
+el rectángulo conjunto 0 ≤ p ≤ 10⁻⁶⁵, 0 ≤ q ≤ 2·10⁻¹¹. Esto multiplica por
+20 000 000 000 el extremo p de 5·10⁻⁷⁶ manteniendo el extremo q anterior.
+La prueba es uniforme en el tamaño. Reutiliza el compilador de particiones
+del manuscrito y cambia la cota sobre las trayectorias y su codificación.
+
+Hipótesis. Semilla binaria (17,18)-regular, familia FGL completa, β=1/100,
+máximo global y orden fijo independiente del síndrome, una ronda de ruido
+Bernoulli independiente en datos y medidas. Se conservan los rivales, las
+máscaras, los subhosts inducidos y el filtro físico H_X R = 0. La prueba
+no requiere expansión, ausencia de ciclos de cuatro ni rango completo.
+Para transferir el acceso al fallo lógico se aplican además las hipótesis
+del teorema principal del manuscrito, incluido el testigo cuando procede.
+
+1. Restricciones globales que satisface cada trayectoria filtrada
+================================================================
+Escribimos E y D para las fuentes de datos y de medida, e=|E|, d=|D|.
+Para cada acción i, sea a_i el tamaño de su huella, δ_i el descenso
+del peso del síndrome observado, c_i=(a_i−δ_i)/2 el número de checks
+que pasan de apagado a encendido, y g_i=δ_i/a_i su puntuación.
+Cada δ_i es entero positivo. El filtro físico da s_final=D y por tanto
+Σ_i δ_i=|H_X E ⊕ D|−|D| ≤ 18e.
+
+Para cada nivel t del verificador, con β < t ≤ 1, se cumple
+
+  Σ_{g_i<t} δ_i − Σ_{g_i≥t} c_i ≤ b(t)e,   b(t)=⌈9(1+t)⌉−1.       (1)
+
+Prueba. Si hay alguna acción de puntuación <t, detener la observación
+justo antes de la primera. El estado en ese instante es s. Por máximo
+global, cada candidato singleton original tiene entonces puntuación <t.
+Para v∈E su huella ψ_v tiene tamaño 17 o 18, y |s∩ψ_v| < |ψ_v|(1+t)/2,
+de modo que |s∩U| ≤ b(t)e para U=unión de las ψ_v originales.
+Fuera de U el síndrome inicial coincide con D. El aumento del número de
+checks encendidos fuera de U hasta el instante observado está acotado por
+la suma de c_i en el prefijo, aun si un mismo check se enciende varias veces.
+El descenso de todo el sufijo es |s|−|D| ≤ b(t)e + Σ_prefijo c_i.
+Todas las acciones de puntuación <t pertenecen al sufijo y todas las del
+prefijo tienen puntuación ≥t. La positividad da (1), incluso si más tarde
+vuelven a subir las puntuaciones. Si no hay acción de puntuación <t, el
+lado izquierdo es no positivo. El caso de empate queda incluido en ≥t.
+
+Certificados de combinación lineal. Una acción en un generador elige x
+datos VV e y datos CC, donde 0≤x≤18, 0≤y≤17. Sea m=x+y y
+a=17x+18y−2xy. FGL exige m>0, 2a≥17m. Para toda puntuación realizada,
+δ tiene la paridad de a, δ≤a y 100δ≥a. Se combinan con coeficientes
+positivos el presupuesto de descenso y las desigualdades (1). Los
+coeficientes racionales completos están en PESOS_PASOS y PESOS_SITIOS
+del verificador. Para cada (x,y,δ) legal se comprueba que el coeficiente
+combinado de una acción es al menos 1 en la primera combinación, y al
+menos m en la segunda. Para una huella repetida basta comprobar el mayor
+m posible. El lado derecho se calcula como 18λ₀+Σ_t λ_t b(t). Resultan
+
+  T ≤ (3446943/272272)e < (38/3)e                    si e>0,
+  Σ_i |F_i| ≤ (349988081/2625480)e.
+
+En particular |Y∩V| ≤ e+Σ_i|F_i| ≤ 135e. Si e=0 el descenso total es
+cero y el soporte consta de las medidas D. Son desigualdades sobre todos
+los tamaños: la comprobación finita sólo enumera formas de UNA acción
+universales por los grados fijos, sin enumerar semillas ni trayectorias.
+La antigua cadena artificial de 14 padres por fuente, repetida f veces,
+no puede ser una decoración filtrada: 14f > (38/3)f.
+
+2. Bosque causal con tipos distintos para acciones individuales y múltiples
+========================================================================
+Considerar una decoración físicamente filtrada y de soporte conexo en el
+host original K. Usar seis tipos de átomos. Los tres primeros son una
+fuente VV, una CC y una de medida. Los otros tres son un dato VV en el que
+se ejecutó un singleton, un dato CC en el que se ejecutó un singleton,
+y un generador en el que se ejecutó una acción múltiple. Conservar un
+átomo por sitio y tipo, o por generador de acción múltiple. Una fuente y
+una acción en el mismo dato son átomos distintos. Usar la tabla fija del
+manuscrito para atribuir una acción múltiple a un generador contenedor.
+El número h de átomos de acción es a lo sumo T, incluidas las repeticiones.
+
+Al primer uso de un átomo de acción fijar los primeros k_i checks encendidos
+de la huella real en un orden fijo, con k=(9,10,17) para los tres tipos.
+Un singleton VV tiene 17 checks y uno CC tiene 18. Para una acción múltiple
+a≥33: con 2 o 3 datos se comprueba directamente por la fórmula de a,
+y con m≥4 lo da 2a≥17m. El descenso positivo basta para los tres k_i.
+Elegir uno de esos checks. Si nunca cambió de estado, asignarle la primera
+fuente inicial que lo lee, existente porque estaba encendido. Si cambió,
+asignarle el átomo de la última acción anterior que lo encendió. Las
+aristas así construidas van a una fuente o a una primera aparición más
+antigua. Cada acción tiene una salida y cada fuente ninguna, de modo que
+se obtiene un bosque con una fuente por componente.
+
+Para el átomo de acción individual usar solamente el dato como soporte,
+y para el múltiple el soporte completo del generador. Todos los átomos
+intersectan el soporte real Y y entre todos lo cubren. Las aristas causales
+conectan soportes adyacentes o superpuestos en K: el check seleccionado
+es leído por una fuente o por un dato que lo conmutó y por un dato de la
+acción actual. La conectividad de K[Y] permite completar el bosque a un
+árbol con exactamente e+d−1 aristas amplias, entre soportes adyacentes o
+superpuestos, por la misma elección determinista de puentes que en el
+manuscrito. Las dos clases de aristas se distinguen en el código.
+
+Fijado un sitio v∈Y, elegir por orden fijo una raíz que lo cubra. En datos
+hay una posible fuente, un posible singleton y a lo sumo 17 (VV) o 18 (CC)
+generadores. En un check sólo se precisa su fuente de medida. Etiquetar una
+arista causal por el sitio vecino y el check común. El código enraizado
+recupera todas las fuentes de datos y de medida y, por determinismo, la
+ejecución original con todo su soporte. Borrar los puentes recupera
+la orientación hacia la fuente única de cada componente y, por la etiqueta,
+el check elegido en cada acción. Así hay exactamente Π_i k_i imágenes por
+decoración, con un factor 1/k_i por elección de cada átomo de acción.
+Las cancelaciones y las marcas se conservan al recuperar la ejecución.
+
+3. Mayorante de los árboles
+==========================
+Numerar los seis tipos en el orden anterior. Para un átomo de tipo i,
+H_ij=f_i l_j acota los pares (check común, vecino de tipo j), con
+
+  f=(17,18,1,17,18,306),     l=(18,17,1,18,17,306).
+
+Los seis tipos de aristas amplias usan la matriz M obtenida de pq-M del
+manuscrito, tomando sus filas y columnas en el orden (VV,CC,medida,VV,CC,
+generador). La duplicación corresponde a tipos diferentes aunque estén
+en la misma posición física. El verificador reconstruye M desde los grados.
+
+Dar actividad x a fuentes de datos, x_D a medidas e y a átomos de acción.
+Enraizar el árbol en el sitio elegido, reteniendo además la orientación
+cronológica de las aristas causales. P_i mayora las ramas de acción cuya
+causa ya está en el vecino por el que se entró; el factor 1/k_i se cobra en
+ese vecino. S_i mayora las ramas que deben encontrar su fuente en su propio
+subárbol. Denotar por I los tres tipos de acción y escribir
+
+  G_i = exp(Σ_{j∈I} H_ij P_j/k_j + Σ_j M_ij S_j).
+
+Son suficientes las siguientes supersoluciones positivas:
+
+  S_i ≥ x_i G_i                                para fuentes,
+  P_i ≥ y G_i                                  para acciones,
+  S_i ≥ P_i (Σ_j H_ij S_j)/k_i                para acciones.
+
+Justificación por inducción en la altura. Un hijo causal cuya causa es el
+nodo actual es de acción y aporta P_j/k_j. Un hijo por un puente aporta
+S_j, porque el puente no satisface su obligación causal. En un nodo de
+acción que aún necesita su causa se elige UNA ranura distinguida hacia
+ella. Ese vecino de tipo j aporta S_j, y el factor de la elección es 1/k_i.
+Si es también acción, su propia causa sigue pendiente; si es fuente, la
+cadena acaba. Los demás hijos usan las ranuras ordinarias. Permitir que
+la ranura distinguida siga disponible en el producto ordinario sólo aumenta
+el mayorante. Los productos de ranuras (1+u)^m se acotan por exp(mu).
+Estas reglas incluyen todos los árboles reales de cada altura; las
+supersoluciones los acotan desde altura cero. El límite por coeficientes
+positivos conserva las cotas. No intervienen muestreo ni independencia
+estadística entre hijos de una trayectoria real.
+
+El peso de un código real es x^e x_D^d y^h / Π_i k_i. Al sumar sus imágenes
+se recupera la misma actividad una sola vez. Con τ=1/100 y z_r=r/(1−r),
+
+  z_p exp(1+τ) ≤ x y^(38/3),     z_q exp(1+τ) ≤ x_D
+
+implican (z_p exp(1+τ))^e (z_q exp(1+τ))^d ≤ x^e x_D^d y^h pues
+h≤(38/3)e e y<1. Para cada sitio esto domina la suma física anclada.
+
+4. Esquina, transferencia y límite
+==================================
+Valores fijados:
+
+  x=2.02·10⁻¹¹,   x_D=5.55·10⁻¹¹,  y=5.6·10⁻⁵.
+  S=(2.13·10⁻¹¹, 2.14·10⁻¹¹, 5.6·10⁻¹¹,
+     3.7·10⁻¹³, 3.6·10⁻¹³, 7.4·10⁻¹²).
+  P=(5.9·10⁻⁵, 5.92·10⁻⁵, 1.325·10⁻⁴).
+
+Las listas de raíces dan R_V=max(S₁+S₄+17S₆,S₂+S₅+18S₆)
+y R_C=S₃ (índices desde 1). Con |Y∩V|≤135e y |Y∩C_X|=d, el conteo
+de vecindades del apéndice da K_E e+K_D d para la suma incompatible
+inclinada, incluyendo autoincompatibilidad. Los valores racionales son
+
+  R_V=1937/12500000000000,    R_C=7/125000000000,
+  K_E=2478095987679/2500000000000 < 1,
+  K_D=5417007533/12500000000000 < 1.
+
+El verificador usa el polinomio de Taylor con resto superior geométrico
+del manuscrito para cada fila y exp(101/100)<11/4. La comparación para p
+se eleva al cubo, de forma que sólo intervienen potencias enteras. En la
+esquina p=10⁻⁶⁵, q=2·10⁻¹¹ pasan simultáneamente ambas conversiones.
+La monotonía de los mayorantes positivos cubre el rectángulo inferior.
+
+Con σ=135 y τ=1/100, el compilador da una cola de log-partición a corte M
+≤ (n R_V+|C_X| R_C) exp[−(M+1)/13500]. Los mismos límites se mantienen
+al restringir los soportes a subhosts o tomar valores absolutos de marcas.
+Se hereda acceso determinista ajustable con el coste de bits del compilador.
+En el teorema de estimación del fallo se sigue pagando el testigo y el factor
+1+z_p^(−w), además de la preparación del orden; la ampliación tampoco es
+una medición del tiempo del estimador.
+
+Límite de esta parametrización. Incluso suprimiendo todos los otros
+términos, la supersolución para la acción múltiple obliga a
+P₆ ≥ y exp(93636 P₆/17), luego y ≤ 17/(euler·93636) < 7·10⁻⁵, donde
+euler=exp(1). La fila KP de datos impone x ≤ R_V < 1/(135·46870021).
+Combinando con z_p exp(1+τ) ≤ x y^(38/3) se obtiene p < 4·10⁻⁶³ para
+todo reajuste de estas mismas desigualdades, con σ=135 y este precio por
+acción. Es un techo de este mayorante exponencial concreto. Una mejora
+sustancial requerirá, por ejemplo, controlar conjuntamente varias causas
+reales de las acciones múltiples, evitando pagar todas las continuaciones
+ficticias de una sola causa. Aquí no se ha probado esa mejora adicional.
+
+Reproducción y alcance de la revisión
+=====================================
+Ejecutar el archivo contiguo con «python verificar_p_general.py».
+El verificador sólo usa la biblioteca estándar de Python. El solucionador
+numérico se usó para encontrar multiplicadores y supersoluciones. Sus
+salidas no son premisas de la prueba: toda comparación se repite con
+enteros/fracciones en el verificador.
+
+Como contraste aritmético adicional se leyó M del paquete original
+CERTIFICADO_PQ_REPRODUCIBLE_20261104.zip y se recalcularon las seis filas
+con otro superior racional de exp(t), (1−t/1024)^(−1024). Todas pasaron;
+la menor holgura relativa ordinaria fue mayor que 0.00063. Se contrastaron
+las tres ramas con causa distinguida y las dos conversiones físicas en la
+misma esquina. Son controles aritméticos; el argumento combinatorio
+se encuentra en las secciones 1–3.
+
+Dependencias del manuscrito BORRADOR_INTRODUCCION_Y_RESULTADOS_EN_v2.tex:
+ecuaciones FGLfamily, pq-M y pq-two-KP-rows; codificación y conectividad en
+app:mixed-pq; compilador prop:kp-filtered-compiler y transferencia
+thm:silent-conditioned. Esta derivación está separada del manuscrito y queda
+pendiente de revisión matemática independiente.

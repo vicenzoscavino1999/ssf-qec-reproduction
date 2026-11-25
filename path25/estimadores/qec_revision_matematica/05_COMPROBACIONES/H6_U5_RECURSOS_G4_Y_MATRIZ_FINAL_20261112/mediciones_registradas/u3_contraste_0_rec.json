@@ -1,0 +1,9 @@
+{
+ "nota": "tiempos de reloj en segundos y memoria; no deterministas; no son resultado",
+ "tiempos": {
+  "referencia_preparacion": 0.0791,
+  "referencia_enumeracion": 1.464,
+  "total": 1.553
+ },
+ "pico_memoria_bytes": 24547328
+}

@@ -1,0 +1,1 @@
+PASS estimador kmax=5 completados=5 controles=26 t=10.21s sha=654367777c23c83c

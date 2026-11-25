@@ -1,0 +1,186 @@
+{
+ "fase": "A",
+ "instancias": {
+  "PATH25": {
+   "aristas_host_K": 388,
+   "candidatos": 103,
+   "checks_X": 12,
+   "columnas_semilla": 4,
+   "cotas_genericas_ruta_B": {
+    "Delta_barra": 36,
+    "envolvente_entropica_q0_log10_max_z": -22.042,
+    "envolvente_puntual_log10_max_a": -23.388,
+    "kappa_G": "1/9",
+    "nota": "limites con delta_alg -> 0+ (region abierta). La envolvente filtrada mixta usa kappa_F de la familia FGL exacta y no aplica a este decoder; la del presupuesto de fuentes requiere un perfil causal propio y no se evalua."
+   },
+   "d_X": 2,
+   "dimension_logica": 1,
+   "distancia_clasica_H": 4,
+   "distancia_clasica_HT": null,
+   "distancia_cuantica_tillich_zemor": 4,
+   "entradas_listas_inversas": 210,
+   "frontera_elegida": 19,
+   "frontera_orden_producto": 21,
+   "frontera_orden_voraz": 19,
+   "grado_max_K": 36,
+   "grado_medio_K": 20.973,
+   "historias_log2": 37,
+   "matrices_sha256": "d504511603d0f2285a110717c01205cb24be0f57200f9cd81387e7c46815de14",
+   "n": 25,
+   "orden_elegido": "voraz",
+   "segundos": 0.0,
+   "seleccion": {
+    "L": 4,
+    "estructura": "validacion"
+   },
+   "semilla_filas": [
+    3,
+    6,
+    12
+   ],
+   "sitios_N": 37,
+   "todo_singleton_de_datos_es_candidato": true,
+   "w_Z": 4
+  },
+  "S1_L6": {
+   "aristas_host_K": 1220,
+   "candidatos": 291,
+   "checks_X": 30,
+   "columnas_semilla": 6,
+   "cotas_genericas_ruta_B": {
+    "Delta_barra": 42,
+    "envolvente_entropica_q0_log10_max_z": -22.637,
+    "envolvente_puntual_log10_max_a": -23.983,
+    "kappa_G": "1/9",
+    "nota": "limites con delta_alg -> 0+ (region abierta). La envolvente filtrada mixta usa kappa_F de la familia FGL exacta y no aplica a este decoder; la del presupuesto de fuentes requiere un perfil causal propio y no se evalua."
+   },
+   "d_X": 2,
+   "dimension_logica": 1,
+   "distancia_clasica_H": 6,
+   "distancia_clasica_HT": null,
+   "distancia_cuantica_tillich_zemor": 6,
+   "entradas_listas_inversas": 630,
+   "frontera_elegida": 27,
+   "frontera_orden_producto": 33,
+   "frontera_orden_voraz": 27,
+   "grado_max_K": 42,
+   "grado_medio_K": 26.813,
+   "historias_log2": 91,
+   "matrices_sha256": "6c01e01b1555f0e0403d764c777f7935b68895c5ca8e1d2e47c5df7f2edb4076",
+   "n": 61,
+   "orden_elegido": "voraz",
+   "segundos": 0.001,
+   "seleccion": {
+    "L": 6,
+    "estructura": "S1"
+   },
+   "semilla_filas": [
+    3,
+    6,
+    12,
+    24,
+    48
+   ],
+   "sitios_N": 91,
+   "todo_singleton_de_datos_es_candidato": true,
+   "w_Z": 4
+  },
+  "S1_L7": {
+   "aristas_host_K": 1810,
+   "candidatos": 421,
+   "checks_X": 42,
+   "columnas_semilla": 7,
+   "cotas_genericas_ruta_B": {
+    "Delta_barra": 42,
+    "envolvente_entropica_q0_log10_max_z": -22.637,
+    "envolvente_puntual_log10_max_a": -23.983,
+    "kappa_G": "1/9",
+    "nota": "limites con delta_alg -> 0+ (region abierta). La envolvente filtrada mixta usa kappa_F de la familia FGL exacta y no aplica a este decoder; la del presupuesto de fuentes requiere un perfil causal propio y no se evalua."
+   },
+   "d_X": 2,
+   "dimension_logica": 1,
+   "distancia_clasica_H": 7,
+   "distancia_clasica_HT": null,
+   "distancia_cuantica_tillich_zemor": 7,
+   "entradas_listas_inversas": 924,
+   "frontera_elegida": 31,
+   "frontera_orden_producto": 39,
+   "frontera_orden_voraz": 31,
+   "grado_max_K": 42,
+   "grado_medio_K": 28.504,
+   "historias_log2": 127,
+   "matrices_sha256": "3b39426432087c5582e8f10a9c4d6e674d48792026c617a4eeca1da2f9a49d88",
+   "n": 85,
+   "orden_elegido": "voraz",
+   "segundos": 0.002,
+   "seleccion": {
+    "L": 7,
+    "estructura": "S1"
+   },
+   "semilla_filas": [
+    3,
+    6,
+    12,
+    24,
+    48,
+    96
+   ],
+   "sitios_N": 127,
+   "todo_singleton_de_datos_es_candidato": true,
+   "w_Z": 4
+  },
+  "S2_34_6x8": {
+   "aristas_host_K": 10682,
+   "candidatos": 5686,
+   "checks_X": 48,
+   "columnas_semilla": 8,
+   "cotas_genericas_ruta_B": {
+    "Delta_barra": 147,
+    "envolvente_entropica_q0_log10_max_z": -86.108,
+    "envolvente_puntual_log10_max_a": -92.949,
+    "kappa_G": "1/29",
+    "nota": "limites con delta_alg -> 0+ (region abierta). La envolvente filtrada mixta usa kappa_F de la familia FGL exacta y no aplica a este decoder; la del presupuesto de fuentes requiere un perfil causal propio y no se evalua."
+   },
+   "d_X": 4,
+   "dimension_logica": 4,
+   "distancia_clasica_H": 4,
+   "distancia_clasica_HT": null,
+   "distancia_cuantica_tillich_zemor": 4,
+   "entradas_listas_inversas": 35184,
+   "frontera_elegida": 133,
+   "frontera_orden_producto": 133,
+   "frontera_orden_voraz": 133,
+   "grado_max_K": 147,
+   "grado_medio_K": 144.351,
+   "historias_log2": 148,
+   "matrices_sha256": "f56eb452a901a1d6937a900aec85ff764ccc85b28b58ac18c955162f6aec3d13",
+   "n": 100,
+   "orden_elegido": "producto",
+   "segundos": 0.003,
+   "seleccion": {
+    "distancia_clasica_elegida": 4,
+    "distancias_entre_validas": [
+     2,
+     4
+    ],
+    "estructura": "S2",
+    "indice_elegida": 1,
+    "intentos": 169735,
+    "validas": 2000
+   },
+   "semilla_filas": [
+    101,
+    156,
+    177,
+    46,
+    202,
+    83
+   ],
+   "sitios_N": 148,
+   "todo_singleton_de_datos_es_candidato": true,
+   "w_Z": 7
+  }
+ },
+ "programa_sha256": "38dd2e99686ca19328441b612b16f2029ad8c794c888c3be3d6ee6a8aff7511c",
+ "unit": "D1"
+}

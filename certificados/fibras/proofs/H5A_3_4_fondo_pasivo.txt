@@ -1,0 +1,324 @@
+H5-A · Suma de todas las componentes con un fondo común de medidas pasivas
+22 de noviembre de 2026
+
+Para el producto de una semilla binaria de pesos de columna 3 y fila 4
+consigo misma se obtiene acceso a las particiones filtradas en todo
+
+                    0 ≤ p ≤ 2.5·10⁻⁹,       0 ≤ q ≤ 10⁻³.              (1)
+
+El extremo anterior de p a ese q era 8.3·10⁻¹⁰. Se usa una ronda Bernoulli
+independiente, todos los candidatos FGL de SSF, β=1/100, el máximo global
+de descenso por tamaño de huella y su desempate fijo. La afirmación es
+uniforme en la semilla, el tamaño, la máscara y el subhost físico inducido
+J. Se mantiene el contrato de oráculo y orden del manuscrito. Para pasar
+al error relativo de un fallo silencioso positivo se requieren también el
+testigo lógico y las hipótesis del Teorema 1.
+
+En la representación de cumulantes con las medidas integradas, el criterio
+admite un presupuesto α|E| por bloque de datos. Con α=.001 la fila completa
+en (1) es <.00003110. En p=2·10⁻⁹, q=10⁻³, la parte de tres o más
+componentes es <.00001593 con el mismo α. La nota anterior había usado
+α=1 y un margen de .368 para ese resto. Cada elección de α cambia tanto
+la inclinación por dato como el presupuesto. El rectángulo (1) se prueba
+con la nueva fila. La meta p=10⁻⁶ al mismo q sigue abierta.
+
+1. Separar las medidas que intervienen en la ejecución
+======================================================
+
+Para una entrada aceptada (E,D) del subhost, sea W la unión de los datos
+originales y todos los qubits visitados. En checks de medida fijar
+
+    S = (unión de las huellas ψ_x, x∈E) ∪ (unión de las huellas φ_t
+        de todos los pasos elegidos),     D_a=D∩S,     P=D fuera de S.
+
+Una medida en P queda encendida durante toda la corrida. Su retirada
+simultánea conserva las puntuaciones de los ganadores. Los rivales sólo
+pueden perder luces y en la parada siguen siendo inelegibles. El síndrome
+observado de la corrida reducida termina en D_a. Por recomposición canónica
+las componentes del soporte W∪D_a en K son las corridas aisladas de sus
+propias fuentes y todas pasan el filtro. Cada check activo tiene un lector
+en W y su vecindad cerrada en K está contenida en la de tal lector. En
+particular, separar dos de estas componentes equivale a la compatibilidad
+de sus soportes de datos en G=K[datos]. Cada componente tiene datos
+originales, pues con E vacío un paso de descenso estricto impediría acabar
+en el síndrome inicial.
+
+Como especies del nuevo sistema usar cada posible núcleo c=(E_c,D_c,τ_c)
+y un sitio pasivo por cada medida permitida. Un núcleo es una corrida
+aislada, conexa y filtrada con D_c⊆S_c y soporte contenido en J. La
+historia τ_c y los conjuntos W_c,S_c los determina el decodificador
+original. Escribir Q_c=N_L[S_c], donde L une checks que comparten un
+rectángulo. Se trata de una vecindad cerrada en el código completo. Sólo
+puede haber variables de medida en J. Dos núcleos se excluyen cuando sus
+W se encuentran o son adyacentes en G.
+
+Las restricciones para elegir una familia de núcleos y un único conjunto
+pasivo P son las siguientes.
+
+    • Los núcleos son compatibles entre sí. P es estable, es decir, ningún
+      candidato es elegible en ese síndrome.
+    • Para cada núcleo c se exige P∩S_c=∅ y que al añadir P a D_c se
+      conserven la historia τ_c y su parada.
+
+Para verificar la segunda condición, sobre P estable basta leer P∩Q_c.
+En cada instante, la puntuación del ganador está fijada por τ_c, ya que
+P evita S_c. Cada rival cuya huella toca S_c impone una desigualdad
+sobre las luces pasivas de su propia huella. El umbral incluye la
+prioridad del desempate. Los demás sólo ven el fondo estable P. En la
+parada se exige que los rivales que pueden ver D_c sean inelegibles.
+Cada desigualdad es decreciente al retirar sitios de P y sus variables
+están en un solo rectángulo. La condición P∩S_c=∅ añade exclusiones
+individuales. Así, la admisibilidad de añadir un sitio pasivo j a una
+selección admisible depende sólo de los otros ≤89 sitios de medida de
+N_L(j) y de los núcleos presentes con j∈Q_c. Dos núcleos pueden leer
+el mismo sitio pasivo.
+
+Estas restricciones dan una biyección con todas las entradas filtradas.
+En la dirección directa, tras retirar P, los núcleos vienen dados por
+las componentes canónicas ya descritas. En la corrida inicial, un rival
+que ve la discrepancia de un núcleo no puede ver las huellas de datos,
+las celdas activas o la discrepancia de otro, por (K1). Al proyectar se
+preservan todas las comparaciones de ese núcleo sobre el mismo P. El
+resto de rivales, en la corrida aislada, ve a lo sumo un subconjunto del
+fondo final estable cuando no ve discrepancia. En la dirección inversa,
+P∪(unión D_c) es estable porque cada candidato ve como máximo un D_c y
+cada parada individual lo permite. El conjunto de candidatos elegibles
+es, en cada momento, la unión de las listas elegibles de los núcleos con
+discrepancia. Se intercala el mejor de sus ganadores con la prioridad
+física. Al acabar, todos los síndromes físicos residuales son cero, los
+soportes están en J y las marcas se multiplican. Las medidas activas y
+pasivas de esa corrida se recuperan por la definición de S. Incluye el
+caso sin datos, en que sólo se elige P estable.
+
+La familia admisible es hereditaria respecto de las especies. Retirar
+un núcleo suprime sus restricciones sobre P. Retirar una medida pasiva
+cumple las desigualdades decrecientes anteriores. El peso de c es su
+marca por los monomios de los datos E_c y las medidas D_c. Un sitio
+pasivo j pesa u_j. No se repite un fallo físico en los productos
+admisibles. Por tanto la partición de este sistema es la partición
+filtrada original, con los mismos factores Bernoulli exteriores conocidos.
+
+2. Fijar sitios en presencia de núcleos
+=======================================
+
+Se usa la norma que suma los módulos de los coeficientes de las series
+multivariadas al radio indicado, incluidas potencias repetidas. Las
+actividades de datos se acotan por z=x(p)exp(α), las de medida por
+y=x(q), donde x(r)=r exp(.015)/(1−2r). Las marcas de datos adicionales
+de §4 tienen radio 1. También se pueden usar primero variables por
+especie y después sustituir los monomios físicos.
+
+Fijar b=.00117, η=.0001 y una cota U<η para la suma de pesos de núcleos
+por cada dato visitado. Para B=1297U asignar al núcleo c el mayorante
+
+          b_c = z^|E_c| y^|D_c| exp(η|E_c| + B|W_c| + b|Q_c|).        (2)
+
+En §3 se comprueba Σ_{c:v∈W_c} b_c≤U para cada v. De las vecindades
+del host se sigue que Σ_{c':c' incompatible con c} b_c'≤B|W_c|.
+También Σ_{c:j∈Q_c} b_c≤469U, ya que j tiene ≤469 vecinos de datos
+y Q_c está dentro de la vecindad de medida de W_c.
+
+En cualquier fijación admisible, para una especie libre i escribir
+R_i=w_i Z₊/Z₋, quitando de Z₊ y Z₋ los factores de los sitios ya fijados
+y el de i. Las respuestas de uno y cero son R_i/(1+R_i) y 1/(1+R_i).
+Una rama imposible tiene peso cero. Pondremos b_i=b si i es un sitio
+pasivo, y b_i=b_c si es un núcleo. Demostraremos por inducción sobre
+las especies libres que ||R_i||≤b_i/(1+b_i). En particular las respuestas
+tienen normas ≤b_i y ≤1+b_i, respectivamente, y los inversos existen.
+
+Para un sitio pasivo j, bajo j=0 el cociente R_j/u_j es la esperanza del
+indicador de que se lo puede añadir. Con todos sus vecinos libres a cero,
+el indicador vale cero o uno según las fijaciones existentes. Si vale
+cero, la herencia lo hace idénticamente cero. Si vale uno, la diferencia
+respecto de uno sólo puede proceder de hojas con alguna respuesta positiva.
+Al leer los vecinos en orden fijo, cada respuesta se evalúa en un sistema
+menor. Con L₀=89b+469U se obtiene
+
+   ||R_j/u_j−1|| ≤ ∏(1+2b_i)−∏(1+b_i) ≤ L₀ exp(2L₀) = ε.             (3)
+
+El primer mayorante suma los productos de las cotas de las ramas con al
+menos un uno. La segunda desigualdad sale al cambiar cada factor una
+vez, pues Σb_i≤L₀. Las opciones de (3) son, por consiguiente, R_j=0 o
+R_j=u_j(1+e_j) con ||e_j||≤ε. El certificado cumple ε<1 y
+
+                           y(1+b)(1+ε) ≤ b.                           (4)
+
+Esto prueba la inducción para j. La notación R_j/u_j indica el factor de
+particiones que multiplica u_j, incluso cuando su radio físico sea cero.
+
+Si i es un núcleo c y añadirlo a las fijaciones ya resulta imposible,
+R_c=0. En el otro caso, en el cociente Z₊/Z₋ se puede primero fijar a
+cero cada núcleo libre incompatible con c. Sólo el denominador permite
+que estuviera presente. El coste en norma de cada respuesta cero del
+denominador es ≤1+b_c', por inducción tras fijar c=0. El producto es
+≤exp(B|W_c|).
+
+En las dos particiones restantes, con c fijado presente o ausente, fijar
+sucesivamente a cero los sitios pasivos libres de Q_c. Para cada j el
+factor del cociente antes y después de retirarlo es
+
+     (1+R_j⁺)/(1+R_j⁻) = 1 + (R_j⁺−R_j⁻)/(1+R_j⁻).
+
+Ambos sistemas son menores. Por (3) cada R_j es cero o está a distancia
+≤yε del mismo u_j. Por tanto ||R_j⁺−R_j⁻||≤y max(1+ε,2ε)=y(1+ε).
+El inverso del denominador tiene norma ≤1+b y (4) acota el factor por
+1+b. Tras fijar Q_c, las especies libres restantes tienen exactamente
+las mismas configuraciones en ambas particiones. La compatibilidad
+entre núcleos ya se impuso y las restantes condiciones para c dependen
+sólo del P ahora fijado en Q_c. La extensión vacía con los sitios
+previamente fijados demuestra que esas condiciones se cumplen.
+
+En conjunto ||R_c||≤b_c exp(−η|E_c|)≤b_c/(1+b_c), por |E_c|≥1 y
+b_c≤U<η. Completa la inducción, con el sistema vacío como base. Este
+paso compara la respuesta al mismo sitio pasivo en dos particiones,
+incluso cuando varias componentes dependen de ella. El método de
+fijaciones y cocientes tiene su antecedente en Scott y Sokal,
+The repulsive lattice gas, the independent-set polynomial, and the
+Lovász local lemma, https://arxiv.org/abs/cond-mat/0309352.
+
+3. Certificado de la suma de núcleos
+===================================
+
+Las filas de árboles son las de H5A_3_4_pares_adyacentes.txt, §§1–2,
+y H5A_3_4_dos_medidas.txt, §4, después de retirar las medidas pasivas.
+Las celdas activas conservan etiquetas y el árbol conserva el ancla,
+las fuentes y sus medidas. Éstas recuperan el núcleo por el decodificador.
+El argumento de cobertura de H5A_3_4_dos_componentes.txt, §1, da
+
+      |Q_c| ≤ 414 e_V+536 e_C+90|D_c|,
+      |W_c| ≤ (17/3)e_V+(103/15)e_C.                                  (5)
+
+En la primera desigualdad se empieza cubriendo todas las ψ de los datos
+originales y las medidas D_c. Se añaden las vecindades de las huellas
+efectivamente conmutadas con los rangos (114,90,0) y (114,114,56,0),
+lo que cubre Q_c completo. La segunda es la cota de primeros apagados
+para los qubits de las acciones. Así los tres precios de conversión son
+
+       C_i ≥ z exp(η+σ_i B+b h_i),      s ≥ y exp(90b),
+       (σ_V,σ_C)=(17/3,103/15),         (h_V,h_C)=(414,536).            (6)
+
+Se cobra una unidad por paso cuyo generador toca una huella de datos
+original y 11 por los demás. En la prueba de la nota de pares se empieza
+con 11 veces el descenso y se descuenta 11δ−1 en cada primer apagado
+cercano. Un grupo de un dato sigue costando como máximo 1, por primer
+contacto. Para un grupo de dos se reutiliza la recurrencia (3) de esa
+nota con 11δ−1. Los costes para huellas disjuntas y solapadas son,
+respectivamente, (14,24) para VV–VV y VV–CC, y (25,35) para CC–CC.
+Para tres o más datos originales en una componente de G, los máximos
+de [11(v−h)+1]/h sujetos a nh≥kv suman 14 por VV y 59/3 por CC. Se
+comprueban todos los empates del máximo local de las 101 acciones en
+las 4096 configuraciones del rectángulo. El descuento se hace en un solo
+grupo porque un rectángulo encuentra a lo sumo una componente de G[E].
+Son cotas del coste total aplicables a cualquier núcleo.
+
+Con r=.9729, tomar a=r⁵, t=a³ para el cercano e Y=t¹¹ para el lejano.
+Se tiene 36Y<1. La suma por capas de la nota de dos medidas da los
+techos (j,f₁,f₂,k₁,k₂,m₁,m₂,m_g)=(152,2170,2574,2893,1931,352,421,968).
+Para reproducir la totalidad de las otras filas, usar sus ecuaciones
+con estos techos, la matriz A=((640,441),(784,513)), las ramas grandes
+x₁=C₁/t¹⁴, x₂=C₂/a⁵⁹, los tres costes de pares anteriores y la nueva
+conversión (6). En el árbol de datos, una raíz sin vecino cuesta C_i/t.
+Se conservan los extremos de puente y las etiquetas al comprimir las
+ramas de generador. Los decimales siguientes son racionales exactos.
+
+    U=.00000873550119132, s=.00113134456171,
+    C₁=4.40375523367e−9, C₂=5.14968894171e−9,
+    d₁=.00000260340392659, d₂=.0000354377272028,
+    u₁=1.33681829991e−8, u₂=4.01733813290e−8,
+    u_n=.00000112668679409, u_f=.00000104496346482,
+    v_n=.00608124643753, v_f=.0000986786301680,
+    c_n=5.31583055616e−8, c_f=4.93025102055e−8.
+
+El cociente de (4) es <.989. Los 14 cocientes para núcleos, incluidas
+(6) y U≥max(u₁+3(u_n+u_f),u₂+4(u_n+u_f)), son <.9991. Por inducción
+en la altura, U cuenta cualquier núcleo anclado en un dato visitado.
+Si el ancla es un error de datos original, el árbol se enraíza en el
+átomo de esa fuente y bastan u₁ o u₂. Las cotas crecen con las tasas
+y por ello valen en todo el rectángulo, incluidos los ejes.
+
+4. Extraer la suma de tres o más componentes
+============================================
+
+Asignar una variable t_A distinta a cada conjunto conexo no vacío de
+datos en G. En cada núcleo multiplicar su actividad por el producto de
+t_A sobre las componentes de G[E_c]. Al recomponer, estas componentes
+son exactamente las de G[E], pues núcleos distintos tienen soportes de
+datos compatibles. El sistema modificado suma, para cada entrada, una
+marca por cada componente original de datos. Fijar todas las actividades
+de datos al mismo radio z y mantener las medidas como variables formales.
+
+Para componentes distintas y compatibles A₁,…,A_m, el coeficiente sin
+repeticiones de t_A₁···t_Am en el logaritmo de la partición modificada
+es exactamente z^|E| d(E), E=unión A_i. En efecto, el término constante
+en las t es la partición de medidas estables Z₀. Dividir por Z₀ da, para
+cada subfamilia, el momento integrado M de la unión correspondiente. La
+expansión del logaritmo produce la inversión habitual de particiones de
+los m grupos, con (−1)^(k−1)(k−1)! para k bloques. El término log Z₀
+carece de t. La marca individual por conjunto evita confundir un grupo
+de dos datos con dos grupos distintos.
+
+Fijar un ancla de datos v y poner a cero las t_A tales que A intersecta
+N_G[v]. Esto equivale a retirar los núcleos con algún dato original
+en N_G[v]. Al retirarlos uno a uno, el cambio del logaritmo cuesta
+≤Σ b_c, ya que ||log(1+R_c)||≤||R_c||/(1−||R_c||)≤b_c. El resto de
+la norma incluye todos los coeficientes extraídos arriba con el ancla,
+además de posibles términos con repeticiones o incompatibilidades. Las
+filas de entrada por dato original de §3 dan por tanto
+
+    Σ_{E∩N_G[v]≠∅} [x(p)exp(α)]^|E| ||d(E)||_y
+        ≤ max(640u₁+441u₂, 784u₁+513u₂) < .00003110 < α.              (7)
+
+Esta es la condición suficiente de la nota de esquinas con presupuesto
+α|E|. La incompatibilidad de un bloque se cubre sumando la fila en sus
+|E| datos. No hay condición sobre el número de componentes de G[E].
+En p'=2·10⁻⁹ la razón x(p')/x(2.5·10⁻⁹) es ≤4/5. Todo bloque con al
+menos tres componentes tiene al menos tres datos. Su parte de la fila
+(7) está acotada por (4/5)³ veces el lado derecho efectivo, <.00001593.
+
+También se obtiene el acceso directamente de §2. Al retirar todas las
+especies la norma del logaritmo a los radios inclinados es ≤Σ_i b_i≤N
+porque cada núcleo tiene datos, con N el número de sitios físicos. Se
+pueden usar variables separadas en todos los fallos originales y fijar
+t_A=1. Al volver a las razones Bernoulli r/(1−r), cada fuente gana al
+menos exp(−.015), de modo que la cola del logaritmo tras el grado total
+m de fuentes con multiplicidades es ≤N exp(−.015(m+1)). Por continuidad
+desde cero las particiones físicas con signo son positivas en el
+rectángulo. Los coeficientes hasta grado m se calculan con el oráculo
+y las decoraciones físicas del apéndice A del manuscrito. Cada soporte
+de una decoración filtrada tiene ≤7 veces su número de fuentes. Así,
+la unión conexa de un término del logaritmo hasta ese grado tiene ≤7m
+sitios. El coste es polinómico en N, la inversa de la precisión y la
+longitud de la entrada a parámetros fijos. El coste práctico queda por
+medir. La demostración de la fila no exige enumerar los núcleos de una
+semilla arbitraria para evaluar el algoritmo.
+
+5. Límite de este recuento para la meta
+=======================================
+
+En la rama CC grande, con el mismo coste de 11 y cualquier precio base
+a y testigos, d₂≥p exp(536b) a^(−59) exp(513d₂). Además b≥q y 36a³³<1.
+Como u exp(−513u)≤1/(513 exp(1)), en q=.001 es necesario
+
+                  p < 36^(−59/33)/(513 exp(1+536q)) < 7·10⁻⁷.
+
+Esta obstrucción pertenece a las desigualdades de ramas de §3. Para
+p=10⁻⁶ hará falta cambiar el recuento de los generadores lejanos o el
+coste de los primeros apagados en grupos con varios datos CC, u obtener
+otra estimación uniforme. El nuevo tratamiento de las medidas y la
+identidad de §4 se pueden conservar.
+
+Reproducción en 05_COMPROBACIONES
+================================
+
+    python -I -B -X utf8 verificar_H5A_3_4_fondo_pasivo.py
+
+El verificador reutiliza los perfiles, las bolas y la cota racional
+de la exponencial de los verificadores anteriores. Como contraste de la
+biyección calcula el SSF completo en una semilla conexa de 12 variables
+y 9 checks con su HGP de 225 qubits. Compara las historias para las
+4096 asignaciones de cuatro sitios de datos y ocho de medidas con todas
+las familias de núcleos admisibles en esas entradas. Reproduce exactamente
+2293 entradas filtradas. En 384 hay tres o más núcleos con al menos una
+medida pasiva en las vecindades de lectura de varios de ellos. El paso
+a cualquier tamaño se deduce de §§1–4. Aritmética reproducida. Revisión
+matemática independiente pendiente.

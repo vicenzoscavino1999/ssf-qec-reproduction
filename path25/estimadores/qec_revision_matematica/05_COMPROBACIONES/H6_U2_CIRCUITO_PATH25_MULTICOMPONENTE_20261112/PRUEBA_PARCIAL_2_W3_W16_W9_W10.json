@@ -1,0 +1,572 @@
+{
+ "active_locations": [
+  "W3",
+  "W16",
+  "W9",
+  "W10"
+ ],
+ "alcance": "una instancia, ocho ubicaciones ruidosas y el resto ideal; contrato generico no regular; no es un estimador ni una medida de ventaja",
+ "archivos_congelados_sha256": {
+  "preflight": "d3ba89f5bb27cd995a2c23e77cb4eaadbbf35e3cdfea3e7de5bf84f1ffebfdda",
+  "table": "85f322e5ffb6d8117301e70ccd2810a1c49eea2d358d2f7c0fe6c745025691ee"
+ },
+ "checks": [
+  {
+   "name": "A0 dos construcciones del codigo coinciden (H_X, H_Z, candidatos, huellas)",
+   "pass": true
+  },
+  {
+   "name": "A1 conmutacion H_X H_Z^T = 0",
+   "pass": true
+  },
+  {
+   "name": "A2 n=25, 12 checks, rangos 12 y 12, k=1, 103 candidatos, 43 huellas",
+   "pass": true
+  },
+  {
+   "name": "A3 u_0=4369 es un representante logico protegido (conmuta con H_Z, fuera del espacio de filas de H_X)",
+   "pass": true
+  },
+  {
+   "name": "A4 H_X y H_Z iguales a los del preflight congelado del piloto PATH25",
+   "pass": true
+  },
+  {
+   "name": "A5 candidatos y huellas iguales a la tabla congelada del piloto",
+   "pass": true
+  },
+  {
+   "name": "B1 los dos motores dan la misma transicion en los 4096 sindromes",
+   "pass": true
+  },
+  {
+   "name": "B2 transiciones iguales a la tabla congelada del piloto en los 4096 sindromes",
+   "pass": true
+  },
+  {
+   "name": "B3 correcciones, sindromes terminales y trazas iguales a la tabla congelada",
+   "pass": true
+  },
+  {
+   "detail": {
+    "dos_o_mas": 4005,
+    "max": 8
+   },
+   "name": "B4 traza maxima de 8 acciones y 4005 sindromes con dos o mas acciones (cifras del manuscrito)",
+   "pass": true
+  },
+  {
+   "name": "C1 host K igual al del preflight congelado",
+   "pass": true
+  },
+  {
+   "detail": {
+    "faltan": 111
+   },
+   "name": "C2 host K: 37 vertices, grado maximo 36, conexo; host de datos conexo con 111 pares no adyacentes",
+   "pass": true
+  },
+  {
+   "detail": {
+    "L": 5,
+    "N_loc": 217,
+    "capas_usadas": 4
+   },
+   "name": "S0a r=4, d=2, L=5, 42 CNOT, colores dentro de L, N_loc=217 por recuento y por formula, 242 vertices",
+   "pass": true
+  },
+  {
+   "detail": {
+    "t_7_10": 2,
+    "t_8_10": 1
+   },
+   "name": "S0b t(check 8, dato 10)=1 y t(check 7, dato 10)=2 (prediccion del plan)",
+   "pass": true
+  },
+  {
+   "name": "S0c el programa literal contiene las 42 puertas",
+   "pass": true
+  },
+  {
+   "detail": {
+    "clases": 81
+   },
+   "name": "D1 R2: restriccion, trazas locales, XOR de residuos, filtro fisico local y recomposicion canonica en todas las clases estructurales",
+   "pass": true
+  },
+  {
+   "detail": {
+    "asignaciones": 256
+   },
+   "name": "D2 las clases estructurales suman todas las asignaciones",
+   "pass": true
+  },
+  {
+   "detail": {
+    "asignaciones": 256
+   },
+   "name": "E1 R1 recorre todas las asignaciones",
+   "pass": true
+  },
+  {
+   "name": "E2 respuesta conjunta literal = formula del apendice C en todas las asignaciones",
+   "pass": true
+  },
+  {
+   "name": "E3 residuo, filtro fisico y fallo silencioso globales = los de la recomposicion en todas las asignaciones (clase por rango de H_Z frente a marca u_0)",
+   "pass": true
+  },
+  {
+   "name": "E4 normalizacion: las probabilidades de todas las asignaciones suman 1 (dos tasas)",
+   "pass": true
+  },
+  {
+   "name": "E5 P_0 - E[(-1)^{u.R}; H_X R=0] = 2 P_sil (dos tasas)",
+   "pass": true
+  },
+  {
+   "detail": {
+    "consultas": 2732,
+    "desenlaces": {
+     "accept": 28,
+     "exit": 1436,
+     "underfilled": 1268
+    },
+    "soportes": 574
+   },
+   "name": "F1 oraculo de primera salida: desenlace y traza iguales al prefijo de la ejecucion completa en todas las consultas",
+   "pass": true
+  },
+  {
+   "name": "F2 pesos W_0, W_T y W_{T,u} del oraculo iguales a los de las ejecuciones completas en todos los soportes consultados (dos tasas)",
+   "pass": true
+  },
+  {
+   "detail": {
+    "accept": 28,
+    "exit": 1436,
+    "underfilled": 1268
+   },
+   "name": "F3 hay consultas con los tres desenlaces",
+   "pass": true
+  },
+  {
+   "detail": {
+    "familias": 81,
+    "polimeros": 28,
+    "suma": 256
+   },
+   "name": "G1 identidad de recuento: familias compatibles con multiplicidad = numero de asignaciones",
+   "pass": true
+  },
+  {
+   "name": "G2 B_c * Xi_0 = 1 (dos tasas)",
+   "pass": true
+  },
+  {
+   "name": "G3 P_0 = B_c * Xi_T frente a la suma global de R1 (dos tasas)",
+   "pass": true
+  },
+  {
+   "name": "G4 E[(-1)^{u.R}; H_X R=0] = B_c * Xi_{T,u} frente a R1 (dos tasas)",
+   "pass": true
+  },
+  {
+   "name": "G5 P_sil = B_c (Xi_T - Xi_{T,u}) / 2 frente a R1 (dos tasas)",
+   "pass": true
+  }
+ ],
+ "checks_failed": 0,
+ "checks_total": 30,
+ "counters": {
+  "asignaciones_propagadas_literalmente": 256,
+  "familias_compatibles": 81,
+  "motor1_scores": 421888,
+  "motor2_scores": 421888,
+  "oraculo_consultas_fuente_soporte": 2732,
+  "oraculo_desenlaces": {
+   "accept": 28,
+   "exit": 1436,
+   "underfilled": 1268
+  },
+  "oraculo_ejecuciones_restringidas_distintas": 2540,
+  "oraculo_scores": 311660,
+  "oraculo_soportes": 574,
+  "oraculo_variantes_generadas": 546,
+  "oraculo_variantes_omitidas_por_techo": 0,
+  "polimeros": 28,
+  "puertas_CNOT_aplicadas": 10752,
+  "residuos_distintos": 6,
+  "tamano_maximo_de_familia": 2
+ },
+ "estadistica_con_multiplicidad": {
+  "asignaciones": 256,
+  "cancelacion_tras_acciones": 0,
+  "clases": 81,
+  "componente_con_dos_o_mas_acciones": 160,
+  "dos_o_mas_componentes_con_acciones": 112,
+  "fuente_con_respuesta_X_nula_en_soporte": 175,
+  "intercalacion_estricta": 64,
+  "max_acciones": 5,
+  "max_componentes": 2,
+  "por_componentes": {
+   "0": 1,
+   "1": 66,
+   "2": 189
+  }
+ },
+ "instancia": {
+  "L": 5,
+  "N_loc": 217,
+  "asignaciones": 256,
+  "beta": "1/2",
+  "candidatos": 103,
+  "checks": 12,
+  "clases_estructurales": 81,
+  "codigo": "PATH25, semilla (3,6,12), 4 columnas",
+  "n": 25,
+  "orden": "(|F|, mascara) ascendente",
+  "ubicaciones_ruidosas": [
+   {
+    "categorias": 4,
+    "nombre": "W3",
+    "ubicacion": [
+     "dwait",
+     3,
+     0
+    ]
+   },
+   {
+    "categorias": 4,
+    "nombre": "W16",
+    "ubicacion": [
+     "dwait",
+     16,
+     0
+    ]
+   },
+   {
+    "categorias": 4,
+    "nombre": "W9",
+    "ubicacion": [
+     "dwait",
+     9,
+     0
+    ]
+   },
+   {
+    "categorias": 4,
+    "nombre": "W10",
+    "ubicacion": [
+     "dwait",
+     10,
+     0
+    ]
+   }
+  ],
+  "vertices_host_primitivo": 242
+ },
+ "mode": "PARCIAL",
+ "probabilidades": {
+  "1/100": {
+   "1-P_0": {
+    "decimal": "6.622222222222E-3",
+    "exacto": "149/22500"
+   },
+   "B_c": {
+    "decimal": "9.605960100000E-1",
+    "exacto": "96059601/100000000"
+   },
+   "P_0": {
+    "decimal": "9.933777777778E-1",
+    "exacto": "22351/22500"
+   },
+   "P_sil": {
+    "decimal": "4.444444444444E-5",
+    "exacto": "1/22500"
+   },
+   "Q_sil": {
+    "decimal": "4.474072748423E-5",
+    "exacto": "1/22351"
+   },
+   "Xi_0": {
+    "decimal": "1.041020355685E+0",
+    "exacto": "100000000/96059601"
+   },
+   "Xi_T": {
+    "decimal": "1.034126487552E+0",
+    "exacto": "894040000/864536409"
+   },
+   "Xi_Tu": {
+    "decimal": "1.034033952409E+0",
+    "exacto": "893960000/864536409"
+   },
+   "lambda_T": {
+    "decimal": "9.999105185450E-1",
+    "exacto": "22349/22351"
+   },
+   "lambda_sin_filtro": {
+    "decimal": "9.866666666667E-1",
+    "exacto": "74/75"
+   }
+  },
+  "1/1000": {
+   "1-P_0": {
+    "decimal": "6.662222222222E-4",
+    "exacto": "1499/2250000"
+   },
+   "B_c": {
+    "decimal": "9.960059960010E-1",
+    "exacto": "996005996001/1000000000000"
+   },
+   "P_0": {
+    "decimal": "9.993337777778E-1",
+    "exacto": "2248501/2250000"
+   },
+   "P_sil": {
+    "decimal": "4.444444444444E-7",
+    "exacto": "1/2250000"
+   },
+   "Q_sil": {
+    "decimal": "4.447407406090E-7",
+    "exacto": "1/2248501"
+   },
+   "Xi_0": {
+    "decimal": "1.004010020035E+0",
+    "exacto": "1000000000000/996005996001"
+   },
+   "Xi_T": {
+    "decimal": "1.003341126248E+0",
+    "exacto": "8994004000000/8964053964009"
+   },
+   "Xi_Tu": {
+    "decimal": "1.003340233795E+0",
+    "exacto": "8993996000000/8964053964009"
+   },
+   "lambda_T": {
+    "decimal": "9.999991105185E-1",
+    "exacto": "2248499/2248501"
+   },
+   "lambda_sin_filtro": {
+    "decimal": "9.986666666667E-1",
+    "exacto": "749/750"
+   }
+  }
+ },
+ "recuentos_por_tipo": {
+  "caracter_filtrado": [
+   1,
+   10,
+   32,
+   30,
+   -9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "caracter_sin_filtrar": [
+   1,
+   8,
+   18,
+   0,
+   -27,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "fallo_silencioso": [
+   0,
+   0,
+   4,
+   24,
+   36,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "filtro_fisico_nulo": [
+   1,
+   10,
+   40,
+   78,
+   63,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "n_esperas": 4,
+  "tipo": "indice = esperas_no_base + (n_esperas+1)*(cnot_no_base + 2*(pauli_lectura + 2*flip))",
+  "total": [
+   1,
+   12,
+   54,
+   108,
+   81,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "status": "PASS",
+ "unit": "H6-U2"
+}

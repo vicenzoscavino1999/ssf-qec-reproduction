@@ -1,0 +1,209 @@
+{
+ "carpeta": "T2_2_PILOTO_M6_EJECUCION_20261115/corrida",
+ "codigo": 0,
+ "comprobaciones": [
+  {
+   "comprobacion": "manifiesto: mismos archivos (ni faltan ni sobran)",
+   "detalle": {
+    "faltan": [],
+    "sobran": []
+   },
+   "pasa": true
+  },
+  {
+   "comprobacion": "manifiesto: SHA-256 y bytes de cada archivo",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "comprobacion": "programa: SHA-256 actuales = los de la corrida",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "unidad y tipo = los de la configuracion",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "sello vigente = el de la corrida",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "configuracion = reconstruida desde el sello, ESCALERA_Y_CLAVES.json y real_config",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "comprobacion": "escalera recalculada = configurada = registrada",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "claves y logaritmos = sellados",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "claves registradas = recalculadas",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "referencias recalculadas desde sus fuentes = registradas",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "etapas: cada una exactamente una vez y en el orden del plan, mas p_conex",
+   "detalle": [
+    "preparacion",
+    "ancla",
+    "c_tiempo",
+    "cadenas",
+    "estimacion",
+    "p_conex"
+   ],
+   "pasa": true
+  },
+  {
+   "comprobacion": "etapas: PASS hasta la primera que no pasa (FALLA o NO_EVALUADO); las siguientes NO_EVALUADO no alcanzadas; p_conex NO_EJECUTADO",
+   "detalle": [
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS",
+    "PASS"
+   ],
+   "pasa": true
+  },
+  {
+   "comprobacion": "estado global = el que dan las etapas",
+   "detalle": [
+    "PASS",
+    "PASS"
+   ],
+   "pasa": true
+  },
+  {
+   "comprobacion": "controles: lista de registros con control, pasa y detalle",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "controles: ninguno fallido en una entrega completa",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "comprobacion": "controles obligatorios de las etapas que pasaron: presentes con su numero exacto",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "comprobacion": "inventario: archivos obligatorios presentes",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "comprobacion": "inventario: ningun archivo fuera del contrato de la corrida",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "comprobacion": "ancla: flujo de cada bloque = etiqueta de la semilla maestra declarada",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "comprobacion": "ancla recalculada = registrada; COMPLETA solo con la etapa PASS y sin interrupciones",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "ancla: coste registrado = el de sus registros (bloques completos e interrumpidos, picos)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "corrida completa: ancla COMPLETA",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "cadenas: flujo e identidad de cada nivel = los de la semilla maestra declarada",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "comprobacion": "estimacion, diagnosticos y decisiones recalculados = registrados",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "decisiones de primer nivel = las recalculadas",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "decisiones: tasas exactas",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "decisiones: claves exactas por tasa",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "cadenas: repeticiones registradas = las de sus registros",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "c_tiempo: niveles, medidas completas y proyeccion que cabe",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "RECURSOS: presente y legible",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "RECURSOS: unidad y etapas = las de RESULTADO",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "RECURSOS: recursos = coste_resumen de RESULTADO",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "coste_resumen: techos = los de la configuracion",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "comprobacion": "contadores registrados dentro de sus techos (reserva estricta; coherencia de lo registrado, no una nueva medida)",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "comprobacion": "entrega completa: picos y segundos registrados dentro de los techos (lo registrado; no se vuelve a medir)",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "comprobacion": "RECURSOS y contadores = sumas de los registros de ancla, C-tiempo y cadenas (entrega completa)",
+   "detalle": [],
+   "pasa": true
+  }
+ ],
+ "fallos": [],
+ "lectura": "ENTREGA_VERIFICADA",
+ "plazo_s": 1800.0,
+ "segundos": 12.363
+}

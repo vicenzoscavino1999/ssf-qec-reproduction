@@ -1,0 +1,457 @@
+H5-A · Cadenas de fusiones y coste del primer apagado
+18 de noviembre de 2026
+
+Resultado
+=========
+
+Para el acceso determinista a las particiones físicamente filtradas del
+manuscrito, a precisión relativa elegible, se obtiene el rectángulo
+
+                  0 ≤ p ≤ 5·10⁻³³,       0 ≤ q ≤ 2·10⁻¹¹.            (1)
+
+El extremo de p aumenta 2.5 veces respecto de 2·10⁻³³. Rigen las semillas
+binarias (17,18)-regulares de cualquier tamaño, una ronda Bernoulli
+independiente, β=1/100, la familia FGL completa, máximo global de la
+puntuación, prioridad fija, máscaras y subhosts del manuscrito. Se
+admiten ciclos de cuatro y huellas duplicadas. La transferencia al fallo
+silencioso positivo requiere además las hipótesis de thm:silent-conditioned.
+
+En p=10⁻³⁰, con el mismo q, se obtiene por otra cuenta una suma uniforme
+para cadenas con cualquier número de fusiones sucesivas. La condición
+es sobre la distancia total que todavía hace falta recorrer para descubrir
+fuentes. Un término con e datos originales y d medidas puede pagar una
+unidad de distancia adicional por cada diez datos, más tres por cada
+veinte medidas. La definición precisa figura en (4). Las filas absolutas
+de este sector son ≤1.2·10⁻²⁹ por raíz de datos y <1.32·10⁻⁸ por raíz
+de medida. La suma de los términos que exceden éste y los criterios
+anteriores sigue abierta en esa esquina.
+
+1. Cómo se mejora la cota de todos los tamaños
+================================================
+
+Reutilizamos los grupos de fuentes, el árbol causal y la recurrencia
+cronológica de H5A_primer_apagado_por_grupos.txt y
+H5A_contactos_entre_ejecuciones.txt. G contiene e datos y sus medidas
+ligadas en el grafo físico K. Decimos aquí que G es puro cuando carece
+de medidas ligadas. El resto de la ejecución puede contener medidas.
+Una acción cuya huella toca la de un dato de G sólo puede leer luces
+iniciales del grupo en su rectángulo. Una medida que leyera ese rectángulo
+estaría ligada al grupo.
+
+En el prefijo de puntuación uno sólo se apagan luces. Cada dato cuya huella
+es disjunta de las demás y de las medidas propias está completamente
+encendido. Su primera corrección es perfecta. En la cuenta anterior se
+asigna ese dato a dicha corrección. Cada corrección que recibe al menos
+una asignación marca una unidad si es singleton y dos si es múltiple.
+Sea j la suma de marcas del grupo. El coste Φ(e,j) de la nota de primer
+apagado paga los precios de las acciones y la recurrencia de los primeros
+cruces. Afinamos la suma sobre G con las siguientes tres observaciones.
+
+Dos datos y un número fijo de incidencias. Sea n la anchura de la huella
+raíz, 17 o 18. Un check es leído por 18 datos de anchura 17 y por 17 de
+anchura 18. Si c_i datos distintos de la raíz y de anchura m comparten i
+checks con ella, entonces
+
+    Σ_i i c_i ≤ I(n,m) = n (lectores(m) − 1_{n=m}).
+
+Para n≠m sólo cabe i=1, pues fila y columna se cortan en un check.
+Para un grupo puro de dos datos que se tocan inicialmente quedan n−i
+y m−i luces propias. Aplicar la fila inicial y la recurrencia con las
+anchuras efectivas da un peso W_i. La suma sobre posiciones del segundo
+dato es ≤I(n,m) max_i W_i/i. Esto evita reutilizar el total de incidencias
+completo para cada tamaño posible de intersección.
+
+Si las huellas son disjuntas y el prefijo perfecto consume al menos 33
+luces del grupo, la recurrencia empieza con saldo posterior ≤n+m−33
+y se permiten 46870021 posiciones del segundo dato por tipo. En el otro
+caso, la primera corrección que las toca debe ser una sola línea perfecta
+de h=17 o 18 que consume i y h−i luces de los dos. Si sólo tocara un
+dato, su huella cubriría la línea entera. Por la orientación de las
+huellas ambas coincidirían, y el otro dato aún exigiría otra corrección
+perfecta. Para elegir la línea se utiliza el mismo presupuesto I(n,h)
+con i<h. Fijada la línea, el segundo dato debe leer un check especificado
+de las h−i posiciones que faltan. Hay a lo sumo lectores(m) opciones
+y se exige m=h si faltan al menos dos. El saldo queda ≤n+m−h y el
+máximo ≤max(n−i,m−h+i). Se descuenta el crédito anterior de 6.990−2·0.421
+bits por la acción perfecta. Estas tres contribuciones son pair en el código.
+
+Una línea perfecta cubierta entre varios datos. En un grupo puro con
+j=1 hay un único centro de los datos aislados y es singleton. En su
+primera corrección se apaga una línea entera inicialmente encendida.
+Escoger por orden fijo una cubierta minimal de esa línea con huellas
+de datos originales del grupo. Alguna existe por la paridad inicial y
+la ausencia de medidas en ese rectángulo. Denotar por r el número de
+miembros. Cada uno tiene un check privado dentro de la cubierta, de
+modo que r≤18. Todo dato aislado pertenece a ella, porque la línea
+toca su huella en algún check que ningún otro dato original lee.
+
+Si r=1, la línea coincide con toda la huella del dato aislado. Hasta el
+instante que lo apaga, ningún otro ganador toca esa huella. Retirar el
+dato y ese paso preserva los ganadores anteriores, que siguen siendo
+perfectos y cuyos rivales sólo pueden perder luces. Después del paso los
+síndromes coinciden. Los h primeros apagados del dato en ese paso dan
+un coste menor que un bit. Para los demás basta 1+max_j Φ(e−1,j) bits
+incluido ese bit. Aunque G se escinda al retirar el dato, se pueden
+mantener juntos sus e−1 datos para la recurrencia sin exigir marcas.
+El saldo y el primer descenso del máximo siguen siendo válidos para
+la unión y ninguna acción seleccionada se comparte con otro grupo
+original. Las retiradas en grupos distintos son compatibles. Ésta es
+una estimación del coste. Las fuentes, los signos y las acciones que
+se cuentan en el árbol físico son los originales.
+
+Si r≥2, la misma acción gastó, entre esos r miembros, al menos 17
+incidencias distintas de episodios iniciales. Cada uno de los checks
+de la línea pertenecía a al menos uno de ellos. Tras el prefijo perfecto,
+si cada dato conserva a lo sumo l episodios iniciales vivos, el saldo
+superior del grupo puede limitarse por
+
+             B(l)=(e−r)l + min(rl,18r−17).                           (2)
+
+La cota sigue siendo válida si se vuelven a encender checks de la línea,
+pues sólo los episodios iniciales intervienen en B. En la recurrencia se
+parte de k=17 o 18, con la misma fila inicial que en Φ(e,1). Al final
+del prefijo se elige l≤min(k,17) y saldo ≤min(B(l),ek−17). En cada
+nivel posterior se toma el menor de B(l) y el saldo anterior menos el
+consumo certificado, truncado en cero. El crédito del centro sigue
+siendo max(0,6.990−0.421e). Así se obtiene cover_fee(e,r).
+
+El recuento de posiciones utiliza también la cubierta. Dada la posición
+de uno de sus miembros hay ≤613 líneas que probar. Elegir por orden fijo
+el primer check todavía sin cubrir y uno de sus ≤35 lectores. Repetir
+r−1 veces da ≤613·35^(r−1) cubiertas sin etiquetar. Toda cubierta minimal
+real admite este recorrido desde cualquier miembro. Faltan m=e−r datos,
+cada uno solapado con algún otro dato del grupo. Contraer la cubierta
+a un vértice. Cada componente de solapamiento que queda separada de ella
+contiene al menos dos de los m. Un árbol puede conectar todo G con
+b=floor(m/2) puentes de K y m−b enlaces de solapamiento. Si se precisan
+menos puentes, contar como puentes algunos enlaces de solapamiento.
+
+Para una raíz fija, el número de disposiciones queda acotado por
+
+      613·35^(r−1) e^m/m! C(m,b) 612^(m−b) 46870021^b.              (3)
+
+En efecto, etiquetar los e datos fijando la raíz. En un árbol de los
+m+1 bloques cada arista incidente a la cubierta puede usar cualquiera
+de sus r miembros. La suma de r elevado al grado del bloque es r e^(m−1)
+por la fórmula de Prüfer. Para m=0 vale uno. Hay C(e,r) elecciones de
+las etiquetas de la cubierta y (r−1)! órdenes de sus etiquetas restantes
+dado el miembro de entrada. Se divide por (e−1)! etiquetados con la
+raíz fija. El producto resultante es e^m/m!. Se eligen b de las m
+aristas como puentes. El máximo de vecinos por solapamiento es 612.
+Cada una de estas mayoraciones permite asignar las ramas exteriores
+a los datos originales del grupo.
+
+Cuatro datos sin marcas. Si e=4 y j=0 en un grupo puro, cada dato toca
+otro. Cuando los cuatro son conexos por solapamiento hay a lo sumo
+4²·612³/3! disposiciones con la raíz fija. Si se forman dos pares,
+denotar por n,m y v,w sus anchuras y por i,j' los tamaños de sus
+intersecciones. El saldo inicial exacto por dato es n−i,m−i,v−j',w−j'.
+Con esas filas iniciales y la recurrencia por anchura se obtiene W(i,j').
+Fijado n, sumar sobre m,v,w la cantidad
+
+     I(n,m) [K(n,v)+K(m,v)] I(v,w) max_{i,j'} W(i,j')/(ij').
+
+K(a,b) es el grado máximo del tipo b desde el tipo a en la matriz de
+contactos del manuscrito. Hay un puente físico de algún miembro del
+primer par a algún miembro del segundo. Se llama v al extremo alcanzado.
+Así la expresión cuenta las dos elecciones de extremo y conserva los
+presupuestos de incidencia también para el segundo par.
+
+2. Comprobación del rectángulo general
+======================================
+
+Se usa x=10⁻⁸, y=ξ exp(0.001), ξ=2.055·10⁻¹¹ y precio por dato
+u=1.032 p exp(0.075). Las series A,T,D,a y sus marcas son las de
+H5A_primer_apagado_por_grupos.txt, §3. Para los términos con al menos
+una medida ligada, su coeficiente en y se mayora por y/10⁻⁷ veces
+el coeficiente evaluado en 10⁻⁷. La positividad justifica la desigualdad.
+En e=2 se combina esa estimación con la cuenta de dos datos puros.
+En 3≤e≤12 se aplica la cuenta de la cubierta al coeficiente j=1.
+La parte r=1 usa el coeficiente puro de toda esa clase y el coste del
+dato retirado. Para r≥2 se suman (3) por u^e y por su peso de (2).
+En e=4 se añade la cuenta específica de j=0. En cada casilla también
+puede emplearse el mayorante anterior completo y se toma el menor.
+La raíz de medida conserva la serie precedente. El grado uno usa su
+suma binomial exacta sobre las medidas en la huella.
+
+Las demás casillas hasta e=28 se pagan con Φ(e,j). Para todos los e≥29
+se usa a la vez la cota lineal de 85.857226 bits por dato y −15.240
+bits por marca de la nota anterior. A precios x'=4u·2^85.857226 y
+t'=2^(−15.240), las cuatro ecuaciones allí demostradas admiten
+
+    a≤1.78·10⁻⁶,  T≤1.80·10⁻⁶,  A≤2.1·10⁻⁹,  D≤2.071·10⁻¹¹.
+
+Dividir A o D+35ya por 4²⁹ cubre simultáneamente todos los tamaños
+restantes. En p=5·10⁻³³ las filas fuente VV, CC y medida son inferiores
+a 5.043·10⁻²⁴, 1.066·10⁻²³ y 1.254·10⁻²⁵. En las quince desigualdades
+del árbol causal de contactos se introducen las cotas 6·10⁻²⁴, 1.3·10⁻²³,
+1.5·10⁻²⁵. Se verifican el perfil local GENERAL sin recargo, las filas
+exteriores y el presupuesto 0.01. El criterio enraizado y la normalización
+de H5A_cumulantes_y_componentes.txt, §§1–2, dan (1) por monotonía en
+r/(1−2r). En esa esquina la fila del resto completo de la referencia,
+desde grado cuatro, es <1.849·10⁻¹⁶ por dato y <2.565·10⁻¹³ por medida.
+Este cálculo general usa el árbol causal previo. La condición geométrica
+que sigue se aplica exclusivamente a la estimación adicional en la meta.
+El criterio de expansión utilizado en la normalización es el teorema 1
+de D. Ueltschi, Cluster expansions and correlation functions (2004).
+https://arxiv.org/abs/math-ph/0304003
+
+3. Descubrir datos entre dos ejecuciones
+========================================
+
+Usar las piezas elementales y los árboles supervivientes de
+H5A_propagacion_entre_fuentes.txt, §3. Son núcleos con datos y medidas
+activas, o medidas pasivas. Un árbol de piezas conserva el color de cada
+arista, interna de una decoración o entre dos decoraciones. El monomio
+contiene cada fuente una vez. Fijar una fuente raíz y orientar el árbol
+desde ella. L es el grafo de checks que comparten un rectángulo y ψ_v
+la huella completa del dato v. Las distancias siguientes son en L.
+
+En un núcleo filtrado escribir E,D para sus fuentes. El fondo D es
+estable para todos los candidatos FGL. Se empieza por un dato conocido
+del núcleo. Se fija un orden de checks, de datos y de desempate. En una
+ejecución auxiliar admisible se procede de la siguiente forma.
+
+• Al admitir un dato v aún desconocido, sumar 18 unidades al presupuesto
+  de descenso, hacer X ← X ⊕ ψ_v y añadir sus checks a una cola. X es
+  la discrepancia con D debida a todos los datos admitidos y a las
+  correcciones auxiliares ya aplicadas. Empieza vacía.
+• Al extraer un check u de la cola por primera vez, recorrer los datos v
+  todavía pendientes a distancia finita. Cada respuesta positiva admite
+  v y consume ℓ=(dist(u,ψ_v)−5)₊ unidades de distancia. Una negativa
+  permite volver a considerar v desde otro check. El par (u,v) se prueba
+  una vez y v se admite a lo sumo una vez. Procesar las nuevas entradas
+  de la cola antes de escoger la siguiente corrección.
+• Una vez vacía la cola, todo candidato elegible en D⊕X toca X, por
+  estabilidad del fondo. Se consultan las medidas de los rectángulos
+  que tocan X. Las respuestas conocidas se reutilizan. Con ellas se
+  obtiene el ganador, con su clave física completa. Si hay ganador
+  y su descenso cabe en el presupuesto, aplicarlo, restar el descenso,
+  actualizar X y añadir a la cola todos los checks conmutados.
+  En la parada o al agotarse el presupuesto disponible para ese paso
+  termina el recorrido auxiliar.
+• Con todos los datos admitidos se vuelve a ejecutar desde el estado
+  inicial físico de E, reutilizando las respuestas de medidas. Se leen
+  también las huellas originales. Se exige que esta ejecución sea la
+  del núcleo filtrado y que recupere todas sus medidas activas. Con ella
+  se comprueban el soporte en el subhost y el carácter de la máscara.
+  Puede cambiar incluso acciones anteriores al
+  último dato admitido.
+
+En las ramas correspondientes a un núcleo real, cada consulta a D se
+contesta con su pertenencia verdadera. En el código de recuento se
+permiten todas las respuestas y se conservan sólo hojas válidas. Toda
+medida activa se lee en la última ejecución, porque toca una huella
+original o el rectángulo de una acción física. Las consultas incluyen
+todo el rectángulo del ganador, también sus intersecciones oscuras.
+Esto justifica recuperar D sin conocer inicialmente su tamaño. J=83810
+mayora desde un check el total de medidas en los rectángulos incidentes.
+
+La elección de las entradas entre piezas se incluye en el coste de
+distancia. Desde una raíz de datos se empieza por ella con coste cero.
+Desde una raíz de medida activa u se elige un dato v del núcleo con
+coste (dist(u,ψ_v)−6)₊ y se fija la respuesta positiva en u. Desde una
+pasiva u hacia un núcleo hijo la entrada cuesta (dist(u,ψ_v)−5)₊. Desde
+un núcleo ya reconstruido hacia otro se elige un check u que es sitio
+de medida K-vecino de un dato visitado del padre. La entrada v del hijo
+cuesta (dist(u,ψ_v)−3)₊. Las aristas físicas y sus contactos canónicos
+se validan al reconstruir las piezas. La elección auxiliar de u sirve
+para enumerar la entrada. Del núcleo a una pasiva se usan las posiciones
+físicas vecinas ya disponibles. Entre pasivas rige el contacto físico.
+
+Sea H la suma de las distancias adicionales sobre los descubrimientos
+y las entradas de todo el árbol. Para cada elección de la fuente raíz
+pedimos que exista un recorrido admisible que recupere el árbol con
+
+                           20 H ≤ 2e + 3d.                           (4)
+
+Aquí e,d se suman sobre todas sus piezas. Los recorridos permitidos pueden
+depender de la raíz. Tomar el primero que sirve según un orden fijo hace
+la cuenta unívoca. Así la selección de términos del resto es común a
+todas las filas. En particular, una sola cadena puede tener cualquier
+profundidad y compartir el presupuesto entre sus distintas fusiones.
+
+Hay un test suficiente que sólo usa fuentes. Si se da un árbol de los
+datos de un núcleo, cargar por arista vw el exceso (dist(ψ_v,ψ_w)−5)₊.
+Para cada hijo designar un check de la huella del padre que realiza esa
+distancia. Admitir al hijo cuando se explore ese check. Si el check ya
+apareció por otra rama se permite admitirlo desde aquella primera visita.
+Una inducción en el árbol muestra que se descubren todos los datos. El
+recorrido que usa además los checks abiertos por correcciones puede
+disminuir este coste. La definición (4) conserva ambas posibilidades.
+
+4. Sumar todos los recorridos que satisfacen (4)
+================================================
+
+En cada núcleo usemos e,d también para sus números locales. Tanto en
+la ejecución auxiliar como en la física, el descenso acumulado es ≤18e.
+En la auxiliar se sigue de la regla de admisión. En la física se sigue
+de |H_X E ⊕ D|−|D|≤18e. Para una acción de área A, descenso δ y c
+luces creadas se tiene 2c=A−δ≤99δ. Por tanto cada ejecución crea, con
+repeticiones, a lo sumo 891e luces del síndrome observado.
+
+Hay ≤18e checks de las huellas originales. En cualquier otro check,
+al conmutarse por primera vez, el estado anterior coincide con D en
+ese sitio. Si era cero, se crea una luz. Si era uno, es una de las
+d medidas y ese primer uso se carga una sola vez. Así en cada ejecución
+se encuentran ≤909e+d checks distintos entre huellas y conmutaciones.
+Todas las discrepancias se apoyan allí, aun si una admisión cambia
+la puntuación de candidatos ya considerados. En la auxiliar éstos son
+los posibles orígenes de búsquedas de datos. En ambas juntas el número
+de consultas de medida frescas es a lo sumo
+
+        (1818J+18)e+2Jd = 152366598e+167620d.                       (5)
+
+El 18e adicional permite la lectura final de todas las huellas. Mantener
+una sola tabla evita un factor proporcional al número de fusiones.
+
+Poner b=2²⁰, γ=273² y N(j) igual a la cota de datos a distancia ≤j
+de un check dada en H5A_encuentro_de_dos_frentes.txt, §4. De las cuatro
+bolas de Tanner se deduce N(j+1)≤γN(j) para j≥1. Desde un check fijo,
+para r=3,5,6 la suma de pesos de las posiciones v posibles verifica
+
+       Σ_v b^(−(dist(u,ψ_v)−r)₊) ≤ K_r = N(r)/(1−γ/b).             (6)
+
+Se usa N(r+j) para mayorar el anillo j. La cota vale también en
+presencia de ciclos y con todas las coincidencias del host.
+
+En la meta poner s_p=p exp(0.015)/(1−2p) y s_q=q exp(0.015)/(1−2q).
+Dar precio 4s_p a cada dato, 8s_q a cada medida y factor b^(−ℓ) a
+cada distancia adicional. El producto supera o iguala la actividad
+física en todo árbol que cumple (4). Se eligen
+
+       y=1.2·10⁻²⁹,  t=1.634·10⁻¹⁰,
+       B_d=135·1420146 (t+K₃ y),        B_m=83810t+K₅ y.
+
+Para justificar la suma interior fijar el dato inicial. A toda oferta
+de otro dato de coste ℓ asignar probabilidad de aceptación a/(1+a),
+con a=y b^(−ℓ). A cada consulta de medida fresca asignar probabilidad
+t/(1+t) de respuesta positiva. Al fijar una raíz de medida activa la
+respuesta en la raíz ya se conoce. En un host finito se obtiene así
+un árbol de consultas adaptativas, con suma de probabilidades de sus
+hojas aceptadas ≤1. Las probabilidades sólo sirven para contar entradas.
+
+En una hoja válida hay e−1 admisiones pagadas y d respuestas positivas,
+o d−1 si se fijó la medida raíz. Para las búsquedas realizadas desde un
+mismo check, el producto de los denominadores es ≤exp(K₅y) por (6).
+Para las medidas, 1+t≤exp(t). Con J como en (5), si H_int es la distancia
+pagada dentro de la pieza, la probabilidad de la hoja con dato inicial
+fijado es por tanto al menos
+
+    y^(e−1) b^(−H_int) t^d
+    · exp[−e(909K₅y+(1818J+18)t) −d(K₅y+2Jt)].                   (7)
+
+Con la raíz de medida fijada se reemplaza t^d por t^(d−1). La
+desigualdad se aplica hoja a hoja, de modo que los presupuestos
+dependientes de los datos y medidas descubiertos son válidos también
+cuando las respuestas cambian las consultas futuras.
+
+En un núcleo completamente conocido hay ≤135e datos visitados y como
+máximo 1420146 medidas vecinas por dato visitado. Las vecindades de
+sus medidas activas están contenidas en las de sus lectores visitados.
+Por tanto B_d por dato cubre la suma de hijos pasivos y de posibles
+entradas en núcleos hijos, contando el peso (6) de la entrada. Desde
+una pasiva fija se dispone de B_m. Permitir los dos colores de las
+aristas da exp(2B_d e) o exp(2B_m) para hijos sin orden. En un árbol
+real sus fuentes son distintas. Al cortar las aristas entre decoraciones
+se recuperan la familia física y su árbol superviviente. Permitir todas
+las elecciones auxiliares sólo aumenta la suma.
+
+El verificador comprueba con fracciones las tres desigualdades
+
+    4s_p exp[2B_d+909K₅y+(1818J+18)t] < y,
+    8s_q exp(K₅y+2Jt) < t,          8s_q exp(2B_m) < t.
+
+Las dos primeras, junto con (7), mayoran cada actividad de núcleo
+con sus hijos por y veces la probabilidad de su hoja, para un dato
+fijado. La tercera paga la pasiva con todos sus hijos. La inducción
+por la altura exterior cubre todos los árboles finitos. Por raíz de
+datos se obtiene ≤y. Por raíz de medida activa, la respuesta fijada
+aporta un factor t y la elección del primer dato cuesta ≤K₆y.
+Incluyendo la alternativa pasiva, la fila de medida es
+
+                          ≤t(1+K₆y)<1.32·10⁻⁸.                      (8)
+
+5. Una cadena en que cambia efectivamente la corrección
+=======================================================
+
+Se extiende la construcción física de una fila de
+H5A_encuentro_de_dos_frentes.txt, §2. Un vértice de grado 17 representa
+un dato y cada arista un check distinto. Las 17 copias y las 16 columnas
+de relleno por arista dan la semilla binaria (17,18)-regular. Para el
+síndrome de una sola fila física el máximo FGL elige un singleton de
+esa fila. El síndrome es el corte de los vértices ocupados y se activa
+un vacío cuando tiene al menos nueve vecinos ocupados. Partiendo de
+semillas estables los volteos son monótonos y el cierre es independiente
+del orden de actualización.
+
+Para g≥2 tomar g brazos de entrada. Cada capa de extremo tiene nueve
+vecinos interiores y ocho aristas hacia su brazo. Cada capa ordinaria
+recibe nueve aristas y emite ocho. La primera unión recibe de los dos
+primeros brazos. Cada unión posterior recibe del tramo precedente y
+del siguiente brazo. Una unión intermedia recibe cinco del lado
+precedente y cuatro del brazo, y envía ocho a un tramo de capas
+ordinarias. La última recibe ocho y ocho y completa el grado con un
+emparejamiento interior. Dar a los extremos un ciclo con los cuatro
+vecinos siguientes, los cuatro anteriores y el vértice opuesto.
+Las razones de poblaciones entre capas son las inversas de los grados
+de enlace. El grafo de capas sin lazos es un árbol. Un múltiplo par
+común suficientemente grande realiza simultáneamente todos los grados.
+
+Sembrar las capas de extremo de los primeros k brazos. Se alcanzan
+exactamente las primeras k−1 uniones. En particular el siguiente
+brazo solo se detiene, y añadirlo al prefijo cambia las correcciones
+que pueden activarse. La inducción usa que cada unión intermedia
+necesita sus dos entradas para llegar a nueve y que el tramo lleno
+alimenta la siguiente unión. Para una selección propia de brazos,
+detener el llenado justo antes de la primera unión que carece de una
+entrada y dejar vacíos los tramos siguientes, permitiendo que se llenen
+los brazos sembrados posteriores. Este conjunto es cerrado hacia
+fuera. Una unión posterior con sólo su brazo ve a lo sumo ocho y un
+brazo vacío con una unión ocupada recibe a lo sumo ocho desde ella.
+Siempre queda una frontera no vacía si se sembró al menos un brazo.
+Con todos los brazos el síndrome final es cero. En subhost completo y
+máscara trivial, el cumulante de los g brazos tomados como g variables
+vale uno, porque todas sus marcas propias no vacías se anulan. El
+cumulante de las fuentes individuales es otra cantidad.
+
+Para cualquier g y longitudes fijas, esta cadena se puede realizar
+dentro de (4). Los datos de cada extremo se descubren desde cualquier
+miembro por sus solapamientos en el ciclo. Entre dos extremos se puede
+seguir un camino de capas de longitud fijada, pues cada vértice tiene
+vecinos en las direcciones requeridas. Esto da un árbol de los extremos
+con coste total acotado independientemente de las poblaciones. Al tomar
+un múltiplo común grande hay suficientes datos para pagar ese coste
+desde cualquier raíz. El programa contrasta los prefijos y las entradas
+con un brazo ausente en g=2, 3 y 8. La inducción prueba la afirmación
+para todo g. Esta familia ilustra el cambio físico sucesivo y también
+satisface el criterio previo de singletons.
+
+6. El resto en la meta y la reproducción
+=======================================
+
+Del resto k_rest de H5A_encuentro_de_dos_frentes.txt, §5, retirar sólo
+los términos cuyos árboles cumplen (4). Denotar por k_lejos(B) la suma
+firmada de los términos restantes del monomio multilineal B. Sumando
+las cotas previas y (8), incluida la referencia k⋆, se obtiene
+
+      Σ_{B∋i, |B|≥4} |k(B)−k⋆(B)−k_lejos(B)| s^B
+             <1.936·10⁻⁵ por dato,       <0.000691 por medida.
+
+Para cerrar el resultado general en 10⁻³⁰ sigue bastando una fila de
+k_lejos de a lo sumo 0.004298 por raíz. Falta controlar los términos
+que exceden el presupuesto en alguna orientación y que también escaparon
+a los criterios anteriores. Un posible punto de entrada es cargar a la
+ejecución real la distancia que falta cuando ambos grupos por separado
+se detienen. Las estimaciones aquí demostradas sólo pagan las distancias
+que efectivamente satisfacen (4). El peso total real de la parte pendiente
+sigue sin medirse por estas cotas superiores.
+
+En 05_COMPROBACIONES, junto a los verificadores H5-A anteriores, ejecutar
+
+    python -I -B -X utf8 verificar_H5A_fusiones_sin_repetir.py
+
+El programa utiliza la biblioteca estándar. Las desigualdades decisorias
+usan enteros, fracciones y redondeos hacia arriba. Los decimales impresos
+sirven como lectura del cálculo. Las derivaciones combinatorias de esta
+nota quedan pendientes de revisión matemática independiente.

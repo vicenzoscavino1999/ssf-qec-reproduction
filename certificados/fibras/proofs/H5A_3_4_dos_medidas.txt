@@ -1,0 +1,311 @@
+H5-A · Dos medidas que actúan sobre el mismo par de datos en (3,4)
+21 de noviembre de 2026
+
+Para el producto de una semilla binaria (peso de columna 3, peso de fila 4)
+consigo misma, el nuevo rectángulo de acceso a las particiones filtradas es
+
+                     0 ≤ p ≤ 8·10⁻¹⁰,       0 ≤ q ≤ 10⁻³.                (1)
+
+Incluye todo tamaño, máscara y subhost inducido J. Se utiliza una ronda
+Bernoulli independiente y el SSF del manuscrito con todos los candidatos
+FGL, β=1/100, máximo global del descenso dividido por el tamaño de la
+huella y desempate fijo independiente del síndrome. El filtro exige
+síndrome físico residual cero. La precisión relativa de una probabilidad
+positiva de fallo silencioso requiere además el testigo lógico y las
+condiciones del Teorema 1. El extremo anterior de p era 4·10⁻¹⁰.
+
+En (10⁻⁶,10⁻³) se cierra la respuesta completa de dos datos adyacentes a
+dos medidas. Se suma asimismo su contribución cuadrática en presencia de
+cualquier número de medidas. El margen uniforme suficiente para el resto
+es 0.002479 por raíz. En esa esquina siguen pendientes interacciones de
+tres o más medidas con el par y grupos con más datos. La aritmética se ha
+reproducido. Falta una revisión independiente del argumento combinatorio.
+
+1. Qué celdas necesita consultar el decodificador
+===================================
+
+Para un par de datos x,y adyacentes en K escribir O=ψ_x∪ψ_y. El grafo L de
+medidas une dos celdas que pertenecen a un mismo rectángulo de generador.
+Su vecindad cerrada tiene a lo sumo 90 sitios. La vecindad en L de una
+huella VV o CC tiene a lo sumo 210 o 252 medidas, respectivamente.
+Sean D las medidas erróneas, S el síndrome físico actual y s=S⊕D el
+observado. En un fondo estable D, todo candidato cuya huella evita S tiene
+la misma puntuación que en D y es inelegible. Para reproducir la decisión
+basta consultar las celdas de los candidatos cuyas huellas tocan S. Esto
+incluye los rivales del ganador y la prueba de parada. Se utiliza el
+decodificador del código completo también cuando se impone contención en J.
+
+Para D vacío o D={d}, tomar Q_D como la vecindad cerrada en L de O, de D
+y de todas las luces observadas que se enciendan en la ejecución canónica.
+En cada paso, S está incluido en esos centros, pues una luz observada viene
+del estado inicial o de una activación, y S sólo difiere de s en D. Q_D
+cubre todas las consultas anteriores y también las necesarias para comparar
+los dos datos por separado. Escribimos Q₀ para el caso vacío y Q_d para un
+solo error de medida. Las ejecuciones pueden terminar fuera del filtro.
+Si se añaden a D medidas fuera de Q_D y el nuevo fondo es estable, una
+inducción sobre las decisiones reproduce los mismos pasos y la misma parada.
+El signo y el filtro de datos son entonces iguales. Las medidas añadidas
+son variables permitidas en J.
+
+La tabla local completa de los 4096 síndromes da h≥2 y v−h≤2 para toda
+acción elegida, donde v es el área de la huella y h sus luces. En Q₀ hay a
+lo sumo tres pasos que activan luces. En efecto, la ejecución limpia de un
+par tiene ≤4 pasos y, si hay cuatro, el primero es perfecto (nota de pares
+adyacentes, §3). Con una medida hay a lo sumo nueve pasos, por el peso
+inicial ≤9 y el descenso entero positivo. En consecuencia
+
+               |Q₀|≤L₀=2·252+6·90=1044,
+               |Q_d|≤L₁=2·252+(1+2·9)90=2214.                            (2)
+
+2. Cuántos pares pueden consultar una medida fija
+================================================
+
+Dos celdas de un rectángulo están a distancia de Tanner ≤2 por coordenada.
+Contar como una unidad un desplazamiento de hasta dos aristas en un solo
+eje. Para una celda que se enciende, buscar una luz previa dentro de la
+huella. Si el descenso δ=2h−v es uno, siempre se encuentra una en su fila
+o columna. El verificador contrasta esta afirmación para todas las celdas
+y todos los ganadores empatados. Las únicas firmas (v,h) que alguna vez
+carecen de tal luz son (6,4) y (7,6), con δ=2 y δ=5. En general el coste
+de remontar una activación a una luz anterior es por tanto ≤δ.
+
+Con una medida d puede haber una luz inicial que provenga exclusivamente
+de d. Queremos remontarnos a un dato. Hasta el primer paso que apaga esa
+luz, todas las demás luces tienen un origen de datos. En ese paso, h≥2
+permite elegir otra luz de la huella. Si para ello hacen falta dos ejes
+cuando δ=1, se gasta una unidad adicional. Sólo puede ocurrir una vez.
+Las luces nuevas de ese paso, incluidas las futuras reactivaciones de d,
+ya tienen un origen de datos. La propia celda d se cubre por separado
+cuando se consulta su vecindad.
+
+La siguiente tabla da una cota a+b para los dos desplazamientos acumulados,
+antes de la última consulta en L, desde alguna celda de O hasta una luz
+con origen en los datos.
+
+       Huellas del par               D vacío               D={d}
+       disjuntas                        3                     5
+       solapadas                        4                     6.          (3)
+
+Para huellas disjuntas siempre hay un singleton perfecto al inicio, aun con
+una medida. El primer paso sólo apaga luces. En la ejecución limpia deja
+≤4 por el argumento del par. Una luz que interese tras activaciones
+posteriores deja el peso observado en ≥1. El descenso disponible para
+remontarla es ≤3. Con una medida, si quedan ≤5 luces, el descenso es ≤4
+y cabe la unidad excepcional de d. El máximo restante posible es seis.
+Ello exige dos CC, peso inicial nueve y una primera acción perfecta de
+área tres, una VV. Su fila corta cada huella CC en a lo sumo una celda,
+así que la acción ya gastó la luz de d. El descenso disponible es entonces
+≤5 y todas las luces posteriores provienen de los datos.
+
+Con solapamiento, el peso inicial es ≤6 en limpio y ≤7 con una medida. Si
+es ≤5 o ≤6, respectivamente, basta el descenso hasta peso ≥1 y la unidad
+excepcional en el segundo caso. Los extremos seis y siete sólo se alcanzan
+con dos CC con un check común. Cada singleton ve al menos tres luces y
+compite con puntuación ≥1/2. Si el primer descenso es dos, el ganador ha
+de ser un singleton CC de área cuatro con tres luces. Remontar una de sus
+activaciones cuesta un solo eje incluso al evitar d. Si el descenso es ≥3,
+dos ejes cuestan al menos una unidad menos que el descenso. En ambos
+casos se ahorra una unidad en el primer paso, que justifica (3). Una cadena
+que omita ese paso tampoco gasta su descenso. Las luces iniciales de O
+están incluidas con desplazamiento cero en todos los casos.
+
+Para contar al revés desde una medida fija r, repartir h unidades de (3)
+entre i y h−i. La consulta final añade dos aristas de Tanner en cada eje y
+la incidencia con el dato añade una en el eje correspondiente. Desde r de
+tipo VC, los radios para orígenes VV son (2i+2,2(h−i)+3) y para CC son
+(2i+3,2(h−i)+2). Se cuenta cada origen por el menor radio admisible de
+su primera coordenada. La capa de distancia exacta está mayorada por los
+caminos sin retroceso de esa longitud. Los dos factores de crecimiento
+por pareja de aristas son 6. El segundo dato tiene ≤1080 o ≤1296
+posiciones si se pide adyacencia en K. En el caso solapado bastan ≤18
+o ≤24 según el tipo del origen (nota de pares, §1).
+
+Con las dos columnas de (3) se obtiene
+
+  P₀ =    502 564 680  pares con r∈Q₀,
+  P₁ = 26 751 043 656  pares con r∈Q_d fuera de N_L[d] para algún d,
+
+como cotas superiores, uniformes en r. La segunda cuenta pares, sin fijar
+ni multiplicar todavía posiciones para d.
+
+3. Respuesta cuadrática y suma sobre las demás medidas
+======================================================
+
+Usar T(E,D) para el momento verdadero con signo y filtro y T_ref para los
+momentos de referencia de H5A_3_4_pares_adyacentes.txt, §4. Fijar x,y y
+poner Δ(D)=T({x,y},D)−T_ref({x,y},D), f₀=Δ(∅), f_c=Δ({c})−f₀. Sea B(D)
+el indicador de estabilidad. Para c≠d definir
+
+           g_cd=Δ({c,d})−B({c,d})(f₀+f_c+f_d).
+
+Si {c,d} es inestable, g_cd=0 por el filtro. Si es estable, g_cd es la
+segunda diferencia de Δ en ∅,{c},{d},{c,d} y |g_cd|≤8. Si c,d están
+ambos fuera de Q₀, la invariancia del §1 da g_cd=0. Si d∈Q₀ y c está
+fuera de Q₀ y Q_d, las dos comparaciones con y sin c dan también cero.
+Así, para un par de datos fijo hay ≤L₀(L₀+L₁) parejas con g_cd no nulo.
+Para una medida fija c, el número de posibilidades para {x,y} y d es ≤
+
+             I = P₀(L₀+L₁) + 90P₀ + P₁L₀ = 29 610 676 125 504.         (4)
+
+El primer término cubre c∈Q₀. En los demás se tiene d∈Q₀. Si c∈N_L[d],
+hay ≤90 posiciones para d, cada una con ≤P₀ pares. En el último caso se
+elige el par que puede consultar c con una medida y luego d en su Q₀.
+
+En variables de medida escribir Z₀=Σ_D B(D)z^D y D_c=z_c∂/∂z_c. Se
+usan coeficientes con cada fuente presente una sola vez. Como los momentos
+con cero o un dato coinciden con la referencia, la corrección al logaritmo
+en el coeficiente de los dos datos es (Σ_D Δ(D)z^D)/Z₀. Tras las partes
+constante y lineal ya calculadas, sustraer del numerador, para cada D, la
+cantidad B(D)Σ_{{c,d}⊆D}g_cd, contando cada pareja una vez. El numerador
+restante empieza con tres medidas. La contribución sustraída, tras dividir
+por Z₀, es exactamente
+
+       Σ_{c<d} g_cd [D_c D_d log Z₀+(D_c log Z₀)(D_d log Z₀)].          (5)
+
+Así se suma esta parte aunque haya muchas medidas. La identidad incluye
+tanto un cumulante puro con dos marcas como el producto de dos cumulantes
+puros con una marca cada uno.
+
+En la esquina objetivo poner b=[p/(1−2p)]exp(.015), a=q exp(.015),
+V=.00000195, M=.00128 y λ=178M. Se cumplen V≥b exp(504M) y
+M≥a exp(178M+938V). El árbol puro de medidas tiene grado ≤89, peso 2 por
+arista y masa enraizada ≤M incluyendo la raíz. Para c,d distintos fijos,
+el árbol puro que contiene a ambos pesa ≤2M²/(1−λ). En el camino de
+longitud k≥1 hay ≤89^(k−1) posibilidades intermedias, el último sitio
+está fijado y cada vértice aporta sus ramas opcionales hasta masa M. El
+producto de dos árboles en las marcas pesa ≤M². Con una raíz de datos,
+la fila adicional de (5) es por tanto a lo sumo
+
+           8b²·1296 L₀(L₀+L₁) M²[1+2/(1−λ)].
+
+Para una raíz de medida r en el producto, sea c la marca en el árbol que
+contiene r. El camino de r a c y sus ramas pesan ≤M/(1−λ) al sumar c.
+El segundo árbol pesa ≤M una vez fijado d. Para el cumulante con dos
+marcas escoger c de forma que d no esté en el camino de r a c. Siempre
+existe tal orientación para la pareja no ordenada, también si r es una
+marca. Para longitud k desde r a c se cuentan ≤M λ^k, y hay k+1 posibles
+puntos de partida para el camino adicional de longitud ≥1 hasta d. Ese
+camino con d fijo cuesta ≤2M/(1−λ), sin repetir el peso del punto de
+partida. Con c fijada en cada camino se usa (4) para todos los posibles
+pares de datos y d. Todas las ramas ajenas a los caminos se contaron en
+las masas M. Así, la fila adicional por una medida es a lo sumo
+
+           8b² I M²[(1−λ)⁻¹+2(1−λ)⁻³].
+
+En la parte lineal de la nota anterior se pueden usar L₀ y P₀ en lugar del
+halo, pues f_c se anula fuera de Q₀. Manteniendo las otras clases de la
+nota anterior, incluidos los tríos de datos, las filas parciales son
+
+          raíz de datos     < 1.616·10⁻⁶,
+          raíz de medida    < 0.002521.
+
+El presupuesto completo sigue siendo 0.005. Para la esquina objetivo basta
+un límite de 0.002479 por raíz para la parte pendiente. Ésta incluye la
+respuesta de dos datos adyacentes de orden al menos tres en las medidas,
+tres datos con al menos una medida y cuatro o más datos con cualquier
+número de medidas. En las dos últimas clases queda la parte con algún
+par de datos adyacentes. La nueva fila parcial cuenta más contribuciones.
+
+4. El rectángulo a todos los órdenes
+====================================
+
+Se usa el árbol físico y el presupuesto de primeros apagados de la nota de
+pares adyacentes, §§1–2. Cada generador cercano tiene como causa un dato
+original cuyo check toca su rectángulo. Un lejano tiene un generador
+anterior como causa. Se mantienen los precios de una y cinco unidades por
+paso y los costes allí demostrados para datos aislados, pares pequeños y
+componentes grandes. Esta vez se registra directamente el extremo de más
+caminos, tanto si es un generador como si es una medida.
+
+Tras la poda, conservar la raíz y los extremos de los puentes. Comprimir
+cualquier generador interior sin etiqueta, sin puente y con exactamente
+una causa y un hijo causal, incluidos los cercanos. Un camino descendente
+desde un dato puede tener primero un cercano y después sólo lejanos. Si
+una rama causal acaba en un generador con una única etiqueta de medida y
+sin hijos, guardar directamente la celda de medida al final del camino.
+Sus generadores suprimidos son distintos de los de los otros caminos. Los
+extremos visibles, las fuentes y las medidas recuperan E,D_act y con ello
+la ejecución y el núcleo. Se sigue usando la incompatibilidad del soporte
+real. Cada camino se cobra por el menor número de interiores que permitan
+las distancias. Como sus precios son ≤1, la mayoración cubre la ejecución.
+
+Tomar t=(37/50)³ para un cercano e y=t⁵ para un lejano. Para ℓ≥0 usar
+las bolas pares X_V,X_C de radio 2ℓ+2 y las impares O_V,O_C de radio
+2ℓ+1. Escribir [S]=(1−y)Σ_{ℓ≥0}y^ℓ S(ℓ), y S⁺(ℓ)=S(ℓ+1). La nota
+de medidas y un dato, §2, da X_V=1+9(6^(ℓ+1)−1)/5,
+X_C=1+8(6^(ℓ+1)−1)/5, O_V=3(6^(ℓ+1)−1)/5 y O_C=4(6^(ℓ+1)−1)/5.
+Los techos siguientes se obtienen por series geométricas (36y<1).
+
+  Generador a generador visible                 j=⌈[X_C X_V−1]⌉=154.
+  Dato a lejano visible vía cercano oculto      j'=(2194,2603).
+  Lejano a dato vía cercano oculto              k'=(2925,1952).
+  Dato a etiqueta de una rama terminal          m=(356,425).
+  Generador a etiqueta de una rama terminal     m_g=979.
+
+Para j' se parte de S=(O_V X_V,X_C O_C), y para k' de
+S=(O_C X_V,X_C O_V). Se toma ⌈[S⁺−S(0)]⌉ en cada componente. El cercano
+oculto añade un salto, y el lejano extremo queda fuera de las posiciones
+de contacto directo de ese dato. La diferencia vale también con ciclos
+porque el producto de las dos bolas de los árboles de Tanner cubre
+el producto de bolas del grafo, y todo extremo realmente lejano está
+fuera de la imagen de la bola de contacto. Para una marca terminal desde
+un dato se usa ⌈[X_V O_V⁺]⌉ o ⌈[O_C⁺ X_C]⌉ y se paga además t por el
+cercano obligatorio. Desde un generador se usa ⌈[O_C⁺ O_V⁺]⌉ y se paga
+y por el primer lejano obligatorio. La última celda está a una arista por
+eje del generador que la guarda.
+
+En la notación de la nota de pares sean u₁,u₂ las masas de entradas de
+datos, u_n,u_f las de entrada a un generador como raíz o por puente, v_n,v_f
+las entradas desde la causa y c_n,c_f las entradas desde un hijo. Los
+subíndices n,f indican cercano y lejano. Poner u_g=u_n+u_f, n_i=(3,4),
+M_i=(1344,1596) y J_i=(30,36). Se sustituyen V_i, L, G y las ramas por
+
+  V_i=(1+s)^n_i exp(M_i u_g+J_i v_n+t j'_i v_f+t m_i s),
+  L=j v_f+y m_g s,
+  G=(1+s)¹² exp(1792u₁+1197u₂+3648u_g+L),
+  H_n=40u₁+27u₂,          H_f=j(c_n+c_f)+t(k'₁u₁+k'₂u₂),
+  u_n≥tH_nG,               u_f≥yH_fG,
+  v_n≥t(G−1−L−12s),       v_f≥y(G−1−L−12s),
+  c_n≥tH_n(G−1),           c_f≥yH_f(G−1),
+  U≥max(u₁+3u_g,u₂+4u_g).
+
+Al entrar desde la causa, una hoja vacía se ha podado, una extensión causal
+única sin etiqueta se ha comprimido (incluido el camino que acaba en
+medida) y una sola etiqueta sin hijos se ha trasladado al extremo. Son
+las tres sustracciones en v. Desde un hijo se requiere, además de la causa,
+otra extensión o una etiqueta. En las raíces y puentes se conserva el
+generador. Los productos de posiciones opcionales se mayoran por sus
+exponenciales. Las sustracciones quitan clases de árboles antes de la
+mayoración, con coeficientes restantes no negativos.
+
+Los precios C_i, las ramas grandes d_i y la entrada u_i satisfacen las
+ecuaciones (4) de la nota de pares con estos V_i y t. El presupuesto
+exterior usa B=1297U, B_D=469U+90P, τ=.01 y las mismas cotas del soporte
+y su vecindad. Testigos decimales exactos en la esquina de (1)
+
+  U=9.52660931e−6, P=.00129250026, s=.00128100198,
+  C=(3.40670704e−9,4.68595353e−9), d=(2.96079763e−6,4.93234219e−5),
+  u=(1.55307407e−8,7.92748282e−8), u_n=1.18716853e−6, u_f=1.16517644e−6,
+  v_n=.00416551791, v_f=.000112318073, c_n=6.36053219e−8, c_f=6.24270448e−8.
+
+Los 15 cocientes son <.997. Inducir en la altura de las ramas y del árbol
+exterior da la suma de todos los órdenes. Por monotonía se cubre (1),
+incluidos ambos ejes. Se aplica el mismo criterio de Kotecký–Preiss con
+U,P<1 y la cota |Y|≤7F para F fuentes. La cola del logaritmo a grado m por
+soporte con multiplicidades es ≤N exp[−(m+1)/700]. El apéndice A da su
+evaluación. Esta demostración de (1) es independiente del margen parcial
+del §3. Si se mantienen estos mismos testigos al subir a p=10⁻⁶, ya se
+obtiene z_p/C₁>290 antes del factor exponencial que exige el precio VV.
+
+Reproducción
+============
+
+En 05_COMPROBACIONES ejecutar
+
+    python -I -B -X utf8 verificar_H5A_3_4_dos_medidas.py
+
+El programa reutiliza verificar_H5A_3_4_medidas_y_un_dato.py y
+verificar_H5A_3_4_pares_adyacentes.py. Comprueba la geometría de las luces,
+los radios y capas, las filas de (5) y las 15 desigualdades con fracciones
+y cotas racionales de la exponencial. Las pruebas de recomposición, de
+filtrado y de evaluación son las del manuscrito y las notas citadas.

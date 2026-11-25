@@ -1,0 +1,302 @@
+H5-A · Medidas aisladas alrededor de una corrección en HGP (3,4)
+22 de noviembre de 2026
+
+Para el producto de una semilla binaria de peso columna 3 y peso fila 4
+consigo misma se deriva acceso uniforme a las particiones filtradas en
+
+                  0 ≤ p ≤ 2.6·10⁻⁷,       0 ≤ q ≤ 10⁻³.                (1)
+
+La fila de todos los tamaños es <0.00052596 frente a un presupuesto de
+0.001. El extremo anterior era 1.2·10⁻⁷ al mismo q. La mejora es 13/6
+y hasta G3, p=10⁻⁶, queda un factor 50/13. El modelo tiene una ronda
+Bernoulli independiente, el SSF con todas las acciones FGL, β=1/100,
+máximo global del descenso dividido por el tamaño de la huella y un
+desempate físico fijo. El filtro exige síndrome físico residual cero.
+Se mantienen los cuantificadores sobre tamaño, máscara y subhost físico
+inducido J y las convenciones de oráculo y orden del manuscrito. El paso
+a error relativo para un fallo silencioso positivo requiere el testigo
+lógico y las demás hipótesis del Teorema 1. La aritmética se ha reproducido.
+La derivación queda pendiente de revisión matemática independiente.
+
+1. Cuándo una medida extra puede cambiar la historia
+====================================================
+
+Se usan los núcleos definidos en H5A_3_4_contacto_de_checks.txt, §§1–2.
+Para unos datos E y medidas activas D que forman un núcleo aceptado,
+sean O la unión de las huellas originales ψ_x, S la unión de O con las
+huellas de los pasos ejecutados, y Q=N_L[S]. Dos checks son vecinos en
+L si pertenecen a un mismo rectángulo generador. D⊆S y D es estable.
+Escribir J₂ para los checks j de Q que satisfacen al menos una condición
+
+  • N_L[j] contiene dos checks distintos de S.
+  • N_L[j] contiene un check de S en la misma fila física que j.
+
+En particular S⊆J₂. Para E fijo, el decodificador auxiliar del §1 de
+H5A_3_4_medidas_por_historia.txt compara los candidatos que tocan la
+discrepancia física X mientras X≠0. En la historia aceptada, X⊆S y
+todo ganador debe tocar X por la estabilidad de D. En una asignación
+auxiliar cualquiera se puede parar cuando X=0 o ya no haya tal ganador.
+Cada paso reduce el peso del síndrome observado. Al terminar, el
+algoritmo conoce S y puede leer los bits de la asignación en S.
+
+Fijar los bits de J₂ de acuerdo con D. En Q fuera de J₂ permitir un
+conjunto de unos adicionales sin dos vecinos en L. En el exterior de
+Q se puede tomar cualquier asignación. Este evento reproduce exactamente
+la historia auxiliar de (E,D). En efecto, una huella comparada que lea
+un uno adicional contiene como máximo un check de S, pues está entera
+en la vecindad cerrada de ese uno. Contiene como máximo un uno adicional
+porque sus checks son mutuamente vecinos. Con a lo sumo dos luces una
+huella de tamaño ≥4 es inelegible. Las únicas huellas más pequeñas
+tienen tres checks en una misma fila. Si una de ellas leyese a la vez
+la discrepancia X y el uno adicional, éste pertenecería a J₂. Las demás
+comparaciones y el ganador conservan sus puntuaciones, incluida la
+prioridad de los empates. La inducción reproduce todos los pasos y la
+parada. Los bits finales leídos en S identifican D.
+
+Usar bits Bernoulli auxiliares independientes de parámetro θ en los
+checks del código. Los eventos anteriores para distintos D y el mismo
+E son disjuntos por esa identificación. Esto también vale en cualquier
+subclase que exija visitar un generador dado. Es posible usar bits
+auxiliares fuera de J porque las entradas físicas contadas siguen
+satisfaciendo el filtro y la restricción de soporte en J.
+
+Para d=|D|, cada evento tiene probabilidad al menos
+
+  θ^d (1−θ)^(|J₂|−d) (1−θ²)^[(89/2)(|Q|−|J₂|)].                      (2)
+
+En efecto, sólo hay que evitar las parejas del grafo inducido por Q
+fuera de J₂, de grado máximo 89. Cada prohibición es un evento decreciente
+de los bits libres y tiene probabilidad 1−θ². Bajo una ley producto,
+dos funciones decrecientes tienen covarianza no negativa. Se demuestra
+por inducción en los bits, condicionando en el último. La covarianza
+de las dos medias condicionales tiene signo no negativo porque ambas
+decrecen en ese bit. Aplicar el resultado sucesivamente a los
+indicadores da el producto en (2). La ley auxiliar sólo sirve para
+sumar las medidas activas. La tasa física de medición en (1) es q.
+
+2. El coste geométrico de los checks con dos contribuciones
+==========================================================
+
+Para un conjunto de checks T, asignar a j una unidad por cada u∈T con
+j∈N_L[u] y otra si además u y j están en la misma fila. Llamar V_T(j)
+al total y poner F(T)=Σ_j min(2,V_T(j)). Entonces
+
+                   F(S)=|Q|+|J₂|,           F({u})≤99.
+
+Al añadir checks, cada contribución nueva a un centro se aprovecha
+sólo hasta completar dos. Por tanto el incremento de F al añadir una
+huella φ al soporte acumulado se acota por F(φ)−F(H) si H⊆φ ya estaba
+cubierto. Aquí H son las luces que el paso va a apagar. Empezando con
+O∪D cada luz de H procede del inicio o de un paso anterior.
+
+En el producto de los árboles de Tanner, para las cuatro filas del
+rectángulo hay cuatro primeras coordenadas comunes a sus bolas de dos
+pasos y seis privadas por fila. Para las tres columnas hay tres comunes
+y seis privadas por columna. En cada combinación de las dos bolas se
+añade una contribución. Si la primera coordenada es la fila de partida
+se añade la segunda. Es un recuento exacto de F en ese rectángulo.
+Al proyectar a una semilla con ciclos, fijar una celda del rectángulo
+en cada una de sus posiciones levantadas. Para cada centro físico y cada
+celda nueva que aporta hay algún levantamiento de esa incidencia, también
+con la misma fila cuando corresponde. En cada preimagen, las contribuciones
+de H provienen de celdas distintas del rectángulo y llegan al centro físico.
+Su capacidad libre local es por lo menos la capacidad libre física.
+Sumar los incrementos de sus preimágenes acota el incremento físico,
+aunque varias se identifiquen. Esto justifica usar las diferencias en
+el recubrimiento.
+
+Los costes iniciales F(ψ_V),F(ψ_C) están acotados por 258,288. Para cada
+una de las 25 órbitas de huellas ganadoras tomar k=F(φ)−F(H), v=|φ|,
+h=|H| y δ=2h−v. Con K=max k/δ, en el rango r de un original de anchura
+n se usa max[(K(v−h)+k)/h] sobre nh≥rv. Para verlo, asignar cada primera
+extinción de una luz de σ=H_X E fuera de D a una fuente que la contiene.
+El descenso total es |σ fuera de D|−|σ dentro de D|. Del producto de K
+por ese descenso se descuenta Kδ−k en cada paso. Cada una de sus hasta h
+primeras extinciones puede recibir (Kδ−k)/h. Se obtiene la fórmula por
+rango al restar ese crédito de K. Resultan (138,108,0) por VV y
+(138,138,64,0) por CC. Para e_V, e_C originales,
+
+         F(S) ≤ 504 e_V+628 e_C+99d,      |Q| ≤ 414 e_V+536 e_C+90d.   (3)
+
+La segunda desigualdad es la cobertura ordinaria del §3 de la nota de
+contacto. Las otras tres coberturas de centros se toman de esa misma nota.
+
+3. Integración de (2) con los pesos físicos
+==========================================
+
+Mantener x(r)=r exp(.015)/(1−2r), z=x(p)exp(α), y=x(q), α=.001,
+η=.0001 y fijar b=.00116. Para un núcleo, la fijación física conserva
+el factor exp(b|Q|) y el coste 2M(S) de los demás centros. Al dividir
+el peso de una historia por la probabilidad (2), la parte correspondiente
+a las medidas y a esta cobertura es como máximo
+
+              [y(1−θ)/θ]^d exp[A F(S)+B₀ |Q|].
+
+Bastan A,B₀≥0, A+B₀≥b−(89/2)log(1−θ²) y 2A+B₀≥b−log(1−θ).
+Son las dos contribuciones de Q fuera de J₂ y de J₂. El verificador usa
+θ=.00116874036 y acota cada −log(1−t) por t+t²/[2(1−t)]. Si l,c son
+respectivamente los techos de −log(1−θ) y −(89/2)log(1−θ²), se toma
+A=l−c, B₀=b+2c−l. Ambos son positivos.
+
+Escribir U_i para la masa con un original de tipo i fijado, H_i*
+para la parte no simple y G* para una visita a un generador lejano
+fijado. Poner g=40H_V*+27H_C*+G*, R=max_i (N U)_i, con
+N=((640,441),(784,513)), e I=280U_V+189U_C+588g, como en la nota
+anterior. El peso por dato para el recuento de originales es
+
+ m_i ≥ z exp[η+2R+A Γ_i+B₀ K_i+2(D_Vi U_V+D_Ci U_C+D_gi g)],
+
+con Γ=(504,628), K=(414,536), D_V=(1264,1652), D_C=(1719/2,1095)
+y D_g=(5247/2,3374). La fila de las medidas activas exige
+
+                    y(1−θ) exp(99A+90B₀+2I) ≤ θ.                       (4)
+
+Por (3) y (4), cada historia de un E fijo pesa como máximo su
+probabilidad auxiliar multiplicada por m_V^e_V m_C^e_C. Sumar los eventos
+disjuntos aplica esta cota una sola vez por E. Para ubicar E basta elegir
+una historia admisible de la clase que se está contando. Se conservan
+los precios propios de los núcleos simples y la condición de respuesta
+pasiva de H5A_3_4_medidas_por_historia.txt, §4.
+
+4. El saldo lejano de las parejas y los tríos
+=============================================
+
+Para cada componente original del grafo G, restar del saldo de descenso
+el coste δ completo de los pasos que dan primeros apagados en ella. Se
+conserva el tratamiento del aislado excepcional y las filas de parejas
+de la nota anterior. En un trío se distinguen todas las relaciones entre
+sus tres pares. Usar las clases 0 (sin arista G), 1 (débil), 2 (fuerte
+restante), 3 (igual coordenada fija y huellas disjuntas, para datos del
+mismo tipo), 4 (huellas con solapamiento). Las cotas de posiciones son
+
+  VV→VV      486,90,64,9      CC→CC      384,72,57,8      clases 1,2,3,4
+  VV→CC      324,117,9        CC→VV      576,208,16       clases 1,2,4.
+
+Salen de las bolas de Tanner de la nota de contacto, §4, y de los pares
+de H5A_3_4_franjas.txt. Para patrones etiquetados y un original fijado
+tomar el menor producto de posiciones sobre los árboles del patrón que
+lo conectan. Todos acotan las mismas realizaciones. Sumar los patrones y
+dividir por 2!, el número de etiquetas de los dos datos restantes.
+
+Para un patrón dado guardar los rangos pendientes r_i de sus tres
+originales. En cada transición enumerar las máscaras disjuntas de
+primeros apagados sobre H, cada una en la franja de su original.
+Se mantienen n_i h≥r_i v y el requisito de fondo estable en H fuera
+de esas máscaras si aún queda algún rango pleno. En ese caso había
+un singleton perfecto en todo paso anterior, así que sólo se habían
+apagado luces. Cada luz original todavía encendida que apaga el paso
+se asigna en él. El rectángulo sólo ve originales de esta componente.
+Las máscaras de un par de clase 0 no pueden ser a la vez positivas.
+En clase 1 deben tener proyecciones disjuntas en ambos factores. Para
+dos del mismo tipo con máscaras positivas la igualdad de franja física
+local equivale a la clase 3 o 4.
+
+Calcular el descuento mínimo por inducción en Σr_i, con movimiento a
+de primeras extinciones y término δ+descuento(r−a). Para el saldo
+inicial separar los bloques unidos por solapamientos de clase 4. Si
+un bloque tiene un dato, el saldo es 2s−n, con s celdas asignadas y
+anchura n. En un bloque de varios datos, con anchura sumada n, el
+síndrome tiene paridad n y tamaño entre s y n−2. La segunda cota
+proviene de al menos una celda común cuyas incidencias reducen en dos
+o más el peso de la suma binaria. El saldo es a lo sumo s−((n−s) mod 2).
+Maximizar saldo menos descuento y permitir cero como cota conservadora.
+Cada paso descontado tiene un único grupo lector. El resultado k es
+una cota entera del aporte del grupo al presupuesto de generadores
+lejanos del núcleo.
+
+A precio Y, comparar el coeficiente de cada monomio del trío, sumado
+con Y^(−k), con el coeficiente completo anterior para los mismos
+números de VV y CC. Usar el menor de ambos. Las cotas de posiciones de
+las ramas exteriores dependen sólo del tipo de cada original, de modo
+que se puede usar el coeficiente elegido también cuando se exija al
+menos una conexión exterior. Por ejemplo, con el Y de la sección 5,
+el coeficiente de un VV y dos CC queda entre 0.08618 y 0.08619 veces
+su valor anterior al mismo Y, tanto con raíz VV como con raíz CC.
+
+5. Grupos de cualquier tamaño y resultado numérico
+==================================================
+
+Usar a=.540626883624 y Y=a⁶<1/36. Se conservan los enlaces geométricos,
+los generadores ramificados y el enlace distinguido al fijar un generador
+lejano de la nota anterior. En los árboles de originales, un VV aporta
+hasta 7 sextos de saldo. Un CC aporta hasta 8 sextos si carece de
+vecino fuerte y 10 en los demás casos. El árbol del grupo se elige
+conectando primero cada bloque fuerte, por lo que representa correctamente
+esta distinción. Introducir una variable formal que guarda el grado
+k en sextos en las dos ecuaciones de árboles del §4 de esa nota.
+La raíz sin padre fuerte contribuye los pesos bajos si todos sus hijos
+son débiles y los altos si alguno es fuerte. Con un padre fuerte el
+peso es siempre alto. El verificador expande estas dos ecuaciones hasta
+diez originales por la identidad de Euler para la exponencial. Al
+olvidar k recupera los coeficientes de árboles de los dos tipos en todos
+esos grados. En los cuatro primeros recupera también el histograma
+anterior en sextos.
+
+El aporte de cada grupo al presupuesto real es entero. Para los grados
+cinco a diez se puede por ello cobrar Y^(−⌊k/6⌋) a cada árbol. Para la
+cola desde once se conserva el mayorante sin redondear para todos los
+tamaños. Más precisamente, en los pesos de rama w congelados se resta
+de la fila exponencial completa el polinomio SIN redondear de grados uno
+a diez en esos mismos w. La positividad de la serie y la supersolución
+de las dos ramas acotan el resto. Añadir los términos ajustados de
+grados uno a diez. Para la fila física con un dato fijado se resta este
+último polinomio en m, que corresponde al grupo sin conexiones exteriores,
+y se suma el recuento directo de originales conexos en G de tamaño ≥2.
+Las diferencias tienen interpretación como series de ramas con al menos
+un hijo exterior. Ésta es la misma descomposición usada antes hasta
+grado cuatro. Así entran todas las cardinalidades, las separaciones y
+los posibles números de grupos. El código da cada valor racional del
+testigo y las desigualdades de las ramas y de los núcleos completos.
+
+En (1) el cociente pasivo es <.995835 y el de (4) es <.999901. Las
+colas desde once son <4.419·10⁻¹¹ y <2.827·10⁻¹⁰ para raíces VV y CC.
+Se obtiene R<.00052596<α. Al extremo anterior p=1.2·10⁻⁷, la parte de
+tres o más componentes es ≤(6/13)³R<.00005172 por las marcas de fuentes.
+La monotonía de las actividades cubre todo el rectángulo (1). Se
+conserva la cola del logaritmo ≤N exp[−.015(m+1)] en grado total m
+para N sitios y la evaluación de coeficientes del apéndice A.
+
+6. Qué impide llegar a G3 con estas ecuaciones
+=============================================
+
+A q=.001, las mismas filas de parejas, ramas exteriores y grupos grandes
+son incompatibles desde p=9·10⁻⁷ para todo 0<Y<1/36. Para verificarlo
+basta poner p=9·10⁻⁷. La respuesta pasiva implica b≥q y (4) implica
+θ≥y/(1+y)>q. Entonces 2A+B₀≥2q. Como K_i≥Γ_i/2 y los precios son no
+negativos, m_i≥p exp(q Γ_i), incluso omitiendo el resto de los costes.
+
+Separar el intervalo de Y en los extremos 0, .019, .020, .021, .022,
+.023, .024, .025, .026, .027, 1/36. En [l,r] usar los núcleos
+geométricos ordinarios L_dd(l), que crecen con Y por su suma por capas,
+y las filas de parejas P(r), que decrecen. Con h,d,e inicialmente cero,
+iterar las siguientes cotas inferiores de las filas obligatorias
+
+   w_i ≥ m_i exp[(L_dd(l)h)_i],        h_i ≥ w_i [l+(P(r)w)_i],
+   X_i=(Wd)_i,   Z_i=(B e)_i,
+   d_i ≥ w_i exp(X_i)[t^(7+i)+t^(7+3i)(exp(Z_i)−1)],
+   e_i ≥ w_i t^(7+3i) exp(X_i+Z_i).
+
+Se usan i=0,1 y t≤r^(−1/6). W y B son las matrices débil y fuerte.
+El verificador redondea los valores por defecto y usa Taylor de grado
+ocho como cota inferior de exp sobre argumentos no negativos. En cada
+intervalo se alcanza e_C≥.1, respectivamente tras 7, 8, 9, 11, 14, 20,
+38, 54, 13 y 5 iteraciones. Pero la misma fila obliga
+e_C exp(−129 e_C)≥m_C t¹⁰. La función izquierda decrece desde .1 y
+su valor allí es menor que el derecho. El verificador contrasta esta
+última desigualdad en cada intervalo. Por monotonía en p la obstrucción
+cubre también G3. Es una limitación de las filas elegidas. El acceso
+uniforme de la partición en G3 sigue abierto. Un cambio relevante para
+esa meta sería controlar conjuntamente el grupo original y la rama
+exterior que realmente puede alimentar, evitando pagar ambos máximos
+en la misma configuración.
+
+Reproducción desde 05_COMPROBACIONES con Python 3.10 o posterior
+
+    python -I -B -X utf8 verificar_H5A_3_4_medidas_aisladas.py
+
+Antecedentes externos de la regla de decodificación y de la desigualdad
+de asociación usada en (2). Fawzi, Grospellier y Leverrier, Constant
+overhead quantum fault-tolerance with quantum expander codes
+(https://arxiv.org/abs/1808.03821). Harris, A lower bound for the
+critical probability in a certain percolation process
+(https://doi.org/10.1017/S0305004100034241).

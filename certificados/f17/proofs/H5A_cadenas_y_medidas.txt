@@ -1,0 +1,451 @@
+H5-A · Cadenas de acciones y ruido de medida en el certificado general
+17 de noviembre de 2026
+
+Resultado y alcance
+===================
+El rectángulo 0 ≤ p ≤ 10⁻⁴⁶, 0 ≤ q ≤ 2·10⁻¹¹ satisface el criterio de
+particiones físicamente filtradas del manuscrito. La mejora en p es de 19
+órdenes sobre 10⁻⁶⁵ al mismo q. La prueba vale para toda semilla binaria
+(17,18)-regular, todos los tamaños, candidatos FGL completos, β=1/100,
+máximo global, desempate fijo independiente del síndrome y una ronda de
+fuentes Bernoulli independientes en datos y medidas. La sección 7 da un
+límite para la meta de 10⁻⁶ que ya proviene de errores individuales reales.
+
+Se usan el host exacto K, la recomposición canónica y el compilador del
+manuscrito. El cálculo nuevo se aplica a sus pesos absolutos antes de las
+marcas. El resultado numérico se reproduce con python verificar_H5A_cadenas.py.
+La derivación combinatoria queda abierta a revisión matemática independiente.
+
+1. El coste de una acción según los checks que puede transmitir
+==============================================================
+Sean E,D las fuentes, e=|E|, d=|D|. Para una acción de huella φ escribimos
+a=|φ|, δ para el descenso de peso, h=(a+δ)/2 para los checks encendidos y
+c=(a−δ)/2 para los creados. En una ejecución filtrada H_X R=0, el síndrome
+final observado es D. Se sigue Σδ ≤ 18e. Al primer paso de puntuación δ/a
+estrictamente menor que un nivel u, cada singleton de E tiene menos de
+(1+u)|ψ_v|/2 checks encendidos. En U=unión de sus huellas hay a lo sumo
+b(u)e checks encendidos, con b(u)=⌈9(1+u)⌉−1. Fuera de U el estado inicial
+coincide con D y sólo se suman las creaciones del prefijo. El descenso del
+sufijo incluye todos los pasos por debajo de u. Por tanto
+
+  Σ_{δ/a<u} δ − Σ_{δ/a≥u} c ≤ b(u)e.
+
+Si el primer paso así definido no existe, el lado izquierdo es no positivo.
+La desigualdad admite subidas posteriores de puntuación y empates.
+
+Un generador tiene un rectángulo de 18 filas por 17 columnas. Una acción
+selecciona x filas y j columnas y conmuta su corte, de tamaño
+a=17x+18j−2xj. Cada corte no vacío tiene representante FGL. Se toma el lado
+menor de sus 35 miembros, de tamaño m≤17. En ese lado
+2a−17m=17x+19j−4xj≥17m−m²≥0. Esto permite comparar con un rival que
+conmuta cualquier fila o columna adicional en la huella elegida, aunque
+haya que complementar el representante. Una acción múltiple tiene a≥33,
+por la fórmula y el requisito FGL 2a≥17m. Para los singletons a es 17 o 18.
+
+Sea ℓ un check del corte que estaba apagado y que la acción enciende. En
+una de las dos líneas que lo atraviesan sean n la longitud (17 o 18), o el
+número de posiciones del corte y k el número de las o posiciones encendidas.
+Si k' es el número encendido en el resto de la línea, la optimalidad del
+corte frente al rival que conmuta esa línea implica
+
+  k−k' ≥ (2o−n) h/a.
+
+En efecto, el solapamiento del rival es h−k+k', su tamaño a+n−2o y su
+fracción encendida es a lo sumo h/a. Si el rival tiene huella vacía, la
+misma desigualdad se lee tras multiplicar por su tamaño, con ambos lados
+cero en la comparación de solapamientos. Poner b(o,n)=max(0,⌈(2o−n)h/a⌉).
+En la unión de las líneas hay por lo menos b(o_f,17)+b(o_c,18) checks
+encendidos del corte. La intersección es ℓ, que estaba apagado. Los pares
+(o_f,o_c) posibles son (17−j,x) si x(17−j)>0, y (j,18−x) si (18−x)j>0.
+
+Dar un recargo de 1 a una ocurrencia múltiple con δ<a si para algún tipo
+posible de ℓ la suma anterior es menor que 4. Llamarla débil. El resto
+recibe recargo 0. Sea B el número de ocurrencias débiles y T el número
+total de acciones, con todas las repeticiones. Los mismos multiplicadores
+racionales del certificado anterior, aplicados al descenso total y a los
+niveles u, dan el fortalecimiento
+
+  T+B ≤ (3446943/272272)e < (38/3)e si e>0,
+  Σ |F_i| ≤ (349988081/2625480)e,       |Y∩V| ≤ 135e.
+
+El verificador prueba en cada forma (x,j,δ) el coeficiente mínimo 1 o 2
+según el recargo, y por separado el requerido para |F_i|. El lado derecho
+de cada combinación es 18λ₀+Σ λ_u b(u). Se comprueban los dos signos de
+la comparación estricta y la paridad de δ. Si e=0, T=0 por descenso.
+
+2. Qué medidas hicieron falta para la ejecución
+==============================================
+Llamar pasiva a una fuente de medida fuera de todas las huellas de E y de
+las huellas de las acciones realmente ejecutadas. Está encendida hasta el
+final. Al retirar simultáneamente todas las pasivas, las puntuaciones de
+los ganadores se conservan y las de cada rival sólo pueden bajar. Por
+inducción se conservan el ganador, el desempate, cada repetición y la
+parada. El residuo físico y los datos visitados siguen siendo los de la
+misma ejecución. En la sección 6 se restituyen estas medidas en el peso.
+
+Aplicar el teorema de recomposición a las componentes de K tras retirarlas.
+Cada componente induce por sí sola su traza canónica. Las vecindades de
+checks de los datos de componentes distintas son disjuntas. El filtro
+físico se cumple por componente. Las llamaremos núcleos. Cada uno contiene
+un dato fuente. En efecto, e=0 en una componente filtrada implica T=0 y
+cualquier medida que queda tiene un dato lector presente en su componente.
+
+En cada núcleo guardar una medida que pertenece a alguna huella de E en
+el primer lector de E según un orden fijo. Guardar las demás en la primera
+acción que conmuta su check. La ejecución de la componente conserva esta
+asignación con el mismo orden de lectores, pues todos los lectores de E de
+ese check están en su componente. Cada medida se guarda exactamente una
+vez. Una fuente dato o un singleton dispone de 17 o 18 posiciones. Para un
+generador múltiple se permiten las 306, incluso si actúa varias veces.
+
+En K, el vecindario cerrado de un check está contenido en el de cualquier
+dato que lo lee. En efecto, todo clique del host que contiene al check
+proviene de un rectángulo que lo contiene, y todo lector del check está
+en el mismo clique. Por ello una medida guardada en un átomo no ensancha
+su vecindario para los puentes. Su dato lector pertenece al soporte real
+si se trata de una fuente o de un miembro de la acción que la conmutó.
+
+3. Elección de causas y reducción del árbol
+==========================================
+Usar átomos para las fuentes VV y CC, para cada dato de cada tipo en el
+que actuó un singleton, y para cada generador que ejecutó una acción
+múltiple. Se usa la tabla fija de generadores contenedores para acciones
+deduplicadas. Un átomo de acción representa todos sus usos. Las fuentes
+de datos y las acciones sobre el mismo dato siguen siendo distinguibles.
+
+En el primer uso de un átomo considerar los checks encendidos de su huella.
+Un check previamente conmutado tiene por causa el átomo de la última acción
+que lo encendió. Si nunca se conmutó y lo lee algún dato fuente, elegir el
+primer lector de E. Los restantes son medidas iniciales intactas que se
+guardan en este átomo. Si hay al menos dos de estas últimas, hacer del
+átomo un origen del bosque, sin arista hacia una causa. Su etiqueta incluye
+por lo menos dos medidas distintas. Cada una se apaga en ese primer uso,
+así que ninguna puede volver a ser una medida inicial intacta de otro uso.
+
+Cada acción ordinaria elige un check entre los que tienen causa previa.
+Le quedan al menos 8, 9 o 16 según sea singleton VV, singleton CC o
+múltiple. Para definir su distribución, procesar los átomos por orden
+decreciente de primer uso. Así se conocen los hijos cronológicos, es decir,
+los átomos posteriores que han elegido este átomo como causa, y sus checks.
+Por defecto, la elección es uniforme en todos sus checks con causa previa.
+Hay una sola excepción. Si un múltiple tiene un único uso, ninguna medida
+guardada, exactamente un hijo cronológico y una acción sin recargo, elegir
+uniformemente entre los checks encendidos de su huella alineados por fila
+o columna con el check ℓ del hijo. En ese uso se encendió ℓ. Luego δ<a y
+la sección 1 garantiza por lo menos cuatro opciones. Todas tienen causa
+previa. Esta distribución auxiliar sólo codifica la traza ya determinada.
+
+Las flechas apuntan a una fuente de datos o a un primer uso estrictamente
+anterior. Se obtiene un bosque con un origen por componente. Completarlo
+a un árbol con puentes entre soportes que se tocan o son vecinos en K,
+usando un orden fijo de aristas. La cobertura de los datos del núcleo y la
+dominación de los vecindarios de sus medidas garantizan conectividad. El
+soporte del átomo múltiple para este conteo es el generador completo.
+
+Para un ancla física de datos, elegir una raíz por orden fijo entre sus
+átomos de cobertura. Tomar el subárbol mínimo que contiene la raíz, todos
+los orígenes y todos los átomos con medidas guardadas. Incluye todos los
+puentes porque cada uno separa orígenes. Desde cada átomo retenido conserva
+el camino causal a su origen por unicidad del camino en el árbol completo.
+Suprimir de la representación los vértices interiores sin medidas, de grado
+dos, con una flecha entrante y otra saliente, excepto la raíz. Sustituir
+cada tramo máximo así obtenido por la secuencia ordenada de checks de sus
+aristas. Sus dos extremos se conservan con su identidad física. Las fuentes,
+las medidas guardadas y los extremos de puente se conservan explícitamente.
+
+La representación recupera E,D del núcleo y el decodificador recupera su
+historia. También se recupera la identidad de cada átomo interior de cada
+tramo. Se comienza en el extremo posterior y se lee el primer check de
+su arista hacia el pasado. La regla fija del último encendido o primer
+lector inicial determina el vecino anterior. Repetir con el siguiente
+check. La fuente única de cada componente causal determina el sentido del
+tramo. Esto permite contar las posiciones de los checks una vez, aunque
+muchos generadores puedan contener el mismo par de checks.
+
+4. Peso de una cadena y normalización al suprimir vértices
+=========================================================
+Sea t=0.0044 el precio por acción. Dos checks consecutivos de un tramo
+están en un mismo rectángulo. Desde un check hay a lo sumo 290·289=83810
+posiciones para el otro, y a lo sumo 290+289−1=578 alineadas. Son los
+tamaños de bolas de radio dos en cada coordenada, válidos con ciclos.
+Para un átomo interior, una vez fijados los dos checks ℓ,c, usar el peso
+
+  t [ (1/4)·1_{ℓ y c alineados} + t/16 ].                         (1)
+
+Un singleton siempre tiene ambos checks en la misma línea. Para un múltiple
+sin recargo, con uso único y un solo hijo cronológico completo, se aplica
+la elección alineada. Para una acción débil se gasta su unidad adicional
+en T+B y queda t/16 dentro del corchete. Si se repitió, se puede pagar
+ese mismo t con una ocurrencia posterior. Si el hijo cronológico retenido
+tenía un hermano suprimido, la regla completa es uniforme y se usa el t
+de ese hijo suprimido. Estos casos cubren también un primer uso de score
+uno, que sólo podría proporcionar después un check encendido si el átomo
+volviera a actuar. En cada excepción basta uno de los créditos indicados.
+
+Para un átomo ordinario visible, el máximo de probabilidad por check es
+b₀=(1/8,1/9,1/16) excepto cuando queda exactamente un hijo cronológico y
+no hay medidas guardadas. En ese caso usar b₁=(1/8,1/9,1/4). Si quedaron
+cero hijos pero la elección original usó un hijo suprimido, su t compensa
+la diferencia, pues t/4≤1/16. Con dos o más hijos retenidos la regla
+original ya era uniforme. Cada hijo suprimido tiene una sola causa y sólo
+puede cubrir la excepción de un átomo. Las ocurrencias repetidas de átomos
+retenidos y los recargos de sus primeros usos tienen créditos distintos de
+los primeros usos suprimidos. Ningún crédito necesita utilizarse dos veces.
+
+Más formalmente, fijar una representación comprimida de un núcleo. Sus
+fuentes y el sentido de los tramos fijan las elecciones de check en todos
+los átomos conservados en el subárbol, incluidos los interiores comprimidos.
+El producto t^(T+B) por las probabilidades condicionales de esas elecciones
+está acotado, para cada preimagen real, por el producto de (1) y las cotas
+visibles, incluyendo t por cada acción visible. Esto usa la asignación
+inyectiva de créditos anterior y t<1. Al sumar sobre los átomos podados,
+el producto de sus probabilidades condicionales suma a lo sumo uno. Para
+verlo, fijar las elecciones retenidas como constantes en el orden temporal
+inverso, extender cualquier regla fuera de su soporte por una distribución
+normalizada si hace falta y sumar sucesivamente las elecciones ocultas en
+el orden opuesto. La condición de dar ese árbol sólo restringe la suma.
+Esto justifica la poda con elecciones dependientes y fuentes compartidas.
+
+La suma de (1) sobre el siguiente check está acotada por
+
+  Λ=t[578/4+83810 t/16]=7372101/10000000 < 1.
+
+El corchete es simétrico en los dos checks, de modo que sirve en ambos
+sentidos del árbol enraizado. Si f_i es el número de checks del átomo
+inicial y l_j el número de lectores o generadores de tipo j en un check,
+la masa de ranuras de una arista causal comprimida i→j es a lo sumo
+
+  J_ij=f_i l_j Σ_{n≥0}Λⁿ = f_i l_j/(1−Λ).
+
+Se eligen el primer check, los n checks sucesivos y el átomo final que lee
+el último. El término n=0 es una arista ordinaria. La etiqueta completa de
+una ranura incluye el tramo y el extremo. Dos hijos reales distintos tienen
+extremos distintos. Los productos de ranuras opcionales se pueden acotar
+por su exponencial sin un factor de ordenación de hermanos.
+
+5. Suma de los núcleos enraizados
+=================================
+Los cinco tipos son fuente VV, fuente CC, acción singleton VV, acción
+singleton CC y acción múltiple. Para los puentes, M utiliza las filas y
+columnas (VV,CC,VV,CC,generador) de la matriz pq-M del apéndice mixto.
+Para las aristas causales usar f=(17,18,17,18,306) y l=(18,17,18,17,306).
+Los tamaños y ambos sentidos de cada matriz se reconstruyen en el código.
+
+S_i acota una rama que empieza en una fuente o que entra en un átomo por
+un puente o por la raíz. Para los tipos de acción, P_i acota una entrada
+desde su causa, y C_i una entrada desde una acción posterior. Un átomo
+ordinario en S_i o C_i todavía debe encontrar su causa en el subárbol.
+Un origen con dos o más medidas guardadas no necesita causa. Definir
+
+  L_i=Σ_{j acción} J_ij P_j,       W_i=Σ_j M_ij S_j,       Z_i=L_i+W_i,
+  D_i=Σ_{j fuente} J_ij S_j + Σ_{j acción} J_ij C_j.
+
+Denotar G=exp(Z_i), H=exp(W_i) y A=exp(f_i ξ), con ξ=5.55·10⁻¹¹. La
+actividad de una fuente de datos es x=2.1·10⁻¹⁶. El peso de los subconjuntos
+de medidas guardadas es ≤A. Si hacen falta al menos dos, es ≤(f_i ξ)²,
+por la serie de la exponencial y f_i ξ<1/2. En particular se cobra una
+potencia de ξ por cada medida inicial, aun cuando se visite varias veces.
+
+Para una fuente basta S_i ≥ x A G. Para cada tipo de acción, poner
+b=b₀,i, Δ=b₁,i−b y r=t(f_i ξ)² G. Bastan las tres desigualdades
+
+  P_i ≥ t b (A G−1−L_i) + t Δ L_i(H−1),
+  C_i ≥ r + t D_i [b(A G−1)+Δ(H−1)],
+  S_i ≥ r + t D_i [b A G+Δ L_i H].                              (2)
+
+Para comprobar la primera, la causa ya es el vecino de entrada y el átomo
+es ordinario. Sin medidas guardadas debe haber al menos un puente hijo
+o dos hijos causales. Con cero hijos se habría podado y con un solo hijo
+causal se habría comprimido. Esto elimina el término vacío y el de un
+solo hijo causal. El precio extra Δ sólo se necesita para un hijo causal
+único sin medidas, que exige además algún puente. Así aparece L_i(H−1).
+
+En la segunda fila la entrada ya proporciona un hijo cronológico. Un átomo
+ordinario escoge en D_i una única rama hacia la causa. Sin medidas tiene
+que haber algún hijo adicional para que el átomo siga visible. El extra
+Δ requiere cero hijos causales adicionales y por tanto algún puente. En
+la tercera fila el puente de entrada o la raíz ya garantizan visibilidad.
+El extra para un hijo cronológico único permite cualquier número de puentes.
+La alternativa r en las dos últimas filas admite un origen con al menos dos
+medidas y todos sus hijos ordinarios. Un origen no se puede alcanzar desde
+una causa propia, lo que explica su ausencia en P_i. Permitir reutilizar
+la ranura distinguida en el producto de los demás hijos agranda la suma.
+
+Las sustracciones en (2) se hacen por clases de hijos. La expansión por
+número de hijos causales y de puente se mayora término a término por la
+de exp(L_i)exp(W_i). Después de quitar la clase vacía y la clase de un
+solo hijo causal con cero puentes, todos los términos restantes tienen
+coeficientes no negativos. La inducción en la altura del árbol visible y
+el límite creciente prueban la cota sobre todos los núcleos. Los valores
+utilizados, en el mismo orden de tipos, son
+
+  S=(2.2·10⁻¹⁶, 2.2·10⁻¹⁶, 5.2·10⁻¹⁶, 4.89·10⁻¹⁶, 4.74·10⁻¹⁵),
+  P=(1.031·10⁻⁹, 9.68·10⁻¹⁰, 1.101·10⁻⁸),
+  C=(1.192·10⁻¹⁹, 1.193·10⁻¹⁹, 2.042·10⁻¹⁷).
+
+Hay una posible fuente y un posible singleton en un dato anclado, y como
+máximo 17 generadores si es VV o 18 si es CC. Con índices desde uno,
+
+  R_V=max(S₁+S₃+17S₅, S₂+S₄+18S₅)=86029/10¹⁸.
+
+6. Reconstrucción de las decoraciones y tasas
+===========================================
+El árbol exterior tiene por vértices los núcleos y las medidas pasivas
+individuales. Dos núcleos distintos son componentes distintas después de
+retirar esas medidas. Si el soporte original era conexo, sus contactos
+con las medidas y los contactos medida–medida dan un grafo conexo. Elegir
+por un orden fijo un árbol abarcador y los puntos de contacto. Los pesos de
+las fuentes se multiplican al reconstruir su unión. Distintas decoraciones
+con el mismo código tendrían las mismas fuentes y la misma ejecución.
+
+En un núcleo con e datos fuente, el número de ranuras para medidas pasivas
+vecinas es ≤135e m_VC, con m_VC=1420146. Para esto se usan los vecinos de
+los datos reales y la dominación de toda medida guardada por un lector.
+Sea U=5.81·10⁻¹¹ una cota de rama con raíz pasiva. Las ramas pasivas que
+cuelgan de un núcleo cuestan a lo sumo exp(135e m_VC U) en conjunto. Desde una
+medida pasiva hay ≤m_CC=83810 vecinas de medida y ≤m_CV=290·4914+4641·289
+datos vecinos. Si el contacto con un núcleo pasa por una medida guardada,
+se puede elegir un dato lector de ese núcleo que es también vecino. Dos
+núcleos distintos tienen datos disjuntos y permiten ranuras distintas. La
+inducción exterior queda cerrada por
+
+  U ≥ ξ exp(m_CC U + m_CV R_V).
+
+Con s_p=[p/(1−p)]exp(1.01), s_q=[q/(1−q)]exp(1.01), basta que
+
+  s_q ≤ ξ,                  s_p exp(135 m_VC U) ≤ x t^(38/3).
+
+En efecto, el peso de un núcleo así inclinado está dominado por
+x^e ξ^d t^(T+B) usando la sección 1. La sección 4 y (2) lo suman incluso
+después de pagar las ramas pasivas. Si la raíz física es un check, o es
+una medida pasiva, o pertenece a un núcleo que ocupa uno de sus 35 datos
+lectores. Resulta R_C=U+35R_V=12222203/(2·10¹⁷). Esto incluye también las
+decoraciones de sólo medidas. En la esquina p=10⁻⁴⁶, q=2·10⁻¹¹ pasan
+ambas conversiones. El verificador usa exp(1.01+135m_VC U)<2.8 y eleva la
+comparación de p al cubo para trabajar con enteros. Las cotas son monótonas
+en ambas tasas, incluidos sus ejes.
+
+La suma incompatible inclinada para una decoración de e datos y d medidas
+es ≤K_E e+K_D d, incluida su diagonal. Con m_VV=46870021 se obtiene
+
+  K_E=135(m_VV R_V+m_VC R_C)=0.012260530513547865,
+  K_D=m_CV R_V+m_CC R_C=0.000005359696964111.
+
+Ambas son estrictamente menores que uno. Con σ=135, τ=1/100, la cola del
+logaritmo de la partición truncado a soporte M es a lo sumo
+
+  (n R_V+|C_X| R_C) exp[−(M+1)/13500].
+
+El argumento vale al restringir soportes a subhosts inducidos y al tomar
+valores absolutos de las marcas físicas. El compilador da acceso relativo
+determinista a las particiones en su contrato de coste. La transferencia
+al fallo silencioso positivo exige además las hipótesis del teorema
+principal y el testigo lógico. Se mantiene su factor 1+z_p^(−w), además
+del coste de preparación del orden. El nuevo extremo p es una garantía
+matemática de acceso. El umbral físico y el tiempo observado del estimador
+son magnitudes distintas.
+
+7. Por qué la meta de 10⁻⁶ requiere superar el criterio por fuentes
+=================================================================
+En una familia creciente de semillas permitidas, el propio lado izquierdo
+del criterio de presupuesto F_γ=e+d supera 62 para una decoración con
+presupuesto 1 cuando p=10⁻⁶. La obstrucción vale con cualquier q del
+rectángulo. Se obtiene antes de mayorar trayectorias o árboles ficticios.
+
+Tomar una bola arbórea de Tanner de radio al menos 8 alrededor de una
+variable i. Estas bolas existen dentro de semillas binarias regulares de
+tamaño creciente. Una construcción parte de K_{18,17} con 18 variables
+y 17 checks. Para cada radio R≥8, proyectar la bola de radio R del árbol
+de caminos sin retroceso sobre este grafo. En cada fibra asignar copias
+distintas a los vértices de la bola y completar todas las fibras al mismo
+tamaño. Para cada arista del grafo base, las aristas ya prescritas forman
+un emparejamiento parcial entre sus dos fibras. Completarlo a una biyección
+produce una cubierta finita, simple y regular. Los vértices interiores de
+la bola ya tenían todos sus vecinos prescritos. Las posibles uniones en
+la frontera no afectan los radios aquí usados (se puede tomar R≥10).
+La componente de la raíz contiene toda la bola y su tamaño crece con R.
+
+Fijar el dato v=VV(i,i). Para i'∈V₂(i), j'∈V₄(i), el dato u=VV(i',j')
+pertenece al vecindario cerrado de v en K. En la primera coordenada se
+elige un check contenedor de i,i'. En la segunda se elige la variable
+intermedia de un camino de longitud ≤4, a distancia ≤2 de i y de j'.
+Si una coordenada coincide se elige cualquier vecino necesario. El clique
+del generador así obtenido contiene a ambos datos por la fórmula exacta
+del manuscrito. La bola arbórea da 290·78898=22880420 datos VV distintos.
+
+En la entrada E={u}, D=∅ el propio singleton tiene score 1. Cualquier
+ganador debe tener su huella contenida en los 17 checks de ese singleton.
+Una acción múltiple tiene ≥33 y un singleton CC tiene 18. Otro singleton
+VV sólo empataría si tuviese la misma primera coordenada y una variable
+con los mismos 17 vecinos que j'. Dos de sus aristas compartidas darían
+un ciclo de cuatro dentro de la bola de radio 6. Así el ganador es u, el
+residuo es cero y el soporte real es {u}. Cada uno de los 22880420 sitios
+da una decoración filtrada incompatible con la de v, incluida ella misma,
+de peso z_p y presupuesto 1. Para cualquier τ>0 el criterio exige
+
+  22880420 exp(1+τ) p/(1−p) ≤ 1,
+  p ≤ 1/[1+22880420 exp(1+τ)] < 1.62·10⁻⁸.
+
+La obstrucción también vale para presupuestos positivos distintos por
+decoración en la desigualdad ordinaria de Kotecký–Preiss sobre este gas.
+Para verlo, se pueden elegir cubiertas con las bolas arbóreas alrededor
+de todas las variables a la vez. Numerar las hojas de la cubierta anterior
+de 1 a m. Cada arista orientada del grafo base induce una permutación π,
+con π inversa para la arista de vuelta. Formar otra cubierta con fibras
+iguales al grupo finito generado por esas permutaciones, y levantar cada
+arista mediante g ↦ πg. Si un recorrido cerrado sin retroceso de longitud
+≤R−3 se cerrase en una fibra de grupo, su permutación sería la identidad.
+También cerraría desde cualquier hoja de la primera cubierta. Hay una
+hoja de su vértice inicial a distancia ≤2 de la raíz de la bola prescrita,
+pues el grafo base tiene diámetro dos. Ese recorrido quedaría íntegramente
+en el interior arbóreo, una contradicción. Tomar R creciente da componentes
+regulares de tamaño creciente y girth creciente. En particular toda fila
+VV tiene los 22880420 vecinos reales anteriores para R suficientemente grande.
+
+Elegir en una de esas semillas la decoración VV individual de presupuesto
+mínimo a entre todas las decoraciones VV individuales. En su fila, cada
+uno de esos vecinos aporta al menos z_p exp(a). La condición KP exigiría
+22880420 z_p ≤ a exp(−a) ≤ 1/exp(1). Se vuelve a obtener el techo
+1/[1+22880420 exp(1)] < 1.62·10⁻⁸. Cualquier inclinación adicional positiva
+sólo aumenta la fila. Así se descarta también el mero reajuste del presupuesto
+de incompatibilidad para alcanzar 10⁻⁶ en esta clase general.
+
+Esta conclusión limita la condición suficiente del compilador actual en
+la clase binaria regular declarada. El comportamiento del decodificador
+en este ejemplo es corrección perfecta de cada error individual. La meta
+de 10⁻⁶ exige tratar conjuntamente este fondo de errores corregidos, usar
+otro criterio de acceso u otra representación que conserve las marcas y
+los subhosts. La construcción de cubiertas prueba la obstrucción para la
+clase general de particiones. No se usa para atribuir rango o expansión a
+esas cubiertas ni para inferir el fallo lógico de una familia particular.
+
+La identidad ya disponible eq:cleanup-expectation señala dónde se cancela
+la contribución individual. En un subhost J con el dato u, sea T la marca
+física que incluye la exigencia de que la ejecución quede en J. La derivada
+respecto de la probabilidad del sitio u, en el origen de todas las tasas,
+de Ξ(J)/Z_libre(J) es T({u})−T(∅). En estas cubiertas ambos valores son uno
+para cualquier máscara física, pues la corrección termina en residuo cero
+dentro de {u}. Así se anula el coeficiente lineal de cada vecino que produce
+la obstrucción. Sigue abierta la cota sumable de las interacciones de orden
+superior, uniforme en J y con control de la precisión.
+
+Dependencias y reproducción
+===========================
+En BORRADOR_INTRODUCCION_Y_RESULTADOS_EN_v2.tex se usan eq:FGLfamily,
+thm:recomp, eq:pq-exact-host, eq:pq-M, eq:pq-two-KP-rows,
+prop:kp-filtered-compiler y thm:silent-conditioned. El perfil cronológico
+procede de H5A_p_general.txt. El verificador adjunto contiene sus dos
+duales racionales completos y comprueba el nuevo recargo. El antecedente
+del SSF con ruido de medida es Fawzi, Grospellier y Leverrier, referencia
+FGL18 del manuscrito (https://arxiv.org/abs/1808.03821).
+
+Ejecutar «python verificar_H5A_cadenas.py». La búsqueda en coma flotante
+sirvió para elegir constantes. El resultado se decide por fracciones, con
+serie de Taylor y resto geométrico para la exponencial. Las 9985 firmas
+locales son las de una sola acción en los grados fijos. La uniformidad en
+el número de qubits se deduce de los argumentos anteriores. Se contrastó
+la geometría con máscaras binarias explícitas de filas y columnas y las
+cargas con la matriz M de CERTIFICADO_PQ_REPRODUCIBLE_20261104.zip. Una
+segunda evaluación con el superior racional (1−z/1024)^(−1024) verificó
+las mismas desigualdades. La menor holgura relativa en las ramas y fuentes
+superó el 4.4 %. Ambos contrastes son aritméticos.

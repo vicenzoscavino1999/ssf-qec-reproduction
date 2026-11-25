@@ -1,0 +1,295 @@
+H5-A · Episodios de encendido y retorno en checks compartidos del HGP (3,4)
+Entrega v12 · 23 de noviembre de 2026
+
+La cota uniforme de acceso a las particiones filtradas alcanza
+
+                   0 ≤ p ≤ 3.40·10⁻⁷,       0 ≤ q ≤ 10⁻³.                (1)
+
+El extremo anterior era 3.28·10⁻⁷. La mejora es 85/82 y queda un factor
+50/17 hasta G3. En G3 (p=10⁻⁶, q=10⁻³), el subtotal acotado de la fila
+es <0.003409213 de 0.004 para una clase que incluye las de v11. Un
+mayorante de 0.00059078 para el complemento (7) bastaría para cerrar
+G3. La masa de ese complemento sigue sin una cota suficiente.
+
+Valen las hipótesis de las notas v7–v11. Se toma el producto de una
+semilla binaria de columna 3 y fila 4 consigo misma, a cualquier tamaño,
+con las máscaras y subhosts físicos inducidos del manuscrito. Hay una
+ronda Bernoulli independiente, todas las acciones FGL de SSF, β=1/100,
+máximo global del descenso por tamaño de la huella, desempate físico
+fijo y filtro de síndrome físico residual cero. Para estimación relativa
+de fallo silencioso positivo se necesitan además el testigo lógico y las
+hipótesis del Teorema 1. La comprobación racional de las cifras está
+reproducida. La derivación queda pendiente de revisión independiente.
+
+1. Contar cada encendido hasta su siguiente apagado
+===================================================
+
+En una especie nuclear c, E son los datos, D las medidas activas estables
+y O la unión de las huellas originales. En el paso t sean φ_t la huella,
+H_t sus luces encendidas, C_t=φ_t fuera de H_t y δ_t=|H_t|−|C_t|≥1.
+En cada celda fuera de O el bit observado comienza y acaba en su valor
+de D. Disponer sus conmutaciones en orden circular. Cada encendido se
+empareja con el siguiente apagado en esa celda, incluyendo el que cruza
+el extremo temporal si el bit empieza a uno. Cada extremo se utiliza una
+vez. Así se incluyen las relecturas de una misma celda sin suponer
+independencia entre las correcciones.
+
+Hay 771 pares locales (H,φ) ganadores, incluidos los empates. De los
+84 con δ=1, doce conmutan una fila de tres celdas. Los otros 72 conmutan
+la diferencia simétrica de una fila y una columna. Apagan una luz y
+encienden otra en el brazo horizontal, y apagan dos y encienden una
+en el vertical. Un generador lejano usado una sola vez de este segundo
+modo necesita contactos efectivos en sus cinco celdas. Un vecino puede
+explicar varios contactos. El verificador también comprueba que, sobre
+las filas o las columnas por separado, la suma de los incrementos de
+peso positivos del paso es ≤δ.
+
+En una especie con varios grupos, escribir K para el presupuesto de v11,
+Δ_F para la suma de δ de
+todos los pasos lejanos y M₅ para el número de generadores lejanos usados
+exactamente una vez con δ=1 y huella de cinco. Tenemos Δ_F≤K por el mismo
+reparto de descensos cercanos que en v7. Para contar los avances en ambos
+ejes ampliar la elección de árboles en v11 §1. Además de sus árboles,
+se admiten los construidos a partir de contactos realmente conmutados.
+Conservar los árboles de G internos de cada grupo, incluidos sus bloques
+fuertes. Absorber cada ocurrencia cercana en un original cuyo ψ toca
+su rectángulo, que está contenido en la zona B del original. Identificar
+las ocurrencias de un mismo generador lejano. Las intersecciones reales
+de huellas y las aristas de G dan un grafo conectado después de estas
+contracciones, por la definición del núcleo. Completar los árboles internos,
+podar y comprimir como en v11, conservando el generador marcado si se pide.
+Cada arista exterior en el nuevo árbol se apoya en un contacto real antes
+de la absorción. La arista toca una celda conmutada en cada extremo lejano.
+
+Con los radios de base de v11, un paso entre contactos de un mismo
+generador interior puede añadir una unidad de distancia de dos pasos
+Tanner en cada eje. Si la huella es una fila, sólo puede añadirla en un
+eje. Cada extremo visible está cubierto por sus radios de base y cuesta
+una unidad. Para un enlace, la suma de sus extensiones i+j queda acotada
+por la suma de los cambios en ambos ejes a través de sus interiores, por
+la desigualdad triangular. Un generador usado varias veces dispone de
+al menos dos unidades de descenso. Igual ocurre en un uso único de
+δ≥2. Por tanto, en el árbol así construido, con B_T y J_T de v11,
+
+            B_T+J_T ≤ Δ_F+M₅,             B_T≤Δ_F≤K.                   (2)
+
+Definir h₁₂(c) por el máximo sobre requisitos de raíz del mínimo de
+[B_T+J_T−K]₊ sobre la familia ampliada. Para una especie con un solo
+grupo se usa cero. Escribir H₁₂(E) para el máximo de la suma sobre todas
+las descomposiciones admisibles de especies y medidas en el coeficiente
+sin repeticiones, como en v11. Por (2), h₁₂(c)≤[M₅−(K−Δ_F)]₊ y también
+h₁₂(c)≤h₁₁(c). Las posiciones de los extremos y la estimación del enlace
+distinguido de v11 sólo usan B_T, J_T y los radios. Se aplican a los dos
+tipos de árbol con la misma suma superior por registros.
+
+Hay una interpretación en términos de ciclos que se puede comprobar en
+una historia. Crear un vértice para cada ocurrencia lejana. Contraer las
+ocurrencias cercanas en el grupo original que lee su rectángulo. Colocar
+una arista por cada episodio con algún extremo lejano. Conservar todas
+las aristas paralelas, incluso cuando corresponden a los mismos dos
+generadores. Después de quitar los grupos de grado cero sean m' el número
+de grupos, c' el de componentes conexas y r el número total de ciclos
+independientes (aristas menos vértices más c'). Cada componente contiene
+un grupo, pues sumar δ en una componente exclusivamente lejana daría
+cero por emparejamiento. Cada vértice lejano t tiene grado |φ_t|≥3, y
+cada uno de los M₅ tiene grado cinco. La suma de los grados menos dos da
+
+      3M₅ ≤ m'−2c'+2r − (número de ocurrencias lejanas−M₅)
+                       − Σ_{grupos de grado positivo}(grado−1).         (3)
+
+Esto vale también si el grafo de episodios se separa dentro del núcleo.
+En particular, si cada componente de episodios tiene a lo sumo un ciclo
+independiente, r≤c' y 3h₁₂(c)≤m'. Para los núcleos de un grupo se usa su
+marca cero. Si esa condición vale en todas las descomposiciones pertinentes
+de E, entonces 3H₁₂(E)≤m, para cualquier número m de grupos originales.
+La estimación también cubre muchos grafos con más ciclos mediante (2)–(3).
+El efecto de las medidas que cierran episodios de una ronda a su comienzo
+ya está incluido.
+
+2. Volver a una franja que ya se limpió cuesta dos descensos
+===========================================================
+
+Un rectángulo que lee originales de dos grupos de G los uniría en G.
+Por tanto todos sus pasos cercanos se pueden cobrar a un único grupo A.
+En un núcleo de varios grupos, supongamos que un prefijo ha borrado con
+pasos perfectos todas las franjas originales disjuntas de A, sin D en
+ellas, y que cada uno de esos pasos sólo conmuta franjas enteras de A.
+Ya se gastó exactamente su saldo físico inicial. Para conectar ese grupo
+a otro por huellas reales hace falta un paso que toque su unión O_A y
+su exterior. Ese paso debe ocurrir después de la limpieza. En cualquier
+celda de O_A que vuelva a tocarse se necesitan dos conmutaciones
+posteriores a la limpieza, pues el bit quedó en su valor final. Son
+dos pasos de descenso ≥1 en rectángulos del mismo A. Su aporte al saldo
+lejano resulta ≤−2. Los cobros de grupos distintos se hacen en pasos
+distintos.
+
+Para un aislado x, v7 da un saldo ≤−1 en todo núcleo no simple. Salvo
+un evento de medida de coste ≤s_i θ, con s_V=7 y s_C=12, vale ≤−2.
+Si D toca ψ_x, dar como testigo uno de sus tres o cuatro checks. Si no
+la toca, la franja completa compite con puntaje perfecto hasta el primer
+contacto. Sea n su anchura. Una huella perfecta igual a ψ_x la limpia;
+si contiene estrictamente ψ_x, es unión de franjas completas de esa
+orientación y tiene por lo menos 2n checks. Si sólo cubre parte de ψ_x
+y tiene tamaño ≥n+1 hace falta al menos otro paso en ψ_x, por paridad.
+En el único tamaño inferior posible (fila de peso tres frente a columna
+de cuatro) quedarían dos luces de D en la misma fila, contra estabilidad.
+
+Queda una franja alternativa de tamaño n con contacto parcial. Sus
+celdas encendidas fuera de ψ_x eran de D, puesto que todos los pasos
+anteriores eran perfectos y el rectángulo sólo lee a x. Estabilidad da
+al menos dos vecinos compartidos de los dos centros del factor. Hay
+≤⌊3·3/2⌋=4 alternativas en VV, o ≤⌊4·2/2⌋=4 en CC. Cada una aporta a
+lo sumo uno o dos checks exteriores, respectivamente. Junto con ψ_x
+se obtienen los siete o doce sitios anunciados.
+
+Para una pareja de VV de filas fijas diferentes, o de CC de columnas
+fijas diferentes, todas las huellas perfectas contenidas en O_A son
+franjas originales enteras o su unión. Una huella mixta proyecta sobre
+las cuatro filas y las tres columnas. Dos filas o dos columnas tampoco
+pueden contener una franja transversal entera. Para una pareja mixta
+débil x=VV(i,j), y=CC(r,c), las condiciones son i fuera de N(r), c fuera
+de N(j). En una fila y una columna, la única huella mixta posible es
+la cruz de cinco. Para que esté contenida en O_A, un generador (r',j')
+debe tener i en N(r'), los otros tres vecinos de r' en N(r), c en N(j')
+y los otros dos vecinos de j' en N(j). Desde x hay ≤3 elecciones de r',
+≤2 de r y ≤⌊3·3/2⌋=4 de j', tras lo cual c queda fijado. Desde y hay ≤4
+elecciones de j', ≤3 de j y ≤⌊4·2/3⌋=2 de r', que determina i. Por ello
+hay ≤24 destinos de esta clase por orientación; se les deja saldo uno.
+
+Para las restantes parejas descritas, si D evita O_A las franjas empiezan
+completas. Mientras quede una intacta los pasos son perfectos. O bien
+se limpian ambas como antes, o un primer paso perfecto que toca O_A
+usa una celda fuera de O_A. El conjunto no vacío φ fuera de O_A en ese
+paso procede de D y es estable. Un testigo de excepción es un check de
+D en O_A o ese conjunto de checks. Para un rectángulo físico fijado se
+enumeran las intersecciones de las franjas con él, permitiendo todos sus
+subconjuntos y respetando la separación en ambos ejes para la mixta débil.
+Entre las diferencias no vacías y estables conservar las mínimas por
+inclusión. Para la asignación Bernoulli auxiliar de parámetro θ de v6,
+la suma de θ elevado al cardinal de cada testigo da un mayorante.
+Sumar el término de O_A y hasta 30 lectores por VV o 36 por CC. En
+θ≤0.0012 los resultados son ≤0.1514592, ≤0.1668 y ≤0.528 para VV–VV,
+VV–CC y CC–CC. Se usan π_VV=.152, π_VC=.167 y π_CC=.528.
+
+Para un conjunto prefijado de grupos excepcionales en la misma historia
+se pueden elegir testigos disjuntos. Las franjas de grupos distintos son
+disjuntas. Un rectángulo del paso elegido no puede leer originales de
+otro grupo, y dos pasos elegidos ocurren antes del primer paso imperfecto,
+mientras queda en cada caso una franja intacta. En ese prefijo cada check
+se apaga a lo sumo una vez. Todos los testigos están en S, fijado en los
+eventos auxiliares disjuntos de v6 §1. La suma sobre elecciones disjuntas
+cuesta como máximo el producto de sus respectivas sumas individuales,
+por la ley producto auxiliar. Esto no exige independencia física entre
+grupos ni entre sus posibles rectángulos. Para fuentes fijas se suma D
+en los registros con esos testigos antes de mayorar las posiciones.
+Una especie en otro factor del logaritmo usa su propia suma de medidas.
+
+3. Introducir los saldos en la fila de todos los tamaños
+========================================================
+
+Se conservan las ecuaciones de v7–v11 y las dos clases de posiciones
+de un enlace. El precio usual de un grupo de techo k es Y^(−k). En la
+norma angular hay además una marca ξ^h₁₂. Para una asignación de grupos
+con saldos mejorados k' y suma K' tenemos Δ_F≤K'≤K. Se puede tomar
+k'=mín(k,−2) en los grupos limpiados y el techo anterior en los demás.
+En el árbol elegido para h₁₂ con K, reemplazar K por K' aumenta el
+exceso positivo en a lo sumo K−K'. En el certificado de v11 con saldo
+K' basta por ello multiplicar por ξ^(−(K−K')). El enlace distinguido
+también conserva sus desigualdades, pues B_T≤K' para cada árbol usado.
+Para una clase con techo k≥−2, el precio cobrado al grupo limpiado
+queda mayorado por Y² ξ^(−k−2); la expresión es creciente en el techo.
+Para ξ=1 queda Y². Para un aislado k=−1, añadir s_i·.0012·Y por la
+rama excepcional. Para las parejas que admiten la limpieza usar
+
+                    r_ij(k)=Y² ξ^(−k−2)+π_ij Y^(−k).                   (4)
+
+Sumar las dos ramas deja un mayorante, incluso si ambas admiten un
+mismo testigo. Las exigencias geométricas de cada rama se aplican con
+los saldos de esa rama, antes de quitar la restricción de posiciones.
+
+Las multiplicidades se toman de v6 §4 y v7 §3. Las filas ordinarias de
+parejas que también sirven en (4), antes del descuento de exposición,
+son las siguientes, con f(k)=Y^(−k).
+
+ VV→VV   576 r_VV(0)+54 f(1)+9 f(2)
+ CC→CC   384 r_CC(0)+72 r_CC(1)+48 f(0)+24 f(1)+20 f(2)
+ i→j     (b+24)f(1)+d f(0)+P [r_ij(0)+r_ij(1)/2],     para i≠j.     (5)
+
+En la última fila (b,d,P)=(117,9,324) desde VV y (208,16,576) desde CC.
+En la clase débil mixta hay ≤P destinos de coste cero y ≤P/2 de coste
+uno: estos últimos gastan al menos dos caminos de v7 §3. Se conservan
+ambos techos de multiplicidad aunque también se hayan añadido los ≤24
+destinos especiales. En CC de columna común con franjas disjuntas, las
+clases de saldo 0,1,2 gastan por lo menos 1,2,4 de los 48 caminos,
+respectivamente. Los ocho solapados se añaden a los doce de saldo dos.
+Así cada multiplicidad de (5) vale por separado con el extremo fijado.
+También sirve la antigua fila ordinaria de v11. Para una pareja con una
+marca física y un único grupo, el primer saldo que permite esa marca es
+dos (v10 §1). Sólo pueden alcanzarlo dos VV de fila común o dos CC de
+columna común. Todos los pasos de esa especie tocan su línea de síndrome
+por v9 §2. Reemplazar la bola del eje fijo por 4 o 3 en f_i(2) de v10,
+con ≤9 o ≤20 posiciones de pareja. La rama física de dato único con los
+datos conexos se suma directamente como antes.
+
+Mantener los descuentos por exposición, válidos por composición en cada
+historia. Desde tres hasta diez datos por grupo se usan los histogramas
+acumulados de v10/v11; desde once se conserva la serie de ramas fuertes
+y débiles con sustracción de los diez grados a los mismos pesos. Para un
+grupo único físicamente marcado se incluye también la cola directa
+de v11 §2. Por tanto no hay truncación de la familia ni del orden.
+En la representación aritmética de los dos precios de tallas uno y dos,
+el verificador elige masas no negativas en k=0 y k=2 que dan exactamente
+los precios ordinario y físico ya demostrados. Comprueba ambos momentos
+antes de llamar a las ecuaciones de v11. No atribuye esas masas a conteos
+de grupos en un host.
+
+En (1) se usan a=.555, s=.825, Y=a⁶, α=.004 y b=.00115. La fila
+completa es <0.00061 y el mayor cociente exterior certificado es
+<0.999651. El testigo congela las cotas en la esquina superior y
+domina las tasas menores por positividad de las actividades.
+El punto sigue siendo un resultado de acceso a las particiones.
+
+4. Qué ciclos quedan pendientes en G3
+=====================================
+
+Sean m el número de grupos de G[E] y n=|E|. La parte ya cubierta en
+v10 tenía mayorante 0.002903264. En su complemento se tiene m≥3.
+Evaluar dos normas positivas con variables por especie como en v11 §2.
+Para 8n≤11m usar a=.525, λ=.13, τ=215/13, ξ=1 y b=.00115. La marca
+2.15^m·.13^(n−m) es ≥1 en esta clase porque 2.15⁸·.13³>1. La fila
+proyectada a m≥2 vale <0.000058738.
+
+Para la otra clase de interés usar a=.64, λ=1, τ=1.65, ξ=.225 y
+b=.001153. La misma proyección vale 0.000167808400963… en esa norma.
+Si 3H₁₂(E)≤m+2, el producto de marcas de toda descomposición es al menos
+τ⁴ξ². En efecto, para H=0 o H=1 basta m≥3. Para H≥2 usar
+τ^m ξ^H ≥ τ⁻²(τ³ξ)^H ≥ τ⁴ξ², ya que τ³ξ>1. La regla del máximo sobre
+descomposiciones es la de v11. En ambas normas se suman medidas activas
+y pasivas y la proyección conserva las interacciones entre especies.
+Con las fracciones, la primera proyección más la segunda dividida por
+τ⁴ξ² es <0.000505949. El subtotal sobre la unión, con la parte de v10,
+es por tanto
+
+                            <0.003409213.                                (6)
+
+Este recuento reemplaza el subtotal de v11. Incluye su clase angular,
+pues 7H₁₁≤m+4 implica 3H₁₂≤m+2. A modo de lectura de (3), cualquier
+número de grupos unidos por episodios con a lo sumo un ciclo por
+componente conexa queda cubierto cuando la condición se cumple en
+todas las descomposiciones pertinentes. Para la parte de la fila física
+que aún puede requerir una estimación adicional concurren
+
+ m≥3, n≤9m−10, L₁₀(E)<6Y₁₀, 8n>11m, 3H₁₂(E)>m+2.                      (7)
+
+Aquí Y₁₀=43/2000 y L₁₀ es la marca de v10 §2. En la última desigualdad
+hay al menos una descomposición que la atestigua.
+Allí alguna componente de episodios tiene al menos dos ciclos independientes.
+Ese requisito por sí solo no determina el peso de (7). Faltaría sumar
+con multiplicidades físicas las realizaciones de esos contactos múltiples
+que aún dejan exceso angular. El margen suficiente para (7) es
+0.00059078. La cota separada de 0.001203 para todo el resto de v9 y G3
+completo siguen abiertos.
+
+Reproducción desde 05_COMPROBACIONES con Python 3.10 o posterior
+
+    python -I -B -X utf8 verificar_H5A_3_4_episodios_compartidos.py

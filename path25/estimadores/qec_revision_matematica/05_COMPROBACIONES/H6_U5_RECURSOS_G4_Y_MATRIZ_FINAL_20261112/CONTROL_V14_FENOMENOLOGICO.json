@@ -1,0 +1,262 @@
+{
+ "alcance": "PATH25, contrato fenomenologico, historias de peso 1 a 4 (74518); contrato generico no regular; no es un estimador",
+ "checks": [
+  {
+   "name": "P0 verificador de la unidad 2 sin cambios",
+   "pass": true
+  },
+  {
+   "detail": {
+    "historias": 74518
+   },
+   "name": "C0 restriccion, trazas locales, XOR de residuos, huellas fisicas disjuntas y recomposicion canonica en todas las historias de peso 1 a 4",
+   "pass": true
+  },
+  {
+   "detail": {
+    "dos_o_mas_trazas_activas": 3131,
+    "por_componentes": {
+     "1": 4705,
+     "2": 3234,
+     "3": 534
+    }
+   },
+   "name": "C1 peso <=3: 4705 historias con una componente, 3234 con dos, 534 con tres; 3131 con dos o mas trazas activas (cifras publicadas)",
+   "pass": true
+  },
+  {
+   "name": "C2 las 66045 historias de peso 4 pasan todas las comprobaciones",
+   "pass": true
+  },
+  {
+   "detail": {
+    "cancelacion": true,
+    "componentes": [
+     15,
+     3840
+    ],
+    "en_S": true,
+    "fisico": 0,
+    "locales_fuera_de_S_con_fisico_nulo": [
+     true,
+     true
+    ],
+    "residuo": 3855,
+    "residuos_locales": [
+     15,
+     3840
+    ],
+    "traza": [
+     1,
+     8,
+     256,
+     2048
+    ]
+   },
+   "name": "C3 historia E={1,2,9,10}: traza 0,3,8,11; componentes {0,1,2,3} y {8,9,10,11}; residuos locales 15 y 3840 fuera de S_X con fisico nulo; residuo 3855 en S_X; cancelacion",
+   "pass": true
+  },
+  {
+   "detail": 20,
+   "name": "C4 existe al menos una cancelacion tras acciones en peso 4",
+   "pass": true
+  }
+ ],
+ "ejemplos_de_cancelacion": [
+  {
+   "fuentes": [
+    1,
+    2,
+    9,
+    10
+   ],
+   "residuo": 3855,
+   "residuos_locales": [
+    15,
+    3840
+   ],
+   "traza": [
+    1,
+    8,
+    256,
+    2048
+   ]
+  },
+  {
+   "fuentes": [
+    1,
+    2,
+    9,
+    11
+   ],
+   "residuo": 3855,
+   "residuos_locales": [
+    15,
+    3840
+   ],
+   "traza": [
+    1,
+    8,
+    256,
+    1024
+   ]
+  },
+  {
+   "fuentes": [
+    1,
+    2,
+    9,
+    24
+   ],
+   "residuo": 16811791,
+   "residuos_locales": [
+    15,
+    16811776
+   ],
+   "traza": [
+    1,
+    8,
+    256,
+    1024,
+    32768
+   ]
+  },
+  {
+   "fuentes": [
+    1,
+    2,
+    13,
+    14
+   ],
+   "residuo": 61455,
+   "residuos_locales": [
+    15,
+    61440
+   ],
+   "traza": [
+    1,
+    8,
+    4096,
+    32768
+   ]
+  },
+  {
+   "fuentes": [
+    1,
+    2,
+    13,
+    15
+   ],
+   "residuo": 61455,
+   "residuos_locales": [
+    15,
+    61440
+   ],
+   "traza": [
+    1,
+    8,
+    4096,
+    16384
+   ]
+  },
+  {
+   "fuentes": [
+    1,
+    2,
+    13,
+    24
+   ],
+   "residuo": 16807951,
+   "residuos_locales": [
+    15,
+    16807936
+   ],
+   "traza": [
+    1,
+    8,
+    2048,
+    4096,
+    16384
+   ]
+  }
+ ],
+ "historia_predicha": {
+  "cancelacion": true,
+  "componentes": [
+   15,
+   3840
+  ],
+  "en_S": true,
+  "fisico": 0,
+  "locales_fuera_de_S_con_fisico_nulo": [
+   true,
+   true
+  ],
+  "residuo": 3855,
+  "residuos_locales": [
+   15,
+   3840
+  ],
+  "traza": [
+   1,
+   8,
+   256,
+   2048
+  ]
+ },
+ "por_peso": {
+  "1": {
+   "cancelacion_tras_acciones": 0,
+   "dos_o_mas_trazas_activas": 0,
+   "fallo_silencioso": 0,
+   "historias": 37,
+   "pasan_filtro_fisico": 25,
+   "por_componentes": {
+    "1": 37
+   },
+   "varias_componentes": 0
+  },
+  "2": {
+   "cancelacion_tras_acciones": 0,
+   "dos_o_mas_trazas_activas": 233,
+   "fallo_silencioso": 14,
+   "historias": 666,
+   "pasan_filtro_fisico": 264,
+   "por_componentes": {
+    "1": 388,
+    "2": 278
+   },
+   "varias_componentes": 278
+  },
+  "3": {
+   "cancelacion_tras_acciones": 0,
+   "dos_o_mas_trazas_activas": 2898,
+   "fallo_silencioso": 300,
+   "historias": 7770,
+   "pasan_filtro_fisico": 1734,
+   "por_componentes": {
+    "1": 4280,
+    "2": 2956,
+    "3": 534
+   },
+   "varias_componentes": 3490
+  },
+  "4": {
+   "cancelacion_tras_acciones": 20,
+   "dos_o_mas_trazas_activas": 21966,
+   "fallo_silencioso": 2707,
+   "historias": 66045,
+   "pasan_filtro_fisico": 8482,
+   "por_componentes": {
+    "1": 40063,
+    "2": 21260,
+    "3": 4466,
+    "4": 256
+   },
+   "varias_componentes": 25982
+  }
+ },
+ "programa": "control V1.4 fenomenologico",
+ "status": "PASS",
+ "unit": "H6-U5"
+}

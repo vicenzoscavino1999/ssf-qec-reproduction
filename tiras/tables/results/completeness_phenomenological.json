@@ -1,0 +1,647 @@
+{
+ "D": "100000000000000",
+ "checks": [
+  {
+   "control": "TIRA_6x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6 f=1: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 91)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6 f=1: se prueban los NS = 91 sitios",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6 f=2: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 1220)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6 f=3: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 20097)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6 f=4: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 348807)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 TIRA_6x6: silenciosa <=> algun caracter logico vale -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6 P3 aplicable con k=4: ninguna decoracion valida silenciosa con < k-1 fallos (f_s = 3)",
+   "detalle": 3,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6: validas por f iguales a B4 [91, 1220, 20097, 346926]",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6: polimeros distintos = 306389 (B4)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6: P3 = {'3,0': 56, '3,1': 713, '4,0': 3256} (B4)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_6x6 k=4 orden de producto: polimeros, estados y terminos = [306389, 5355, 2972219] (B4)",
+   "detalle": [
+    306389,
+    5355,
+    2972219
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C0 TIRA_6x6: eps_comp(4) con NV = 1 identico al sellado en B4 (12 celdas)",
+   "detalle": 12,
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=91: T = (D+1)^NS",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=91: 0 <= T - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C+ TIRA_6x6: el criterio dice COMPLETO (catalogo exhaustivo de B1)",
+   "detalle": {
+    "S_menor_que_umbral": true,
+    "cola_sobre_umbral": 4.650445800000667e-07,
+    "condicion_previa": true,
+    "eps_comp_en_la_celda": 5.8015749999969013e-64,
+    "margen_log10": 7.236454089031213,
+    "peso_orden_5_aprox": 5801575.000002181,
+    "veredicto": "COMPLETO"
+   },
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6 f=1: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 187)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6 f=1: se prueban los NS = 187 sitios",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6 f=2: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 2768)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6 f=3: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 51219)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6 f=4: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 1028284)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 TIRA_12x6: silenciosa <=> algun caracter logico vale -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6 P3 aplicable con k=4: ninguna decoracion valida silenciosa con < k-1 fallos (f_s = 3)",
+   "detalle": 3,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6: validas por f iguales a B4 [187, 2768, 51219, 1023019]",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6: polimeros distintos = 910740 (B4)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6: P3 = {'3,0': 122, '3,1': 3719, '4,0': 14536} (B4)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_12x6 k=4 orden de producto: polimeros, estados y terminos = [910740, 66785, 27604459] (B4)",
+   "detalle": [
+    910740,
+    66785,
+    27604459
+   ],
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=187: T = (D+1)^NS",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=187: 0 <= T - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C+ TIRA_12x6: el criterio dice COMPLETO (catalogo igual al exhaustivo de V)",
+   "detalle": {
+    "S_menor_que_umbral": true,
+    "cola_sobre_umbral": 1.805568402000548e-05,
+    "condicion_previa": true,
+    "eps_comp_en_la_celda": 2.0783494999987138e-63,
+    "margen_log10": 6.682281418684852,
+    "peso_orden_5_aprox": 20783495.000026003,
+    "veredicto": "COMPLETO"
+   },
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=187: T = (D+1)^NS",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=187: 0 <= T - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C- TIRA_12x6 sin una decoracion de 1 fallos: el criterio dice INCOMPLETO",
+   "detalle": {
+    "S_menor_que_umbral": false,
+    "cola_sobre_umbral": 1.805568402000548e-05,
+    "condicion_previa": true,
+    "eps_comp_en_la_celda": 9.9999999999986e-15,
+    "margen_log10": -42.00000000000091,
+    "peso_orden_5_aprox": 1.00000000000173e+56,
+    "veredicto": "INCOMPLETO"
+   },
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=187: T = (D+1)^NS",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=187: 0 <= T - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C- TIRA_12x6 sin una decoracion de 2 fallos: el criterio dice INCOMPLETO",
+   "detalle": {
+    "S_menor_que_umbral": false,
+    "cola_sobre_umbral": 1.805568402000548e-05,
+    "condicion_previa": true,
+    "eps_comp_en_la_celda": 9.999999999998e-29,
+    "margen_log10": -28.00000000000091,
+    "peso_orden_5_aprox": 1.00000000000167e+42,
+    "veredicto": "INCOMPLETO"
+   },
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=187: T = (D+1)^NS",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=187: 0 <= T - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C- TIRA_12x6 sin una decoracion de 3 fallos: el criterio dice INCOMPLETO",
+   "detalle": {
+    "S_menor_que_umbral": false,
+    "cola_sobre_umbral": 1.805568402000548e-05,
+    "condicion_previa": true,
+    "eps_comp_en_la_celda": 9.9999999999974e-43,
+    "margen_log10": -14.000000000000455,
+    "peso_orden_5_aprox": 1.00000000000161e+28,
+    "veredicto": "INCOMPLETO"
+   },
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=187: T = (D+1)^NS",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=187: 0 <= T - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C- TIRA_12x6 sin una decoracion de 4 fallos: el criterio dice INCOMPLETO",
+   "detalle": {
+    "S_menor_que_umbral": false,
+    "cola_sobre_umbral": 1.805568402000548e-05,
+    "condicion_previa": true,
+    "eps_comp_en_la_celda": 1.00000020783463e-56,
+    "margen_log10": -9.026234693010338e-08,
+    "peso_orden_5_aprox": 100000020783650.0,
+    "veredicto": "INCOMPLETO"
+   },
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6 f=1: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 379)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6 f=1: se prueban los NS = 379 sitios",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6 f=2: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 5864)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6 f=3: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 113463)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6 f=4: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 2387428)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 TIRA_24x6: silenciosa <=> algun caracter logico vale -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6 P3 aplicable con k=4: ninguna decoracion valida silenciosa con < k-1 fallos (f_s = 3)",
+   "detalle": 3,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6: validas por f iguales a B4 [379, 5864, 113463, 2375395]",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6: polimeros distintos = 2119632 (B4)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6: P3 = {'3,0': 254, '3,1': 16859, '4,0': 60856} (B4)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_24x6 k=4 orden de producto: polimeros, estados y terminos = [2119632, 202373, 81171019] (B4)",
+   "detalle": [
+    2119632,
+    202373,
+    81171019
+   ],
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=379: T = (D+1)^NS",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=379: 0 <= T - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_48x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_48x6 f=1: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 763)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_48x6 f=1: se prueban los NS = 763 sitios",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_48x6 f=2: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 12056)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_48x6 f=3: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 237951)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_48x6 f=4: cada candidato distinto se decodifica una vez (llamadas = |C_f| = 5105716)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 TIRA_48x6: silenciosa <=> algun caracter logico vale -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_48x6 P3 aplicable con k=4: ninguna decoracion valida silenciosa con < k-1 fallos (f_s = 3)",
+   "detalle": 3,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_48x6: validas por f iguales a B4 [763, 12056, 237951, 5080147]",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_48x6: polimeros distintos = 4537416 (B4)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_48x6: P3 = {'3,0': 518, '3,1': 71651, '4,0': 248536} (B4)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "TIRA_48x6 k=4 orden de producto: polimeros, estados y terminos = [4537416, 473549, 188304139] (B4)",
+   "detalle": [
+    4537416,
+    473549,
+    188304139
+   ],
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=763: T = (D+1)^NS",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "criterio NS=763: 0 <= T - X0",
+   "detalle": null,
+   "pasa": true
+  }
+ ],
+ "decision_D_r1": {
+  "24": "COMPLETO_CERTIFICADO",
+  "48": "COMPLETO_CERTIFICADO"
+ },
+ "instancias": {
+  "TIRA_12x6": {
+   "catalogo": {
+    "llamadas": 1082458,
+    "polimeros_distintos": 910740,
+    "validas_por_f": {
+     "1": 187,
+     "2": 2768,
+     "3": 51219,
+     "4": 1023019
+    }
+   },
+   "controles_negativos": [
+    {
+     "clave": [
+      1,
+      0
+     ],
+     "criterio": {
+      "S_menor_que_umbral": false,
+      "cola_sobre_umbral": 1.805568402000548e-05,
+      "condicion_previa": true,
+      "eps_comp_en_la_celda": 9.9999999999986e-15,
+      "margen_log10": -42.00000000000091,
+      "peso_orden_5_aprox": 1.00000000000173e+56,
+      "veredicto": "INCOMPLETO"
+     },
+     "d": 1,
+     "estructura_k4": [
+      910739,
+      66785,
+      27604458
+     ],
+     "recuento_antes": 1,
+     "soporte_hex": "0x1"
+    },
+    {
+     "clave": [
+      2,
+      0
+     ],
+     "criterio": {
+      "S_menor_que_umbral": false,
+      "cola_sobre_umbral": 1.805568402000548e-05,
+      "condicion_previa": true,
+      "eps_comp_en_la_celda": 9.999999999998e-29,
+      "margen_log10": -28.00000000000091,
+      "peso_orden_5_aprox": 1.00000000000167e+42,
+      "veredicto": "INCOMPLETO"
+     },
+     "d": 2,
+     "estructura_k4": [
+      910740,
+      66785,
+      27604459
+     ],
+     "recuento_antes": 1,
+     "soporte_hex": "0x3"
+    },
+    {
+     "clave": [
+      3,
+      0
+     ],
+     "criterio": {
+      "S_menor_que_umbral": false,
+      "cola_sobre_umbral": 1.805568402000548e-05,
+      "condicion_previa": true,
+      "eps_comp_en_la_celda": 9.9999999999974e-43,
+      "margen_log10": -14.000000000000455,
+      "peso_orden_5_aprox": 1.00000000000161e+28,
+      "veredicto": "INCOMPLETO"
+     },
+     "d": 3,
+     "estructura_k4": [
+      910740,
+      66785,
+      27604459
+     ],
+     "recuento_antes": 1,
+     "soporte_hex": "0x7"
+    },
+    {
+     "clave": [
+      4,
+      0
+     ],
+     "criterio": {
+      "S_menor_que_umbral": false,
+      "cola_sobre_umbral": 1.805568402000548e-05,
+      "condicion_previa": true,
+      "eps_comp_en_la_celda": 1.00000020783463e-56,
+      "margen_log10": -9.026234693010338e-08,
+      "peso_orden_5_aprox": 100000020783650.0,
+      "veredicto": "INCOMPLETO"
+     },
+     "d": 4,
+     "estructura_k4": [
+      910740,
+      66785,
+      27604459
+     ],
+     "recuento_antes": 1,
+     "soporte_hex": "0xf"
+    }
+   ],
+   "criterio": {
+    "S_menor_que_umbral": true,
+    "cola_sobre_umbral": 1.805568402000548e-05,
+    "condicion_previa": true,
+    "eps_comp_en_la_celda": 2.0783494999987138e-63,
+    "margen_log10": 6.682281418684852,
+    "peso_orden_5_aprox": 20783495.000026003,
+    "veredicto": "COMPLETO"
+   },
+   "estructura_k4": [
+    910740,
+    66785,
+    27604459
+   ],
+   "sitios": 187
+  },
+  "TIRA_24x6": {
+   "catalogo": {
+    "llamadas": 2507134,
+    "polimeros_distintos": 2119632,
+    "validas_por_f": {
+     "1": 379,
+     "2": 5864,
+     "3": 113463,
+     "4": 2375395
+    }
+   },
+   "criterio": {
+    "S_menor_que_umbral": true,
+    "cola_sobre_umbral": 0.0006346148445003955,
+    "condicion_previa": true,
+    "eps_comp_en_la_celda": 5.083292299996745e-63,
+    "margen_log10": 6.293854916731107,
+    "peso_orden_5_aprox": 50832923.000160106,
+    "veredicto": "COMPLETO"
+   },
+   "estructura_k4": [
+    2119632,
+    202373,
+    81171019
+   ],
+   "sitios": 379
+  },
+  "TIRA_48x6": {
+   "catalogo": {
+    "llamadas": 5356486,
+    "polimeros_distintos": 4537416,
+    "validas_por_f": {
+     "1": 763,
+     "2": 12056,
+     "3": 237951,
+     "4": 5080147
+    }
+   },
+   "criterio": {
+    "S_menor_que_umbral": true,
+    "cola_sobre_umbral": 0.021268569865646868,
+    "condicion_previa": true,
+    "eps_comp_en_la_celda": 1.1093177899992807e-62,
+    "margen_log10": 5.954944022221753,
+    "peso_orden_5_aprox": 110931779.00077449,
+    "veredicto": "COMPLETO"
+   },
+   "estructura_k4": [
+    4537416,
+    473549,
+    188304139
+   ],
+   "sitios": 763
+  },
+  "TIRA_6x6": {
+   "catalogo": {
+    "llamadas": 370215,
+    "polimeros_distintos": 306389,
+    "validas_por_f": {
+     "1": 91,
+     "2": 1220,
+     "3": 20097,
+     "4": 346926
+    }
+   },
+   "criterio": {
+    "S_menor_que_umbral": true,
+    "cola_sobre_umbral": 4.650445800000667e-07,
+    "condicion_previa": true,
+    "eps_comp_en_la_celda": 5.8015749999969013e-64,
+    "margen_log10": 7.236454089031213,
+    "peso_orden_5_aprox": 5801575.000002181,
+    "veredicto": "COMPLETO"
+   },
+   "estructura_k4": [
+    306389,
+    5355,
+    2972219
+   ],
+   "sitios": 91
+  }
+ },
+ "lectura_global": "D-r1: m=24 COMPLETO_CERTIFICADO; m=48 COMPLETO_CERTIFICADO",
+ "limites_alcanzados": [],
+ "llamadas_totales": 9316293,
+ "p_igual_q": "1/100000000000001",
+ "plan": "B4R_REGLA_SUMA_CATALOGO_20261113/PLAN_B4R.txt",
+ "plan_sha256": "759eb8297d93d1007478be6eab36bfc99f05bf3b73966900845c053994fc43bd",
+ "programa_sha256": "6f06f547cce2d9607deed600e49f10737b6804e48913abe8bd21ed705a974ac4",
+ "prueba": false,
+ "referencias_sha256": {
+  "B4R_REGLA_SUMA_CATALOGO_20261113/PLAN_B4R.txt": "759eb8297d93d1007478be6eab36bfc99f05bf3b73966900845c053994fc43bd",
+  "B4_TIRAS_ESCALADO_N_20261113/RESULTADO_B4.json": "640db376441656cfb72e16aa00e0e99e2fc2eb6047905dfe031f5d994634b5f7",
+  "B4_TIRAS_ESCALADO_N_20261113/b4_tiras.py": "b1a2cb8f93affcc3713eadd4ff860a2d74756b91752011cd6b16da44def2dd15"
+ },
+ "status": "PASS",
+ "unit": "B4R"
+}

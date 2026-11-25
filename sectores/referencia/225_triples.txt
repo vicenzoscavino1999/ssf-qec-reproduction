@@ -1,0 +1,6 @@
+# prep_s 0.0290616 actions 6273 pairs 792
+# vv 0 seconds 0.0001325 representatives 13
+# vv 1 seconds 0.0001977 representatives 46
+# vv 2 seconds 0.0002796 representatives 95
+# vv 3 seconds 0.0004623 representatives 144
+triples 1873200 36 144 2033 110302 0.0011699 8962048 288 1:3,2:3,4:3,8:3,16:3,32:3,64:3,73:3,128:3,146:3,256:3,292:3,

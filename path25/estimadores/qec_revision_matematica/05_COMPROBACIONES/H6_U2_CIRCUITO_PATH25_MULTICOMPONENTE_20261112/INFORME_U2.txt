@@ -1,0 +1,165 @@
+H6 — UNIDAD 2: CIRCUITO SOBRE PATH25 CON VARIAS COMPONENTES Y ACCIONES (G1)
+12/11/2026 (Lima). Sesion Claude abierta por el usuario. Plan fijado antes de
+escribir y ejecutar el verificador (PLAN_UNIDAD.txt). Entrega sin contraste
+del revisor: el verificador y su lectura son de esta sesion. Manuscrito no
+modificado.
+
+SITUACION EN UNA FRASE
+Unidad terminada con resultado positivo en su alcance: en una instancia
+circuital finita con host conectado no completo, la ejecucion global y la
+recomposicion primitiva coinciden en las 524288 asignaciones, tambien cuando
+dos componentes ejecutan acciones intercaladas y cuando sus clases se
+cancelan. Las siete predicciones fijadas de antemano se cumplen. H6 sigue
+PARCIAL: esto cubre G1, no V3 ni V4.
+
+1. HITO Y CARENCIA
+H6, condiciones V1.3 y V1.4 en el contrato circuital (carencia G1 de la
+matriz de la unidad 1). Enunciado contrastado: Proposicion "Primitive
+recomposition and physical filtering" del apendice C, en una instancia.
+
+2. HEREDADO Y NUEVO
+Heredado: PATH25 y su decoder (dos motores, 4096 sindromes, piloto del
+28/10); circuito, ley categorica y formulas de respuesta del apendice C;
+control HGP5 de una componente.
+Nuevo en esta unidad: la primera ejecucion del contrato circuital con mas de
+una componente. No es un teorema ni un estimador: es un contraste exhaustivo
+de una instancia.
+
+3. INSTANCIA EJECUTADA (la del plan, sin cambios)
+PATH25; calendario voraz de una ronda: L=5 capas (el coloreado usa 4), 42
+CNOT, 217 ubicaciones, 242 vertices del host primitivo. Ocho ubicaciones
+ruidosas: esperas iniciales de los datos 1, 2, 3, 16, 9 y 10; el CNOT del
+dato 10 al check 8 (el primero de ese dato); la lectura conjunta del check
+1. Resto ideal. 524288 asignaciones; 10935 clases estructurales.
+
+4. QUE SE COMPARO Y RESULTADO (39 controles, 0 fallos)
+Anclaje al piloto contrastado: H_X, H_Z, los 103 candidatos, sus huellas,
+el host K y la tabla completa de transiciones, correcciones y trazas de los
+4096 sindromes coinciden con los archivos congelados del piloto PATH25. El
+decoder se escribio de nuevo, en dos motores (mascaras de bits; conjuntos y
+fracciones), que coinciden entre si.
+R1 frente a R2, en TODAS las asignaciones:
+ - la respuesta conjunta (E_X, s) del propagador literal (22020096
+   aplicaciones de puerta, marco X y Z) es la de las formulas del apendice C;
+ - residuo, sindrome fisico y fallo silencioso globales (clase por rango de
+   H_Z) son los de la recomposicion por componentes (marca u_0).
+R2, en las 10935 clases estructurales: cada componente tiene fuentes; su
+ejecucion aislada tiene por soporte exactamente la componente; su traza es
+la subsucesion de la traza global; ninguna accion cruza componentes; el
+residuo es el XOR de los locales; las huellas fisicas de componentes
+distintas son disjuntas; la recomposicion por cabezas locales (score exacto
+y rango original) reproduce la traza global.
+R3, oraculo de primera salida en el host primitivo: 20000 soportes y
+1782772 consultas fuente-soporte (7234 aceptadas, 384274 con soporte menor,
+1391264 primeras salidas). En todas, desenlace y traza iguales al prefijo
+de la ejecucion completa, y pesos W_0, W_T y W_{T,u} iguales a los de las
+ejecuciones completas, en dos tasas.
+R4, gas: 2887 polimeros y 4374 familias compatibles (como mucho dos
+polimeros por familia). Con los pesos del oraculo: la suma con
+multiplicidad da 524288; B_c*Xi_0=1; P_0=B_c*Xi_T;
+E[(-1)^{u.R}; H_X R=0]=B_c*Xi_{T,u}; P_sil=B_c(Xi_T-Xi_{T,u})/2. Igualdad
+exacta de fracciones con las sumas globales de R1, en e=1/100 y e=1/1000.
+
+5. LO QUE G1 PEDIA, CON MULTIPLICIDAD (de 524288 asignaciones)
+ una componente                                         391678
+ dos componentes                                        132609
+ dos componentes y acciones en ambas                     75136
+ intercalacion estricta (acciones no contiguas)           1024
+ cancelacion entre componentes que ejecutaron acciones    4096
+ alguna componente con dos o mas acciones               392960
+ alguna fuente con respuesta X nula en el soporte       476903
+Maximo: 2 componentes y 5 acciones por asignacion.
+
+6. PREDICCIONES (fijadas en el plan; todas cumplidas)
+S0. El CNOT ruidoso es el primero del dato 10 (capas 1 y 2); L=5; 217; 242.
+P1. X en las esperas 16 y 3: sindrome {0,2,3}; traza 0, 3, 4; componentes
+    {W16, a0, a4} y {W3, a3}; intercalacion estricta; residuo 65553 en S_X.
+P2. X en las esperas 1 y 2: traza 0, 3; una componente; residuo 15; fallo
+    silencioso.
+P3. X en las esperas 1, 2, 9, 10: traza 0, 3, 8, 11; residuos locales 15 y
+    3840, ambos con sindrome fisico nulo y fuera de S_X; suma 3855 en S_X:
+    exito global por cancelacion.
+P4. Z en la espera 1: fuente sin respuesta X, traza vacia, componente {W1}.
+P5. Lectura del check 1, (I,flip) y (X,sin flip): sindrome {1}, sin accion.
+P6. CNOT: (1,0) sindrome {7}, sin accion, sindrome fisico {7,8}; (1,1)
+    volteo de 10 y residuo 0; (0,1) volteo de 11, residuo 2048, fisico {8}.
+P6 muestra en una puerta la diferencia entre el sindrome observado y el
+fisico, y P4 una categoria invisible que sigue contando como fuente.
+
+7. PROBABILIDADES EXACTAS DE ESTA INSTANCIA (lectura; no son tasas del codigo)
+              e = 1/100            e = 1/1000
+ P_0      9.813375353573e-1    9.981333375935e-1
+ P_sil    1.474106020350e-4    1.507381057156e-6
+ Q_sil    1.502139648427e-4    1.510200090892e-6
+P_sil(1/100) = 7870776041273/53393554687500000. Las fracciones completas y
+los recuentos enteros por tipo de asignacion, validos para toda e, estan en
+RESULTADO_H6_U2.json. Son de la subfamilia de ocho ubicaciones ruidosas.
+
+8. EFECTO GLOBAL Y UNIDAD DE COSTE
+Sobre garantias, tasas, regiones y coste del metodo: ninguno. Sobre la
+matriz de H6: la celda V1.3 del circuito pasa de no cubierta a cubierta en
+una instancia, y V1.4 del circuito tiene su primer caso de cancelacion
+entre componentes con acciones. Coste de la unidad: una ejecucion completa
+de 6.9 s en Python puro (no es resultado), 843776 scores de los dos motores
+y 11505942 del oraculo. La memoria no se midio.
+
+9. LIMITES
+- Una instancia y una subfamilia de ruido: 8 de 217 ubicaciones. No es ruido
+  en todas las operaciones ni varias rondas.
+- PATH25 no es regular: se valida el contrato generico, no la familia FGL
+  regular ni F17.
+- Nunca hay mas de dos componentes; las dos regiones se eligieron para eso.
+- Seis de las ocho fuentes son esperas iniciales, equivalentes a errores de
+  dato antes de la extraccion. Lo especificamente circuital son el CNOT, la
+  lectura conjunta, las categorias multiples con la misma respuesta y las
+  invisibles.
+- El oraculo no consulto todas las variantes: se generaron 56486 variantes
+  de un vertice de accion y, por el techo de 20000 soportes, se consultaron
+  los 2887 polimeros y las primeras 17113 variantes en orden; 39373 quedaron
+  sin consultar. Los polimeros, que son los que entran en el gas, estan
+  todos.
+- Los dos caminos comparten autor y sesion. La independencia es de metodo
+  (propagacion literal frente a formulas; clase por rango frente a marca;
+  dos motores), y el decoder queda atado a la tabla congelada del piloto.
+- No se repitio la ejecucion completa para comprobar reproducibilidad: el
+  plan fijaba una sola. El verificador es determinista por construccion.
+- No hay contraste del revisor.
+
+10. DESVIACIONES Y RECURSOS
+- Dos pruebas parciales de depuracion, previstas en el plan: 2048
+  asignaciones (W1, W2, CNOT, lectura) y 256 (W3, W16, W9, W10); ambas con
+  30 controles y 0 fallos. Se conservan sus salidas.
+- Un cambio del verificador entre la primera prueba parcial y la ejecucion
+  completa: al superar el techo de soportes del oraculo, truncar las
+  variantes en vez de detenerse. El plan pedia a la vez todas las variantes
+  y un maximo de 20000 soportes; no caben. Se respeto el techo y se declara
+  lo omitido (seccion 9).
+- Una ejecucion completa, sin reintentos. SHA-256 del verificador ejecutado:
+  66ab5ab9e275c2a3daca1246b128a531ed9d89ee7d40fdeb274210d085da28d0.
+- Cero censos, muestreos, agentes e instalaciones; nada sobre F17.
+  Manuscrito, PDF y ZIP intactos.
+
+11. CUELLO DOMINANTE Y DECISION
+G1 queda cubierta en su alcance. Lo que impide cerrar H6 no cambia: el
+estimador completo (V3) no se ha ejecutado con q>0 ni en el circuito (G2,
+G3), y no hay comparacion de recursos (G4).
+Clasificacion: UNIDAD COMPLETADA CON RESULTADO POSITIVO EN SU ALCANCE. H6
+sigue PARCIAL. Esta sesion no marca nada como cerrado.
+Pendiente del usuario:
+ (1) aceptar esta unidad o pedir antes el contraste del revisor;
+ (2) declarar la forma de V3. Propuesta de la sesion: certificado finito
+     basado en componentes como forma principal en los dos contratos, y el
+     algoritmo del teorema solo como complemento en HGP5 si una cuenta
+     previa muestra que su corte cabe en un presupuesto pequeno;
+ (3) encargar la unidad 3: G3 sobre esta misma instancia circuital, que ya
+     tiene catalogo de polimeros, oraculo y referencia exacta.
+La unidad 3 no se inicia aqui.
+
+12. ARCHIVOS (en esta carpeta)
+PLAN_UNIDAD.txt, verificar_h6_u2.py, RESULTADO_H6_U2.json,
+SALIDA_VERIFICADOR.txt, TIEMPOS_MEDIDOS.txt (no determinista),
+PRUEBA_PARCIAL_1_W1_W2_C10_8_R1.json, PRUEBA_PARCIAL_2_W3_W16_W9_W10.json,
+INFORME_U2.txt.
+Uso: python -I -B verificar_h6_u2.py --output <nuevo.json> [--tiempos <nuevo.txt>]
+Lee, sin modificarlos, PREFLIGHT.json y REFERENCE_TABLE.json del piloto
+PILOTO_CONECTADO_PATH25_20261028.

@@ -1,0 +1,477 @@
+{
+  "generic_density": "1/9",
+  "fixed_order_leader_density": "1/3",
+  "d_X": 2,
+  "w_Z": 4,
+  "eta_max_action_over_minimum_integer_decrease": "1",
+  "candidate_count": 103,
+  "distinct_footprints": 43,
+  "never_winning_candidates": 60,
+  "groups": [
+    {
+      "footprint": 1,
+      "leader": 0,
+      "leader_action": 1,
+      "members": [
+        0,
+        39
+      ],
+      "minimum_integer_decrease": 1
+    },
+    {
+      "footprint": 3,
+      "leader": 1,
+      "leader_action": 2,
+      "members": [
+        1,
+        83
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 6,
+      "leader": 2,
+      "leader_action": 4,
+      "members": [
+        2,
+        86
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 4,
+      "leader": 3,
+      "leader_action": 8,
+      "members": [
+        3,
+        49
+      ],
+      "minimum_integer_decrease": 1
+    },
+    {
+      "footprint": 8,
+      "leader": 4,
+      "leader_action": 16,
+      "members": [
+        4,
+        37,
+        53
+      ],
+      "minimum_integer_decrease": 1
+    },
+    {
+      "footprint": 24,
+      "leader": 5,
+      "leader_action": 32,
+      "members": [
+        5,
+        82,
+        91
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 48,
+      "leader": 6,
+      "leader_action": 64,
+      "members": [
+        6,
+        85,
+        94
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 32,
+      "leader": 7,
+      "leader_action": 128,
+      "members": [
+        7,
+        47,
+        63
+      ],
+      "minimum_integer_decrease": 1
+    },
+    {
+      "footprint": 64,
+      "leader": 8,
+      "leader_action": 256,
+      "members": [
+        8,
+        51,
+        67
+      ],
+      "minimum_integer_decrease": 1
+    },
+    {
+      "footprint": 192,
+      "leader": 9,
+      "leader_action": 512,
+      "members": [
+        9,
+        90,
+        99
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 384,
+      "leader": 10,
+      "leader_action": 1024,
+      "members": [
+        10,
+        93,
+        102
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 256,
+      "leader": 11,
+      "leader_action": 2048,
+      "members": [
+        11,
+        61,
+        77
+      ],
+      "minimum_integer_decrease": 1
+    },
+    {
+      "footprint": 512,
+      "leader": 12,
+      "leader_action": 4096,
+      "members": [
+        12,
+        65
+      ],
+      "minimum_integer_decrease": 1
+    },
+    {
+      "footprint": 1536,
+      "leader": 13,
+      "leader_action": 8192,
+      "members": [
+        13,
+        98
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 3072,
+      "leader": 14,
+      "leader_action": 16384,
+      "members": [
+        14,
+        101
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 2048,
+      "leader": 15,
+      "leader_action": 32768,
+      "members": [
+        15,
+        75
+      ],
+      "minimum_integer_decrease": 1
+    },
+    {
+      "footprint": 9,
+      "leader": 16,
+      "leader_action": 65536,
+      "members": [
+        16,
+        25,
+        80
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 18,
+      "leader": 17,
+      "leader_action": 131072,
+      "members": [
+        17,
+        79,
+        84
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 36,
+      "leader": 18,
+      "leader_action": 262144,
+      "members": [
+        18,
+        28,
+        81
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 72,
+      "leader": 19,
+      "leader_action": 524288,
+      "members": [
+        19,
+        29,
+        88
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 144,
+      "leader": 20,
+      "leader_action": 1048576,
+      "members": [
+        20,
+        87,
+        92
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 288,
+      "leader": 21,
+      "leader_action": 2097152,
+      "members": [
+        21,
+        32,
+        89
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 576,
+      "leader": 22,
+      "leader_action": 4194304,
+      "members": [
+        22,
+        33,
+        96
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 1152,
+      "leader": 23,
+      "leader_action": 8388608,
+      "members": [
+        23,
+        95,
+        100
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 2304,
+      "leader": 24,
+      "leader_action": 16777216,
+      "members": [
+        24,
+        36,
+        97
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 27,
+      "leader": 26,
+      "leader_action": 34,
+      "members": [
+        26,
+        45
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 54,
+      "leader": 27,
+      "leader_action": 68,
+      "members": [
+        27,
+        50
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 216,
+      "leader": 30,
+      "leader_action": 544,
+      "members": [
+        30,
+        59
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 432,
+      "leader": 31,
+      "leader_action": 1088,
+      "members": [
+        31,
+        64
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 1728,
+      "leader": 34,
+      "leader_action": 8704,
+      "members": [
+        34,
+        73
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 3456,
+      "leader": 35,
+      "leader_action": 17408,
+      "members": [
+        35,
+        78
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 10,
+      "leader": 38,
+      "leader_action": 65538,
+      "members": [
+        38,
+        43
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 17,
+      "leader": 40,
+      "leader_action": 65568,
+      "members": [
+        40,
+        41
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 20,
+      "leader": 42,
+      "leader_action": 131076,
+      "members": [
+        42,
+        48
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 34,
+      "leader": 44,
+      "leader_action": 131136,
+      "members": [
+        44,
+        46
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 80,
+      "leader": 52,
+      "leader_action": 524320,
+      "members": [
+        52,
+        57
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 136,
+      "leader": 54,
+      "leader_action": 524800,
+      "members": [
+        54,
+        55
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 160,
+      "leader": 56,
+      "leader_action": 1048640,
+      "members": [
+        56,
+        62
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 272,
+      "leader": 58,
+      "leader_action": 1049600,
+      "members": [
+        58,
+        60
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 640,
+      "leader": 66,
+      "leader_action": 4194816,
+      "members": [
+        66,
+        71
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 1088,
+      "leader": 68,
+      "leader_action": 4202496,
+      "members": [
+        68,
+        69
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 1280,
+      "leader": 70,
+      "leader_action": 8389632,
+      "members": [
+        70,
+        76
+      ],
+      "minimum_integer_decrease": 2
+    },
+    {
+      "footprint": 2176,
+      "leader": 72,
+      "leader_action": 8404992,
+      "members": [
+        72,
+        74
+      ],
+      "minimum_integer_decrease": 2
+    }
+  ],
+  "no_decoder_modification": true,
+  "low_weight_min_f_over_Y": "1/3",
+  "low_weight_worst_witness": {
+    "E": 65536,
+    "f": 1,
+    "s0": 9,
+    "Y": 65553,
+    "R": 65553,
+    "syndrome": 0,
+    "class": 0,
+    "trace": [
+      0,
+      4
+    ]
+  },
+  "catalogue_min_f_over_Y": "1/3",
+  "catalogue_incomplete": true,
+  "claimed_global_density_basis": "candidate dominance plus syndrome descent; requires separate proof review"
+}

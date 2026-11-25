@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "scientific_runs_repeated": false,
+  "decoder_or_dp_or_sampling_executed": false,
+  "original_workspace_reads_blocked_in_integral_verifiers": true,
+  "original_scientific_files_edited": false,
+  "T2_2_included": false,
+  "production_commands_executed": false,
+  "scope": "File integrity, 48 SOLO_U checks, 96 and 128 stored rows, table reconstruction; not a fresh production replay",
+  "checks": [
+    {
+      "check": "no_implicit_production",
+      "returncode": 1,
+      "expected": 1,
+      "seconds": 0.093,
+      "passed": true
+    },
+    {
+      "check": "integrity",
+      "returncode": 0,
+      "expected": 0,
+      "seconds": 6.448,
+      "passed": true
+    },
+    {
+      "check": "solo_u",
+      "returncode": 0,
+      "expected": 0,
+      "seconds": 0.326,
+      "passed": true
+    },
+    {
+      "check": "run1_saved",
+      "returncode": 0,
+      "expected": 0,
+      "seconds": 4.601,
+      "passed": true
+    },
+    {
+      "check": "run2_saved",
+      "returncode": 0,
+      "expected": 0,
+      "seconds": 21.487,
+      "passed": true
+    },
+    {
+      "check": "tables",
+      "returncode": 0,
+      "expected": 0,
+      "seconds": 7.713,
+      "passed": true
+    }
+  ]
+}

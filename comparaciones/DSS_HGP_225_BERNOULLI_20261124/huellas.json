@@ -1,0 +1,26 @@
+{
+  "BORRADOR_INTRODUCCION_Y_RESULTADOS_EN_v2.tex": {
+    "antes": "ad49bb63568adb287eb77dfba01960fa9a641831f6d619d7ddffc43c9ec9cf93",
+    "despues": "34406c74441b41534638a5c0c38fbf9dcf2f297f773b9538834704223a000dd7"
+  },
+  "BORRADOR_INTRODUCCION_Y_RESULTADOS_EN_v2.pdf": {
+    "antes": "97a09ae426c1cf6c77dc752639ae4300ef4cbed6b28f85942c01356622f9d421",
+    "despues": "ecc8f5d521b559e79ba91dbd6ede6eb23d9ddc810640ba0638bb829b6dc1b83c"
+  },
+  "PLAN_MAESTRO_SSF_QEC_v2_2026-11-19.md": {
+    "antes": "9301bd220803c39ea1a94183236537397e10859cc4bd8c3ee5a69a8274bf3596",
+    "despues": "abdda6107037dd098274044f31ece72f5145c5c7e69f4df123e43dd3a5666a58"
+  },
+  "BENCHMARKS_COMPARABLES.md": {
+    "antes": "a9d40a1d09d084c43b3de7fc0f7c6aeb895b0c1143eb2cb3f4d1d8743d089add",
+    "despues": "084d7299c6caba089e08cb4af4aebd1fd3c72557c1bf8df57e024f7c13a02c3c"
+  },
+  "ESTADO_ACTUAL.md": {
+    "antes": "d12c7adad43c7403368177a446e0dc2fddd868f1246b5d04b12e322e923f2856",
+    "despues": "b792250c25cb5ae748d472a3ba8854b0b19db0bcc497e7855e89f114594714f1"
+  },
+  "REGISTRO_HALLAZGOS.csv": {
+    "antes": "3e5b01dd3f2150c925b4041c2b72c668e97eb2f69599884c40103f0c11b7ac0f",
+    "despues": "2eaa160450856112704266ebd1ab2d79afea59894a9b281ae2ff4620b1c27fc2"
+  }
+}

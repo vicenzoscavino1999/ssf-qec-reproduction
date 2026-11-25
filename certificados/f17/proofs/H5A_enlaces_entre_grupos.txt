@@ -1,0 +1,322 @@
+H5-A · Enlaces entre grupos de fuentes
+17 de noviembre de 2026
+
+Resultados
+==========
+
+El criterio de acceso a las particiones físicamente filtradas da estos
+rectángulos simultáneos para el decodificador del manuscrito.
+
+  Semilla binaria (17,18)-regular      0 ≤ p ≤ 6.6·10⁻³⁷   0 ≤ q ≤ 2·10⁻¹¹
+  La misma clase sin ciclos de cuatro  0 ≤ p ≤ 1.2·10⁻³⁶   0 ≤ q ≤ 2·10⁻¹¹
+
+Las mejoras sobre los extremos anteriores son 330/17 y 30, respectivamente.
+Se permiten tamaños arbitrarios. Se usan una ronda de ruido Bernoulli
+independiente, los candidatos FGL completos, β=1/100, máximo global y
+desempate fijo independiente del síndrome. Los grupos se usan para contar
+las entradas del decodificador original.
+
+En p=10⁻⁶, q=2·10⁻¹¹ se obtiene además una cola exponencial para historias
+físicamente filtradas conexas formadas por varios grupos. Hay dos maneras
+de reconocer la clase. Una es medir los enlaces con la regla de la sección 3.
+La otra, suficiente para cualquier localización de las fuentes y cualquier
+traza, es que g−1≤f/24 000, donde g cuenta las componentes por pares de
+contacto de las fuentes y f es el número total de datos y medidas ruidosos.
+Ambas permiten que g crezca sin límite. Para los soportes que cumplen la
+regla de enlaces se acota también la suma absoluta de coeficientes de la
+partición normalizada. Para su logaritmo se demuestra un criterio de anulación
+de interacciones a cualquier orden. El certificado completo en 10⁻⁶ sigue abierto.
+
+1. Direcciones de las cadenas que pueden enlazar grupos
+======================================================
+
+Se conservan K, la recomposición, la retirada de las fuentes exteriores y
+el árbol causal de H5A_interacciones_por_fuentes.txt. Cada generador tiene
+un rectángulo de 18 filas por 17 columnas. Un corte selecciona x filas y j
+columnas. Su huella está formada por brazos disjuntos de tamaño 17−j en
+cada fila seleccionada y 18−x en cada columna seleccionada. Escribir
+a=17x+18j−2xj, h para las posiciones encendidas en la huella antes del
+cambio, δ=2h−a y c=a−h. Un competidor que cambia una sola línea tiene
+fracción encendida a lo sumo h/a.
+
+Para un check que la acción enciende, sean o_f,o_c los números de posiciones
+del corte en su fila y su columna. Comparar con el corte que conmuta esa fila
+o columna da, como en la nota de cadenas, los mínimos de encendidos
+
+  b_f=max(0,⌈(2o_f−17)h/a⌉),      b_c=max(0,⌈(2o_c−18)h/a⌉).
+
+Es posible reforzarlos usando la capacidad de los otros brazos. Cada brazo
+horizontal contiene a lo sumo F=min(17−j,⌊17h/a⌋) encendidos y cada vertical
+a lo sumo C=min(18−x,⌊18h/a⌋). Si el check emitido está en un brazo horizontal,
+elevar b_f al menos a h−(x−1)F−jC. Si está en uno vertical, elevar b_c
+al menos a h−xF−(j−1)C. El check de intersección estaba apagado.
+
+Sea μ(a,δ) el coeficiente racional por acción de DUAL_ACCIONES del certificado
+anterior. Para todo múltiple que emite un check y tiene μ<2, se cumple
+b_f≥4 o b_c≥7. El verificador recorre las formas FGL y todos los descensos
+legales. Un contraste independiente usó celdas binarias, los rivales que
+cambian una línea y capacidades por fila y columna. El único caso pendiente
+después de comparar esos dos rivales es x=5, j=1, a=93, δ=1 y emisión por el
+brazo vertical. Hay 47 encendidos en el corte y las cinco filas admiten como
+máximo ocho cada una. Al menos siete pertenecen al brazo vertical.
+
+En el bosque causal, un múltiple de uso único, sin medidas guardadas y con
+un solo hijo cronológico, usa cuatro opciones horizontales o siete verticales
+cuando μ<2. Se eligen uniformemente los checks de la dirección disponible,
+con prioridad fija si hay dos. Los singletons dan al menos 9 o 10 opciones
+en su propia línea. Para los demás múltiples se conserva la elección uniforme
+anterior. Una ocurrencia con μ≥2 dispone de un crédito adicional. Para una
+excepción por repetición o por un hijo suprimido se usa el crédito distinto
+de la prueba de poda anterior. El coeficiente μ siempre paga al menos una
+unidad. Por las desigualdades cronológicas de H5A_consumo_y_alcance.txt,
+la suma de esos coeficientes es ≤Σ_G Φ(e_G), donde e_G es el número de datos
+del grupo de fuentes de aquella prueba.
+
+Entre checks consecutivos de un tramo comprimido hay a lo sumo 289 opciones
+en la fila, incluida la diagonal, 289 en la columna fuera de la diagonal
+y 289·288 que cambian ambas coordenadas. En el último caso se necesita
+el crédito adicional y hay ≥17 opciones en la elección uniforme. Así
+
+  Λ=t[289/4+289/7+289·288 t/17],       J_ij=f_i l_j/(1−Λ).
+
+Los pesos de una pareja de checks son simétricos al recorrer el tramo en
+cualquiera de los sentidos. Para los vértices visibles se conserva el tope
+1/4 del caso alineado. Con t=0.0067 resulta Λ=171582377/175000000<1.
+
+2. Conteo de los testigos dentro de un mismo grupo
+================================================
+
+En esta sección «grupo» denota la componente gruesa de la prueba del consumo,
+con aristas de K dato–dato y dato–medida ligada. Tras las retiradas demostradas
+anteriormente, cada dato tiene un testigo. Es un par de contacto o k lectores
+distintos de un generador que incluyen ese dato. Se toma k=3 en general
+y k=9 sin ciclos de cuatro. Un par de contacto tiene al menos un dato y
+huellas que se cortan, o dos huellas disjuntas cuya unión cubre la de una
+acción que toca a ambas. Todo testigo vive en el grupo del dato.
+
+En cada grupo elegir por orden fijo una colección maximal de testigos
+disjuntos en sitios. Cada dato que queda fuera tiene un testigo que corta
+la colección. Se le puede adscribir a un miembro de un testigo elegido que
+sea vecino suyo en K. Adscribir a un dato vecino cada medida ligada que
+quedó fuera. Un testigo elegido con sus adscripciones forma un bloque
+conexo. Los bloques se enlazan por un árbol abarcador del grupo. Así
+cada fuente y cada medida aportan un solo factor de actividad aunque
+participen en varios posibles testigos.
+
+Las siguientes filas especifican el conteo. U_v,U_c acotan la masa del
+grupo contado desde un dato o una medida antes de aplicar el descuento
+de Φ. Se consideran todos los signos y subhosts mediante pesos absolutos.
+Poner m=46 870 021, n=1 420 146, l=2 766 309 para los grados gruesos
+dato–dato, dato–medida y medida–dato. Z_v es el mayor de los dos costes
+de ramas exteriores de dato y Z_c el de medida. Para s=4.25, una actividad
+auxiliar x de dato y ξ=5.55·10⁻¹¹ de medida, definir
+
+  a_v=s x exp(Z_v+m U_v+n U_c),    a_c=ξ exp(Z_c+l U_v),
+  v=a_v exp(n a_c),                w_v=v exp(m v),    w_c=a_c exp(l v).
+
+Aquí v incluye las medidas adscritas a un dato. Los w incluyen los datos
+adscritos a un miembro del testigo. Sean d_vv,d_vc,d_cv los grados de
+contacto ya comprobados, h=10 133 w_v+306 w_c y
+
+  K_v=w_v[d_vv w_v+d_vc w_c+5508 h^(k−1)/(k−1)!],
+  K_c=w_c[d_cv w_v+306·10 133 w_v h^(k−2)/(k−2)!].
+
+Estas dos expresiones cubren la entrada en un miembro del testigo elegido.
+Un testigo de lectores con entrada por medida debe contener un dato.
+Para una entrada en otro sitio, primero se recorre su adscripción. Basta
+
+  D_v=K_v+v(m K_v+n K_c),     D_c=K_c+a_c l D_v,
+  U_v≥D_v,                    U_c≥D_c.
+
+El árbol de bloques se puede enraizar en cualquier miembro. En cada sitio
+a_v o a_c permite también las ramas hacia otros bloques y las ramas exteriores
+del árbol causal. Distinguir una adscripción de entrada deja todas las demás
+como elecciones sin orden. Permitir más ranuras en el mayorante sólo añade
+términos positivos. La inducción sobre árboles finitos da las cotas escritas.
+
+Para e≥2 se usa t^(αe−Φ(e))≤ρ s^e, α=633/50 y ρ=2.08·10⁻¹¹. Se comprueba
+hasta e=16 con enteros y desde e=17 se usa Φ(e)≤αe y ρs¹⁷≥1. El factor ρ
+se aplica una vez al grupo completo. Para e=1, Φ(1)=9 y el dato necesita
+medidas para su testigo. Con d₀=ξ exp(Z_c), v₀=x·1.106·10⁻⁸ exp(Z_v+n d₀)
+y B₀=d_vc d₀+5508(306d₀)^(k−1)/(k−1)!, sus contribuciones son a lo sumo
+
+  v₀ B₀,        d₀ v₀[d_cv+lB₀+306·10 133(306d₀)^(k−2)/(k−2)!].
+
+En la segunda fila la medida de entrada forma el par con el dato, queda
+fuera del testigo del dato o pertenece a su testigo de k lectores. Se usó
+1.106·10⁻⁸≥t^(α−9). Las filas de acción se mantienen con el nuevo J.
+
+El verificador usa x=6.13·10⁻⁹ en general y x=1.12·10⁻⁸ sin ciclos de
+cuatro. Comprueba las conversiones simultáneas de las odds, los exteriores,
+el árbol completo y ambas cargas físicas. En general K_E<0.011142 y
+K_D<0.000004871. Sin ciclos de cuatro K_E<0.011141 y K_D<0.000004871.
+El compilador del manuscrito conserva la cola de log-partición
+(n_datos R_V+|C_X| R_C) exp(−(M+1)/13500), las marcas, la uniformidad en
+subhosts y la precisión relativa elegible. La transferencia al fallo
+silencioso positivo conserva el testigo lógico verificado de peso w y el
+factor 1+z_p^(−w). Las cotas sobre p,q son de acceso a particiones.
+
+3. Una suma con enlaces de cualquier longitud en p=10⁻⁶
+====================================================
+
+Sea L el grafo de checks que comparten un rectángulo. Su bola cerrada de un
+paso tiene a lo sumo B=83 810 posiciones. Para fuentes distintas a,b usar
+d(a,b)=dist_L(ψ_a,ψ_b). Fijado un conjunto S de f fuentes, dar a cada posible
+arista entre fuentes el siguiente coste entero.
+
+  Par de contacto                                                    0
+  Sin contacto, a un paso entre checks en una misma fila o columna   5
+  Los demás pares a distancia finita d≥1                        12+18(d−1)
+
+Si varios pares de checks realizan la distancia uno basta que exista uno
+alineado para usar la segunda fila. Componentes geométricamente disjuntas
+tienen coste infinito entre ellas. Sea C(S) el coste mínimo de un árbol
+abarcador de las fuentes, con coste cero para una sola fuente.
+
+Para cada arista de coste b usar peso 2^(−b). Desde cada check, la suma
+de posiciones alineadas a un paso admite el tope 578/32. Las posiciones
+a distancia d están acotadas por B^d. Sumarlas para todos los d≥1 da
+
+  H=578/32+B/[4096(1−B/2¹⁸)] < 48.14.
+
+Cada check tiene a lo sumo 35 fuentes de datos lectoras y una de medida.
+Para el dato de entrada se usan hasta 18 checks, para una medida uno.
+Al añadir los grados de contacto, las filas de grados ponderados quedan
+acotadas por (28 200+630H, 40+18H) y (800+35H, H). Se permite sobreconteo.
+
+Fijar z=p/(1−p), z_q=q/(1−q), p=10⁻⁶, q=2·10⁻¹¹, u=(51/50)z. Con
+T_v=1.5·10⁻⁵ y T_c=1.25·10⁻¹⁰ cada fila siguiente es estricta:
+
+  2u   exp[1.06+(28 200+630H)T_v+(40+18H)T_c] < T_v,
+  2z_q exp[1.06+(800+35H)T_v+H T_c]            < T_c.
+
+En todo S con C(S)≤f, el producto de los pesos de un árbol mínimo es ≥2^(−f).
+Las filas pagan 2 por fuente y la actividad inclinada por exp(1.06 f).
+Un árbol abarcador enraizado en la fuente fijada cuenta cada S al menos
+una vez. La exponencial de hijos sin orden permite todas las elecciones
+de sitios distintos y mayoriza los árboles enraizados por inducción.
+
+En particular, para historias filtradas de esta clase con f>M, la masa
+con inclinación 1.01 al tocar un sitio fijado en K es a lo sumo
+
+  T_v exp[−0.05(M+1)] Σ_{e≥0} 36 B³(1+2e)^567 (50/51)^e.            (1)
+
+Se aplica a grado e=|E| el reanclaje demostrado en H5A_consumo_y_alcance.txt.
+La serie es finita e independiente del volumen. Su constante es grande.
+Se incluye toda la evolución de cada entrada. Por ejemplo, si las g
+componentes de contacto se pueden unir mediante enlaces de un paso
+alineado, basta que 5(g−1)≤f. Con enlaces de un paso generales basta
+12(g−1)≤f. No se impone un máximo a g ni al grado de las cascadas.
+
+Para la partición normalizada del proyecto, T_J(U) es el valor firmado y
+físicamente filtrado de la entrada U en el subhost J. Poner η_i=T_J({i}),
+b_i=z_i/(1+η_i z_i). La identidad previa da el coeficiente multiafín
+A(S)=Σ_{U⊆S}T_J(U)∏_{i∈S∖U}(−η_i). Se tiene |A(S)|≤2^f y
+2|b_i|exp(0.35)≤z_i exp(1.06) en la esquina anterior. Por las mismas
+filas, para toda fuente fija a y máscara física,
+
+  Σ_{S contiene a, C(S)≤f, f>M} |A(S)| ∏_{i∈S}|b_i|
+       ≤ T_tipo(a) exp[−0.35(M+1)].                                (2)
+
+La cota (2) es para coeficientes de la partición normalizada anclados
+en una fuente. Para su logaritmo se obtiene la condición siguiente.
+
+4. Un presupuesto compartido para los enlaces entre grupos
+========================================================
+
+En esta sección los grupos son las g componentes de las fuentes por pares
+de contacto. Sus conjuntos de checks I_i son las uniones de sus huellas.
+Poner I=∪I_i. Suponer que una historia filtrada tiene soporte conexo en K.
+La prueba admite también una familia conexa de historias filtradas que
+se tocan o son incompatibles en K. Para esa familia se cuentan las fuentes
+de datos con multiplicidad, e_tot=Σ|E_γ|. Los I_i se forman sobre la unión
+de los sitios fuente distintos.
+
+Tomar r=55/54 y dar a cada check ℓ peso r^dist_L(ℓ,I). En el rectángulo
+de una acción el mayor peso es a lo sumo r veces el menor. Su descenso
+ponderado es al menos (h−r c)r^dist_L(φ,I), con φ la huella de la acción.
+Como c/δ≤99/2, se cumple h−r c≥δ/12. En cada historia el síndrome inicial
+y el terminal D están en I. Su descenso ponderado total es por tanto
+|H_X E⊕D|−|D|≤18|E|. Sumando sobre todas las ocurrencias,
+
+  Σ_t δ_t r^dist_L(φ_t,I) ≤ 216 e_tot.                             (3)
+
+La unión U de las huellas de los sitios visitados es conexa en L. Cada
+huella de dato es un clique de checks. Dos sitios vecinos en K leen un
+mismo rectángulo y sus huellas quedan a distancia ≤1. Esta prueba también
+une los soportes de una familia conexa de historias.
+
+Construir un árbol de peso mínimo sobre los g grupos con pesos enteros
+d_ij=dist_L(I_i,I_j). Sean d_1,…,d_k sus longitudes, k=g−1. Si k=0 todas
+las sumas siguientes son vacías. Para R≥1, unir todos los grupos a distancia
+≤2R+1 y llamar b_R al número de clases. El algoritmo de Kruskal da
+b_R−1=#{i: d_i>2R+1}, también con empates.
+
+Si b_R>1, desde cada clase seguir en U un camino a otra. El camino
+contiene un check a distancia exactamente R de la primera clase. Dista
+al menos R+2 de todas las demás, por la separación entre clases. Su
+distancia a I es R. Está fuera de las huellas de las fuentes y pertenece
+a la huella de un dato visitado por una acción. Cargar a esa ocurrencia
+r^(R−1). Para un mismo R dos clases no pueden usar una misma ocurrencia,
+pues dos checks de su rectángulo estarían a distancia ≤1 y las clases
+se unirían a distancia ≤2R+1. Entre todos los R, una ocurrencia sólo
+puede recibir carga de dos niveles porque las distancias a I en su
+rectángulo difieren a lo sumo en uno. Cada carga es a lo sumo el peso
+mínimo de su huella φ_t. Puesto que δ_t≥1, se deduce de (3)
+
+  Σ_{R≥1} (b_R−1) r^(R−1) ≤ 432 e_tot.
+
+Al contar para cada arista los niveles que atraviesa y sumar la progresión
+geométrica resulta, con m_i=max(0,⌊(d_i−2)/2⌋),
+
+  Σ_{i=1}^k (r^m_i−1) ≤ 8 e_tot.                                  (4)
+
+La misma energía paga el conjunto de enlaces. La concavidad del logaritmo
+y d_i≤2m_i+3 dan Σ d_i≤3k+2k log_r(1+8e_tot/k). En una historia individual
+se pueden extender los enlaces del árbol por un árbol de contactos dentro
+de cada grupo. Con los costes de la sección 3 se obtiene
+
+  C(S) ≤ k[48+36 log_r(1+8|E|/k)]    para k>0.                     (5)
+
+La expresión k log(1+a/k) es creciente en k para a≥0. Si k≤f/24 000,
+usar |E|≤f, r^664≥192 001 y 48+36·664≤24 000 en (5) da C(S)≤f.
+Esto prueba la condición de densidad anunciada para (1), sin restricción
+adicional sobre las posiciones ni sobre el tiempo en que los grupos se enlazan.
+
+Finalmente, un coeficiente mixto no nulo del logaritmo formal de la partición
+física necesita una familia conexa de polímeros filtrados. Se puede ver
+introduciendo una variable por polímero. Al restringir las variables a
+una familia desconectada de incompatibilidades, la partición factoriza y
+su logaritmo es una suma. Tras sustituir los monomios de fuentes, cada
+contribución mixta que subsiste proviene de una familia conexa. Por tanto,
+si para un soporte y un orden dados el lado izquierdo de (4) supera ocho
+veces el grado total de datos del monomio, su coeficiente mixto es cero.
+La normalización por factores individuales sólo añade términos de un
+sitio al logaritmo. La sustitución inversa z_i=b_i/(1−η_i b_i) preserva
+los soportes de los monomios y sólo puede aumentar el grado. La condición
+de anulación vale también en esas variables y admite medidas repetidas.
+
+Las secciones 3–4 localizan la dificultad que queda en p=10⁻⁶. Faltan
+cotas suficientemente pequeñas para la suma completa de las interacciones
+que exceden el coste de árbol, y para el logaritmo normalizado. Los
+márgenes de Kotecký–Preiss de la sección 2 se certificaron en los dos
+rectángulos del inicio.
+
+Reproducción
+============
+
+Ejecutar «python verificar_H5A_enlaces.py». Ejecutar «python contraste_opcional.py»
+para calcular el contraste por celdas y flujo y sustituir el mayorante de
+Taylor por (1−z/2048)^−2048. El argumento opcional «--matriz RUTA_AL_ZIP»
+compara la geometría con CERTIFICADO_PQ_REPRODUCIBLE_20261104.zip. Python
+3.10 o posterior y la biblioteca estándar bastan. Las decisiones numéricas
+usan enteros y fracciones. La demostración combinatoria queda pendiente
+de revisión matemática independiente.
+
+Los antecedentes de perfil, compresión, testigos y consumo se incluyen en
+el paquete. En BORRADOR_INTRODUCCION_Y_RESULTADOS_EN_v2.tex se usan
+thm:recomp, eq:pq-exact-host, eq:pq-M, prop:kp-filtered-compiler y
+thm:silent-conditioned. El trabajo de Fawzi, Grospellier y Leverrier
+sitúa el decodificador small-set-flip con síndrome ruidoso (arXiv:1808.03821,
+https://arxiv.org/abs/1808.03821). Las tasas de esta nota proceden del
+certificado del proyecto.

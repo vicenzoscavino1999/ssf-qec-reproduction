@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite the archived reproduction package when using this work."
+title: 'Reproduction package for "Estimating silent logical failure in small-set-flip decoding"'
+type: software
+authors:
+  - family-names: "Scavino Alfaro"
+    given-names: "Vicenzo"
+doi: "10.5281/zenodo.24520836"
+date-released: "2026-11-25"
+repository-code: "https://github.com/vicenzoscavino1999/ssf-qec-reproduction"
+url: "https://doi.org/10.5281/zenodo.24520836"
+license: CC-BY-4.0

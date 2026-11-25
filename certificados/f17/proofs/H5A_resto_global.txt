@@ -1,0 +1,169 @@
+H5-A · Una cota para toda la suma pendiente en una tasa intermedia
+18 de noviembre de 2026
+
+Resultado
+=========
+
+Para toda semilla binaria (17,18)-regular y cualquier tamaño se obtiene
+acceso con precisión relativa elegible a la partición física completa en
+
+                    0 ≤ p ≤ 4.24·10⁻³⁶,      0 ≤ q ≤ 2·10⁻¹¹.
+
+El extremo anterior era 3.6·10⁻³⁶ con el mismo q. El aumento es del
+17.78 %. Se conservan la ronda Bernoulli independiente, la familia FGL
+completa con β=1/100, el máximo global, el desempate fijo, la máscara
+y el subhost del manuscrito. La transferencia a la probabilidad de fallo
+silencioso positivo conserva las hipótesis adicionales del teorema del
+manuscrito sobre el condicionamiento.
+
+Para la referencia de H5A_cruces_entre_componentes.txt, ecuación (6),
+la suma física pendiente, incluidos todos los órdenes desde cuatro,
+es <3.48·10⁻¹⁶ por raíz de datos y <2.63·10⁻¹³ por raíz de medida
+en este rectángulo. A p=10⁻⁶, q=2·10⁻¹¹ sigue abierta la cota del resto.
+En esa esquina 0.004998 continúa siendo el presupuesto suficiente.
+
+El incremento procede de conservar el número de datos de cada grupo al
+sumar su peso. La entrada de la cuenta para 17 o más recoge la cola
+infinita. La demostración usa el recuento completo de historias físicas
+de H5A_cumulantes_y_componentes.txt, secciones 1 y 2. La referencia más
+reciente se utiliza después para acotar su diferencia con el modelo físico.
+La derivación queda pendiente de revisión matemática independiente.
+
+1. Sumar los grupos con su descuento cronológico
+================================================
+
+Sean v y c los números de fuentes de datos VV y CC en un grupo de la
+descomposición física del certificado precedente. Poner e=v+c. El
+perfil cronológico Φ(v,c) acota la cantidad de acciones y recargos que
+hay que pagar. Sigue siendo válido Φ(v,c)≤12.30v+12.66c y para e=1 vale 9.
+Con t=0.00665, un grupo de al menos dos datos admite el descuento
+
+                t^[12.66 e − 0.36 v − Φ(v,c)].
+
+La prueba precedente lo mayoraba por 4^(e−17) antes de sumar grupos.
+Aquí se asignan 18 coordenadas a cada serie positiva de actividades.
+Las primeras 17 corresponden a e=0,…,16 y la última a todos los e≥17.
+Al multiplicar coordenadas i y j se añade el producto a min(i+j,17).
+Esta es una identidad para las series positivas, pues todas las maneras
+de alcanzar la última coordenada se siguen sumando. Una fuente de datos
+tiene grado uno y una medida, grado cero. Las ramas exteriores al grupo
+aportan sus cotas escalares del certificado precedente y su grado es
+cero en la cuenta de ese grupo.
+
+Se evalúan en estas coordenadas las ramas de testigos U de la sección 2
+de H5A_cumulantes_y_componentes.txt, a precios x=1.60·10⁻⁸ y ξ=2.07·10⁻¹¹.
+El precio VV es 0.16452x y el CC es x. La tabla U del verificador es una
+supersolución coordenada a coordenada. Las filas de contacto desde datos
+usan los dos recuentos 10700,17600 y 17600,10100 por tipo. Desde una medida
+se permite 800(w_V+w_C) en el término de contacto, que cubre cualquiera
+de los dos tipos y tiene coeficientes positivos. El factor de inclinación
+4 por dato de la prueba precedente desaparece al llevar la cuenta de e.
+El resto de las reglas de testigos, adscripciones y puentes es el mismo.
+
+Para explicitar las filas, N es la matriz de vecindades entre fuentes del
+certificado, con N_medida,medida=0. Sea z la variable formal que cuenta
+datos, con z^17 z=z^17. Usar (z_V,z_C,z_m)=(0.16452xz,xz,ξ) y las
+cotas Z=(0.00002,0.00002,0.000002) sobre las ramas exteriores.
+La notación [datos] indica las dos coordenadas de tipo de datos.
+
+    a_i = z_i exp(Z_i + (NU)_i)
+    v_i = a_i exp(N_im a_m)                  para i de datos
+    w_i = v_i exp(N_i[datos] v)              para i de datos
+    w_m = a_m exp(N_m[datos] v)
+
+Poner b=18w_V+17w_C, y=b+w_m, g=(1−y)⁻¹ y
+
+    L(y)=N₃ y² + N₄ y³ + N₅ y⁴ + N_max y⁵ g,
+    N₃=343944, N₄=3683016, N₅=146395296, N_max=306·2³⁴.
+
+Con las filas de contacto h_V=(10700,17600) y h_C=(17600,10100), usar
+
+    K_i = w_i [h_i w[datos] + 40w_m + 18L(y)]       para i de datos
+    K_m = w_m [800(w_V+w_C) + b L′(y)]
+    D_i = K_i + v_i (NK)_i                         para i de datos
+    D_m = K_m + a_m N_m[datos] D[datos].
+
+La serie positiva L′ se forma en la variable y antes de sustituir el
+vector. El verificador prueba U_i≥D_i en todas las coordenadas. Por
+inducción sobre la altura, esto cuenta también los árboles de cualquier
+tamaño. Para calcular exp(A) se separa el grado cero, A=A₀+B. En exp(B)
+las potencias desde 17 van enteras a la última coordenada. Su suma escalar
+se mayora por b₀^17/[17!(1−b₀/18)] con b₀ igual a la masa total de B.
+La inversa geométrica se calcula separando su constante del mismo modo.
+Cada redondeo del verificador es racional y hacia arriba.
+
+Para 2≤e≤16 se certifica un mayorante d_e del descuento tomando
+δ_e=min_{v+c=e}[12.66 e−0.36v−Φ(v,c)]. La comparación entera
+d_e^1000≥t^⌊1000δ_e⌋ basta. En el grado agregado se usa d_17=1 por el
+límite lineal uniforme. Para e=1 se mantiene la fila más precisa del
+certificado previo, con las medidas requeridas por el testigo. Así la
+masa por raíz es a lo sumo la fila de un solo dato más ∑_{e=2}^{17} d_e U_{i,e}.
+Las tres masas, hacia arriba, son 2.320·10⁻²⁰ desde VV, 1.305·10⁻¹⁹
+desde CC y 7.394·10⁻²⁴ desde medida. Caben simultáneamente en las tres
+filas fuente de la supersolución anterior. El verificador comprueba
+también que esa misma supersolución respeta Z.
+
+2. Tasas físicas y resto de la referencia
+=========================================
+
+Usar los precios exactos de la condición pendiente
+
+              s_i = [r_i/(1−2r_i)] exp(0.015),       r_i=p o q.
+
+El presupuesto interior de las decoraciones es 0.01 por fuente, de modo
+que el recuento físico se evalúa con exp(0.025). La comparación para
+datos es [1.03 p/(1−2p)]^50 < x^50 t^633. Se comprueban a la vez la
+inclinación de datos, la conversión de medidas y las dos filas exteriores
+a precios 5·10⁻³⁶ y 2.055·10⁻¹¹. Los mayorantes para los bloques físicos
+que pasan por una raíz son los del certificado previo. En particular
+
+       R_V < 3.47882·10⁻¹⁶,               R_m < 2.05622·10⁻¹¹.
+
+La expansión física enraizada domina ∑_{B∋i}|k(B)|s^B con cada fuente
+una sola vez, ya que cada término de ese monomio se incluyó en la suma
+absoluta. Las dos filas son menores que 0.005. El criterio normalizado
+del proyecto con ese presupuesto y la inclinación adicional 0.01 da el
+resultado para la partición física completa.
+
+Para la diferencia, escribir k⋆ para los coeficientes de la referencia
+de H5A_cruces_entre_componentes.txt. En entradas exclusivamente de medidas
+la marca vale uno exactamente cuando el síndrome inicial es estable. Una
+acción elegible baja estrictamente el peso e impediría terminar en las
+medidas iniciales. Los checks de medida que lee un mismo rectángulo son
+vecinos en G. La estabilidad y la marca factorizan por componentes en
+todas esas subentradas. Los bloques de dos o más componentes de sólo
+medidas tienen actividad física cero y los de una componente están en la
+referencia. Por inversión, k=k⋆ para todo conjunto de sólo medidas.
+
+Por tanto en la suma pendiente sólo intervienen soportes con al menos
+un dato. La suma de |k⋆|s^B sobre esos soportes de grado ≥4 en la nueva
+esquina es ≤1.907·10⁻⁶ veces el cociente de los precios de dato en
+p=4.24·10⁻³⁶ y p=10⁻⁶. Esta es <8.1·10⁻³⁶ por fuente, pues el extremo
+q es el mismo. El factor 1.907·10⁻⁶ procede de la cota en la sección 6
+de la nota de cruces. En la fila física de medida se puede descontar
+el singleton de peso s_m. Tiene grado uno y su marca es uno en el
+subhost que contiene la raíz. En la esquina s_m≥[q/(1−2q)](1+0.015).
+La desigualdad triangular da finalmente, para todos los tamaños,
+
+       ∑_{B∋i, |B|≥4} |k(B)−k⋆(B)|s^B
+           < 3.48·10⁻¹⁶ si i es un dato,
+           < 2.63·10⁻¹³ si i es una medida.
+
+En el interior del rectángulo se aplica monotonía a la suma absoluta
+final, cuyos coeficientes son independientes de p y q. El mismo
+razonamiento cubre los ejes. Estas cifras miden el resto a la tasa
+intermedia. Para p=10⁻⁶ queda por encontrar control sobre el crecimiento
+de los términos con arbitrariamente muchos datos.
+
+Reproducción
+============
+
+Desde la carpeta que contiene este verificador y el paquete anterior
+H5A_CUMULANTES_Y_COMPONENTES_20261117.zip, ejecutar
+
+    python -I -B -X utf8 verificar_H5A_resto_global.py
+
+El programa usa la biblioteca estándar y reutiliza el perfil y las filas
+originales dentro de ese ZIP. El criterio enraizado aplicado en el
+certificado precedente es el teorema 1 de Daniel Ueltschi, «Cluster
+expansions and correlation functions». https://arxiv.org/pdf/math-ph/0304003

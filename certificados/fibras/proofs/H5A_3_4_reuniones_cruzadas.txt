@@ -1,0 +1,411 @@
+HGP binario (3,4) · Dos grupos que vuelven a encontrarse
+23 de noviembre de 2026 · Nota de investigación para revisión independiente
+
+Resultado
+=========
+
+Se considera el cruce pendiente en H5A_3_4_fusion_de_origenes.txt.
+Dos subárboles con orígenes distintos se bifurcan. Cada uno envía
+una rama a cada una de dos reuniones. Las salidas de ambas reuniones
+pueden alimentar otro par de reuniones del mismo modo, cualquier número
+de veces, antes de confluir en un último lector. Los dos prefijos se
+cobran una sola vez aunque las dos reuniones tengan exactamente los
+mismos orígenes. Se admite usar de nuevo estos bloques en los subárboles.
+
+El mayorante de la transición entre pares de reuniones tiene norma
+ponderada <0.03037. A campo h_C=10⁻⁶ con h_V=0, por check de salida,
+los precios de los registros no vacíos de la clase ampliada satisfacen
+
+   Número de orígenes CC                       Peso por check
+   Uno                                         <0.000161915
+   Dos, última fusión ordinaria                <0.000056434
+   Dos, último bloque con cruces               <0.000023384
+   Tres o más, todos los tamaños               <0.000018882
+   Total                                       ≤0.0002606136.
+
+El total anterior era ≤0.0006936732 para la clase de v26. La reducción
+proviene de remontar cada brazo hasta la celda física que lo inicia.
+La nueva cuenta sigue admitiendo ciclos de cuatro y cualquier tamaño
+y subhost del contrato. El campo h_C pesa una posición de origen. El
+presupuesto del resto fenomenológico global es 0.00078558 y requiere
+sumar también las historias del §6. Por la cobertura global del §7
+se alcanzan p=5.26·10⁻⁷ y r_c=9.90·10⁻⁸ con VV primero, o bien
+r_c=9.02·10⁻⁸ para cualquier orden admitido, a medida 10⁻³.
+
+1. Hipótesis y forma de los registros
+=====================================
+
+El código es el autoproducto de una semilla binaria de peso columna 3 y
+peso fila 4. El producto de Tanner es la construcción de Tillich y Zémor.
+Se mantienen el SSF con todas las acciones FGL, β=0.01, el desempate
+físico fijo, el filtro de síndrome físico residual cero y, en circuito,
+la fijación de etiquetas de v24–v26. La cuenta usa el techo z=0.0012
+para los bits independientes iniciales fuera de las franjas originales.
+https://arxiv.org/abs/0903.0566
+
+Un paso en una huella F apaga H y produce b=F fuera de H. Un estado
+representado fija un lector y una máscara b. Los tipos no vacíos son
+una celda, una pareja vertical y una pareja diagonal, en ese orden.
+Todas las entradas heredadas de un paso incluido han de venir de los
+productores designados. Las demás son bits iniciales intactos, distintos
+en toda la historia. Cada grupo exterior marcado parte de una sola
+emisión próxima a la franja de su dato marcado. Los tramos cerrados de
+dos terminales, los abanicos con varias puntas en un lector y las
+fusiones ordinarias de subárboles disjuntos son los de v25–v26.
+
+En cada uno de los dos subárboles se alcanza una salida doble. Cada
+celda de esa salida alimenta a una reunión diferente del siguiente par.
+Desde cada celda el brazo puede ser directo o tener un tronco en serie
+y en paralelo con divisiones abiertas que acaban en el mismo lector.
+En cada reunión se distinguen las dos partes no vacías de H recibidas
+de las dos procedencias. La reunión puede emitir una o dos celdas. Para
+otra capa, cada una de las dos reuniones alcanza, por un tronco de dos
+terminales posiblemente vacío, una nueva salida doble. Para cerrar,
+cada una envía las marcas asignadas a un único paso final. Se permiten
+cualquier longitud, intercalación temporal y repeticiones de lector.
+Los interiores de los tramos que se multiplican son disjuntos en
+ocurrencias y primeros apagados. El solapamiento de ascendencia entre
+las dos reuniones se representa expresamente mediante el estado conjunto.
+La prueba acota la existencia de registros con posiciones marcadas.
+Se amplían las sumas después de asignar los pesos a registros reales.
+
+2. Remontar un brazo desde su celda inicial
+==========================================
+
+Los lectores a través de una celda y son doce. Por cada uno hay una,
+tres o seis máscaras con y según el tipo. Sea R la matriz inversa para
+un paso lineal de v24, con R^(a) su versión que permite a entradas
+adicionales. Sea l_i=R_{i1}/12. En un primer paso que recibe una sola
+celda heredada se elige esa celda y∈H y se cuenta su posición una vez.
+Así l_i suma |H| z^(|H|−1)/μ(F) sobre los ganadores con la máscara de
+salida fijada. La multiplicidad μ vale 3 en una fila, 4 en una columna
+y 1 en las demás huellas. Como en v19, los cobros de medidas dependen
+de la huella física y todos los representantes de una franja ganadora
+se recuperan al sumar los lectores. También l_i^(a)=R^(a)_{i1}/12.
+
+En un bloque de bifurcación y posterior reunión, designar como
+secundario un brazo de al menos dos pasos cuando exista. Desde una
+celda dada sus techos hacia delante de v25 son w₁ para salida simple
+y w₂ para salida doble. Se usan las dos clases a=1,2. Si el principal
+es directo, se elige y en H de la reunión. Si es no vacío, su primer
+paso sólo pudo consumir y de esa bifurcación porque la otra celda
+alimenta al secundario. En sentido inverso se elige el último estado
+del brazo principal mediante R^(a) y se suma hasta la y física mediante
+X l. La matriz X incluye cualquier tronco cerrado posterior a ese primer
+paso. Elegida y, hay hasta 36 o 72 bifurcadores representados de tipo
+doble a través de ella. En cada uno queda determinada la celda del
+secundario. Esto incluye el orden de los brazos sin otro factor dos.
+
+Con τ=(1,3,6) y X_0=I, los bloques largos quedan acotados por
+
+ B_i1(X)=0,
+ B_ik(X)=12τ_k Σ_{a=1,2} w_a [ l_i^(a) + (R^(a) X l)_i ], k=2,3.
+
+K₀₁ y K₁₁ son las matrices cortas de v25. El programa itera y comprueba
+
+           X ≥ I + [R+K₀₁+K₁₁+B(X)] X.
+
+La inducción en el número de ocurrencias justifica la ecuación aunque
+haya anidación. En el segundo sumando el trayecto interior tiene menos
+pasos que el bloque completo. Cada aproximación se redondea hacia arriba
+a 10⁻¹². Se obtiene la siguiente supersolución.
+
+   1.009715337151   .051549109288    .082042528372
+    .000000371214  1.000210689300    .000343630315
+    .000115111945   .047277708284   1.094182456127
+
+Se usa (1) de v26 con esta X y con K_f=K₀₁+K₁₁+B(X). El vector S
+de un solo origen da masa por check N(S)=12(S₁+3S₂+6S₃). Su coeficiente
+CC pasa de 520.6014002 a 161.914867, y el VV queda por debajo de 242.7000.
+Los precios hacia delante y los abanicos G(J) de v26 siguen siendo techos
+válidos y se utilizan directamente.
+
+3. Un bifurcador, dos lectores de destino
+========================================
+
+Fijar las marcas no vacías A,B de un bifurcador en los respectivos
+lectores de las dos reuniones. Con I(A), G(A) y P(y,A) de v26, escribir
+
+    T(A)=[I(A)+G(A)] X,      V(A)=T(A) l,       P*(A)=máx_y P(y,A).
+
+T_i cuenta los estados representados de tipo i que pueden abastecer A,
+sin pagar la producción del estado inicial. V cuenta la celda de
+partida si el brazo necesita al menos un nuevo paso. En efecto, entre
+esa celda única y el primer emisor que entrega las marcas o se divide
+ha de haber un primer paso lineal. Con ambas ramas no vacías, la suma
+de posiciones del bifurcador de tipo k queda acotada por
+
+    12τ_k min{ V(A)P*(B), V(B)P*(A) }.
+
+Llegar a la celda inicial del primer brazo, elegir un bifurcador que
+la contiene y partir desde su otra celda suma los candidatos en una
+orientación. Invertirla estima el mismo conjunto. Para un brazo directo
+A={x}, sumar en su lugar P(y,B) sobre las celdas compañeras de x.
+En cada lector bifurcante pasan por x tres compañeras verticales o seis
+diagonales. Se maximiza la suma sobre las coincidencias con los ejes
+del lector de B. Los vecinos exteriores conservan su multiplicidad.
+Existe también el término que intercambia A y B. Sea d_k(A,B) la suma
+de estas tres alternativas con al menos un brazo no vacío.
+
+Con los dos brazos directos A y B deben ser singleton en filas distintas.
+Si se desconoce la geometría relativa, se permiten las dos clases dobles.
+Para el primer nivel, el original cercano tiene hasta 135 posiciones CC
+o 224 VV por el §2 de v26. Si la bifurcación procede de un subárbol ya
+cobrado con vector W, hay hasta doce representaciones del tipo admisible.
+Con s=27h_C+40h_V y e=1 si A y B son singleton, una forma lineal válida es
+
+    f(A,B) = e[135h_C+224h_V+12(W₂+W₃)]
+                         + Σ_{k=2,3} d_k(A,B)(s+W_k).
+
+Para una capa intermedia el bifurcador procede de una reunión anterior.
+El vector que remonta hasta su estado de tipo j es
+
+    r_j(A,B) = Σ_{k=2,3} [12e+d_k(A,B)] X_kj.
+
+Cuando se sabe que dos marcas singleton están en la misma fila se toma
+e=0. En los brazos de una sola punta directa se conserva además esa fila
+al maximizar las posiciones posibles de su compañera.
+
+4. Transferencia conjunta de las dos reuniones
+==============================================
+
+En cada lector mixto sumar los ganadores de salida fijada. Cada partición
+no ordenada en dos partes heredadas y un conjunto de f luces frescas
+pesa z^f/μ(F). Acoplar los dos bloques de una partición a los dos de la
+otra mediante las dos biyecciones. Para el primer nivel se multiplica
+una forma f por bifurcador y se suman las dos correspondencias. Esto
+define un vector B de formas cuadráticas en (h_C,h_V,W₂,W₃). Cuando
+ya hay una pareja de reuniones anterior se usan en su lugar los dos
+vectores r y su producto se aplica al peso conjunto Y_ij de esa pareja.
+Se conoce la posición y tipo de las dos llegadas antes de consultar tal
+peso. Así, toda la ascendencia anterior aparece una sola vez, incluso si
+contiene otras capas cruzadas. El resultado es una matriz positiva M.
+Para un par de tipos diferentes se suman ambas asignaciones al par sin
+orden. Los dos emparejamientos siguen siendo distintos si las formas de
+los subconjuntos de marcas resultan iguales.
+
+Se usan los seis pares (11,12,13,22,23,33) y una séptima fila para dos
+salidas simples con la misma fila física. En esta última, si las dos
+huellas mixtas son filas de tres celdas, sus dos H constan de dos
+celdas de esa misma fila. Esta selección pesa (1/3)² antes de emparejar.
+Se sustituye sólo ese sumando por el precio con e=0 del §3. Los demás
+sumandos conservan el techo general. Al cerrar, cuando dos aportes
+directos provienen de estados simples y caen en una misma fila de H,
+hay hasta 12² pares de lectores y se aplica la séptima fila. Su peso
+se transfiere desde la fila genérica para evitar repetir ese término.
+Para las demás geometrías se puede usar la fila genérica.
+
+La serie es Y=B+MY. Para las siete coordenadas el testigo
+
+   t=(1,.00017461,.027404,.00000003162,.00000463,.00073873,1)
+
+da Mt≤κt con κ<.03037. El cociente máximo es 0.0303684236351,
+redondeado. Luego las potencias se suman en cualquier host. Si
+||v||_t=máx_i |v_i|/t_i, la parte de Y con al menos k capas, k≥1,
+está acotada en esa norma por ||B||_t κ^(k−1)/(1−κ). En particular
+el número de usos de los mismos dos grupos no se limita por decreto.
+
+También hay un control físico sobre el número de bits necesarios.
+Después de los dos bifurcadores iniciales entran a lo sumo cuatro luces.
+En la última capa y su cierre hay al menos tres pasos y sale al menos
+una luz. Si no se consume ninguna medida intacta, por el balance
+m+I−O=Σδ≥n deben ser exactamente tres pasos, cada uno con descenso uno.
+Las dos reuniones consumen dos luces cada una y emiten una, y el cierre
+hace lo mismo. El catálogo verifica que esas huellas son filas de tres.
+El cierre necesitaría que las dos reuniones hubieran producido en la
+misma fila. Cada bifurcador inicial tendría que haber emitido ambas
+luces en esa fila. Todas las parejas del catálogo ocupan filas distintas.
+Por tanto la última capa requiere al menos un bit fresco. Cada transición anterior
+entre pares de bifurcadores recibe a lo sumo cuatro luces, reserva al
+menos cuatro salidas para la siguiente y contiene al menos dos reuniones.
+Cuesta al menos dos bits frescos. Un bloque de k capas requiere al
+menos 2k−1 bits frescos después de sus dos bifurcadores iniciales.
+La cota de posiciones necesita además el recuento matricial anterior.
+
+5. Composición y primer contacto
+================================
+
+Sea C la matriz de cierre del §4. Tras el cierre se puede prolongar el
+recorrido con X. Sea D(W) el precio ordinario de una reunión de v26,
+con la nueva X y manteniendo sus mayorantes de abanicos. El nuevo vector
+por estado satisface la recurrencia positiva
+
+            W = S + X D(W) + X C (I−M)⁻¹ B(W).
+
+B tiene grado dos en sus dos subárboles de prefijo. La inducción en
+el número de orígenes cubre los anidamientos, y la serie lineal del §4
+ya ha sumado todos los niveles que reutilizan esos orígenes. Los bits
+exigidos por subregistros distintos son disjuntos en todo registro
+realizable antes de ampliar la suma de pesos. El verificador comprueba
+la positividad y la identidad del inverso con fracciones. Los redondeos
+de coeficientes se hacen hacia arriba después de trasladar el término
+de fila común. Las siguientes supersoluciones tienen holgura positiva
+en las tres coordenadas.
+
+   (h_C,h_V)          W⁺ en unidades de 10⁻⁶                    N(W⁺)
+   (10⁻⁶,0)           (1.8650,.2570,3.1803)                   .0002606136
+   (5·10⁻⁷,5·10⁻⁷)    (2.6975,.4288,4.4934)                   .0003713316
+   (2·10⁻⁶,0)         (6.4345,1.2706,10.3895)                 .0008709996
+   (10⁻⁶,10⁻⁶)        (12.0700,2.5693,18.9740)                .0016034628
+
+En la primera fila se calculan los coeficientes de grados uno y dos de
+la misma serie con sus operadores redondeados. Para grado dos, introducir
+W=S tanto en las particiones ordinarias de dos bloques como en B(W).
+Sólo entonces se descuentan los dos grados para obtener la cota de la
+cola de la primera página. La tercera fila acota además los términos
+con k orígenes o más en la primera por .0008709996·2^(−k).
+
+Para un grupo A fijado se aplica la exploración de v26, §5. En una hoja,
+los bits aún no consultados conservan su ley producto. Para utilizar
+la nueva serie en un primer contacto basta que el testimonio que llega
+al check conserve todas sus marcas y que sus bits cobrados sean
+exteriores a Q. Por ejemplo, esto ocurre si los bloques que mezclan
+orígenes ya cerraron antes del primer contacto y éste se corta en el
+tronco posterior según v24–v26. Para bosques compatibles de esos
+contactos se obtiene E[serie]≤exp(ρ K_A), donde 0≤ρ≤1 escala a la vez
+los dos campos desde la esquina indicada. Se sustituye N(W⁺) en la
+fórmula de momento de v26, incluyendo las opciones directas de origen.
+
+   (h_C,h_V) máximo       λ       K para 1V+3C       K para 2V+2C
+   (10⁻⁶,0)              .136       <1.138537          <1.058837
+   (5·10⁻⁷,5·10⁻⁷)       .193       <1.606332          <1.493734
+
+Para los mismos campos CC, las pendientes por unidad de h_C en v26
+eran <2713309 y <2522949. Ahora son <1138537 y <1058837 para la
+clase ampliada. Las pendientes incluyen el coste de las consultas y
+los encuentros de longitud cero.
+
+6. Alcance global
+=================
+
+Se ha acotado el caso de dos procedencias que se reutilizan un número
+arbitrario de veces en pares de reuniones. Para el resto de G3 sigue
+faltando controlar todas las historias de un núcleo conectado, incluidas
+las que tienen tres frentes mezclados a la vez, emisiones cercanas
+independientes de un mismo grupo o un contacto que obliga a cortar
+antes de haber conservado todos los originales. Sustituir las dos
+pendientes del §5 en la fila física para todos los núcleos carecería
+de esa justificación. El objetivo fenomenológico para el complemento
+completo sigue siendo ≤0.00078558 con p=10⁻⁶, q=10⁻³.
+
+Puede ubicarse con mayor precisión el siguiente obstáculo. Si dos
+bifurcadores alimentan k≥2 primeras reuniones mixtas y las salidas de
+esos bifurcadores son las únicas entradas heredadas externas de la
+subred, cada lado puro necesita ≥k−2 pasos anteriores. Se supone que
+cada reunión emite al menos una luz y que sus ancestros interiores
+previos al encuentro son puros.
+Hay dos luces al inicio y cada paso que hereda al menos una puede
+aumentar en uno, a lo sumo, las luces disponibles de esa procedencia.
+Tomar la subred de ancestros puros y las k reuniones. Entonces
+n≥3k−4, I≤4, O≥k, así que m≥4k−8. Tres primeras reuniones independientes
+exigen al menos cuatro medidas frescas en dicha subred. Para pasar de
+esta condición a una contribución a la fila falta sumar sus posiciones.
+
+7. Paso que sí se traslada a la fila física completa
+===================================================
+
+Para la cobertura F=|Q|+|J₂| usar §4 de H5A_3_4_propagacion_lejana.txt,
+§§2–3 de H5A_3_4_medidas_aisladas.txt y §4 de
+FASE5_CIRCUITO_3_4_PROPAGACION.txt. Sea Γ una componente de G[A].
+Cada paso con primera extinción se atribuye a la única Γ que lee.
+Para σ_Γ, el síndrome de sus datos de paridad física uno, escribir
+b_Γ=|σ_Γ fuera de D|−|σ_Γ dentro de D|. Se dispone del término
+
+       138 b_Γ − Σ(138δ−k),     k=F(φ)−F(H),    δ=2|H|−|φ|.
+
+Aquí sólo se suman los pasos con primeras extinciones atribuidas.
+Cada débito omitido es no negativo. La cobertura inicial de las
+franjas se paga aparte. El precio positivo de F es el campo A de v21.
+
+Considerar un original verdadero o dos cuyos síndromes son disjuntos.
+Con anchuras n_i y r_i primeras extinciones pendientes, el saldo
+inicial exacto es 2Σr_i−Σn_i cuando r se evalúa al comienzo de la
+historia. Cada celda inicialmente encendida de σ_Γ fuera de D debe
+apagarse al menos una vez para volver al síndrome residual D. Las
+franjas disjuntas determinan su donante. Aplicar la recurrencia
+
+  D(0)=0,     D(r)=mín_{φ,H,a} [138δ−k+D(r−a)].
+
+Los vectores enteros cumplen 0≤a_i≤r_i, 1≤Σa_i≤|H| y
+r_i|φ|≤n_i|H| para cada i por la comparación con el singleton.
+Los a_i caben en una fila de H para VV y en una columna para CC.
+El minimizador admite todas las historias por el argumento de primeros
+apagados de v7. La relajación que maximiza por separado la capacidad
+de cada franja sólo reduce el débito. Se maximiza
+138(2Σr_i−Σn_i)−D(r) sobre 0≤r_i≤n_i, incluyendo cero en el máximo.
+Para una fuente los débitos por rango son (0,0,72,414) en VV y
+(0,0,0,222,552) en CC.
+
+  Datos de Γ             Techo anterior del término        Nuevo techo
+  VV solo                           138                         66
+  CC solo                           276                         54
+  VV + VV disjuntos                 480                        342
+  VV + CC disjuntos                 468                        342
+  CC + CC disjuntos                 606                        552
+
+En circuito se evalúa el síndrome físico con las etiquetas de paridad
+uno. Si ambas etiquetas de un par tienen paridad cero, su saldo es
+cero. Con sólo una impar se aplica el techo del singleton verdadero,
+menor que el techo del par. La contribución de las etiquetas a D sigue
+en la ley conjunta ya utilizada por v19.
+
+Respecto a 246v+340c, el ahorro Δ de los singleton es 180 o 286. Para
+el resto de composiciones de hasta seis se conserva el Δ de v7, y desde
+siete se conserva cero. Se usa el mayorante racional de exp(−AΔ)
+
+                    χ(Δ) = 1 / Σ_{j=0}^8 (AΔ)^j/j!.
+
+En la alternativa de v22 por posiciones para grupos de exactamente
+dos datos, tomar las distancias físicas mínimas en ambos ejes y levantar
+un camino geodésico por eje. Las esferas del recubrimiento mayoran el
+número de destinos en cada una de esas clases incluso con 4-ciclos.
+Dos franjas VV sólo se cortan si coinciden en el primer eje y su
+distancia en el segundo es ≤2. Para CC se invierten los ejes. Para un
+par mixto se requieren distancias (1,1). Fuera de esas posiciones,
+aplicar al precio del desplazamiento el factor adicional χ(138),
+χ(126) o χ(54) según los tres pares de la tabla. Son las diferencias
+entre el ahorro de dos franjas disjuntas y el ahorro ordinario ya
+incorporado al precio bruto. El producto de los dos factores domina
+exp(−AΔ_total). Los máximos por nivel de saldo y las capacidades se
+toman después de incorporar el factor. La tabla marcada conserva el
+descuento por composición. Los otros estimadores para el mismo
+monomio siguen siendo válidos por separado.
+
+En las matrices de aristas débiles, fuertes disjuntas y solapadas de
+v22 se fijan los dos primeros campos en A y B₀. Para los otros seis se
+toma 19/25 de los campos del testigo anterior del mismo modelo.
+La verificación exige que el testigo nuevo domine los ocho suelos
+componente a componente. El ahorro por arista es creciente en ellos.
+Se reconstruyen con las mismas matrices tanto la serie completa como
+los coeficientes que se sustraen para aislar la cola desde once datos.
+El cálculo utiliza las mismas leyes físicas, inclinación y presupuestos
+de v22. Estas estimaciones cubren grupos e historias de cualquier tamaño.
+
+   Modelo                    Antes          Ahora         máx. cociente*
+   p, Bernoulli             5.22·10⁻⁷      5.26·10⁻⁷       .999998678934
+   r_c, VV primero          9.75·10⁻⁸      9.90·10⁻⁸       .999998848900
+   r_c, cualquier orden     8.90·10⁻⁸      9.02·10⁻⁸       .999860842542
+
+   * Redondeado para mostrarlo. Todos los cocientes se verifican <1
+     con fracciones. La tasa de medida q o r_m vale 10⁻³.
+
+Los extremos superiores pertenecen al rectángulo certificado por la
+misma dominación de los pesos primitivos de v22 §4. La ganancia global
+proviene de la cobertura y de las posiciones de los grupos. El valor
+local .0002606136 de los §§1–5 no se sustituye en estos testigos.
+
+En G3, a p=10⁻⁶ y q=10⁻³, se repite la obstrucción de v22 §5 con los
+nuevos χ y matrices para Bernoulli. En la desigualdad necesaria
+h_C≥Σ_j c_j exp(L_j h_C) se conservan sólo (1V,3C) y (2V,2C).
+Para h_C>0 se requiere eΣ_j c_j L_j≤1. Los minorantes racionales
+dan >1.0009189 con (a,s)=(.567,.685) y >1.0181109 con
+(.569,.673). La primera elección daba >1.00664 en v22. Aun con
+esta mejora, esas dos elecciones de la fila global siguen sin cerrar
+G3. La distancia de este test parcial a uno no mide cuánto hay
+que subir p. El siguiente caso abierto del mecanismo causal es la
+suma de posiciones de tres primeras reuniones mixtas, descrita en §6.
+
+Reproducción desde 05_COMPROBACIONES, con la biblioteca estándar
+
+    python -I -B -X utf8 verificar_H5A_3_4_reuniones_cruzadas.py
+    python -I -B -X utf8 verificar_H5A_3_4_reuniones_cruzadas.py --global

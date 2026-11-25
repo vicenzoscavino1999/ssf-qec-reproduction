@@ -1,0 +1,71 @@
+REFINAMIENTO ELEMENTAL DE DENSIDAD PARA EL DECODER FIJADO
+28/10/2026. Prueba interna; no afirmación de prioridad bibliográfica.
+
+Contrato. Familia finita y estática A de acciones binarias F, cada una con huella
+no vacía phi_F=H_X F. En cada paso se maximiza
+  score(F,s)=(|s|-|s XOR phi_F|)/|phi_F|;
+los empates se resuelven por un orden total fijo prec. Se ejecuta el ganador si
+su score es al menos beta, donde 0<beta<=1; en caso contrario se para. No hay
+reglas adicionales de disponibilidad que dependan de la historia.
+Aquí q=0 y el soporte es Y=E unión F_1 unión ... unión F_T. d_X es la máxima
+columna-peso de H_X. El enunciado no presupone regularidad ni expansión.
+
+Para cada huella P que aparece en A, sea F_P el primer candidato con phi_F=P.
+Para d>=1, defínase
+  delta_beta(d)=min{g entero: 1<=g<=d, g>=beta*d, g congruente con d módulo 2}.
+El conjunto no es vacío porque g=d es admisible. Si A es no vacía, sea
+  eta=max_P |F_P|/delta_beta(|P|).
+Si A es vacía, se fija eta=0.
+
+Lema. Toda ejecución del contrato anterior satisface
+  |Y| <= (1+eta*d_X)|E|.
+Por tanto toda decoración válida satisface f>=kappa_ord*|Y|, con
+f=|E| y kappa_ord=1/(1+eta*d_X).
+
+Prueba.
+(i) Si phi_F=phi_G, los dos candidatos tienen exactamente el mismo score para
+todo s. Si G prec F, F nunca puede ser el ganador. Luego toda acción seleccionada
+pertenece al conjunto {F_P}. No se eliminan acciones de los motores para usar
+este argumento; es una propiedad de sus decisiones originales.
+
+(ii) Para una acción seleccionada de huella P, d=|P|, el descenso es
+  g=|s|-|s XOR P|=2|s intersección P|-d.
+Es entero, tiene la paridad de d y, al ser elegible, satisface g>=beta*d>0.
+En consecuencia g>=delta_beta(d) y |F_P|<=eta*g.
+
+(iii) Telescopando los descensos,
+  sum_t |F_t| <= eta*sum_t (|s_{t-1}|-|s_t|)
+              = eta*(|H_X E|-|s_T|) <= eta*d_X*|E|.
+La unión que define Y cumple |Y|<=|E|+sum_t|F_t|. Se obtiene el lema.
+La prueba conserva todas las ocurrencias de acciones; no presupone que cada
+qubit se voltee una sola vez. Si no hay acciones, Y=E y la conclusión es inmediata.
+
+Aplicación al acceso local. La decoración aceptada por el oráculo es una ejecución
+completa del mismo decoder sobre su fuente local. Por tanto el lema se aplica a
+ella aunque el oráculo incluya candidatos que salen del soporte. No se toma un
+mínimo sobre un catálogo parcial para extenderlo a decoraciones no examinadas.
+
+Coste. Dados M candidatos explícitos, sus huellas y sus rangos, agrupar por huella
+y seleccionar el menor rango requiere tiempo polinómico en esa entrada. Por
+ejemplo, ordenar huellas de L bits cuesta O(M log(M) L) comparaciones bit a bit,
+más el cálculo de huellas si no estaban dadas. Calcular delta_beta y eta tiene
+coste polinómico en el tamaño binario de beta y de los candidatos. Esto no prueba
+que una familia implícita de tamaño exponencial pueda prepararse económicamente.
+El host y los pesos del teorema principal se mantienen; no se reduce su grado
+sin una justificación independiente.
+
+PATH25. Las 103 acciones tienen 43 huellas distintas. Los líderes verifican eta=1
+para beta=1/2; d_X=2. La densidad resultante es 1/3 para TODOS los soportes de la
+instancia. Usar descensos enteros pero todos los candidatos da eta=2 y densidad
+1/5. La cota genérica w_Z=4, d_X=2 era 1/9.
+
+La fuente E=65536 produce Y=65553 de tamaño tres, por lo que 1/3 es ajustado para
+esta representación. R=Y es estabilizador y su síndrome es cero: el ejemplo
+también pertenece al gas filtrado por síndrome cero. Esto no establece una cota
+ajustada para el subconjunto de decoraciones silenciosas no estabilizadoras.
+
+Al combinar la cota 1/3 con la cuenta binomial/entrópica y el grado real del host,
+se obtiene el certificado racional de INFORME_PATH25.txt. Es una mejora finita
+del alcance de una condición suficiente, no un estimador ejecutado ni un nuevo
+régimen para F17. La observación de candidatos dominados y el telescopado son
+elementales; no se reivindica gran novedad a partir de este lema por sí solo.

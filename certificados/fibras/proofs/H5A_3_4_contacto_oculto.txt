@@ -1,0 +1,202 @@
+H5-A · La segunda conmutación de un contacto oculto en el HGP (3,4)
+Entrega v15 · 23 de noviembre de 2026 · Revisión matemática independiente pendiente
+
+Para el acceso a las particiones filtradas se obtiene el rectángulo
+
+                   0 ≤ p ≤ 3.75·10⁻⁷,      0 ≤ q ≤ 10⁻³.               (1)
+
+El extremo anterior era 3.40·10⁻⁷. La razón es 75/68 y queda un factor
+8/3 hasta G3. En G3, p=10⁻⁶ y q=10⁻³, para el mismo conjunto pendiente
+de H5A_3_4_entradas_distribuidas.txt (v14), ahora basta 0.00078558.
+Antes bastaba 0.00042297. Su masa real sigue abierta.
+
+Se mantienen el producto de una semilla binaria de columna 3 y fila 4
+consigo misma, cualquier tamaño, las máscaras y los subhosts inducidos,
+una ronda Bernoulli independiente y el filtro de síndrome físico residual
+cero. El SSF usa toda la familia FGL, β=1/100, máximo global normalizado
+por huella y desempate físico fijo. Para precisión relativa de fallo
+silencioso positivo siguen rigiendo el testigo y las demás hipótesis del
+Teorema 1 del manuscrito.
+
+1. Cómo cobrar dos conmutaciones sin enumerar el interior de una cadena
+----------------------------------------------------------------------
+
+Fijar un conjunto W de checks consultados en la comparación de especies.
+Una especie de soporte S puede intervenir si S∩W es no vacío. Primero
+cubrir los originales cuya huella toca W y los rectángulos cercanos usados
+que tocan W, con las cotas de v7–v10. En cualquier especie restante,
+elegir un check x en S∩W según un orden fijo. Está fuera de la unión O de
+las huellas originales. El bit observado en x empieza y termina con su
+valor en las medidas activas D. Por tanto x se conmuta un número positivo
+y par de veces. Todas esas ocurrencias son lejanas. El argumento incluye
+los bits que empezaron encendidos y funciona para cualquier W.
+
+Considerar primero una especie con dos o más grupos originales. Tomar un
+árbol sobre todos sus originales y todos sus generadores lejanos distintos,
+antes de la poda de v7, §2. Conserva las aristas internas de los grupos
+y el padre original prescrito para los generadores de profundidad uno.
+Sea T₀ el menor subárbol de este árbol que contiene todos los originales.
+Cada generador de T₀ tiene grado al menos dos. Se dan dos posibilidades.
+
+• Dos centros distintos de T₀ conmutan x. Al reenraizar en cualquiera
+  de ellos hay por lo menos dos hijos que conducen a originales. Ambos
+  centros están en {g : P_g∩W≠∅}. Por ello la especie se cubre pagando
+  medio registro en cada uno de dos centros, o sumando con peso 1/2 todos
+  los que cumplen el requisito. Se conserva la raíz incluso si tiene
+  grado dos antes de comprimir las cadenas.
+
+• En otro caso tomar, entre los centros que conmutan x, uno de menor
+  distancia a T₀ en el árbol completo. Añadir sólo su camino hasta T₀.
+  Cualquier otro centro que conmutó x queda fuera de este árbol marcado,
+  pues no estaba en T₀ y un vértice anterior en el camino estaría más cerca.
+  Si sólo hay un centro, se usó al menos dos veces. En ambos casos quedó
+  una ocurrencia lejana de descenso ≥1 además de las necesarias para
+  pagar los centros distintos del árbol. Las aristas prescritas de
+  profundidad uno se conservan al podar, pues sus originales son terminales.
+
+Sean K el techo de descensos lejanos, Y=a⁶ y u=Y/s² el precio ordinario
+de un generador visible en v7. Los interiores de los enlaces comprimidos
+son disjuntos. En el segundo caso su número más el de centros visibles es
+≤K−1. El otro presupuesto de v7 para las profundidades ≥2 sigue siendo
+2K/3. Aplicar ambos antes de sumar las posiciones, incluido el enlace
+distinguido de la raíz, permite un factor u adicional. En un grupo
+limpiado según v12 se usa el K reducido de esa misma historia. El
+argumento usa sólo que domina los descensos lejanos reales.
+
+2. Cambio en la fila de fijación
+--------------------------------
+
+En la notación de propagación lejana, sean J la suma de ramas ordinarias
+que salen de la raíz generador, V la suma al distinguir un hijo y V₀ la
+sustracción de los grupos sin conexión exterior a los pesos congelados.
+En el verificador se llaman exp_j al mayorante de exp(J), one a V y
+base a V₀. El mayorante anterior de varios grupos era u[exp(J)V−V₀].
+El §1 permite usar
+
+            u { u[exp(J)V−V₀] + ½[exp(J)−1]V }.                       (2)
+
+El primer término paga la ocurrencia excedente. En el segundo se distingue
+un hijo y se exige al menos otro. La cota del único grupo se suma aparte
+con la elección de marca de v10 y su cola desde once datos. Esto evita
+exigir al segundo centro la condición de profundidad mínima usada allí.
+
+La expresión (2) controla la suma que cubre un soporte que toca W.
+Para usarla se multiplica por el número de centros con rectángulo que
+toca W, como en v4, §2. De ese modo se pueden utilizar los mismos
+volúmenes en I y en M(S). Un generador fijado de antemano puede tener
+una visita que sólo corresponde a media cobertura en este reparto.
+Se conserva el mayorante ordinario al contar los hijos libres. La fila
+física de datos, los grupos internos, la suma de medidas por historia y
+la proyección del logaritmo son las de las pruebas anteriores.
+
+Con a=.555, s=.7984, b=.001145 y α=.004, la fila completa en (1) es
+<0.000671. El mayor cociente de la supersolución es <0.999601. La
+aritmética racional usa (2) en la esquina superior. La positividad de los
+mayorantes cubre todas las tasas menores. En el código se reescala sólo
+la columna distinguida que entra en esa fila, por el cociente entre (2)
+y su mayorante anterior en la supersolución congelada. Es una forma de
+evaluar (2), sin alterar las cuentas por capa de los demás enlaces.
+
+3. El mismo complemento de G3 dispone de más margen
+---------------------------------------------------
+
+La marca L(E) de v10 depende de los grupos de datos y se conserva al
+escoger otro centro que haya conmutado x. En su certificado fijar los
+valores anteriores de m,u_i,H_i,h_i,θ y de las ramas visibles. Sustituir
+el coste de la raíz de varios grupos por (2). Para el único grupo de
+once o más datos añadir el mayorante directo de v11, §2, multiplicado
+por 1/Y₁₀, techo de su marca, donde Y₁₀=43/2000. Es válido dejar además
+en (2) la cola positiva de la antigua sustracción. La nueva raíz física
+por cobertura es <0.000000566034, frente al mayorante anterior de
+0.000008402200. Con los otros campos congelados, la reducción de esta
+raíz sólo disminuye los miembros derechos de fijación y exposición.
+
+Aplicar la sensibilidad a las medidas de v10, §3, a esos campos da los
+mayorantes de la tabla para las mismas clases físicas en G3.
+
+  dos o más grupos con L(E)≥6Y₁₀                              <0.000549140
+  subtotal con las demás clases del primer punto de v13, §4   <0.003046603
+  subtotal incluyendo además la clase direccional de v14      <0.003214411
+  presupuesto suficiente para el resto de v14                  0.00078558
+
+El primer renglón reemplaza 0.000911752. Los subtotales incluyen ese
+renglón una sola vez. Se reutilizan las cotas de un grupo, de dos grupos
+fuera de las otras condiciones y de densidad de v10. Luego las dos
+proyecciones de v12 y la de v14 se aplican como en sus notas. Las
+marcas que optimizan el árbol según su raíz conservan su prueba anterior.
+No se presupone que un reenraizamiento cualquiera preserve su valor.
+La aritmética con fracciones da un margen >0.0007855893.
+
+Dos comparaciones permiten aplicar el resultado sin duplicar clases.
+El objetivo suficiente para el complemento del primer punto de v13,
+antes de añadir la clase direccional, pasa a 0.00095339. También se
+puede partir sólo de v10 actualizado y de la clase dispersa de v12.
+Si toda configuración que queda allí tuviera la marca M(E) de v13 al
+menos 0.120, se cerraría G3 porque 0.002599391+A_ang/0.120<0.004, con
+A_ang<0.000167809. Antes bastaba la condición 0.162. La condición
+0.120 y la cota suficiente para el resto completo siguen sin demostrarse.
+
+4. Hasta dónde puede estar escondido el contacto de una misma fuente
+--------------------------------------------------------------------
+
+Para checks x,y medir la distancia d(x,y) por la suma de las distancias
+de sus dos coordenadas. Una unidad en un eje conecta coordenadas que
+comparten una vecindad de Tanner. Dentro de un rectángulo, dos checks
+en la misma fila o columna distan a lo sumo uno y los demás a lo sumo
+dos. Sea Z la unión de las zonas próximas B_x=N_L[ψ_x] de los originales.
+Tomar la distancia mínima a Z en el producto. Cada candidato a mínimo
+usa ambas coordenadas de una misma zona original. Para un rectángulo P
+poner d(P,Z)=min_{x∈P} d(x,Z).
+
+Para cualquier entero l≥0, en una especie aceptada vale
+
+       2^(l/2) Σ_{t lejano con d(P_t,Z)≥l} δ_t ≤ Δ_F ≤ K,            (3)
+
+donde la última desigualdad usa el techo pertinente para esa especie.
+Se admiten medidas activas y repeticiones. Para demostrarlo, dar al
+check x peso (√2)^min(d(x,Z),l), tomando l también a distancia infinita.
+En cada ganador el peso de las luces apagadas domina el de las luces
+encendidas. La comprobación local exacta es corta. Restar el menor
+exponente del rectángulo. Los exponentes posibles son 0,1,2. Para
+exponentes j_b asignados a las celdas de salida b, cada entrada h tiene
+exponente al menos max(0,max_b(j_b−d_local(h,b))). Aquí d_local es cero,
+uno o dos según coincidan las coordenadas. Enumerar los exponentes de
+las dos salidas como máximo y los 771 ganadores reduce las comparaciones
+a la positividad de enteros A+B√2. Aparece la igualdad 2−(√2)²=0, que
+impide aumentar esa base mediante la misma desigualdad local general.
+
+Los cambios inicial y final del síndrome tienen peso uno donde difieren.
+Cada paso cercano también tiene peso uno en todo su rectángulo. Al
+telescopar, los descensos ponderados de los lejanos suman exactamente
+Δ_F. Son no negativos y para d(P_t,Z)≥l valen 2^(l/2)δ_t. Esto prueba (3).
+
+Por ejemplo, unir dos grupos si sus zonas próximas están a distancia
+≤2t+2, para un entero t≥1, y sean k≥2 las componentes que resultan en
+una sola especie. En cada componente debe haber un rectángulo usado que
+cruce el borde de distancia t a sus zonas para alcanzar otra componente.
+La conexión física consiste en zonas originales, rectángulos usados y
+las aristas internas a cada grupo. Al cruzar, el rectángulo alcanza una
+distancia ≥t+1 y tiene una celda a distancia ≤t. Su distancia mínima a
+las zonas propias es ≥t−1. No puede tener una celda a distancia ≤t de
+otra componente, pues su diámetro es ≤2. Por tanto estos k rectángulos
+son lejanos y distintos. Por (3) hace falta K≥k·2^((t−1)/2). Así se
+pueden excluir varias llegadas lejanas simultáneas en una misma especie.
+
+Si los checks de los extremos de un tramo con h generadores interiores
+distan exactamente 2h pasos de Tanner en ambos factores, las dos rutas
+por sus contactos son geodésicas. Cuando cada factor tiene una sola
+geodésica, sus pares de vértices de índice par fijan todos los checks
+ocultos, y los de índice impar fijan los centros. Con varias geodésicas
+se puede conservar el par de levantamientos del registro de v13. Los
+checks intermedios ya vienen determinados por ese par. La prueba de (1)
+usa la paridad de §1 aun en los tramos que pierden una de esas coordenadas
+al comprimirse. Las cifras de §3 proceden de (2).
+
+Reproducción desde 05_COMPROBACIONES
+
+    python -I -B -X utf8 verificar_H5A_3_4_contacto_oculto.py
+
+El programa verifica el signo local en (3), contrasta la elección de
+centros en árboles marcados y comprueba las filas por fracciones. Los
+argumentos de poda, cobertura del soporte y suma por especies son los
+que extienden el resultado a cualquier tamaño.

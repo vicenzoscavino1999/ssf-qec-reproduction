@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-28",
+  "status": "DISENO_ACOTADO_NO_EJECUTADO",
+  "fixture": "PATH25",
+  "preflight": "PREFLIGHT_CONECTADO.json",
+  "question": "En un host conectado que no es clique, identificar la expansion del soporte desde pocas fuentes y verificar recomposicion, oraculo local y cancelaciones con referencia independiente.",
+  "scope": "Una instancia no regular bajo contrato generico; no prueba una mejora general FGL/F17 ni activa el estimador global.",
+  "fixed_contract": {
+    "seed_rows_masks": [3, 6, 12],
+    "seed_columns": 4,
+    "noise": "Bernoulli de datos; q=0",
+    "beta": "1/2",
+    "order": "cardinalidad de accion, mascara entera; ascendente",
+    "candidates": "Todos los subconjuntos con huella no vacia de soportes de generadores HZ",
+    "candidate_count": 103
+  },
+  "steps": [
+    {
+      "id": "C1",
+      "action": "Construir referencias literal y optimizada con evaluacion independiente de scores; comparar decisiones, correcciones y parada para los 4096 sindromes.",
+      "deliverable": "Tablas y certificado exacto de acuerdos/discrepancias; no llamar independiente a una copia del mismo motor."
+    },
+    {
+      "id": "C2",
+      "action": "Usar el cociente por estabilizadores y DP por peso de P1 para la referencia exacta; comprobar rango, conteo total y equivalencia de clases.",
+      "deliverable": "Distribucion exacta por peso y clase residual: 8192 clases y 212992 celdas finales. Los uint64 bastan aqui porque el numero total de fuentes es 2^25."
+    },
+    {
+      "id": "C3",
+      "action": "Examinar las 326 fuentes de peso hasta 2, incluida la vacia, y todos los pares (Y,E) con Y conectado, |Y|<=3, E subconjunto de Y; agregar solo las cuatro filas logicas de peso 4 predeterminadas.",
+      "deliverable": "Soportes, fuentes por peso, candidatos que salen del soporte, trazas y residuos. Distinguir fibra exhaustiva de fuente aislada; no estimar una cota superior con registros incompletos."
+    },
+    {
+      "id": "C4",
+      "action": "Comprobar restriccion/recomposicion canonica en fuentes seleccionadas y pares compatibles ya fijados; contrastar cancelaciones con el rango de HZ.",
+      "deliverable": "Separar testigos de sindrome cero de dinamica adaptativa con sindrome no nulo. Si no aparece un caso adaptativo multicomponente, registrarlo sin ampliar automaticamente la busqueda."
+    },
+    {
+      "id": "C5",
+      "action": "Comparar por soporte W0, WT, Ws, minimo de fuentes y envolventes justificadas; decidir si emerge una restriccion estructural candidata.",
+      "deliverable": "Decision de continuar o detener y alcance de cada afirmacion. No sustituir densidad general por el minimo observado en un catalogo parcial."
+    }
+  ],
+  "implementation_cautions": [
+    "P2 asume cliques en build_host y en los exteriores. Adaptar y verificar host y oraculo; no ejecutar el worker antiguo sin cambios.",
+    "Esta unidad futura no calcula exteriores no clique ni intervalos globales del estimador; la referencia DP exacta y el diagnostico local son productos separados.",
+    "La semilla no regular no acredita las hipotesis de la familia FGL."
+  ],
+  "resource_ceilings_for_first_run": {
+    "fixtures": 1,
+    "syndrome_states": 4096,
+    "candidate_scores_per_reference_engine": 421888,
+    "candidate_scores_two_reference_engines": 843776,
+    "reference_quotient_states": 8192,
+    "reference_dp_final_cells": 212992,
+    "reference_dp_final_raw_uint64_bytes": 1703936,
+    "reference_dp_update_bound": 5324800,
+    "local_oracle_queries_upper_bound": 19714,
+    "low_weight_sources_including_empty": 326,
+    "wall_seconds": 60,
+    "process_memory_MiB": 256,
+    "output_MiB": 32,
+    "automatic_retries_or_scope_expansion": 0,
+    "interpretation": "Techos propuestos, no prediccion medida. Vigilar tiempo y memoria; conservar checkpoint e informar si se alcanza un techo. Desarrollo no incluido en esos 60 segundos."
+  },
+  "query_bound_derivation": "sum_{t=1}^3 C(25,t)2^t + 4*2^4 = 19714; filtrar conectividad reduce el numero. No enumerar todos los soportes de peso 4.",
+  "continue_only_if": [
+    "Surge una propiedad candidata verificable que reduce fuentes admisibles o explica expansion del soporte con utilidad para una prueba general.",
+    "La instancia comprueba una parte antes ausente de recomposicion/oraculo con coste medido y justificado; este valor de validacion se separa de novedad matematica."
+  ],
+  "stop_if": [
+    "Se alcanza un limite: no aumentarlo ni repetir automaticamente.",
+    "Hay desacuerdo entre referencias u oraculo: conservar contraejemplo minimo y revisar antes de continuar.",
+    "Solo se repite evidencia conocida sin pregunta estructural ni validacion adicional relevante.",
+    "La conclusion requiere cerrar todos los soportes o reiniciar censos F17/N11/N12."
+  ],
+  "manuscript_editing": false,
+  "pilot_started": false
+}

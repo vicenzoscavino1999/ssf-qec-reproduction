@@ -1,0 +1,100 @@
+HGP binario (3,4) · Esquina 3 en circuito con r_m ≤ 10⁻⁵
+23 de noviembre de 2026 · Nota de investigación para revisión independiente
+
+Resultado
+
+Con VV primero se alcanza r_c ≤ 2.000·10⁻⁷ con exponente de truncamiento
+λ=0.0025. Para cualquier orden de columnas admitido se certifica
+r_c ≤ 1.803·10⁻⁷ al mismo λ. Si se conserva λ=0.015 de la Esquina 2,
+los extremos verificados son 1.975·10⁻⁷ y 1.781·10⁻⁷, respectivamente.
+Cada afirmación cubre todo el rectángulo desde cero en r_c y r_m.
+
+Se considera una ronda circuital de extracción Z en el sector X para el
+autoproducto de cualquier semilla binaria con peso de columna 3 y de fila 4.
+Se permiten ciclos de cuatro y cualquier tamaño. Se usan los calendarios de
+columnas de FASE5_CIRCUITO_3_4_SINDROME_OBSERVADO.txt §1, las máscaras y
+subhosts admitidos, el filtro de síndrome físico residual cero, la competencia
+global SSF/FGL con β=0.01 y un desempate físico fijo. El resultado da acceso
+a las particiones filtradas. El error relativo de un fallo silencioso
+positivo requiere además las hipótesis y el testigo lógico del Teorema 1.
+
+Comprobación de los dos órdenes
+
+El cierre requiere que los doce cocientes sean estrictamente menores que
+uno. Las decisiones se toman con fracciones. Los decimales de la tabla
+se redondean para lectura. La tasa r_c se expresa en unidades de 10⁻⁷.
+
+  Exponente λ   Orden de columnas      r_c / 10⁻⁷   Mayor cociente   Resultado
+    0.015       VV primero                1.975       0.999730908     Cierra
+    0.015       Cualquier admitido        1.781       0.999921775     Cierra
+    0.015       VV primero                2.000       1.009649604     Abierto
+    0.015       Cualquier admitido        2.000       1.095344587     Abierto
+    0.0025      VV primero                2.000       0.999792728     Cierra
+    0.0025      Cualquier admitido        1.803       0.999746869     Cierra
+    0.0025      Cualquier admitido        2.000       1.084607799     Abierto
+
+Diagnóstico de la suma de grupos
+
+Para la raíz de datos VV o CC, G₁₀/h es el mayorante ordinario de los
+tamaños uno a diez dividido por el presupuesto de esa raíz. T₁₁ es el
+techo absoluto de la suma de todos los tamaños desde once hasta infinito.
+Se recalculan ambas partes con el mismo testigo. Los techos T₁₁ que se
+muestran se redondean hacia arriba.
+
+   λ      Orden     r_c / 10⁻⁷    G₁₀/h (VV, CC)          T₁₁ (VV, CC)
+ .015     VV           1.975     (.998247, .996370)     (9.940·10⁻¹¹, 9.717·10⁻¹⁰)
+ .015     Cualquiera   1.781     (.997687, .995194)     (2.379·10⁻¹⁰, 1.441·10⁻⁹)
+ .015     VV           2.000     (1.008123, 1.006201)   (1.021·10⁻¹⁰, 9.978·10⁻¹⁰)
+ .015     Cualquiera   2.000     (1.092713, 1.089850)   (2.680·10⁻¹⁰, 1.616·10⁻⁹)
+ .0025    VV           2.000     (.998309, .996432)     (9.942·10⁻¹¹, 9.719·10⁻¹⁰)
+ .0025    Cualquiera   1.803     (.997513, .995021)     (2.377·10⁻¹⁰, 1.440·10⁻⁹)
+ .0025    Cualquiera   2.000     (1.081989, 1.079146)   (2.685·10⁻¹⁰, 1.620·10⁻⁹)
+
+En las siete filas, la suma desde once fuentes queda acotada para ambas raíces.
+En la meta con orden arbitrario y λ=0.0025, incluso la contribución de los
+primeros diez tamaños excede el presupuesto en ambas raíces con el testigo
+evaluado. La existencia de otro testigo a esa tasa continúa abierta.
+
+Parámetros y alcance del exponente
+
+Se reconstruyen la geometría general de v29 y los descuentos de cobertura
+con el campo de guardia de esta esquina. Se fija θ=b=1.15·10⁻⁵. Los dos coeficientes
+del campo son A≈1.14941810008·10⁻⁵ y B≈1.17041242403·10⁻⁸. Se usan los
+ocho campos del testigo como suelos congelados, tanto en la supersolución
+de la serie como en la sustracción de sus primeros diez grados.
+
+Para cada extremo se evalúa la ley de la fibra a su propio r_c, con índice
+de orden VV igual a 4 o 7 y CC igual a 7. Si E es el mayorante racional
+de la exponencial, la actividad de medida usada en la fila es
+
+    y = [(1−2r_c/3)⁻⁵ (1−r_m)⁻¹ (1−4r_c/(15−8r_c))⁻⁷ − 1] E(λ).
+
+Se verifica y/(1+y) ≤ θ. En la meta con λ=0.015, y≈1.120696095·10⁻⁵.
+Para los datos se usa z_i=g_i E(λ+α), donde g_i es la masa relativa de
+la fibra de tipo i. Se eligen los presupuestos auxiliares α=0.0015 y
+η=0.000002 y se comprueba R<α y max(u_V,u_C)<η en cada ensayo. Las filas
+incluyen el núcleo simple, la rama física y las raíces de generador.
+Por la dominación de pesos primitivos en la esquina, antes de normalizar
+las fibras, cada cierre cubre todas las tasas inferiores, como en
+H5A_3_4_cola_por_lectores.txt §4.
+
+Se multiplica cada actividad de fibra por exp(λ). La retirada de especies
+acota la norma del logaritmo en esos radios por n+m_X. Un término de
+grado total d adquiere el factor exp(λd), por lo que al truncar tras el
+grado k la cola del logaritmo es a lo sumo (n+m_X) exp[−λ(k+1)]. Aquí d
+cuenta fibras activas con multiplicidad. Con λ=0.0025, para obtener el
+mismo techo a n, m_X y tolerancia fijos, basta multiplicar por seis k+1
+respecto de λ=0.015. Este grado de truncamiento y el tamaño de grupo de la
+tabla miden cantidades distintas.
+
+Reproducción desde 05_COMPROBACIONES con la biblioteca estándar de Python
+
+    python -I -B -X utf8 verificar_H5A_3_4_esquina_3_circuito.py
+
+El verificador reconstruye las tablas desde las definiciones. Los siete
+testigos decimales son racionales exactos en CASES y las comparaciones
+se hacen antes de imprimir los resultados. La revisión independiente
+de la demostración queda pendiente.
+
+SHA-256 del verificador
+39db77140eab01c8c5adf4c1c7bacc4db76803ea8c1b94aa7aba8ddc29c9229b

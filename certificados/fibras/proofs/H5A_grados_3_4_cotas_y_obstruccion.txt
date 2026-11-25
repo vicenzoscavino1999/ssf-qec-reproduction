@@ -1,0 +1,359 @@
+H5-A · Tasas de datos y de medida en productos de hipergrafos de grados (3,4)
+18 de noviembre de 2026
+
+Resultado y alcance
+===================
+
+Sea H₀ una matriz binaria con tres unos en cada columna y cuatro en cada fila.
+Se toma el producto de hipergrafos de H₀ consigo misma, el SSF con todas las
+acciones FGL, β=1/100, el máximo global de descenso por check de la huella y
+el orden total fijo del manuscrito. En una ronda, cada dato falla con
+probabilidad p y cada medición con probabilidad q, independientemente.
+
+Para cualquier tamaño de semilla, máscara física y subgrafo inducido J del
+host original, se obtiene acceso determinista a precisión relativa elegible
+a las particiones filtradas por síndrome físico residual cero en las regiones
+
+                  0 ≤ p ≤ 2·10⁻¹²       0 ≤ q ≤ 10⁻⁵
+                  0 ≤ p ≤   10⁻¹²       0 ≤ q ≤ 10⁻⁴
+                  0 ≤ p ≤ 4·10⁻¹⁵       0 ≤ q ≤ 10⁻³.                 (1)
+
+Cada fila constituye una afirmación conjunta. Los grados y las decisiones
+locales bastan para el certificado. Incluye en particular todas las semillas
+de rango fila pleno del contrato del manuscrito. Para (1) se da una cola
+explícita y el procedimiento de evaluación de su apéndice A. El coste
+práctico a una precisión y longitud concretas queda por medir. El paso a una
+estimación relativa de un fallo lógico silencioso positivo usa además el
+testigo lógico y el presupuesto de precisión del teorema del manuscrito.
+
+En p=q=10⁻³ el criterio KP positivo sobre los soportes físicos originales
+tiene una obstrucción explícita (§4). Tras agrupar por fuentes, §5 suma las
+interacciones de dos fuentes y las de puros errores de medición de cualquier
+orden. Sigue abierta la fila de tres o más fuentes que incluyen datos en esa
+esquina. La garantía anterior de grados (17,18) tiene sus propias hipótesis y
+tasas. Esta nota se limita a H5-A en (3,4). La aritmética es reproducible y
+la derivación queda pendiente de una revisión matemática independiente.
+
+1. Descenso de síndrome y soporte real
+======================================
+
+Escribir e₁=|E_VV|, e₂=|E_CC| y d=|D| para las fuentes originales. VV y CC son
+los dos sectores de datos del producto. Un generador g=(r,j) tiene cuatro
+sitios VV y tres CC. Las celdas de su rectángulo de checks P_g=N(r)×N(j) son
+las doce incidencias entre sus cuatro filas y sus tres columnas. Una acción F
+con x filas e y columnas conmuta la diferencia simétrica de sus franjas, de
+modo que f=|F|=x+y y v=|H_XF|=3x+4y−2xy. El filtro FGL exige v>0 y 2v≥3f.
+De 127 subconjuntos no vacíos quedan 101. Para cada una de las 4096 máscaras
+de las celdas se conservan todos los maximizadores locales de h/v que pasan
+100(2h−v)≥v, donde h cuenta las celdas encendidas de la huella. Resultan 27
+triples distintos (f,v,h). Todo ganador global aparece en esta lista en
+cualquier generador que lo contenga. La comparación incluye los empates.
+
+El descenso de un paso es δ=2h−v. Para coste b=1 por paso y b=f por sitios
+sean K_b=max b/δ y
+
+             B_n(k)=max { [K_b(v−h)+b]/h  :  nh≥kv },  1≤k≤n,
+
+tomados sobre las firmas ganadoras. Los valores exactos son
+
+ b       K_b           B₃(1),…,B₃(3)             B₄(1),…,B₄(4)
+ 1        1              1,1,1/3                   1,1,2/3,1/3
+ f        2              2,2,2/3                   2,2,6/5,2/3 .
+
+En una ejecución filtrada el síndrome observado parte de H_XE⊕D y termina
+en D. Por tanto D es estable. I=(H_XE)∖D son checks encendidos al principio
+que deben apagarse. Se asigna cada uno a un dato original que lo lee.
+El descenso total es |I|−|(H_XE)∩D|. Al apagarse por primera vez una luz
+asignada a un dato de anchura n que tiene k de sus luces aún sin apagar,
+las k están encendidas justo antes del paso. El singleton de ese dato está
+entre los candidatos, así que el ganador satisface h/v≥k/n. Si hay varios
+primeros apagados se les dan rangos consecutivos. La desigualdad sigue
+valiendo para cada rango. Se cumple 0≤K_b−B_n(k)≤(K_b δ−b)/h.
+Cada paso apaga por primera vez a lo sumo h checks. Restar estas cargas de
+K_b veces el descenso total y sumar sobre los datos da Σ_t b_t≤Σ_E Σ_k B_n(k).
+Se han extendido las sumas de rangos a 1,…,n con términos positivos.
+
+Si T es el número de pasos e Y la unión física de los datos originales, todos
+los sitios corregidos y las medidas originales (distinguiendo sus tipos),
+
+        T ≤ α₁e₁+α₂e₂,                  α=(7/3,3),
+        |Y∩V| ≤ σ₁e₁+σ₂e₂,             σ=(17/3,103/15),
+        |Y| ≤ 7(e₁+e₂+d).                                               (2)
+
+La segunda cuenta incluye los datos originales. En una ejecución filtrada
+con E vacío, el descenso total vale cero y la corrección se detiene de
+inmediato. La asignación del primer apagado procede de la nota previa
+H5A_propagacion_entre_fuentes.txt, §1, aplicada aquí a las firmas de (3,4).
+
+2. Árbol que codifica las fuentes de una decoración física conexa
+=================================================================
+
+Para un sitio de la semilla, V_k y C_k son sus bolas cerradas de distancia
+Tanner ≤k restringidas a variables o checks según la paridad. N es su
+vecindad inmediata. El host K une en una clique, para cada g=(r,j), a
+
+     [N(r)×V₂(j)]_VV  ∪  [C₂(r)×N(j)]_CC  ∪  P_g.                      (3)
+
+Es el host (K1)–(K2) del manuscrito. Para ver la inclusión inversa, elíjanse
+dos celdas de P_g leídas por los dos sitios. Una o dos franjas fila de g
+son una acción FGL que lee las dos celdas. Los controles de la máscara y
+del subgrafo inducido usan la ejecución completa en el código original.
+
+Los átomos del recuento son una fuente VV, una fuente CC, un generador usado
+y una fuente de medición, en ese orden. Dos átomos tienen contacto amplio
+si sus soportes se cruzan o son vecinos en K, tomando para el generador sus
+siete sitios de datos. Las cotas de las bolas obtenidas contando caminos sin
+retroceso son v₂=10, c₂=9, v₃=28 (centro check), c₃=21 (centro variable),
+v₄=64 y c₄=57. Las vecindades amplias cerradas de átomos están acotadas por
+
+             ⎛ v₂v₄   c₃²    c₃v₄   v₂c₃ ⎞      ⎛ 640  441  1344  210 ⎞
+        M =  ⎜ v₃²    c₄c₂   c₄v₃   v₃c₂ ⎟  =   ⎜ 784  513  1596  252 ⎟.
+             ⎜ v₃v₄   c₄c₃   c₄v₄   v₃c₃ ⎟      ⎜1792 1197  3648  588 ⎟
+             ⎝ v₂v₃   c₃c₂   c₃v₃   v₂c₂ ⎠      ⎝ 280  189   588   90 ⎠
+
+Cada fila es la unión de los productos de (3) que tocan el átomo. Por
+ejemplo, alrededor de VV(i,j) los otros datos están en V₂(i)×V₄(j) y
+C₃(i)×C₃(j). Se incluyen posiciones propias en las cotas cerradas.
+
+Fijar un generador contenedor por cada acción deduplicada. En el primer uso
+de un generador g, la acción elegida tiene puntuación ≥β en s y <β en D.
+Por tanto lee al menos un check encendido de s∖D. Elegir el primero en un
+orden fijo. Si ha seguido encendido desde el inicio, la causa es uno de sus
+datos originales. En otro caso, la causa es el generador del último paso que lo
+encendió. Un generador que causa otro apareció estrictamente antes. Se
+registra el vecino, con una única regla en caso de empate. El bosque de
+aristas que apuntan a la causa acaba en datos. Las medidas son raíces
+aisladas. Los vecinos causales diferentes comparten un check de sus huellas
+o rectángulos y por tanto también tienen contacto amplio. Desde un dato VV
+hay a lo sumo 3v₂=30 generadores causales posibles, y desde CC hay 4c₂=36.
+Un generador toca como máximo 4v₂=40 datos VV, 3c₂=27 CC y c₂v₂−1=89
+generadores distintos de sí mismo.
+
+Cada átomo contiene algún sitio de Y y entre todos cubren Y. Un generador
+puede extenderse fuera de Y. Como K[Y] es conexo, se obtiene un árbol
+añadiendo al bosque aristas amplias entre sus
+componentes en un orden fijo. Para un ancla física en Y se escoge como
+raíz un átomo que la cubra. Un dato puede estar en su propia fuente o en
+uno de a lo sumo tres generadores (VV) o cuatro (CC). Un check sólo puede
+estar en su fuente de medición. Se retiene el subárbol mínimo que contiene
+la raíz y todas las fuentes. Cada generador retenido conserva el camino
+causal entero hasta su dato, pues es el camino único a esa fuente en el
+árbol original. Cada hoja de este subárbol es fuente o raíz.
+
+Visto desde la raíz, un generador alcanzado desde su causa debe tener al
+menos un hijo. Si se entra desde una arista amplia, desde un generador
+causado por él, o si él mismo es raíz, tiene un hijo obligatorio en la
+dirección de su propia causa. Los restantes hijos causales van en el
+sentido descendente. Las fuentes pueden tener hijos amplios y, si son
+datos, descendientes causales. Se ordenan los vecinos reales por índice y
+se registra cada hijo en su posición y tipo de arista. Con la raíz, el
+código recupera E,D. El determinismo recupera todos los pasos, también los
+omitidos en la poda. Esto da una inyección por ancla. Los soportes reales
+Y son los que intervienen en el cálculo de incompatibilidad.
+
+3. Certificado positivo de las tres regiones
+============================================
+
+Asignar precio y∈(0,1) por generador retenido y τ=1/100 por fuente en el
+exponente. Escribir U=(u₁,u₂,u_P,u_D) para las cotas de árboles entrantes
+y v para un generador alcanzado desde su causa. Sean
+
+    R₁=u₁+3u_P,  R₂=u₂+4u_P,  R_D=u_D,  R=(R₁,R₂,0,R_D),
+    B_V=max{(MR)₁,(MR)₂},  B_D=(MR)₄,
+    a₁=σ₁B_V,   a₂=σ₂B_V,    a_D=B_D,
+    H_i=(MU)_i+k_i v,         k=(30,36,89,0),
+    x_i=z_p exp(a_i+τ) y^(−α_i) para i=1,2,  x_D=z_q exp(a_D+τ),
+    z_p=p/(1−p), z_q=q/(1−q).
+
+Son suficientes las cinco desigualdades
+
+    u₁ ≥ x₁ exp(H₁),     u₂ ≥ x₂ exp(H₂),     u_D ≥ x_D exp(H₄),
+    v  ≥ y [exp(H₃)−1],
+    u_P ≥ y exp(H₃) (40u₁+27u₂+89u_P).                                (4)
+
+Cada posición de un hijo aporta 1+t y el producto está acotado por la
+exponencial de la suma. El −1 elimina la elección vacía del generador que
+necesita descendencia. La última fila elige primero la causa obligatoria
+y permite después toda elección en las posiciones restantes, incluso las
+reutilizaciones ficticias de la cota superior. Por inducción en la altura,
+(4) acota los árboles de cualquier altura. Para h generadores retenidos se
+tiene h≤T≤α₁e₁+α₂e₂. Así, x₁^e₁ x₂^e₂ x_D^d y^h cubre todo el peso físico
+z_p^(e₁+e₂) z_q^d exp[a₁e₁+a₂e₂+a_Dd+τ(e₁+e₂+d)]. El número de raíces
+posibles en §2 da las cotas R₁,R₂,R_D para las sumas ancladas.
+
+Los precios y cotas utilizados en (4) son decimales exactos.
+
+ p        q       y        u₁          u₂           u_P         u_D         v
+ 2e−12    1e−5    .0058    4.315e−7    1.407e−5     6.094e−6    1.042e−5    .0006284
+ 1e−12    1e−4    .005     3.477e−7    1.2864e−5    4.827e−6    .00010562   .001054
+ 4e−15    1e−3    .00175   1.245e−7    1.4248e−5    4.221e−6    .0013124    .0037474
+
+En cada esquina, al dividir el lado derecho por el izquierdo y elevar al
+cubo la primera comparación, los cinco cocientes son <0.992. El verificador
+usa exp(t)≤Σ_{j=0}^{24}t^j/j! + t²⁵/[25!(1−t/26)] con 0≤t<26. Todos los
+R son <1. Por monotonía las mismas cifras sirven para todo el rectángulo.
+
+Para una decoración γ fijar el presupuesto KP a_γ=a₁e₁+a₂e₂+a_Dd. El peso
+cargado de sus incompatibles es a lo sumo |Y∩V| B_V+d B_D≤a_γ por (2),
+incluida la autoincompatibilidad. Las marcas tienen módulo ≤1. Se aplica
+la forma enraizada del criterio de Kotecký–Preiss con este presupuesto
+positivo por decoración (D. Ueltschi, teorema 1). Puesto que |Y|≤7F_γ
+para F_γ=e₁+e₂+d, la inclinación τF_γ paga |Y|/700. Contar las sumas
+enraizadas por sitio da, con N el número total de sitios físicos,
+
+                 |log Ξ(J,u) − L_m(J,u)| ≤ N exp[−(m+1)/700].           (5)
+
+L_m es el logaritmo truncado por soporte total contando multiplicidades.
+La positividad en el eje real se sigue por continuación desde actividad
+cero, pues la expansión converge en un disco de radio >1 en la variable
+de tamaño. El apéndice A del manuscrito evalúa L_m enumerando conjuntos
+conexos y pesos de primera salida en el código original. Con grados fijos,
+m=O(1+700 log(2N/ε)) basta para error relativo ε a coste polinómico en
+N, ε⁻¹ y la longitud de entrada, con el coste de preparación del contrato.
+Para N=0 se devuelve 1. Restringir a J sólo suprime decoraciones.
+
+También se puede interpolar geométricamente entre las razones z_p,z_q de
+dos esquinas. Para 0<λ<1, usar z_i=z_{i,1}^λ z_{i,2}^(1−λ) y el presupuesto
+a_γ=λa_{γ,1}+(1−λ)a_{γ,2}. Cada peso inclinado es la media geométrica de
+los dos pesos anteriores. En cada fila de incompatibles, Hölder seguido de
+media geométrica ≤ media aritmética da una carga ≤a_γ. La misma aplicación
+en cada fila anclada preserva R≤1 y por tanto (5). Por ejemplo, λ=1/2 entre
+las dos últimas filas cubre p≤6·10⁻¹⁴ y q≤3·10⁻⁴, comparando los cuadrados
+de ambas razones con sus productos. Esta interpolación respeta el intercambio
+entre tasas de datos y de medida.
+
+4. Obstrucción a p=10⁻³ para el criterio KP en soportes físicos
+===============================================================
+
+Una semilla admisible basta para poner un techo a una demostración que
+exige este mismo criterio en todas. La semilla siguiente permite calcular
+las vecindades directamente. Se toman los nueve puntos r=3x+y de F₃² y sus
+doce rectas. Numerar y=mx+b por j=3m+b y x=b por j=9+b. Para cada incidencia
+r∈j y t∈Z/8 se une la variable (j,t) al check (r,t+rj mod 8). Resulta una
+matriz de 72 filas y 96 columnas, rango binario 72, sin ciclos de cuatro.
+La eliminación binaria y la búsqueda en anchura del verificador dan los
+mínimos siguientes en cada esfera de distancias 1,2,3,4, respectivamente.
+
+       centro variable        3, 9,15,35
+       centro check           4, 8,20,30.
+
+Un error de datos aislado tiene puntuación uno en el singleton original.
+Su competidor con puntuación uno debe tener toda su huella dentro de las
+tres o cuatro luces originales. Las únicas acciones admisibles de huella
+≤4 son los singletons VV (3) o CC (4). Dos huellas de distinto tipo
+comparten a lo sumo una celda. Las del mismo tipo sólo pueden coincidir
+en sitios distintos si la semilla tiene vecinos idénticos. El verificador
+descarta esta posibilidad en la construcción. Así cada dato aislado es
+una decoración filtrada de soporte unipuntual y actividad z_p.
+
+Por (3), la vecindad cerrada de VV(i,j) contiene todos los VV de
+V₂(i)×V₄(j) y todos los CC de C₃(i)×C₃(j). Alrededor de CC(r,s)
+contiene los VV de V₃(r)×V₃(s) y los CC de C₄(r)×C₂(s). Se obtiene
+cada producto eligiendo por separado en ambos caminos de Tanner las
+coordenadas del generador común. Las esferas anteriores dan al menos
+
+                  min{10·45+18², 24²+39·9}=774
+
+decoraciones de un solo dato incompatibles con cualquiera de ellas,
+contando la propia. En el host completo y con máscara cero tomar el menor
+presupuesto a de estos singletons. La desigualdad KP positiva exige
+a≥774 z_p exp(a). Como a exp(−a)≤1/e, incluso antes de introducir una
+inclinación y de incluir otras decoraciones resulta necesario
+
+                  p ≤ 1/(1+774 exp(1)) ≈ 4.7507064·10⁻⁴.                (6)
+
+Esto rige para presupuestos físicos arbitrarios y para cualquier q, ya
+que estas decoraciones tienen D vacío. La obstrucción concierne al método
+de valor absoluto aplicado a las decoraciones originales. El rendimiento
+del decodificador y las representaciones que agrupan fuentes antes del valor
+absoluto admiten un análisis distinto.
+
+5. Qué se puede sumar en p=q=10⁻³ agrupando primero las fuentes
+================================================================
+
+Sea T(S)∈{−1,0,1} la marca de las fuentes S con filtro físico y contención
+del soporte real en J. T(∅)=1. Para i∈J, poner η_i=T({i}), z_i=r_i/(1−r_i)
+y b_i=z_i/(1+η_i z_i). El cumulante k(B) es el coeficiente de ∏_{i∈B} z_i,
+con cada variable una vez, en log Σ_S T(S)z^S. La identidad del manuscrito
+«Expansion in the original fault sources» escribe Ξ/∏(1+η_i z_i) como un
+gas de bloques B disjuntos con pesos k(B)∏_{i∈B}b_i, |B|≥2. Para a=.005,
+τ=.01 y s=a+τ=.015, sería suficiente que en cada sitio i se cumpla
+
+           Σ_{B∋i, |B|≥2} |k(B)| exp(s|B|) ∏_{j∈B}|b_j|  ≤  a.          (7)
+
+Pares con datos. Un dato aislado en cualquier semilla se corrige por un
+singleton de igual huella, pudiendo ganar un gemelo. Un check aislado es
+estable porque toda huella tiene tamaño ≥3. Dos fuentes sin contacto en K
+dan k({i,j})=0. En efecto, los sitios que leen exactamente las mismas celdas
+pertenecen a los mismos conjuntos de (3), de modo que la eventual corrección
+gemela conserva la vecindad cerrada del sitio inicial. Las ejecuciones
+individuales tienen soportes compatibles y se recomponen con sus marcas y
+contención en J. Para todos los pares |k|=|T({i,j})−η_iη_j|≤2. En toda la
+esquina |b_i|≤1/998. El número de parejas con datos alrededor de un dato
+es ≤max(640+441+210,784+513+252)−1=1548. Alrededor de un check hay a lo
+sumo 280+189=469 datos. Las contribuciones respectivas son por tanto
+<.00321 y <.000972, usando 2 exp(.03)/998² por pareja.
+
+Todos los órdenes exclusivamente de medida. Para D⊆J, T(D)=1 exactamente
+cuando D es estable, pues una ejecución que empiece y termine en D tiene
+descenso total cero. Si D es estable, la marca es +1 y el soporte es D.
+Si una acción recogiera luces de dos componentes distintos del grafo
+G=K[C_X], esas dos luces estarían en el mismo rectángulo y serían
+adyacentes por (3). Por tanto T(D) factoriza sobre los componentes inducidos
+de G y T({c})=1, b_c=q. El grado máximo de G es ≤90−1=89.
+
+Para B de t≥2 checks se obtiene |k(B)|≤2^(t−1) ST(G[B]), donde ST cuenta
+los árboles generadores y vale cero en un grafo desconectado. En efecto,
+por factorización se puede escribir el polinomio de momentos como un gas
+de conjuntos conexos de G, de peso T(U)z^U, incompatibles al tocarse o
+al quedar adyacentes. Al extraer del logaritmo el coeficiente sin repetición
+de B, los términos corresponden a particiones en bloques conexos. Su factor
+de conectividad es la suma alternada de los subgrafos conexos del grafo
+simple de adyacencias entre bloques, de valor absoluto ≤ su número de
+árboles generadores. Para esta última cota, fijar un orden de aristas y
+agrupar los subgrafos por su árbol de Kruskal. Cada grupo es un intervalo
+booleano desde ese árbol hasta él más todas las aristas cuyo camino en el
+árbol tiene aristas anteriores. La suma alternada de un intervalo vale
+0 o ±1. Para cada árbol del cociente, fijar un árbol interno por bloque y
+una arista física canónica por cada arista del cociente. La unión es un
+árbol de G[B]. Distinguir en él las aristas internas recupera la partición
+y el árbol del cociente. Las 2^(t−1) elecciones dan la cota anunciada.
+
+Fijado c, la suma de ST(G[B]) sobre |B|=t con c∈B es ≤
+t^(t−2)89^(t−1)/(t−1)! por la fórmula de Cayley. En efecto, fijar la
+etiqueta 1 en c, recorrer cada árbol desde su raíz con a lo sumo 89
+opciones por hijo y dividir por los (t−1)! reetiquetados. Las colisiones
+sólo amplían este conteo superior. Poner z=q exp(s), u=2·89z y
+C(u)=Σ_{t≥1} t^(t−1)u^(t−1)/t!. La descomposición en hijos de un árbol
+enraizado da C=exp(uC) y su serie positiva es la solución mínima. La suma
+de todos los bloques de medida con al menos dos sitios en la fila de c
+es ≤z(C(u)−1). Se verifica exp(u·1.26)<1.26 en q=10⁻³. Por iteración,
+esta fila queda acotada por 0.26z<.000265 en todo q≤10⁻³.
+
+Combinadas, las clases tratadas aportan <.00321 por raíz de datos y
+<.00124 por raíz de medida. Queda un margen uniforme >.00179 en (7).
+Para alcanzar el cuadrado objetivo basta acotar por ese margen, en cada
+raíz, la contribución conjunta de todos los |B|≥3 con B∩V≠∅. También
+pueden usarse los márgenes diferenciados por tipo. En (1) la prueba
+de §§1–3 ya controla el logaritmo completo con la expansión física.
+
+Reproducción y fuentes
+======================
+
+Ejecutar junto a esta nota
+
+                    python -I -B -X utf8 verificar_H5A_grados_3_4.py
+
+Sólo se usa la biblioteca estándar. El programa obtiene las firmas y los
+perfiles, comprueba (4) con fracciones, construye la semilla de (6), verifica
+su rango y sus bolas y comprueba las cotas de (7). Las 4096 máscaras son
+estados de un único rectángulo presente en toda semilla regular. La semilla
+de §4 interviene exclusivamente como contraejemplo a un criterio uniforme.
+
+Base del proyecto: BORRADOR_INTRODUCCION_Y_RESULTADOS_EN_v2.tex, definiciones
+de FGL y del acceso filtrado, teorema de recomposición, apéndice A sobre el
+certificado KP y apéndice B sobre el host, el árbol causal y el gas en
+fuentes. La forma del primer apagado está en H5A_propagacion_entre_fuentes.txt.
+El criterio de convergencia con presupuesto por polímero es el teorema 1 de
+D. Ueltschi, Cluster expansions and correlation functions, Mosc. Math. J. 4
+(2004), 511–522. https://arxiv.org/abs/math-ph/0304003

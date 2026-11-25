@@ -1,0 +1,57 @@
+== python -B /d/paper ia cuantica/qec_revision_matematica/05_COMPROBACIONES/B4_TIRAS_ESCALADO_N_20261113/calibracion/calib.py --m 6 --n 6 --dp
+{"m": 6, "n": 6, "N": 61, "M": 30, "NS": 91, "klog": 1, "reps": 1, "mats_sha": "6c01e01b1555f0e0403d764c777f7935b68895c5ca8e1d2e47c5df7f2edb4076", "frontera_producto": 33, "frontera_elegida": 27, "orden_es_producto": false, "grado_max_K": 42, "seg_orden": 0.0}
+crecimiento {"1": {"candidatos": 91, "validas": 91, "seg": 0.03}, "2": {"candidatos": 1220, "validas": 1220, "seg": 0.02}, "3": {"candidatos": 20097, "validas": 20097, "seg": 0.11}, "4": {"candidatos": 348807, "validas": 346926, "seg": 2.0}} i4_bad 0
+silenciosas_conexas {3: {(3, 0): 56}, 4: {(3, 1): 251, (4, 0): 2022}}
+f_s 3 singletes 91 pasan 73 no_pasan 18
+ingenua_formula (valida=True) {(3, 0): 56, (3, 1): 713, (4, 0): 3256}
+polimeros 306389 f<=3 19021
+dp {"k": 1, "polimeros": 91, "estados": 991, "terminos": 1180, "seg_estructura": 0.04}
+dp {"k": 2, "polimeros": 1237, "estados": 2067, "terminos": 23395, "seg_estructura": 0.06}
+dp {"k": 3, "polimeros": 19021, "estados": 4066, "terminos": 371256, "seg_estructura": 0.34}
+dp {"k": 4, "polimeros": 306389, "estados": 6467, "terminos": 4430747, "seg_estructura": 7.3, "seg_celda_1e-3": 5.38, "mem_pico_GiB": 0.387}
+total 15.9s
+== python -B /d/paper ia cuantica/qec_revision_matematica/05_COMPROBACIONES/B4_TIRAS_ESCALADO_N_20261113/calibracion/calib.py --m 7 --n 7
+{"m": 7, "n": 7, "N": 85, "M": 42, "NS": 127, "klog": 1, "reps": 1, "mats_sha": "3b39426432087c5582e8f10a9c4d6e674d48792026c617a4eeca1da2f9a49d88", "frontera_producto": 39, "frontera_elegida": 31, "orden_es_producto": false, "grado_max_K": 42, "seg_orden": 0.0}
+crecimiento {"1": {"candidatos": 127, "validas": 127, "seg": 0.01}, "2": {"candidatos": 1810, "validas": 1810, "seg": 0.03}, "3": {"candidatos": 32287, "validas": 32287, "seg": 0.18}, "4": {"candidatos": 624910, "validas": 621449, "seg": 3.71}} i4_bad 0
+silenciosas_conexas {3: {(3, 0): 7}, 4: {(3, 1): 48, (4, 0): 707}}
+f_s 3 singletes 127 pasan 106 no_pasan 21
+ingenua_formula (valida=True) {(3, 0): 7, (3, 1): 168, (4, 0): 1007}
+polimeros 554888 f<=3 30699
+total 4.8s
+== python -B /d/paper ia cuantica/qec_revision_matematica/05_COMPROBACIONES/B4_TIRAS_ESCALADO_N_20261113/calibracion/calib.py --m 8 --n 6 --exh --dp
+{"m": 8, "n": 6, "N": 83, "M": 40, "NS": 123, "klog": 1, "reps": 1, "mats_sha": "23d3f455fbf2df59d97927b84b2b5533a7de51be83c4026ec333f8776cbc3622", "frontera_producto": 33, "frontera_elegida": 27, "orden_es_producto": false, "grado_max_K": 42, "seg_orden": 0.0}
+crecimiento {"1": {"candidatos": 123, "validas": 123, "seg": 0.03}, "2": {"candidatos": 1736, "validas": 1736, "seg": 0.04}, "3": {"candidatos": 30471, "validas": 30471, "seg": 0.15}, "4": {"candidatos": 575236, "validas": 572227, "seg": 3.38}} i4_bad 0
+silenciosas_conexas {3: {(3, 0): 78}, 4: {(3, 1): 367, (4, 0): 3018}}
+f_s 3 singletes 123 pasan 99 no_pasan 24
+ingenua_formula (valida=True) {(3, 0): 78, (3, 1): 1451, (4, 0): 6136}
+exhaustivo: catalogo igual True {1: 123, 2: 1736, 3: 30471, 4: 572227} ingenua igual True {(3, 0): 78, (3, 1): 1451, (4, 0): 6136} 40.8s
+polimeros 507776 f<=3 28859
+dp {"k": 1, "polimeros": 123, "estados": 1473, "terminos": 1790, "seg_estructura": 0.06}
+dp {"k": 2, "polimeros": 1757, "estados": 3445, "terminos": 41667, "seg_estructura": 0.09}
+dp {"k": 3, "polimeros": 28859, "estados": 9601, "terminos": 900870, "seg_estructura": 0.65}
+dp {"k": 4, "polimeros": 507776, "estados": 28144, "terminos": 16615951, "seg_estructura": 21.88, "seg_celda_1e-3": 23.69, "mem_pico_GiB": 0.686}
+total 91.8s
+== python -B /d/paper ia cuantica/qec_revision_matematica/05_COMPROBACIONES/B4_TIRAS_ESCALADO_N_20261113/calibracion/calib.py --m 10 --n 6
+{"m": 10, "n": 6, "N": 105, "M": 50, "NS": 155, "klog": 1, "reps": 1, "mats_sha": "a84d67fb1efc4296652ae065be8190ce10d97543c8e6b3dbe22d18f992cce388", "frontera_producto": 33, "frontera_elegida": 27, "orden_es_producto": false, "grado_max_K": 42, "seg_orden": 0.0}
+crecimiento {"1": {"candidatos": 155, "validas": 155, "seg": 0.01}, "2": {"candidatos": 2252, "validas": 2252, "seg": 0.04}, "3": {"candidatos": 40845, "validas": 40845, "seg": 0.21}, "4": {"candidatos": 801760, "validas": 797623, "seg": 5.07}} i4_bad 0
+silenciosas_conexas {3: {(3, 0): 100}, 4: {(3, 1): 483, (4, 0): 4014}}
+f_s 3 singletes 155 pasan 125 no_pasan 30
+ingenua_formula (valida=True) {(3, 0): 100, (3, 1): 2453, (4, 0): 9896}
+polimeros 709258 f<=3 38697
+total 6.5s
+== python -B /d/paper ia cuantica/qec_revision_matematica/05_COMPROBACIONES/B4_TIRAS_ESCALADO_N_20261113/calibracion/calib.py --m 14 --n 6
+{"m": 14, "n": 6, "N": 149, "M": 70, "NS": 219, "klog": 1, "reps": 1, "mats_sha": "a54a7c9f4b59dfce0a3399fc9ab96c06b67812139151ef147db3e2df6cbf66d6", "frontera_producto": 33, "frontera_elegida": 27, "orden_es_producto": false, "grado_max_K": 42, "seg_orden": 0.01}
+crecimiento {"1": {"candidatos": 219, "validas": 219, "seg": 0.03}, "2": {"candidatos": 3284, "validas": 3284, "seg": 0.04}, "3": {"candidatos": 61593, "validas": 61593, "seg": 0.3}, "4": {"candidatos": 1254808, "validas": 1248415, "seg": 8.18}} i4_bad 0
+silenciosas_conexas {3: {(3, 0): 144}, 4: {(3, 1): 715, (4, 0): 6006}}
+f_s 3 singletes 219 pasan 177 no_pasan 42
+ingenua_formula (valida=True) {(3, 0): 144, (3, 1): 5249, (4, 0): 20056}
+polimeros 1112222 f<=3 58373
+total 10.2s
+== python -B /d/paper ia cuantica/qec_revision_matematica/05_COMPROBACIONES/B4_TIRAS_ESCALADO_N_20261113/calibracion/calib.py --m 6 --n 8
+{"m": 6, "n": 8, "N": 83, "M": 42, "NS": 125, "klog": 1, "reps": 1, "mats_sha": "f5ae39dab8a9d794d2719bde0195fcaa5722d5d30d1913d469d938e60b003db6", "frontera_producto": 45, "frontera_elegida": 35, "orden_es_producto": false, "grado_max_K": 42, "seg_orden": 0.0}
+crecimiento {"1": {"candidatos": 125, "validas": 125, "seg": 0.01}, "2": {"candidatos": 1768, "validas": 1768, "seg": 0.04}, "3": {"candidatos": 31251, "validas": 31251, "seg": 0.16}, "4": {"candidatos": 596753, "validas": 593308, "seg": 3.53}} i4_bad 0
+silenciosas_conexas {4: {(4, 0): 90}}
+f_s 4 singletes 125 pasan 107 no_pasan 18
+ingenua_formula (valida=True) {(4, 0): 90}
+polimeros 531073 f<=3 29785
+total 4.6s

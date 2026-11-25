@@ -1,0 +1,229 @@
+HGP binario (3,4) · Reuniones cortas con un lector de llegada común
+23 de noviembre de 2026 · Nota de investigación para revisión independiente
+
+Resultado
+=========
+La suma inversa de posiciones converge al incorporar primero (0,1) y
+después (1,1). No queda ninguna restricción de longitud en los brazos de
+una bifurcación. Para reuniones consecutivas la mayor suma de fila de la
+matriz completa es <0.160627. Una segunda estimación permite anidar esas
+bifurcaciones a profundidad arbitraria en la red que parte de una misma
+ocurrencia. La suma sobre posiciones de origen CC, por check de llegada
+y sobre registros no vacíos, queda acotada como sigue.
+
+  Recorridos desde una emisión cercana              Suma por check
+  Reuniones consecutivas largas y (0,1)                  <421
+  Consecutivas, incluyendo también (1,1)                 <422
+  Consecutivas y anidadas, con cualquier longitud        <697
+
+Son sumas de pesos de testigos para encuentros antes del primer contacto,
+uniformes en el tamaño, bajo los supuestos de H5A_3_4_balance_por_pieza.txt.
+Las franjas de datos, el empate físico, la competición SSF/FGL con β=.01,
+los subhosts y la independencia de los bits de check fuera de las franjas
+son los de esa nota. Se admiten ciclos de cuatro. Se usa la tasa auxiliar
+superior z=.0012. El certificado de G3 emplea θ=.00115 y en el circuito
+se fijan previamente las etiquetas de datos, como en fase 5.
+
+1. Qué se cobra en una bifurcación corta
+=======================================
+En la reunión se fijan el lector de 4×3, la huella F y sus luces H justo
+antes del paso. El estado hacia el que avanza la red es b=F fuera de H.
+Las salidas no vacías son una celda, dos en una columna o dos en filas
+y columnas distintas. Los índices de las matrices siguen ese orden.
+Una bifurcación genuina reparte dos luces de una misma ocurrencia, una
+a cada brazo. Un paso lineal recibe luces de su predecesor y de bits
+iniciales todavía intactos. Pueden intercalarse otras ocurrencias.
+
+Para (0,1) sea x la luz de H que viaja directamente y sea y la otra luz
+de la bifurcación. El paso interior apaga y y debe emitir un conjunto
+no vacío de luces que llegan a H. Además y no está en H. En efecto, el
+paso interior acaba de apagar y, y ninguno de los dos predecesores
+permitidos de la reunión puede haberla vuelto a encender. La luz x
+sigue encendida hasta la reunión. Por tanto, en este bloque el padre
+directo puede aportar a H una sola luz.
+
+Para un conjunto J de una o dos celdas marcadas en H, sea W(y,J) la
+suma de pesos de un único paso cuyo padre le suministra y y que emite
+todas las marcas de J. En cada lector que contenga y y J se suman los
+ganadores (H',F') con y en H' y J contenido en F' fuera de H'. El
+peso es z^(|H'|−1)/μ(F'). La multiplicidad μ es 3 para una fila,
+4 para una columna y 1 para las demás huellas. En las franjas ganadoras
+la competición global permite todas sus representaciones, como en
+H5A_3_4_reunion_de_ramas.txt §1. Los cobros y las marcas dependen de
+la huella física. Los tres o cuatro representantes se recuperan al
+sumar los lectores. La ocurrencia que emitió las dos luces iniciales
+se cobrará en su propio prefijo.
+
+Hay hasta doce lectores que contienen y y J. En cualquiera de ellos la
+cuenta local depende sólo de las igualdades de filas y columnas entre
+y y las marcas. Se lleva y a (0,0) y se consulta el catálogo de 771
+pares incluyendo empates. Se comprueba su invariancia bajo los cinco
+intercambios adyacentes que generan las permutaciones de filas y
+columnas. Por ejemplo, dos salidas marcadas en una misma fila cuestan
+exactamente cero. Esta prueba utiliza incidencias locales de cualquier
+semilla.
+
+Para (0,1) se suma x en H y J no vacío en H fuera de x, |J|≤2. Fijado
+un lector de bifurcación que contiene x, se suman sus posibles y
+según el tipo de salida, con peso W(y,J) z^(|H|−1−|J|). J puede tomarse
+como el conjunto de todas las luces de H realmente heredadas del brazo
+intermedio. Ampliar después a todos los registros con esas marcas da una
+cota superior. Para el tipo vertical hay tres filas posibles distintas
+de la de x, en su columna. Para el diagonal hay tres filas por dos
+columnas. Se conserva qué filas y columnas del lector de bifurcación
+coinciden con las del lector de llegada. Se maximiza la suma sobre los
+subconjuntos posibles de coincidencias en cada eje. Las coordenadas
+exteriores mantienen su multiplicidad. Se multiplica por hasta doce
+lectores de bifurcación a través de x y se divide por μ(F) en la
+reunión. Esto da K₀₁. El lector que recibe las dos entradas se fija
+antes de elegir ambos brazos.
+
+Para (1,1), sean J₁,J₂ los conjuntos no vacíos y disjuntos de H que
+proceden de los dos pasos interiores, con una o dos celdas cada uno.
+La reunión paga z^(|H|−|J₁|−|J₂|)/μ(F). Para un orden de los dos
+conjuntos se suma el primer paso hacia atrás desde J₁. La cuenta
+V(J₁) usa hasta doce lectores. En cada uno suma
+|H'| z^(|H'|−1)/μ(F') por cada ganador cuya salida contiene J₁. El
+factor |H'| elige la luz del padre bifurcante que alimentó ese paso.
+Por esa luz pasan hasta 12τᵢ estados del padre de tipo i, con τ₂=3,
+τ₃=6. Al elegir uno queda determinada su otra luz y. El segundo
+paso debe emitir J₂ desde y. Por tanto la masa se acota por
+
+           V(J₁) · 12τᵢ · max_y W(y,J₂).
+
+El máximo sólo relaja la posición de y. Las dos ramas siguen llegando
+a las marcas distintas del mismo H. Para la pareja no ordenada de
+subconjuntos se toma el menor de los dos techos obtenidos al invertir
+el orden. Ambos dominan los mismos registros físicos. Así se obtiene
+K₁₁ sin elegir dos veces la bifurcación. En cada registro realizable,
+las medidas intactas de los dos interiores y de la reunión son distintas.
+El peso producto se aplica a esos registros antes de ampliar las sumas.
+Con ambas longitudes cero hay un solo predecesor y se usa la matriz
+lineal R.
+
+2. Convergencia de las reuniones consecutivas
+==============================================
+K_larga es la ecuación (6) de H5A_3_4_balance_por_pieza.txt. Incluye R,
+los pasos lineales, y las reuniones en las que un brazo tiene al menos
+dos pasos. Las nuevas matrices se suman en el orden solicitado.
+
+     Matriz                        Sumas de las tres filas, redondeadas hacia arriba
+     K_larga+K₀₁                    .152533    .012044    .160509
+     K_larga+K₀₁+K₁₁                .154329    .012046    .160627
+
+La norma de fila es menor que uno. La serie de todas las potencias
+converge y suma cualquier número de bloques consecutivos. La entrada
+diagonal que excedía 1.58 en la relajación anterior queda ahora <.110.
+Para las constantes 421 y 422 se usa la suma por estado, más ajustada
+que usar la misma norma en toda la serie. El programa resuelve
+B=I+KB con fracciones, verifica B≥0 y suma las masas no vacías de
+sus filas. Un check está en doce lectores y en (1,3,6) máscaras por
+lector. Cada lector inicial toca franjas de hasta 27 originales CC.
+
+3. Reuniones anidadas y cola en número de pasos
+===============================================
+Se considera también la clase recursiva de v19. Tras una emisión se
+puede continuar con un paso lineal o separar dos luces en sendos
+brazos que se reúnen. Los interiores de esos brazos son disjuntos en
+ocurrencias, pueden bifurcarse y reunirse a su vez, y todas las luces
+heredadas proceden de la red o de su inicio. El prefijo anterior a cada
+bifurcación es común y se contabiliza una vez. La construcción es en
+serie y en paralelo en el sentido de la composición de redes de dos
+terminales. Como referencia para esa terminología, R. J. Duffin,
+Topology of Series-Parallel Networks, 1965.
+https://doi.org/10.1016/0022-247X(65)90125-3
+
+Para comprobar la suma sin truncar la profundidad, dar peso t≥1 a cada
+ocurrencia. U es la matriz lineal hacia delante de v19 (salidas no
+vacías). Con el límite vectorial de brazos de una celda, el programa
+forma M_t por la recurrencia hacia delante de v19 y verifica
+B_f=I+M_t B_f≥I, así como que la primera fila de B_f−I cabe en dicho
+límite. Esto justifica el límite por inducción en el número de pasos.
+Una bifurcación necesita dos salidas, por lo que desde una sola celda
+el primer paso es lineal. Para el brazo secundario de dos o más
+ocurrencias se puede usar w=e₁ᵀ tU(B_f−I). Para t=1 se obtiene
+w₁<.000132503 y w₂+w₃<.000050786.
+
+Sea P=diag(0,1,1), y R^(a) la fila inversa de la nota anterior que
+permite hasta a luces adicionales en la reunión. Se busca X≥0 tal que
+
+ X ≥ I + [tR+t²K₀₁+t³K₁₁
+             +2t(w₁R^(1)+(w₂+w₃)R^(2)) X P] X.                    (1)
+
+K₀₁ contiene dos ocurrencias y K₁₁ contiene tres, excluida la
+bifurcación inicial. En un bloque restante se elige un brazo con dos
+o más ocurrencias como secundario. Al remontar la reunión se suma el
+principal mediante la X interior hasta fijar la salida doble de la
+bifurcación. Desde una de sus dos celdas se suma el secundario con w.
+La X exterior remonta el prefijo una sola vez. Omitir la coincidencia
+final del secundario al usar w sólo aumenta la suma. En los bloques
+cortos ya se usan las coincidencias de las marcas del §1. El peso t
+exterior al paréntesis con las R^(a) cobra la reunión. Los subproblemas
+tienen menos ocurrencias que la red completa. Por inducción, (1) cubre
+cualquier longitud y anidación. En un primer contacto dentro de un
+bloque, conservar el brazo que lo toca primero y el prefijo común da
+otro registro de la clase. Si la reunión misma hace el primer contacto,
+se aplican las alternativas del §3 de la nota de balance.
+
+Para t=1 el testigo racional es
+
+    [1.00973      .08450     .14570]
+    [ .00000271  1.01339     .02233]
+    [ .00012696   .09400    1.20631].
+
+Las nueve desigualdades de (1) se comprueban estrictamente. La masa
+por check de salida es ≤12·27 Σᵢ τᵢ(ΣⱼXᵢⱼ−1)<697. Esto suma sobre
+todos los posibles originales CC marcados de partida. Se comprueba
+también (1) a t=6/5 con un segundo testigo en el verificador. Su
+constante es <2165. Por tanto, por check de salida, la masa de registros
+no vacíos con al menos n ocurrencias cobradas es <2165(5/6)^n. El
+exponente cuenta los pasos de ese registro. La longitud de un enlace
+geométrico de v22 y el número de pasos de toda la ejecución tienen
+otras definiciones.
+
+4. Las dos composiciones de G3
+==============================
+Se aplica la misma exploración adaptativa del grupo A que en la nota
+anterior. Q es el conjunto de checks consultados e Y el número de unos
+consultados fuera de las franjas de A. En el recuento condicional se
+cortan los brazos en su primer contacto. Se cobran fuera de Q sólo
+bits intactos y disjuntos en los registros simultáneos de distintos
+grupos. La ley exterior permanece producto en cada hoja de exploración.
+Con D,C del §1 de la nota anterior y b igual a 422 o 697, la serie de
+varias marcas CC está dominada por E exp[h G(Y)], para
+
+           G(Y)=D+bC+(23454+293b)Y.
+
+Para h≤10⁻⁶ se usa la cota de momento de esa nota con t'=λh. Se tiene
+exp(t')−1 ≤ t'+t'²/[2(1−t'/3)] por la serie de Taylor. Con
+τ=λ·10⁻⁶ y d=zλ[1+τ/(2(1−τ/3))], basta
+λ−204d≥23454+293b. Los valores λ=205000 para b=422 y λ=322000 para
+b=697 verifican esa desigualdad. Así E exp[hG(Y)]≤exp[h(D+(b+d)C)].
+
+   Grupo fijo      Pendiente, sólo en serie    Pendiente, con anidaciones
+   1 VV + 3 CC             <1 714 907                <2 731 725
+   2 VV + 2 CC             <1 594 705                <2 540 071
+
+El campo h pondera una marca CC por grupo exterior. Estas pendientes
+corresponden a los contactos de la clase probada con el grupo A fijado.
+
+5. Estado de las cotas generales
+================================
+El verificador completo de H5A_3_4_cola_por_lectores.txt se volvió a
+ejecutar. Para la familia general reproduce p≤5.22·10⁻⁷ a q≤.001 y
+r_c≤9.75·10⁻⁸ con VV primero o r_c≤8.90·10⁻⁸ para todo orden admitido
+a r_m≤.001. En (.567,.685) también reproduce el obstáculo de la fila
+anterior en G3, con e Σ cᵢ Lᵢ>1.006646. El nuevo cálculo cambia la
+serie de contactos de un solo antecesor de partida. Para introducir
+sus pendientes en la fila general faltan, entre otras, las reuniones
+alimentadas por dos orígenes distintos antes del contacto, las
+dependencias cruzadas entre ramas que no admiten la descomposición
+del §3 y la justificación de la proyección de la historia global al
+prefijo explorado de A. La suma del complemento de G3 sigue sin una
+cota certificada ≤0.00078558.
+
+Reproducción desde 05_COMPROBACIONES, con la biblioteca estándar
+
+    python -I -B -X utf8 verificar_H5A_3_4_reuniones_cortas.py
+    python -I -B -X utf8 verificar_H5A_3_4_cola_por_lectores.py
+

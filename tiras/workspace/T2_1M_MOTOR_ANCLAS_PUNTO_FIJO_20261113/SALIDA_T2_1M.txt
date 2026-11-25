@@ -1,0 +1,236 @@
+== catalogo fen_TIRA_6x6 (k <= 4)
+  [PASS] fen_TIRA_6x6: matrices iguales a las de B4
+  [PASS] fen_TIRA_6x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 1 clases)
+  [PASS] fen_TIRA_6x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)
+  [PASS] fen_TIRA_6x6: k_log = 1
+  fen_TIRA_6x6 f=1: 91 candidatos, 91 asignaciones, 91 validas (0.1s)
+  fen_TIRA_6x6 f=2: 1220 candidatos, 1220 asignaciones, 1220 validas (0.2s)
+  fen_TIRA_6x6 f=3: 20097 candidatos, 20097 asignaciones, 20097 validas (0.3s)
+  fen_TIRA_6x6 f=4: 348807 candidatos, 348807 asignaciones, 346926 validas (3.1s)
+  [PASS] I4 fen_TIRA_6x6: silenciosa <=> caracter logico -1 (discrepancias = 0)
+  [PASS] C-anc fen_TIRA_6x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 80 grupos)
+  fen_TIRA_6x6: 306389 polimeros (k=4), 349421 entradas, 0.00 GB, 185 firmas; fusion 0.9s
+  [PASS] C-B4 fen_TIRA_6x6: validas por f = B4 [91, 1220, 20097, 346926]
+  [PASS] C-B4 fen_TIRA_6x6: polimeros con k = 3 y 4 = B4 [19021, 306389]
+== catalogo fen_TIRA_12x6 (k <= 4)
+  [PASS] fen_TIRA_12x6: matrices iguales a las de B4
+  [PASS] fen_TIRA_12x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 1 clases)
+  [PASS] fen_TIRA_12x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)
+  [PASS] fen_TIRA_12x6: k_log = 1
+  fen_TIRA_12x6 f=1: 187 candidatos, 187 asignaciones, 187 validas (0.1s)
+  fen_TIRA_12x6 f=2: 2768 candidatos, 2768 asignaciones, 2768 validas (0.4s)
+  fen_TIRA_12x6 f=3: 51219 candidatos, 51219 asignaciones, 51219 validas (0.5s)
+  fen_TIRA_12x6 f=4: 1028284 candidatos, 1028284 asignaciones, 1023019 validas (31.6s)
+  [PASS] I4 fen_TIRA_12x6: silenciosa <=> caracter logico -1 (discrepancias = 0)
+  [PASS] C-anc fen_TIRA_12x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 164 grupos)
+  fen_TIRA_12x6: 910740 polimeros (k=4), 1024920 entradas, 0.01 GB, 185 firmas; fusion 3.7s
+  [PASS] C-B4 fen_TIRA_12x6: validas por f = B4 [187, 2768, 51219, 1023019]
+  [PASS] C-B4 fen_TIRA_12x6: polimeros con k = 3 y 4 = B4 [48535, 910740]
+== catalogo fen_TIRA_24x6 (k <= 4)
+  [PASS] fen_TIRA_24x6: matrices iguales a las de B4
+  [PASS] fen_TIRA_24x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 1 clases)
+  [PASS] fen_TIRA_24x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)
+  [PASS] fen_TIRA_24x6: k_log = 1
+  fen_TIRA_24x6 f=1: 379 candidatos, 379 asignaciones, 379 validas (0.1s)
+  fen_TIRA_24x6 f=2: 5864 candidatos, 5864 asignaciones, 5864 validas (0.3s)
+  fen_TIRA_24x6 f=3: 113463 candidatos, 113463 asignaciones, 113463 validas (2.1s)
+  fen_TIRA_24x6 f=4: 2387428 candidatos, 2387428 asignaciones, 2375395 validas (93.2s)
+  [PASS] I4 fen_TIRA_24x6: silenciosa <=> caracter logico -1 (discrepancias = 0)
+  [PASS] C-anc fen_TIRA_24x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 190 grupos)
+  fen_TIRA_24x6: 2119632 polimeros (k=4), 2376108 entradas, 0.02 GB, 185 firmas; fusion 6.6s
+  [PASS] C-B4 fen_TIRA_24x6: validas por f = B4 [379, 5864, 113463, 2375395]
+  [PASS] C-B4 fen_TIRA_24x6: polimeros con k = 3 y 4 = B4 [107563, 2119632]
+== catalogo fen_TIRA_48x6 (k <= 4)
+  [PASS] fen_TIRA_48x6: matrices iguales a las de B4
+  [PASS] fen_TIRA_48x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 1 clases)
+  [PASS] fen_TIRA_48x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)
+  [PASS] fen_TIRA_48x6: k_log = 1
+  fen_TIRA_48x6 f=1: 763 candidatos, 763 asignaciones, 763 validas (0.5s)
+  fen_TIRA_48x6 f=2: 12056 candidatos, 12056 asignaciones, 12056 validas (0.3s)
+  fen_TIRA_48x6 f=3: 237951 candidatos, 237951 asignaciones, 237951 validas (3.3s)
+  fen_TIRA_48x6 f=4: 5105716 candidatos, 5105716 asignaciones, 5080147 validas (170.9s)
+  [PASS] I4 fen_TIRA_48x6: silenciosa <=> caracter logico -1 (discrepancias = 0)
+  [PASS] C-anc fen_TIRA_48x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 255 grupos)
+  fen_TIRA_48x6: 4537416 polimeros (k=4), 5078484 entradas, 0.04 GB, 185 firmas; fusion 14.0s
+  [PASS] C-B4 fen_TIRA_48x6: validas por f = B4 [763, 12056, 237951, 5080147]
+  [PASS] C-B4 fen_TIRA_48x6: polimeros con k = 3 y 4 = B4 [225619, 4537416]
+== catalogo circ_TIRA_6x6 (k <= 4)
+  [PASS] circ_TIRA_6x6: matrices iguales a las de B4
+  [PASS] C-resp circ_TIRA_6x6: N_loc = (L+2)(n+m_X) - h_X = 527
+  [PASS] C-resp circ_TIRA_6x6: respuesta por formula = propagacion en las 747 ubicaciones y categorias visibles
+  [PASS] C-resp circ_TIRA_6x6: XOR de respuestas = propagacion conjunta en 2000 asignaciones aleatorias
+  [PASS] C-ley circ_TIRA_6x6: clases no nulas por sitio de dato 7 (d = 2) y 3 (d = 1); check 1
+  [PASS] C-ley circ_TIRA_6x6: leyes de ubicacion y de fibra suman 1 en las 8 celdas
+  [PASS] C-ley circ_TIRA_6x6: soporte de cada ley de fibra = clases alcanzables (6 tipos de ley)
+  [PASS] circ_TIRA_6x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 7 clases)
+  [PASS] circ_TIRA_6x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)
+  [PASS] circ_TIRA_6x6: k_log = 1
+  circ_TIRA_6x6 f=1: 91 candidatos, 409 asignaciones, 409 validas (0.1s)
+  circ_TIRA_6x6 f=2: 1220 candidatos, 29120 asignaciones, 29120 validas (0.1s)
+  circ_TIRA_6x6 f=3: 20643 candidatos, 2569801 asignaciones, 2500537 validas (1.5s)
+  circ_TIRA_6x6 f=4: 371185 candidatos, 231156265 asignaciones, 216824784 validas (340.5s)
+  [PASS] I4 circ_TIRA_6x6: silenciosa <=> caracter logico -1 (discrepancias = 0)
+  [PASS] C-anc circ_TIRA_6x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 91 grupos)
+  circ_TIRA_6x6: 2866787 polimeros (k=4), 150785786 entradas, 0.25 GB, 13683 firmas; fusion 27.9s
+  [PASS] C-T20 circ_TIRA_6x6: validas y asignaciones por f (f <= 4) = T2-0
+  [PASS] C-T20 circ_TIRA_6x6: polimeros por k (k <= 4) = T2-0 [133, 3208, 93156, 2866787]
+  [PASS] C-T20 circ_TIRA_6x6: decoracion quitada por la regla de T2-0 (soporte, clave, recuento) = ['0xf', [4, 0], 1029]
+== catalogo circ_TIRA_12x6 (k <= 4)
+  [PASS] circ_TIRA_12x6: matrices iguales a las de B4
+  [PASS] C-resp circ_TIRA_12x6: N_loc = (L+2)(n+m_X) - h_X = 1079
+  [PASS] C-resp circ_TIRA_12x6: respuesta por formula = propagacion en las 1539 ubicaciones y categorias visibles
+  [PASS] C-resp circ_TIRA_12x6: XOR de respuestas = propagacion conjunta en 2000 asignaciones aleatorias
+  [PASS] C-ley circ_TIRA_12x6: clases no nulas por sitio de dato 7 (d = 2) y 3 (d = 1); check 1
+  [PASS] C-ley circ_TIRA_12x6: leyes de ubicacion y de fibra suman 1 en las 8 celdas
+  [PASS] C-ley circ_TIRA_12x6: soporte de cada ley de fibra = clases alcanzables (6 tipos de ley)
+  [PASS] circ_TIRA_12x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 7 clases)
+  [PASS] circ_TIRA_12x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)
+  [PASS] circ_TIRA_12x6: k_log = 1
+  circ_TIRA_12x6 f=1: 187 candidatos, 853 asignaciones, 853 validas (0.2s)
+  circ_TIRA_12x6 f=2: 2768 candidatos, 67892 asignaciones, 67892 validas (0.2s)
+  circ_TIRA_12x6 f=3: 52737 candidatos, 6875875 asignaciones, 6673987 validas (7.8s)
+  circ_TIRA_12x6 f=4: 1101044 candidatos, 744187220 asignaciones, 693439495 validas (1164.0s)
+  [PASS] I4 circ_TIRA_12x6: silenciosa <=> caracter logico -1 (discrepancias = 0)
+  [PASS] C-anc circ_TIRA_12x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 187 grupos)
+  circ_TIRA_12x6: 8884859 polimeros (k=4), 474393181 entradas, 0.77 GB, 13683 firmas; fusion 81.5s
+  [PASS] C-T20 circ_TIRA_12x6: validas y asignaciones por f (f <= 4) = T2-0
+  [PASS] C-T20 circ_TIRA_12x6: polimeros por k (k <= 4) = T2-0 [277, 7420, 244836, 8884859]
+== catalogo circ_TIRA_24x6 (k <= 4)
+  [PASS] circ_TIRA_24x6: matrices iguales a las de B4
+  [PASS] C-resp circ_TIRA_24x6: N_loc = (L+2)(n+m_X) - h_X = 2183
+  [PASS] C-resp circ_TIRA_24x6: respuesta por formula = propagacion en las 3123 ubicaciones y categorias visibles
+  [PASS] C-resp circ_TIRA_24x6: XOR de respuestas = propagacion conjunta en 2000 asignaciones aleatorias
+  [PASS] C-ley circ_TIRA_24x6: clases no nulas por sitio de dato 7 (d = 2) y 3 (d = 1); check 1
+  [PASS] C-ley circ_TIRA_24x6: leyes de ubicacion y de fibra suman 1 en las 8 celdas
+  [PASS] C-ley circ_TIRA_24x6: soporte de cada ley de fibra = clases alcanzables (6 tipos de ley)
+  [PASS] circ_TIRA_24x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 7 clases)
+  [PASS] circ_TIRA_24x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)
+  [PASS] circ_TIRA_24x6: k_log = 1
+  circ_TIRA_24x6 f=1: 379 candidatos, 1741 asignaciones, 1741 validas (0.3s)
+  circ_TIRA_24x6 f=2: 5864 candidatos, 145436 asignaciones, 145436 validas (0.3s)
+  circ_TIRA_24x6 f=3: 116925 candidatos, 15488023 asignaciones, 15020887 validas (24.9s)
+  circ_TIRA_24x6 f=4: 2560952 candidatos, 1770705320 asignaciones, 1647125107 validas (2710.0s)
+  [PASS] I4 circ_TIRA_24x6: silenciosa <=> caracter logico -1 (discrepancias = 0)
+  [PASS] C-anc circ_TIRA_24x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 190 grupos)
+  circ_TIRA_24x6: 20925047 polimeros (k=4), 1121772937 entradas, 1.82 GB, 13683 firmas; fusion 190.9s
+  [PASS] C-T20 circ_TIRA_24x6: validas y asignaciones por f (f <= 3) = T2-0
+  [PASS] C-T20 circ_TIRA_24x6: polimeros por k (k <= 3) = T2-0 [565, 15844, 548196]
+== catalogo circ_TIRA_48x6 (k <= 4)
+  [PASS] circ_TIRA_48x6: matrices iguales a las de B4
+  [PASS] C-resp circ_TIRA_48x6: N_loc = (L+2)(n+m_X) - h_X = 4391
+  [PASS] C-resp circ_TIRA_48x6: respuesta por formula = propagacion en las 6291 ubicaciones y categorias visibles
+  [PASS] C-resp circ_TIRA_48x6: XOR de respuestas = propagacion conjunta en 2000 asignaciones aleatorias
+  [PASS] C-ley circ_TIRA_48x6: clases no nulas por sitio de dato 7 (d = 2) y 3 (d = 1); check 1
+  [PASS] C-ley circ_TIRA_48x6: leyes de ubicacion y de fibra suman 1 en las 8 celdas
+  [PASS] C-ley circ_TIRA_48x6: soporte de cada ley de fibra = clases alcanzables (6 tipos de ley)
+  [PASS] circ_TIRA_48x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 7 clases)
+  [PASS] circ_TIRA_48x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)
+  [PASS] circ_TIRA_48x6: k_log = 1
+  circ_TIRA_48x6 f=1: 763 candidatos, 3517 asignaciones, 3517 validas (0.5s)
+  circ_TIRA_48x6 f=2: 12056 candidatos, 300524 asignaciones, 300524 validas (0.4s)
+  circ_TIRA_48x6 f=3: 245301 candidatos, 32712319 asignaciones, 31714687 validas (59.8s)
+  circ_TIRA_48x6 f=4: 5480768 candidatos, 3823741520 asignaciones, 3554496331 validas (5960.7s)
+  [PASS] I4 circ_TIRA_48x6: silenciosa <=> caracter logico -1 (discrepancias = 0)
+  [PASS] C-anc circ_TIRA_48x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 255 grupos)
+  circ_TIRA_48x6: 45005423 polimeros (k=4), 2416532449 entradas, 3.93 GB, 13683 firmas; fusion 423.5s
+== DP: 38 trabajos en 14 procesos
+  circ_6_exacto_0: k=3 celdas estados=3215 terminos=1143002 polimeros=93156 (212.1s; carga 21.9s, pesos 64.3s)
+  circ_12_cal: k=4 celdas estados=7709 terminos=26382515 polimeros=1003349 (292.3s; carga 7.3s, pesos 59.4s)
+  circ_6_exacto_1: k=3 celdas estados=3215 terminos=1143002 polimeros=93156 (339.3s; carga 21.7s, pesos 74.8s)
+  circ_48_cal: k=4 celdas estados=35597 terminos=119417575 polimeros=3010047 (1277.3s; carga 24.5s, pesos 184.1s)
+  circ_12_suma_k4: k=4 suma estados=80599 terminos=279352061 polimeros=8884859 (1863.4s; carga 78.6s, pesos 392.9s)
+  fen_24_k4_0: k=4 celdas estados=202373 terminos=81171019 polimeros=2119632 (1677.6s; carga 3.3s, pesos 47.7s)
+  fen_24_k4_2: k=4 celdas estados=202373 terminos=81171019 polimeros=2119632 (1611.6s; carga 3.2s, pesos 47.7s)
+  fen_24_k4_1: k=4 celdas estados=202373 terminos=81171019 polimeros=2119632 (1659.3s; carga 3.1s, pesos 48.4s)
+  fen_6_k4_0: k=4 celdas estados=5355 terminos=2972219 polimeros=306389 (184.0s; carga 0.4s, pesos 19.4s)
+  circ_6_dom_k4: k=4 celdas estados=5530 terminos=25848067 polimeros=2866787 (435.3s; carga 25.2s, pesos 168.6s)
+  circ_6_suma_k4: k=4 suma estados=5530 terminos=25848067 polimeros=2866787 (297.9s; carga 25.0s, pesos 119.7s)
+  circ_24_est_k4: k=4 estructura estados=247927 terminos=837562421 polimeros=20925047 (2624.9s; carga 192.1s, pesos 63.8s)
+  circ_6_negativo_k4: k=4 suma estados=5530 terminos=25848067 polimeros=2866787 (299.0s; carga 24.4s, pesos 120.8s)
+  fen_48_k4_5: k=4 celdas estados=473549 terminos=188304139 polimeros=4537416 (2704.7s; carga 9.0s, pesos 85.3s)
+  fen_48_k4_4: k=4 celdas estados=473549 terminos=188304139 polimeros=4537416 (2760.5s; carga 8.9s, pesos 83.9s)
+  fen_48_k4_1: k=4 celdas estados=473549 terminos=188304139 polimeros=4537416 (2792.1s; carga 8.7s, pesos 84.6s)
+  fen_6_k3: k=3 celdas estados=3061 terminos=226601 polimeros=19021 (2.5s; carga 0.1s, pesos 0.3s)
+  fen_12_k3: k=3 celdas estados=14141 terminos=973957 polimeros=48535 (62.2s; carga 1.1s, pesos 3.2s)
+  fen_48_k4_2: k=4 celdas estados=473549 terminos=188304139 polimeros=4537416 (2823.7s; carga 8.8s, pesos 84.7s)
+  fen_12_k4_0: k=4 celdas estados=66785 terminos=27604459 polimeros=910740 (971.2s; carga 1.3s, pesos 34.0s)
+  fen_12_k4_1: k=4 celdas estados=66785 terminos=27604459 polimeros=910740 (953.0s; carga 1.2s, pesos 34.5s)
+  circ_6_est_k3: k=3 estructura estados=3215 terminos=1143002 polimeros=93156 (25.3s; carga 19.5s, pesos 3.6s)
+  circ_6_est_k2: k=2 estructura estados=1407 terminos=37386 polimeros=3208 (21.2s; carga 18.0s, pesos 3.0s)
+  fen_24_k3: k=3 celdas estados=36413 terminos=2473153 polimeros=107563 (196.8s; carga 3.2s, pesos 8.6s)
+  fen_24_k4_3: k=4 celdas estados=202373 terminos=81171019 polimeros=2119632 (1630.0s; carga 3.3s, pesos 48.6s)
+  circ_12_est_k2: k=2 estructura estados=3993 terminos=109752 polimeros=7420 (91.2s; carga 77.7s, pesos 12.8s)
+  circ_6_est_k1: k=1 estructura estados=621 terminos=991 polimeros=133 (19.8s; carga 16.9s, pesos 2.9s)
+  circ_12_est_k3: k=3 estructura estados=15417 terminos=5246465 polimeros=244836 (103.4s; carga 77.3s, pesos 13.9s)
+  circ_24_suma_k3: k=3 suma estados=39945 terminos=13479557 polimeros=548196 (308.8s; carga 191.5s, pesos 47.7s)
+  circ_12_est_k1: k=1 estructura estados=1455 terminos=2341 polimeros=277 (69.0s; carga 59.0s, pesos 9.8s)
+  circ_24_est_k2: k=2 estructura estados=9165 terminos=254484 polimeros=15844 (191.5s; carga 162.7s, pesos 27.6s)
+  circ_48_est_k3: k=3 estructura estados=89001 terminos=29945741 polimeros=1154916 (562.0s; carga 408.5s, pesos 72.0s)
+  circ_24_est_k1: k=1 estructura estados=3123 terminos=5041 polimeros=565 (168.7s; carga 144.2s, pesos 24.0s)
+  circ_12_dom_k4: k=4 celdas estados=80599 terminos=279352061 polimeros=8884859 (3013.7s; carga 74.1s, pesos 517.8s)
+  fen_48_k4_3: k=4 celdas estados=473549 terminos=188304139 polimeros=4537416 (3021.7s; carga 8.1s, pesos 70.7s)
+  fen_48_k3: k=3 celdas estados=80957 terminos=5471545 polimeros=225619 (342.2s; carga 6.1s, pesos 14.0s)
+  fen_48_k4_0: k=4 celdas estados=473549 terminos=188304139 polimeros=4537416 (3046.0s; carga 7.8s, pesos 69.1s)
+  circ_48_est_k4: k=4 estructura estados=582583 terminos=1953983141 polimeros=45005423 (4032.1s; carga 248.7s, pesos 81.3s)
+  [PASS] C-anc: en los 38 trabajos, ningun hijo con ancla <= la de su padre
+  [PASS] C-B4 fen_TIRA_6x6 k=3: polimeros, estados y terminos = B4 [19021, 3061, 226601] (1 trabajos)
+  [PASS] C-B4 fen_TIRA_6x6 k=3: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4
+  [PASS] C-anch fen_TIRA_6x6 k=3: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.990e-93)
+  [PASS] C-B4 fen_TIRA_6x6 k=4: polimeros, estados y terminos = B4 [306389, 5355, 2972219] (1 trabajos)
+  [PASS] C-B4 fen_TIRA_6x6 k=4: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4
+  [PASS] C-anch fen_TIRA_6x6 k=4: anchura relativa de los 36 intervalos <= 1e-30 (maxima 3.438e-87)
+  [PASS] C-B4 fen_TIRA_12x6 k=3: polimeros, estados y terminos = B4 [48535, 14141, 973957] (1 trabajos)
+  [PASS] C-B4 fen_TIRA_12x6 k=3: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4
+  [PASS] C-anch fen_TIRA_12x6 k=3: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.676e-93)
+  [PASS] C-B4 fen_TIRA_12x6 k=4: polimeros, estados y terminos = B4 [910740, 66785, 27604459] (2 trabajos)
+  [PASS] C-B4 fen_TIRA_12x6 k=4: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4
+  [PASS] C-anch fen_TIRA_12x6 k=4: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.744e-87)
+  [PASS] C-B4 fen_TIRA_24x6 k=3: polimeros, estados y terminos = B4 [107563, 36413, 2473153] (1 trabajos)
+  [PASS] C-B4 fen_TIRA_24x6 k=3: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4
+  [PASS] C-anch fen_TIRA_24x6 k=3: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.592e-93)
+  [PASS] C-B4 fen_TIRA_24x6 k=4: polimeros, estados y terminos = B4 [2119632, 202373, 81171019] (4 trabajos)
+  [PASS] C-B4 fen_TIRA_24x6 k=4: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4
+  [PASS] C-anch fen_TIRA_24x6 k=4: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.600e-87)
+  [PASS] C-B4 fen_TIRA_48x6 k=3: polimeros, estados y terminos = B4 [225619, 80957, 5471545] (1 trabajos)
+  [PASS] C-B4 fen_TIRA_48x6 k=3: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4
+  [PASS] C-anch fen_TIRA_48x6 k=3: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.559e-93)
+  [PASS] C-B4 fen_TIRA_48x6 k=4: polimeros, estados y terminos = B4 [4537416, 473549, 188304139] (6 trabajos)
+  [PASS] C-B4 fen_TIRA_48x6 k=4: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4
+  [PASS] C-anch fen_TIRA_48x6 k=4: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.547e-87)
+  [PASS] C-T20 circ_TIRA_6x6 k=1: polimeros, estados y terminos = T2-0 [133, 621, 991]
+  [PASS] C-T20 circ_TIRA_6x6 k=2: polimeros, estados y terminos = T2-0 [3208, 1407, 37386]
+  [PASS] C-T20 circ_TIRA_6x6 k=3: polimeros, estados y terminos = T2-0 [93156, 3215, 1143002]
+  [PASS] C-T20 circ_TIRA_6x6 k=4: polimeros, estados y terminos = T2-0 [2866787, 5530, 25848067]
+  [PASS] C-T20 circ_TIRA_6x6 k=4 suma: veredicto de la regla de suma en los dos extremos = COMPLETO
+  [PASS] C-T20 circ_TIRA_6x6 k=4 suma: margen (dif. abs. 0.00e+00 <= 1e-6) y peso del orden siguiente (dif. rel. 0.00e+00 <= 1e-9) = T2-0
+  [PASS] C-anch circ_TIRA_6x6 k=4 suma: anchura de U <= 1e-12 x^k (5.567e-52)
+  [PASS] C-T20 circ_TIRA_6x6: el negativo quita exactamente una decoracion
+  [PASS] C-T20 circ_TIRA_6x6 k=4 negativo: veredicto de la regla de suma en los dos extremos = INCOMPLETO
+  [PASS] C-T20 circ_TIRA_6x6 k=4 negativo: margen (dif. abs. 0.00e+00 <= 1e-6) y peso del orden siguiente (dif. rel. 0.00e+00 <= 1e-9) = T2-0
+  [PASS] C-anch circ_TIRA_6x6 k=4 negativo: anchura de U <= 1e-12 x^k (5.567e-52)
+  [PASS] C-exacto circ_TIRA_6x6 k=3 celda 1/1000|1/1000: U, E y O exactos dentro de los intervalos de punto fijo
+  [PASS] C-anch circ_TIRA_6x6 exacto 1/1000|1/1000: anchura relativa <= 1e-30 (1.153e-106)
+  [PASS] C-exacto circ_TIRA_6x6 k=3 celda 1/1000000|0: U, E y O exactos dentro de los intervalos de punto fijo
+  [PASS] C-anch circ_TIRA_6x6 exacto 1/1000000|0: anchura relativa <= 1e-30 (1.205e-97)
+  [PASS] C-dom circ_TIRA_6x6: estructura del paso de celda = T2-0
+  [PASS] C-dom circ_TIRA_6x6 k=4 celda 1/1000000|1/1000000: L_comp / termino dominante de T2-0 en [1 - 1e-12, 1 + 1e-2] (1.000175558123, 1.000175558123)
+  [PASS] C-anch circ_TIRA_6x6 dom: anchura relativa de L_comp <= 1e-30 (2.783e-96)
+  [PASS] C-T20 circ_TIRA_12x6 k=1: polimeros, estados y terminos = T2-0 [277, 1455, 2341]
+  [PASS] C-T20 circ_TIRA_12x6 k=2: polimeros, estados y terminos = T2-0 [7420, 3993, 109752]
+  [PASS] C-T20 circ_TIRA_12x6 k=3: polimeros, estados y terminos = T2-0 [244836, 15417, 5246465]
+  [PASS] C-T20 circ_TIRA_12x6 k=4: polimeros, estados y terminos = T2-0 [8884859, 80599, 279352061]
+  [PASS] C-T20 circ_TIRA_12x6 k=4 suma: veredicto de la regla de suma en los dos extremos = COMPLETO
+  [PASS] C-T20 circ_TIRA_12x6 k=4 suma: margen (dif. abs. 0.00e+00 <= 1e-6) y peso del orden siguiente (dif. rel. 0.00e+00 <= 1e-9) = T2-0
+  [PASS] C-anch circ_TIRA_12x6 k=4 suma: anchura de U <= 1e-12 x^k (1.777e-51)
+  [PASS] C-dom circ_TIRA_12x6: estructura del paso de celda = T2-0
+  [PASS] C-dom circ_TIRA_12x6 k=4 celda 1/1000000|1/1000000: L_comp / termino dominante de T2-0 en [1 - 1e-12, 1 + 1e-2] (1.000351934324, 1.000351934324)
+  [PASS] C-anch circ_TIRA_12x6 dom: anchura relativa de L_comp <= 1e-30 (6.452e-96)
+  [PASS] C-T20 circ_TIRA_24x6 k=1: polimeros, estados y terminos = T2-0 [565, 3123, 5041]
+  [PASS] C-T20 circ_TIRA_24x6 k=2: polimeros, estados y terminos = T2-0 [15844, 9165, 254484]
+  [PASS] C-T20 circ_TIRA_24x6 k=3: polimeros, estados y terminos = T2-0 [548196, 39945, 13479557]
+  [PASS] C-T20 circ_TIRA_24x6 k=3 suma: veredicto de la regla de suma en los dos extremos = COMPLETO
+  [PASS] C-T20 circ_TIRA_24x6 k=3 suma: margen (dif. abs. 0.00e+00 <= 1e-6) y peso del orden siguiente (dif. rel. 0.00e+00 <= 1e-9) = T2-0
+  [PASS] C-anch circ_TIRA_24x6 k=3 suma: anchura de U <= 1e-12 x^k (3.855e-67)
+LECTURA: D-m1 VALIDADO; D-m2 CABE_CON_MAS_TIEMPO
+PASS controles=186 llamadas=6637302128 t=15369.2s
+exit 0

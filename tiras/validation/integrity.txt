@@ -1,0 +1,5 @@
+Checked 300 files
+Checked 600 files
+Checked 900 files
+Checked 1200 files
+INTEGRITY PASS: 1499 files, 6850158280 bytes, 1412 catalogue shards

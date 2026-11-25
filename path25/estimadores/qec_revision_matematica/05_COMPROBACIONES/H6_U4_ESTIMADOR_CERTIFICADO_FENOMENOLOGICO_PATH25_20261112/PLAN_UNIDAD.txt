@@ -1,0 +1,124 @@
+H6 — UNIDAD 4: ESTIMADOR CON CERTIFICADO FINITO POR COMPONENTES, RUIDO FENOMENOLOGICO MIXTO (G2)
+Fijado el 12/11/2026 (Lima) ANTES de escribir y ejecutar el estimador.
+Sesion Claude abierta por el usuario ("ok continua", tras la entrega de la
+unidad 3). Controles releidos: sin cambios desde DEC-027. La unidad 3 no
+tiene contraste del revisor; el usuario decide seguir.
+Leido antes de fijar el plan, sin ejecutar nada: las cabeceras de los
+resultados publicados del paquete de observables (pares de tasas y valores
+exactos de PATH25) y los espectros q=0 del piloto PATH25. Esos valores son
+la referencia de anclaje; el estimador no los lee.
+
+1. CARENCIA QUE SE ATACA
+G2 = V2.2 y V3 en el contrato fenomenologico con q>0: no hay intervalos
+certificados de P_0, P_sil y Q_sil ni estimador completo con ruido de datos
+y de medicion. Los intervalos del manuscrito son de q=0 o del caracter sin
+filtrar.
+FORMA DE V3: la misma de la unidad 3 y del dictamen del revisor: (a)
+certificado finito por componentes. NO es el algoritmo general del teorema.
+Se mantienen las cuatro condiciones del dictamen: catalogo por
+procedimiento propio; cobertura completa o cota de lo omitido; estimacion
+sellada antes de la referencia; recursos medidos.
+
+2. RESULTADO HEREDADO (no se presenta como nuevo)
+PATH25 y su decoder (contrato generico, 103 candidatos, beta=1/2, orden
+(|F|, mascara)); host K de 37 vertices. Teorema de recomposicion canonica
+del manuscrito y filtro fisico local. Procedimiento de la unidad 3.
+Referencias exactas ya existentes de PATH25: espectros por peso con q=0
+(piloto del 28/10) y valores exactos con ruido mixto en seis pares de tasas
+(paquete de observables, transformada de Walsh y dos auditorias).
+
+3. INSTANCIA Y CONTRATO
+PATH25. Ruido: cada uno de los 25 datos falla con probabilidad p y cada uno
+de los 12 checks se lee mal con probabilidad q, de forma independiente.
+Sindrome observado s = H_X E + D; residuo R = E + C(s); P_0 = Pr[H_X R=0];
+P_sil = Pr[H_X R=0, R fuera de S_X]; Q_sil = P_sil/P_0. Sitios del host: 37.
+Hay 2^37 historias: aqui NO cabe recorrerlas una a una.
+Pares de tasas (los tres con valor exacto publicado):
+  principal  p=1/50,  q=1/100   (el punto del manuscrito)
+  lectura    p=1/100, q=1/200
+  control    p=1/100, q=0       (q=0 solo como control)
+No se busca un par favorable.
+
+4. EL ESTIMADOR (fijado aqui; no se ajusta despues de ver la referencia)
+El de la unidad 3, con fuentes = datos con fallo y checks ruidosos:
+ Paso 1. Preparacion: candidatos, huellas, listas inversas, host K.
+ Paso 2. Catalogo C_k: para cada conjunto S de sitios con 1 <= |S| <= k,
+   ejecutar el decoder sobre la historia (E,D)=S sola, al vuelo y solo
+   sobre los candidatos que leen el sindrome; si el soporte de ejecucion
+   (S mas los datos tocados por acciones) es conexo en K, la historia es
+   una decoracion del polimero Y, con peso z_p^|E| z_q^|D|, filtro
+   H_X r = 0 y marca (-1)^(u_0.r). Cobertura completa hasta k fuentes por
+   construccion.
+ Paso 3. Gas truncado: Xi_0^(k), Xi_T^(k), Xi_{T,u}^(k) sobre las familias
+   compatibles de polimeros de C_k, por la recurrencia exacta de borrado
+   del vertice menor con memoria. No se enumeran historias.
+ Paso 4. Certificado: masa omitida exacta eps_k = 1 - B_0*Xi_0^(k), con
+   B_0 = (1-p)^25 (1-q)^12; intervalos
+     P_0   en [B_0 Xi_T^(k), + eps_k],
+     P_sil en [B_0 (Xi_T^(k) - Xi_{T,u}^(k))/2, + eps_k],
+     Q_sil en [a/(b+eps_k), (a+eps_k)/(b+eps_k)];
+   valor informado 2LU/(L+U) con error garantizado (U-L)/(U+L).
+   Control interno: 0 <= eps_k <= Pr[Bin(25,p)+Bin(12,q) > k].
+ Paso 5. Parada: k* = menor k con L>0 y error garantizado de P_sil <= 1/10.
+   Se calcula la tabla k = 1..5.
+El certificado descansa en el teorema de recomposicion canonica y en la
+localidad del filtro fisico, en la completitud del catalogo y en aritmetica
+exacta. No depende de conocer P_sil.
+
+5. ORDEN Y SEPARACION
+ estimador_h6_u4.py: autonomo; no importa codigo de otras unidades ni lee
+   ningun resultado o tabla. Escribe ESTIMACION_H6_U4.json y el sello.
+ contrastar_h6_u4.py: solo arranca con el sello valido. Referencia exacta
+   propia y global: para cada sindrome observado s, H_X R=0 equivale a
+   D = sindrome terminal de s, y entonces E recorre C(s) + ker H_X; se
+   suman los enumeradores de peso de las clases C(s)+S_X y C(s)+L+S_X
+   (4096 sindromes por 8192 elementos). Anclajes de esa referencia: debe
+   coincidir como fraccion exacta con los valores publicados del paquete de
+   observables en los tres pares, y en q=0 con los espectros del piloto.
+   Solo despues abre la estimacion.
+
+6. CRITERIOS DE EXITO (fijados de antemano)
+E1. Para todo k=1..5 y los tres pares, los valores exactos de P_0, P_sil y
+    Q_sil estan dentro de sus intervalos.
+E3. Donde L>0, el error real del valor informado no supera el garantizado.
+E4. L_k no decrece y eps_k no crece con k.
+E5. En el par principal existe k* <= 5: error garantizado de P_sil <= 10 %.
+    No alcanzarlo es un resultado admisible que se informa tal cual; en ese
+    caso G2 no queda cubierta.
+Aqui no hay corte con igualdad exacta: el catalogo completo exigiria 2^37
+historias. La validacion es la contencion y el control de errores.
+Recursos medidos para G4, por k: historias locales, sindromes distintos,
+scores, pruebas de conexidad, polimeros, estados y terminos de la
+recurrencia del gas, bits, tiempo y memoria; y los de la referencia.
+
+7. PREDICCIONES (a mano o de cifras ya publicadas, antes de ejecutar)
+N1. Historias locales acumuladas hasta k=1..5: 37, 703, 8473, 74518, 510415.
+N2. Hasta k=3, las historias con soporte conexo son 4705: la cifra del
+    paquete de observables para las historias de peso <=3 con una sola
+    componente de ejecucion. Host K con 388 aristas.
+N3. P_sil^(1) = 0 en los tres pares.
+Estimaciones a mano que NO son criterio: k*=4 en el par principal (masa
+omitida del orden de 4e-4 frente a P_sil del orden de 4.7e-3) y k*=3 en
+los otros dos.
+Una prediccion N1-N3 fallida o un criterio E1, E3 o E4 incumplido detiene
+la unidad y se informa tal cual.
+
+8. PRESUPUESTO Y PARADA
+Python puro, biblioteca estandar. Estimador: como maximo 510415 historias
+locales (k<=5), 10 minutos y 1 GiB; si el techo de tiempo llega antes de
+terminar un k, se entrega la tabla de los k completos y se declara.
+Contraste: tabla de 4096 sindromes y 33554432 evaluaciones de peso, 5
+minutos y 1 GiB. Salidas: 16 MiB.
+UNA ejecucion completa de cada programa. Pruebas parciales de depuracion
+del estimador con k <= 2, declaradas. El estimador queda sellado antes del
+contraste y no se modifica despues. Si un programa se detiene por un
+defecto propio y no por una discrepancia, se corrige, se conserva la
+salida fallida y se declara; como maximo dos ejecuciones completas de cada
+uno. Cero censos, muestreos, agentes e instalaciones; nada sobre F17.
+Manuscrito, PDF y ZIP no se modifican.
+
+9. LO QUE ESTA UNIDAD NO PUEDE DAR
+No ejecuta el algoritmo del teorema. PATH25 no es regular: no valida la
+familia FGL regular ni F17. Tasas de lectura del 1-2 %: no son la region
+certificada uniforme ni un umbral. La referencia exacta de esta instancia
+cuesta segundos: ninguna ventaja de coste se extrapola; no es G4.

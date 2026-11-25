@@ -1,0 +1,275 @@
+H5-A · Primer contacto aislado y franjas de los datos originales en (3,4)
+22 de noviembre de 2026
+
+Para el producto de una semilla binaria de peso de columna 3 y peso de
+fila 4 consigo misma se obtiene acceso a las particiones filtradas en
+
+                    0 ≤ p ≤ 10⁻⁸,          0 ≤ q ≤ 10⁻³.                (1)
+
+El extremo anterior de p al mismo q era 2.5·10⁻⁹. Se usa una ronda
+Bernoulli independiente, la familia completa de candidatos FGL de SSF,
+β=1/100, máximo global de descenso por tamaño de huella y el desempate
+fijo del manuscrito. El filtro impone síndrome físico residual cero. La
+prueba cubre cualquier tamaño de semilla, máscara y subhost inducido J,
+con las convenciones de oráculo y orden del manuscrito. La transferencia
+a error relativo para un fallo silencioso positivo requiere también el
+testigo lógico y las condiciones del Teorema 1.
+
+Con presupuesto α=.001 la fila de todas las componentes es <.00003134
+en (1). En p=2.5·10⁻⁹, q=10⁻³, la parte con al menos tres componentes
+originales es <4.90·10⁻⁷ con esta misma inclinación. Sigue abierta la
+fila completa en p=10⁻⁶, q=10⁻³. La aritmética se ha reproducido con
+enteros y fracciones. Queda pendiente la revisión matemática independiente.
+
+1. Cuándo un dato aislado necesita otro paso
+===========================================
+
+Usar los núcleos del §1 de H5A_3_4_fondo_pasivo.txt. Denotar por E los
+datos originales, por D las medidas activas del núcleo y por ψ_x la
+huella de un dato. D es estable porque la ejecución filtrada termina en
+D. Los datos se agrupan por componentes del grafo G[E] de lectores
+originales. Un rectángulo P_g que toca dos huellas originales las enlaza
+en G. Fijar un generador contenedor por cada acción. Un paso es cercano
+si P_g toca la unión O de las ψ_x y lejano en el resto de los casos.
+Su coste es 1 o λ=11, respectivamente.
+
+Sea x una componente original de un dato. Poner n=|ψ_x| y
+b_x=n−2|D∩ψ_x|. Por paridad existe un primer paso F_x que conmuta alguna
+celda de ψ_x. El argumento de primer contacto de
+H5A_3_4_primer_contacto.txt, §1, da δ_x≥b_x para su descenso entero.
+Llamaremos simple a x si δ_x=b_x y F_x es el único paso de la ejecución
+cuyo rectángulo contenedor toca ψ_x.
+
+En este caso δ_x=b_x>0. Como las huellas de los demás originales
+evitan ψ_x, todas las celdas de ψ_x tienen paridad distinta al inicio
+y al final. Sólo F_x las puede conmutar, así que ψ_x⊆φ_Fx. En el primer
+contacto su singleton aún compite con puntuación b_x/n. Por tanto
+δ_x/|φ_Fx|≥b_x/n, que da |φ_Fx|≤n y φ_Fx=ψ_x. Una acción FGL con
+huella de tamaño 3 o 4 tiene un solo qubit. El sitio corregido puede
+ser x u otro con la misma huella. Estos dos sitios leen exactamente los
+mismos rectángulos y tienen la misma vecindad cerrada en G por la
+descripción del host en H5A_grados_3_4_cotas_y_obstruccion.txt, §2.
+
+Para obtener un presupuesto de generadores empezar con λ veces el
+descenso total. Cada paso cercano permite descontar λδ−1 y cada paso
+lejano cuesta a lo sumo λδ. El saldo inicial de un aislado es λb_x.
+Descontar λδ_x−1 por su primer paso deja a lo sumo 1. Para un aislado
+excepcional (el complemento de los simples) se gana al menos λ−1 más.
+
+  • Si δ_x>b_x, la diferencia de enteros es al menos 1 y el descuento
+    del propio F_x ya aporta λ unidades adicionales.
+  • Si δ_x=b_x, hay un segundo paso cuyo P_g toca ψ_x. Es cercano, su
+    descuento es ≥λ−1 y su rectángulo evita las huellas de todos los
+    demás originales. Se le asigna una sola vez a x.
+
+En ambos casos los pasos reservados para x son distintos de los que
+dan créditos a otras componentes. Así, el aporte de un aislado
+excepcional al presupuesto total es ≤2−λ, que aquí vale −9. El signo
+expresa una disminución del presupuesto total disponible para los demás
+pasos. Se aplica a la ejecución completa.
+
+En los simples retirar del registro el generador de F_x. Este generador
+tiene un solo uso porque todo otro uso contaría como segundo paso.
+Su huella ψ_x queda en O. Por ello no puede ser la causa de un primer
+uso lejano que necesita una luz fuera de D y fuera de O. Ningún otro
+generador cercano puede tener a x como padre. Los contactos físicos de
+su sitio corregido se representan por x debido a la igualdad de
+vecindades. Sus posibles etiquetas de medida pertenecen a ψ_x y se
+guardan en x. Al retirar este paso del coste también se retira la unidad
+presupuestada por el simple. Su coste en generadores retenidos queda en 0.
+La ejecución real, su soporte, el filtro y la marca se recuperan de E,D
+mediante el decodificador. La contracción sólo se usa en el recuento.
+
+2. Cuántos primeros apagados caben en la misma franja
+=====================================================
+
+Para una componente no aislada A de datos originales, asignar cada
+check de (H_X A) fuera de D a un solo dato de A que lo lee. Sea r_i el
+número de checks asignados al dato i que todavía no se apagaron por
+primera vez. Poner n_i=3 para VV y n_i=4 para CC. Antes de un paso de
+área v con h luces se cumple n_i h≥r_i v por la comparación global con
+el singleton i. Si éste tuviera puntuación inferior al umbral, la misma
+desigualdad se sigue de la elegibilidad del ganador.
+
+Para VV(i,j) las celdas de su huella tienen la misma primera coordenada
+i. Dos VV con i distinto siempre ocupan filas distintas cuando el mismo
+rectángulo los lee. Para CC(r,c) la coordenada fija es la segunda, c.
+Esta igualdad o distinción entre cada par de datos persiste durante
+toda la ejecución. Guardar la partición por primera coordenada entre
+los VV de A y la partición por segunda coordenada entre sus CC.
+
+Sea a_i≤r_i el número de primeros apagados atribuidos a la fuente i en
+un paso que da al menos uno. Su suma es ≤h. Para cada bloque VV sumar
+sus a_i. Los bloques de suma positiva deben poder colocarse en filas
+distintas con al menos esas luces en φ. Se comprueba comparando demandas
+y capacidades ordenadas de mayor a menor. La misma condición vale con
+los bloques CC y las columnas. Las dos comparaciones por separado son
+condiciones necesarias aunque una celda esté en el cruce de una fila
+y una columna. Considerar todas las asignaciones que pasan ambas da un
+mayorante de las ejecuciones posibles.
+
+Si algún r_i=n_i, su singleton ha sido perfecto desde el comienzo. Todos
+los ganadores anteriores y el actual sólo apagan luces. Las luces del
+paso fuera de D son entonces luces originales todavía pendientes y
+pertenecen a A porque el rectángulo ya toca A. La estabilidad impone
+|D∩φ|≤⌊v/2⌋ para β=.01 y v≤12. En este caso exigir también
+Σ a_i≥⌈v/2⌉. Para cada par fijo de particiones usar el descuento
+
+       L(0)=0,   L(r)=min [11(2h−v)−1 + L(r−a)],   Σ a_i≥1.            (2)
+
+La minimización recorre las condiciones precedentes y todos los perfiles
+locales ganadores, incluidos los empates. Se obtienen de las 101 acciones
+FGL en las 4096 máscaras del rectángulo 4×3. El siguiente primer apagado
+en A tiene una transición admitida. Inducir en Σr_i prueba la cota (2).
+Se descuenta en una sola componente por paso. El saldo inicial de
+descenso de A es ≤Σr_i inicial. Para un par disjunto vale exactamente
+2Σr_i−Σn_i. Maximizar once veces el saldo menos L(r) y luego tomar el
+mayor sobre las particiones admisibles da los presupuestos siguientes.
+
+  Datos originales          Número de CC de izquierda a derecha
+  Tres                      37, 37, 47, 48
+  Cuatro                    49, 49, 60, 61, 71
+
+  Par              Disjunto, distinta franja fija    Disjunto, misma     Solapado
+  VV–VV                            3                        14                24
+  VV–CC                           14 (cualquier posición)                     24
+  CC–CC                           14                        25                25
+
+Para los pares mixtos y el solapado VV se conservó la cota ya probada
+en H5A_3_4_fondo_pasivo.txt. Para pares CC solapados se usó el máximo
+de 11Σr_i−L(r) incluso con asignaciones iniciales arbitrarias. Para
+cinco o más datos originales se conserva el presupuesto de aquella nota,
+14 por VV y 59/3 por CC. Así se cubren grupos de cualquier cardinalidad.
+
+En un par de VV con igual primera coordenada sólo hay ≤64 posiciones
+para el segundo VV adyacente, por la bola de radio Tanner 4 de la otra
+coordenada. Para dos CC con igual segunda coordenada hay ≤57. Para el
+par solapado se conservan las filas (9,9) y (16,8). Con t el precio de
+un generador cercano, los factores de posiciones y coste de cada par son
+
+  P_VV,VV = 640/t³ + 64/t¹⁴ + 9/t²⁴,    P_VV,CC = 441/t¹⁴ + 9/t²⁴,
+  P_CC,VV = 784/t¹⁴ + 16/t²⁴,            P_CC,CC = 513/t¹⁴ + (57+8)/t²⁵.
+
+Estas sumas admiten sobreconteo. Las bolas del árbol de Tanner siguen
+siendo cotas para semillas con ciclos.
+
+3. Suma de todas las cardinalidades
+===================================
+
+Usar el fondo pasivo y la norma de H5A_3_4_fondo_pasivo.txt, §§1–4.
+Sus mayorantes son b=.00117 por medida pasiva, η=.0001, B=1297U y
+z=x(p)exp(α), y_q=x(q), con x(r)=r exp(.015)/(1−2r). Los precios C_i
+y s satisfacen las ecuaciones (5)–(6) de esa nota. Para las ramas de
+generador fijar r=.9742, a=r⁵, t=a³ e Y=t¹¹. Se tiene 36Y<1. Los
+techos por capas (j,f_V,f_C,k_V,k_C,m_V,m_C,m_g) son
+(182,2578,3058,3437,2294,420,501,1149).
+
+El árbol causal, la adición de puentes y la compresión se hacen como en
+H5A_3_4_dos_medidas.txt, §4, después de la retirada de los simples.
+Un átomo de dato simple sólo admite las marcas de su propia ψ y los
+puentes hacia generadores retenidos. No tiene enlace directo con otro
+original ni generador causal hijo. Poner g=u_n+u_f, M=(1344,1596),
+J=(30,36) y escribir
+
+      S_i = C_i(1+s)^n_i exp(M_i g),
+      V_i = (1+s)^n_i exp(M_i g + J_i v_n + t f_i v_f + t m_i s).
+
+S_i es la masa para una raíz original simple. Denotar por h_i la masa
+de las otras entradas originales (aislado excepcional o grupo de al
+menos dos) y por u_i una cota de S_i+h_i. Al llegar a un dato en busca
+del padre de un generador causal, sólo se permiten entradas h_i.
+
+Para un grupo de dos la suma desde un original de tipo i es
+C_i V_i Σ_j P_ij C_j V_j. Para tres y cuatro usar los coeficientes
+N_i(v,c) de los árboles de aristas directas entre los originales,
+
+      T_i=z_i exp(Σ_j A_ij T_j),       A=((640,441),(784,513)),
+      N_i(v,c)=[z_V^v z_C^c] T_i.
+
+Por posiciones opcionales se obtiene un mayorante coeficiente a
+coeficiente. Las ramas exteriores de cada dato ya están incluidas en V_i.
+La fila de tamaños 3 y 4 es la suma de
+N_i(v,c)(C_V V_V)^v(C_C V_C)^c/t^k(v,c), con k tomado del §2.
+
+Para la cola de cinco en adelante congelar valores superiores racionales
+de V_i y poner w=(C_V V_V/t¹⁴,C_C V_C/a⁵⁹). Si
+d_i≥w_i exp(Σ_j A_ij d_j), la serie positiva de todos los árboles con
+estos pesos está acotada por d, por iteración desde cero. Sus términos
+de grados 1 a 4 son los coeficientes anteriores evaluados en w. Por tanto
+un mayorante de la cola completa, con las mismas V_i en ambos términos, es
+
+    K_i = w_i exp(Σ_j A_ij d_j) − Σ_{1≤v+c≤4} N_i(v,c) w_V^v w_C^c.    (3)
+
+Esto sigue siendo una cota al redondear por exceso la exponencial inicial.
+El verificador comprueba también que (3) domina todos los coeficientes
+de grado 5. La fila h_i suma el aislado excepcional C_i t⁹ V_i, el par,
+los dos órdenes del §2 y (3).
+
+En las ramas con generador escribir
+
+    L=j v_f+Y m_g s,    G₀=(1+s)¹² exp(1792u_V+1197u_C+3648g+L),
+    H_n=40h_V+27h_C,    H_f=j(c_n+c_f)+t(k_V h_V+k_C h_C).
+
+Se imponen u_n≥tH_nG₀, u_f≥YH_fG₀, v_n≥t(G₀−1−L−12s),
+v_f≥Y(G₀−1−L−12s), c_n≥tH_n(G₀−1) y c_f≥YH_f(G₀−1).
+La entrada por puente sigue admitiendo todo dato original u_i.
+La poda y la compresión suprimen las mismas clases de ramas que en la
+nota de dos medidas. Los hijos exteriores en S_i,V_i,G₀ se mayoran
+por estas constantes. Por inducción en la altura del árbol se aplican
+las filas a todo núcleo finito.
+
+Cuando el ancla es un dato visitado, puede ser el sitio corregido de un
+simple con otro original de idéntica huella. Para VV hay ≤4 originales,
+incluido el ancla, al elegir un check de su segunda coordenada. Para CC
+hay ≤3 al elegir una variable de la primera. No hay igualdad entre
+tipos de distinto tamaño de huella. Basta, por consiguiente, imponer
+
+         U≥max(u_V+3S_V+3g, u_C+2S_C+4g).
+
+Las demás posibilidades son un original o un sitio de algún generador
+retenido. Para un ancla exigida en los originales bastan u_V,u_C.
+
+4. Valores reproducidos y siguiente obstáculo
+===========================================
+
+Los testigos racionales completos figuran en verificar_H5A_3_4_franjas.py.
+Con U=.00000285918840032462, los dos auxiliares d tienen cocientes
+<.999999991, y las demás filas de núcleos tienen cocientes <.99875.
+El cociente de la desigualdad pasiva (4) de la nota del fondo es <.984.
+Los valores de (3) son <1.156·10⁻¹⁰ desde VV y <1.735·10⁻⁹ desde CC.
+La fila integrada, extraída por las marcas de cada componente original
+como en §4 de esa misma nota, satisface
+
+      max(640u_V+441u_C,784u_V+513u_C) < .00003134 < α=.001.            (4)
+
+Se incluye cualquier número de componentes y medidas. En p'=2.5·10⁻⁹
+el cociente x(p')/x(10⁻⁸) es ≤1/4. Los bloques de tres o más componentes
+contienen al menos tres datos y su carga en esa esquina queda acotada
+por (1/4)³ veces el valor efectivo de (4), <4.90·10⁻⁷. Las condiciones
+son monótonas en las actividades físicas y dan todo el rectángulo (1).
+Para N sitios y truncamiento de grado total m en las fuentes permanece
+la cola ≤N exp[−.015(m+1)] y la evaluación del apéndice A del manuscrito.
+
+Ya se identifica una pérdida a p=10⁻⁷ con q=.001, con el precio t,
+b y presupuesto α de esta nota. En el mayorante de la cola hay un término
+de cinco CC con N_C(0,5)=(125/24)513⁴. Con V_C≥1 y
+C_C≥p exp(536b)≥p(1+536b), la fila de estos árboles en el mayorante
+es ≥513 N_C(0,5)[p(1+536b)/a⁵⁹]⁵ >.00117. Incluso optimizando los
+testigos interiores con esos precios, esta fila supera .001. El cálculo
+localiza la pérdida en la estimación de grupos CC de cinco en adelante.
+Para avanzar hacia 10⁻⁶ interesa una cota de la propagación de estas
+franjas válida para grupos arbitrariamente grandes. El coste por CC a
+partir de cinco también conserva, si se mantiene λ=11, el techo general
+en el precio base descrito en §5 de H5A_3_4_fondo_pasivo.txt.
+
+Reproducción desde 05_COMPROBACIONES
+====================================
+
+    python -I -B -X utf8 verificar_H5A_3_4_franjas.py
+
+El cálculo necesita los verificadores previos incluidos en el paquete.
+El antecedente del decodificador con medidas ruidosas es O. Fawzi,
+A. Grospellier y A. Leverrier, Constant overhead quantum fault-tolerance
+with quantum expander codes, https://arxiv.org/abs/1808.03821. Las
+desigualdades y los extremos numéricos de esta nota son específicos del
+modelo, filtro y orden de selección indicados en (1).

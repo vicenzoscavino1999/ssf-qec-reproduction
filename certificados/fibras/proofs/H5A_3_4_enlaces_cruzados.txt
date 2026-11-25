@@ -1,0 +1,247 @@
+HGP (3,4) · Enlaces cruzados y grupos de origen de posición libre
+23 de noviembre de 2026 · Derivación para revisión matemática independiente
+
+Resultado y alcance
+-------------------
+En el modelo de H5A_3_4_reunion_de_ramas.txt se suman ahora redes con un
+número arbitrario de enlaces cruzados entre dos ramas, incluso anidados.
+En cualquier paso se pueden incorporar árboles de otros grupos originales.
+Se suman sus posiciones, los tamaños de esos grupos y los pasos de sus árboles.
+Cada grupo de posición libre aporta una salida cercana inicial. Una salida
+es el conjunto de uno o dos checks que enciende una ocurrencia. La primera
+fila de abajo corresponde al caso sin grupos de posición libre.
+
+Fijar una salida antes de revelar las medidas. Sea h≥1 el número mínimo de
+ocurrencias lejanas distintas exigidas en la red, incluidos los árboles
+móviles. En la tabla se acota la suma de pesos de existencia desde esa
+salida por C t^(−h). Para pesos de probabilidad también acota la probabilidad
+conjunta de existencia. u es el peso máximo por dato original y z≤0.0012
+la tasa independiente de los checks relevantes. La ocurrencia inicial y los
+pasos cercanos que producen las salidas de otros grupos se dejan sin inclinar.
+
+   u por dato      t       C desde una celda      C desde cualquier salida
+   0               2             0.0211                    1.292
+   0.00000101      8/5           0.0179                    0.757
+   0.000004        7/5           0.0198                    0.987
+
+La segunda fila cubre el peso físico de los datos a p=10⁻⁶, q=10⁻³.
+En el circuito también cubre r_c=10⁻⁷, r_m=10⁻³, en cualquier orden de
+columnas admitido. La descomposición en fibras independientes de fase 5
+da peso total de etiqueta de dato ≤(1−2r_c/3)^(−9)(1−8r_c/15)^(−3)−1
+y tasa propia por check ≤r_m+5·2r_c/3+7·4r_c/(15−8r_c). Las etiquetas de
+datos se fijan antes de cobrar los checks. En Bernoulli basta incluso para
+el peso de dato p/(1−2p). La tercera fila permite un precio por dato mayor.
+Todas las cotas valen a tasas menores, en cualquier tamaño y en los subhosts
+del contrato. Se usa la competición completa SSF/FGL de la nota anterior.
+
+La fila de las particiones filtradas en G3 abarca otras historias y
+marcas. Para su complemento de v14 todavía basta 0.00078558 y su peso
+sigue abierto. Los extremos generales de v19 son p≤5.05·10⁻⁷ a q≤10⁻³,
+r_c≤9.1·10⁻⁸ con VV primero y r_c≤8.3·10⁻⁸ en cualquier orden, a r_m≤10⁻³.
+
+1. Qué historias se suman
+-------------------------
+En una ocurrencia con huella F se apagan H y se encienden F fuera de H.
+Una entrada heredada la suministra el último paso que encendió ese check.
+Un bit inicial intacto cobrado en H se apaga en esa ocurrencia y no puede
+volverse a cobrar. En un paso lejano, por estabilidad del fondo, al menos
+una entrada es heredada. Se reutilizan los 771 pares (H,F) de v17.
+
+La parte iniciada en la salida fija se construye con las siguientes operaciones.
+Un paso puede avanzar desde una salida. En una salida doble se pueden poner
+sus dos celdas en ramas distintas. Cada rama admite a su vez una red de la
+misma clase o un trayecto vacío. Las ramas pueden terminar en una reunión
+que recibe una celda distinta de cada lado. Si ambas vienen del mismo padre
+sin pasos intermedios, esa reunión se registra como un paso desde ese padre.
+
+También se puede avanzar una rama hasta una salida doble, guardar una de
+sus celdas y llevar la otra, directamente o por otra red, a una reunión con
+la rama opuesta. Después del cruce quedan disponibles la celda guardada y
+la nueva salida de la reunión. La operación se repite en cualquiera de
+los dos sentidos. Para cerrar la pareja se usa una reunión final. El ejemplo
+mínimo tiene aristas s→a, s→b, a→b, a→v y b→v. El paso a se registra una
+vez aunque su salida intervenga en b y en v. Se permite la composición en
+serie y la sustitución recursiva de cada tramo por estas redes.
+
+En cualquier paso de la parte anterior pueden entrar uno o más árboles
+temporales adicionales. Sus raíces de procedencia son salidas cercanas
+de grupos originales distintos. Cada ocurrencia de un árbol móvil entrega
+su contribución a un único sucesor y puede darle una o dos luces. Un
+sucesor puede reunir tantos padres distintos como permitan sus entradas.
+Los interiores de las piezas y sus grupos son disjuntos salvo los puntos
+de unión prescritos. Se permiten centros repetidos e intercalaciones en
+el tiempo. Los bits de H ajenos a las salidas de los padres y a las
+franjas originales del paso cercano proceden de medidas intactas.
+
+Más precisamente, por cada familia de grupos móviles se cuenta el evento
+de que exista un registro de esa familia. Se puede ponderar por el producto
+de u^|A| sobre sus grupos A. En las realizaciones, las fuentes de datos
+son distintas y también lo son todos los bits de medida que se cobran.
+Sólo después de asignar ese peso se permite en la suma formal que las
+posiciones se solapen. No se condiciona en el éxito de un ancestro ni se
+paga por el número de ordenaciones temporales de unas mismas ramas.
+
+2. Coste de un grupo que emite en un lector fijado
+--------------------------------------------------
+Los tipos de salida son 1, c y d (una celda, dos en una columna, dos en
+diagonal). En un lector hay respectivamente 12, 18 y 36 máscaras de
+esos tipos. Ninguna salida tiene dos luces en la misma fila. Para cada
+máscara b se cuenta un grupo A que emite en el lector. El grafo G de los
+datos tiene grado ≤1297. Por árboles etiquetados, la suma de grupos que
+contienen un dato fijado es a lo sumo L=u/(1−3·1297u). Para n datos el
+término está acotado por n^(n−2)1297^(n−1)u^n/(n−1)!. La razón entre
+términos de esta serie es ≤e·1297u<3·1297u.
+
+Si en el lector hay al menos dos datos de A, elegir un par visible. Sus
+dos vértices son vecinos en G. Extender esa arista a un árbol de A y
+cortarla da dos conjuntos conexos enraizados. El precio es ≤(67 elige 2)L²
+porque hay hasta 40 VV y 27 CC visibles. Si sólo hay uno, sea V el trozo
+de su franja visible en el rectángulo. Para cada ganador que produce b,
+H fuera de V debe estar inicialmente encendido por medidas intactas. Basta
+sumar z^|M| sobre los conjuntos M mínimos por inclusión entre esos H fuera
+de V. Esto da w_b(V). Cada testigo mínimo cobrado es subconjunto de las
+medidas que apaga esa ocurrencia. Varios testigos admisibles se pueden
+desempatar. El resto del grupo se cuenta con L.
+
+Para sumar w_b(V) por línea de un lector, existe un dato central que ve
+toda la línea. En una fila VV cada celda admite tres datos más y en una
+columna CC admite dos más. Se maximiza la suma de w_b(V) sobre multiconjuntos
+de subconjuntos no vacíos de la línea con estas capacidades por celda.
+Cada dato extra consume una unidad en cada celda de su V. El programa
+hace la maximización exacta y suma las siete líneas. Los factores por
+tipo son menores que 7.012068, 0.000051896 y 0.007277993. Denotar por e_i
+el precio resultante al multiplicar el factor exacto por L y añadir el
+término del par. Se usa cada grupo una sola vez incluso si tiene más de
+un dato visible.
+
+3. Suma inversa de árboles con orígenes libres
+----------------------------------------------
+Sea g_i una cota de la masa asignada al estado (lector, máscara) terminal
+de tipo i. Una celda y tiene ≤12 lectores y en cada uno hay (1,3,6)
+máscaras de esos tipos que contienen y. Una pareja y,x en filas distintas
+tiene ≤12 lectores y en cada uno determina una sola máscara. En la misma
+fila no la puede suministrar un solo padre. Así se cuenta un grupo
+ancestral una vez si aporta las dos luces. Sea B(H) la suma sobre
+particiones de H en bloques de uno o dos sitios con los precios siguientes.
+
+  Un sitio                  z+12(g_1+3g_c+6g_d).
+  Dos en la misma columna   12g_c.
+  Dos en diagonal           12g_d.
+  Dos en la misma fila      0.
+
+Se evalúa separando el bloque de la primera celda de H. Con m(F)=3 para
+una fila, 4 para una columna y 1 para las demás huellas, basta verificar
+
+  g_i ≥ e_i + t Σ_{F fuera de H = b_i} [B(H)−z^|H|]/m(F).
+
+La resta retira la asignación sin padre de un paso lejano. La órbita de
+la máscara b_i fija el tipo. En una realización un ganador físico de
+franja puede representarse en los m(F) lectores de esa franja. Al
+distribuir su peso entre ellos se amplía la cuenta a todos los lectores,
+incluso si alguno no habría sido la etiqueta física elegida. Los checks
+de la huella y la genealogía cobrada no cambian. El precio de la salida
+cercana inicial e_i usa el lector físico sin dividir. La inducción por
+altura incluye árboles de tamaño arbitrario.
+
+Si ya hay padres situados con unión visible S, se permite precio 1
+en vez de z para la opción de monómero sin grupo móvil en las celdas
+de H∩S. Las demás opciones, incluidos los pares y las entradas móviles
+en esas mismas celdas, se conservan. El precio total es
+
+  B_S(H) = Σ_{D⊆H∩S} (1−z)^|D| B(H fuera de D).
+
+La identidad sale al expandir el incremento de precio en cada monómero.
+Para argumentar monotonía en la tasa se usa la definición por bloques,
+en la que el precio base es z fuera de S y uno en S. El programa evalúa
+todas las expresiones en z=0.0012.
+
+4. Reuniones y repetición de cruces
+-----------------------------------
+U_is suma un paso desde una salida situada de tipo i hasta el tipo s,
+incluida la salida 0. Exige H∩S no vacío y usa B_S(H)/m(F). Una celda
+está en ≤12 lectores. Para dos celdas, con k lectores dobles, quedan
+≤24−2k simples. La expresión afín se mayora en k=0,12.
+
+Para J_ij,s se fija una celda del primer padre en H y se exige en H otra
+celda distinta del segundo padre. Hay ≤12 lectores de la primera. En
+cada uno se maximiza B_(A∪B)(H) sumado sobre los ganadores compatibles y
+dividido por su multiplicidad, con las dos máscaras situadas en el mismo
+rectángulo. Para mayorar puede completarse una máscara parcial a una del
+mismo tipo en ese lector. Se multiplica por el número de opciones de la
+primera celda y se toma el mínimo de las dos orientaciones. Así se suma
+el cierre físico sin elegir una posición independiente para cada brazo.
+
+Z_is cuenta redes no vacías desde una salida fija. T_js cuenta las redes
+que cierran la pareja expuesta (una celda, tipo j). Todos los pasos
+lejanos llevan t. Los índices k,l siguientes son tipos no vacíos.
+
+  P_ik = 1_{i=k}+Z_ik,     D_i=P_ic+P_id,
+  C_js = Σ_kl P_1k P_jl J_kl,s,
+  X_jk = 2t [D_1 C_jk + D_j C_1k].
+
+En X se elige cuál rama da una salida doble y cuál de sus dos celdas
+viaja. La que se guarda queda disponible tras la reunión. La matriz T
+satisface la mayoración si T≥tC+XT. Desde la salida doble de un único
+padre el precio de bifurcar y cerrar es
+
+  B_s^fork = t(C_1s−J_11,s) + (XT)_1s.
+
+La resta conserva los brazos en que alguno ha avanzado antes de la
+reunión sin cruce. El segundo término permite cualquier número positivo
+de cruces. Si M_is=tU_is+1_{i=c,d} B_s^fork, basta Z≥M+M_+Z, donde
+M_+ conserva las columnas no vacías. Las tres desigualdades de g,T,Z
+tienen coeficientes no negativos al desarrollar las dos restas. La
+inducción sobre construcciones finitas domina cada red incluso con
+cruces dentro de sus propios brazos. Quitar t^h da la tabla inicial.
+
+Con u=0.00000101, t=8/5 y v=(1,800,800), se verifica Xv≤0.368v.
+Por positividad X^k v≤0.368^k v para todo k. Esta contracción cuenta
+cruces sucesivos de la pareja expuesta, con las redes interiores ya
+sumadas en sus brazos. Las sumas de las filas de Z son, redondeadas,
+0.0178882849, 0.7560679000 y 0.7440997423. Si se fija el lector físico
+cercano de inicio y también se paga el grupo que origina la primera
+salida, la cota para la misma red es 1.817·10⁻⁶ (5/8)^h. Resulta de
+Σ_i (12,18,36)_i e_i Σ_s Z_is. Para un árbol móvil cuyo último paso
+lejano ocurre en un lector físico fijado, el precio es
+<4.299·10⁻⁶ (5/8)^h al sumar t Σ_(H,F)[B(H)−z^|H|] sin dividir en el
+último lector. Estas cantidades tienen anclas distintas de la fila que
+se compara con el presupuesto 0.00078558.
+
+5. Una fuente con varias salidas y el resto de G3
+------------------------------------------------
+Para un dato aislado se obtiene además una restricción si k pasos
+cercanos pertenecientes a ese mismo dato tienen salida no vacía y
+ninguna de sus entradas viene de un encendido anterior. Sin medidas
+exteriores, H quedaría en la franja del dato. Cada ganador de este tipo
+usa al menos dos de los tres sitios VV o tres de los cuatro CC. El
+catálogo lo verifica. Los H de esos k pasos son disjuntos en sus entradas
+iniciales. A lo sumo uno puede utilizar sólo esa franja. Además cada H
+tiene al menos dos sitios. Por ello se requieren al menos
+
+  m_k = max(0, k−1, 2k−|ψ_x|)
+
+bits de medida distintos fuera de la franja. El grupo se cobra una vez.
+Desde x fijado estos bits están entre ≤207 sitios VV o ≤248 CC, por las
+bolas de 210 y 252 checks de v4. Para el evento de existencia basta
+u min(1,(N elige m_k) z^m_k), con valor cero si m_k>N. Para incorporarlo
+a la fila falta situar las salidas conjuntas y enlazarlas a sus respectivos
+sucesores. Queda justificar la cobertura de los DAG con conexiones entre
+tres o más ramas ya emparentadas y llevar las marcas de soporte, la
+exposición y las fijaciones de las particiones a la fila global.
+
+En el ensayo radial de v16 la actualización del histograma permite otra
+comprobación. Cada enlace de la cadena de tríos CC de saldo cuatro puede
+tener longitud 11 o 12. Los cortes se hacen sólo en umbrales pares, de modo
+que el mismo perfil n₀=n₁=n₃=m sirve a cualquier secuencia de longitudes.
+Las seis parejas de capas de (4) para longitud 11 y las once positivas
+para longitud 12 dan el factor 2916·10^(−18)·64(6·6^14+11·6^15)
+=4016775629952/3814697265625>1. La divergencia es de esa suma formal.
+
+Reproducción desde 05_COMPROBACIONES
+------------------------------------
+    python -I -B -X utf8 verificar_H5A_3_4_enlaces_cruzados.py
+
+Las capacidades por celda, los 771 ganadores, su simetría y las
+desigualdades finales se comprueban con enteros y fracciones. Las
+iteraciones redondean hacia arriba a una rejilla racional y después
+recomprueban cada desigualdad sin redondeo.

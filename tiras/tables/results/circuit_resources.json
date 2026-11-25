@@ -1,0 +1,58 @@
+{
+ "nota": "tiempos de reloj y memoria; no deterministas; no son resultado",
+ "etapas": [
+  {
+   "etapa": "sello",
+   "segundos": 0.051
+  },
+  {
+   "etapa": "previa",
+   "segundos": 2.833
+  },
+  {
+   "etapa": "capacidad",
+   "segundos": 15.609
+  },
+  {
+   "etapa": "trabajo",
+   "segundos": 5.038
+  },
+  {
+   "etapa": "rival_circuito",
+   "segundos": 213.442
+  },
+  {
+   "etapa": "DP",
+   "segundos": 15254.19
+  },
+  {
+   "etapa": "evaluacion",
+   "segundos": 12.113
+  },
+  {
+   "etapa": "decisiones",
+   "segundos": 1.008
+  },
+  {
+   "etapa": "llamadas",
+   "segundos": 0.0
+  }
+ ],
+ "capacidad": {
+  "segundos": 15.0,
+  "tasa_un_proceso": 22363508.00272247,
+  "tasa_total": 139242811.94936538,
+  "procesos": 14,
+  "nucleos_efectivos": 6.2263403367850145,
+  "nota": "bucle aritmetico; informativo"
+ },
+ "pico_memoria_principal_bytes": 427839488,
+ "pico_memoria_total_bytes_por_etapa": {
+  "lectura": 3860770816,
+  "dp": 2886721536
+ },
+ "techo_memoria_total_bytes": 25769803776,
+ "disco_max_carpeta_corrida_bytes": 2329896,
+ "techo_disco_bytes": 60000000000,
+ "segundos": 15504.641
+}

@@ -1,0 +1,834 @@
+{
+ "checks": [
+  {
+   "detail": {
+    "k_completados": 5,
+    "sellado": "2026-11-12T15:31:54.532840-05:00",
+    "sha256": "654367777c23c83cdc6cccbbdb756544f85cca57ad0e86a680d6deec473304e9"
+   },
+   "name": "S1 la estimacion existe, esta sellada, su hash coincide con el sello y el estimador no ha cambiado",
+   "pass": true
+  },
+  {
+   "name": "S2 archivos de anclaje sin cambios (verificador de la unidad 2, espectros del piloto, paquete de observables)",
+   "pass": true
+  },
+  {
+   "name": "R0 H_Z tiene rango 12 y L=15 es un logico: sindrome nulo y fuera de S_X",
+   "pass": true
+  },
+  {
+   "name": "R0b S_X tiene 4096 elementos distintos",
+   "pass": true
+  },
+  {
+   "detail": [],
+   "name": "R1 la referencia coincide como fraccion exacta con los valores publicados (P_0, P_sil, Q_sil) en los tres pares de tasas",
+   "pass": true
+  },
+  {
+   "name": "R2 con D=0 los enumeradores reproducen los espectros por peso del piloto (sindrome nulo y fallo silencioso)",
+   "pass": true
+  },
+  {
+   "name": "S3 la estimacion declara que no leyo referencia ni resultados de otras unidades",
+   "pass": true
+  },
+  {
+   "detail": [],
+   "name": "E1 los valores exactos de P_0, P_sil y Q_sil estan dentro de sus intervalos para todo k completado y los tres pares",
+   "pass": true
+  },
+  {
+   "detail": [],
+   "name": "E3 el error real del valor informado no supera el error garantizado (todo k con L>0)",
+   "pass": true
+  },
+  {
+   "name": "E4 L_k no decrece y eps_k no crece con k",
+   "pass": true
+  },
+  {
+   "detail": {
+    "1/100|0": 3,
+    "1/100|1/200": 3,
+    "1/50|1/100": 4
+   },
+   "name": "E5 en el par principal existe k* y cumple el objetivo: error garantizado de P_sil <= 10 % (no alcanzarlo se informa; no detiene)",
+   "pass": true
+  }
+ ],
+ "checks_failed": 0,
+ "checks_total": 11,
+ "contraste_por_k": [
+  {
+   "L": "8.077474333150E-1",
+   "U": "8.927842594154E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "5.000602250690E-2",
+   "error_real": "4.274449086272E-3",
+   "exacto": "8.445297701410E-1",
+   "k": 1,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "0.000000000000E+12",
+   "U": "8.503682610038E-2",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "exacto": "4.651657118163E-3",
+   "k": 1,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "0.000000000000E+12",
+   "U": "9.524902035802E-2",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "exacto": "5.507984777596E-3",
+   "k": 1,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "9.097989066238E-1",
+   "U": "9.342489645311E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "1.325890628427E-2",
+   "error_real": "1.043321741678E-3",
+   "exacto": "9.209010489779E-1",
+   "k": 1,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "0.000000000000E+12",
+   "U": "2.445005790735E-2",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "exacto": "1.278552050725E-3",
+   "k": 1,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "0.000000000000E+12",
+   "U": "2.617081616957E-2",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "exacto": "1.388370718161E-3",
+   "k": 1,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "9.495540813975E-1",
+   "U": "9.664140831901E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "8.799729611498E-3",
+   "error_real": "1.816068627386E-3",
+   "exacto": "9.596526957191E-1",
+   "k": 1,
+   "par": "1/100|0"
+  },
+  {
+   "L": "0.000000000000E+12",
+   "U": "1.686000179261E-2",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "exacto": "1.341162577133E-3",
+   "k": 1,
+   "par": "1/100|0"
+  },
+  {
+   "L": "0.000000000000E+12",
+   "U": "1.744593967107E-2",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "exacto": "1.397549950222E-3",
+   "k": 1,
+   "par": "1/100|0"
+  },
+  {
+   "L": "8.401044279006E-1",
+   "U": "8.549603801238E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "8.764238483911E-3",
+   "error_real": "3.478306414956E-3",
+   "exacto": "8.445297701410E-1",
+   "k": 2,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "3.471126741578E-3",
+   "U": "1.832707896479E-2",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "error_garantizado": "6.815217923589E-1",
+   "error_real": "2.547733230835E-1",
+   "exacto": "4.651657118163E-3",
+   "k": 2,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "4.059985494386E-3",
+   "U": "2.143617340740E-2",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "error_garantizado": "6.815217923589E-1",
+   "error_real": "2.394649515447E-1",
+   "exacto": "5.507984777596E-3",
+   "k": 2,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "9.202210778799E-1",
+   "U": "9.224344557638E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "1.201189176982E-3",
+   "error_real": "4.619263944534E-4",
+   "exacto": "9.209010489779E-1",
+   "k": 2,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "1.103343245069E-3",
+   "U": "3.316721128988E-3",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "error_garantizado": "5.007569339736E-1",
+   "error_real": "2.950978606240E-1",
+   "exacto": "1.278552050725E-3",
+   "k": 2,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "1.196121023206E-3",
+   "U": "3.595617128419E-3",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "error_garantizado": "5.007569339736E-1",
+   "error_real": "2.929449576882E-1",
+   "exacto": "1.388370718161E-3",
+   "k": 2,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "9.590513477398E-1",
+   "U": "9.603066366119E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "6.540149791344E-4",
+   "error_real": "2.697430849136E-5",
+   "exacto": "9.596526957191E-1",
+   "k": 2,
+   "par": "1/100|0"
+  },
+  {
+   "L": "1.165156228114E-3",
+   "U": "2.420445100202E-3",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "error_garantizado": "3.500915905441E-1",
+   "error_real": "1.729134499191E-1",
+   "exacto": "1.341162577133E-3",
+   "k": 2,
+   "par": "1/100|0"
+  },
+  {
+   "L": "1.213316854943E-3",
+   "U": "2.520491901151E-3",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "error_garantizado": "3.500915905441E-1",
+   "error_real": "1.721147299693E-1",
+   "exacto": "1.397549950222E-3",
+   "k": 2,
+   "par": "1/100|0"
+  },
+  {
+   "L": "8.440500561436E-1",
+   "U": "8.462741527198E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "1.315781058172E-3",
+   "error_real": "7.470086916461E-4",
+   "exacto": "8.445297701410E-1",
+   "k": 3,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "4.461022852615E-3",
+   "U": "6.685119428808E-3",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "error_garantizado": "1.995395823988E-1",
+   "error_real": "1.503800374287E-1",
+   "exacto": "4.651657118163E-3",
+   "k": 3,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "5.271368430996E-3",
+   "U": "7.899472537738E-3",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "error_garantizado": "1.995395823988E-1",
+   "error_real": "1.480088166016E-1",
+   "exacto": "5.507984777596E-3",
+   "k": 3,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "9.208637947893E-1",
+   "U": "9.210333040049E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "9.202968816996E-5",
+   "error_real": "5.157190265307E-5",
+   "exacto": "9.209010489779E-1",
+   "k": 3,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "1.263921317550E-3",
+   "U": "1.433430533193E-3",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "error_garantizado": "6.284282697362E-2",
+   "error_real": "5.068049865846E-2",
+   "exacto": "1.278552050725E-3",
+   "k": 3,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "1.372286226843E-3",
+   "U": "1.556328665815E-3",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "error_garantizado": "6.284282697362E-2",
+   "error_real": "5.052962704814E-2",
+   "exacto": "1.388370718161E-3",
+   "k": 3,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "9.596200564052E-1",
+   "U": "9.596962657791E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "3.970652101793E-5",
+   "error_real": "5.693580598709E-6",
+   "exacto": "9.596526957191E-1",
+   "k": 3,
+   "par": "1/100|0"
+  },
+  {
+   "L": "1.327235361283E-3",
+   "U": "1.403444735170E-3",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "error_garantizado": "2.790856899929E-2",
+   "error_real": "1.723431909241E-2",
+   "exacto": "1.341162577133E-3",
+   "k": 3,
+   "par": "1/100|0"
+  },
+  {
+   "L": "1.382974393681E-3",
+   "U": "1.462384282626E-3",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "error_garantizado": "2.790856899929E-2",
+   "error_real": "1.718813681390E-2",
+   "exacto": "1.397549950222E-3",
+   "k": 3,
+   "par": "1/100|0"
+  },
+  {
+   "L": "8.444864479174E-1",
+   "U": "8.447559014033E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "1.595114436844E-4",
+   "error_real": "1.082058112864E-4",
+   "exacto": "8.445297701410E-1",
+   "k": 4,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "4.630898098269E-3",
+   "U": "4.900351584142E-3",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "error_garantizado": "2.827053060735E-2",
+   "error_real": "2.368165230897E-2",
+   "exacto": "4.651657118163E-3",
+   "k": 4,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "5.481936368336E-3",
+   "U": "5.800908376019E-3",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "error_garantizado": "2.827053060735E-2",
+   "error_real": "2.340762471843E-2",
+   "exacto": "5.507984777596E-3",
+   "k": 4,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "9.208993594561E-1",
+   "U": "9.209097472891E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "5.640016096950E-6",
+   "error_real": "3.805365852678E-6",
+   "exacto": "9.209010489779E-1",
+   "k": 4,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "1.277745158136E-3",
+   "U": "1.288132991146E-3",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "error_garantizado": "4.048451409300E-3",
+   "error_real": "3.414797696264E-3",
+   "exacto": "1.278552050725E-3",
+   "k": 4,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "1.387481413784E-3",
+   "U": "1.398761382359E-3",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "error_garantizado": "4.048451409300E-3",
+   "error_real": "3.405320096312E-3",
+   "exacto": "1.388370718161E-3",
+   "k": 4,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "9.596512231882E-1",
+   "U": "9.596548121714E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "1.869937965065E-6",
+   "error_real": "3.354935358783E-7",
+   "exacto": "9.596526957191E-1",
+   "k": 4,
+   "par": "1/100|0"
+  },
+  {
+   "L": "1.340430586834E-3",
+   "U": "1.344019570056E-3",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "error_garantizado": "1.336952825473E-3",
+   "error_real": "7.904352384545E-4",
+   "exacto": "1.341162577133E-3",
+   "k": 4,
+   "par": "1/100|0"
+  },
+  {
+   "L": "1.396784103860E-3",
+   "U": "1.400523972797E-3",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "error_garantizado": "1.336952825473E-3",
+   "error_real": "7.882280644432E-4",
+   "exacto": "1.397549950222E-3",
+   "k": 4,
+   "par": "1/100|0"
+  },
+  {
+   "L": "8.445266007987E-1",
+   "U": "8.445528182180E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "1.552172087233E-5",
+   "error_real": "1.176887332191E-5",
+   "exacto": "8.445297701410E-1",
+   "k": 5,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "4.650036307533E-3",
+   "U": "4.676253726806E-3",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "error_garantizado": "2.811130597123E-3",
+   "error_real": "2.461713841089E-3",
+   "exacto": "4.651657118163E-3",
+   "k": 5,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "5.505915328475E-3",
+   "U": "5.536958288379E-3",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "error_garantizado": "2.811130597123E-3",
+   "error_real": "2.434356387228E-3",
+   "exacto": "5.507984777596E-3",
+   "k": 5,
+   "par": "1/50|1/100"
+  },
+  {
+   "L": "9.209009871939E-1",
+   "U": "9.209014947930E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "2.755991083218E-7",
+   "error_real": "2.085082867351E-7",
+   "exacto": "9.209010489779E-1",
+   "k": 5,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "1.278520470485E-3",
+   "U": "1.279028069607E-3",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "error_garantizado": "1.984709630270E-4",
+   "error_real": "1.737660576818E-4",
+   "exacto": "1.278552050725E-3",
+   "k": 5,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "1.388335753297E-3",
+   "U": "1.388886951361E-3",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "error_garantizado": "1.984709630270E-4",
+   "error_real": "1.732818662663E-4",
+   "exacto": "1.388370718161E-3",
+   "k": 5,
+   "par": "1/100|1/200"
+  },
+  {
+   "L": "9.596526423156E-1",
+   "U": "9.596527736443E-1",
+   "cantidad": "P_0",
+   "contenido": true,
+   "error_garantizado": "6.842512691778E-8",
+   "error_real": "1.277624864784E-8",
+   "exacto": "9.596526957191E-1",
+   "k": 5,
+   "par": "1/100|0"
+  },
+  {
+   "L": "1.341134933051E-3",
+   "U": "1.341266261767E-3",
+   "cantidad": "P_sil",
+   "contenido": true,
+   "error_garantizado": "4.895938643882E-5",
+   "error_real": "2.834634791330E-5",
+   "exacto": "1.341162577133E-3",
+   "k": 5,
+   "par": "1/100|0"
+  },
+  {
+   "L": "1.397521030401E-3",
+   "U": "1.397657880645E-3",
+   "cantidad": "Q_sil",
+   "contenido": true,
+   "error_garantizado": "4.895938643882E-5",
+   "error_real": "2.826514423701E-5",
+   "exacto": "1.397549950222E-3",
+   "k": 5,
+   "par": "1/100|0"
+  }
+ ],
+ "estimacion_informada_frente_a_referencia": {
+  "1/100|0": {
+   "P_0": {
+    "L": "9.596200564052E-1",
+    "U": "9.596962657791E-1",
+    "anchura_relativa": "7.941619537669E-5",
+    "error_garantizado": "3.970652101793E-5",
+    "error_real": "5.693580598709E-6",
+    "exacto": "9.596526957191E-1",
+    "valor_informado": "9.596581595791E-1"
+   },
+   "P_sil": {
+    "L": "1.327235361283E-3",
+    "U": "1.403444735170E-3",
+    "anchura_relativa": "5.741963792554E-2",
+    "error_garantizado": "2.790856899929E-2",
+    "error_real": "1.723431909241E-2",
+    "exacto": "1.341162577133E-3",
+    "valor_informado": "1.364276600942E-3"
+   },
+   "Q_sil": {
+    "L": "1.382974393681E-3",
+    "U": "1.462384282626E-3",
+    "anchura_relativa": "5.741963792554E-2",
+    "error_garantizado": "2.790856899929E-2",
+    "error_real": "1.718813681390E-2",
+    "exacto": "1.397549950222E-3",
+    "valor_informado": "1.421571229971E-3"
+   },
+   "eps_k": "7.620937388686E-5",
+   "estados_del_gas": 240,
+   "familias": 101346,
+   "k": 3,
+   "polimeros": 3918,
+   "recursos_acumulados": {
+    "decoraciones": 4705,
+    "ejecuciones_locales": 8473,
+    "pruebas_conexidad": 8473,
+    "scores": 221526,
+    "sindromes_distintos": 1416
+   },
+   "terminos_del_gas": 7179
+  },
+  "1/100|1/200": {
+   "P_0": {
+    "L": "9.208637947893E-1",
+    "U": "9.210333040049E-1",
+    "anchura_relativa": "1.840763168260E-4",
+    "error_garantizado": "9.202968816996E-5",
+    "error_real": "5.157190265307E-5",
+    "exacto": "9.209010489779E-1",
+    "valor_informado": "9.209485415971E-1"
+   },
+   "P_sil": {
+    "L": "1.263921317550E-3",
+    "U": "1.433430533193E-3",
+    "anchura_relativa": "1.341137405387E-1",
+    "error_garantizado": "6.284282697362E-2",
+    "error_real": "5.068049865846E-2",
+    "exacto": "1.278552050725E-3",
+    "valor_informado": "1.343349706217E-3"
+   },
+   "Q_sil": {
+    "L": "1.372286226843E-3",
+    "U": "1.556328665815E-3",
+    "anchura_relativa": "1.341137405387E-1",
+    "error_garantizado": "6.284282697362E-2",
+    "error_real": "5.052962704814E-2",
+    "exacto": "1.388370718161E-3",
+    "valor_informado": "1.458524572755E-3"
+   },
+   "eps_k": "1.695092156432E-4",
+   "estados_del_gas": 240,
+   "familias": 101346,
+   "k": 3,
+   "polimeros": 3918,
+   "recursos_acumulados": {
+    "decoraciones": 4705,
+    "ejecuciones_locales": 8473,
+    "pruebas_conexidad": 8473,
+    "scores": 221526,
+    "sindromes_distintos": 1416
+   },
+   "terminos_del_gas": 7179
+  },
+  "1/50|1/100": {
+   "P_0": {
+    "L": "8.444864479174E-1",
+    "U": "8.447559014033E-1",
+    "anchura_relativa": "3.190737832885E-4",
+    "error_garantizado": "1.595114436844E-4",
+    "error_real": "1.082058112864E-4",
+    "exacto": "8.445297701410E-1",
+    "valor_informado": "8.446211531699E-1"
+   },
+   "P_sil": {
+    "L": "4.630898098269E-3",
+    "U": "4.900351584142E-3",
+    "anchura_relativa": "5.818601060853E-2",
+    "error_garantizado": "2.827053060735E-2",
+    "error_real": "2.368165230897E-2",
+    "exacto": "4.651657118163E-3",
+    "valor_informado": "4.761816044696E-3"
+   },
+   "Q_sil": {
+    "L": "5.481936368336E-3",
+    "U": "5.800908376019E-3",
+    "anchura_relativa": "5.818601060853E-2",
+    "error_garantizado": "2.827053060735E-2",
+    "error_real": "2.340762471843E-2",
+    "exacto": "5.507984777596E-3",
+    "valor_informado": "5.636913618224E-3"
+   },
+   "eps_k": "2.694534858729E-4",
+   "estados_del_gas": 240,
+   "familias": 419664,
+   "k": 4,
+   "polimeros": 32831,
+   "recursos_acumulados": {
+    "decoraciones": 44768,
+    "ejecuciones_locales": 74518,
+    "pruebas_conexidad": 74518,
+    "scores": 676291,
+    "sindromes_distintos": 3117
+   },
+   "terminos_del_gas": 44575
+  }
+ },
+ "estimador_truncado_por_techo_de_tiempo": false,
+ "k_completados": 5,
+ "objetivo_alcanzado_en_el_par_principal": true,
+ "programa": "contraste",
+ "recursos_para_G4": {
+  "estimador_pico_memoria_bytes_no_determinista": 274972672,
+  "estimador_por_k": [
+   {
+    "bits_max": 116,
+    "consultas_por_subconjunto": 4,
+    "decoraciones": 37,
+    "estados_del_gas": 234,
+    "familias": 1106,
+    "historias_locales": 37,
+    "historias_retenidas": 1106,
+    "k": 1,
+    "polimeros": 37,
+    "pruebas_conexidad": 37,
+    "scores": 945,
+    "segundos_no_deterministas": 0.0029,
+    "sindromes_distintos": 29,
+    "terminos_del_gas": 207
+   },
+   {
+    "bits_max": 166,
+    "consultas_por_subconjunto": 78,
+    "decoraciones": 425,
+    "estados_del_gas": 238,
+    "familias": 16227,
+    "historias_locales": 703,
+    "historias_retenidas": 34795,
+    "k": 2,
+    "polimeros": 387,
+    "pruebas_conexidad": 703,
+    "scores": 27423,
+    "segundos_no_deterministas": 0.0187,
+    "sindromes_distintos": 311,
+    "terminos_del_gas": 1168
+   },
+   {
+    "bits_max": 228,
+    "consultas_por_subconjunto": 1030,
+    "decoraciones": 4705,
+    "estados_del_gas": 240,
+    "familias": 101346,
+    "historias_locales": 8473,
+    "historias_retenidas": 288361,
+    "k": 3,
+    "polimeros": 3918,
+    "pruebas_conexidad": 8473,
+    "scores": 221526,
+    "segundos_no_deterministas": 0.1354,
+    "sindromes_distintos": 1416,
+    "terminos_del_gas": 7179
+   },
+   {
+    "bits_max": 250,
+    "consultas_por_subconjunto": 4286,
+    "decoraciones": 44768,
+    "estados_del_gas": 240,
+    "familias": 419664,
+    "historias_locales": 74518,
+    "historias_retenidas": 1395557,
+    "k": 4,
+    "polimeros": 32831,
+    "pruebas_conexidad": 74518,
+    "scores": 676291,
+    "segundos_no_deterministas": 0.8872,
+    "sindromes_distintos": 3117,
+    "terminos_del_gas": 44575
+   },
+   {
+    "bits_max": 256,
+    "consultas_por_subconjunto": 31374,
+    "decoraciones": 345089,
+    "estados_del_gas": 240,
+    "familias": 1279371,
+    "historias_locales": 510415,
+    "historias_retenidas": 4753721,
+    "k": 5,
+    "polimeros": 215774,
+    "pruebas_conexidad": 510415,
+    "scores": 980889,
+    "segundos_no_deterministas": 9.2375,
+    "sindromes_distintos": 3969,
+    "terminos_del_gas": 251148
+   }
+  ],
+  "estimador_preparacion": {
+   "aristas_host_K": 388,
+   "candidatos": 103,
+   "entradas_listas_inversas": 210,
+   "sitios": 37
+  },
+  "historias_totales": 137438953472,
+  "nota": "tiempos y memoria de la referencia en el archivo de recursos del contraste",
+  "referencia_global": {
+   "correcciones_distintas": 1744,
+   "evaluaciones_de_peso": 14286848,
+   "scores_tabla_completa": 421888,
+   "sindromes_en_tabla": 4096
+  }
+ },
+ "referencia_exacta": {
+  "1/100|0": {
+   "P_0": {
+    "decimal": "9.596526957191E-1",
+    "exacto": "14994573370611685277221801/15625000000000000000000000"
+   },
+   "P_sil": {
+    "decimal": "1.341162577133E-3",
+    "exacto": "41911330535404870887171/31250000000000000000000000"
+   },
+   "Q_sil": {
+    "decimal": "1.397549950222E-3",
+    "exacto": "41911330535404870887171/29989146741223370554443602"
+   }
+  },
+  "1/100|1/200": {
+   "P_0": {
+    "decimal": "9.209010489779E-1",
+    "exacto": "73672083918231038561994579417654355547061992681590389/80000000000000000000000000000000000000000000000000000"
+   },
+   "P_sil": {
+    "decimal": "1.278552050725E-3",
+    "exacto": "818273312464029318824166242176786141718642343500511/640000000000000000000000000000000000000000000000000000"
+   },
+   "Q_sil": {
+    "decimal": "1.388370718161E-3",
+    "exacto": "2800569587428063851276240837/2017162671895555306440955115704"
+   }
+  },
+  "1/50|1/100": {
+   "P_0": {
+    "decimal": "8.445297701410E-1",
+    "exacto": "1006757939029894617971050563279835781150392539/1192092895507812500000000000000000000000000000"
+   },
+   "P_sil": {
+    "decimal": "4.651657118163E-3",
+    "exacto": "11090414805800566156960592690846223870013659/2384185791015625000000000000000000000000000000"
+   },
+   "Q_sil": {
+    "decimal": "5.507984777596E-3",
+    "exacto": "1513947534893887359539/274864146511810481960038"
+   }
+  }
+ },
+ "sello": {
+  "archivo": "ESTIMACION_H6_U4.json",
+  "estimador_sha256": "620f8bea31171c1f2f7b7bd67f2415a2350018fb79cf1ab32f342bba893546b2",
+  "k_completados": 5,
+  "kmax": 5,
+  "sellado": "2026-11-12T15:31:54.532840-05:00",
+  "sha256": "654367777c23c83cdc6cccbbdb756544f85cca57ad0e86a680d6deec473304e9",
+  "status": "PASS"
+ },
+ "status": "PASS",
+ "unit": "H6-U4"
+}

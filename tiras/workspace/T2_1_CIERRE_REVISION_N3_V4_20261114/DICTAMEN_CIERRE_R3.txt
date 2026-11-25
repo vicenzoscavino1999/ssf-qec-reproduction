@@ -1,0 +1,109 @@
+T2-1: CIERRE DE LA REVISION LOCAL DE N3 v4
+Fecha de referencia del cliente: 2026-11-14, America/Lima
+
+DICTAMEN
+
+R3-A y R3-B quedan atendidos en el alcance solicitado. Se acepta tambien
+la regla operativa de NO_EVALUADO cuando hay que forzar el cierre de
+hijos, preservando la evidencia. No se detectan nuevos impedimentos en
+estos cambios para preparar y sellar el plan con N1 v2 y N3 v4.
+
+R1, R2 y R4 mantienen el estado de atendidos de la revision anterior.
+Queda cerrada esta ronda de revision de codigo previa a la ejecucion.
+No se declara terminado T2-1: sus corridas cientificas y conclusiones
+principales siguen pendientes. Este dictamen no inicia ninguna corrida.
+
+ALCANCE
+
+Revision estatica del diff v3-v4, JobTree, close_tree, run_mc,
+mc_evidence, las pruebas de cierre y sus condiciones, la guia, el
+borrador v10 y la evidencia guardada. Se cotejaron hashes y registros
+JSON mediante lecturas administrativas, sin importar los programas del
+proyecto. No se ejecuto decoder, DP, Monte Carlo, catalogos ni pruebas.
+
+Identidad aprobada para esta revision:
+t2_intervalos.py (N3 v4):
+95799c8ed77625ebc66bf84b183f306513271e57ea2010083faab08f815ae559
+t2_rival.py (N1 v2, sin cambios):
+72174b6f0fb3c8f9138da0686daff516500ffc666383f9344d0d6453696930c7
+BORRADOR_PLAN_T2_1.txt (v10):
+2b257a9949eec29bcdb7c5cf51dbada4e81f39078717a6e654c8846088f747bd
+
+Los 509 archivos del manifiesto coinciden. Entre los 255 archivos de la
+entrega anterior solo cambiaron el borrador, la guia y N3. Las 12
+identidades de fuentes registradas junto a los intentos cotejados
+coinciden con los fuentes actuales o sus copias archivadas pertinentes.
+No se identifico un cambio en N1, t2_mc, t2_cp o t2_solo_u.
+
+R3-A: ERRORES DE SUPERVISION Y CIERRE
+
+Las consultas esenciales de PID y contadores comprueban el retorno de
+Windows; una lista parcial se rechaza. Los fallos no se convierten en
+[] o (0,0). La medicion de memoria no reutiliza un cero de fallo del
+lector antiguo. close_tree distingue cero medido de dato no disponible
+y conserva los problemas de las consultas y la terminacion. El cierre
+no confirmado o con problemas impide aceptar D-mc.
+
+La limpieza se invoca desde finally y conserva el cierre del Job ante
+los fallos de supervision cubiertos. Las pruebas con errores inyectados
+contrastan esa conducta sin provocar averias reales del sistema.
+No se pretende demostrar tolerancia a toda averia posible de Windows.
+
+R3-B: PLAZO Y ACEPTACION DE LA SALIDA
+
+Se registra el instante observado tras p.wait, se comprueba frente al
+plazo de aceptacion y cada espera se limita al tiempo restante. La
+reserva de limpieza esta dentro del margen previo: con trabajo de
+5400 s y margen de 600 s, hay 60 s reservados para limpieza y el plazo
+de aceptacion es de 5940 s desde el inicio del arbol. El plazo duro
+sigue acotado por el presupuesto de la corrida.
+
+La aceptacion exige tambien cierre confirmado, ausencia de problemas
+operativos y fin del cierre dentro del plazo duro. Una salida tardia
+o un cierre forzado queda NO_EVALUADO, conserva su decision propia y
+sus archivos, y no habilita la corrida 2. No se alteran la muestra,
+las tasas, D, las formulas de intervalos ni los presupuestos.
+
+EVIDENCIA RECIBIDA, NO REEJECUTADA
+
+- Cierre focalizado, intento 2: codigo 0; 11 casos satisfactorios y
+  el control adicional de cero llamadas al decoder (12 registros).
+- Regresion v3-v4, intento 2: los cinco casos detectan el problema o
+  cambio operativo correspondiente; no quedan hijos vivos en su
+  evidencia. Los negativos exigen su causa, no solo NO_EVALUADO.
+- Humo v4: codigo 0; 1369 controles satisfactorios, 45 grupos segun
+  consola. Sus 20 negativos detectan la causa prevista.
+- El codigo de cierre, regresion y humo corresponde al N3 v4 arriba
+  identificado. La comparacion estatica de definiciones muestra que
+  los cambios de funciones existentes se concentran en JobTree,
+  run_mc, humo y main; las funciones de calculo y verificacion integral
+  ya revisadas no cambiaron.
+
+El intento 1 fallido de la regresion queda conservado. Su fallo fue
+que el proceso sintetico no recorrio a tiempo el camino previsto: v4
+lo dejo NO_EVALUADO. La ampliacion de la ventana de ese caso de prueba
+no cambio el presupuesto de produccion ni relajo la decision cientifica.
+La causa del retraso de salida no esta identificada; el diagnostico
+de 20 salidas por grupo no permite atribuirla al Job Object. No se
+requiere otra campana de diagnostico para aceptar este cierre local.
+
+ALCANCE OPERATIVO
+
+Se mantiene el entorno Windows/Python declarado y la supervision por
+sondeo, no una garantia de portabilidad o de memoria instantanea. El
+disco medido es el espacio nuevo de la corrida. Las pruebas sinteticas
+no sustituyen la ejecucion futura sobre los datos reales.
+
+SIGUIENTE PASO
+
+El ejecutor puede preparar PLAN_T2_1.txt y SELLO_PLAN.json a partir del
+borrador revisado, registrando exactamente los hashes de los programas
+aprobados y las dependencias del contrato. No hace falta volver a abrir
+esta revision general ni repetir T2-1M/B4/B4R/SOLO_U o el atajo.
+
+Una vez sellado, sigue la corrida 1 con la orden del usuario y sus
+presupuestos actuales. Guardar resultado, recursos, consola y hashes;
+verificar la entrega integral sin repetir la DP. La corrida 2 conserva
+su regla de paso: controles satisfactorios y D-mc COMPATIBLE. Ante
+FALLA, NO_EVALUADO o un limite, preservar evidencia y detenerse sin
+reintento automatico. No se activa T2-2 ni se modifica el manuscrito.

@@ -1,0 +1,4319 @@
+{
+ "D_regla_de_suma": "100000000000000",
+ "P_bits": 384,
+ "checks": [
+  {
+   "control": "fen_TIRA_6x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_6x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 1 clases)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_6x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_6x6: k_log = 1",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_6x6 f=1: cada asignacion de cada candidato se decodifica una vez (91)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_6x6 f=2: cada asignacion de cada candidato se decodifica una vez (1220)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_6x6 f=3: cada asignacion de cada candidato se decodifica una vez (20097)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_6x6 f=4: cada asignacion de cada candidato se decodifica una vez (348807)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 fen_TIRA_6x6: silenciosa <=> caracter logico -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-anc fen_TIRA_6x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 80 grupos)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_6x6: validas por f = B4 [91, 1220, 20097, 346926]",
+   "detalle": [
+    91,
+    1220,
+    20097,
+    346926
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_6x6: polimeros con k = 3 y 4 = B4 [19021, 306389]",
+   "detalle": [
+    19021,
+    306389
+   ],
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_12x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_12x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 1 clases)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_12x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_12x6: k_log = 1",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_12x6 f=1: cada asignacion de cada candidato se decodifica una vez (187)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_12x6 f=2: cada asignacion de cada candidato se decodifica una vez (2768)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_12x6 f=3: cada asignacion de cada candidato se decodifica una vez (51219)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_12x6 f=4: cada asignacion de cada candidato se decodifica una vez (1028284)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 fen_TIRA_12x6: silenciosa <=> caracter logico -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-anc fen_TIRA_12x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 164 grupos)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_12x6: validas por f = B4 [187, 2768, 51219, 1023019]",
+   "detalle": [
+    187,
+    2768,
+    51219,
+    1023019
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_12x6: polimeros con k = 3 y 4 = B4 [48535, 910740]",
+   "detalle": [
+    48535,
+    910740
+   ],
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_24x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_24x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 1 clases)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_24x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_24x6: k_log = 1",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_24x6 f=1: cada asignacion de cada candidato se decodifica una vez (379)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_24x6 f=2: cada asignacion de cada candidato se decodifica una vez (5864)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_24x6 f=3: cada asignacion de cada candidato se decodifica una vez (113463)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_24x6 f=4: cada asignacion de cada candidato se decodifica una vez (2387428)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 fen_TIRA_24x6: silenciosa <=> caracter logico -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-anc fen_TIRA_24x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 190 grupos)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_24x6: validas por f = B4 [379, 5864, 113463, 2375395]",
+   "detalle": [
+    379,
+    5864,
+    113463,
+    2375395
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_24x6: polimeros con k = 3 y 4 = B4 [107563, 2119632]",
+   "detalle": [
+    107563,
+    2119632
+   ],
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_48x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_48x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 1 clases)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_48x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_48x6: k_log = 1",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_48x6 f=1: cada asignacion de cada candidato se decodifica una vez (763)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_48x6 f=2: cada asignacion de cada candidato se decodifica una vez (12056)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_48x6 f=3: cada asignacion de cada candidato se decodifica una vez (237951)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "fen_TIRA_48x6 f=4: cada asignacion de cada candidato se decodifica una vez (5105716)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 fen_TIRA_48x6: silenciosa <=> caracter logico -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-anc fen_TIRA_48x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 255 grupos)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_48x6: validas por f = B4 [763, 12056, 237951, 5080147]",
+   "detalle": [
+    763,
+    12056,
+    237951,
+    5080147
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_48x6: polimeros con k = 3 y 4 = B4 [225619, 4537416]",
+   "detalle": [
+    225619,
+    4537416
+   ],
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_6x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-resp circ_TIRA_6x6: N_loc = (L+2)(n+m_X) - h_X = 527",
+   "detalle": 527,
+   "pasa": true
+  },
+  {
+   "control": "C-resp circ_TIRA_6x6: respuesta por formula = propagacion en las 747 ubicaciones y categorias visibles",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-resp circ_TIRA_6x6: XOR de respuestas = propagacion conjunta en 2000 asignaciones aleatorias",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-ley circ_TIRA_6x6: clases no nulas por sitio de dato 7 (d = 2) y 3 (d = 1); check 1",
+   "detalle": {
+    "1": [
+     3
+    ],
+    "2": [
+     7
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-ley circ_TIRA_6x6: leyes de ubicacion y de fibra suman 1 en las 8 celdas",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-ley circ_TIRA_6x6: soporte de cada ley de fibra = clases alcanzables (6 tipos de ley)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_6x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 7 clases)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_6x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_6x6: k_log = 1",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_6x6 f=1: cada asignacion de cada candidato se decodifica una vez (409)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_6x6 f=2: cada asignacion de cada candidato se decodifica una vez (29120)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_6x6 f=3: cada asignacion de cada candidato se decodifica una vez (2569801)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_6x6 f=4: cada asignacion de cada candidato se decodifica una vez (231156265)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 circ_TIRA_6x6: silenciosa <=> caracter logico -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-anc circ_TIRA_6x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 91 grupos)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_6x6: validas y asignaciones por f (f <= 4) = T2-0",
+   "detalle": {
+    "T2-0": [
+     [
+      409,
+      409
+     ],
+     [
+      29120,
+      29120
+     ],
+     [
+      2500537,
+      2569801
+     ],
+     [
+      216824784,
+      231156265
+     ]
+    ],
+    "obtenido": [
+     [
+      409,
+      409
+     ],
+     [
+      29120,
+      29120
+     ],
+     [
+      2500537,
+      2569801
+     ],
+     [
+      216824784,
+      231156265
+     ]
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_6x6: polimeros por k (k <= 4) = T2-0 [133, 3208, 93156, 2866787]",
+   "detalle": [
+    133,
+    3208,
+    93156,
+    2866787
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_6x6: decoracion quitada por la regla de T2-0 (soporte, clave, recuento) = ['0xf', [4, 0], 1029]",
+   "detalle": [
+    "0xf",
+    [
+     4,
+     0
+    ],
+    1029
+   ],
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_12x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-resp circ_TIRA_12x6: N_loc = (L+2)(n+m_X) - h_X = 1079",
+   "detalle": 1079,
+   "pasa": true
+  },
+  {
+   "control": "C-resp circ_TIRA_12x6: respuesta por formula = propagacion en las 1539 ubicaciones y categorias visibles",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-resp circ_TIRA_12x6: XOR de respuestas = propagacion conjunta en 2000 asignaciones aleatorias",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-ley circ_TIRA_12x6: clases no nulas por sitio de dato 7 (d = 2) y 3 (d = 1); check 1",
+   "detalle": {
+    "1": [
+     3
+    ],
+    "2": [
+     7
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-ley circ_TIRA_12x6: leyes de ubicacion y de fibra suman 1 en las 8 celdas",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-ley circ_TIRA_12x6: soporte de cada ley de fibra = clases alcanzables (6 tipos de ley)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_12x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 7 clases)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_12x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_12x6: k_log = 1",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_12x6 f=1: cada asignacion de cada candidato se decodifica una vez (853)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_12x6 f=2: cada asignacion de cada candidato se decodifica una vez (67892)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_12x6 f=3: cada asignacion de cada candidato se decodifica una vez (6875875)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_12x6 f=4: cada asignacion de cada candidato se decodifica una vez (744187220)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 circ_TIRA_12x6: silenciosa <=> caracter logico -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-anc circ_TIRA_12x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 187 grupos)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_12x6: validas y asignaciones por f (f <= 4) = T2-0",
+   "detalle": {
+    "T2-0": [
+     [
+      853,
+      853
+     ],
+     [
+      67892,
+      67892
+     ],
+     [
+      6673987,
+      6875875
+     ],
+     [
+      693439495,
+      744187220
+     ]
+    ],
+    "obtenido": [
+     [
+      853,
+      853
+     ],
+     [
+      67892,
+      67892
+     ],
+     [
+      6673987,
+      6875875
+     ],
+     [
+      693439495,
+      744187220
+     ]
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_12x6: polimeros por k (k <= 4) = T2-0 [277, 7420, 244836, 8884859]",
+   "detalle": [
+    277,
+    7420,
+    244836,
+    8884859
+   ],
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_24x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-resp circ_TIRA_24x6: N_loc = (L+2)(n+m_X) - h_X = 2183",
+   "detalle": 2183,
+   "pasa": true
+  },
+  {
+   "control": "C-resp circ_TIRA_24x6: respuesta por formula = propagacion en las 3123 ubicaciones y categorias visibles",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-resp circ_TIRA_24x6: XOR de respuestas = propagacion conjunta en 2000 asignaciones aleatorias",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-ley circ_TIRA_24x6: clases no nulas por sitio de dato 7 (d = 2) y 3 (d = 1); check 1",
+   "detalle": {
+    "1": [
+     3
+    ],
+    "2": [
+     7
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-ley circ_TIRA_24x6: leyes de ubicacion y de fibra suman 1 en las 8 celdas",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-ley circ_TIRA_24x6: soporte de cada ley de fibra = clases alcanzables (6 tipos de ley)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_24x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 7 clases)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_24x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_24x6: k_log = 1",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_24x6 f=1: cada asignacion de cada candidato se decodifica una vez (1741)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_24x6 f=2: cada asignacion de cada candidato se decodifica una vez (145436)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_24x6 f=3: cada asignacion de cada candidato se decodifica una vez (15488023)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_24x6 f=4: cada asignacion de cada candidato se decodifica una vez (1770705320)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 circ_TIRA_24x6: silenciosa <=> caracter logico -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-anc circ_TIRA_24x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 190 grupos)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_24x6: validas y asignaciones por f (f <= 3) = T2-0",
+   "detalle": {
+    "T2-0": [
+     [
+      1741,
+      1741
+     ],
+     [
+      145436,
+      145436
+     ],
+     [
+      15020887,
+      15488023
+     ]
+    ],
+    "obtenido": [
+     [
+      1741,
+      1741
+     ],
+     [
+      145436,
+      145436
+     ],
+     [
+      15020887,
+      15488023
+     ]
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_24x6: polimeros por k (k <= 3) = T2-0 [565, 15844, 548196]",
+   "detalle": [
+    565,
+    15844,
+    548196
+   ],
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_48x6: matrices iguales a las de B4",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-resp circ_TIRA_48x6: N_loc = (L+2)(n+m_X) - h_X = 4391",
+   "detalle": 4391,
+   "pasa": true
+  },
+  {
+   "control": "C-resp circ_TIRA_48x6: respuesta por formula = propagacion en las 6291 ubicaciones y categorias visibles",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-resp circ_TIRA_48x6: XOR de respuestas = propagacion conjunta en 2000 asignaciones aleatorias",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-ley circ_TIRA_48x6: clases no nulas por sitio de dato 7 (d = 2) y 3 (d = 1); check 1",
+   "detalle": {
+    "1": [
+     3
+    ],
+    "2": [
+     7
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-ley circ_TIRA_48x6: leyes de ubicacion y de fibra suman 1 en las 8 celdas",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-ley circ_TIRA_48x6: soporte de cada ley de fibra = clases alcanzables (6 tipos de ley)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_48x6: simbolos (tipo de ley, clase) caben en 6 bits (6 tipos, <= 7 clases)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_48x6: las clases de cada sitio son las de su tipo de ley (odds por simbolo bien definidos)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_48x6: k_log = 1",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_48x6 f=1: cada asignacion de cada candidato se decodifica una vez (3517)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_48x6 f=2: cada asignacion de cada candidato se decodifica una vez (300524)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_48x6 f=3: cada asignacion de cada candidato se decodifica una vez (32712319)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "circ_TIRA_48x6 f=4: cada asignacion de cada candidato se decodifica una vez (3823741520)",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "I4 circ_TIRA_48x6: silenciosa <=> caracter logico -1 (discrepancias = 0)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-anc circ_TIRA_48x6: cada soporte fusionado esta en el grupo de su ancla (fuera de grupo = 0; 255 grupos)",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-anc: en los 38 trabajos, ningun hijo con ancla <= la de su padre",
+   "detalle": 0,
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_6x6 k=3: polimeros, estados y terminos = B4 [19021, 3061, 226601] (1 trabajos)",
+   "detalle": [
+    [
+     19021,
+     3061,
+     226601
+    ]
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_6x6 k=3: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "control": "C-anch fen_TIRA_6x6 k=3: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.990e-93)",
+   "detalle": 2.989601622048572e-93,
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_6x6 k=4: polimeros, estados y terminos = B4 [306389, 5355, 2972219] (1 trabajos)",
+   "detalle": [
+    [
+     306389,
+     5355,
+     2972219
+    ]
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_6x6 k=4: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "control": "C-anch fen_TIRA_6x6 k=4: anchura relativa de los 36 intervalos <= 1e-30 (maxima 3.438e-87)",
+   "detalle": 3.438489720977605e-87,
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_12x6 k=3: polimeros, estados y terminos = B4 [48535, 14141, 973957] (1 trabajos)",
+   "detalle": [
+    [
+     48535,
+     14141,
+     973957
+    ]
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_12x6 k=3: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "control": "C-anch fen_TIRA_12x6 k=3: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.676e-93)",
+   "detalle": 2.6756526288100086e-93,
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_12x6 k=4: polimeros, estados y terminos = B4 [910740, 66785, 27604459] (2 trabajos)",
+   "detalle": [
+    [
+     910740,
+     66785,
+     27604459
+    ],
+    [
+     910740,
+     66785,
+     27604459
+    ]
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_12x6 k=4: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "control": "C-anch fen_TIRA_12x6 k=4: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.744e-87)",
+   "detalle": 2.7443683206876745e-87,
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_24x6 k=3: polimeros, estados y terminos = B4 [107563, 36413, 2473153] (1 trabajos)",
+   "detalle": [
+    [
+     107563,
+     36413,
+     2473153
+    ]
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_24x6 k=3: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "control": "C-anch fen_TIRA_24x6 k=3: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.592e-93)",
+   "detalle": 2.5918538175177934e-93,
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_24x6 k=4: polimeros, estados y terminos = B4 [2119632, 202373, 81171019] (4 trabajos)",
+   "detalle": [
+    [
+     2119632,
+     202373,
+     81171019
+    ],
+    [
+     2119632,
+     202373,
+     81171019
+    ],
+    [
+     2119632,
+     202373,
+     81171019
+    ],
+    [
+     2119632,
+     202373,
+     81171019
+    ]
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_24x6 k=4: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "control": "C-anch fen_TIRA_24x6 k=4: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.600e-87)",
+   "detalle": 2.600384891137492e-87,
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_48x6 k=3: polimeros, estados y terminos = B4 [225619, 80957, 5471545] (1 trabajos)",
+   "detalle": [
+    [
+     225619,
+     80957,
+     5471545
+    ]
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_48x6 k=3: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "control": "C-anch fen_TIRA_48x6 k=3: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.559e-93)",
+   "detalle": 2.558584598436296e-93,
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_48x6 k=4: polimeros, estados y terminos = B4 [4537416, 473549, 188304139] (6 trabajos)",
+   "detalle": [
+    [
+     4537416,
+     473549,
+     188304139
+    ],
+    [
+     4537416,
+     473549,
+     188304139
+    ],
+    [
+     4537416,
+     473549,
+     188304139
+    ],
+    [
+     4537416,
+     473549,
+     188304139
+    ],
+    [
+     4537416,
+     473549,
+     188304139
+    ],
+    [
+     4537416,
+     473549,
+     188304139
+    ]
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-B4 fen_TIRA_48x6 k=4: los intervalos de eps_comp, L_comp y P_0 de las 12 celdas contienen la fraccion sellada en B4",
+   "detalle": [],
+   "pasa": true
+  },
+  {
+   "control": "C-anch fen_TIRA_48x6 k=4: anchura relativa de los 36 intervalos <= 1e-30 (maxima 2.547e-87)",
+   "detalle": 2.547292339112809e-87,
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_6x6 k=1: polimeros, estados y terminos = T2-0 [133, 621, 991]",
+   "detalle": [
+    133,
+    621,
+    991
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_6x6 k=2: polimeros, estados y terminos = T2-0 [3208, 1407, 37386]",
+   "detalle": [
+    3208,
+    1407,
+    37386
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_6x6 k=3: polimeros, estados y terminos = T2-0 [93156, 3215, 1143002]",
+   "detalle": [
+    93156,
+    3215,
+    1143002
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_6x6 k=4: polimeros, estados y terminos = T2-0 [2866787, 5530, 25848067]",
+   "detalle": [
+    2866787,
+    5530,
+    25848067
+   ],
+   "pasa": true
+  },
+  {
+   "control": "regla de suma NS=91 k=4: 0 <= T_cat - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "regla de suma NS=91 k=4: 0 <= T_cat - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_6x6 k=4 suma: veredicto de la regla de suma en los dos extremos = COMPLETO",
+   "detalle": [
+    "COMPLETO",
+    "COMPLETO"
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_6x6 k=4 suma: margen (dif. abs. 0.00e+00 <= 1e-6) y peso del orden siguiente (dif. rel. 0.00e+00 <= 1e-9) = T2-0",
+   "detalle": {
+    "T2-0": 3.7565364629210762,
+    "margen": [
+     3.7565364629210762,
+     3.7565364629210762
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-anch circ_TIRA_6x6 k=4 suma: anchura de U <= 1e-12 x^k (5.567e-52)",
+   "detalle": 5.5671429243131394e-108,
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_6x6: el negativo quita exactamente una decoracion",
+   "detalle": 1,
+   "pasa": true
+  },
+  {
+   "control": "regla de suma NS=91 k=4: 0 <= T_cat - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "regla de suma NS=91 k=4: 0 <= T_cat - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_6x6 k=4 negativo: veredicto de la regla de suma en los dos extremos = INCOMPLETO",
+   "detalle": [
+    "INCOMPLETO",
+    "INCOMPLETO"
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_6x6 k=4 negativo: margen (dif. abs. 0.00e+00 <= 1e-6) y peso del orden siguiente (dif. rel. 0.00e+00 <= 1e-9) = T2-0",
+   "detalle": {
+    "T2-0": -7.606936992488045e-05,
+    "margen": [
+     -7.606936992488045e-05,
+     -7.606936992488045e-05
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-anch circ_TIRA_6x6 k=4 negativo: anchura de U <= 1e-12 x^k (5.567e-52)",
+   "detalle": 5.567142898933721e-108,
+   "pasa": true
+  },
+  {
+   "control": "C-exacto circ_TIRA_6x6 k=3 celda 1/1000|1/1000: U, E y O exactos dentro de los intervalos de punto fijo",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-anch circ_TIRA_6x6 exacto 1/1000|1/1000: anchura relativa <= 1e-30 (1.153e-106)",
+   "detalle": 1.1532346951502444e-106,
+   "pasa": true
+  },
+  {
+   "control": "C-exacto circ_TIRA_6x6 k=3 celda 1/1000000|0: U, E y O exactos dentro de los intervalos de punto fijo",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-anch circ_TIRA_6x6 exacto 1/1000000|0: anchura relativa <= 1e-30 (1.205e-97)",
+   "detalle": 1.204530015941385e-97,
+   "pasa": true
+  },
+  {
+   "control": "C-dom circ_TIRA_6x6: estructura del paso de celda = T2-0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-dom circ_TIRA_6x6 k=4 celda 1/1000000|1/1000000: L_comp / termino dominante de T2-0 en [1 - 1e-12, 1 + 1e-2] (1.000175558123, 1.000175558123)",
+   "detalle": [
+    1.000175558122922,
+    1.000175558122922
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-anch circ_TIRA_6x6 dom: anchura relativa de L_comp <= 1e-30 (2.783e-96)",
+   "detalle": 2.782537635632249e-96,
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_12x6 k=1: polimeros, estados y terminos = T2-0 [277, 1455, 2341]",
+   "detalle": [
+    277,
+    1455,
+    2341
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_12x6 k=2: polimeros, estados y terminos = T2-0 [7420, 3993, 109752]",
+   "detalle": [
+    7420,
+    3993,
+    109752
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_12x6 k=3: polimeros, estados y terminos = T2-0 [244836, 15417, 5246465]",
+   "detalle": [
+    244836,
+    15417,
+    5246465
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_12x6 k=4: polimeros, estados y terminos = T2-0 [8884859, 80599, 279352061]",
+   "detalle": [
+    8884859,
+    80599,
+    279352061
+   ],
+   "pasa": true
+  },
+  {
+   "control": "regla de suma NS=187 k=4: 0 <= T_cat - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "regla de suma NS=187 k=4: 0 <= T_cat - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_12x6 k=4 suma: veredicto de la regla de suma en los dos extremos = COMPLETO",
+   "detalle": [
+    "COMPLETO",
+    "COMPLETO"
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_12x6 k=4 suma: margen (dif. abs. 0.00e+00 <= 1e-6) y peso del orden siguiente (dif. rel. 0.00e+00 <= 1e-9) = T2-0",
+   "detalle": {
+    "T2-0": 3.141600306253167,
+    "margen": [
+     3.141600306253167,
+     3.141600306253167
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-anch circ_TIRA_12x6 k=4 suma: anchura de U <= 1e-12 x^k (1.777e-51)",
+   "detalle": 1.7771311174101456e-107,
+   "pasa": true
+  },
+  {
+   "control": "C-dom circ_TIRA_12x6: estructura del paso de celda = T2-0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-dom circ_TIRA_12x6 k=4 celda 1/1000000|1/1000000: L_comp / termino dominante de T2-0 en [1 - 1e-12, 1 + 1e-2] (1.000351934324, 1.000351934324)",
+   "detalle": [
+    1.00035193432358,
+    1.00035193432358
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-anch circ_TIRA_12x6 dom: anchura relativa de L_comp <= 1e-30 (6.452e-96)",
+   "detalle": 6.452447329731185e-96,
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_24x6 k=1: polimeros, estados y terminos = T2-0 [565, 3123, 5041]",
+   "detalle": [
+    565,
+    3123,
+    5041
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_24x6 k=2: polimeros, estados y terminos = T2-0 [15844, 9165, 254484]",
+   "detalle": [
+    15844,
+    9165,
+    254484
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_24x6 k=3: polimeros, estados y terminos = T2-0 [548196, 39945, 13479557]",
+   "detalle": [
+    548196,
+    39945,
+    13479557
+   ],
+   "pasa": true
+  },
+  {
+   "control": "regla de suma NS=379 k=3: 0 <= T_cat - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "regla de suma NS=379 k=3: 0 <= T_cat - X0",
+   "detalle": null,
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_24x6 k=3 suma: veredicto de la regla de suma en los dos extremos = COMPLETO",
+   "detalle": [
+    "COMPLETO",
+    "COMPLETO"
+   ],
+   "pasa": true
+  },
+  {
+   "control": "C-T20 circ_TIRA_24x6 k=3 suma: margen (dif. abs. 0.00e+00 <= 1e-6) y peso del orden siguiente (dif. rel. 0.00e+00 <= 1e-9) = T2-0",
+   "detalle": {
+    "T2-0": 4.783273412836934,
+    "margen": [
+     4.783273412836934,
+     4.783273412836934
+    ]
+   },
+   "pasa": true
+  },
+  {
+   "control": "C-anch circ_TIRA_24x6 k=3 suma: anchura de U <= 1e-12 x^k (3.855e-67)",
+   "detalle": 3.855245574117497e-109,
+   "pasa": true
+  }
+ ],
+ "controles": {
+  "C-B4": {
+   "fen_TIRA_12x6_k3": {
+    "anchura_relativa_max": 2.6756526288100086e-93,
+    "celdas": 12,
+    "estructura": [
+     48535,
+     14141,
+     973957
+    ]
+   },
+   "fen_TIRA_12x6_k4": {
+    "anchura_relativa_max": 2.7443683206876745e-87,
+    "celdas": 12,
+    "estructura": [
+     910740,
+     66785,
+     27604459
+    ]
+   },
+   "fen_TIRA_24x6_k3": {
+    "anchura_relativa_max": 2.5918538175177934e-93,
+    "celdas": 12,
+    "estructura": [
+     107563,
+     36413,
+     2473153
+    ]
+   },
+   "fen_TIRA_24x6_k4": {
+    "anchura_relativa_max": 2.600384891137492e-87,
+    "celdas": 12,
+    "estructura": [
+     2119632,
+     202373,
+     81171019
+    ]
+   },
+   "fen_TIRA_48x6_k3": {
+    "anchura_relativa_max": 2.558584598436296e-93,
+    "celdas": 12,
+    "estructura": [
+     225619,
+     80957,
+     5471545
+    ]
+   },
+   "fen_TIRA_48x6_k4": {
+    "anchura_relativa_max": 2.547292339112809e-87,
+    "celdas": 12,
+    "estructura": [
+     4537416,
+     473549,
+     188304139
+    ]
+   },
+   "fen_TIRA_6x6_k3": {
+    "anchura_relativa_max": 2.989601622048572e-93,
+    "celdas": 12,
+    "estructura": [
+     19021,
+     3061,
+     226601
+    ]
+   },
+   "fen_TIRA_6x6_k4": {
+    "anchura_relativa_max": 3.438489720977605e-87,
+    "celdas": 12,
+    "estructura": [
+     306389,
+     5355,
+     2972219
+    ]
+   }
+  },
+  "C-T20": {
+   "circ_TIRA_12x6_suma_k4": {
+    "anchura_U": 1.7771311174101456e-107,
+    "dif_margen": 0.0,
+    "dif_rel_peso": 0.0,
+    "margen_log10": [
+     3.141600306253167,
+     3.141600306253167
+    ],
+    "peso_orden_siguiente_aprox": [
+     72177144069.38199,
+     72177144069.38199
+    ],
+    "veredicto": "COMPLETO"
+   },
+   "circ_TIRA_24x6_suma_k3": {
+    "anchura_U": 3.855245574117497e-109,
+    "dif_margen": 0.0,
+    "dif_rel_peso": 0.0,
+    "margen_log10": [
+     4.783273412836934,
+     4.783273412836934
+    ],
+    "peso_orden_siguiente_aprox": [
+     1647125107.0241241,
+     1647125107.0241241
+    ],
+    "veredicto": "COMPLETO"
+   },
+   "circ_TIRA_6x6_negativo_k4": {
+    "anchura_U": 5.567142898933721e-108,
+    "dif_margen": 0.0,
+    "dif_rel_peso": 0.0,
+    "margen_log10": [
+     -7.606936992488045e-05,
+     -7.606936992488045e-05
+    ],
+    "peso_orden_siguiente_aprox": [
+     100017517153819.03,
+     100017517153819.03
+    ],
+    "veredicto": "INCOMPLETO"
+   },
+   "circ_TIRA_6x6_suma_k4": {
+    "anchura_U": 5.5671429243131394e-108,
+    "dif_margen": 0.0,
+    "dif_rel_peso": 0.0,
+    "margen_log10": [
+     3.7565364629210762,
+     3.7565364629210762
+    ],
+    "peso_orden_siguiente_aprox": [
+     17517153558.024696,
+     17517153558.024696
+    ],
+    "veredicto": "COMPLETO"
+   }
+  },
+  "C-dom": {
+   "circ_TIRA_12x6": {
+    "anchura_relativa": 6.452447329731185e-96,
+    "cociente": [
+     "1.000351934323580092640154",
+     "1.000351934323580092640155"
+    ]
+   },
+   "circ_TIRA_6x6": {
+    "anchura_relativa": 2.782537635632249e-96,
+    "cociente": [
+     "1.000175558122921915190696",
+     "1.000175558122921915190697"
+    ]
+   }
+  },
+  "C-exacto": {
+   "1/1000000|0": {
+    "anchura_relativa_max": 1.204530015941385e-97,
+    "estados": 3215,
+    "terminos": 1143002
+   },
+   "1/1000|1/1000": {
+    "anchura_relativa_max": 1.1532346951502444e-106,
+    "estados": 3215,
+    "terminos": 1143002
+   }
+  },
+  "controles_no_medidos": []
+ },
+ "decision_D_m1": "VALIDADO",
+ "decision_D_m2": {
+  "decision": "CABE_CON_MAS_TIEMPO",
+  "disco_bytes": 6760470690,
+  "horas_previstas": 8.28102247683115,
+  "informativo_un_trabajo_de_m48_horas": 5.723151888189455,
+  "memoria_prevista_por_proceso_bytes": 519530568.0,
+  "memoria_principal_bytes": 1428897792,
+  "por_m": {
+   "12": {
+    "bytes": 769646946,
+    "entradas_4": 474393181,
+    "segundos_por_celda": 2974.045931015727,
+    "terminos_4": 279352061
+   },
+   "24": {
+    "bytes": 1816958734,
+    "entradas_4": 1121772937,
+    "segundos_por_celda": 8941.934524379076,
+    "terminos_4": 837562421
+   },
+   "48": {
+    "bytes": 3925664908,
+    "entradas_4": 2416532449,
+    "segundos_por_celda": 20603.346797482038,
+    "terminos_4": 1953983141
+   },
+   "6": {
+    "bytes": 248200102,
+    "entradas_4": 150785786,
+    "segundos_por_celda": 407.8851011594016,
+    "terminos_4": 25848067
+   }
+  },
+  "procesos": 14,
+  "regla": "suma_m (terminos_4 t_celda + entradas_4 t_peso + bytes t_carga) x 8 / procesos + catalogos; CABE si <= 6 h y memoria y disco dentro de los techos",
+  "segundos_catalogos": 10996.131000000001
+ },
+ "grupos": 256,
+ "instancias": {
+  "circ_TIRA_12x6": {
+   "anclas_por_grupo": 1,
+   "catalogo": {
+    "bytes": 769646946,
+    "duplicados_fusionados": 468127,
+    "entradas_por_k": {
+     "1": 853,
+     "2": 63280,
+     "3": 5443310,
+     "4": 474393181
+    },
+    "firmas": 13683,
+    "polimeros_por_k": {
+     "1": 277,
+     "2": 7420,
+     "3": 244836,
+     "4": 8884859
+    },
+    "por_f": {
+     "1": {
+      "asignaciones": 853,
+      "candidatos": 187,
+      "conjuntos_validos": 187,
+      "entradas_por_trozo": 853,
+      "segundos": 0.181,
+      "trozos": 187,
+      "validas": 853
+     },
+     "2": {
+      "asignaciones": 67892,
+      "candidatos": 2768,
+      "conjuntos_validos": 2768,
+      "entradas_por_trozo": 62647,
+      "segundos": 0.247,
+      "trozos": 675,
+      "validas": 67892
+     },
+     "3": {
+      "asignaciones": 6875875,
+      "candidatos": 52737,
+      "conjuntos_validos": 52737,
+      "entradas_por_trozo": 5405405,
+      "segundos": 7.779,
+      "trozos": 880,
+      "validas": 6673987
+     },
+     "4": {
+      "asignaciones": 744187220,
+      "candidatos": 1101044,
+      "conjuntos_validos": null,
+      "entradas_por_trozo": 471744380,
+      "segundos": 1164.034,
+      "trozos": 896,
+      "validas": 693439495
+     }
+    },
+    "segundos_catalogo": 1172.322,
+    "segundos_fusion": 81.544
+   },
+   "circuito": {
+    "capas": 5,
+    "clases_por_sitio": {
+     "check": 1,
+     "dato_d1": 3,
+     "dato_d2": 7
+    },
+    "colores_usados": 4,
+    "grado_max_K": 42,
+    "h_X": 230,
+    "host_primitivo": 1206,
+    "tipos_de_ley": 6,
+    "ubicaciones": 1079
+   },
+   "grupos": 187,
+   "sitios": 187
+  },
+  "circ_TIRA_24x6": {
+   "anclas_por_grupo": 2,
+   "catalogo": {
+    "bytes": 1816958734,
+    "duplicados_fusionados": 962232,
+    "entradas_por_k": {
+     "1": 1741,
+     "2": 135412,
+     "3": 12222758,
+     "4": 1121772937
+    },
+    "firmas": 13683,
+    "polimeros_por_k": {
+     "1": 565,
+     "2": 15844,
+     "3": 548196,
+     "4": 20925047
+    },
+    "por_f": {
+     "1": {
+      "asignaciones": 1741,
+      "candidatos": 379,
+      "conjuntos_validos": 379,
+      "entradas_por_trozo": 1741,
+      "segundos": 0.275,
+      "trozos": 379,
+      "validas": 1741
+     },
+     "2": {
+      "asignaciones": 145436,
+      "candidatos": 5864,
+      "conjuntos_validos": 5864,
+      "entradas_por_trozo": 134119,
+      "segundos": 0.316,
+      "trozos": 819,
+      "validas": 145436
+     },
+     "3": {
+      "asignaciones": 15488023,
+      "candidatos": 116925,
+      "conjuntos_validos": 116925,
+      "entradas_por_trozo": 12127593,
+      "segundos": 24.927,
+      "trozos": 889,
+      "validas": 15020887
+     },
+     "4": {
+      "asignaciones": 1770705320,
+      "candidatos": 2560952,
+      "conjuntos_validos": null,
+      "entradas_por_trozo": 1115282234,
+      "segundos": 2709.999,
+      "trozos": 896,
+      "validas": 1647125107
+     }
+    },
+    "segundos_catalogo": 2735.697,
+    "segundos_fusion": 190.884
+   },
+   "circuito": {
+    "capas": 5,
+    "clases_por_sitio": {
+     "check": 1,
+     "dato_d1": 3,
+     "dato_d2": 7
+    },
+    "colores_usados": 4,
+    "grado_max_K": 42,
+    "h_X": 470,
+    "host_primitivo": 2442,
+    "tipos_de_ley": 6,
+    "ubicaciones": 2183
+   },
+   "grupos": 190,
+   "sitios": 379
+  },
+  "circ_TIRA_48x6": {
+   "anclas_por_grupo": 3,
+   "catalogo": {
+    "bytes": 3925664908,
+    "duplicados_fusionados": 1869223,
+    "entradas_por_k": {
+     "1": 3517,
+     "2": 279676,
+     "3": 25781654,
+     "4": 2416532449
+    },
+    "firmas": 13683,
+    "polimeros_por_k": {
+     "1": 1141,
+     "2": 32692,
+     "3": 1154916,
+     "4": 45005423
+    },
+    "por_f": {
+     "1": {
+      "asignaciones": 3517,
+      "candidatos": 763,
+      "conjuntos_validos": 763,
+      "entradas_por_trozo": 3517,
+      "segundos": 0.516,
+      "trozos": 603,
+      "validas": 3517
+     },
+     "2": {
+      "asignaciones": 300524,
+      "candidatos": 12056,
+      "conjuntos_validos": 12056,
+      "entradas_por_trozo": 276573,
+      "segundos": 0.405,
+      "trozos": 867,
+      "validas": 300524
+     },
+     "3": {
+      "asignaciones": 32712319,
+      "candidatos": 245301,
+      "conjuntos_validos": 245301,
+      "entradas_por_trozo": 25569018,
+      "segundos": 59.81,
+      "trozos": 893,
+      "validas": 31714687
+     },
+     "4": {
+      "asignaciones": 3823741520,
+      "candidatos": 5480768,
+      "conjuntos_validos": null,
+      "entradas_por_trozo": 2401768039,
+      "segundos": 5960.715,
+      "trozos": 896,
+      "validas": 3554496331
+     }
+    },
+    "segundos_catalogo": 6021.863,
+    "segundos_fusion": 423.545
+   },
+   "circuito": {
+    "capas": 5,
+    "clases_por_sitio": {
+     "check": 1,
+     "dato_d1": 3,
+     "dato_d2": 7
+    },
+    "colores_usados": 4,
+    "grado_max_K": 42,
+    "h_X": 950,
+    "host_primitivo": 4914,
+    "tipos_de_ley": 6,
+    "ubicaciones": 4391
+   },
+   "grupos": 255,
+   "sitios": 763
+  },
+  "circ_TIRA_6x6": {
+   "anclas_por_grupo": 1,
+   "catalogo": {
+    "bytes": 248200102,
+    "duplicados_fusionados": 194792,
+    "entradas_por_k": {
+     "1": 409,
+     "2": 27214,
+     "3": 2053586,
+     "4": 150785786
+    },
+    "firmas": 13683,
+    "polimeros_por_k": {
+     "1": 133,
+     "2": 3208,
+     "3": 93156,
+     "4": 2866787
+    },
+    "por_f": {
+     "1": {
+      "asignaciones": 409,
+      "candidatos": 91,
+      "conjuntos_validos": 91,
+      "entradas_por_trozo": 409,
+      "segundos": 0.116,
+      "trozos": 91,
+      "validas": 409
+     },
+     "2": {
+      "asignaciones": 29120,
+      "candidatos": 1220,
+      "conjuntos_validos": 1220,
+      "entradas_por_trozo": 26905,
+      "segundos": 0.147,
+      "trozos": 585,
+      "validas": 29120
+     },
+     "3": {
+      "asignaciones": 2569801,
+      "candidatos": 20643,
+      "conjuntos_validos": 20643,
+      "entradas_por_trozo": 2039531,
+      "segundos": 1.545,
+      "trozos": 854,
+      "validas": 2500537
+     },
+     "4": {
+      "asignaciones": 231156265,
+      "candidatos": 371185,
+      "conjuntos_validos": null,
+      "entradas_por_trozo": 149899648,
+      "segundos": 340.539,
+      "trozos": 893,
+      "validas": 216824784
+     }
+    },
+    "segundos_catalogo": 342.38,
+    "segundos_fusion": 27.896
+   },
+   "circuito": {
+    "capas": 5,
+    "clases_por_sitio": {
+     "check": 1,
+     "dato_d1": 3,
+     "dato_d2": 7
+    },
+    "colores_usados": 4,
+    "grado_max_K": 42,
+    "h_X": 110,
+    "host_primitivo": 588,
+    "tipos_de_ley": 6,
+    "ubicaciones": 527
+   },
+   "grupos": 91,
+   "negativo": {
+    "clave": [
+     4,
+     0
+    ],
+    "recuento_antes": 1029,
+    "soporte_hex": "0xf"
+   },
+   "sitios": 91
+  },
+  "fen_TIRA_12x6": {
+   "anclas_por_grupo": 1,
+   "catalogo": {
+    "bytes": 7641732,
+    "duplicados_fusionados": 62536,
+    "entradas_por_k": {
+     "1": 187,
+     "2": 2911,
+     "3": 52583,
+     "4": 1024920
+    },
+    "firmas": 185,
+    "polimeros_por_k": {
+     "1": 187,
+     "2": 2797,
+     "3": 48535,
+     "4": 910740
+    },
+    "por_f": {
+     "1": {
+      "asignaciones": 187,
+      "candidatos": 187,
+      "conjuntos_validos": 187,
+      "entradas_por_trozo": 187,
+      "segundos": 0.12,
+      "trozos": 187,
+      "validas": 187
+     },
+     "2": {
+      "asignaciones": 2768,
+      "candidatos": 2768,
+      "conjuntos_validos": 2768,
+      "entradas_por_trozo": 2768,
+      "segundos": 0.376,
+      "trozos": 923,
+      "validas": 2768
+     },
+     "3": {
+      "asignaciones": 51219,
+      "candidatos": 51219,
+      "conjuntos_validos": 51219,
+      "entradas_por_trozo": 49935,
+      "segundos": 0.518,
+      "trozos": 899,
+      "validas": 51219
+     },
+     "4": {
+      "asignaciones": 1028284,
+      "candidatos": 1028284,
+      "conjuntos_validos": null,
+      "entradas_por_trozo": 977648,
+      "segundos": 31.594,
+      "trozos": 897,
+      "validas": 1023019
+     }
+    },
+    "segundos_catalogo": 32.695,
+    "segundos_fusion": 3.689
+   },
+   "celdas": {
+    "1/1000000|0": {
+     "L_comp_k3": [
+      "1.219943981117348979605195E-16",
+      "1.219943981117348979605196E-16"
+     ],
+     "L_comp_k4": [
+      "1.219994078523670040798829E-16",
+      "1.219994078523670040798830E-16"
+     ],
+     "P_0_k3": [
+      "0.9999879998410040788681278",
+      "0.9999879998410040788681279"
+     ],
+     "P_0_k4": [
+      "0.9999879998410040789828553",
+      "0.9999879998410040789828554"
+     ],
+     "eps_comp_k3": [
+      "2.932589688204099406940159E-19",
+      "2.932589688204099406940160E-19"
+     ],
+     "eps_comp_k4": [
+      "4.401504942112053026679503E-24",
+      "4.401504942112053026679504E-24"
+     ]
+    },
+    "1/1000000|1/1000000": {
+     "L_comp_k3": [
+      "1.219901983449617710563516E-16",
+      "1.219901983449617710563517E-16"
+     ],
+     "L_comp_k4": [
+      "1.219958068497736485206713E-16",
+      "1.219958068497736485206714E-16"
+     ],
+     "P_0_k3": [
+      "0.9999640000020217433554017",
+      "0.9999640000020217433554018"
+     ],
+     "P_0_k4": [
+      "0.9999640000020217435600400",
+      "0.9999640000020217435600401"
+     ],
+     "eps_comp_k3": [
+      "1.022971390127269003798801E-18",
+      "1.022971390127269003798802E-18"
+     ],
+     "eps_comp_k4": [
+      "2.078231284166914153258512E-23",
+      "2.078231284166914153258513E-23"
+     ]
+    },
+    "1/1000000|1/2000000": {
+     "L_comp_k3": [
+      "1.219922982127145047795917E-16",
+      "1.219922982127145047795918E-16"
+     ],
+     "L_comp_k4": [
+      "1.219976073407491222641442E-16",
+      "1.219976073407491222641443E-16"
+     ],
+     "P_0_k3": [
+      "0.9999759998777608429650938",
+      "0.9999759998777608429650939"
+     ],
+     "P_0_k4": [
+      "0.9999759998777608431217594",
+      "0.9999759998777608431217595"
+     ],
+     "eps_comp_k3": [
+      "5.798508373421734862204127E-19",
+      "5.798508373421734862204128E-19"
+     ],
+     "eps_comp_k4": [
+      "1.027176032460509008435235E-23",
+      "1.027176032460509008435236E-23"
+     ]
+    },
+    "1/100000|0": {
+     "L_comp_k3": [
+      "1.219439911724979202444619E-13",
+      "1.219439911724979202444620E-13"
+     ],
+     "L_comp_k4": [
+      "1.219940652412033588847374E-13",
+      "1.219940652412033588847375E-13"
+     ],
+     "P_0_k3": [
+      "0.9998799841040776817169638",
+      "0.9998799841040776817169639"
+     ],
+     "P_0_k4": [
+      "0.9998799841040788284026323",
+      "0.9998799841040788284026324"
+     ],
+     "eps_comp_k3": [
+      "2.931687041690579637755265E-15",
+      "2.931687041690579637755266E-15"
+     ],
+     "eps_comp_k4": [
+      "4.399857774143568088089811E-19",
+      "4.399857774143568088089812E-19"
+     ]
+    },
+    "1/100000|1/100000": {
+     "L_comp_k3": [
+      "1.219020144905712127709649E-13",
+      "1.219020144905712127709650E-13"
+     ],
+     "L_comp_k4": [
+      "1.219580549896446933234415E-13",
+      "1.219580549896446933234416E-13"
+     ],
+     "P_0_k3": [
+      "0.9996400002217375556180848",
+      "0.9996400002217375556180849"
+     ],
+     "P_0_k4": [
+      "0.9996400002217396002292618",
+      "0.9996400002217396002292619"
+     ],
+     "eps_comp_k3": [
+      "1.022543005319411176992462E-14",
+      "1.022543005319411176992463E-14"
+     ],
+     "eps_comp_k4": [
+      "2.077167655751538722764888E-18",
+      "2.077167655751538722764889E-18"
+     ]
+    },
+    "1/100000|1/200000": {
+     "L_comp_k3": [
+      "1.219230012687547940314914E-13",
+      "1.219230012687547940314915E-13"
+     ],
+     "L_comp_k4": [
+      "1.219760590828954094136917E-13",
+      "1.219760590828954094136918E-13"
+     ],
+     "P_0_k3": [
+      "0.9997599877858404017982085",
+      "0.9997599877858404017982086"
+     ],
+     "P_0_k4": [
+      "0.9997599877858419673721041",
+      "0.9997599877858419673721042"
+     ],
+     "eps_comp_k3": [
+      "5.796390431861282234975760E-15",
+      "5.796390431861282234975761E-15"
+     ],
+     "eps_comp_k4": [
+      "1.026718342054726487894480E-18",
+      "1.026718342054726487894481E-18"
+     ]
+    },
+    "1/10000|0": {
+     "L_comp_k3": [
+      "1.214409162575223530765066E-10",
+      "1.214409162575223530765067E-10"
+     ],
+     "L_comp_k4": [
+      "1.219393286161544045674780E-10",
+      "1.219393286161544045674781E-10"
+     ],
+     "P_0_k3": [
+      "0.9987984140658609046737585",
+      "0.9987984140658609046737586"
+     ],
+     "P_0_k4": [
+      "0.9987984140772690301061258",
+      "0.9987984140772690301061259"
+     ],
+     "eps_comp_k3": [
+      "2.922676362703868089876642E-11",
+      "2.922676362703868089876643E-11"
+     ],
+     "eps_comp_k4": [
+      "4.383420992579667391261722E-14",
+      "4.383420992579667391261723E-14"
+     ]
+    },
+    "1/10000|1/10000": {
+     "L_comp_k3": [
+      "1.210232434528020804583402E-10",
+      "1.210232434528020804583403E-10"
+     ],
+     "L_comp_k4": [
+      "1.215792112064801890169485E-10",
+      "1.215792112064801890169486E-10"
+     ],
+     "P_0_k3": [
+      "0.9964000416797157281398112",
+      "0.9964000416797157281398113"
+     ],
+     "P_0_k4": [
+      "0.9964000416999854454165303",
+      "0.9964000416999854454165304"
+     ],
+     "eps_comp_k3": [
+      "1.018269440558740531204288E-10",
+      "1.018269440558740531204289E-10"
+     ],
+     "eps_comp_k4": [
+      "2.066562402616340421358719E-13",
+      "2.066562402616340421358720E-13"
+     ]
+    },
+    "1/10000|1/20000": {
+     "L_comp_k3": [
+      "1.212319241799496728411597E-10",
+      "1.212319241799496728411598E-10"
+     ],
+     "L_comp_k4": [
+      "1.217591662543839563514808E-10",
+      "1.217591662543839563514809E-10"
+     ],
+     "P_0_k3": [
+      "0.9975987883148537007847028",
+      "0.9975987883148537007847029"
+     ],
+     "P_0_k4": [
+      "0.9975987883304016188450246",
+      "0.9975987883304016188450247"
+     ],
+     "eps_comp_k3": [
+      "5.775255268356139400936011E-11",
+      "5.775255268356139400936012E-11"
+     ],
+     "eps_comp_k4": [
+      "1.022153045024726959311916E-13",
+      "1.022153045024726959311917E-13"
+     ]
+    },
+    "1/1000|0": {
+     "L_comp_k3": [
+      "1.165086300142513889903870E-7",
+      "1.165086300142513889903871E-7"
+     ],
+     "L_comp_k4": [
+      "1.212652866613907839629318E-7",
+      "1.212652866613907839629319E-7"
+     ],
+     "P_0_k3": [
+      "0.9878449518928169067857874",
+      "0.9878449518928169067857875"
+     ],
+     "P_0_k4": [
+      "0.9878450602553726765779848",
+      "0.9878450602553726765779849"
+     ],
+     "eps_comp_k3": [
+      "2.834129121127942659628930E-7",
+      "2.834129121127942659628931E-7"
+     ],
+     "eps_comp_k4": [
+      "4.222492447699060359051898E-9",
+      "4.222492447699060359051899E-9"
+     ]
+    },
+    "1/1000|1/1000": {
+     "L_comp_k3": [
+      "1.125367591007063411022551E-7",
+      "1.125367591007063411022552E-7"
+     ],
+     "L_comp_k4": [
+      "1.176699903624582419177116E-7",
+      "1.176699903624582419177117E-7"
+     ],
+     "P_0_k3": [
+      "0.9640231166468969123221467",
+      "0.9640231166468969123221468"
+     ],
+     "P_0_k4": [
+      "0.9640233024747505470878178",
+      "0.9640233024747505470878179"
+     ],
+     "eps_comp_k3": [
+      "9.765449133491170102335597E-7",
+      "9.765449133491170102335598E-7"
+     ],
+     "eps_comp_k4": [
+      "1.963550870885065605536046E-8",
+      "1.963550870885065605536047E-8"
+     ]
+    },
+    "1/1000|1/2000": {
+     "L_comp_k3": [
+      "1.145077250883499175744704E-7",
+      "1.145077250883499175744705E-7"
+     ],
+     "L_comp_k4": [
+      "1.194569090618892273781092E-7",
+      "1.194569090618892273781093E-7"
+     ],
+     "P_0_k3": [
+      "0.9758883176265041117881141",
+      "0.9758883176265041117881142"
+     ],
+     "P_0_k4": [
+      "0.9758884627022231605013675",
+      "0.9758884627022231605013676"
+     ],
+     "eps_comp_k3": [
+      "5.568264541475091629821703E-7",
+      "5.568264541475091629821704E-7"
+     ],
+     "eps_comp_k4": [
+      "9.776405860392175185700006E-9",
+      "9.776405860392175185700007E-9"
+     ]
+    }
+   },
+   "circuito": null,
+   "grupos": 187,
+   "sitios": 187
+  },
+  "fen_TIRA_24x6": {
+   "anclas_por_grupo": 2,
+   "catalogo": {
+    "bytes": 18478571,
+    "duplicados_fusionados": 126860,
+    "entradas_por_k": {
+     "1": 379,
+     "2": 6151,
+     "3": 116243,
+     "4": 2376108
+    },
+    "firmas": 185,
+    "polimeros_por_k": {
+     "1": 379,
+     "2": 5917,
+     "3": 107563,
+     "4": 2119632
+    },
+    "por_f": {
+     "1": {
+      "asignaciones": 379,
+      "candidatos": 379,
+      "conjuntos_validos": 379,
+      "entradas_por_trozo": 379,
+      "segundos": 0.144,
+      "trozos": 379,
+      "validas": 379
+     },
+     "2": {
+      "asignaciones": 5864,
+      "candidatos": 5864,
+      "conjuntos_validos": 5864,
+      "entradas_por_trozo": 5837,
+      "segundos": 0.336,
+      "trozos": 978,
+      "validas": 5864
+     },
+     "3": {
+      "asignaciones": 113463,
+      "candidatos": 113463,
+      "conjuntos_validos": 113463,
+      "entradas_por_trozo": 110435,
+      "segundos": 2.133,
+      "trozos": 901,
+      "validas": 113463
+     },
+     "4": {
+      "asignaciones": 2387428,
+      "candidatos": 2387428,
+      "conjuntos_validos": null,
+      "entradas_por_trozo": 2268031,
+      "segundos": 93.151,
+      "trozos": 897,
+      "validas": 2375395
+     }
+    },
+    "segundos_catalogo": 95.935,
+    "segundos_fusion": 6.571
+   },
+   "celdas": {
+    "1/1000000|0": {
+     "L_comp_k3": [
+      "2.539848463516856153680053E-16",
+      "2.539848463516856153680054E-16"
+     ],
+     "L_comp_k4": [
+      "2.539958316300431844639078E-16",
+      "2.539958316300431844639079E-16"
+     ],
+     "P_0_k3": [
+      "0.9999759997990128946139323",
+      "0.9999759997990128946139324"
+     ],
+     "P_0_k4": [
+      "0.9999759997990128948896266",
+      "0.9999759997990128948896267"
+     ],
+     "eps_comp_k3": [
+      "6.958562110406872210269321E-19",
+      "6.958562110406872210269322E-19"
+     ],
+     "eps_comp_k4": [
+      "1.108985034653755471284336E-23",
+      "1.108985034653755471284337E-23"
+     ]
+    },
+    "1/1000000|1/1000000": {
+     "L_comp_k3": [
+      "2.539699315019732261540085E-16",
+      "2.539699315019732261540086E-16"
+     ],
+     "L_comp_k4": [
+      "2.539822109480427220169751E-16",
+      "2.539822109480427220169752E-16"
+     ],
+     "P_0_k3": [
+      "0.9999280012440482729148713",
+      "0.9999280012440482729148714"
+     ],
+     "P_0_k4": [
+      "0.9999280012440482734046193",
+      "0.9999280012440482734046194"
+     ],
+     "eps_comp_k3": [
+      "2.375280468208549699317833E-18",
+      "2.375280468208549699317834E-18"
+     ],
+     "eps_comp_k4": [
+      "5.082992225652696283146592E-23",
+      "5.082992225652696283146593E-23"
+     ]
+    },
+    "1/1000000|1/2000000": {
+     "L_comp_k3": [
+      "2.539773888299276783942475E-16",
+      "2.539773888299276783942476E-16"
+     ],
+     "L_comp_k4": [
+      "2.539890212114974898925318E-16",
+      "2.539890212114974898925319E-16"
+     ],
+     "P_0_k3": [
+      "0.9999520002917799680699776",
+      "0.9999520002917799680699777"
+     ],
+     "P_0_k4": [
+      "0.9999520002917799684455955",
+      "0.9999520002917799684455956"
+     ],
+     "eps_comp_k3": [
+      "1.358078647082210298209346E-18",
+      "1.358078647082210298209347E-18"
+     ],
+     "eps_comp_k4": [
+      "2.542028409524473475610449E-23",
+      "2.542028409524473475610450E-23"
+     ]
+    },
+    "1/100000|0": {
+     "L_comp_k3": [
+      "2.538484951664143516227851E-13",
+      "2.538484951664143516227852E-13"
+     ],
+     "L_comp_k4": [
+      "2.539582830197818710725762E-13",
+      "2.539582830197818710725763E-13"
+     ],
+     "P_0_k3": [
+      "0.9997599799128911406162757",
+      "0.9997599799128911406162758"
+     ],
+     "P_0_k4": [
+      "0.9997599799128938957898568",
+      "0.9997599799128938957898569"
+     ],
+     "eps_comp_k3": [
+      "6.956331512336173422636511E-15",
+      "6.956331512336173422636512E-15"
+     ],
+     "eps_comp_k4": [
+      "1.108551643115871709318429E-18",
+      "1.108551643115871709318430E-18"
+     ]
+    },
+    "1/100000|1/100000": {
+     "L_comp_k3": [
+      "2.536994501660249249655958E-13",
+      "2.536994501660249249655959E-13"
+     ],
+     "L_comp_k4": [
+      "2.538221048498998899697820E-13",
+      "2.538221048498998899697821E-13"
+     ],
+     "P_0_k3": [
+      "0.9992801244482451570274395",
+      "0.9992801244482451570274396"
+     ],
+     "P_0_k4": [
+      "0.9992801244482500485622041",
+      "0.9992801244482500485622042"
+     ],
+     "eps_comp_k3": [
+      "2.374249939940457989466218E-14",
+      "2.374249939940457989466219E-14"
+     ],
+     "eps_comp_k4": [
+      "5.080292380708776986753970E-18",
+      "5.080292380708776986753971E-18"
+     ]
+    },
+    "1/100000|1/200000": {
+     "L_comp_k3": [
+      "2.537739629812268725494260E-13",
+      "2.537739629812268725494261E-13"
+     ],
+     "L_comp_k4": [
+      "2.538901861796556305207745E-13",
+      "2.538901861796556305207746E-13"
+     ],
+     "P_0_k3": [
+      "0.9995200292049574529833952",
+      "0.9995200292049574529833953"
+     ],
+     "P_0_k4": [
+      "0.9995200292049612056724531",
+      "0.9995200292049612056724532"
+     ],
+     "eps_comp_k3": [
+      "1.357563708135734470230081E-14",
+      "1.357563708135734470230082E-14"
+     ],
+     "eps_comp_k4": [
+      "2.540850145990288665374203E-18",
+      "2.540850145990288665374204E-18"
+     ]
+    },
+    "1/10000|0": {
+     "L_comp_k3": [
+      "2.524881144842439861131629E-10",
+      "2.524881144842439861131630E-10"
+     ],
+     "L_comp_k4": [
+      "2.535795174159422726702914E-10",
+      "2.535795174159422726702915E-10"
+     ],
+     "P_0_k3": [
+      "0.9975980028565351251423091",
+      "0.9975980028565351251423092"
+     ],
+     "P_0_k4": [
+      "0.9975980028839104298685416",
+      "0.9975980028839104298685417"
+     ],
+     "eps_comp_k3": [
+      "6.934065899483063950766175E-11",
+      "6.934065899483063950766176E-11"
+     ],
+     "eps_comp_k4": [
+      "1.104227274478585225185907E-13",
+      "1.104227274478585225185908E-13"
+     ]
+    },
+    "1/10000|1/10000": {
+     "L_comp_k3": [
+      "2.510079852930169199606400E-10",
+      "2.510079852930169199606401E-10"
+     ],
+     "L_comp_k4": [
+      "2.522206303990378768335057E-10",
+      "2.522206303990378768335058E-10"
+     ],
+     "P_0_k3": [
+      "0.9928124879683995584721487",
+      "0.9928124879683995584721488"
+     ],
+     "P_0_k4": [
+      "0.9928124880167240122220224",
+      "0.9928124880167240122220225"
+     ],
+     "eps_comp_k3": [
+      "2.363970140728155422792051E-10",
+      "2.363970140728155422792052E-10"
+     ],
+     "eps_comp_k4": [
+      "5.053375354421746194809419E-13",
+      "5.053375354421746194809420E-13"
+     ]
+    },
+    "1/10000|1/20000": {
+     "L_comp_k3": [
+      "2.517470865668107860698412E-10",
+      "2.517470865668107860698413E-10"
+     ],
+     "L_comp_k4": [
+      "2.528992977806049432232608E-10",
+      "2.528992977806049432232609E-10"
+     ],
+     "P_0_k3": [
+      "0.9952029473515995706935466",
+      "0.9952029473515995706935467"
+     ],
+     "P_0_k4": [
+      "0.9952029473887791080524942",
+      "0.9952029473887791080524943"
+     ],
+     "eps_comp_k3": [
+      "1.352425420997687153129933E-10",
+      "1.352425420997687153129934E-10"
+     ],
+     "eps_comp_k4": [
+      "2.529098465502550711904841E-13",
+      "2.529098465502550711904842E-13"
+     ]
+    },
+    "1/1000|0": {
+     "L_comp_k3": [
+      "2.391951966016131210906259E-7",
+      "2.391951966016131210906260E-7"
+     ],
+     "L_comp_k4": [
+      "2.494789226987577135955689E-7",
+      "2.494789226987577135955690E-7"
+     ],
+     "P_0_k3": [
+      "0.9758115229507277078685517",
+      "0.9758115229507277078685518"
+     ],
+     "P_0_k4": [
+      "0.9758117795934336583170725",
+      "0.9758117795934336583170726"
+     ],
+     "eps_comp_k3": [
+      "6.715395204769763740001739E-7",
+      "6.715395204769763740001740E-7"
+     ],
+     "eps_comp_k4": [
+      "1.061923928777208983707826E-8",
+      "1.061923928777208983707827E-8"
+     ]
+    },
+    "1/1000|1/1000": {
+     "L_comp_k3": [
+      "2.253971384443081134516962E-7",
+      "2.253971384443081134516963E-7"
+     ],
+     "L_comp_k4": [
+      "2.362073046371781277962429E-7",
+      "2.362073046371781277962430E-7"
+     ],
+     "P_0_k3": [
+      "0.9292892809004473201558937",
+      "0.9292892809004473201558938"
+     ],
+     "P_0_k4": [
+      "0.9292897084807254065507774",
+      "0.9292897084807254065507775"
+     ],
+     "eps_comp_k3": [
+      "0.000002263675453726388398462877",
+      "0.000002263675453726388398462878"
+     ],
+     "eps_comp_k4": [
+      "4.792179385596129020337755E-8",
+      "4.792179385596129020337756E-8"
+     ]
+    },
+    "1/1000|1/2000": {
+     "L_comp_k3": [
+      "2.322049666114805264750378E-7",
+      "2.322049666114805264750379E-7"
+     ],
+     "L_comp_k4": [
+      "2.427651867855105957457992E-7",
+      "2.427651867855105957457993E-7"
+     ],
+     "P_0_k3": [
+      "0.9523205738316109635579418",
+      "0.9523205738316109635579419"
+     ],
+     "P_0_k4": [
+      "0.9523209124311767609611268",
+      "0.9523209124311767609611269"
+     ],
+     "eps_comp_k3": [
+      "0.000001302135781404638543940614",
+      "0.000001302135781404638543940615"
+     ],
+     "eps_comp_k4": [
+      "2.414621512104645294209446E-8",
+      "2.414621512104645294209447E-8"
+     ]
+    }
+   },
+   "circuito": null,
+   "grupos": 190,
+   "sitios": 379
+  },
+  "fen_TIRA_48x6": {
+   "anclas_por_grupo": 3,
+   "catalogo": {
+    "bytes": 41491557,
+    "duplicados_fusionados": 238946,
+    "entradas_por_k": {
+     "1": 763,
+     "2": 12631,
+     "3": 243563,
+     "4": 5078484
+    },
+    "firmas": 185,
+    "polimeros_por_k": {
+     "1": 763,
+     "2": 12157,
+     "3": 225619,
+     "4": 4537416
+    },
+    "por_f": {
+     "1": {
+      "asignaciones": 763,
+      "candidatos": 763,
+      "conjuntos_validos": 763,
+      "entradas_por_trozo": 763,
+      "segundos": 0.484,
+      "trozos": 763,
+      "validas": 763
+     },
+     "2": {
+      "asignaciones": 12056,
+      "candidatos": 12056,
+      "conjuntos_validos": 12056,
+      "entradas_por_trozo": 11920,
+      "segundos": 0.33,
+      "trozos": 928,
+      "validas": 12056
+     },
+     "3": {
+      "asignaciones": 237951,
+      "candidatos": 237951,
+      "conjuntos_validos": 237951,
+      "entradas_por_trozo": 231345,
+      "segundos": 3.347,
+      "trozos": 898,
+      "validas": 237951
+     },
+     "4": {
+      "asignaciones": 5105716,
+      "candidatos": 5105716,
+      "conjuntos_validos": null,
+      "entradas_por_trozo": 4845464,
+      "segundos": 170.857,
+      "trozos": 897,
+      "validas": 5080147
+     }
+    },
+    "segundos_catalogo": 175.441,
+    "segundos_fusion": 14.026
+   },
+   "celdas": {
+    "1/1000000|0": {
+     "L_comp_k3": [
+      "5.179562393763348810992450E-16",
+      "5.179562393763348810992451E-16"
+     ],
+     "L_comp_k4": [
+      "5.179791752998984087550453E-16",
+      "5.179791752998984087550454E-16"
+     ],
+     "P_0_k3": [
+      "0.9999520001470370055836614",
+      "0.9999520001470370055836615"
+     ],
+     "P_0_k4": [
+      "0.9999520001470370061812779",
+      "0.9999520001470370061812780"
+     ],
+     "eps_comp_k3": [
+      "1.501050695481241781206513E-18",
+      "1.501050695481241781206514E-18"
+     ],
+     "eps_comp_k4": [
+      "2.446654115538855808517114E-23",
+      "2.446654115538855808517115E-23"
+     ]
+    },
+    "1/1000000|1/1000000": {
+     "L_comp_k3": [
+      "5.179008901897430219395738E-16",
+      "5.179008901897430219395739E-16"
+     ],
+     "L_comp_k4": [
+      "5.179265100774064140601559E-16",
+      "5.179265100774064140601560E-16"
+     ],
+     "P_0_k3": [
+      "0.9998560076159263677740719",
+      "0.9998560076159263677740720"
+     ],
+     "P_0_k4": [
+      "0.9998560076159263688339774",
+      "0.9998560076159263688339775"
+     ],
+     "eps_comp_k3": [
+      "5.079898624371111084869682E-18",
+      "5.079898624371111084869683E-18"
+     ],
+     "eps_comp_k4": [
+      "1.109251410862426054292240E-22",
+      "1.109251410862426054292241E-22"
+     ]
+    },
+    "1/1000000|1/2000000": {
+     "L_comp_k3": [
+      "5.179285641002964289855966E-16",
+      "5.179285641002964289855967E-16"
+     ],
+     "L_comp_k4": [
+      "5.179528420783837264504652E-16",
+      "5.179528420783837264504653E-16"
+     ],
+     "P_0_k3": [
+      "0.9999040028477862478675454",
+      "0.9999040028477862478675455"
+     ],
+     "P_0_k4": [
+      "0.9999040028477862486810362",
+      "0.9999040028477862486810363"
+     ],
+     "eps_comp_k3": [
+      "2.914534266562283920370302E-18",
+      "2.914534266562283920370303E-18"
+     ],
+     "eps_comp_k4": [
+      "5.571733163652402409960777E-23",
+      "5.571733163652402409960778E-23"
+     ]
+    },
+    "1/100000|0": {
+     "L_comp_k3": [
+      "5.175625176252729880482919E-13",
+      "5.175625176252729880482920E-13"
+     ],
+     "L_comp_k4": [
+      "5.177916900477952459467041E-13",
+      "5.177916900477952459467042E-13"
+     ],
+     "P_0_k3": [
+      "0.9995200147369928407035906",
+      "0.9995200147369928407035907"
+     ],
+     "P_0_k4": [
+      "0.9995200147369988116947261",
+      "0.9995200147369988116947262"
+     ],
+     "eps_comp_k3": [
+      "1.500562045362731239934981E-14",
+      "1.500562045362731239934982E-14"
+     ],
+     "eps_comp_k4": [
+      "2.445683374518901509015689E-18",
+      "2.445683374518901509015690E-18"
+     ]
+    },
+    "1/100000|1/100000": {
+     "L_comp_k3": [
+      "5.170096386638569036530055E-13",
+      "5.170096386638569036530056E-13"
+     ],
+     "L_comp_k4": [
+      "5.172653778326657695158890E-13",
+      "5.172653778326657695158891E-13"
+     ],
+     "P_0_k3": [
+      "0.9985607615262578108030771",
+      "0.9985607615262578108030772"
+     ],
+     "P_0_k4": [
+      "0.9985607615262683900358822",
+      "0.9985607615262683900358823"
+     ],
+     "eps_comp_k3": [
+      "5.077663809182496801108765E-14",
+      "5.077663809182496801108766E-14"
+     ],
+     "eps_comp_k4": [
+      "1.108654183062325348759647E-17",
+      "1.108654183062325348759648E-17"
+     ]
+    },
+    "1/100000|1/200000": {
+     "L_comp_k3": [
+      "5.172860099341727655077120E-13",
+      "5.172860099341727655077121E-13"
+     ],
+     "L_comp_k4": [
+      "5.175284729386393428607242E-13",
+      "5.175284729386393428607243E-13"
+     ],
+     "P_0_k3": [
+      "0.9990402848111994445201157",
+      "0.9990402848111994445201158"
+     ],
+     "P_0_k4": [
+      "0.9990402848112075682899475",
+      "0.9990402848112075682899476"
+     ],
+     "eps_comp_k3": [
+      "2.913413038034928808724901E-14",
+      "2.913413038034928808724902E-14"
+     ],
+     "eps_comp_k4": [
+      "5.569113753861413013425622E-18",
+      "5.569113753861413013425623E-18"
+     ]
+    },
+    "1/10000|0": {
+     "L_comp_k3": [
+      "5.136375542323296605834562E-10",
+      "5.136375542323296605834563E-10"
+     ],
+     "L_comp_k4": [
+      "5.159106626001057577414717E-10",
+      "5.159106626001057577414718E-10"
+     ],
+     "P_0_k3": [
+      "0.9952015068658149290971512",
+      "0.9952015068658149290971513"
+     ],
+     "P_0_k4": [
+      "0.9952015069250094707691849",
+      "0.9952015069250094707691850"
+     ],
+     "eps_comp_k3": [
+      "1.495684497255872064175545E-10",
+      "1.495684497255872064175546E-10"
+     ],
+     "eps_comp_k4": [
+      "2.435997624919689225557600E-13",
+      "2.435997624919689225557601E-13"
+     ]
+    },
+    "1/10000|1/10000": {
+     "L_comp_k3": [
+      "5.081697562903682939729757E-10",
+      "5.081697562903682939729758E-10"
+     ],
+     "L_comp_k4": [
+      "5.106815738291888036196712E-10",
+      "5.106815738291888036196713E-10"
+     ],
+     "P_0_k3": [
+      "0.9856760851650947696612105",
+      "0.9856760851650947696612106"
+     ],
+     "P_0_k4": [
+      "0.9856760852689229319531041",
+      "0.9856760852689229319531042"
+     ],
+     "eps_comp_k3": [
+      "5.055371540523712519766060E-10",
+      "5.055371540523712519766061E-10"
+     ],
+     "eps_comp_k4": [
+      "1.102700125802988150055844E-12",
+      "1.102700125802988150055845E-12"
+     ]
+    },
+    "1/10000|1/20000": {
+     "L_comp_k3": [
+      "5.108968978871449184959449E-10",
+      "5.108968978871449184959450E-10"
+     ],
+     "L_comp_k4": [
+      "5.132900435170516230502539E-10",
+      "5.132900435170516230502540E-10"
+     ],
+     "P_0_k3": [
+      "0.9904285132170967582642263",
+      "0.9904285132170967582642264"
+     ],
+     "P_0_k4": [
+      "0.9904285132972279359348637",
+      "0.9904285132972279359348638"
+     ],
+     "eps_comp_k3": [
+      "2.902225209141692949496897E-10",
+      "2.902225209141692949496898E-10"
+     ],
+     "eps_comp_k4": [
+      "5.542989306457516993735299E-13",
+      "5.542989306457516993735300E-13"
+     ]
+    },
+    "1/1000|0": {
+     "L_comp_k3": [
+      "4.756043735455449884157329E-7",
+      "4.756043735455449884157330E-7"
+     ],
+     "L_comp_k4": [
+      "4.965387387705599142602873E-7",
+      "4.965387387705599142602874E-7"
+     ],
+     "P_0_k3": [
+      "0.9521826349254380700937296",
+      "0.9521826349254380700937297"
+     ],
+     "P_0_k4": [
+      "0.9521831773090292611515049",
+      "0.9521831773090292611515050"
+     ],
+     "eps_comp_k3": [
+      "0.000001447792285280347131121921",
+      "0.000001447792285280347131121922"
+     ],
+     "eps_comp_k4": [
+      "2.341273284518937931575527E-8",
+      "2.341273284518937931575528E-8"
+     ]
+    },
+    "1/1000|1/1000": {
+     "L_comp_k3": [
+      "4.267313878348075220282148E-7",
+      "4.267313878348075220282149E-7"
+     ],
+     "L_comp_k4": [
+      "4.476709533997916923037681E-7",
+      "4.476709533997916923037682E-7"
+     ],
+     "P_0_k3": [
+      "0.8635309083464669466516691",
+      "0.8635309083464669466516692"
+     ],
+     "P_0_k4": [
+      "0.8635317674047971145734199",
+      "0.8635317674047971145734200"
+     ],
+     "eps_comp_k3": [
+      "0.000004837931564366016076723501",
+      "0.000004837931564366016076723502"
+     ],
+     "eps_comp_k4": [
+      "1.044943617499651453365851E-7",
+      "1.044943617499651453365852E-7"
+     ]
+    },
+    "1/1000|1/2000": {
+     "L_comp_k3": [
+      "4.505538089545606833757767E-7",
+      "4.505538089545606833757768E-7"
+     ],
+     "L_comp_k4": [
+      "4.715244991098780217479705E-7",
+      "4.715244991098780217479706E-7"
+     ],
+     "P_0_k3": [
+      "0.9068788269585376751700844",
+      "0.9068788269585376751700845"
+     ],
+     "P_0_k4": [
+      "0.9068795246531145010063043",
+      "0.9068795246531145010063044"
+     ],
+     "eps_comp_k3": [
+      "0.000002792752769462797197645180",
+      "0.000002792752769462797197645181"
+     ],
+     "eps_comp_k4": [
+      "5.288583302294140563367095E-8",
+      "5.288583302294140563367096E-8"
+     ]
+    }
+   },
+   "circuito": null,
+   "grupos": 255,
+   "sitios": 763
+  },
+  "fen_TIRA_6x6": {
+   "anclas_por_grupo": 1,
+   "catalogo": {
+    "bytes": 2427226,
+    "duplicados_fusionados": 26888,
+    "entradas_por_k": {
+     "1": 91,
+     "2": 1291,
+     "3": 20753,
+     "4": 349421
+    },
+    "firmas": 185,
+    "polimeros_por_k": {
+     "1": 91,
+     "2": 1237,
+     "3": 19021,
+     "4": 306389
+    },
+    "por_f": {
+     "1": {
+      "asignaciones": 91,
+      "candidatos": 91,
+      "conjuntos_validos": 91,
+      "entradas_por_trozo": 91,
+      "segundos": 0.075,
+      "trozos": 91,
+      "validas": 91
+     },
+     "2": {
+      "asignaciones": 1220,
+      "candidatos": 1220,
+      "conjuntos_validos": 1220,
+      "entradas_por_trozo": 1220,
+      "segundos": 0.219,
+      "trozos": 1220,
+      "validas": 1220
+     },
+     "3": {
+      "asignaciones": 20097,
+      "candidatos": 20097,
+      "conjuntos_validos": 20097,
+      "entradas_por_trozo": 19660,
+      "segundos": 0.253,
+      "trozos": 914,
+      "validas": 20097
+     },
+     "4": {
+      "asignaciones": 348807,
+      "candidatos": 348807,
+      "conjuntos_validos": null,
+      "entradas_por_trozo": 331114,
+      "segundos": 3.094,
+      "trozos": 897,
+      "validas": 346926
+     }
+    },
+    "segundos_catalogo": 3.664,
+    "segundos_fusion": 0.853
+   },
+   "celdas": {
+    "1/1000000|0": {
+     "L_comp_k3": [
+      "5.599798603490561604782168E-17",
+      "5.599798603490561604782169E-17"
+     ],
+     "L_comp_k4": [
+      "5.600000795289324264099264E-17",
+      "5.600000795289324264099265E-17"
+     ],
+     "P_0_k3": [
+      "0.9999939999160012369616471",
+      "0.9999939999160012369616472"
+     ],
+     "P_0_k4": [
+      "0.9999939999160012369959846",
+      "0.9999939999160012369959847"
+     ],
+     "eps_comp_k3": [
+      "9.205532025742935578211916E-20",
+      "9.205532025742935578211917E-20"
+     ],
+     "eps_comp_k4": [
+      "1.081099399994154348461643E-24",
+      "1.081099399994154348461644E-24"
+     ]
+    },
+    "1/1000000|1/1000000": {
+     "L_comp_k3": [
+      "5.599676808866448924400381E-17",
+      "5.599676808866448924400382E-17"
+     ],
+     "L_comp_k4": [
+      "5.599904094272104476956850E-17",
+      "5.599904094272104476956851E-17"
+     ],
+     "P_0_k3": [
+      "0.9999819998670070198593527",
+      "0.9999819998670070198593528"
+     ],
+     "P_0_k4": [
+      "0.9999819998670070199215234",
+      "0.9999819998670070199215235"
+     ],
+     "eps_comp_k3": [
+      "3.469118029955871177954128E-19",
+      "3.469118029955871177954129E-19"
+     ],
+     "eps_comp_k4": [
+      "5.801294173903941908870325E-24",
+      "5.801294173903941908870326E-24"
+     ]
+    },
+    "1/1000000|1/2000000": {
+     "L_comp_k3": [
+      "5.599737705881517144107085E-17",
+      "5.599737705881517144107086E-17"
+     ],
+     "L_comp_k4": [
+      "5.599952444625830106675362E-17",
+      "5.599952444625830106675363E-17"
+     ],
+     "P_0_k3": [
+      "0.9999879998867533321790620",
+      "0.9999879998867533321790621"
+     ],
+     "P_0_k4": [
+      "0.9999879998867533322263425",
+      "0.9999879998867533322263426"
+     ],
+     "eps_comp_k3": [
+      "1.908318953635837755784798E-19",
+      "1.908318953635837755784799E-19"
+     ],
+     "eps_comp_k4": [
+      "2.730104987449481658910341E-24",
+      "2.730104987449481658910342E-24"
+     ]
+    },
+    "1/100000|0": {
+     "L_comp_k3": [
+      "5.597986349021607321597937E-14",
+      "5.597986349021607321597938E-14"
+     ],
+     "L_comp_k4": [
+      "5.600007529044247894266518E-14",
+      "5.600007529044247894266519E-14"
+     ],
+     "P_0_k3": [
+      "0.9999399916012366165717476",
+      "0.9999399916012366165717477"
+     ],
+     "P_0_k4": [
+      "0.9999399916012369598154189",
+      "0.9999399916012369598154190"
+     ],
+     "eps_comp_k3": [
+      "9.203120621256011097305407E-16",
+      "9.203120621256011097305408E-16"
+     ],
+     "eps_comp_k4": [
+      "1.080770057008739856446570E-19",
+      "1.080770057008739856446571E-19"
+     ]
+    },
+    "1/100000|1/100000": {
+     "L_comp_k3": [
+      "5.596768886508939702853804E-14",
+      "5.596768886508939702853805E-14"
+     ],
+     "L_comp_k4": [
+      "5.599040427484409979308503E-14",
+      "5.599040427484409979308504E-14"
+     ],
+     "P_0_k3": [
+      "0.9998199867070185938607377",
+      "0.9998199867070185938607378"
+     ],
+     "P_0_k4": [
+      "0.9998199867070192151859613",
+      "0.9998199867070192151859614"
+     ],
+     "eps_comp_k3": [
+      "3.467840573646413425988510E-15",
+      "3.467840573646413425988511E-15"
+     ],
+     "eps_comp_k4": [
+      "5.798767372075610131498890E-19",
+      "5.798767372075610131498891E-19"
+     ]
+    },
+    "1/100000|1/200000": {
+     "L_comp_k3": [
+      "5.597377588077151145480418E-14",
+      "5.597377588077151145480419E-14"
+     ],
+     "L_comp_k4": [
+      "5.599523962767570908305904E-14",
+      "5.599523962767570908305905E-14"
+     ],
+     "P_0_k3": [
+      "0.9998799886783315408119474",
+      "0.9998799886783315408119475"
+     ],
+     "P_0_k4": [
+      "0.9998799886783320133803081",
+      "0.9998799886783320133803082"
+     ],
+     "eps_comp_k3": [
+      "1.907713397991449503715018E-15",
+      "1.907713397991449503715019E-15"
+     ],
+     "eps_comp_k4": [
+      "2.729086404939923368567805E-19",
+      "2.729086404939923368567806E-19"
+     ]
+    },
+    "1/10000|0": {
+     "L_comp_k3": [
+      "5.579894867632706786830519E-11",
+      "5.579894867632706786830520E-11"
+     ],
+     "L_comp_k4": [
+      "5.600033016086004321006562E-11",
+      "5.600033016086004321006563E-11"
+     ],
+     "P_0_k3": [
+      "0.9993991612331757578616600",
+      "0.9993991612331757578616601"
+     ],
+     "P_0_k4": [
+      "0.9993991612365950526748215",
+      "0.9993991612365950526748216"
+     ],
+     "eps_comp_k3": [
+      "9.179042558082935466335225E-12",
+      "9.179042558082935466335226E-12"
+     ],
+     "eps_comp_k4": [
+      "1.077482270184880255409965E-14",
+      "1.077482270184880255409966E-14"
+     ]
+    },
+    "1/10000|1/10000": {
+     "L_comp_k3": [
+      "5.567768515092632186038753E-11",
+      "5.567768515092632186038754E-11"
+     ],
+     "L_comp_k4": [
+      "5.590353021741272664107765E-11",
+      "5.590353021741272664107766E-11"
+     ],
+     "P_0_k3": [
+      "0.9981986770059718877125846",
+      "0.9981986770059718877125847"
+     ],
+     "P_0_k4": [
+      "0.9981986770121470385107365",
+      "0.9981986770121470385107366"
+     ],
+     "eps_comp_k3": [
+      "3.455093104981212880813468E-11",
+      "3.455093104981212880813469E-11"
+     ],
+     "eps_comp_k4": [
+      "5.773561917021291563702692E-14",
+      "5.773561917021291563702693E-14"
+     ]
+    },
+    "1/10000|1/20000": {
+     "L_comp_k3": [
+      "5.573828733221492433666921E-11",
+      "5.573828733221492433666922E-11"
+     ],
+     "L_comp_k4": [
+      "5.595191460963701123714436E-11",
+      "5.595191460963701123714437E-11"
+     ],
+     "P_0_k3": [
+      "0.9987988708251772085531226",
+      "0.9987988708251772085531227"
+     ],
+     "P_0_k4": [
+      "0.9987988708298792969912082",
+      "0.9987988708298792969912083"
+     ],
+     "eps_comp_k3": [
+      "1.901668879175921756207347E-11",
+      "1.901668879175921756207348E-11"
+     ],
+     "eps_comp_k4": [
+      "2.718922124927126780282892E-14",
+      "2.718922124927126780282893E-14"
+     ]
+    },
+    "1/1000|0": {
+     "L_comp_k3": [
+      "5.402052485641905412529257E-8",
+      "5.402052485641905412529258E-8"
+     ],
+     "L_comp_k4": [
+      "5.596211682989807559692758E-8",
+      "5.596211682989807559692759E-8"
+     ],
+     "P_0_k3": [
+      "0.9939171997450721093758187",
+      "0.9939171997450721093758188"
+     ],
+     "P_0_k4": [
+      "0.9939172326508522569291820",
+      "0.9939172326508522569291821"
+     ],
+     "eps_comp_k3": [
+      "8.941823274048293937273144E-8",
+      "8.941823274048293937273145E-8"
+     ],
+     "eps_comp_k4": [
+      "1.045162147807124885198229E-9",
+      "1.045162147807124885198230E-9"
+     ]
+    },
+    "1/1000|1/1000": {
+     "L_comp_k3": [
+      "5.285517212354606631490766E-8",
+      "5.285517212354606631490767E-8"
+     ],
+     "L_comp_k4": [
+      "5.498668959832381815315859E-8",
+      "5.498668959832381815315860E-8"
+     ],
+     "P_0_k3": [
+      "0.9818738829633012074366274",
+      "0.9818738829633012074366275"
+     ],
+     "P_0_k4": [
+      "0.9818739410290600039645156",
+      "0.9818739410290600039645157"
+     ],
+     "eps_comp_k3": [
+      "3.330288087221443594860322E-7",
+      "3.330288087221443594860323E-7"
+     ],
+     "eps_comp_k4": [
+      "5.527657836736149919939274E-9",
+      "5.527657836736149919939275E-9"
+     ]
+    },
+    "1/1000|1/2000": {
+     "L_comp_k3": [
+      "5.343499521249825871314460E-8",
+      "5.343499521249825871314461E-8"
+     ],
+     "L_comp_k4": [
+      "5.547276812520134244861370E-8",
+      "5.547276812520134244861371E-8"
+     ],
+     "P_0_k3": [
+      "0.9878900133896068744549079",
+      "0.9878900133896068744549080"
+     ],
+     "P_0_k4": [
+      "0.9878900581140462615874785",
+      "0.9878900581140462615874786"
+     ],
+     "eps_comp_k3": [
+      "1.842313554102406150929857E-7",
+      "1.842313554102406150929858E-7"
+     ],
+     "eps_comp_k4": [
+      "2.619402729507491793200002E-9",
+      "2.619402729507491793200003E-9"
+     ]
+    }
+   },
+   "circuito": null,
+   "grupos": 91,
+   "sitios": 91
+  }
+ },
+ "lectura_global": "D-m1 VALIDADO; D-m2 CABE_CON_MAS_TIEMPO",
+ "limites_alcanzados": [],
+ "llamadas_totales": 6637302128,
+ "medidas": {
+  "TIRA_24x6": {
+   "catalogo": {
+    "bytes": 1816958734,
+    "duplicados_fusionados": 962232,
+    "entradas_por_k": {
+     "1": 1741,
+     "2": 135412,
+     "3": 12222758,
+     "4": 1121772937
+    },
+    "firmas": 13683,
+    "polimeros_por_k": {
+     "1": 565,
+     "2": 15844,
+     "3": 548196,
+     "4": 20925047
+    },
+    "por_f": {
+     "1": {
+      "asignaciones": 1741,
+      "candidatos": 379,
+      "conjuntos_validos": 379,
+      "entradas_por_trozo": 1741,
+      "segundos": 0.275,
+      "trozos": 379,
+      "validas": 1741
+     },
+     "2": {
+      "asignaciones": 145436,
+      "candidatos": 5864,
+      "conjuntos_validos": 5864,
+      "entradas_por_trozo": 134119,
+      "segundos": 0.316,
+      "trozos": 819,
+      "validas": 145436
+     },
+     "3": {
+      "asignaciones": 15488023,
+      "candidatos": 116925,
+      "conjuntos_validos": 116925,
+      "entradas_por_trozo": 12127593,
+      "segundos": 24.927,
+      "trozos": 889,
+      "validas": 15020887
+     },
+     "4": {
+      "asignaciones": 1770705320,
+      "candidatos": 2560952,
+      "conjuntos_validos": null,
+      "entradas_por_trozo": 1115282234,
+      "segundos": 2709.999,
+      "trozos": 896,
+      "validas": 1647125107
+     }
+    },
+    "segundos_catalogo": 2735.697,
+    "segundos_fusion": 190.884
+   },
+   "estructura_k4": {
+    "anclas_malas": 0,
+    "bytes_cargados": 1816958734,
+    "bytes_por_estado_pendiente": 136.0,
+    "completo": true,
+    "entradas": 1121772937,
+    "estados": 247927,
+    "grupos": 190,
+    "k": 4,
+    "modo": "estructura",
+    "pendientes_max": 7832,
+    "polimeros": 20925047,
+    "polimeros_por_ancla_max": 164967,
+    "quitadas": 0,
+    "segundos": 2624.917,
+    "segundos_carga": 192.099,
+    "segundos_dp": 2369.005,
+    "segundos_pesos": 63.792,
+    "terminos": 837562421
+   }
+  },
+  "TIRA_48x6": {
+   "catalogo": {
+    "bytes": 3925664908,
+    "duplicados_fusionados": 1869223,
+    "entradas_por_k": {
+     "1": 3517,
+     "2": 279676,
+     "3": 25781654,
+     "4": 2416532449
+    },
+    "firmas": 13683,
+    "polimeros_por_k": {
+     "1": 1141,
+     "2": 32692,
+     "3": 1154916,
+     "4": 45005423
+    },
+    "por_f": {
+     "1": {
+      "asignaciones": 3517,
+      "candidatos": 763,
+      "conjuntos_validos": 763,
+      "entradas_por_trozo": 3517,
+      "segundos": 0.516,
+      "trozos": 603,
+      "validas": 3517
+     },
+     "2": {
+      "asignaciones": 300524,
+      "candidatos": 12056,
+      "conjuntos_validos": 12056,
+      "entradas_por_trozo": 276573,
+      "segundos": 0.405,
+      "trozos": 867,
+      "validas": 300524
+     },
+     "3": {
+      "asignaciones": 32712319,
+      "candidatos": 245301,
+      "conjuntos_validos": 245301,
+      "entradas_por_trozo": 25569018,
+      "segundos": 59.81,
+      "trozos": 893,
+      "validas": 31714687
+     },
+     "4": {
+      "asignaciones": 3823741520,
+      "candidatos": 5480768,
+      "conjuntos_validos": null,
+      "entradas_por_trozo": 2401768039,
+      "segundos": 5960.715,
+      "trozos": 896,
+      "validas": 3554496331
+     }
+    },
+    "segundos_catalogo": 6021.863,
+    "segundos_fusion": 423.545
+   },
+   "estructura_k3": {
+    "anclas_malas": 0,
+    "bytes_cargados": 3925664908,
+    "bytes_por_estado_pendiente": 188.0,
+    "completo": true,
+    "entradas": 25781654,
+    "estados": 89001,
+    "grupos": 255,
+    "k": 3,
+    "modo": "estructura",
+    "pendientes_max": 1200,
+    "polimeros": 1154916,
+    "polimeros_por_ancla_max": 4009,
+    "quitadas": 0,
+    "segundos": 561.956,
+    "segundos_carga": 408.469,
+    "segundos_dp": 81.52,
+    "segundos_pesos": 71.954,
+    "terminos": 29945741
+   },
+   "estructura_k4": {
+    "anclas_malas": 0,
+    "bytes_cargados": 3925664908,
+    "bytes_por_estado_pendiente": 188.0,
+    "completo": true,
+    "entradas": 2416532449,
+    "estados": 582583,
+    "grupos": 255,
+    "k": 4,
+    "modo": "estructura",
+    "pendientes_max": 7832,
+    "polimeros": 45005423,
+    "polimeros_por_ancla_max": 164967,
+    "quitadas": 0,
+    "segundos": 4032.089,
+    "segundos_carga": 248.68,
+    "segundos_dp": 3702.08,
+    "segundos_pesos": 81.306,
+    "terminos": 1953983141
+   }
+  },
+  "calibracion_tiempo": {
+   "12": {
+    "bytes_cargados": 86582027,
+    "bytes_por_estado_pendiente": 825.8,
+    "entradas": 53948313,
+    "grupos": 16,
+    "nota": "valores de la celda descartados; solo tiempos",
+    "pico_bytes": 463020032,
+    "segundos_carga": 7.311,
+    "segundos_dp": 225.38,
+    "segundos_pesos": 59.432,
+    "t_carga_s_por_byte": 8.444015753985524e-08,
+    "t_celda_s_por_termino": 8.542779185380924e-06,
+    "t_peso_s_por_entrada": 1.1016470524296098e-06,
+    "terminos": 26382515
+   },
+   "48": {
+    "bytes_cargados": 259804671,
+    "bytes_por_estado_pendiente": 1075.0,
+    "entradas": 161844939,
+    "grupos": 16,
+    "nota": "valores de la celda descartados; solo tiempos",
+    "pico_bytes": 511111168,
+    "segundos_carga": 24.518,
+    "segundos_dp": 1068.515,
+    "segundos_pesos": 184.124,
+    "t_carga_s_por_byte": 9.437089758867346e-08,
+    "t_celda_s_por_termino": 8.947719797525616e-06,
+    "t_peso_s_por_entrada": 1.1376568284288456e-06,
+    "terminos": 119417575
+   }
+  }
+ },
+ "plan": "T2_1M_MOTOR_ANCLAS_PUNTO_FIJO_20261113/PLAN_T2_1M.txt",
+ "plan_sha256": "81f475fe847d9968239d79fa6196f581f682da7b66013ce3cff83d6485ef27a7",
+ "programa_sha256": "c0d297805a55ecfe514fd623c21ac5a1f272dd2b26a2f52a6f10a87205e6cf3a",
+ "prueba": false,
+ "referencias_sha256": {
+  "B4_TIRAS_ESCALADO_N_20261113/RESULTADO_B4.json": "640db376441656cfb72e16aa00e0e99e2fc2eb6047905dfe031f5d994634b5f7",
+  "B4_TIRAS_ESCALADO_N_20261113/b4_tiras.py": "b1a2cb8f93affcc3713eadd4ff860a2d74756b91752011cd6b16da44def2dd15",
+  "T2_0_CALIBRACION_CIRCUITO_TIRAS_20261113/RESULTADO_T2_0.json": "fb56c4324034549476813bd1a0d2bacd6f46c27d552fbf71ba2d0813d62df38e",
+  "T2_0_CALIBRACION_CIRCUITO_TIRAS_20261113/t2_calibracion.py": "195bf3317f7af114f4cdc1daad714e828534ddd57abab29c81daa7126d17cc61",
+  "T2_1M_MOTOR_ANCLAS_PUNTO_FIJO_20261113/PLAN_T2_1M.txt": "81f475fe847d9968239d79fa6196f581f682da7b66013ce3cff83d6485ef27a7"
+ },
+ "status": "PASS",
+ "trabajo": {
+  "bytes": 6830509776,
+  "manifiesto": "T2_1M_MOTOR_ANCLAS_PUNTO_FIJO_20261113/trabajo/MANIFIESTO.json",
+  "manifiesto_sha256": "4671bab0a5eec923b1fd7b9fdd7af499bd64dddf9efce4aedd372495d8f35730",
+  "pico_disco_bytes": 12035190163
+ },
+ "trabajos": {
+  "circ_12_cal": {
+   "anclas_malas": 0,
+   "bytes_cargados": 86582027,
+   "bytes_por_estado_pendiente": 825.8,
+   "completo": false,
+   "entradas": 53948313,
+   "estados_procesados": 7709,
+   "grupos": 16,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 5332,
+   "polimeros": 1003349,
+   "polimeros_por_ancla_max": 164967,
+   "quitadas": 0,
+   "segundos": 292.258,
+   "segundos_carga": 7.311,
+   "segundos_dp": 225.38,
+   "segundos_pesos": 59.432,
+   "terminos": 26382515
+  },
+  "circ_12_dom_k4": {
+   "anclas_malas": 0,
+   "bytes_cargados": 769646946,
+   "bytes_por_estado_pendiente": 1004.8,
+   "completo": true,
+   "entradas": 474393181,
+   "estados": 80599,
+   "grupos": 187,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 7832,
+   "polimeros": 8884859,
+   "polimeros_por_ancla_max": 164967,
+   "quitadas": 0,
+   "segundos": 3013.696,
+   "segundos_carga": 74.068,
+   "segundos_dp": 2421.645,
+   "segundos_pesos": 517.792,
+   "terminos": 279352061
+  },
+  "circ_12_est_k1": {
+   "anclas_malas": 0,
+   "bytes_cargados": 769646946,
+   "bytes_por_estado_pendiente": 112.0,
+   "completo": true,
+   "entradas": 853,
+   "estados": 1455,
+   "grupos": 187,
+   "k": 1,
+   "modo": "estructura",
+   "pendientes_max": 54,
+   "polimeros": 277,
+   "polimeros_por_ancla_max": 5,
+   "quitadas": 0,
+   "segundos": 69.012,
+   "segundos_carga": 58.96,
+   "segundos_dp": 0.212,
+   "segundos_pesos": 9.825,
+   "terminos": 2341
+  },
+  "circ_12_est_k2": {
+   "anclas_malas": 0,
+   "bytes_cargados": 769646946,
+   "bytes_por_estado_pendiente": 112.0,
+   "completo": true,
+   "entradas": 63280,
+   "estados": 3993,
+   "grupos": 187,
+   "k": 2,
+   "modo": "estructura",
+   "pendientes_max": 249,
+   "polimeros": 7420,
+   "polimeros_por_ancla_max": 112,
+   "quitadas": 0,
+   "segundos": 91.183,
+   "segundos_carga": 77.725,
+   "segundos_dp": 0.597,
+   "segundos_pesos": 12.846,
+   "terminos": 109752
+  },
+  "circ_12_est_k3": {
+   "anclas_malas": 0,
+   "bytes_cargados": 769646946,
+   "bytes_por_estado_pendiente": 112.0,
+   "completo": true,
+   "entradas": 5443310,
+   "estados": 15417,
+   "grupos": 187,
+   "k": 3,
+   "modo": "estructura",
+   "pendientes_max": 1200,
+   "polimeros": 244836,
+   "polimeros_por_ancla_max": 4009,
+   "quitadas": 0,
+   "segundos": 103.406,
+   "segundos_carga": 77.299,
+   "segundos_dp": 12.164,
+   "segundos_pesos": 13.929,
+   "terminos": 5246465
+  },
+  "circ_12_suma_k4": {
+   "anclas_malas": 0,
+   "bytes_cargados": 769646946,
+   "bytes_por_estado_pendiente": 472.0,
+   "completo": true,
+   "entradas": 474393181,
+   "estados": 80599,
+   "grupos": 187,
+   "k": 4,
+   "modo": "suma",
+   "pendientes_max": 7832,
+   "polimeros": 8884859,
+   "polimeros_por_ancla_max": 164967,
+   "quitadas": 0,
+   "segundos": 1863.37,
+   "segundos_carga": 78.598,
+   "segundos_dp": 1391.784,
+   "segundos_pesos": 392.914,
+   "terminos": 279352061
+  },
+  "circ_24_est_k1": {
+   "anclas_malas": 0,
+   "bytes_cargados": 1816958734,
+   "bytes_por_estado_pendiente": 136.0,
+   "completo": true,
+   "entradas": 1741,
+   "estados": 3123,
+   "grupos": 190,
+   "k": 1,
+   "modo": "estructura",
+   "pendientes_max": 54,
+   "polimeros": 565,
+   "polimeros_por_ancla_max": 5,
+   "quitadas": 0,
+   "segundos": 168.742,
+   "segundos_carga": 144.242,
+   "segundos_dp": 0.511,
+   "segundos_pesos": 23.975,
+   "terminos": 5041
+  },
+  "circ_24_est_k2": {
+   "anclas_malas": 0,
+   "bytes_cargados": 1816958734,
+   "bytes_por_estado_pendiente": 136.0,
+   "completo": true,
+   "entradas": 135412,
+   "estados": 9165,
+   "grupos": 190,
+   "k": 2,
+   "modo": "estructura",
+   "pendientes_max": 249,
+   "polimeros": 15844,
+   "polimeros_por_ancla_max": 112,
+   "quitadas": 0,
+   "segundos": 191.506,
+   "segundos_carga": 162.736,
+   "segundos_dp": 1.197,
+   "segundos_pesos": 27.56,
+   "terminos": 254484
+  },
+  "circ_24_est_k4": {
+   "anclas_malas": 0,
+   "bytes_cargados": 1816958734,
+   "bytes_por_estado_pendiente": 136.0,
+   "completo": true,
+   "entradas": 1121772937,
+   "estados": 247927,
+   "grupos": 190,
+   "k": 4,
+   "modo": "estructura",
+   "pendientes_max": 7832,
+   "polimeros": 20925047,
+   "polimeros_por_ancla_max": 164967,
+   "quitadas": 0,
+   "segundos": 2624.917,
+   "segundos_carga": 192.099,
+   "segundos_dp": 2369.005,
+   "segundos_pesos": 63.792,
+   "terminos": 837562421
+  },
+  "circ_24_suma_k3": {
+   "anclas_malas": 0,
+   "bytes_cargados": 1816958734,
+   "bytes_por_estado_pendiente": 497.6,
+   "completo": true,
+   "entradas": 12222758,
+   "estados": 39945,
+   "grupos": 190,
+   "k": 3,
+   "modo": "suma",
+   "pendientes_max": 1200,
+   "polimeros": 548196,
+   "polimeros_por_ancla_max": 4009,
+   "quitadas": 0,
+   "segundos": 308.799,
+   "segundos_carga": 191.507,
+   "segundos_dp": 69.521,
+   "segundos_pesos": 47.727,
+   "terminos": 13479557
+  },
+  "circ_48_cal": {
+   "anclas_malas": 0,
+   "bytes_cargados": 259804671,
+   "bytes_por_estado_pendiente": 1075.0,
+   "completo": false,
+   "entradas": 161844939,
+   "estados_procesados": 35597,
+   "grupos": 16,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 7832,
+   "polimeros": 3010047,
+   "polimeros_por_ancla_max": 164967,
+   "quitadas": 0,
+   "segundos": 1277.306,
+   "segundos_carga": 24.518,
+   "segundos_dp": 1068.515,
+   "segundos_pesos": 184.124,
+   "terminos": 119417575
+  },
+  "circ_48_est_k3": {
+   "anclas_malas": 0,
+   "bytes_cargados": 3925664908,
+   "bytes_por_estado_pendiente": 188.0,
+   "completo": true,
+   "entradas": 25781654,
+   "estados": 89001,
+   "grupos": 255,
+   "k": 3,
+   "modo": "estructura",
+   "pendientes_max": 1200,
+   "polimeros": 1154916,
+   "polimeros_por_ancla_max": 4009,
+   "quitadas": 0,
+   "segundos": 561.956,
+   "segundos_carga": 408.469,
+   "segundos_dp": 81.52,
+   "segundos_pesos": 71.954,
+   "terminos": 29945741
+  },
+  "circ_48_est_k4": {
+   "anclas_malas": 0,
+   "bytes_cargados": 3925664908,
+   "bytes_por_estado_pendiente": 188.0,
+   "completo": true,
+   "entradas": 2416532449,
+   "estados": 582583,
+   "grupos": 255,
+   "k": 4,
+   "modo": "estructura",
+   "pendientes_max": 7832,
+   "polimeros": 45005423,
+   "polimeros_por_ancla_max": 164967,
+   "quitadas": 0,
+   "segundos": 4032.089,
+   "segundos_carga": 248.68,
+   "segundos_dp": 3702.08,
+   "segundos_pesos": 81.306,
+   "terminos": 1953983141
+  },
+  "circ_6_dom_k4": {
+   "anclas_malas": 0,
+   "bytes_cargados": 248200102,
+   "bytes_por_estado_pendiente": 992.0,
+   "completo": true,
+   "entradas": 150785786,
+   "estados": 5530,
+   "grupos": 91,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 1029,
+   "polimeros": 2866787,
+   "polimeros_por_ancla_max": 161759,
+   "quitadas": 0,
+   "segundos": 435.316,
+   "segundos_carga": 25.154,
+   "segundos_dp": 241.493,
+   "segundos_pesos": 168.582,
+   "terminos": 25848067
+  },
+  "circ_6_est_k1": {
+   "anclas_malas": 0,
+   "bytes_cargados": 248200102,
+   "bytes_por_estado_pendiente": 100.0,
+   "completo": true,
+   "entradas": 409,
+   "estados": 621,
+   "grupos": 91,
+   "k": 1,
+   "modo": "estructura",
+   "pendientes_max": 54,
+   "polimeros": 133,
+   "polimeros_por_ancla_max": 5,
+   "quitadas": 0,
+   "segundos": 19.836,
+   "segundos_carga": 16.875,
+   "segundos_dp": 0.088,
+   "segundos_pesos": 2.859,
+   "terminos": 991
+  },
+  "circ_6_est_k2": {
+   "anclas_malas": 0,
+   "bytes_cargados": 248200102,
+   "bytes_por_estado_pendiente": 100.0,
+   "completo": true,
+   "entradas": 27214,
+   "estados": 1407,
+   "grupos": 91,
+   "k": 2,
+   "modo": "estructura",
+   "pendientes_max": 249,
+   "polimeros": 3208,
+   "polimeros_por_ancla_max": 112,
+   "quitadas": 0,
+   "segundos": 21.239,
+   "segundos_carga": 18.018,
+   "segundos_dp": 0.158,
+   "segundos_pesos": 3.048,
+   "terminos": 37386
+  },
+  "circ_6_est_k3": {
+   "anclas_malas": 0,
+   "bytes_cargados": 248200102,
+   "bytes_por_estado_pendiente": 99.1,
+   "completo": true,
+   "entradas": 2053586,
+   "estados": 3215,
+   "grupos": 91,
+   "k": 3,
+   "modo": "estructura",
+   "pendientes_max": 648,
+   "polimeros": 93156,
+   "polimeros_por_ancla_max": 4009,
+   "quitadas": 0,
+   "segundos": 25.288,
+   "segundos_carga": 19.544,
+   "segundos_dp": 2.14,
+   "segundos_pesos": 3.591,
+   "terminos": 1143002
+  },
+  "circ_6_exacto_0": {
+   "anclas_malas": 0,
+   "bytes_cargados": 248200102,
+   "bytes_por_estado_pendiente": 1170.2,
+   "completo": true,
+   "entradas": 2053586,
+   "estados": 3215,
+   "grupos": 91,
+   "k": 3,
+   "modo": "celdas",
+   "pendientes_max": 648,
+   "polimeros": 93156,
+   "polimeros_por_ancla_max": 4009,
+   "quitadas": 0,
+   "segundos": 212.107,
+   "segundos_carga": 21.868,
+   "segundos_dp": 125.767,
+   "segundos_pesos": 64.348,
+   "terminos": 1143002
+  },
+  "circ_6_exacto_1": {
+   "anclas_malas": 0,
+   "bytes_cargados": 248200102,
+   "bytes_por_estado_pendiente": 1160.0,
+   "completo": true,
+   "entradas": 2053586,
+   "estados": 3215,
+   "grupos": 91,
+   "k": 3,
+   "modo": "celdas",
+   "pendientes_max": 648,
+   "polimeros": 93156,
+   "polimeros_por_ancla_max": 4009,
+   "quitadas": 0,
+   "segundos": 339.341,
+   "segundos_carga": 21.706,
+   "segundos_dp": 242.724,
+   "segundos_pesos": 74.75,
+   "terminos": 1143002
+  },
+  "circ_6_negativo_k4": {
+   "anclas_malas": 0,
+   "bytes_cargados": 248200102,
+   "bytes_por_estado_pendiente": 459.2,
+   "completo": true,
+   "entradas": 150785786,
+   "estados": 5530,
+   "grupos": 91,
+   "k": 4,
+   "modo": "suma",
+   "pendientes_max": 1029,
+   "polimeros": 2866787,
+   "polimeros_por_ancla_max": 161759,
+   "quitadas": 1,
+   "segundos": 298.973,
+   "segundos_carga": 24.403,
+   "segundos_dp": 153.678,
+   "segundos_pesos": 120.848,
+   "terminos": 25848067
+  },
+  "circ_6_suma_k4": {
+   "anclas_malas": 0,
+   "bytes_cargados": 248200102,
+   "bytes_por_estado_pendiente": 459.2,
+   "completo": true,
+   "entradas": 150785786,
+   "estados": 5530,
+   "grupos": 91,
+   "k": 4,
+   "modo": "suma",
+   "pendientes_max": 1029,
+   "polimeros": 2866787,
+   "polimeros_por_ancla_max": 161759,
+   "quitadas": 0,
+   "segundos": 297.885,
+   "segundos_carga": 24.999,
+   "segundos_dp": 153.114,
+   "segundos_pesos": 119.728,
+   "terminos": 25848067
+  },
+  "fen_12_k3": {
+   "anclas_malas": 0,
+   "bytes_cargados": 7641732,
+   "bytes_por_estado_pendiente": 9825.6,
+   "completo": true,
+   "entradas": 52583,
+   "estados": 14141,
+   "grupos": 187,
+   "k": 3,
+   "modo": "celdas",
+   "pendientes_max": 1104,
+   "polimeros": 48535,
+   "polimeros_por_ancla_max": 1053,
+   "quitadas": 0,
+   "segundos": 62.205,
+   "segundos_carga": 1.071,
+   "segundos_dp": 57.911,
+   "segundos_pesos": 3.206,
+   "terminos": 973957
+  },
+  "fen_12_k4_0": {
+   "anclas_malas": 0,
+   "bytes_cargados": 7641732,
+   "bytes_por_estado_pendiente": 5054.4,
+   "completo": true,
+   "entradas": 1024920,
+   "estados": 66785,
+   "grupos": 187,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 6571,
+   "polimeros": 910740,
+   "polimeros_por_ancla_max": 22340,
+   "quitadas": 0,
+   "segundos": 971.242,
+   "segundos_carga": 1.263,
+   "segundos_dp": 935.981,
+   "segundos_pesos": 33.983,
+   "terminos": 27604459
+  },
+  "fen_12_k4_1": {
+   "anclas_malas": 0,
+   "bytes_cargados": 7641732,
+   "bytes_por_estado_pendiente": 4977.6,
+   "completo": true,
+   "entradas": 1024920,
+   "estados": 66785,
+   "grupos": 187,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 6571,
+   "polimeros": 910740,
+   "polimeros_por_ancla_max": 22340,
+   "quitadas": 0,
+   "segundos": 953.018,
+   "segundos_carga": 1.23,
+   "segundos_dp": 917.254,
+   "segundos_pesos": 34.52,
+   "terminos": 27604459
+  },
+  "fen_24_k3": {
+   "anclas_malas": 0,
+   "bytes_cargados": 18478571,
+   "bytes_por_estado_pendiente": 9851.2,
+   "completo": true,
+   "entradas": 116243,
+   "estados": 36413,
+   "grupos": 190,
+   "k": 3,
+   "modo": "celdas",
+   "pendientes_max": 1104,
+   "polimeros": 107563,
+   "polimeros_por_ancla_max": 1053,
+   "quitadas": 0,
+   "segundos": 196.791,
+   "segundos_carga": 3.206,
+   "segundos_dp": 185.017,
+   "segundos_pesos": 8.551,
+   "terminos": 2473153
+  },
+  "fen_24_k4_0": {
+   "anclas_malas": 0,
+   "bytes_cargados": 18478571,
+   "bytes_por_estado_pendiente": 2656.0,
+   "completo": true,
+   "entradas": 2376108,
+   "estados": 202373,
+   "grupos": 190,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 6571,
+   "polimeros": 2119632,
+   "polimeros_por_ancla_max": 22340,
+   "quitadas": 0,
+   "segundos": 1677.556,
+   "segundos_carga": 3.296,
+   "segundos_dp": 1626.519,
+   "segundos_pesos": 47.729,
+   "terminos": 81171019
+  },
+  "fen_24_k4_1": {
+   "anclas_malas": 0,
+   "bytes_cargados": 18478571,
+   "bytes_por_estado_pendiente": 2656.0,
+   "completo": true,
+   "entradas": 2376108,
+   "estados": 202373,
+   "grupos": 190,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 6571,
+   "polimeros": 2119632,
+   "polimeros_por_ancla_max": 22340,
+   "quitadas": 0,
+   "segundos": 1659.257,
+   "segundos_carga": 3.147,
+   "segundos_dp": 1607.743,
+   "segundos_pesos": 48.354,
+   "terminos": 81171019
+  },
+  "fen_24_k4_2": {
+   "anclas_malas": 0,
+   "bytes_cargados": 18478571,
+   "bytes_por_estado_pendiente": 2636.8,
+   "completo": true,
+   "entradas": 2376108,
+   "estados": 202373,
+   "grupos": 190,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 6571,
+   "polimeros": 2119632,
+   "polimeros_por_ancla_max": 22340,
+   "quitadas": 0,
+   "segundos": 1611.588,
+   "segundos_carga": 3.245,
+   "segundos_dp": 1560.643,
+   "segundos_pesos": 47.687,
+   "terminos": 81171019
+  },
+  "fen_24_k4_3": {
+   "anclas_malas": 0,
+   "bytes_cargados": 18478571,
+   "bytes_por_estado_pendiente": 2598.4,
+   "completo": true,
+   "entradas": 2376108,
+   "estados": 202373,
+   "grupos": 190,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 6571,
+   "polimeros": 2119632,
+   "polimeros_por_ancla_max": 22340,
+   "quitadas": 0,
+   "segundos": 1630.04,
+   "segundos_carga": 3.336,
+   "segundos_dp": 1578.118,
+   "segundos_pesos": 48.573,
+   "terminos": 81171019
+  },
+  "fen_48_k3": {
+   "anclas_malas": 0,
+   "bytes_cargados": 41491557,
+   "bytes_por_estado_pendiente": 9903.2,
+   "completo": true,
+   "entradas": 243563,
+   "estados": 80957,
+   "grupos": 255,
+   "k": 3,
+   "modo": "celdas",
+   "pendientes_max": 1104,
+   "polimeros": 225619,
+   "polimeros_por_ancla_max": 1053,
+   "quitadas": 0,
+   "segundos": 342.202,
+   "segundos_carga": 6.061,
+   "segundos_dp": 322.096,
+   "segundos_pesos": 14.028,
+   "terminos": 5471545
+  },
+  "fen_48_k4_0": {
+   "anclas_malas": 0,
+   "bytes_cargados": 41491557,
+   "bytes_por_estado_pendiente": 1900.0,
+   "completo": true,
+   "entradas": 5078484,
+   "estados": 473549,
+   "grupos": 255,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 6571,
+   "polimeros": 4537416,
+   "polimeros_por_ancla_max": 22340,
+   "quitadas": 0,
+   "segundos": 3046.011,
+   "segundos_carga": 7.769,
+   "segundos_dp": 2969.138,
+   "segundos_pesos": 69.08,
+   "terminos": 188304139
+  },
+  "fen_48_k4_1": {
+   "anclas_malas": 0,
+   "bytes_cargados": 41491557,
+   "bytes_por_estado_pendiente": 1900.0,
+   "completo": true,
+   "entradas": 5078484,
+   "estados": 473549,
+   "grupos": 255,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 6571,
+   "polimeros": 4537416,
+   "polimeros_por_ancla_max": 22340,
+   "quitadas": 0,
+   "segundos": 2792.147,
+   "segundos_carga": 8.714,
+   "segundos_dp": 2698.759,
+   "segundos_pesos": 84.649,
+   "terminos": 188304139
+  },
+  "fen_48_k4_2": {
+   "anclas_malas": 0,
+   "bytes_cargados": 41491557,
+   "bytes_por_estado_pendiente": 1900.0,
+   "completo": true,
+   "entradas": 5078484,
+   "estados": 473549,
+   "grupos": 255,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 6571,
+   "polimeros": 4537416,
+   "polimeros_por_ancla_max": 22340,
+   "quitadas": 0,
+   "segundos": 2823.66,
+   "segundos_carga": 8.816,
+   "segundos_dp": 2730.116,
+   "segundos_pesos": 84.706,
+   "terminos": 188304139
+  },
+  "fen_48_k4_3": {
+   "anclas_malas": 0,
+   "bytes_cargados": 41491557,
+   "bytes_por_estado_pendiente": 1887.2,
+   "completo": true,
+   "entradas": 5078484,
+   "estados": 473549,
+   "grupos": 255,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 6571,
+   "polimeros": 4537416,
+   "polimeros_por_ancla_max": 22340,
+   "quitadas": 0,
+   "segundos": 3021.728,
+   "segundos_carga": 8.062,
+   "segundos_dp": 2942.904,
+   "segundos_pesos": 70.741,
+   "terminos": 188304139
+  },
+  "fen_48_k4_4": {
+   "anclas_malas": 0,
+   "bytes_cargados": 41491557,
+   "bytes_por_estado_pendiente": 1877.6,
+   "completo": true,
+   "entradas": 5078484,
+   "estados": 473549,
+   "grupos": 255,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 6571,
+   "polimeros": 4537416,
+   "polimeros_por_ancla_max": 22340,
+   "quitadas": 0,
+   "segundos": 2760.498,
+   "segundos_carga": 8.912,
+   "segundos_dp": 2667.702,
+   "segundos_pesos": 83.859,
+   "terminos": 188304139
+  },
+  "fen_48_k4_5": {
+   "anclas_malas": 0,
+   "bytes_cargados": 41491557,
+   "bytes_por_estado_pendiente": 1858.4,
+   "completo": true,
+   "entradas": 5078484,
+   "estados": 473549,
+   "grupos": 255,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 6571,
+   "polimeros": 4537416,
+   "polimeros_por_ancla_max": 22340,
+   "quitadas": 0,
+   "segundos": 2704.704,
+   "segundos_carga": 8.984,
+   "segundos_dp": 2610.383,
+   "segundos_pesos": 85.314,
+   "terminos": 188304139
+  },
+  "fen_6_k3": {
+   "anclas_malas": 0,
+   "bytes_cargados": 2427226,
+   "bytes_por_estado_pendiente": 9812.8,
+   "completo": true,
+   "entradas": 20753,
+   "estados": 3061,
+   "grupos": 91,
+   "k": 3,
+   "modo": "celdas",
+   "pendientes_max": 624,
+   "polimeros": 19021,
+   "polimeros_por_ancla_max": 1053,
+   "quitadas": 0,
+   "segundos": 2.459,
+   "segundos_carga": 0.071,
+   "segundos_dp": 2.113,
+   "segundos_pesos": 0.259,
+   "terminos": 226601
+  },
+  "fen_6_k4_0": {
+   "anclas_malas": 0,
+   "bytes_cargados": 2427226,
+   "bytes_por_estado_pendiente": 9812.8,
+   "completo": true,
+   "entradas": 349421,
+   "estados": 5355,
+   "grupos": 91,
+   "k": 4,
+   "modo": "celdas",
+   "pendientes_max": 996,
+   "polimeros": 306389,
+   "polimeros_por_ancla_max": 22137,
+   "quitadas": 0,
+   "segundos": 184.001,
+   "segundos_carga": 0.38,
+   "segundos_dp": 164.161,
+   "segundos_pesos": 19.437,
+   "terminos": 2972219
+  }
+ },
+ "unit": "T2-1M"
+}

@@ -1,0 +1,9 @@
+{
+ "nota": "tiempos de reloj en segundos y memoria; no deterministas; no son resultado",
+ "tiempos": {
+  "referencia_tabla_decoder": 0.0773,
+  "referencia_enumeradores": 0.6403,
+  "total": 0.7301
+ },
+ "pico_memoria_bytes": 25690112
+}

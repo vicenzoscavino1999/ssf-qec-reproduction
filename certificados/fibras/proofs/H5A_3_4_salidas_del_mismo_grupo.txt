@@ -1,0 +1,298 @@
+HGP (3,4) · Posiciones de varias salidas de un mismo grupo de datos
+23 de noviembre de 2026 · Nota de investigación para revisión independiente
+
+Resultado general de una ronda
+------------------------------
+Para las particiones filtradas de H5A_3_4_reunion_de_ramas.txt se obtienen
+los siguientes rectángulos cerrados, uniformes en el tamaño de la semilla.
+
+  Modelo                                      Extremo anterior       Extremo verificado
+  Bernoulli, q ≤ 0.001                        p ≤ 5.05·10⁻⁷          p ≤ 5.15·10⁻⁷
+  Circuito, r_m ≤ 0.001, VV primero           r_c ≤ 9.10·10⁻⁸        r_c ≤ 9.25·10⁻⁸
+  Circuito, r_m ≤ 0.001, orden admitido libre r_c ≤ 8.30·10⁻⁸        r_c ≤ 8.45·10⁻⁸
+
+Se usan el autoproducto de una semilla binaria de peso columna 3 y fila 4,
+los subhosts y máscaras del contrato, el filtro de síndrome físico residual
+cero y la competición sobre todas las acciones FGL, β=0.01, con máximo
+global de descenso por tamaño de huella y desempate físico fijo. En circuito
+se trata de la extracción Z del sector X con el calendario voraz del proyecto.
+La precisión relativa para un fallo silencioso positivo requiere además el
+testigo lógico y las demás hipótesis del teorema del manuscrito.
+
+En G3, p=10⁻⁶ y q=10⁻³, el complemento de v14 sigue abierto. Su presupuesto
+suficiente es 0.00078558 tras el subtotal <0.003214411 de la nota de contacto
+oculto. El §5 identifica una obstrucción del mayorante a esa tasa.
+
+1. Varias salidas autónomas en una ejecución
+-------------------------------------------
+Sea A un grupo original del grafo de lectores. Una salida es el conjunto
+no vacío de celdas encendidas por una ocurrencia. Aquí se llama autónoma
+cuando todas sus entradas H son luces iniciales que siguen intactas hasta
+ese paso. Se cuentan las salidas cercanas cuyo lector toca las franjas de A.
+Una posición puede registrarse por lector y máscara. Las ocurrencias distintas
+admiten además como marca el primer check físico discrepante de H en un
+orden fijo. La cota por ocurrencias también domina la de posiciones.
+
+Fijar k salidas de este tipo en la misma ejecución. Sus H son disjuntos
+y toda su unión está encendida justo antes de la primera. Cada H contiene
+un check de la discrepancia física inicial. De otro modo H estaría contenido
+en el fondo terminal estable D (D_c en circuito) y la misma acción seguiría
+siendo elegible allí. Ese check pertenece a la franja de un dato real del
+grupo, porque dos franjas que tocan el mismo lector pertenecen al mismo grupo.
+
+Si la unión contuviera una franja original entera, el singleton de ese
+dato tendría descenso normalizado uno al comenzar la primera salida.
+La acción escogida apagaría toda su huella y carecería de salida. Hay,
+por tanto, a lo sumo dos celdas de la unión por franja VV y tres por
+franja CC. Se puede asignar a cada salida un check discrepante distinto.
+Para una composición (v,c) resulta k ≤ 2v+3c, también en presencia de
+otras ramas, centros repetidos y ciclos del grafo de Tanner.
+
+Para un grupo de un solo dato de anchura n sea r la cantidad de celdas
+de su franja en la unión de los H elegidos. Se cumple k≤r≤n−1. En el
+primer paso, con h luces y al menos un nacimiento, la competición exige
+h/(h+1)≥r/n. Cuando r≤n/2, esta desigualdad ya sigue del descenso
+estrictamente positivo. Todo paso emisor apaga al menos dos celdas.
+Así, fuera de la franja se necesitan al menos
+
+    min_{k≤r<n} [ 2(k−1) + max(2, techo(r/(n−r))) − r ]
+
+bits iniciales distintos. Dos salidas autónomas necesitan por lo menos
+dos medidas exteriores, tanto en VV como en CC. Tres salidas desde CC
+necesitan cuatro. Un VV no puede dar tres. Son requisitos simultáneos
+en las posiciones de los pasos.
+
+Un ejemplo cuantitativo usa los pesos de H5A_3_4_enlaces_cruzados.txt,
+u=0.00000101 por dato y z≤0.0012 por bit independiente de medida. Sirven
+en G3 y en la esquina circuital r_c=10⁻⁷, r_m=10⁻³ para esta cuenta local.
+Con un dato fijado, sumar sobre los grupos A que lo contienen el peso
+u^|A| por la esperanza del número de subconjuntos de dos o más salidas
+autónomas de A. Se usa la misma ejecución para todas las posiciones
+de cada término. En circuito se fijan primero las etiquetas y se cobra
+la masa de la fibra una sola vez. El resultado es <1.185·10⁻⁷ desde VV
+y <2.214·10⁻⁷ desde CC. Para un aislado hay ≤207 o ≤248 sitios exteriores
+posibles por el volumen de su zona. El término VV se acota por
+u C(207,2)z². El CC se acota por u[3 C(248,2)z²+C(248,4)z⁴], pues en
+una misma realización hay a lo sumo tres pares y un trío. Para |A|=n≥2,
+el número máximo de subconjuntos es 8ⁿ. El recuento enraizado de Cayley
+tiene a lo sumo 1297 opciones en grado dos y sus coeficientes sucesivos
+tienen razón ≤3·1297. La suma restante es ≤64·1297u²/(1−8·3·1297u).
+La fila de G3 pondera también sucesores, marcas y exposición. La cuenta
+local tiene una raíz y una normalización distintas.
+
+2. Destinos de las ramas que salen de un mismo grupo
+---------------------------------------------------
+Para llevar la posición conjunta al cálculo general, tomar los árboles
+de H5A_3_4_propagacion_lejana.txt §2. Contraer el árbol interno de A.
+En cada grupo hijo se conserva un dato de entrada, y en cada nodo de
+generador se conserva su centro. Para una rama exterior ordinaria que
+sale de A, un destino físico y puede ser alcanzable desde varios x∈A.
+Basta registrar y una sola vez. El extremo de partida puede elegirse
+de forma determinista minimizando la longitud relajada en A. Esto sólo
+reduce el número de interiores exigidos y el cargo de profundidad dos.
+El árbol físico original sigue justificando ambos presupuestos. El dato
+de entrada del siguiente grupo continúa fijado para su propio recuento.
+La cantidad mayorada es el peso de los grupos físicos con sus medidas.
+La elección del dato de partida constituye un testigo de posición. Los
+distintos testigos para los mismos grupos no definen actividades distintas.
+Las medidas a datos fijos se integran por el argumento de hojas de v19.
+
+Para el tipo de destino t∈{V,C,g}, B_{x,t}(l) es el producto de bolas
+que admite hasta l interiores. Cada radio base aumenta en 2l. Los radios
+(V→V,V→C,V→g) son (4,6),(5,5),(3,4) y los de (C→V,C→C,C→g) son
+(5,5),(6,4),(4,3). Con Y=a⁶, d=2 para otro dato y d=1 para g,
+
+    w_l=(Y/s²)^min(l,d) (Ys)^max(l−d,0).
+
+El coste conjunto hacia t es a lo sumo la suma sobre l≥0 de
+(w_l−w_{l+1}) por el volumen de la unión de B_{x,t}(l), descontando
+los destinos prohibidos. La fórmula se obtiene sumando las capas a
+partir de la primera que contiene cada destino.
+
+Enraizar un árbol interno de A en su dato de entrada x₀. Su primera
+bola excluye los datos del propio x₀ y sus vecinos en G, que no pueden
+pertenecer a otro grupo. Para un destino g se excluyen los generadores
+que leen x₀, pues los generadores del árbol exterior son lejanos.
+En el recubrimiento las cantidades excluidas ya en la capa cero son
+(640,441,30) para x₀ de tipo V y (784,513,36) para x₀ de tipo C.
+Al añadir un dato y con padre x, los puntos nuevos pertenecen a
+B_{y,t}(l) fuera de B_{x,t}(l). Levantar ambos centros siguiendo caminos
+mínimos en las dos coordenadas. Cada punto físico nuevo tiene una
+preimagen en la diferencia de las bolas levantadas. El mismo argumento
+aplica a la primera bola y su zona prohibida. Por eso se restan
+intersecciones en las bolas del recubrimiento aun si el host tiene ciclos.
+
+Sea δ_{xy,t} la suma ponderada del volumen de esas intersecciones
+para 0≤l≤24. Todas las diferencias de pesos son positivas. La serie
+original infinita de los volúmenes individuales sigue incluida. Ya en
+l=0, para toda arista de G hay como mínimo (1792,1197,90) posiciones
+comunes en el recubrimiento, según el tipo de destino. Para calcular
+cada intersección en un eje, fijar el punto más próximo del camino entre
+los centros. Contar sus ramas laterales con la paridad del destino y la
+profundidad permitida por ambos radios. Los dos ejes se multiplican.
+
+Escribir H=(h_V,h_C,v_g) para los campos positivos de los hijos y S_i
+para el coste anterior de todos los destinos de un dato de tipo i.
+El nuevo coste S_A es a lo sumo
+
+    S = v S_V + c S_C, menos D_{x₀}·H y menos Σ_{xy,t} δ_{xy,t} H_t.
+
+Para k hijos ordinarios, los destinos distintos con sus subárboles
+pesan ≤S_A^k/k!, ya que las colisiones sólo amplían la suma ordenada
+y los hijos distintos admiten k! órdenes. Al sumar k se obtiene exp(S_A).
+El peso de los datos de A aparece una vez en el producto m_V^v m_C^c.
+Esto cubre también árboles que representan redes con antecesores
+compartidos. Al distinguir una rama se conserva su antiguo volumen M
+por cada dato posible y se aplica la unión conjunta a las ramas restantes.
+Así se conserva la marca física y su presupuesto compartido.
+
+3. Cobertura inicial y descuento por grupo
+-----------------------------------------
+Las cinco coberturas iniciales de una franja, en el orden F,Q,T_V,T_C,T_g
+de las notas de medidas aisladas y contacto de checks, son
+(258,210,640,441,1344) para V y (288,252,784,513,1596) para C. Cada una
+tiene incrementos decrecientes al añadir celdas. Para F se trunca a dos
+la suma de las contribuciones por centro, con una contribución adicional
+en la misma fila. Las otras cuatro son cardinalidades de uniones. Por
+arista xy del árbol interno se puede ahorrar, coordenada a coordenada,
+
+    C(ψ_x)+C(ψ_y)−C(ψ_x∪ψ_y)
+
+calculado en el recubrimiento. En efecto, el incremento físico al añadir
+y es a lo sumo su incremento respecto de x solo. Cada incidencia nueva
+se levanta desde la franja de y, con la fila igual cuando corresponde.
+Las contribuciones de la franja levantada de x en cada preimagen proceden
+de celdas distintas de esa franja física. La capacidad libre en esa
+preimagen es al menos la capacidad libre física. Si ambas franjas
+coinciden en una celda levantada, también coinciden en su proyección.
+Sumar las capacidades usadas en las preimágenes domina el incremento
+físico. La misma prueba para coberturas de conjuntos usa capacidad uno.
+El descuento χ de v19 ya calculado por composición procede de los
+incrementos posteriores (246v+340c en la cuenta de F de v7 §4). La
+mejora actual corresponde a la unión inicial de franjas.
+
+La cobertura inicial lleva coeficientes (A,B₀,2U_V,2U_C,2g). Con
+L(t)=t+t²/[2(1−t)] se usa J=(89/2)L(θ²), A=L(θ)−J, B₀=b+J−A y
+g=40H_V*+27H_C*+G*. Para cada par de tipos i,j se minimiza el ahorro
+de cobertura sobre los desplazamientos de vecinos de G. Para V,V los
+máximos de las dos distancias son (2,4), para V,C (3,3) y para C,C
+(4,2), con sus paridades y con centros distintos. Se obtiene γ⁰_ij.
+Minimizar, en el mismo desplazamiento, la cobertura más Σ_t δ_{xy,t}H_t
+da γ_ij. Para v,c>0 el ahorro de cualquier árbol con estos pesos es ≥
+
+    γ_VC+(v−1)min(γ_VV,γ_VC)+(c−1)min(γ_CC,γ_VC).
+
+Se elige una arista mixta, se suprime y se orientan las dos partes hacia
+sus extremos. Cada otro dato paga una arista. Para un solo tipo basta
+(v+c−1)γ_ii. Llamar G₀ a la evaluación con γ⁰ y G a la evaluación con γ
+más D_{x₀}·H. En la tabla de grupos de uno a diez datos se aplica exp(−G)
+al término ordinario evaluado en los campos fijados. Para una raíz de
+generador con un solo grupo se aplica exp(−G₀) al término marcado.
+Los factores efectivos del programa redondean el ahorro hacia abajo a
+10⁻¹² y el recíproco de ocho grados de Taylor hacia arriba a 10⁻¹².
+
+Justificación de la sustracción en las filas físicas. Para A fijo sean
+g₀ y l los ahorros de cobertura y de enlaces probados con su geometría.
+Entonces g₀≥G₀, g₀+l≥G, y el coste de exigir algún hijo satisface
+
+    exp(−g₀)[exp(S−l)−1] ≤ exp(−g₀−l)[exp(S)−1]
+                          ≤ exp(−G)[exp(S)−1].
+
+Con un hijo distinguido se usa el coste M anterior multiplicado por
+exp(S−g₀−l). El polinomio ordinario reducido P proporciona así tanto
+P(w) para el total como P(w)−P(m) para los términos que exigen algún
+hijo, en el testigo fijado. Para la raíz de contacto oculto, la parte
+con exactamente un hijo de tipo i que necesita descendencia se acota
+por h_i−P_i(m) al haber verificado h_i≥P_i(w)+T_i. Esto legitima
+la sustracción en la fórmula de v15 aun cuando el factor de enlaces
+depende de los campos. En estas verificaciones T_i es la cola completa
+de árboles débiles y fuertes desde once datos. Las historias de grupos
+grandes y la cola de la raíz física entran en las mismas filas.
+
+4. Raíz lejana de una pareja y cuatro checks de un aislado
+---------------------------------------------------------
+En la fila con un solo grupo de dos datos y raíz física lejana, sólo
+el saldo dos puede financiar la marca. Por v10 y v12, los VV tienen
+una fila de síndrome común y los CC una columna común. En circuito se
+necesitan dos paridades reales, pues cero o una permiten saldo ≤0.
+En ambos modelos todo paso toca la línea por el descenso exterior de
+v9 §2. Desde el centro g fijado, la bola hasta el dato de entrada tiene
+256 posiciones VV o 171 CC en la fibra. Contiene, respectivamente,
+40 o 27 datos leídos por g. El requisito de lejanía los excluye. Quedan
+≤216 o ≤144 en el recubrimiento, con ≤9 o ≤12 posiciones del segundo
+dato de saldo dos por entrada (v12 §3 y v18 §2). En circuito la masa de
+etiquetas con dicho saldo ya tiene un mayorante uniforme por entrada.
+Todas las marcas positivas de la pareja estaban multiplicadas por el
+volumen completo de 1792 o 1197. Se usa la fracción 216/1792 o 144/1197
+de ese término y se conserva el menor con el techo geométrico de parejas.
+
+En circuito, supóngase un único control de paridad uno en un CC aislado
+con al menos una lectura omitida. Si se encienden exactamente dos checks
+de su franja al inicio, el fondo terminal contiene los otros dos. El
+aporte inicial al descenso es cero. Cada uno de los cuatro checks debe
+conmutarse un número impar de veces. Si hay varias ocurrencias que los
+tocan, reservan al menos dos descensos en ese grupo. Si hay una sola,
+su huella contiene los cuatro checks de la columna. Una huella de acción
+FGL es la diferencia simétrica de una selección de filas y columnas en
+el rectángulo 4×3. Una columna completa obliga a que todos los bits de
+selección de fila sean iguales, luego la huella pesa un múltiplo de
+cuatro y su descenso positivo es par. También reserva al menos dos.
+El precio del caso de igualdad en la binomial de v19 pasa de Y a Y².
+Se mantienen la ley de los controles múltiples, la primera fila de v19
+sin omisiones y la maximización sobre las doce ubicaciones del cable.
+
+5. Qué obstaculiza el cierre en G3
+---------------------------------
+El siguiente cálculo es independiente de la búsqueda numérica de testigos.
+Considerar exactamente la fila utilizada arriba, con b=.001145, θ=.00115
+y la cola T_i(w) íntegra en las ramas físicas. En p=10⁻⁶, q=.001, la
+propia regla de exposición obliga a m_V>1.84·10⁻⁶ y m_C>2.14·10⁻⁶,
+incluso omitiendo los sumandos de interacción. También w_i≥m_i.
+
+Fijar esos dos pesos inferiores y a=.569. En la serie positiva de
+árboles débiles/fuertes, el coeficiente del grado once por sí solo es
+>6.4535·10⁻⁸ para V y >3.4802·10⁻⁷ para C. Cada H_i* del mayorante
+usado incluye toda la cola. Por tanto su I debe ser al menos
+588(40·6.4535·10⁻⁸+27·3.4802·10⁻⁷)>0.00704. Ya con esos términos
+el cociente de la condición pasiva es >1.0035 y se exige ≤1. La
+conclusión vale para todo a≤.569 y cualquier s admisible. Para a≤.575
+los grados once a catorce juntos dan cociente >1.00138.
+
+También puede exigirse al menos un hijo exterior a esos grupos grandes.
+Si se conserva su volumen de enlaces original, ello reemplaza T_i(w)
+por T_i(w)−T_i(m) en su contribución física. Con a=.569 y s=.673, el
+grado once basta todavía para obstruir esa variante. En efecto, la fila
+ordinaria sin marca conserva h_i≥t_i, donde t_i es el coeficiente de
+grado once a los pesos inferiores anteriores. El coste S_i de los hijos
+desde un dato de tipo i incluye Σ_j L_ij t_j. Su mínimo es >0.32424.
+Como w_i≥m_i exp(S_i), por homogeneidad el término de grado once de
+la diferencia es al menos [exp(11 min S_i)−1]t_i >34.39 t_i. Esto
+localiza también la pérdida que queda cuando se permite descartar la
+opción de cero hijos: en la cola se sigue sumando por separado el
+volumen exterior desde cada dato del grupo grande.
+
+Para reproducirlo, marcar con t el número de datos de las ramas d_i,e_i
+de v6. Con X_i=(Wd)_i y Z_i=(Be)_i para sus matrices débil y fuerte,
+usar d_i=t exp(X_i)[m_i/a^(7+i)+(m_i/a^(7+3i))(exp(Z_i)−1)] y
+e_i=t (m_i/a^(7+3i))exp(X_i+Z_i), con i=0 para V e i=1 para C.
+Todos los coeficientes se calculan en orden ascendente. Los diez
+primeros coinciden exactamente con la tabla anterior a los mismos
+pesos. La positividad permite usar los siguientes como cota inferior
+del mayorante, incluso si se dan por gratis las salidas de grupos
+pequeños. La prueba ubica el coste en la estimación de grupos grandes
+que hoy se carga entera a una rama física. El peso del complemento
+físico en G3 y la posibilidad de otra elección de norma siguen abiertos.
+
+Reproducción
+------------
+Desde 05_COMPROBACIONES, con Python y su biblioteca estándar,
+
+    python -I -B -X utf8 verificar_H5A_3_4_salidas_del_mismo_grupo.py
+
+Se reconstruyen los histogramas de v19, se cotejan las intersecciones
+de bolas, se calculan con fracciones las desigualdades de todos los
+órdenes y se comprueba la obstrucción. Filas en los tres extremos,
+respectivamente: 0.000910980237876, 0.000742203088202 y 0.000857781599431
+(redondeadas). Los cocientes máximos son <0.999515, <0.999520 y <0.999524.
+La monotonía de las actividades físicas mayores en la esquina superior
+cubre el correspondiente rectángulo completo.

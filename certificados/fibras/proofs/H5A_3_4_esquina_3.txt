@@ -1,0 +1,107 @@
+HGP binario (3,4) · Esquina 3 de Bernoulli con q ≤ 10⁻⁵
+23 de noviembre de 2026 · Nota de investigación para revisión independiente
+
+Resultado
+
+Se verifica el rectángulo p ≤ 1.06·10⁻⁶, q ≤ 10⁻⁵ en una ronda Bernoulli.
+Se toma el producto de una semilla binaria de peso de columna 3 y de fila 4
+consigo misma. La cota es uniforme en tamaño y permite ciclos de cuatro.
+Se usan el filtro de síndrome físico residual cero, la competición
+global SSF/FGL con β=0.01, el desempate físico fijo y las máscaras y subhosts
+de v29. Se obtiene acceso a las particiones filtradas. Para pasar a error
+relativo en un fallo silencioso positivo se mantienen las hipótesis y el
+testigo lógico del Teorema 1 del manuscrito.
+
+Extremos generales verificados en Bernoulli
+
+  Medida q hasta      Datos p hasta        Origen
+       10⁻³              5.40·10⁻⁷         Primer apagado de ternas (v29)
+       10⁻⁴              1.00·10⁻⁶         Esquina 2
+       10⁻⁵              1.06·10⁻⁶         Esta nota
+
+La tercera fila amplía un 6 % el extremo certificado de p respecto de la
+segunda, para una tasa máxima de medida diez veces menor. Los rectángulos
+anteriores se conservan por separado.
+
+Resultados de las filas
+
+  p             (a,s)          R              Mayor cociente    Resultado
+  1.06·10⁻⁶    (.568,.670)    .001442022011     .9994497311      Cierra
+  2.00·10⁻⁶    (.570,.664)    .001622204540    1.6619986178      Abierto
+
+R es el peso de la fila de incompatibilidad de datos. Debe ser menor que
+α=.002. Los doce cocientes de la fila completa deben ser menores que uno.
+Las decisiones se toman con fracciones. Se muestran decimales redondeados.
+
+Las dos primeras columnas numéricas siguientes dividen la contribución
+mayorada de los grados uno a diez por el presupuesto h de la raíz indicada.
+Las dos últimas dan techos absolutos, redondeados hacia arriba, para toda la
+cola de grupos desde once fuentes hasta infinito. V denota VV y C denota CC.
+
+  p             Grados 1–10 / h_V   Grados 1–10 / h_C    Cola V         Cola C
+  1.06·10⁻⁶        .996003198          .992630327       1.669·10⁻¹⁰    9.492·10⁻¹⁰
+  2.00·10⁻⁶       1.650907781         1.642320972       4.589·10⁻¹⁰    2.580·10⁻⁹
+
+En ambas evaluaciones la serie de grupos grandes tiene un mayorante finito.
+A p=2·10⁻⁶ el mayorante de los diez primeros grados ya excede ambos
+presupuestos con el testigo de la segunda fila.
+
+Verificación de la nueva esquina
+
+Se mantienen la geometría general de v29, la inclinación λ=.015 y η=.0001.
+Se fijan q=10⁻⁵ y θ=b=.0000105. La enumeración local de v12 verifica los
+techos .001324, .00146 y .00462 para los tres tipos de par VV–VV, VV–CC y
+CC–CC. Los campos A≈.0000104951490006 y B≈9.75712442·10⁻⁹ son positivos.
+Los descuentos ordinarios y los adicionales por pares se recalculan con A.
+Los ocho suelos se fijan a los campos de cada testigo. La misma serie y los
+mismos suelos sirven para calcular la supersolución y restar los primeros
+diez grados. La dominación de pesos primitivos de v22 §4 extiende la fila
+aprobada a todas las tasas inferiores.
+
+El presupuesto α por dato es libre en la demostración de
+H5A_3_4_fondo_pasivo.txt, §4. En Bernoulli aparece en la exigencia R<α y
+en la actividad z=p exp(λ+α)/(1−2p). Tomamos α=.002 y comprobamos R<.002
+en ambas filas. Se evalúan directamente con la tasa física los cuatro
+cocientes que dependen de p. A p=1.06·10⁻⁶ el mayor es .9993405421.
+
+Para reutilizar la implementación de las doce desigualdades, sea E el techo
+racional de la exponencial usado por v22. Con z⁺=p E(λ+.002)/(1−2p), se
+suministra al motor de presupuesto interno α₀=.004 el argumento auxiliar
+
+                    p̂ = z⁺ / [E(λ+.004)+2z⁺].
+
+El código comprueba exactamente p̂ E(λ+.004)/(1−2p̂)=z⁺. Todas las
+ocurrencias de la tasa de datos en la rama Bernoulli de la fila entran por
+este peso. Con el mismo testigo coinciden por tanto los doce cocientes al
+usar p físico y α=.002. La igualdad de actividades se combina con la
+comprobación separada R<.002. La inclinación λ conserva la cola de
+truncamiento del logaritmo ≤ N exp[−.015(m+1)].
+
+Qué impide duplicar p en estas filas
+
+En el diagnóstico de v22 §5 basta conservar la composición 1 VV + 4 CC
+de la raíz C. La desigualdad h_C ≥ c exp(Lh_C) requiere e c L ≤ 1.
+Para p=2·10⁻⁶, los minorantes racionales de e c L superan 1.68884 en
+(.568,.670) y 1.64992 en (.570,.664), en cada caso con sus ocho suelos
+publicados. Abarcan cualquier testigo que domine esos suelos en el sistema
+que usa los mismos núcleos congelados.
+
+El término es homogéneo de grado cinco en la tasa base del minorante de
+v22. Su valor de referencia usa p₀=10⁻⁶ y α₀=.004. Multiplicarlo por
+[p/(p₀ E(.004))]⁵ da un minorante a la tasa física ensayada para todo α≥0,
+pues 1/E(.004) ≤ exp(−.004) y exp(α)/(1−2p) ≥ 1. Geometría, precios de
+grupos y pendientes permanecen fijos en esta comparación. El impedimento
+es específico de las elecciones de núcleos y suelos indicadas. El valor
+óptimo de p para q=10⁻⁵ queda abierto.
+
+Reproducción desde 05_COMPROBACIONES
+
+    python -I -B -X utf8 verificar_H5A_3_4_esquina_3.py
+
+SHA-256 del verificador
+4171a3f75a9c904f1acf9360aeb5f869c509f6c63cafd23e3ef441d45c7bce36
+
+El verificador reconstruye la geometría desde las definiciones antes de
+evaluar las dos filas, las dos colas por raíz y ambos minorantes. Reutiliza
+el verificador de la Esquina 2 y las dependencias de v29. Se requiere
+Python 3.10 o posterior con la biblioteca estándar.

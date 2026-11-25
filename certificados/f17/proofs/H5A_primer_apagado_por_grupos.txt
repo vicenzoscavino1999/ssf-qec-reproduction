@@ -1,0 +1,284 @@
+H5-A · El primer apagado de los datos y el rectángulo de una corrección
+18 de noviembre de 2026
+
+Resultado
+=========
+
+Para las particiones físicamente filtradas del apéndice mixto se obtiene
+acceso determinista a la precisión relativa elegida en todo el rectángulo
+
+                 0 ≤ p ≤ 2·10⁻³³,          0 ≤ q ≤ 2·10⁻¹¹.          (1)
+
+El nuevo extremo de p es 50/3 veces el anterior de 1.2·10⁻³⁴. La prueba
+admite toda semilla binaria (17,18)-regular, cualquier tamaño, una ronda
+Bernoulli independiente, β=1/100, la familia FGL completa, máximo global,
+desempate fijo, máscaras y subhosts del manuscrito. Se incluyen ciclos
+de cuatro y vecindades duplicadas. La transferencia a fallo silencioso
+positivo conserva las hipótesis del teorema condicionado del manuscrito.
+
+En la esquina de (1), la diferencia completa con la referencia desde grado
+cuatro tiene fila absoluta <2.4·10⁻¹⁶ por raíz de datos y <2.6·10⁻¹³ por
+raíz de medida. En p=10⁻³⁰ con el mismo q, la sección 5 elimina además
+del resto los pasos débiles cuyo rectángulo lee algún dato original del
+núcleo. La suma restante en esa segunda esquina sigue abierta.
+
+1. Qué deja necesariamente la fase de correcciones perfectas
+===========================================================
+
+Usamos los grupos de fuentes del núcleo de H5A_contactos_entre_ejecuciones.txt,
+§§1–4. En un grupo G, un dato es aislado en esta sección si su huella no
+comparte ningún check con otro dato original ni contiene una medida
+original. Esta propiedad se decide con las fuentes del grupo, pues las
+fuentes que comparten un check son vecinas en K. Sus n checks, con n=17
+o 18, están todos encendidos al comienzo. Mientras ninguna corrección los
+toque, su singleton tiene puntuación uno. Por el máximo global, la primera
+corrección que toca ese dato es perfecta. Pertenece al prefijo inicial de
+puntuación uno, que sólo retira luces. El prefijo termina en tiempo finito.
+
+Asignar cada dato aislado a su primera corrección. Llamar centro a cada
+corrección que recibe al menos un dato. Sus miembros son sólo los datos
+que se le asignaron. Una corrección puede leer además otros datos. Todos
+los miembros de un centro leen el mismo generador y pertenecen al mismo
+grupo K. Una corrección singleton marca una unidad y una múltiple marca
+dos. Denotar por j la suma de esas unidades en G y por e su número de datos.
+Las huellas de dos correcciones del prefijo perfecto son disjuntas.
+Un singleton tiene área ≥17 y un múltiple área ≥33. Los centros de G
+consumen en total al menos H=ceil(33j/2) luces iniciales distintas.
+Todas pertenecen al conjunto Ω_G de luces iniciales de sus datos y sus
+medidas ligadas. Un lector de cualquier luz de ese rectángulo es vecino
+del dato asignado en K. En particular, dos grupos no reclaman el mismo centro.
+
+Se mantienen las constantes de GENERAL del verificador de contactos.
+En bits, λ₀=0.997066 y R=0.562500. En las dos tablas de rangos L_n sólo
+el último valor puede exceder R, y el exceso es ≤0.421. Cada dato lo
+utiliza a lo sumo una vez. En un centro de área a se tiene h=a, μ=λ₀a y
+w(m)=max(0,−log₂(0.04+0.05m)) para m primeras extinciones atribuibles
+a datos. Por convexidad, para 0≤m≤a y a≥17,
+
+                     w(m)+Rm ≤ Ra+0.172.
+
+En efecto basta comprobar m=0 y m=a. En m=0, w(0)≤Ra+0.172 y en m=a,
+w(a)≤w(17)≤0.172. Por la desigualdad local de la nota de contactos, el
+exceso μ−w(m)−Σ L_n(k) es no negativo en cualquier paso. Sumado sólo
+sobre los centros de G, alcanza por lo menos
+
+                 max(0, 6.990 j − 0.421 e) bits.                     (2)
+
+Se usa (λ₀−R)·33/2−0.172≥6.990 y el número de centros es ≤j. Esta
+desigualdad paga por separado las posiciones de las fuentes de cada centro.
+
+2. Coste por grupo, incluida la cola infinita
+============================================
+
+Para los precios cronológicos se usa la recurrencia de primeros cruces
+de la nota de contactos. Recordamos su forma. En un grupo con anchuras
+n_i, saldo b y máximo k de episodios iniciales aún vivos por huella, el
+siguiente umbral u tiene b_i=ceil(n_i(1+u)/2)−1. Para cada nuevo máximo
+l≤min(k,max_i b_i) usar
+
+   H_u=max(ceil(17(1+u)/2),ceil(17k/18)) si l<k, y cero si l=k,
+   b'=min(Σ_i min(l,b_i), max(0,b−H_u)).
+
+Se suma λ_u b' y se sigue desde (l,b'). El máximo sobre estos caminos
+acota el coste posterior. En la fila inicial, un dato con a luces
+originales asignadas paga λ₀a−Σ_{i=1}^a L_n(i). Esta cantidad crece con
+a. Si sólo se conoce el máximo k₀ del grupo se usa a=min(k₀,n).
+
+Para j=0 se empieza con k₀≤18 y b≤e k₀. Para j>0 algún dato comenzó
+completamente encendido y k₀ es 17 o 18. Al final del prefijo perfecto
+el máximo l es ≤min(17,k₀). En ese punto el saldo superior es
+
+                 min(e l, max(0,e k₀−ceil(33j/2))).
+
+Se sigue desde ahí por los umbrales de peso positivo, todos menores que
+uno en GENERAL. El primer descuento es válido incluso si un centro
+apaga una medida exterior a las huellas de datos. Esa medida pertenece
+a Ω_G y ya estaba presente en su número inicial de episodios. Al inicio
+se resta el número de medidas ligadas exteriores a las huellas. La
+cantidad resultante es ≤e k₀ y disminuye con cada apagado perfecto.
+El segundo descuento es (2). En fees se usan anchuras 18 para los
+límites posteriores y el peor de ambos tipos en la fila inicial. Llamar
+Φ(e,j) al resultado en bits. Localizar costes por grupo es válido por la
+prueba de primeros cruces en H5A_consumo_y_alcance.txt, §§1–2. Las
+creaciones posteriores que éste consume se descuentan del prefijo global.
+
+Para e≥29 se usa una cota lineal. De los multiplicadores λ_u reservar
+sucesivamente g_u desde el mayor u hasta sumar exactamente medio bit.
+En la parte λ_u−g_u usar Σ_i b_i. En la parte g_u usar Σ_i n_i−33j/2.
+Para ver la segunda cota, en cada grupo tomar los episodios iniciales
+vivos en Ω_G, restar sus medidas exteriores y las creaciones ya gastadas
+en la prueba de primeros cruces. Su valor al primer cruce es a lo sumo
+el inicial menos las luces distintas del prefijo perfecto. La desigualdad
+sigue siendo cierta si ese saldo es negativo. Así el precio del grupo
+se mayora para cualquier e por un producto con exponente
+
+       Σ_i α'_(n_i) − (6.990+8.250) j,
+       α'_n = nλ₀ − Σ L_n + Σ_u [λ_u b_n + g_u(n−b_n)] + 0.421.
+
+Los dos α' son 80.906797 y 85.857226 bits. La fórmula incluye también
+el caso j=0 y allí permite el margen positivo de 0.421 por dato.
+
+3. Recoger los datos que comparten su primera corrección
+=======================================================
+
+En un grupo dado formar las componentes de datos cuyas huellas se
+solapan. Un dato solo en ese grafo que tiene una medida en su huella
+se asocia a una de ellas por orden fijo. Esas medidas son distintas
+en los distintos singletons. La vecindad K de la medida asignada está
+contenida en la del dato. Los demás datos solos son los aislados de la
+sección 1 y se reúnen por centros. Todos estos bloques son conexos en K.
+Las otras medidas quedan como sitios individuales del grupo. Al contraer
+los bloques se puede elegir por orden fijo un árbol de puentes entre
+ellos. Cada miembro admite sus propias ramas exteriores al bloque.
+
+Usar variables z por dato y t por unidad marcada. Con x=10⁻⁸ y
+y=ξ exp(0.001) empezar con las siguientes series positivas. Las
+exponenciales se mayoran racionalmente. En el verificador se usa como
+y la cota superior de esa exponencial.
+
+ a=xz exp(46870021 A+1420146 D),       D=y exp(2766309 A),
+ T=a exp(612 T),
+ A=a [ exp(612 T)−1+18y
+       + t (1+613(exp(630a)−1))
+       + t²(1+5508(exp(10133a)−1)) ].
+
+La raíz de datos usa A y la de medida D+35 y a. El árbol de una
+componente de solapamiento no trivial tiene al menos un hijo en la raíz.
+Un dato tiene ≤612 vecinos que comparten un check. El término 18y cuenta
+la medida que se asigna a un dato solo. En un centro con un único miembro
+basta su sitio. Para un centro singleton con varios miembros, desde la
+raíz hay ≤613 líneas singleton que leen algún check de ésta y ≤630 datos
+que leen una de esas líneas. En un centro múltiple hay ≤5508 generadores
+leídos por la raíz y ≤10133 lectores por rectángulo. Los demás miembros
+del mismo centro forman un conjunto sin orden. La exponencial los
+mayora, con todas sus ramas de salida. Las acciones reales se recuperan
+cuando se conocen las fuentes. El recuento permite además disposiciones
+que el decodificador nunca elige.
+
+Por dato físico el precio con las ramas exteriores es a lo sumo
+u=1.032 p exp(0.075). Para 2≤e≤28 multiplicar cada coeficiente [z^e t^j]
+por (u/x)^e 2^Φ(e,j). Las filas de un dato provienen de la suma binomial
+de medidas propias de H5A_contactos_entre_ejecuciones.txt, §4. En la
+cola usar x'=4u·2^max(α') por dato y t'=2^(−15.240). A esos precios
+las cuatro ecuaciones admiten las cotas superiores
+
+         a≤6.5·10⁻⁷,  T≤6.6·10⁻⁷,  A≤3·10⁻¹⁰,  D≤2.07·10⁻¹¹.
+
+La inducción por altura mayoriza los árboles de cualquier tamaño.
+Dividir las dos filas resultantes por 4²⁹ cubre todos los e≥29 a la vez.
+Los grados procesados individualmente sólo afinan la estimación.
+
+Dos cuentas para grupos pequeños precisan la constante de esta misma
+suma infinita. Para seleccionar los que tienen al menos una medida se
+evalúa la serie de esos grados en y'=10⁻⁷ y se multiplica por y/y'.
+La positividad de los coeficientes justifica el factor.
+
+• Dos datos sin medidas ligadas. Si sus huellas de tamaños n,m comparten
+  i checks, quedan n−i y m−i luces iniciales propias. Para i=1 se permiten
+  630 vecinos. Para i≥2 se exige el mismo tipo y hay ≤floor(324/i), por
+  doble conteo de incidencias en la huella raíz. Para huellas disjuntas,
+  una primera acción perfecta que las toca consume sólo luces de esos dos
+  datos. Si se consumen al menos 33 en el prefijo, quedan ≤n+m−33. De
+  otro modo una única corrección singleton de anchura h toca ambos datos,
+  con i y h−i luces, y al acabar el prefijo el máximo es exactamente
+  max(n−i,m−h+i). Si sólo tocara uno, lo apagaría completo y el segundo
+  aún exigiría otra corrección perfecta. Para fijar la línea y el otro
+  dato se usan sucesivamente 630 opciones si se pide un check y
+  floor(324/i) si se piden i≥2. Dos huellas transversales comparten a
+  lo sumo un check. La rutina pure_pair suma las posibilidades por tipo.
+
+• Tres datos sin medidas ligadas y una sola unidad de marca. El centro
+  es un singleton. Si se le asignan tres datos se permiten 613·630²
+  configuraciones por raíz. Si se le asigna uno, los otros dos deben
+  solaparse. Si alguno lee la línea que se apaga, el árbol consta de un
+  enlace de solapamiento y otro por esa línea. Desde cualquier raíz se
+  permiten 4·612·613·630 configuraciones. Si toda la línea es aportada
+  sólo por el dato aislado, coincide con su huella y ese paso perfecto
+  cuesta menos de un bit. Puede retirarse junto con su dato. Hasta ese
+  instante los demás ganadores son perfectos, disjuntos de su huella, y
+  su retirada sólo reduce la puntuación de cualquier rival. Después del
+  paso el síndrome coincide exactamente. El cálculo del par restante
+  permite max_j Φ(2,j). Se cuentan ≤4·612·46870021 posiciones. Esta
+  retirada se puede hacer simultáneamente en los grupos que la necesitan,
+  pues sus luces iniciales son disjuntas. La asignación de exactamente
+  dos datos dejaría un tercero sin compañero de solapamiento ni medida.
+
+4. De las filas de fuentes al resultado general
+==============================================
+
+En la esquina de (1) las filas de fuentes, incluyendo la cola, son
+<8.85·10⁻²⁴ (VV), <1.19·10⁻²³ (CC) y <1.49·10⁻²⁶ (medida).
+El verificador sustituye estas cotas en las quince desigualdades del
+árbol causal de contactos y recalcula las filas exteriores con presupuesto
+0.01 e inclinación 0.015. Ese árbol cuenta todas las correcciones reales
+con sus puentes. La fila física enraizada mayoriza los coeficientes
+absolutos del logaritmo por fuente. El criterio normalizado de
+H5A_cumulantes_y_componentes.txt, §§1–2, y la monotonía en las odds
+dan (1). Para la diferencia con la referencia se descuenta en la medida
+el singleton de grado uno y se añade por raíz la cota de referencia
+1.907·10⁻⁶ odds(p)/odds(10⁻⁶), con odds(r)=r/(1−2r). Se obtienen así
+los valores del comienzo de la nota. La expansión enraizada usada en
+el proyecto es la de D. Ueltschi, Cluster expansions and correlation
+functions (2004). https://arxiv.org/abs/math-ph/0304003
+
+5. Qué sigue abierto en p=10⁻³⁰
+===============================
+
+Se amplía la regla de elección de padres del certificado PARTIAL de
+contactos. Si una corrección múltiple de descenso δ=1 o 2 carece de
+una primera extinción de I, examinar su rectángulo asignado por la tabla
+fija. Si alguna huella de dato original del mismo núcleo corta ese
+rectángulo, elegir por orden fijo uno de esos checks y uno de sus datos
+lectores. Ofrecer el enlace directo al dato con masa 0.05 junto con las
+opciones ordinarias. Su precio es min(1,σ+0.05). La tabla PARTIAL ya
+verifica que μ cubre ese coste incluso con el mayor descuento de rango
+por una luz. Aquí se necesita sólo el coste. El check de contacto puede
+estar apagado, haber sido conmutado antes o quedar fuera del corte.
+
+El nuevo padre está en tiempo cero. Todos los padres candidatos leen
+el mismo rectángulo, por lo que la prueba de unión de colores de la
+nota de contactos sigue dando un puente en K entre ellos. Una medida
+del rectángulo es ligada al dato que lo lee. Las filas para el enlace
+directo de un múltiple ya permiten sus 306 checks y todos sus lectores.
+La marca de enlace directo en el árbol y la simulación de las fuentes
+recuperan la nueva elección con su orden fijo. Se conservan así la
+normalización de probabilidades y los mismos mayorantes numéricos.
+
+En un término completo, sea B_ext la suma de los recargos d(A,δ) de la
+nota de contactos sólo sobre los múltiples de descenso uno o dos cuyo
+rectángulo no lee ningún dato original de su núcleo. Sus máximos son
+<2.606 y <3.290 bits respectivamente. La evaluación auxiliar en
+2.1·10⁻³⁰ paga B_ext≤e al volver a la meta, donde e es el número de
+datos originales. Esto permite cualquier número de descensos débiles
+en los rectángulos que sí leen datos y también excepciones fuera de ellos.
+Se conserva por separado el criterio de primeros usos R₁≤1.70e de la
+nota de contactos, con cualquier número de reutilizaciones.
+
+Para definir el resto partir de k_pend de H5A_propagacion_entre_fuentes.txt,
+§5, y conservar únicamente sus términos con B_ext>e y R₁>1.70e. Llamar
+k_ext a la suma con signo. La fila ampliada reemplaza a la anterior de
+ocurrencias y ocupa su mismo presupuesto. Los árboles supervivientes
+de una familia tienen el mismo signo. Con s_i=odds(r_i) exp(0.015),
+la fila cubierta desde grado cuatro es
+
+    Σ_{A∋i, |A|≥4} |k(A)−k⋆(A)−k_ext(A)| s^A
+                 <1.94·10⁻⁵ por dato,        <0.00070 por medida.
+
+Para alcanzar p=10⁻³⁰ en general basta todavía que la fila absoluta
+análoga de k_ext sea ≤0.004298 por raíz. La estimación de ese resto
+conjunto sigue abierta. Los descensos fuera de los rectángulos de
+fuente y los primeros usos costosos pueden estar en partes distintas
+del mismo término.
+
+Reproducción
+============
+
+En 05_COMPROBACIONES, junto a verificar_H5A_contactos_entre_ejecuciones.py
+y las dependencias anteriores del proyecto, ejecutar
+
+    python -I -B -X utf8 verificar_H5A_primer_apagado_por_grupos.py
+
+El programa usa la biblioteca estándar e incluye las comprobaciones
+anteriores necesarias en la meta. Calcula cotas con enteros y fracciones,
+redondeando los coeficientes de las series hacia arriba. La derivación
+combinatoria queda pendiente de revisión matemática independiente.

@@ -1,0 +1,318 @@
+H5-A · Suma de medidas por historia y conexiones entre datos en (3,4)
+22 de noviembre de 2026
+
+En el producto de una semilla binaria de peso columna 3 y peso fila 4
+consigo misma se deriva acceso uniforme a las particiones filtradas en
+
+                 0 ≤ p ≤ 1.2·10⁻⁷,          0 ≤ q ≤ 10⁻³.             (1)
+
+La región vale en cualquier tamaño, máscara y subhost físico inducido J,
+para una ronda Bernoulli independiente, la familia FGL completa de SSF,
+β=1/100, máximo global del descenso dividido por el tamaño de la huella
+y desempate físico fijo. El filtro exige síndrome físico residual cero.
+Rigen el oráculo y la convención de orden del manuscrito. La transferencia
+a error relativo de un fallo silencioso positivo necesita el testigo lógico
+y las demás condiciones del Teorema 1.
+
+El extremo anterior era 4.5·10⁻⁸ al mismo q. El factor ganado es 8/3.
+La fila completa es <.00028717 sobre un presupuesto de .001, incluyendo
+grupos y separaciones arbitrarios. Para G3 en p=10⁻⁶ queda un factor
+25/3. La aritmética está reproducida. Falta la revisión matemática
+independiente de la derivación.
+
+1. Qué medidas pueden intervenir para un conjunto de datos fijo
+==============================================================
+
+Se usa la descomposición exacta en núcleos y medidas pasivas de
+H5A_3_4_contacto_de_checks.txt, §§1–2. Para un núcleo filtrado, E son
+sus datos originales, D sus medidas activas, ψ_x la huella del dato x y
+φ la de un paso elegido. S es la unión de las ψ y las φ. Entonces D⊆S
+y D es estable al acabar la corrida. Las medidas pasivas compartidas se
+tratan por la comparación de cada rival en todas las historias que lee.
+G es el grafo de datos lectores y L el de checks que comparten rectángulo.
+
+Fijar E. Se puede consultar primero N_L[O], donde O=unión de las ψ_x.
+Mientras el síndrome físico X sea distinto de cero se comparan los
+candidatos cuyas huellas tocan X, leyendo los rectángulos que lo tocan.
+Con D estable, todo candidato elegible ha de tocar X. Se obtiene el mismo
+ganador y desempate que en la corrida completa. Tras el paso se pueden
+leer también todos los checks de N_L[φ]. En X=0 se termina. El algoritmo
+auxiliar puede devolver rechazo si se agota el descenso permitido de una
+hoja aceptada. El procedimiento queda determinado por los bits leídos,
+incluso en asignaciones auxiliares para las que D sería inestable.
+
+En una hoja aceptada, todas las consultas están en N_L[S]. Cada medida
+activa se leyó y todos los unos leídos son de D. El §3 de la nota de
+contacto da, para e_V y e_C originales de los dos tipos y d=|D|,
+
+       número de consultas distintas ≤ H(E)+90d,  H(E)=414e_V+536e_C.
+
+Dos conjuntos activos distintos para el mismo E dan hojas distintas.
+Si dieran la misma, tendrían la misma corrida, el mismo S y los mismos
+bits en S, que contienen todo su D. Bajo bits auxiliares independientes
+de parámetro θ, una de esas hojas pesa al menos
+θ^d(1−θ)^(H(E)+89d). Las hojas son eventos disjuntos. Por tanto si
+
+                      s ≤ θ(1−θ)^89,   0<θ<1,
+                 Σ_{D activos admisibles para E} s^|D| ≤ (1−θ)^−H(E).  (2)
+
+La estimación sigue valiendo si se exige además que se visite un
+generador fijado. La ley auxiliar sólo se usa para contar hojas.
+El q físico sigue siendo el de (1). Esto permite contar la posición de E
+mediante un único testigo de que existe una historia admisible, aunque
+distintos D produzcan historias distintas. Se suma el peso de todos los
+D con (2). Por ello el árbol de posiciones ya no necesita almacenar cada
+medida como un extremo adicional de un camino.
+
+2. Presupuesto de generadores lejanos
+====================================
+
+Llamar cercano a un generador cuyo rectángulo toca O. Cada uno de sus
+checks pertenece a B_x=N_L[ψ_x] para algún original x que lee ese
+rectángulo. Para todo el recuento de posiciones se absorbe el generador
+cercano en x. Sea f el número de generadores lejanos distintos usados.
+Este número es ≤ el de pasos lejanos. Cada paso lejano cuesta al menos
+una unidad de descenso. Un paso con primeros apagados de luces originales
+es cercano y sólo se asigna a una componente A de G[E].
+
+En una componente con al menos dos datos, empezar con su saldo
+|H_X A fuera de D|−|H_X A dentro de D|. Restar el descenso completo
+δ=2h−v de cada paso con primeros apagados en A (h luces, huella de
+tamaño v). Llamar k_A a una cota superior de la cantidad que queda.
+Para un original G-aislado, usar el primer contacto del Lema 14 en su
+versión con medidas, desarrollada en H5A_3_4_primer_contacto.txt, §1,
+y H5A_3_4_franjas.txt, §1. Si su único paso cercano conmuta exactamente
+su ψ y tiene el descenso inicial aportado por x, forma un núcleo simple
+por sí solo. Para un aislado excepcional, su primer paso consume al menos
+una unidad por encima de ese saldo o hay otro paso cercano reservado que
+consume al menos una unidad. Su rectángulo sólo ve esa componente. Así,
+para un núcleo que no es simple,
+
+                f ≤ Σ_{|A|≥2} k_A − número de aislados excepcionales.   (3)
+
+En particular un núcleo filtrado con un único dato es simple. Si fuera
+excepcional, el lado derecho de (3) sería negativo. También se deduce
+directamente comparando el descenso de su primer contacto con el total.
+
+Para todo tamaño asignar los primeros apagados como en la nota de
+contacto. Los créditos de cada rango en sextos de descenso son (2,3,6)
+para VV y (2,2,4,6) para CC. En un dato CC sin vecino fuerte los créditos
+son (2,2,6,6). Una arista fuerte es una arista de G entre dos huellas
+originales que comparten proyección en algún eje. Cada paso admite
+como máximo 6δ unidades. Se comprueba sobre las 25 órbitas de las 771
+parejas locales de luces y celdas oscuras que alcanzan un máximo elegible,
+incluidos los empates. Un dato con r luces pendientes satisface rv≤nh
+por comparación con su singleton de anchura n. Para los CC sin vecino
+fuerte se ponen sus primeros apagados en columnas, con proyecciones
+disjuntas de los demás contribuyentes. Si uno conserva rango cuatro,
+todos los ganadores anteriores eran perfectos. Las luces restantes de
+las filas y columnas reservadas forman entonces un subconjunto del D
+estable. En las celdas aún disponibles se concede el mayor crédito
+genérico de rango permitido. El verificador recorre todas las elecciones.
+
+El saldo de un CC sin vecino fuerte es 2r−4. El saldo de los otros
+datos es a lo sumo la suma de sus rangos iniciales. Tras los créditos,
+el coste por VV es ≤7/6, por CC sin vecino fuerte ≤8/6 y por los demás
+CC ≤10/6. En particular la cota vale desde cinco hasta cualquier tamaño.
+
+Para órdenes tres y cuatro se heredan también los descuentos de las
+tablas de H5A_3_4_contacto_de_checks.txt, §4. Si K es el coste anterior
+en unidades de generador cercano, la expresión anterior por componente
+era 11 por unidad de saldo menos Σ(11δ−1) en los pasos que daban primeros
+apagados. Si hay al menos uno, el saldo menos Σδ es ≤(K−1)/11. Si no
+hay ninguno, el saldo es ≤0. Se toma la parte entera de esa cota, con
+suelo en cero, y el mínimo con la parte entera del coste por créditos.
+Para pares se puede usar conservadoramente la parte entera de K/11.
+En la notación de VV,CC, y con 0<Y<1/36 como precio por generador lejano,
+las filas de pares quedan
+
+ P_VV,VV=576+64/Y+9/Y²,      P_VV,CC=441/Y+9/Y²,
+ P_CC,VV=784/Y+16/Y²,        P_CC,CC=384+72/Y+65/Y².
+
+3. Qué posiciones tiene que guardar el árbol
+===========================================
+
+Representar un original por su zona B_x y cada generador lejano usado
+por su rectángulo. La imagen del núcleo bajo la absorción del §2 es
+conexa por intersecciones de zonas o rectángulos y por contactos en G
+de los originales. En cada componente de G[E] elegir primero un árbol
+de originales que conecte cada bloque fuerte internamente. Completar con
+aristas débiles dentro de G y después con intersecciones entre zonas y
+rectángulos hasta obtener un árbol general que conserve esas aristas.
+Podar hojas de generador, salvo el ancla física si se exige, y comprimir
+los caminos cuyos interiores son generadores lejanos de grado dos.
+Los originales se conservan todos. Al fijar sus posiciones se conoce E
+y se puede aplicar (2). En un enlace comprimido con l interiores, éstos
+son distintos de los interiores de los otros enlaces y de los generadores
+visibles. Por (3), la suma de los l y de los generadores visibles es como
+máximo el saldo del núcleo. Se permite en el recuento la menor longitud
+que den las distancias de sus extremos.
+
+Para un origen de tipo variable o check de la semilla escribir V(R) o
+C(R) para las bolas de Tanner del tipo de destino con paridad R. Las
+bolas de radio par 2k valen como máximo 1+9(6^k−1)/5 y 1+8(6^k−1)/5.
+Las de radio impar 2k+1 valen 3(6^(k+1)−1)/5 y 4(6^(k+1)−1)/5.
+La zona de un VV tiene radios (2,3) hasta los checks del síndrome,
+la de un CC (3,2) y un rectángulo de generador (1,1). Así, para un
+extremo con l interiores, sus centros posibles están en el producto de
+las bolas de radios r₁+2l y r₂+2l. Los radios iniciales son
+
+          VV a VV (4,6)    VV a CC (5,5)    CC a CC (6,4)
+          VV a g  (3,4)    CC a g  (4,3)    g a g   (2,2).
+
+Para el sentido inverso se invierten los tipos de origen y destino en
+cada eje. Las bolas de los árboles cubren las de cualquier semilla.
+También mayoran sus capas por la proyección de los pares de caminos
+desde el centro: todo punto nuevo en radio l tiene una preimagen nueva
+en esa capa. Los radios dan condiciones necesarias incluso con ciclos.
+
+Sea T(l) ese producto de cardinalidades en el recubrimiento. Para los
+enlaces ordinarios se usa L=⌈(1−Y)Σ_{l≥0}Y^l T(l)⌉. Es la suma de las
+capas ponderadas por el menor l. T(l) tiene la forma c₁+c₆6^l+c₃₆36^l.
+Se obtiene exactamente de tres valores o del producto de las fórmulas
+anteriores, y T(l)≤c₃₆·36^l. Con a=.9889^55 e Y=a⁶ se obtienen
+
+ L_dd=((257772,171947),(305683,203723)),      L_dg=(14280,16928),
+ L_gd=(19040,12696),                         L_gg=1047.
+
+Cuando la raíz es un generador lejano físico fijado, el árbol tiene al
+menos un hijo porque contiene un original. Distinguir uno de sus enlaces
+salientes. Para una forma de árbol fija, fijar los tipos y las longitudes
+mínimas de todos los demás enlaces. Si el presupuesto de (3) deja k≥0
+interiores para este enlace, su cantidad de extremos posibles es ≤T(⌊k⌋).
+Como 36Y<1, esta cantidad es ≤⌈c₃₆⌉Y^(−k). Para k<0 no hay realizaciones.
+Enraizando el resto a continuación de cada extremo posible, las cotas de
+capas de los otros enlaces son uniformes en su posición. En efecto,
+k es el saldo de (3) menos el número de generadores visibles y menos
+la suma de los l ordinarios. Por ello al aplicar Y^(−k) y sumar, los
+factores ordinarios Y^l se conservan y el
+enlace distinguido sólo requiere M=⌈c₃₆⌉. Desde g resultan M_gV=1867,
+M_gC=1245 y M_gg=104. Se aplica este ahorro una sola vez por árbol. Se
+puede sumar sobre todas las elecciones de hijo distinguido. Los otros
+hijos siguen siendo opcionales y sin orden. El propio generador raíz
+consume una unidad de (3). Se evitan así múltiples cobros de una
+misma conexión en la respuesta a una medida.
+
+4. Cierre simultáneo de las filas
+================================
+
+Se usa la norma de coeficientes absolutos y el argumento de fijación
+de H5A_3_4_contacto_de_checks.txt, §2, con α=.001, η=.0001, b=.00118,
+x(r)=r exp(.015)/(1−2r), z=x(p)exp(α) e y=x(q). U_i acota los núcleos
+con un original fijado, H_i* los no simples con ese original y G* los
+que visitan un generador lejano fijado. Para un generador cercano en un
+núcleo no simple hay ≤40 originales VV y ≤27 CC que podrían justificar
+el contacto. Luego g=40H_V*+27H_C*+G* acota toda visita retenida por
+generador, incluyendo la de uno lejano. La ψ propia cubre los simples.
+
+    R=max(640U_V+441U_C,784U_V+513U_C),     I=280U_V+189U_C+588g,
+    ℓ=89b+I,    ε=exp(ℓ)(exp(ℓ)−1)<1,      y(1+b)(1+ε)≤b.
+
+En la tabla de cobertura del §3 de la nota de contacto, ponderar las
+cuatro filas por (b,2U_V,2U_C,2g). Sean A_i y F_i los totales de la
+columna inicial y final de cada tipo. El mismo mayorante del peso de un
+núcleo exige
+
+   C_i≥z exp(η+2R+F_i),    s≥y exp(90b+2I),    m_i≥C_i/(1−θ)^K_i,
+   K=(414,536),           S_i=z exp(η+2R+A_i)(1+y)^n_i.
+
+S_i cubre los simples. m_i incluye (2) para cada original del árbol de
+posiciones de un núcleo no simple. Escribir h_i para una entrada de
+grupo en ese árbol, v para una entrada a un generador visible desde
+su padre y w_i=m_i exp[(L_dd h)_i+L_dg,i v]. En una rama, el generador
+visible tiene al menos dos hijos porque se comprimieron los de grado dos.
+
+Para la parte de un grupo original de cinco o más datos usar las
+matrices débil y fuerte de la nota anterior, W y B. Un vértice
+incidente a alguna arista fuerte del árbol de su grupo paga el coste
+alto, consistente con la elección inicial de los árboles. Fijar las
+cotas superiores w_i y poner X_i=(Wd)_i, Z_i=(Be)_i, buenos
+t_i=w_i/a^(7 u 8) según el tipo y altos t'_i=w_i/a^(7 u 10).
+Por inducción desde cero bastan las filas positivas
+
+    d_i≥exp(X_i)[t_i+t'_i(exp(Z_i)−1)],    e_i≥t'_i exp(X_i+Z_i).      (4)
+
+Sustraer de la expresión derecha para d_i sus coeficientes exactos de
+grados uno a cuatro en los mismos w congelados. El resto T_i mayoriza
+la cola desde cinco, por positividad de la serie. Los coeficientes se
+obtienen de los árboles etiquetados del verificador anterior. En cada
+grado ≤4 la clave de su histograma determina cuántos CC carecían de
+vecino fuerte, lo cual se comprueba buscando todas las soluciones
+enteras del coste guardado. Los factores de posiciones y la división
+por (n−1)! en un árbol enraizado se conservan.
+
+Escribir F_i(w) para el polinomio de órdenes uno a cuatro ajustado.
+Comprende el aislado excepcional Yw_i, la pareja w_i Σ_j P_ij w_j
+y los grados tres y cuatro con Y^(−k_A) del §2. Usar
+
+    h_i ≥ F_i(w)+T_i,                           J=L_gd h + L_gg v,
+    v ≥ Y(exp(J)−1−J),       G* ≥ Y exp(J)(1867h_V+1245h_C+104v).
+
+Para un original físico fijado, si existe otra componente de G[E], la
+componente raíz tiene al menos una conexión exterior en el árbol. Por
+positividad se puede restar F_i(m), exactamente la parte de grados uno
+a cuatro sin conexiones exteriores del grupo raíz. Los pesos m son los
+mismos que se congelaron antes de añadir los hijos exteriores en w.
+Para la clase complementaria, E es conexo en G. Su posición se cuenta
+directamente por un árbol de originales y su D ya está sumado mediante
+(2). Si es no simple tiene al menos dos datos. Con A=((640,441),(784,513)),
+si t≥m exp(At) componente a componente, la contribución de esa clase es
+≤m_i(exp((At)_i)−1). En conjunto bastan
+
+   H_i* ≥ F_i(w)+T_i−F_i(m)+m_i(exp((At)_i)−1),    U_i ≥ S_i+H_i*.
+
+Las exponenciales de hijos opcionales se obtienen mayorando el producto
+por posiciones. Pueden repetirse posiciones sólo en el mayorante.
+La geometría y la rama distinguida se aplican antes de descartar la
+restricción de presupuesto. Las cantidades h_i y v sirven para ramas
+del registro. Las cotas físicas U_i y G* se aplican a núcleos completos,
+que pueden examinarse con el dato o el generador como raíz.
+
+5. Qué se verifica y qué limita el siguiente aumento
+===================================================
+
+En (1), el cociente de respuesta pasiva es <.979107. Los cocientes
+de las otras filas de la supersolución son estrictamente menores que
+uno. Las desigualdades de θ y del recuento conexo también se verifican
+directamente con fracciones. Las colas T_V,T_C de (4) son
+<1.251·10⁻⁸ y <8.731·10⁻⁸. La fila de todas las componentes originales
+es R<.00028717<α. Es la misma extracción por marcas del §4 de
+H5A_3_4_fondo_pasivo.txt. En p=4.5·10⁻⁸ la parte de tres o más
+componentes es ≤(3/8)³R<.00001515. Las actividades físicas crecen con
+p,q, por lo que el testigo cubre todo (1). Se conserva la cola del
+logaritmo ≤N exp[−.015(m+1)] en grado total m de las fuentes, para N
+sitios, y la evaluación de los coeficientes del apéndice A.
+
+Hay dos obstrucciones concretas del sistema de mayorantes.
+
+• En p=2·10⁻⁷ y q=.001, con el Y y el b usados aquí, bastan las parejas
+  y los tríos para que la respuesta pasiva exigida supere 1.01
+  sobre un máximo de 1. El verificador arranca con h=v=G*=0 e itera
+  sólo los términos cuadráticos y cúbicos de F_i y las condiciones
+  necesarias I≥588G*, g≥G*, θ≥s, G*≥Y(1867h_V+1245h_C+104v).
+  Usa nueve rondas con redondeos
+  por defecto y el Taylor de grado seis como cota inferior de exp.
+  Para contrastar esta esquina interesa cuándo un grupo pequeño puede
+  alimentar realmente la corrección que alcanza el rectángulo marcado.
+
+• Para p≥8·10⁻⁷ a q=.001, las filas a granel (4) ya fallan para
+  cualquier 0<Y<1/36 y cualesquiera pesos auxiliares de este sistema.
+  En efecto, b≥q y θ≥s≥q implican m_i≥p exp(2q K_i).
+  Como 1.817⁶<36, reemplazar a⁻¹ por 1.817 da un mayorante requerido
+  más pequeño. A p=8·10⁻⁷, la iteración inferior racional de (4) desde
+  cero exige e_C≥.1 al paso 25. Pero (4) implica a la vez
+  e_C exp(−129e_C)≥m_C (1.817)^10. El lado izquierdo decrece para
+  e_C≥.1 y su valor allí es menor que el derecho (basta el término
+  cúbico de exp(12.9)). Por monotonía se excluyen también las tasas
+  superiores, incluida 10⁻⁶, para esta elección de filas. Para alcanzar
+  G3 con esta representación hay que mejorar la asignación de coste en
+  grupos grandes, su conteo por posiciones, o el precio de sumar sus
+  medidas. La cuestión del acceso físico en G3 queda abierta.
+
+Reproducción desde 05_COMPROBACIONES con Python 3.10 o posterior
+
+    python -I -B -X utf8 verificar_H5A_3_4_medidas_por_historia.py
+
+Los únicos requisitos son la biblioteca estándar y los verificadores
+previos del paquete acumulativo. Las cifras de (1) y las obstrucciones
+se refieren al estimador fenomenológico del manuscrito.

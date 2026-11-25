@@ -1,0 +1,212 @@
+T2-1M - INFORME: MOTOR POR ANCLAS CON PUNTO FIJO DIRIGIDO PARA T2-1
+(INGENIERIA)
+14/11/2026 (Lima). Plan PLAN_T2_1M.txt (sha 81f475fe...), sellado antes de
+escribir el programa (SELLO_PLAN.json, 13/11 22:26) y registrado con su
+orden de ejecucion en DEC-055. Programa t2_motor.py (sha c0d29780...),
+probado antes con el mismo sha (prueba/SALIDA_PRUEBA.txt, 78 controles
+PASS). Una sola corrida completa, del 13/11 23:29 al 14/11 03:45 (4.27 h).
+Unidad de ingenieria de la via de tipo 2, por orden del usuario ("Me
+gustaria hacer la opcion 2 con 48 pero antes de eso podemos abordar el
+problema de ingenieria..."; "Ok esta bien continua"). Sin contraste del
+revisor. Manuscrito no modificado.
+
+SITUACION EN UNA FRASE
+El motor queda validado: los 186 controles pasan. Reproduce B4 en las
+cuatro tiras (m = 6 a 48), con las fracciones exactas dentro de sus
+intervalos, y reproduce T2-0 en m = 6, 12 y 24. Con el, la DP del
+circuito con k = 4 se ha recorrido entera en m = 24 y 48 con menos de
+0.6 GiB por proceso, frente a los 17 y 36 GiB que proyectaba la
+implementacion anterior. Por la regla fijada, T2-1 completa (8 celdas,
+m = 6 a 48) CABE_CON_MAS_TIEMPO: 8.28 h previstas frente al limite de
+6 h, con memoria y disco de sobra. No se calcula ningun intervalo de
+P_sil. El objetivo diferencial sigue PENDIENTE.
+
+DECISIONES (fijadas antes; decididas)
+  D-m1  VALIDADO: los 186 controles pasan.
+  D-m2  CABE_CON_MAS_TIEMPO. Tiempo previsto 8.28 h (> 6 h). Memoria:
+        0.52 GB por proceso de la DP (14 procesos) y 1.43 GB en el
+        principal, dentro de los techos (4 GiB por proceso, 24 GiB en
+        total). Disco: 6.76 GB, dentro de 60 GB.
+        Desglose (regla del plan, t_celda de m = 48 para m = 24 y 48 y de
+        m = 12 para m <= 12):
+          segundos por celda   m=6 408   m=12 2974   m=24 8942
+                               m=48 20603
+          DP: (suma por celda) x 8 / 14 procesos = 5.23 h
+          catalogos (medidos en esta corrida)    = 3.05 h
+        Informativo (no entra en la regla): una celda de m = 48 en un
+        solo proceso dura 20603 s = 5.72 h, y la pasada de una celda no
+        se puede repartir entre procesos. Con la medida de esta corrida,
+        es el camino critico de T2-1 aunque sobren procesos.
+
+1. CONTROLES (186, todos PASS)
+- SHA-256 de PLAN_T2_1M.txt, t2_calibracion.py, RESULTADO_T2_0.json,
+  b4_tiras.py y RESULTADO_B4.json (y los que estos comprueban al cargar).
+  Matrices de las cuatro tiras iguales a las de B4.
+- Por instancia (8): simbolos en 6 bits; clases de cada sitio = las de su
+  tipo de ley; k_log = 1; cada asignacion de cada candidato se decodifica
+  una vez (por f); I4 (silenciosa <=> caracter -1) sin discrepancias;
+  C-anc del catalogo (ningun soporte fuera del grupo de su ancla, ninguno
+  repetido tras fusionar). En el circuito, C-resp y C-ley de T2-0 en
+  m = 6, 12, 24 y 48 (N_loc = 527, 1079, 2183 y 4391; respuesta por
+  formula = propagacion; leyes suman 1; soporte de las leyes de fibra =
+  clases alcanzables).
+- C-anc en la DP: en los 38 trabajos, ningun hijo con ancla <= la de su
+  padre (recuento 0).
+- C-B4 (fenomenologico, m = 6, 12, 24 y 48; k = 3 y 4): validas por f,
+  polimeros, estados y terminos iguales a RESULTADO_B4.json:
+         k=3: polimeros / estados / terminos   k=4: polimeros / estados / terminos
+  m=6       19021 /   3061 /   226601          306389 /   5355 /   2972219
+  m=12      48535 /  14141 /   973957          910740 /  66785 /  27604459
+  m=24     107563 /  36413 /  2473153         2119632 / 202373 /  81171019
+  m=48     225619 /  80957 /  5471545         4537416 / 473549 / 188304139
+  En las 12 celdas de B4 y con k = 3 y 4, los intervalos de eps_comp,
+  L_comp y P_0 contienen la fraccion exacta sellada en B4 (288
+  intervalos). Anchura relativa maxima 3.4e-87 (k = 4) y 3.0e-93 (k = 3).
+- C-T20 (circuito): validas y asignaciones por f, polimeros, estados y
+  terminos iguales a T2-0 en m = 6 y 12 con k = 1..4 y en m = 24 con
+  k = 1..3. Regla de suma con D = 1e14: COMPLETO en los dos extremos en
+  m = 6 (k = 4, margen 3.7565 ordenes), m = 12 (k = 4, 3.1416) y m = 24
+  (k = 3, 4.7833), con diferencia 0.0 en el margen y en el peso del orden
+  siguiente frente a T2-0. Negativo de m = 6 (soporte 0xf, clave (4,0),
+  recuento 1029 -> 1028): INCOMPLETO en los dos extremos, margen
+  -7.6e-5, igual a T2-0.
+- C-exacto (m = 6, k = 3, 3215 estados, 1143002 terminos): en las celdas
+  (r_c = 1e-3, r_m = r_c) y (r_c = 1e-6, r_m = 0), U, E y O exactos
+  (fracciones, misma pasada) caen dentro de los intervalos de punto fijo;
+  anchura relativa 1.2e-106 y 1.2e-97.
+- C-dom (k = 4, r_c = r_m = 1e-6): L_comp / termino dominante de T2-0 =
+  1.000175558 en m = 6 y 1.000351934 en m = 12, dentro de
+  [1 - 1e-12, 1 + 1e-2]. La diferencia crece casi en proporcion a NS
+  (91 y 187 sitios), como se esperaba (familias silenciosas con mas
+  sitios, de orden NS x r_c).
+- C-anch: todas las anchuras relativas informadas <= 1e-30 (maxima
+  3.4e-87); en la regla de suma, la anchura de U es <= 1e-12 x^k
+  (anchura / x^k: 5.6e-52 en m = 6, 1.8e-51 en m = 12 y 3.9e-67 en
+  m = 24).
+- Regla de suma: 0 <= T_cat - X0 en los dos extremos (8 controles).
+146 controles se imprimen en SALIDA_T2_1M.txt; los 40 restantes (32 de
+"se decodifica una vez" y 8 de T_cat - X0) estan en
+RESULTADO_T2_1M.json, todos con pasa = true.
+
+2. MEDIDAS NUEVAS (circuito, k = 4; sustituyen a las proyecciones de T2-0)
+Catalogo por crecimiento con clases (llamadas = asignaciones probadas):
+         sitios  validas f = 1..4                              llamadas
+  m=24    379    1741, 145436, 15020887, 1647125107            1.786e9
+  m=48    763    3517, 300524, 31714687, 3554496331            3.857e9
+         polimeros k=1..4                      entradas k=4   disco
+  m=24   565, 15844, 548196, 20925047          1.122e9        1.82 GB
+  m=48   1141, 32692, 1154916, 45005423        2.417e9        3.93 GB
+  (13683 firmas de clases distintas en cada tira de circuito.)
+DP con el orden de producto, pasada de solo estructura:
+         k   polimeros    estados     terminos   pendientes max   pol./ancla max
+  m=24   4   20925047     247927     837562421        7832            164967
+  m=48   3    1154916      89001      29945741        1200              4009
+  m=48   4   45005423     582583    1953983141        7832            164967
+Frente a las proyecciones de T2-0 (DEC-054):
+                 estados                 terminos               llamadas
+  m=24    247927 / 2.09e5 = 1.19    8.38e8 / 7.18e8 = 1.17   1.79e9 / 1.69e9 = 1.06
+  m=48    582583 / 4.65e5 = 1.25    1.95e9 / 1.59e9 = 1.23   3.86e9 / 3.57e9 = 1.08
+Las proyecciones se quedaron cortas un 17 a 25 % en la DP, como ya
+habia pasado con la regla de proyeccion en B4 (14 y 18 %). Siguen dentro
+del criterio de D-c1 (5e6 estados, 2.5e9 terminos). Por ancla, la DP
+carga como mucho 164967 polimeros.
+
+3. RECURSOS Y TIEMPOS (no deterministas; no son resultado)
+- 6637302128 llamadas al decoder (techo 7.5e9; prevision del plan unas
+  6.3e9 + 1e7).
+- Reloj: catalogos 3.15 h (m = 48 de circuito: 1.67 h mas 7 min de
+  fusion), DP 1.12 h (38 trabajos en 14 procesos; el mas largo, la
+  estructura de m = 48 con k = 4, 1.12 h). Total 4.27 h (techo 8 h;
+  prevision 3 a 5 h).
+- Memoria: pico del proceso principal 1.43 GB; por proceso, 0.52 GB en
+  el catalogo de m = 48, 0.96 GB en su fusion y 0.56 GB en la DP; pico
+  total 7.36 GB (catalogo de m = 48) y 2.53 GB en la DP (techos: 12 GiB,
+  1.5 GiB, 4 GiB y 24 GiB; 1 GiB = 1.074 GB).
+- Disco: pico 12.0 GB (ficheros crudos mas fusionados); trabajo/ queda
+  con 6.83 GB en 1412 ficheros de grupo y un manifiesto de SHA-256.
+- Calibracion de tiempo (16 de 256 grupos; valores de la celda
+  descartados): t_celda = 8.54e-6 s/termino (m = 12) y 8.95e-6 (m = 48);
+  t_peso = 1.10e-6 y 1.14e-6 s/entrada; t_carga = 8.4e-8 y 9.4e-8 s/byte.
+- Variabilidad de la maquina (afecta a D-m2). El mismo catalogo de m = 6
+  con circuito (f = 4, 2.31e8 asignaciones) tardo 104 s en la primera
+  prueba (v1), 311 s en la segunda (v2) y 340 s en esta corrida; T2-0, con
+  otro programa, tardo 60 s. Durante el catalogo de m = 12 se midio que
+  los 14 procesos usaban entre todos unos 3.9 nucleos, lo que corresponde
+  a los 4 nucleos de eficiencia del i5-14400F (6 de rendimiento y 4 de
+  eficiencia). Es compatible con que Windows los tratara como trabajo de
+  fondo, pero no se comprobo la causa. En la DP, los mismos trabajos de
+  m = 6 tardaron de 1.5 a 2.6 veces mas que en la prueba v2. No se
+  cambio nada de la maquina ni de la prioridad de los procesos durante la
+  corrida. D-m2 se decide con los tiempos medidos, como fija el plan. Con
+  la maquina como en la prueba v1, las horas previstas serian del orden
+  de la mitad o un tercio, pero eso no se ha medido en una corrida.
+
+4. COMPROBACION INDEPENDIENTE POSTERIOR (informativa)
+comprobacion_independiente.py (sha ce6caabf...) relee RESULTADO_T2_1M.json
+sin usar el motor y lo compara con RESULTADO_B4.json, RESULTADO_T2_0.json y
+el manifiesto (SALIDA_COMPROBACION_INDEPENDIENTE.txt, sha 3fae5d58...):
+- C-B4: las 288 fracciones exactas de B4 caen dentro de los intervalos
+  escritos en el JSON, y las estructuras coinciden.
+- C-T20: estructura por k, validas y asignaciones por f, y veredicto y
+  margen de la regla de suma iguales a T2-0 en m = 6, 12 y 24.
+- trabajo/: los SHA-256 de los 1412 ficheros de grupo coinciden con el
+  manifiesto.
+- Sin fallos.
+Nota de formato: los intervalos se escriben en el JSON con 25 cifras
+significativas redondeadas hacia fuera, asi que su anchura escrita es de
+hasta 1e-24 relativa. La anchura de C-anch (<= 3.4e-87) es la de los
+intervalos internos de 384 bits. Los intervalos escritos siguen siendo
+rigurosos.
+
+5. DESVIACIONES RESPECTO DEL PLAN
+- Ninguna en el programa: el mismo sha que la prueba registrada en
+  DEC-055. Una sola corrida, sin reintentos.
+- Tiempo de los catalogos mayor que lo previsto (m = 48: 1.67 h frente a
+  unos 25 min), por la variabilidad de la maquina (seccion 3). El total
+  (4.27 h) queda dentro de la prevision de 3 a 5 h y del techo de 8 h.
+- Llamadas: 6.64e9 frente a unas 6.3e9 previstas, dentro del techo de
+  7.5e9.
+- Comprobacion independiente posterior (seccion 4), fuera del plan e
+  informativa.
+
+6. LIMITES QUE PESAN IGUAL (M10)
+- Los lemas A, N, EO y R estan escritos en el plan sin contraste del
+  revisor. Se controlan por sus consecuencias (C-B4 en las cuatro tiras,
+  C-T20, C-exacto, C-dom), no se prueban por otra via.
+- C-exacto solo cubre m = 6 con k = 3 y dos celdas. En m = 24 y 48 con
+  circuito no hay referencia exacta. Ahi el motor solo se ha recorrido en
+  estructura (estados y terminos); con pesos, solo en la calibracion de
+  16 grupos, cuyos valores se descartan.
+- Los resultados pasan de fracciones exactas a intervalos rigurosos de
+  anchura despreciable (<= 3.4e-87 relativa en lo informado).
+- Una ronda, SSF y no MWPM, una seccion (n = 6): las limitaciones de la
+  version acotada de la via de tipo 2 siguen igual.
+- D-m2 depende del estado de la maquina (seccion 3). La regla supone un
+  reparto perfecto entre procesos; el camino critico real es la celda de
+  m = 48 (5.72 h con los tiempos medidos).
+- Es una unidad de ingenieria: no da intervalos de P_sil, ni la regla de
+  suma de m = 24 y 48 con k = 4, ni compara con rivales. Las medidas de
+  m = 24 y 48 sustituyen a las proyecciones de T2-0, pero no son
+  resultados de T2-1.
+
+7. QUE QUEDA Y QUIEN DECIDE
+T2-1 necesita su propio plan sellado. Decisiones para el usuario antes de
+escribirlo:
+- Alcance de tiempo: la regla de T2-1M dice CABE_CON_MAS_TIEMPO (8.28 h).
+  Hay que elegir entre aceptar una corrida mas larga (por ejemplo, con un
+  techo de 10 a 12 h), reducir las celdas de m = 48 o repartir T2-1 en
+  dos corridas (m <= 24, luego m = 48).
+- Reutilizar trabajo/: los catalogos de esta corrida estan verificados
+  por SHA-256 y ahorrarian unas 3 h, si el plan de T2-1 lo permite.
+- Celdas, rivales (Monte Carlo a 1e-3 u otros) y criterio de exito de
+  T2-1.
+No se ejecuta nada de T2-1 sin su plan sellado y sin la orden del
+usuario. Cuando el revisor este disponible, los lemas A, N, EO y R se
+suman al paquete de contraste.
+
+ARCHIVOS
+PLAN_T2_1M.txt, SELLO_PLAN.json, VERIFICACION_PLAN.json, t2_motor.py,
+RESULTADO_T2_1M.json, RECURSOS_T2_1M.json, SALIDA_T2_1M.txt,
+comprobacion_independiente.py, SALIDA_COMPROBACION_INDEPENDIENTE.txt, este
+informe, prueba/ (prueba registrada y v1), medidas_previas/ y trabajo/
+(catalogos por grupo con MANIFIESTO.json; no es un entregable).

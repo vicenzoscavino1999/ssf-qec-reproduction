@@ -1,0 +1,46 @@
+# Splitting circuital en los 225 cúbits
+
+Se evalúa una ronda de extracción Z en el sector X del HGP afín [[225,9,6]], con VV primero, SSF/FGL de β=0,01 y el desempate físico del piloto. El punto pedido es r_c=2·10⁻⁷, r_m=10⁻⁵. El evento requiere síndrome físico residual cero y clase lógica X no trivial.
+
+## Resultado del 24 de noviembre de 2026
+
+El método por sectores del artículo alcanza el objetivo del 10 % en esta esquina. La estimación de splitting quedó aproximadamente un 47 % por encima de la referencia de la tabla 6.
+
+| Método | Estimación de P_sil | Intervalo obtenido | Margen relativo de la estimación según su propio intervalo | Tiempo de pared con preparación |
+|---|---:|---:|---:|---:|
+| Sectores del piloto | 3,34223·10⁻¹⁶ | \([3.33938,\,3.34508]\times10^{-16}\) | ≤0,08514 % | 8,31 s (mediana de tres procesos nuevos) |
+| Splitting con 12 semillas | 4,91234·10⁻¹⁶ | \([3.55892,\,6.48589]\times10^{-16}\) | 38,03 % nominal | 161,91 s (una corrida completa) |
+
+Las cifras entre corchetes se redondearon hacia fuera. Para un valor publicado x y un intervalo [L,U] usamos el mayor de |x/L−1| y |x/U−1|. La primera fila reproduce la garantía estadística del piloto bajo el evento de cobertura conjunta superior al 98,54 %. La segunda fila usa un intervalo nominal del 95 % sujeto a la exploración de las cadenas. Los dos intervalos son disjuntos. Si la probabilidad física pertenece al intervalo del piloto, el error relativo del punto de splitting está entre el 46,85 % y el 47,11 %. El intervalo exclusivamente determinista del piloto es más ancho, de 3,33938·10⁻¹⁶ a 8,56802·10⁻¹⁵, e incluye el punto de splitting.
+
+El ancla observó 574 fallos silenciosos en 200 millones de historias del lote principal. Su intervalo al 97,5 % es aproximadamente \([2.60823,\,3.15042]\times10^{-6}\). Los 28 niveles y las 36 cadenas dieron un total de 532,8 millones de pasos. En el último nivel, 26 de 36 cadenas permanecieron en su estado inicial durante los 100 000 pasos y se observaron 26 cambios en los 3,6 millones de pasos combinados. El R-hat dividido en el cociente con el nivel anterior fue 6,03. En los niveles de longitudes distintas se calcula por separado dentro de cada grupo de igual longitud. El diagnóstico es compatible con una exploración insuficiente. Condicionando al valor exacto de la normalización, el margen nominal asociado al transporte por estas trayectorias sería 25,44 %. Una ampliación exclusiva del ancla conserva ese problema.
+
+El cálculo de splitting tomó 1,55 s de preparación del modelo, 149,72 s para el ancla con calibración, 9,46 s para las cadenas y 1,19 s de análisis. Los costes de cada fase incluyen su proceso. Para los sectores se observaron 8,690 s, 8,306 s y 7,990 s, incluyendo cada vez la construcción del SSF, los patrones y la evaluación del punto en un proceso separado. El cociente de tiempos observados es 19,49. El tiempo requerido por esta variante de splitting para alcanzar el 10 % continúa indeterminado. El equipo usó un Intel Core i5-14400F, Windows x64 y Python 3.12.10. El núcleo de simulación se compiló con MSVC 19.44.35228, con BMI2 y AVX2, en aproximadamente 4 s aparte del cálculo.
+
+La comprobación posterior reconstruyó a partir del circuito primitivo las 143 136 probabilidades de etiqueta exportadas, distribuidas entre los 28 niveles. Una segunda implementación del SSF confirmó que las doce semillas del ancla tienen síndrome físico residual cero y clase no trivial. Los histogramas guardados permiten recalcular con aritmética directa los 972 cocientes de Bennett y el valor 4,912342963·10⁻¹⁶. [Resultados numéricos](resultado_splitting.json) · [Tiempos de splitting](tiempos_splitting.json) · [Tres ejecuciones del certificado](certificado_225_tiempos.json)
+
+## Diseño fijado antes de la corrida
+
+- El ancla física está en r_c=0,003, r_m=0,005. En el transporte se fija r_m=min(0,005,50r_c) y se desciende por la regla de Bravyi–Vargo con el extremo intermedio r_c=0,0001. Para fijar el paso se usa la cota de ocupación 3240r_c+108r_m. En todos los niveles se conserva el circuito y se reconstruye la ley conjunta de cada fibra a sus tasas.
+- Se obtiene la probabilidad absoluta del ancla por simulación directa. Una calibración de 250 000 historias, con flujo aleatorio propio, fija N para el lote independiente. Con K éxitos en la calibración, N es el techo de 1600·250001/(K+1) entre un millón y doscientos millones. El estimador usa solo el lote principal de tamaño fijo y se calcula su intervalo binomial al 97,5 %. Las primeras 12 historias silenciosas de este lote inicializan las cadenas. Las historias que no fallan también se cobran en el coste.
+- Se usan tres réplicas por semilla. Cada actualización elige una de las 333 fibras y otra etiqueta de esa fibra de manera uniforme. La aceptación de Metropolis tiene en cuenta el cociente de las probabilidades de etiqueta, seguida de la prueba exacta de pertenencia al evento. La tasa cambia entre niveles y el último estado de cada cadena inicia el nivel siguiente. Los tamaños son 100 000, 300 000, 700 000, 1 500 000 y 3 100 000 pasos, con la regla de las dos mitades y margen 0,05/√(número de niveles) del piloto anterior. La retención cuenta todos los pasos, incluidos los rechazos.
+- Cada razón se estima por Bennett, con tres iteraciones y medias normalizadas. Los logaritmos de los cocientes usados en los histogramas se agrupan en una cuadrícula de paso 10⁻⁸. La inferencia se hace sobre 12 medias por semilla. Se combina el intervalo de Student al 97,5 % con el del ancla para un intervalo nominal del 95 % sujeto a exploración suficiente y al modelo estadístico. Se comprueban por separado el mayor error relativo permitido por el propio intervalo, los diagnósticos de mezcla entre cadenas (R-hat dividido, umbral 1,1) y el error de la estimación frente a los extremos de referencia. Un margen nominal del 10 % con alertas de mezcla se informa como tal.
+- El simulador comparte con el piloto el circuito, la ley de ruido y el SSF. Exporta sus tablas de acciones y contrasta el decodificador nativo con Python. El ancla, las semillas y las cadenas se calculan sin consultar la probabilidad de referencia, los patrones de fallo de dos datos ni el censo de tríos. El certificado de la tabla 6 entra solo en el contraste final. Su intervalo estrecho de referencia tiene cobertura estadística conjunta superior al 98,54 % bajo los supuestos del piloto.
+- Los dos procesos de cálculo usan un único hilo en la misma máquina. Para el método del artículo se miden tres procesos nuevos que calculan únicamente esta esquina con las semillas originales. Se incluye la preparación geométrica y la evaluación. Para splitting se mide una ejecución completa, incluida la calibración, la preparación del modelo, el ancla, las cadenas y el análisis. La compilación es un coste de instalación declarado por separado. Las duraciones describen estas implementaciones.
+
+El algoritmo de transporte sigue a Bravyi y Vargo (Phys. Rev. A 88, 062308) y a la técnica III de Beverland et al. (arXiv:2511.15177). El resultado de las tiras y el de los 225 cúbits corresponden a instancias diferentes.
+
+Antes de examinar las cadenas se fijó este criterio para interpretar el presupuesto del ancla. Se calculará por separado el margen nominal del transporte con normalización ideal. Si ese margen ya supera el 10 %, una ampliación del ancla por sí sola no permite alcanzar la precisión solicitada con estas trayectorias. Si solo falta precisión en el ancla y los diagnósticos de mezcla son favorables, procede una normalización independiente con más muestras. El análisis conserva en todo caso la primera corrida.
+
+## Reproducción
+
+Extraiga el paquete en una carpeta de trabajo. Desde la subcarpeta SPLITTING_HGP_225_VV_20261124, con Python 3.12, el primer comando revisa los resultados ya guardados. Los comandos siguientes regeneran las salidas en esa copia.
+
+~~~
+python -I -B -X utf8 verificar_resultado.py
+.\compilar.cmd
+python -I -B -X utf8 ejecutar_225.py
+python -I -B -X utf8 medir_certificado.py
+~~~
+
+En Windows, compilar.cmd usa Visual Studio Build Tools para x64. La secuencia pseudoaleatoria se fijó para la biblioteca estándar de esa compilación. Los histogramas incluyen los rechazos de Metropolis con su multiplicidad. Los tiempos y el pico de memoria pueden variar al reproducir el cálculo. El modelo y los resultados de entrada proceden del piloto de 225 cúbits. Las funciones estadísticas de Bennett, Student y Clopper–Pearson proceden de los experimentos previos de la investigación. [Bravyi y Vargo](https://doi.org/10.1103/PhysRevA.88.062308) · [Beverland et al., §5](https://arxiv.org/html/2511.15177v1#S5)

@@ -1,0 +1,325 @@
+H5-A · Interacción entre dos componentes de datos en la familia (3,4)
+22 de noviembre de 2026
+
+En p=10⁻⁶, q=10⁻³, la fila de medidas integradas tiene presupuesto 1
+por vecindad de datos. Las siguientes clases disjuntas admiten estas cotas.
+
+    Una componente, cualquier tamaño                              < 0.00660
+    Dos componentes de un dato cada una, cualquier distancia      < 0.0000282
+    Dos componentes, al menos 16 datos en total, toda distancia   < 0.19856
+    Dos componentes, 3 a 15 datos en total, distancia ≥36         < 0.04732
+    Subtotal                                                       < 0.25251
+
+La distancia es la suma de las distancias en los dos factores entre los
+checks de los respectivos síndromes iniciales, definida en §3. Queda
+un presupuesto suficiente de 0.74749 para los pares con 3 a 15 datos y
+distancia ≤35 y para los bloques de tres o más componentes. El recuento
+también da un mayorante uniforme finito para toda la fila de dos componentes,
+<5.8·10¹⁰, demasiado grande para el presupuesto. En el punto intermedio
+p=2·10⁻⁹, q=10⁻³, toda la fila de una y dos componentes ya suma <0.632,
+sin restricción de distancia o tamaño. Allí bastaría una cota de 0.368
+para tres o más componentes. Hasta aquí el rectángulo completo alcanza
+p≤8.3·10⁻¹⁰ con q≤10⁻³. Los números de la tabla son contribuciones al
+criterio de acceso a las particiones filtradas.
+
+Se conservan la semilla binaria de peso de columna 3 y de fila 4 en
+producto consigo misma, una ronda Bernoulli independiente, todos los
+candidatos FGL de SSF, β=1/100, el máximo global por tamaño de huella y
+el desempate fijo del manuscrito. Las cotas son uniformes en la semilla,
+el tamaño, la máscara y el subhost inducido J. La interpretación para
+fallo silencioso positivo requiere además el testigo lógico y las
+hipótesis del Teorema 1. Aritmética reproducida. La derivación matemática
+está pendiente de revisión independiente.
+
+1. Coste de leer un grupo después de sumar las medidas
+=====================================================
+
+Usar H5A_3_4_eleccion_de_esquina.txt, §§3–4. G es la restricción del
+host K a los datos. L une checks que comparten rectángulo de generador.
+Sean x(r)=r exp(.015)/(1−2r), y=x(q), w=x(p)exp(1). La norma || || suma
+los módulos de los coeficientes a radio y en todas las medidas, incluidas
+las potencias repetidas. En el fondo estable D, f_E es la marca con signo
+de la ejecución, cero al incumplir el filtro de síndrome o la contención en
+J. La esperanza formal μ sobre fondos estables se normaliza por Z₀ y
+M(E)=μ(f_E). Para dos componentes A,B, d(A∪B)=M(A∪B)−M(A)M(B).
+La fila suma w^|E| ||d(E)|| sobre E que intersectan N_G[v]. Con una sola
+componente d(E)=M(E). Con varias, una componente de síndrome vacío da
+cumulante cero por multiplicación del carácter en todos los submomentos.
+
+En cada consulta libre a una medida, incluso tras fijaciones admisibles,
+las normas de las respuestas uno y cero son ≤b y ≤1+b, con b=.00128.
+Lo da y(1+b)(1+2b)^89≤b. Escribir D₀=1+2b. En una hoja que pasa el
+filtro sean k el número de respuestas uno, Q el de consultas distintas y
+e_V,e_C los números de datos originales de ambos tipos. Se tiene
+
+                  Q ≤ N(E)+90k,       N(E)=414 e_V+536 e_C.          (1)
+
+En efecto, para puntuar todas las acciones basta leer los rectángulos
+que tocan la discrepancia física X, inicialmente H_X E. En una hoja
+aceptada las medidas leídas están en los vecinos cerrados en L de la
+unión de ese síndrome y las huellas φ efectivamente conmutadas. Cubrir
+al inicio los vecinos del síndrome por los de los datos originales
+(≤210 e_V+252 e_C) y los de las medidas encendidas de D en el síndrome
+o en las huellas elegidas. Cada una de estas últimas se consultó y
+cuesta ≤90. En cada paso, las celdas encendidas H de φ ya tienen
+sus vecinos cubiertos, por el síndrome inicial, D o una huella anterior.
+
+Para un subconjunto S no vacío de un rectángulo poner g(S)=12+18 filas(S)
++24 columnas(S)+36|S| y g(∅)=0. Como en H5A_3_4_medidas_y_un_dato.txt,
+§1, el incremento se acota por g(φ)−g(H), también cuando la semilla
+tiene ciclos. Aquí basta cubrir las celdas realmente conmutadas. El
+verificador recorre los 4096 síndromes de un rectángulo y todos los
+empates entre 101 candidatos. Para v=|φ|, h=|H|, δ=2h−v y t=g(φ)−g(H)
+se obtiene max(t/δ)=114. El presupuesto de primeros apagados de la misma
+nota usa para cada dato de anchura n, en el rango j, el máximo de
+(114(v−h)+t)/h sujeto a nh≥jv. Los rangos son (114,90,0) y
+(114,114,56,0). El singleton del dato da la comparación nh≥jv, cada
+paso recibe a lo sumo h primeros apagados y el descenso total es a lo
+sumo el número de luces iniciales asignadas. Sumando sale (1). Para
+un solo dato sirve también su árbol exacto de ≤210 o ≤252 consultas.
+
+Tomar θ=.0017 y C=(1+b)/(1−θ). Se cumple b C^89≤θ. El mayorante
+(1+b)^(Q−k)b^k de una hoja que pasa, dividido por el peso de sus
+respuestas bajo bits independientes de parámetro θ, es ≤C^N(E), por
+(1). Las hojas de un árbol de decisión son disjuntas bajo esta ley de
+referencia. Así ||M(E)||≤C^N(E), cualquiera que sea la forma de E.
+Los pesos por dato son m_V=wC^414 y m_C=wC^536. Las dos filas de ramas
+conexas de la nota de esquinas admiten ahora R_V=.00000960, R_C=.00001385.
+Separando en la raíz el singleton con su coste exacto de consultas,
+la cota de una componente pasa de <.02256 a <.00660.
+
+2. Influencia de una medida y covarianza entre observables
+==========================================================
+
+Para la matriz de adyacencia P de L definir
+
+    c=2y(1+b)² D₀^88,   γ₀=89c<.228,   K₀=Σ_{n≥0}(cP)^n.              (2)
+
+La fila de K₀ suma a lo sumo 1/(1−γ₀). Al restringir a destinos
+a distancia en L al menos l, suma a lo sumo γ₀^l/(1−γ₀). Se cuentan
+paseos, permitiendo repeticiones. Una separación infinita da cero.
+
+Sean ξ,ξ' dos fijaciones admisibles que sólo difieren en un conjunto S
+(también puede fijarse un sitio en una sola de ellas). Si p_i es la
+respuesta condicional de ocupación del sitio i, entonces
+
+                 ||p_i^ξ−p_i^ξ'|| ≤ (1+b) Σ_{j∈S} K₀(i,j).            (3)
+
+Para verlo, un árbol que lee a lo sumo k≥1 bits y devuelve una hoja de
+módulo ≤1 cambia su esperanza en norma en a lo sumo
+2D₀^(k−1)Σ_{j en el dominio} ε_j si ε_j acota la diferencia de las
+respuestas en j bajo las dos fijaciones y todo prefijo común admisible.
+En el primer bit se separa la diferencia de su respuesta por la diferencia
+de las dos continuaciones, y se propagan las diferencias posteriores
+con los pesos de las dos ramas de una ley, cuya suma de normas es ≤D₀.
+Inducir en la profundidad. Una continuación imposible en una sola ley
+puede tomar el valor de la otra, pues pesa cero allí. El argumento
+admite consultas adaptativas y bits ya fijados.
+
+Probar (3) por inducción en los sitios libres fuera de S. En S basta
+1+b y el término identidad de K₀. Una fijación idéntica da diferencia
+cero. Para i libre fuera de S, fijar i=0 y evaluar el indicador de
+que añadir i conserva la estabilidad. Su esperanza R_i sólo requiere
+leer los ≤89 vecinos para decidir el indicador. Como
+p_i=u_i R_i/(1+u_i R_i), la diferencia de las dos respuestas es la de
+R_i multiplicada por u_i(1−p_i^ξ)(1−p_i^ξ'). Aplicar el argumento del
+árbol con k≤89. Se ha fijado i=0 en ambos lados y cada prefijo común
+permite la hipótesis inductiva. El factor por vecino es ≤c. La identidad
+K₀=I+cP K₀ termina la prueba. Se trabaja en la norma de series, también
+para actividades formales con signo. Como antecedente de la comparación
+por influencias locales puede consultarse P. Rebeschini y R. van Handel,
+Comparison Theorems for Gibbs Measures, https://arxiv.org/abs/1308.4117.
+
+Si A y B constan de un solo dato y son componentes distintas, en todo
+fondo estable f_{A∪B}=f_A f_B por el primer contacto (§3 de
+H5A_3_4_primer_contacto.txt). Sus dominios de lectura Γ(x) tienen ≤252
+medidas y una medida pertenece a ≤469 de tales dominios. Para acotar la
+covarianza, revelar Γ(x) en orden fijo. En cada nodo de este árbol la
+covarianza se descompone en el promedio de las covarianzas de sus dos
+hijos y p_i(1−p_i) por el producto de los cambios de las dos esperanzas
+condicionales entre hijos. En las hojas f_A ya es constante. A profundidad
+j los prefijos suman en norma ≤D₀^j. El cambio de f_A es ≤2D₀^(|Γ(x)|−j−1).
+Para f_B, (3) y su árbol dan ≤2D₀^(|Γ(x')|−1)(1+b)Σ_{z∈Γ(x')}K₀(z,i).
+El factor de ocupación cuesta ≤b(1+b). Al sumar todos los x' y las
+≤1297 elecciones del dato anclado x, la fila está acotada por
+
+         1297 w² 4b(1+b)² D₀^504 · 252·469/(1−γ₀) < .0000282.        (4)
+
+3. Hasta dónde puede llegar una corrección en dos grupos
+========================================================
+
+Cada check de medida tiene una coordenada variable y una coordenada
+check de la semilla. Medir en cada factor la distancia de dos pasos
+Tanner (distancia Tanner dividida por dos entre sitios del mismo tipo).
+Escribir d⊕ para la suma de estas distancias. Una arista de L recorre
+a lo sumo dos unidades de d⊕. Las celdas de un rectángulo distan a lo
+sumo uno en cada factor. Para checks en componentes disjuntas se usa ∞.
+
+Fijar un check z y poner λ=√2. A un check j, con distancias d₁,d₂ a z,
+darle peso W_z(j)=λ^{−(d₁−1)₊−(d₂−1)₊}, con valor cero a distancia
+infinita. El potencial del síndrome observado es la suma de los pesos
+de las luces. Cada ganador global lo hace decrecer o lo conserva.
+En efecto, en un rectángulo los pesos son productos de pesos de fila y
+de columna. En cada factor su cociente máximo es ≤λ, salvo que todos sean
+cero. Tras normalizar cada factor, la diferencia de peso entre las luces
+que se apagan y las que se encienden es multiafín en variables de
+[1,√2]. Su mínimo se alcanza en los extremos de la caja. El verificador
+comprueba las 16×8 elecciones de filas y columnas de peso alto para cada
+uno de los 771 pares distintos de celdas encendidas y apagadas de los
+ganadores locales elegibles. Compara enteros en a+b√2 sin aproximar √2.
+
+Si un paso conmuta z, toda su huella tiene peso uno para W_z y el
+descenso del potencial en ese paso es δ≥1. En una ejecución que pasa,
+los síndromes inicial y final son D△σ y D, con σ=H_X E. Por telescopado,
+1≤Σ_{j∈σ}W_z(j). Como W_z(j)≤λ^{2−d⊕(j,z)}, todo check conmutado
+queda a distancia ≤2+floor(log₂ |σ|²) de σ cuando éste es no vacío.
+Se puede rechazar antes de ejecutar un ganador que salga de esa bola.
+Leer los rectángulos que tocan X extiende el radio en dos unidades de d⊕.
+Por ello, para un grupo de tamaño a, todo el árbol de consultas puede
+restringirse a la bola de radio
+
+                         t_a=4+floor(log₂((4a)²))                      (5)
+
+de σ_A. Las hojas que pasan conservan (1). La profundidad en cualquier
+hoja sigue siendo ≤1548a por §3 de la nota de esquinas. Si a=1 se puede
+usar el árbol exacto con radio 2 respecto a ψ_x.
+
+Sean A,B las dos componentes de tamaños a,b' y síndromes no vacíos
+separados por r=min d⊕(σ_A,σ_B). Para una ejecución conjunta que pasa,
+todo check conmutado cae en la unión de las bolas de radios t_a,t_b'.
+Fuera de la primera bola el total de pesos de σ_A es <1/2 porque
+|σ_A|≤4a y log₂((8a)²)=2+log₂((4a)²). Fuera de la segunda se obtiene
+el otro <1/2. Esto contradiría 1≤Σ_{j∈σ_A△σ_B}W_z(j).
+
+Si r>H(a,b')=t_a+t_b'+2, ningún candidato puede leer discrepancias a
+ambos lados. Todo ganador en un fondo estable tiene que leer una
+discrepancia. En una corrida conjunta que pasa, cada huella aplicada
+queda en un solo lado y tiene allí exactamente la puntuación y la
+prioridad de la corrida aislada. La proyección da dos corridas que pasan.
+Recíprocamente, dos corridas aisladas que pasan se intercalan tomando el
+ganador de mayor prioridad global. En ambos sentidos se componen la
+contención del soporte y el carácter de la máscara. Así f_{A∪B}=f_A f_B
+y d(A∪B) es su covarianza. Los dos dominios posibles de consulta son
+disjuntos. El argumento se aplica aunque alguna entrada por separado
+tenga marca cero.
+
+Si un grupo es un único dato x y el otro tiene n datos, se puede tomar
+H(1,n)=H(n,1)=t_n+2. Sea U=N_L[ψ_x] y sea P el producto de las bolas
+de radio dos alrededor de las dos proyecciones de ψ_x en los factores.
+La huella ψ_x es el producto de sus proyecciones. Todo rectángulo que
+corta U está en P. Al check j darle peso λ elevado al opuesto de la
+suma de sus dos distancias a los factores de P. El mismo argumento
+multiafín prueba que el potencial no aumenta. En P el peso es uno.
+A distancia d de ψ_x el peso es ≤λ^(4−d). Si r>t_n la suma de pesos
+en el síndrome del otro grupo es por tanto <1. En una corrida aislada
+de ese grupo que pasa, ningún paso puede tocar U. En una conjunta que
+pasa, la suma entera de los descensos de los pasos que tocan U es a lo
+sumo b_x=|ψ_x|−2|D∩ψ_x|. Por paridad existe un primer paso que toca
+ψ_x y el lema de primer contacto de H5A_3_4_primer_contacto.txt, §1,
+le exige descenso ≥b_x. El descenso es positivo, por lo que la aceptación
+exige b_x>0. Este único paso en U tiene descenso b_x. Conmuta todos los
+checks de ψ_x por paridad y tiene área ≤|ψ_x| por comparación de
+puntuación con x. Su huella es exactamente ψ_x. Durante la proyección
+y la intercalación, el otro lado carece de discrepancia en U, así que
+los candidatos que leen ψ_x conservan su comparación aislada, incluido
+el desempate. Esto prueba la factorización para r>t_n. Para r>t_n+2
+también son disjuntos los dominios de consulta, por el radio 2 de x.
+
+4. Suma sobre las dos posiciones, tamaños y medidas
+===================================================
+
+Para r>H condicionar en una hoja de la lectura de A, con sitios fijados
+S. Comparar en B el árbol bajo esa fijación y el árbol sin ella.
+En cada hoja de B con valor no nulo y peso no idénticamente cero en
+alguna de las dos leyes, (1) vale por una extensión estable de esa hoja.
+Sus respuestas individuales tienen mayorantes m₀=1+b, m₁=b en ambas
+leyes, pues B evita S. En el producto de probabilidades de la hoja,
+reemplazar las respuestas una a una. Si un prefijo ya es incompatible
+en un lado, se toman en adelante las respuestas del otro, o las mismas
+respuestas auxiliares en ambos si ninguno es compatible. El peso cero
+del prefijo mantiene el producto correcto. Para el sitio j reemplazado,
+(3) da un coste ≤(1+b)Σ_{i∈S}K₀(i,j) y se divide el mayorante habitual
+de la hoja por m_bit en ese único paso.
+
+Para un j fijo, sumar las hojas que lo leen con ese divisor cuesta
+a lo sumo C^N(B) [(1−θ)/m₀+θ/m₁]. Por (1) se puede promediar bajo
+bits θ independientes, quitar el filtro de las hojas y usar que decidir
+si se llega a consultar j es independiente de su propia respuesta.
+Poner U=(1+b)[(1−θ)/(1+b)+θ/b]. Al promediar las hojas de A, el coste
+es análogamente ≤C^N(A) y en cada hoja hay ≤k_a sitios i consultados,
+con k₁=252 y k_a=1548a en el resto. Esta forma mantiene el número de
+consultas efectivas de A incluso si distintos fondos leen sitios distintos.
+
+El número de checks en una bola d⊕ de radio t se acota por
+
+     V(t)=Σ_{i+j≤t} s₉(i)s₈(j),    s_d(0)=1,   s_d(i)=d·6^(i−1) si i≥1.
+
+Son las dos capas de caminos sin retroceso. Las identificaciones por
+ciclos sólo reducen la cuenta. Un check está en la huella directa de
+≤7 datos. Para que un sitio j pertenezca al dominio posible de B basta
+contar un dato de B que lea algún check a distancia ≤t_b' de j. Esto
+da J_b'=7V(t_b') raíces candidatas, y para b'=1 sirve J₁=469.
+
+Sea L_n el mayorante del peso de todas las formas conexas de n datos
+desde una raíz individual, contando en cada dato su m_V o m_C de §1.
+Tomar m=.00001364≥max(m_V,m_C) y
+h=.01442≥max(639m_V+441m_C,784m_V+512m_C). Usar L₁=m y, para n≥2,
+L_n=m n^(n−2) h^(n−1)/(n−1)!. En efecto, etiquetar desde la raíz y
+elegir un árbol generador etiquetado. Al colocar cada hijo la suma de
+pesos es ≤h. Cada conjunto conexo admite al menos (n−1)! etiquetados
+con un árbol. La fórmula de Cayley cubre todas sus formas.
+
+Para a y b' fijos, elegir el lado A que interseca la vecindad del
+ancla y un dato suyo dentro de ella (≤1297 elecciones). Esto cubre
+también las parejas en que ambos lados tocan el ancla. Si r≤H hay
+≤a elecciones del dato de A para el encuentro, ≤4 checks de su huella,
+≤V(H) checks de llegada y ≤7 datos de B leyendo el de llegada.
+La norma de los dos términos de d cuesta ≤2 C^[N(A)+N(B)]. Si r>H,
+la suma de los K₀(i,j) sobre todos los destinos j cuesta ≤1/(1−γ₀)
+por cada consulta efectiva i. Para cada j se cuentan las raíces de B
+con J_b'. Los dos mayorantes de fila, para el par ordenado (a,b'), son
+
+     N_ab = 1297 L_a L_b' · 56a V(H),
+     F_ab = 1297 L_a L_b' · k_a J_b' U/(1−.228).                       (6)
+
+En F_ab, si se exige además r≥r₀, multiplicar por .228^l, donde
+l=max(0,ceil((r₀−q_a−q_b')/2)), q₁=2 y q_n=t_n para n≥2. Todo j
+realmente leído queda a esa distancia mínima de i en L. Las cotas por
+forma y (2) permiten sumar primero las posiciones del otro grupo.
+
+En sumas finitas el verificador usa la razón exacta
+L_(n+1)/L_n=h(1+1/n)^(n−1). Para e=a+b'≥64, L_n≤m·.04^(n−1)
+pues h exp(1)<.04. Además V(H)≤3(H+1)6^H y H≤10+4 log₂(4e).
+Como 6⁴<2¹¹, se obtiene V(H)≤72·6¹⁰·4¹¹ e¹², que domina V(t_b').
+Las dos filas de (6) sumadas sobre a se acotan por
+1297m²·40000·72·6¹⁰·4¹¹·e¹⁴·.04^(e−2). A partir de 64, la razón es
+≤.04(65/64)¹⁴<.051. Toda esa cola es <10⁻⁴⁶. Para 3≤e≤15 el código
+comprueba H<36 antes de aplicar la atenuación con r₀=36. Para e=2 se
+usa directamente (4). La tabla inicial combina clases disjuntas. Si
+se toma desde e=17, la fila de parejas a toda distancia es <.01116.
+
+Para el punto intermedio p'=2·10⁻⁹ al mismo q, w(p')/w(10⁻⁶)≤.002.
+Cada término con e datos gana un factor ≤.002^e. Multiplicar por .002
+la fila de una componente y por .002² la de los dos datos aislados.
+Añadir (6) con el factor propio de cada e≥3, incluida la cola desde 64.
+Resulta una fila uniforme <.632 para todas las configuraciones de una
+y dos componentes. El resto de ese punto sólo contiene tres o más
+componentes de síndrome propio no vacío.
+
+La estimación grande de (6) a corta distancia paga por separado la
+marca conjunta y el producto de marcas, incluso para corridas que dan
+el mismo resultado. Para avanzar en la franja pendiente interesa pesar
+la primera acción que cambia la corrección al combinar los dos grupos y
+la covarianza de sus lecturas compartidas. El argumento de (3) ya suma
+la influencia a distancia. Todo el análisis permite cualquier número de
+medidas y cualquier tamaño del código.
+
+Reproducción en 05_COMPROBACIONES
+================================
+
+    python -I -B -X utf8 verificar_H5A_3_4_dos_componentes.py
+
+Sólo se requiere la biblioteca estándar y el verificador previo
+verificar_H5A_3_4_medidas_y_un_dato.py. Los decimales de las
+desigualdades son racionales exactos. El programa usa coma flotante
+únicamente para imprimir los resultados.

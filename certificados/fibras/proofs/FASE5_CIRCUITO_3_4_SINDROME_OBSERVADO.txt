@@ -1,0 +1,269 @@
+Fase 5 · Qué fallos de circuito pueden propagar una corrección en el HGP (3,4)
+23 de noviembre de 2026 · Derivación para auditoría matemática independiente
+
+1. Región obtenida
+
+Para el autoproducto de cualquier semilla binaria de columna 3 y fila 4,
+una ronda de extracción Z en el sector X admite acceso uniforme a las
+particiones filtradas por síndrome físico residual cero en
+
+                 0 ≤ r_c ≤ 7.5·10⁻⁸,          0 ≤ r_m ≤ 10⁻³.           (1)
+
+Se usa la matriz del manuscrito H_X=[I⊗H₀ | H₀ᵀ⊗I]. Sus cuatro incidencias
+VV por check preceden a las tres CC en el calendario voraz por (check,dato).
+Si se permite además entremezclar arbitrariamente ambas clases de columnas
+antes de colorear, la misma prueba da r_c≤7·10⁻⁸ con el mismo r_m. El orden
+de desempate del SSF puede ser cualquiera de los órdenes físicos fijos del
+contrato en ambos casos. Rigen todas las máscaras, tamaños y subhosts
+primitivos inducidos, la familia FGL completa y β=1/100. La precisión
+relativa para un fallo silencioso positivo requiere las demás hipótesis
+del teorema circuital, incluido el testigo lógico.
+
+Respecto de 4.2·10⁻⁸ en FASE5_CIRCUITO_3_4_PROPAGACION.txt, la ganancia
+en (1) es 25/14, aproximadamente 78.6 %. Queda un factor cinco hasta
+r_c=3.75·10⁻⁷. La afirmación es un resultado para particiones filtradas
+de toda la familia. El piloto de 225 qubits conserva sus propios intervalos.
+
+2. Qué parte de un fallo enciende el síndrome observado
+
+Reusar la ley conjunta por fibra, el factor de normalización por subhost J
+y los núcleos por contactos de la nota anterior. A contiene todas las fibras
+de datos de etiqueta (e_x,d_x) no nula, E={x∈A:e_x=1}, ψ_x es su franja y
+B es la lectura impar independiente por check. La contribución observada
+de la fibra es s_x=e_x ψ_x ⊕ d_x. En un núcleo aceptado, el síndrome empieza
+en (⊕s_x)⊕B_c y termina en D_c=(⊕d_x)⊕B_c estable. B_c está en la unión S
+de las franjas marcadas y las huellas conmutadas. Sea O_Γ la unión de las
+franjas de un grupo Γ de G[A], con G el grafo de datos lectores.
+
+Poner u=(2r_c/3)/(1−2r_c/3) y v=(8r_c/15)/(1−8r_c/15). Son las razones
+de inversión del control en una espera y en una CNOT tras asignar al check
+el bit de blanco independiente de la nota anterior. Un solo control activo
+tiene e_x=1. La espera produce en s_x los checks que todavía faltan por
+medir. En la h-ésima CNOT por capa, el bit de blanco restante es equiprobable
+y se omiten h−1 o h checks con la misma probabilidad. Las fibras de anchura
+n=3,4 tienen masa no nula, relativa a la etiqueta cero, a lo sumo
+
+                    g_n=(1+u)^(12−n)(1+v)^n−1.
+
+Se obtiene dividiendo ya por el peso de ningún control activo, que cabe en
+el de etiqueta cero. Si ℓ vale 4 para VV y 7 para CC, la h-ésima incidencia
+procesada en ese cable usa un color ≤ℓ+h−1. Hay a lo sumo ℓ−1 colores
+ocupados en su check y h−1 en el dato. El h-ésimo menor color también
+cumple la cota. Hasta que se hayan leído h<n checks, el número acumulado
+de esperas con a lo sumo h checks ya leídos es ≤ℓ, incluida la inicial.
+Para mayorar la suma de cualquier función creciente de |s_x| se colocan ℓ esperas
+antes de la primera CNOT y las restantes al final. Con h checks omitidos,
+las masas de exactamente un control llevan los techos en orden estocástico
+
+     h=0                    ℓu+v/2
+     1≤h<n                  v
+     h=n                    (12−n−ℓ)u+v/2.                             (2)
+
+La masa restante hasta g_n, de dos o más controles, se cobra al mayor coste
+que se use en esa fila. Esto incluye las etiquetas de paridad física cero.
+La misma comparación para un orden de columnas cualquiera usa ℓ=7 en ambos
+tipos. Fijar ubicaciones ausentes antes de formar las fibras sólo suprime
+configuraciones de controles activos. Tras dividir por el peso de ningún
+control activo, cada configuración tiene por peso un monomio positivo en
+u y v, con el factor correspondiente al bit de blanco. Usar sus precios
+en el extremo derecho incluye todos los J y todas las tasas menores.
+En los cálculos siguientes se divide la medida mayorante por g_n. La
+probabilidad de la clase de dos o más controles en esa medida es <3·10⁻⁷
+por cable en (1).
+
+3. Asignar los primeros apagados al dato que efectivamente aportó luz
+
+Para Γ sean Σ_Γ=H_X(E∩Γ) y U=Σ_Γ fuera de D_c. Cada j∈U comienza encendido
+y ha de apagarse. Si algún s_x contiene j, asignar su primer apagado a uno
+de esos x. Si ninguno lo contiene, B_j=1. En ese caso asignarlo al primer
+lector marcado de j según un orden fijo en Γ. Para el segundo caso se
+pueden fijar las listas antes de revelar B, tomando para cada j de O_Γ su
+primer lector en A. Estas listas son disjuntas y cada una tiene ≤n checks.
+Las regiones O_Γ de grupos distintos también son disjuntas. Si r_x es
+el número inicial de primeros apagados asignados a x, se obtiene
+
+                r_x ≤ min(n, |s_x|+b_x),                                (3)
+
+donde b_x cuenta los unos de B en la lista prefijada de x. En la ley
+auxiliar Bernoulli(θ) del recuento por historias, se pueden dominar los
+b_x por binomiales independientes Bin(n,θ) añadiendo ensayos. Para un
+grupo de franjas disjuntas las listas son las franjas enteras. Si además
+e_x=1, entonces r_x=|s_x ⊕ (B∩ψ_x)| y la estabilidad exige 2r_x≥n.
+Así, un fallo con s_x vacío carece de primeros apagados propios por
+luz emitida. Si está solo en su franja y tiene e_x=1 necesita al menos
+dos lecturas auxiliares en ella para pasar la condición de estabilidad.
+
+El cambio de propietario es válido porque cada apagado asignado a x sigue
+en ψ_x y compite con el singleton físico de x. Mientras queden r luces
+asignadas, un ganador con h luces en área v cumple rv≤nh. No hace falta
+que x tenga paridad física uno para esa comparación. El primer contacto
+del Lema 14 y el descuento −1 del aislado excepcional se conservan según
+el §4 de la nota anterior.
+
+En una franja genérica usar los créditos por rangos en sextos
+c_V=(2,3,6), c_C=(2,2,4,6) y f_n(t)=6t−Σ_{j≤t}c_j. La contribución al
+saldo de pasos lejanos, multiplicada por seis, queda acotada en un grupo
+por la suma de f_n(|s_x|) más cuatro por bit de lectura de respaldo. En
+efecto, el saldo inicial es |U|−|Σ_Γ∩D_c|≤Σr_x. El paso que apaga por
+primera vez admite esos créditos dentro de su descenso 6δ. Cada incidencia
+adicional aumenta f_n a lo sumo en cuatro. Esta cota vale con solapamientos.
+
+En franjas disjuntas de datos con paridad uno se conserva el saldo inicial
+exacto 2r_x−n. Para t=min(n,|s_x|+b_x) se puede usar
+6(2t−n)−Σ_{j≤t}c_j, y exigir 2t≥n. Para un CC sin vecino fuerte en G[A]
+se usan (2,2,6,6). La verificación local de créditos de la nota de
+historias sigue aplicando. En efecto, los demás donantes tienen proyecciones
+disjuntas de tal CC en ambas coordenadas. Si su rango es cuatro hubo un
+singleton perfecto desde el inicio. En su proyección, los primeros
+apagados físicos de esa franja se asignan al propio dato. Las luces
+restantes que exige el test de prefijo perfecto pertenecen por ello al
+D_c estable. Los pasos pueden cobrarse a un solo Γ. En una franja disjunta
+con dos o más controles se permite todo el coste anterior de rango pleno,
+incluida la posibilidad e_x=0.
+
+La integración por historias de los §§3–4 de la nota de propagación circuital
+fija las etiquetas y lee B en S. A etiquetas y bits de O_Γ fijos, las hojas
+admisibles de la clase son disjuntas y están contenidas en ese cilindro de
+bits auxiliares. Por tanto, tras pagar las coberturas de aquella nota, se
+puede ponderar la existencia de una historia por la probabilidad del
+cilindro y sumar una vez. Los grupos tienen fibras y conjuntos de bits
+en O_Γ disjuntos. Las cotas locales se integran con sus leyes producto.
+El resto de las medidas sigue contado por el mismo argumento de hojas.
+En los núcleos simples se usa θ≥y/(1+y) para la condición creciente 2t≥n
+y el factor (1+y)^n. En (1) los factores de admisión que se usan para
+franjas disjuntas son <.457 por VV y <.805 por CC.
+
+4. Posiciones posibles a cada coste
+
+Para cada composición (v,c) y tipo de raíz, sean T_k los techos del número
+de grupos con presupuesto geométrico al menos k. Se reconstruyen con la
+suma por capas de H5A_3_4_exceso_sin_compensar.txt, §§1–2, usando las
+tablas de parejas, tríos, bloques fuertes y lectores simultáneos ya
+transferidas en FASE5_CIRCUITO_3_4_PROPAGACION.txt. Los contadores nuevos
+mayoran la masa conjunta de posiciones y etiquetas con saldo ≥k. Para k=0
+se cubre toda la masa admitida, incluso un saldo físico negativo.
+
+Para grupos con solapamiento existe un árbol interno con una arista de
+solapamiento distinguida. Su matriz de posiciones es O=((9,9),(16,8)),
+por las incidencias de una franja. El número de tales grupos, M, se
+calcula hasta diez vértices derivando una vez la serie de árboles ordinarios
+con matriz N+λO en λ=0. Para tres datos se evalúan además los patrones de
+relaciones por pares. En cada árbol que los conecta se orientan sus dos
+aristas desde el primer dato fijado. Se multiplican los números de
+posiciones en ese sentido, ya que VV→CC y CC→VV tienen multiplicidades
+distintas. El menor producto mayora las posiciones. Se divide por 2! al
+olvidar las otras etiquetas. La subcuenta con alguna arista de clase 4
+mayora los grupos con solapamiento. Para tres sitios del mismo tipo, la
+igualdad de la coordenada fija es transitiva, lo que descarta las ternas
+con exactamente dos clases 3 o 4 y una tercera clase 1 o 2. Quedan 132
+patrones canónicos en esta relajación.
+
+Sean π_d y π_g las cotas de probabilidad de alcanzar 6k con la suma de
+los sextos de §3 para la geometría disjunta y la general. En k=0 basta
+la admisión. Ponderar T_k−M_k por π_d y M_k por máx(π_d,π_g), con
+M_k≤T_k un techo de las posiciones solapadas. Se toma el mínimo de los
+recuentos disponibles antes de aplicar esta fórmula.
+
+De dos a seis datos se añade una segunda cota. En la clase con un solo
+control por fibra, la paridad de |Σ_Γ| es la de 3v+4c. Para r primeros
+apagados por tipo, s=Σr_x, el saldo inicial es ≤s−((3v+4c−s) mod 2).
+Si las franjas son disjuntas se usa 2s−3v−4c y 2r_x≥n_x. Desde r se
+minimiza el descenso δ=2h−v_p al pasar a r−a, con a no nulo y v_p el
+tamaño de la huella ganadora. Las condiciones son las del §4 de la nota
+de propagación lejana. Cada a_x cabe en una franja iluminada, Σa_x≤h,
+r_x v_p≤n_x h, y a lo sumo j fuentes dan apagados en un mismo paso.
+Con rango pleno, los pasos anteriores fueron perfectos. Las luces no
+asignadas del paso presente forman un subconjunto estable del terminal,
+de donde v_p−Σa_x≤3 y 2Σa_x≥v_p. Todos los primeros apagados de una luz
+física presente tienen propietario en ese mismo grupo, incluso si la
+luz procedía de B.
+
+Restar el mínimo de descensos del saldo inicial y maximizar sobre los
+vectores r que caben en (3). Las cotas K_j resultantes crecen con las
+capacidades dadas a cada sitio. Para k fijo, sean j_g,j_d los mínimos
+números de lectores que permiten alcanzar k en la geometría general o
+disjunta. Si V_j es el menor de T_k y el número de grupos con j lectores
+comunes del §4 de la nota de propagación, la cantidad es a lo sumo
+
+                       min(V_{j_g}, V_{j_d}+M_k).
+
+Un índice imposible tiene volumen cero. Los límites uniformes de (2)–(3)
+permiten integrar esta función creciente con los mismos dados en toda
+posición de la raíz, ordenando los rangos dentro de cada tipo. La clase
+con algún cable de dos o más controles paga la cota geométrica T_k
+completa. Se toma el mínimo con la cuenta anterior. Así se obtiene un
+techo H_k de cada masa acumulada que es uniforme en el emplazamiento.
+
+En la serie de ramas de un grupo no aislado se usa H₀+Σ_{k≥1}H_k
+[Y^(−k)−Y^(1−k)]. Para una marca física se usan los incrementos de las
+bolas de la raíz. Son sumas por capas de precios crecientes. Puede
+sustituirse cada grupo por su histograma acumulado dominante antes de
+contar los extremos de un enlace distinguido. Para verlo, fijar su
+longitud y las del resto. El indicador de que alcanzan los presupuestos
+es creciente en el saldo de cada grupo. Eliminar las ramas desde las
+hojas usando los techos uniformes en sus anclas, y después sumar por las
+capas de longitud del enlace distinguido. Equivale a sumar el precio
+monótono en el histograma dominante, independientemente de la posición
+del otro extremo. Se conservan los descuentos de exposición χ por
+composición de la nota circuital anterior.
+
+5. Todos los órdenes y la comparación en la meta
+
+Desde once fuentes se usan las dos series de árboles de aristas fuertes y
+débiles de H5A_3_4_medidas_aisladas.txt, §5. Una fuente sin arista fuerte
+paga el promedio de a^(−k) para los sextos k de la franja disjunta de §3.
+Una que toca arista fuerte paga el promedio genérico. Con los pesos de
+rama congelados, ambos promedios incluyen la ley de las etiquetas y las
+lecturas. Los rangos buenos que se usan en un mismo árbol tienen franjas
+disjuntas de todas las demás. Las listas genéricas de respaldo son
+disjuntas por construcción. Por ello el promedio del producto se mayora
+por el producto de los promedios. Se conecta cada bloque fuerte
+internamente para que el árbol recuerde los sitios que tocan arista fuerte.
+Se resta de la supersolución positiva el polinomio exacto de los diez
+primeros grados, en los mismos pesos congelados. El verificador obtiene
+la supersolución por iteración racional redondeada hacia arriba hasta que
+el lado derecho ya cabe en los mismos valores.
+
+La fila física emplea el contacto oculto de H5A_3_4_contacto_oculto.txt,
+§§1–2. Un check observado fuera de todas las franjas empieza y termina con
+el mismo bit B. Si fue conmutado, lo fue al menos dos veces. Se usa la marca
+con una ocurrencia excedente o con un segundo hijo en el árbol de varios
+grupos. En un solo grupo se cuenta la menor profundidad compatible con dos
+ocurrencias, con la cola desde once del §2 de la nota de ramificaciones.
+Sólo se aplica esta mejora para cubrir los checks cuyo estado puede influir
+en otro núcleo. Los hijos libres siguen usando los volúmenes ordinarios.
+El criterio de fijación, la cola del logaritmo
+(n+m_X)exp[−.015(k+1)] después del grado k y el oráculo por soporte
+se heredan de la nota circuital anterior.
+
+Con los precios a=.56, s=.76, Y=a⁶, α=.002, b=.001145 y θ=.00115 se
+obtiene R<.000601 frente a .002. El mayor cociente es <.99883. Las colas
+desde once fuentes son <6·10⁻¹¹ y <6·10⁻¹⁰ por raíz VV y CC, respectivamente.
+Para el orden arbitrario de columnas del §1 se usan a=.555 y s=.78, con
+los demás precios iguales. Allí R<.000711 y el mayor cociente es <.99894.
+La comprobación de ambos rectángulos usa
+fracciones y redondeo por exceso en las masas positivas.
+
+En la meta r_c=3.75·10⁻⁷ hay una limitación concreta de las filas usadas
+en (1). Retener únicamente el término h=0 de (2), que ilumina la franja
+entera, en los dos precios de la cola a granel. Antes del precio de rango
+se tienen al menos (44/15)r_c exp(.001·504) y (74/15)r_c exp(.001·628)
+para VV y CC, por la exposición ya exigida. En la fila débil se pagan
+a⁻⁷ y a⁻⁸. En la fuerte se pagan a⁻⁷ y a⁻¹⁰. Tras diez iteraciones por
+defecto con Taylor de grado seis, la componente fuerte CC es ≥.1. Pero
+su propia desigualdad exige e_C exp(−129e_C)≥el precio fuerte CC, y el
+lado izquierdo decrece desde .1 y allí ya es menor que el precio. Por
+tanto este mayorante, con a=.56 y precio de exposición ≥.001, falla en
+la meta aun reteniendo sólo controles que iluminan una franja completa.
+El cálculo se refiere a las dosis del calendario mayorante. La cota
+uniforme real en esa meta sigue abierta.
+
+Reproducción desde 05_COMPROBACIONES con Python 3.10 o posterior
+
+    python -I -B -X utf8 verificar_FASE5_circuito_sindrome.py
+
+La prueba usa la especificación y el oráculo del manuscrito. Las notas
+fenomenológicas citadas aportan geometría de SSF. La ley de circuito,
+la elección de propietarios y la ponderación por luz observada son las
+que se usan en este cálculo de r_c.
+

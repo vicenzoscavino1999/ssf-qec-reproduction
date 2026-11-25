@@ -1,0 +1,312 @@
+H5-A · Consumo del síndrome por grupos y alcance de las correcciones
+17 de noviembre de 2026
+
+Resultado
+=========
+
+El criterio de acceso a las particiones físicamente filtradas del manuscrito
+se satisface en los siguientes rectángulos simultáneos.
+
+  Semilla binaria (17,18)-regular     0 ≤ p ≤ 3.4·10⁻³⁸   0 ≤ q ≤ 2·10⁻¹¹
+  La misma clase sin ciclos de cuatro 0 ≤ p ≤ 4.0·10⁻³⁸   0 ≤ q ≤ 2·10⁻¹¹
+
+El primer extremo multiplica por 340 el anterior. El segundo multiplica
+por 100 su extremo anterior. Rigen la ronda Bernoulli independiente en
+datos y medidas, los candidatos FGL completos, β=1/100, máximo global y
+desempate fijo del manuscrito. El tamaño de la semilla es arbitrario.
+Los resultados sobre particiones permiten precisión relativa elegible.
+
+A la tasa aspiracional p=10⁻⁶ se obtiene además una cola uniforme para
+las historias cuyas fuentes forman un conjunto conexo por pares de contacto,
+incluidas las de cardinalidad arbitraria. La sección 5 especifica la suma
+y su constante. El certificado del modelo completo en esa tasa sigue abierto.
+
+1. Qué se puede cargar a cada grupo
+==================================
+
+Usamos las reducciones de H5A_interacciones_por_fuentes.txt, secciones 4–6.
+Tras retirar los datos y medidas exteriores de esa prueba, cada núcleo
+tiene una ejecución canónica en el código completo y pasa el filtro físico.
+Los datos fuente y sus medidas ligadas se agrupan por las aristas dato–dato
+y dato–medida del grafo K. Todo grupo G tiene e_G≥1 datos. Una medida está
+ligada si es K-vecina de algún dato fuente. Las medidas no ligadas que la
+traza conmuta también están presentes en el núcleo.
+
+Sea U_G la unión de huellas ψ_v de los datos fuente de G. Sea Ω_G la unión
+de U_G y los checks de las medidas ligadas de G. Estos conjuntos son
+disjuntos entre grupos. Si una acción toca ψ_v, su rectángulo contiene
+un check de ψ_v. Cualquier fuente que lea ese rectángulo comparte con v el
+clique de lectores del generador. Así, cualquier check inicialmente encendido
+en la huella de esa acción procede de Ω_G. El mismo argumento impide que
+una acción toque huellas de datos fuente de dos grupos distintos.
+
+Llamamos episodio inicial a un check encendido en s₀=H_X E ⊕ D, desde
+el comienzo hasta su primer apagado. Si vuelve a encenderse, comienza otro
+episodio. Para una acción, a es el tamaño de su huella, h el número de
+checks encendidos que consume, c=a−h el número que enciende y δ=2h−a su
+descenso. En una ejecución filtrada el síndrome observado terminal es D.
+
+Ordenar de mayor a menor los niveles u de DUAL_ACCIONES del verificador,
+omitiendo la fila de descenso total. El primero es 1. El instante j es
+el estado justo antes de la primera acción de puntuación inferior a u_j,
+o el estado terminal si esa acción no existe. Los instantes son crecientes
+en sentido amplio. En el instante j todo singleton tiene puntuación <u_j.
+En el intervalo que lleva a ese instante todas las acciones tienen
+puntuación ≥u_j. Se admiten subidas de puntuación después de un cruce.
+
+Para cada G, sea k_j el máximo, entre sus datos fuente, del número de
+episodios iniciales aún vivos en una de sus huellas en el instante j.
+El instante 0 es el inicio. Se cumple
+
+  0 ≤ k₀ ≤ 18,     0 ≤ k_j ≤ min(k_{j−1}, b_j),
+  b_j = ⌈9(1+u_j)⌉−1.
+
+El instante del nivel 1 es el final del prefijo inicial de acciones
+perfectas. Hasta entonces sólo se apagan checks, por lo que los episodios
+iniciales vivos allí son exactamente el síndrome que sobrevive.
+
+Si k_j<k_{j−1}, fijar un dato v que realizaba el máximo anterior. Alguna
+acción del intervalo tuvo que tocar su huella. Elegir la primera que lo
+hizo. Antes de ella siguen vivos en ψ_v los k_{j−1} checks originales que
+se escogieron en el instante anterior. El singleton de v compite con
+fracción encendida al menos k_{j−1}/18. La acción ganadora también tiene
+puntuación ≥u_j y a≥17. Por tanto consume al menos
+
+  H_j(k) = max(⌈17k/18⌉, ⌈17(1+u_j)/2⌉),     k=k_{j−1}.
+
+Dentro del intervalo estas acciones son distintas entre grupos por el
+clique de lectores. Entre intervalos son distintas por construcción.
+Cada check consumido por una de ellas es un episodio inicial de ese grupo
+o un episodio creado previamente. Cada episodio creado se consume una vez.
+
+2. Del consumo local al presupuesto de la traza
+=============================================
+
+Para e=e_G poner c₀=e k₀. Las letras c_j con subíndice j denotan aquí un
+saldo del grupo. Para una acción individual seguimos escribiendo c=a−h.
+Sea I_j el indicador de k_j<k_{j−1}. Usar la recurrencia entera
+
+  c_j = min{e k_j, max(0, c_{j−1}−I_j H_j(k_{j−1}))}.            (1)
+
+Para ver por qué se conserva el saldo incluso cuando intervienen varios
+grupos, sea P_j el número de episodios iniciales vivos en Ω_G, d_ext el
+número de medidas de G fuera de U_G, y A_j el número acumulado de episodios
+creados que consumieron las acciones elegidas para G. Inicialmente
+P₀−d_ext≤e k₀. En cada instante P_j−d_ext≤e k_j. Además, si el grupo
+elige una acción, la disminución de P más el incremento de A es al menos H_j.
+Así P_j−d_ext−A_j≤c_j por inducción. El recorte a cero redondea hacia arriba.
+
+El síndrome en el instante j consta de episodios iniciales vivos y de
+episodios creados que siguen vivos. Fuera de todos los Ω_G, los iniciales
+vivos sólo pueden ser medidas no ligadas. Al restar |D| se pagan éstas
+y cada d_ext. Los episodios creados aún vivos son disjuntos de todos los
+ya consumidos que integran los A_j. Restar todas las creaciones del prefijo
+alcanza para ambos. Puesto que el descenso restante hasta D es |s_j|−|D|,
+
+  Σ_{score<u_j} δ − Σ_{score≥u_j} c ≤ Σ_G c_j.                    (2)
+
+En efecto, todo descenso con score<u_j está en el sufijo y todas las
+creaciones anteriores al instante j están en el segundo sumando. El
+argumento también cubre el cruce en el estado terminal. Para la fila de
+descenso total se tiene Σδ=|s₀|−|D|≤Σ_G e_G k₀(G).
+
+Los multiplicadores λ₀=1/17 y λ_j>0 de DUAL_ACCIONES satisfacen, por
+cada acción legal, las desigualdades del perfil anterior. Su combinación
+paga una unidad por acción y otra por cada acción débil. La segunda
+unidad corresponde a las acciones múltiples que pueden transmitir un
+check con menos de cuatro opciones alineadas en el control local anterior.
+Si T cuenta todas las acciones y B las débiles, con repeticiones,
+
+  T+B ≤ Σ_G Φ(e_G),
+  Φ(e) = max [ λ₀ e k₀ + Σ_j λ_j c_j ].                            (3)
+
+El máximo recorre los valores enteros de k permitidos en (1). Para cualquier e,
+c_j≤e b_j. Por ello Φ(e)≤(3446943/272272)e<(633/50)e. Si al terminar el
+prefijo perfecto k₁=0, los saldos posteriores de ese grupo valen cero y
+basta asignarle 18e/17 en (3), aunque otra parte de la traza vuelva a visitar
+sus sitios. Para grupos arbitrarios Φ(1)=9, Φ(2)=324/17 y Φ(3)=33.
+
+El programa evalúa (3) exactamente para e=1,…,16. Para todos los e≥17
+usa la desigualdad analítica precedente. La comprobación local de 9 985
+firmas (tamaño de huella, descenso) contrasta las desigualdades FGL que
+pagan T+B y la cota heredada de 135 sitios de datos por dato fuente.
+
+3. Nuevo rectángulo para la partición completa
+============================================
+
+Se mantienen el árbol causal, los puentes de K, las asignaciones de medidas
+y las piezas exteriores de H5A_interacciones_por_fuentes.txt. Sea α=633/50
+y z_p=p/(1−p). Después de pagar la inclinación física y las piezas exteriores,
+un dato del núcleo cuesta a lo sumo 2.79 z_p≤x t^α, con 0<t<1. Una medida
+cuesta a lo sumo ξ=5.55·10⁻¹¹. Por (3) se puede pagar el factor t^(T+B)
+y conservar, por cada grupo de e datos, el descuento t^(αe−Φ(e)).
+
+Usar s>1 y ρ con t^(αe−Φ(e))≤ρ s^e. Así se cuentan los árboles internos
+del grupo con precio s x por dato y ξ por medida. El factor ρ se aplica
+una vez al cerrar el grupo completo en el miembro por el que se entra.
+Cada grupo real conserva el testigo obligatorio de la sección 6 del
+certificado previo. En su notación, las únicas filas modificadas son
+
+  U_i ≥ ω_i exp(Z_i+Σ_j N_ij U_j),       ω=(s x, s x, ξ),
+  S_i ≥ ρ U_i B_i,                       B_i=B_v o B_c.
+
+El verificador incluye las filas de las acciones y de los exteriores.
+Para e≤16 comprueba el descuento elevando a potencias enteras con el
+exponente de t redondeado hacia abajo. Para e≥17 basta ρ s¹⁷≥1.
+
+  Clase       t         s      x            ρ
+  General     0.00567   3      2.615·10⁻⁹   7.747·10⁻⁹
+  Sin C4      0.0057    2.7    2.88·10⁻⁹    4.645·10⁻⁸
+
+Se usaron 2·10⁻³⁷ y 5.81·10⁻¹¹ para las piezas exteriores de dato
+y medida. En la clase general las cargas finales por dato y medida son
+K_E<0.011144 y K_D<0.000004872. Sin ciclos de cuatro dan K_E<0.011141
+y K_D<0.000004870. Ambas cargas deben ser inferiores a 1.
+La monotonía de los pesos absolutos cubre los rectángulos inferiores,
+incluidos los ejes. La proposición kp-filtered-compiler del manuscrito
+da acceso relativo a las particiones con las marcas admitidas en los
+subhosts inducidos. La cola de log-partición es a lo sumo
+(n R_V+|C_X| R_C) exp(−(M+1)/13500), con las anclas que imprime el
+verificador. La transferencia al fallo silencioso positivo conserva las
+hipótesis del teorema silent-conditioned, incluido el testigo lógico de
+peso w y el factor 1+z_p^(−w).
+
+4. Alcance de un grupo con síndrome residual
+==========================================
+
+Formar el grafo de checks que une dos controles contenidos en un mismo
+rectángulo P_g. Su vecindad cerrada tiene a lo sumo 290·289=83 810 checks.
+Sea I un conjunto que contiene los checks encendidos al principio del
+intervalo estudiado. En cada componente que corta I usar el peso
+w(ℓ)=r^dist(ℓ,I). Una componente disjunta de I permanece apagada durante
+una ejecución iniciada en I. Para 0<u<1 tomar r=(1+u)/(1−u).
+
+Mientras las acciones tengan score≥u, se cumple h≥r c. Los pesos en el
+rectángulo de una acción difieren por un factor a lo sumo r. Por ello
+W(s)=Σ_{ℓ∈s} w(ℓ) nunca aumenta. Si se parte de m checks encendidos y
+una acción llega a distancia d≥1, los h checks que consume están a
+distancia ≥d−1. En particular
+
+  m ≥ H r^(d−1),               H=⌈17(1+u)/2⌉.                     (4)
+
+Si se inicia el intervalo en el síndrome que sobrevivió al prefijo perfecto,
+para alcanzar distancia dos a puntuaciones ≥15/17 se requieren al menos
+16·16=256 checks encendidos al inicio del intervalo. Es una condición
+necesaria para cualquier tamaño y cualquier número de medidas. La distancia
+se mide desde el síndrome de entrada del intervalo.
+
+Más precisamente, un grupo de m>0 checks puede usar el radio R=0 si m<H,
+y R=1+⌊log_r(m/H)⌋ si m≥H. Para dos o más grupos, si la distancia entre
+cada par de síndromes iniciales supera la suma de sus radios más uno,
+sus ejecuciones a puntuación ≥u se entrelazan exactamente hasta el primer
+cruce inferior. En cada estado aislado los checks encendidos permanecen
+en su bola. Un rectángulo que leyese luz de dos grupos tendría dos checks
+a distancia a lo sumo uno. Bajo la separación indicada todo candidato con
+solapamiento positivo obtiene su puntuación de un solo grupo. El máximo
+global y el desempate fijo dan la afirmación por inducción.
+
+Hay una consecuencia a orden arbitrario para las marcas físicas. Para
+dos conjuntos de fuentes A,B usar como centros las uniones de sus huellas,
+incluidas las medidas, y como m sus cardinalidades de checks. Estos m
+dominan el síndrome inicial de TODAS sus subentradas. Tomar u=β para la
+ejecución completa y aplicar la separación anterior. En cada subentrada
+el soporte visitado conjunto es la unión de los dos soportes y los signos
+del carácter residual se multiplican. Los síndromes físicos terminales
+tienen soportes disjuntos porque cada uno es su síndrome observado final
+en la bola correspondiente, sumado a sus propias medidas. Por ello el filtro
+físico y la condición de soporte en un subhost también se multiplican.
+Al anular las variables exteriores a A∪B, la partición factoriza. Todo
+coeficiente mixto de su logaritmo formal es cero, con cualquier multiplicidad.
+Dividir por los factores individuales de fuentes conserva esta conclusión.
+
+5. Reanclar en una fuente y una cola concreta a p=10⁻⁶
+===================================================
+
+Para una historia filtrada completa, tomar I=unión de las huellas de
+TODAS sus fuentes, incluidos los checks de D, y r=101/99, correspondiente
+a β. Tanto s₀ como el estado terminal D están en I. En cualquier instante
+W(s)≤|s₀| y |s|≥|D| por descenso. En consecuencia
+
+  Σ_{ℓ∈s} (r^dist(ℓ,I)−1) ≤ |s₀|−|D| ≤ 18e,    e=|E|.             (5)
+
+Esta desigualdad conserva la tasa de medida incluso si d=|D| es grande.
+Para cualquier miembro de una acción, su huella completa está en el
+rectángulo de la acción. Si un check de esa huella dista l≥1 de I, los
+h≥9 checks consumidos están a distancia ≥l−1. La desigualdad (5) da
+9(r^(l−1)−1)≤18e. Luego todas las huellas de los sitios que visita la
+historia están a distancia a lo sumo 1+log_r(1+2e) de I. Para e=0 una
+historia filtrada sólo tiene fuentes de medida y cero acciones.
+
+Fijar un sitio físico x y un check a_x de su huella. Si x pertenece a la
+vecindad cerrada de K del soporte visitado, a_x está a distancia a lo sumo
+3+log_r(1+2e) de I. Las dos unidades adicionales permiten ir dentro de ψ_x
+hasta el rectángulo del contacto y de allí a la huella del sitio visitado.
+Cada huella de dato es un clique de checks y cada check tiene a lo sumo
+35 lectores de datos y un sitio de medida. Se cumple r^567≥83 810.
+Por tanto, a grado e hay a lo sumo
+
+  P(e)=36·83 810³ (1+2e)^567                                     (6)
+
+posiciones candidatas para ANCLAR en una fuente de esa historia cerca de x.
+La elección de la fuente puede depender de la historia. Basta sumar sobre
+todas las posiciones candidatas y permitir sobreconteo.
+
+Sea A_e la máxima suma de pesos de historias filtradas de grado e que
+contienen una fuente especificada. Sea B_e la correspondiente máxima suma
+al exigir que un sitio especificado toque el soporte en K. Se permiten
+pesos no negativos que dependan de la historia, una subclase cualquiera y
+el supremo sobre tamaños y subhosts. Entonces A_e≤B_e≤P(e)A_e. Se deduce
+la igualdad de las tasas exponenciales limsup A_e^(1/e) y limsup B_e^(1/e).
+En particular, con q fijo, una cota uniforme anclada en fuentes a fugacidad
+u_p>z_p da convergencia al reanclar en el soporte a z_p. El coste en (6)
+es polinómico en e y Σ_e P(e)(z_p/u_p)^e converge para todo z_p/u_p<1.
+Esto resuelve la pérdida exponencial al cambiar el ancla que aparecía en
+H5_COLA_PONDERADA_Y_PRESUPUESTO. La magnitud de la constante sigue
+importando para el criterio cuantitativo de Kotecký–Preiss.
+
+Aplicación. En p*=10⁻⁶ y q=2·10⁻¹¹ considerar las historias filtradas
+cuyas fuentes forman un conjunto conexo por pares de contacto. Dos fuentes
+distintas forman un par de contacto si al menos una es un dato y sus huellas
+se cortan, o si, siendo disjuntas, su unión cubre la huella de una acción
+que toca ambas. Los grados superiores generales de esta relación son
+28 200 dato–dato, 40 dato–medida y 800 medida–dato. Una entrada determina
+una sola ejecución. Para acotar su suma anclada en una fuente basta por
+tanto contar conjuntos conexos de fuentes. Un árbol abarcador enraizado
+y las elecciones sin orden de sus hijos dan el mayorante exponencial usual.
+Con z*=p*/(1−p*), u_p=2z*, T_V=8·10⁻⁶, T_D=6·10⁻¹¹ se verifica
+
+  u_p exp(1.06+28 200 T_V+40 T_D) < T_V,
+  z_q exp(1.06+800 T_V) < T_D.
+
+A esa fugacidad auxiliar se paga e^(1.06(e+d)) en toda la subserie.
+Reanclar por (6) a z* cuesta a lo sumo
+L=8·10⁻⁶ Σ_{e≥0} P(e)2^(−e), finito. A inclinación 1.01, la masa de las
+historias de esa subserie con e+d>M y con un sitio fijo en la vecindad
+de su soporte es ≤L exp(−0.05(M+1)), uniformemente en el volumen. La
+subserie incluye sus cascadas completas del decodificador. Queda controlar
+las fuentes que pueden enlazarse por varios lectores o por la evolución
+posterior, y obtener márgenes suficientemente pequeños para la suma total.
+La nota anterior sobre interacciones explica además la obstrucción del gas
+positivo crudo cerca de la meta y la motivación para los pesos normalizados.
+
+Reproducción y alcance de la verificación
+=======================================
+
+Ejecutar «python verificar_H5A_consumo.py» junto a verificar_H5A_interacciones.py.
+Sólo se necesita Python 3.10 o posterior. Las decisiones numéricas usan fracciones
+e enteros. Se contrastaron ambas esquinas con la matriz del paquete original
+CERTIFICADO_PQ_REPRODUCIBLE_20261104.zip y el mayorante exp(z)≤(1−z/2048)^−2048.
+También se contrastó (3) con un segundo recorrido por niveles en orden temporal,
+permitiendo saldos negativos y recalculando los consumos desde las huellas FGL.
+Para repetir ese contraste ejecutar «python contraste_opcional.py». El argumento
+opcional «--matriz RUTA_AL_ZIP» añade la comparación con la matriz archivada.
+La demostración combinatoria queda disponible para revisión matemática independiente.
+
+El paquete incluye las notas previas sobre el perfil, las cadenas y las
+interacciones por fuentes. El contrato y la transferencia están en
+BORRADOR_INTRODUCCION_Y_RESULTADOS_EN_v2.tex, thm:recomp, eq:pq-exact-host,
+prop:kp-filtered-compiler y thm:silent-conditioned. El contexto publicado
+del decodificador de síndrome ruidoso se encuentra en Fawzi, Grospellier y
+Leverrier, «Constant overhead quantum fault-tolerance with quantum expander
+codes», https://arxiv.org/abs/1808.03821. Las tasas de esta nota proceden
+del certificado local del proyecto.

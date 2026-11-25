@@ -1,0 +1,192 @@
+HGP (3,4) · Un generador común para los primeros apagados
+23 de noviembre de 2026 · Derivación para revisión matemática independiente
+
+Resultado
+---------
+Para el autoproducto de cualquier semilla binaria de peso columna 3 y
+peso fila 4, la fila de todos los tamaños da acceso uniforme a las
+particiones filtradas por síndrome físico residual cero en estas regiones.
+
+  Modelo de una ronda                    Región                    Anterior
+  Bernoulli de datos y medidas            p ≤ 4.4·10⁻⁷, q ≤ 10⁻³    3.75·10⁻⁷
+  Circuito, VV antes de CC                r_c ≤ 8.3·10⁻⁸, r_m ≤ 10⁻³   7.5·10⁻⁸
+  Circuito, cualquier orden de columnas   r_c ≤ 7.5·10⁻⁸, r_m ≤ 10⁻³   7.0·10⁻⁸
+
+Todas las tasas son no negativas. Rigen los tamaños, máscaras y subhosts
+inducidos del contrato, incluido el subhost de ubicaciones primitivas en
+circuito. Se usa SSF con la familia FGL completa, β=1/100, máximo global
+del descenso por tamaño de huella y desempate físico fijo. El circuito
+es el de extracción Z en el sector X y el calendario voraz del manuscrito.
+Se permiten ciclos de cuatro en la semilla. La precisión relativa para
+un fallo silencioso positivo requiere el testigo lógico y las demás
+hipótesis del teorema correspondiente.
+
+1. Qué aporta un lector común
+-----------------------------
+Un grupo de datos originales es una componente del grafo G en que dos
+datos son vecinos si un mismo rectángulo generador lee sus franjas. VV y
+CC denotan los dos bloques de datos del producto. El saldo de un grupo
+es su contribución inicial al descenso total menos el descenso consumido
+por pasos cercanos a él. Un saldo positivo puede financiar pasos lejanos.
+
+Se usa la recurrencia de H5A_3_4_medidas_aisladas.txt, §4. Para cada
+original i quedan r_i primeras extinciones asignadas en una franja de
+anchura n_i. En un ganador de huella φ y luces H, el coste es
+δ=2|H|−|φ|. Las asignaciones de primeras extinciones son subconjuntos
+disjuntos de H situados en las franjas respectivas. El singleton de i
+obliga a |H|n_i ≥ r_i|φ|. Si algún r_i=n_i, también lo hubo en todos
+los pasos anteriores. Esos pasos fueron perfectos y sólo apagaron luces.
+El ganador actual tiene H=φ y sus luces ajenas a las primeras extinciones
+pertenecen al fondo estable. Las máscaras locales proceden de los 4096
+síndromes del rectángulo 4×3, con 771 ganadores en 25 órbitas.
+
+Para cada patrón de un trío se calcula el saldo dos veces. En la primera
+recurrencia se permite cualquier reparto y en la segunda se admiten hasta
+dos originales donantes por paso. Si el segundo techo queda por debajo de
+k, todo grupo capaz de alcanzar k debe tener un rectángulo físico que lea
+los tres originales en el mismo paso. Las configuraciones de este tipo se
+cuentan una vez por el rectángulo posible. Para todos los demás patrones
+se conserva la cota por árboles orientados desde el dato fijado.
+
+En particular, para tres CC con saldo cuatro hay sólo tres patrones de
+relaciones, (1,1,2), (1,2,2) y (2,2,2) con la notación de la nota citada.
+Los tres tienen techo uno con dos donantes y cuatro sin esa restricción.
+Las tres columnas físicas fijas son distintas. Fijado CC=(r₀,c₀), un
+centro j con c₀∈N(j) tiene a lo sumo cuatro opciones. Las otras columnas
+son los otros dos elementos de N(j). Hay ≤9 centros de la primera
+coordenada cuya vecindad interseca N(r₀), incluido r₀, y ≤9 coordenadas
+de dato que intersecan la de ese centro por cada columna restante.
+Ordenar las dos columnas determina qué elección va con cuál. El total
+enraizado es ≤4·9³=2916. La tabla anterior cobraba 52032.
+
+Para tres VV de saldo tres, sólo queda el patrón (3,3,3), de una fila
+física común y tres franjas disjuntas. El centro de la segunda coordenada
+interseca las tres franjas. Tiene ≤9 opciones desde el original fijado y
+debe ser distinto de éste. Sus otros dos vecinos se reparten uno en cada
+franja restante. Cada vecino tiene ≤3 opciones de dato aparte del propio
+centro. El techo pasa de 2048 a 81. Para los otros tríos leídos en común
+hay ≤30 rectángulos desde un VV y ≤36 desde un CC. Cada rectángulo lee
+hasta 40 VV y 27 CC, lo que acota las elecciones de los otros dos datos
+por composición. Todos estos recuentos son mayorantes de posiciones.
+
+2. Extensión a pares y a grupos de cuatro y cinco
+-------------------------------------------------
+Para dos CC de igual columna con franjas disjuntas se reutiliza el cálculo
+proyectado de H5A_3_4_propagacion_lejana.txt, §3. Fijado el primer check
+semilla r₀, cada centro t distinto de r₀ que solapa con él aporta
+u=|N(t)∩N(r₀)|, con Σ_t u=8. Si s es el otro check y v=|N(t)∩N(s)|,
+u+v≤4. Un saldo ≥1 requiere algún uv≥2 y un saldo ≥2 requiere uv=4.
+Para cada t, los posibles s disjuntos disponen de ≤2(4−u) incidencias.
+Con u=1 hace falta v≥2 para el primer nivel. Con u≥2 basta cobrar v≥1.
+Al añadir el propio t para cubrir también a las parejas solapadas, salen
+≤4u opciones por centro para el primer nivel y ≤1+2·1_{u=2}≤3u/2 para
+el segundo. Por columna fija quedan ≤56 posiciones en total, ≤32 de saldo
+≥1 y ≤12 de saldo ≥2. Las otras columnas añaden a lo sumo 384 parejas
+débiles de saldo cero y 72 de saldo ≤1. En el modelo Bernoulli se combina
+esta clasificación con el coste de excepción de las franjas limpias de
+H5A_3_4_episodios_compartidos.txt, §2. Con Y=a⁶ y f(k)=Y²+.528/Yᵏ,
+el precio de los pares CC ordinarios, antes del descuento de cobertura,
+es ≤384f(0)+72f(1)+24+20/Y+12/Y².
+
+Para n=4,5 originales del mismo tipo se guardan dos particiones
+anidadas. La exterior da las componentes de aristas de G de igual
+coordenada fija. Dentro de cada una se guardan las componentes por
+solapamiento de franjas. Si un generador recibe donantes de dos
+componentes exteriores distintas, sus líneas locales son distintas.
+Dos donantes de igual línea vistos simultáneamente habrían formado una
+arista en la primera partición.
+
+Los grados máximos para un vecino que solapa, otro en la misma línea
+sin solape y otro de línea distinta son (9,54,576) en VV y (8,48,456)
+en CC. Salen de los caminos sin retroceso de longitudes dos y cuatro
+en los factores de Tanner. Para conectar j bloques de tamaños s_i con
+aristas de grado d se usa (Σs_i)^(j−2)·∏s_i·d^(j−1), por la fórmula de
+Prüfer con elección de extremos. Para j=1 se usa uno. Se conecta cada
+partición desde la más fina y se divide la suma etiquetada por (n−1)!,
+fijando la raíz. Se obtiene un mayorante por forma de las particiones.
+Su suma da n^(n−2)N^(n−1)/(n−1)!, donde N=639 o 512.
+
+Para cada forma, de cada ganador se toman todos los subconjuntos U
+no vacíos de H que podrían recibir primeras extinciones. Se guardan
+los tamaños de U en las líneas locales. Un vector de extinciones por
+original es admisible si las sumas por componente exterior reproducen
+esos tamaños y pasan las pruebas de rango y fondo del §1. Se minimiza
+el coste δ más el coste del estado de rangos restante. Se permiten
+todos los repartos compatibles con esos tamaños. En un bloque de
+solapamiento de anchura sumada w y r asignaciones iniciales, el saldo
+inicial es 2r−w para un único dato. Para varios es ≤r−((w−r) mod 2)
+y r≤w−2 por la cancelación en al menos un check. Se maximiza el saldo
+inicial menos el coste mínimo sobre los rangos.
+
+Se repite este cálculo limitando a dos las líneas donantes por paso.
+Si hace falta una tercera, el grupo contiene un trío de líneas distintas
+que lee un solo rectángulo. Por raíz dentro de ese trío hay μ≤2916
+opciones en CC y μ≤30·3·10²=9000 en VV. Para VV se eligen dos de las
+otras tres filas del rectángulo y una de hasta diez coordenadas de dato
+por fila. Para extender el trío a n datos conexos, sea C=z exp(NC) el
+mayorante de árboles enraizados. Se pueden unir ramas a los tres datos
+y, si la raíz queda fuera, unirla a la primera entrada en el trío por
+un camino con ramas. En cada vértice previo al trío hay ≤N elecciones
+para el siguiente. El precio es μC³/(1−NC), con coeficiente de zⁿ
+igual a μ(nN)^(n−3)/(n−3)!. Se toma el menor entre el recuento sin
+restricción y la suma del recuento de dos líneas con esta extensión.
+En particular, para cuatro CC hay ≤58368 posiciones a saldo seis y
+para cinco CC el saldo ocho queda excluido.
+
+3. Transferencia al circuito y suma completa
+--------------------------------------------
+En un grupo de fibras marcadas de circuito puede haber datos de paridad
+física cero. Para acotar la geometría se asignan los primeros apagados
+a los originales de paridad uno que los contienen y se usa como fondo el
+D_c estable. La asignación condicionada a las etiquetas para los pesos de
+probabilidad sigue la derivación de FASE5_CIRCUITO_3_4_SINDROME_OBSERVADO.txt.
+Ambos son techos del mismo saldo, por lo que se combinan por mínimos.
+
+Si todos los marcados son reales, valen directamente las cuentas anteriores.
+En otro caso se descompone el subconjunto real en componentes del grafo de
+lectores. El saldo lejano del grupo marcado es a lo sumo la suma de los
+techos de estas componentes: la unión adicional de franjas marcadas sólo
+añade pasos al descuento cercano. Para cero o un real basta el techo cero.
+Por ello la mejora de pares vale desde k=1 y la de tríos desde k=3.
+Para cuatro y cinco se aplica el nuevo recuento sólo por encima de la mayor
+suma de techos de componentes propias, calculada por tamaños. En cada caso
+el conjunto de posiciones elegibles queda fijado geométricamente antes
+de integrar las fibras. Se usan el histograma de pares mixtos y las leyes
+de etiqueta de la fase 5 a la tasa exacta de cada esquina. La positividad
+de los pesos primitivos antes de normalizar cubre las tasas menores y los
+subhosts, como en el §2 de esa nota.
+
+Para ambos modelos se acota la cantidad de posiciones con saldo ≥k. Los
+mínimos de estas cotas acumuladas se introducen por suma por partes en
+los precios crecientes del grupo y de la marca física. Los grados restantes
+hasta diez y el resto de once en adelante conservan su mayorante analítico.
+Se reutilizan los enlaces de dos ejes y la segunda conmutación de v15.
+El parámetro de inclinación exponencial del grado primitivo sigue en .015.
+
+  Esquina            a       s       Fila R          Máximo de cocientes
+  p=4.4·10⁻⁷         .570    .662    .000776094060    .999512530957
+  r_c=8.3·10⁻⁸       .560    .740    .000669667699    .999693349081
+  r_c=7.5·10⁻⁸ (*)   .557    .760    .000766359613    .999528221865
+
+  (*) Cualquier orden de columnas. Los decimales de la tabla están
+  redondeados. El programa prueba las desigualdades estrictas con fracciones.
+  Los presupuestos α son .004, .002 y .002, respectivamente. Las colas
+  desde once, por raíz VV y CC, son menores que (7.045·10⁻¹¹, 3.895·10⁻¹⁰),
+  (2.087·10⁻¹⁰, 2.055·10⁻⁹) y (4.759·10⁻¹⁰, 2.987·10⁻⁹).
+
+4. Alcance en G3
+----------------
+A p=10⁻⁶ y q=10⁻³, en el cálculo concreto de la ecuación (4) de
+H5A_3_4_cortes_de_distancia.txt se reemplaza 52032 por 2916. Con el
+mismo peso desnudo p³ por trío, el factor pasa de 1.5657385675 a
+334731302496/3814697265625 = 0.08774780256… . Ese término ya no da la
+prueba anterior de divergencia del mayorante. La masa del complemento
+de H5A_3_4_entradas_distribuidas.txt sigue abierta en G3. Una cota de
+0.00078558 para ese complemento seguiría siendo suficiente por v15.
+Esta nota cuenta donantes originales en un mismo paso. Extenderlo a
+las luces creadas por varios pasos anteriores exigiría controlar dónde
+coinciden sus descendientes sin cobrar dos veces su descenso.
+
+Reproducción desde 05_COMPROBACIONES con la biblioteca estándar de Python
+
+    python -I -B -X utf8 verificar_H5A_3_4_confluencia_en_generador.py

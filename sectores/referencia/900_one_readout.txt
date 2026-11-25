@@ -1,0 +1,6 @@
+# prep_s 0.116637 actions 25092 pairs 1728
+# vv 0 seconds 0.517401 representatives 954680
+# vv 1 seconds 3.18697 representatives 5880512
+# vv 2 seconds 8.21171 representatives 14547594
+# vv 3 seconds 4.93434 representatives 19787246
+orbits 52313169600 1260288 19787246 21752021 2026492484 16.8515 22724608 19787246 

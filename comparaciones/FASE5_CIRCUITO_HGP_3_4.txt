@@ -1,0 +1,283 @@
+Fase 5 · Una ronda circuital en el HGP binario (3,4)
+23 de noviembre de 2026 · Derivación matemática pendiente de revisión independiente
+
+1. Región uniforme y resultado del piloto
+
+Para el autoproducto de cualquier semilla binaria de peso de columna 3 y fila 4,
+se obtiene acceso efectivo a las particiones del circuito filtradas por síndrome
+físico residual cero, para todas las máscaras físicas y subhosts inducidos, en
+
+              0 ≤ r_c ≤ 2.9·10⁻¹⁰,     0 ≤ r_m ≤ 10⁻³.                (1)
+
+La ronda extrae checks Z, con datos como controles y ancillas como blancos.
+El SSF del sector X conserva la familia FGL completa, β=1/100, su máximo
+global normalizado, el orden físico fijo y la corrección final ideal. Rigen
+el convenio de acceso y las hipótesis del manuscrito. Las aproximaciones
+relativas de fallo silencioso positivo requieren además su testigo y las
+hipótesis del teorema circuital. En r_c=0 el fallo silencioso vale cero.
+
+En la semilla afín [[225,9,6]], los intervalos siguientes corresponden a la
+probabilidad conjunta P_sil=Pr(H_X R=0 y R fuera del estabilizador X).
+Los extremos están redondeados hacia fuera. El error se refiere al valor
+armónico calculado y registrado a 15 cifras en el JSON.
+
+    r_c         r_m         intervalo para P_sil              error       garantía
+    1.5·10⁻⁹    10⁻³        [1.61758,1.91907]·10⁻¹⁸          <8.525 %    determinista
+    10⁻⁶        0           [5.40008,5.58318]·10⁻¹⁵          <1.667 %    estadística
+    10⁻⁶        5·10⁻⁷      [5.76280,5.94049]·10⁻¹⁵          <1.519 %    estadística
+    10⁻⁶        10⁻⁶        [6.12551,6.31889]·10⁻¹⁵          <1.554 %    estadística
+    3.75·10⁻⁷   10⁻³        [1.01298,1.02001]·10⁻¹³          <0.346 %    estadística
+
+Las cuatro filas estadísticas tienen cobertura conjunta al menos del 98 %
+en el modelo de ensayos independientes de §5. La incertidumbre estadística
+sólo entra en dos sectores. Los extremos inferiores son deterministas.
+Si se carga toda la masa pendiente, el extremo superior determinista a
+r_c=r_m=10⁻⁶ es 8.83151·10⁻¹³ y el de (3.75·10⁻⁷,10⁻³) es 4.70950·10⁻¹².
+El 10 % determinista en esas dos esquinas y la ampliación uniforme de (1)
+a r_c del orden de 10⁻⁶ quedan abiertos.
+
+2. Contrato y propagación
+
+Se aplica el calendario del apéndice «Primitive locations and exact joint
+response» del manuscrito. Se recorren las incidencias (check,dato) en orden
+lexicográfico y se usa el primer color libre en ambos cables. Se conservan
+L=7+4−1=10 capas. En el piloto contienen respectivamente
+108, 102, 102, 102, 84, 78, 63, 63, 27 y 27 CNOT. Hay 756 CNOT, 1944 esperas
+de datos, 324 esperas de ancilla, 108 preparaciones y 108 lecturas conjuntas.
+El total es 3240 localizaciones primitivas. Al añadir los 225 vértices de
+acción, el host tiene 3465 vértices, 5516568 aristas y grado máximo 3464.
+
+Preparaciones, esperas y Pauli anterior a lectura tienen distribución
+(1−r_c,r_c/3,r_c/3,r_c/3). En una CNOT, la identidad tiene probabilidad
+1−r_c y cada Pauli no trivial r_c/15. La lectura tiene además una inversión
+clásica independiente de tasa r_m. El par Pauli/lectura se trata como una
+categoría conjunta de su localización. Todas las localizaciones del contrato
+reciben sus leyes, incluso en el control r_m=0.
+
+Sea ψ_v la columna física del dato v. La fibra de v contiene sus 12
+localizaciones, incluidas sus CNOT. Se guarda la etiqueta (e_v,d_v), con
+e_v la paridad X del dato y d_v=s_v ⊕ e_v ψ_v, donde s_v es la contribución
+observada de esa fibra. La máscara d_v está contenida en ψ_v. Un X tras
+una espera contribuye a d_v en los checks ya atendidos. En una CNOT con
+bits (a,b) contribuye a d_v el prefijo hasta esa CNOT si a=1, y su check
+si b=1, por XOR. Los pesos de (00,10,01,11) son (1−4r_c/5,4r_c/15,
+4r_c/15,4r_c/15). Se convolucionan las 12 leyes con enteros.
+
+Cada check tiene tres esperas propias, preparación y lectura. La probabilidad
+de inversión neta en su fibra es h=[1−(1−4r_c/3)⁵(1−2r_m)]/2. Sea B el
+conjunto de estas inversiones. Los distintos cables de datos y las fibras
+de check reúnen localizaciones disjuntas. El decodificador recibe
+s=H_XE ⊕ D, con E={v:e_v=1}, D=B ⊕ (⊕_v d_v). Al parar se exige
+s_terminal=D y, para fallo, que la clase física residual sea no trivial.
+
+Se contrastaron la fórmula de respuesta y la evolución física Pauli X/Z
+por conjugación CNOT en las 22464 categorías unitarias, incluidas las de
+respuesta X nula, y en 68 asignaciones simultáneas, cuatro densas. En los
+225 cables se contrastaron asimismo todos los caracteres de la ley de
+(E,s) con la convolución de (E,D). La prueba usa los valores racionales.
+
+3. Transferencia uniforme con etiquetas de datos
+
+Para cada subhost J, fijar las ubicaciones primitivas ausentes a su categoría
+de referencia y conservar la restricción original sobre las acciones. En
+cada fibra, reunir asignaciones con la misma etiqueta (e_v,d_v), y en las
+fibras de check reunir las de igual paridad. Dentro de una fibra, el peso
+total de la etiqueta cero es estrictamente positivo. Se extrae este factor
+en cada fibra. Para recuperar la partición original se usa el producto de
+estos factores dividido por la probabilidad de referencia de las ubicaciones
+permitidas en J. Si se trabaja directamente con razones respecto de esa
+referencia, el mismo factor es el peso agregado de etiqueta cero. Reunir
+asignaciones preserva s, la corrección, la marca (−1)^(u·R) y el filtro.
+Las asignaciones primitivas invisibles están incluidas en la normalización.
+
+Un dato tiene como máximo cuatro CNOT y 12 operaciones en su fibra. La
+probabilidad de respuesta nula es al menos la probabilidad de que ninguna
+de sus operaciones tenga componente X. En un check se puede exigir además
+lectura clásica correcta. La suma de las razones de etiquetas no nulas
+respecto de la etiqueta cero está acotada, respectivamente, por
+
+  g_V = (1−2r_c/3)⁻⁸ (1−4r_c/5)⁻⁴ − 1,
+  g_C = (1−2r_c/3)⁻⁵ (1−r_m)⁻¹ − 1.                                  (2)
+
+Suprimir ubicaciones sólo mejora estos límites. En (1), g_V<2.474667·10⁻⁹
+y g_C<0.0010010020. Para justificar el uso de estos pesos hay que tratar
+las etiquetas (0,d_v≠0) y las cancelaciones con B.
+
+Sea A el conjunto de fibras de datos de etiqueta no nula, E⊆A el conjunto
+con paridad física uno y O la unión de las ψ_v para v∈A. En una ejecución
+filtrada, sea S la unión de O y de las huellas de las acciones seleccionadas.
+Sea W la unión de A y los qubits utilizados por dichas acciones. Escribir
+B_a=B∩S y P=B fuera de S. En P el síndrome inicial y final permanece
+encendido. Quitar P conserva la puntuación de cada ganador, sólo puede
+quitar luces a competidores y conserva la parada. El síndrome terminal
+reducido es D_a=B_a ⊕ (⊕_A d_v). Es D_a el que cumple estabilidad.
+
+Los componentes conexos del soporte reducido son los núcleos con etiquetas.
+Cada uno contiene una fibra de A. Un check de B_a pertenece a la huella
+de un lector de W. Sus vecinos están en la vecindad del lector. Un componente
+sin datos físicos reales sólo puede tener trayectoria vacía por descenso
+estricto, y puede contener una fuente de A de paridad cero. En el sentido
+inverso, para núcleos compatibles y un P estable que evita S, comprobar
+en cada núcleo que añadir P conserva ganadores y parada. Cada competidor
+lee la discrepancia de a lo sumo un núcleo. Los ganadores se intercalan según
+el máximo y desempate globales. Las condiciones sobre P son decrecientes
+al retirar sus bits y dependen de cada núcleo sólo en Q_c=N_L[S_c], donde L
+une checks que comparten rectángulo. Por tanto se aplican las desigualdades
+de fijación sucesiva del fondo común, §2 de H5A_3_4_fondo_pasivo.txt.
+
+Para verificar la cuenta de núcleos con estas fuentes, primero cubrir los
+vecinos de O y los de B_a. Las luces iniciales aportadas por etiquetas de
+datos están en O. En cada paso los vecinos de una luz ya están cubiertos
+por O, por B_a o por una huella anterior. El recuento de primeros apagados
+se aplica a E y al D_a verdadero. Si a_V,a_C cuentan las fuentes de A,
+da |Q_c|≤414a_V+536a_C+90|B_a| y |W|≤(17/3)a_V+(103/15)a_C. Las fuentes
+con e_v=0 añaden su huella inicial y su propio sitio a estas cotas.
+
+Cobrar uno por paso cuyo rectángulo toca O y once en los demás. Al ampliar
+la zona de las franjas de E a O el coste de cada paso sólo puede bajar.
+Cada componente de G[A], con G el host de datos, contiene por entero sus
+componentes originales de G[E]. Para un único dato real vale el coste uno
+del primer contacto con D_a arbitrario. Para un par real se usan los costes
+(disjunto, solapado) de (14,24), (14,24), (25,35) para VV–VV, VV–CC, CC–CC.
+Si en el par hay a lo sumo un dato real basta uno. En cualquier componente
+de A de tamaño ≥3, todas las componentes reales que aloja caben en la
+tarifa 14 por VV y 59/3 por CC. Esta domina también los tres costes de
+pares y el de cada singleton. Los descuentos aplican a la suma de los
+pasos de la ejecución, como en el certificado físico del fondo común.
+
+Para reconstruir el árbol de recuento se guardan todas las fuentes de A.
+Un generador próximo elige un lector de A que toca su rectángulo. En el
+primer uso de un generador lejano, una luz por encima del terminal estable
+se originó en una acción anterior porque está fuera de O. Las aristas
+causales hacia generadores retroceden en tiempo. Los mismos enlaces
+directos sobre G[A], puentes, poda y compresión conservan las fuentes y
+los propietarios de B_a. Elegir las etiquetas de A completa la información
+para ejecutar el decodificador original. Para ubicaciones fijadas, la suma
+de pesos de todas sus etiquetas es a lo sumo el producto de (2), incluso
+cuando algunos registros no producen una ejecución válida. Las únicas
+medidas a enumerar en las posiciones de los propietarios son las de B_a.
+Esto recupera las 14 desigualdades de núcleos del fondo común con fuente
+de datos etiquetada. La tabla de primeros apagados y los tres costes de
+pares se reconstruyen en el verificador. Un contraste adicional proyecta
+4096 entradas con datos etiquetados y lecturas sobre sus núcleos. Entre
+1080 aceptadas hay 824 con alguna fuente de paridad cero y 208 con varios
+núcleos. Las trazas locales, también al reponer el fondo, coinciden con
+la proyección del desempate físico.
+
+Tomar p₀=2.5·10⁻⁹ y q₀=0.001 como parámetros del mayorante histórico.
+En (1) se comprueban g_V<p₀/(1−2p₀) y g_C<q₀/(1−2q₀). Incluso multiplicadas
+por exp(0.01) las actividades caben en los radios históricos que incluyen
+exp(0.015). La fila de fijación pasiva tiene cociente <0.988 y las 14
+filas de núcleos tienen cociente máximo <0.9991. Por monotonía se cubre
+el rectángulo completo. Después de truncar el logaritmo al grado total m
+de fibras activas con multiplicidad, su cola es ≤(n+m_X)exp[−0.01(m+1)].
+Esto sigue de la norma del logaritmo a radios inclinados por retirada
+de especies, §4 del fondo común. El soporte proyectado de un término de
+grado m tiene a lo sumo 7m sitios. Las leyes agrupadas tienen tamaño acotado
+por los grados. El oráculo, la enumeración de soportes conexos y el factor
+explícito de etiqueta cero dan la evaluación del manuscrito para cada J.
+
+Como comprobación con una construcción más conservadora, el JSON da tres
+supersoluciones del árbol causal sin compresión. En esa construcción se
+mantienen incluso las categorías de respuesta neta cero como fuentes. Sus
+pesos son a lo sumo (1−r_c)⁻¹²−1 y (1−r_c)⁻⁵/(1−r_m)−1. La primera
+extinción y los vecinos por tipo corresponden a H5A_grados_3_4_cotas_y_obstruccion.txt,
+§§1–3. Los tres rectángulos están contenidos en (1). La derivación de (1)
+usa la cuenta de fondo pasivo y se entrega para auditoría, separadamente
+del manuscrito de referencia.
+
+4. Suma determinista en el piloto
+
+Fijar a=|E| según la paridad física final de cada cable de datos. Los
+indicadores de E son independientes por cable y los tipos VV y CC tienen
+probabilidades distintas, calculadas por convolución exacta. Para un fallo
+silencioso existe una proyección lógica cuyo vector final de columnas VV
+es una palabra del núcleo de peso ≥6. Un paso puede cambiar a lo sumo una
+de sus columnas. Con v datos VV iniciales se necesitan ≥6−v pasos. El
+descenso disponible es |H_XE|−2|D∩H_XE|. De aquí se excluye a≤1. Se
+reutiliza la reducción de a=2 de H5A_piloto_HGP_225.txt, §2, válida para
+cualquier D. Exige un par VV en la misma fila y uno de 324 patrones de
+medida interior. El bit indispensable está fuera de las franjas de ambos
+datos en los 324 patrones. Por ello dos fallos primitivos no bastan. Dos
+X en esperas iniciales y un X de ancilla en la lectura del bit indicado
+realizan un fallo con tres primitivas para r_c>0.
+
+Para cada patrón se invierte la transformada de Walsh de los nueve bits
+de su fila. A paridades de E fijadas se multiplican los momentos de todas
+las fibras y de las nueve lecturas. Para la cota superior quedan libres
+todos los bits de fuera. Para la inferior se exige d_v exterior vacío
+en cada fibra de datos y a lo sumo un bit de ancilla exterior. Este último
+factor es (1−h)⁹⁹+99h(1−h)⁹⁸. El lema del bit exterior de la fase 7 asegura
+el fallo en ese caso. Cada producto tiene menos de 500 redondeos absolutos
+de tamaño ≤2⁻¹²⁸ y factores de módulo ≤1. Tras la inversión y la suma se
+añade por cada lado el margen conservador 324·512·2⁻¹²⁸. Una convolución
+positiva directa contrasta una entrada de fila con ambos límites.
+
+En a=3 se suma exactamente la parte con todos los d_v de los demás datos
+nulos y B vacío. El D final está dentro de las tres franjas. Se transportan
+los tríos mediante las simetrías afines de los dos ejes. En cada una de
+las 292 clases, D debe ser estable, con a lo sumo un bit por fila, y dejar
+descenso ≥6−v. Se examinan 22551 máscaras interiores tras estas dos
+condiciones necesarias. Para no transportar el desempate físico por una
+simetría, se siguen todos los máximos locales que alcanzan el máximo global.
+Sólo 14 pares de representante y máscara, en cinco clases, admiten un
+fallo. Al regresar a las ubicaciones físicas se obtienen 3072 candidatos.
+Con el orden exacto del piloto fallan 1656, entre ellos los 36 esperados
+con D vacío. Se suman los productos exactos de las leyes de los tres
+cables y de fondo nulo. Se permite toda multiplicidad de fallos primitivos
+dentro de cada cable. La simetría sirve para descartar geometrías y los
+pesos se calculan con el calendario real de cada ubicación.
+
+Sean P_k=Pr(a=k), L₂,U₂ las cotas del par y C₃ la masa exacta anterior.
+Para una fibra de datos j poner b_j=Pr(d_j≠0 | e_j=0) y asignar b_j=h
+a cada ancilla. Con Λ=Σ_j b_j, el intervalo enteramente determinista es
+
+  [L₂+C₃, U₂+C₃+P₃ min(1,Λ)+P₄+Pr(a≥5)].
+
+Se calcula la distribución de a por las dos binomiales de 144 y 81 datos.
+Se usa su cola exacta desde cinco. Esto da el primer punto de la tabla.
+En r_c=r_m=10⁻⁶ la cola desde cinco vale menos de 1.128·10⁻¹⁶.
+
+5. Estimación del resto y costes
+
+Para el resto de tres datos se muestrea E condicionado a a=3. Se elige
+una marca j con probabilidad b_j/Λ y se cuenta como cero si j es un dato
+de E. En los demás casos se fuerza una respuesta no nula en j bajo su ley
+condicional y se generan todas las demás respuestas según corresponda.
+Se acepta la marca sólo si es la primera fibra de fondo no nulo en un
+orden fijo. Cada configuración de fondo no vacío tiene una sola primera
+marca. Por tanto P₃Λ por la probabilidad de éxito de esta propuesta da
+exactamente el resto silencioso con a=3. En a=4 se muestrea condicionado
+sólo al número de datos y se multiplica por P₄. Para ambos estratos se
+imputan todos los ensayos, incluidos descartes de marca y de descenso. Los
+estados que pasan se decodifican con la prioridad física del piloto.
+
+Se fijaron 120000 ensayos por estrato y esquina, ocho estratos en total.
+Los conteos de éxito de los estratos (tres, cuatro) fueron (1,0), (0,1),
+(1,0) y (0,0) en el orden de las cuatro filas estadísticas. El generador
+de Python usa las semillas reproducibles del JSON. Las categóricas se
+muestrean con umbrales enteros y desempate racional exacto en la frontera
+del entero de 64 bits. La cobertura estadística se interpreta bajo el
+supuesto habitual de ensayos aleatorios independientes.
+
+Para una media binomial μ y x≤μ se usa Pr(X≤x)≤exp[−(μ−x)²/(2μ)].
+Si x>0 el límite superior de μ es x+6+⌊√(36+12x)⌋+1. Si x=0 basta 6,
+por (1−p)^n≤exp(−np). Cada límite unilateral falla con probabilidad
+≤exp(−6)<1/400. La unión de los ocho fallos tiene probabilidad <2 %.
+Los estratos aportan cero al extremo inferior. La masa restante desde
+cinco datos se carga completa al superior. El valor publicado es 2LU/(L+U)
+y también se verifica el error relativo del decimal mostrado en el JSON.
+
+El cálculo conjunto con la biblioteca estándar, en Intel Core i5-14400F,
+Windows 11 Pro y CPython 3.12.10, tomó 16.27 s de pared desde el arranque,
+16.13 s internos y 90.5 MiB de pico. Son recursos del circuito de 225
+qubits y las cinco parejas evaluadas en esta entrega.
+
+Reproducción desde 05_COMPROBACIONES
+    python -I -B -X utf8 circuito_HGP_225.py --salida resultado_local.json
+
+La siguiente mejora uniforme requiere controlar con mayor precisión las
+fuentes de datos con respuesta parcial de síndrome. En el piloto, para
+convertir las cuatro filas estadísticas en cotas enteramente deterministas
+quedan los tríos con fondo no nulo y los cuatro datos con fondo arbitrario.
+Las tasas 10⁻⁴ y 10⁻³ en ambas coordenadas continúan como metas del plan.

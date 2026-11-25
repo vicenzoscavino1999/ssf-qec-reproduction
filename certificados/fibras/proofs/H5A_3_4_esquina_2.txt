@@ -1,0 +1,108 @@
+HGP binario (3,4) · Esquina 2 con tasa de medida 10⁻⁴
+23 de noviembre de 2026 · Nota para revisión independiente
+
+Resultado general
+
+Para una ronda Bernoulli se verifica el rectángulo p ≤ 10⁻⁶, q ≤ 10⁻⁴.
+Para una ronda de extracción Z del sector X se verifican r_c ≤ 1.85·10⁻⁷
+con el calendario VV primero y r_c ≤ 1.68·10⁻⁷ con cualquier orden de
+columnas admitido, en ambos casos con r_m ≤ 10⁻⁴.
+
+Los resultados son uniformes en tamaño para la columna general de v29.
+Se permiten ciclos de cuatro en la semilla. Se heredan las máscaras y
+subhosts admitidos, el filtro de síndrome físico residual cero, la
+competición global SSF/FGL con β=0.01 y su desempate físico fijo.
+El resultado da acceso a las particiones filtradas. El paso al error
+relativo para un fallo silencioso positivo conserva las hipótesis y el
+testigo lógico del Teorema 1 del manuscrito.
+
+Filas comprobadas
+
+La columna máximo contiene el mayor de los doce cocientes de v22. El paso
+requiere que cada cociente sea estrictamente menor que uno y que se satisfagan
+las demás desigualdades de la fila. Las cifras de las tablas están redondeadas
+para lectura. Las decisiones del verificador se toman con fracciones.
+
+Modelo                Tasa de datos/operaciones    (a,s)          Máximo         Resultado
+Bernoulli                  1.00·10⁻⁶           (.568,.678)     0.9995259114       Cierra
+Circuito VV primero        2.00·10⁻⁷           (.560,.735)     1.0552939500       Abierto
+Circuito orden admitido    2.00·10⁻⁷           (.558,.745)     1.1439970675       Abierto
+Circuito VV primero        1.85·10⁻⁷           (.560,.735)     0.9960319367       Cierra
+Circuito orden admitido    1.68·10⁻⁷           (.556,.757)     0.9996087549       Cierra
+
+Qué suma queda acotada
+
+V y C denotan la raíz VV y la raíz CC. Las dos columnas centrales dan el
+mayorante ordinario de los grupos de una a diez fuentes dividido por el
+presupuesto h de esa raíz. Las dos últimas dan techos absolutos para la suma
+de todos los tamaños desde once hasta infinito. Se evaluaron en los mismos
+campos que las filas completas.
+
+Modelo y tasa             Grados 1–10/h_V  Grados 1–10/h_C     Cola V        Cola C
+Bernoulli 10⁻⁶                0.995558         0.991831       1.638·10⁻¹⁰   9.423·10⁻¹⁰
+VV primero 2·10⁻⁷             1.053849         1.052001       8.584·10⁻¹¹   8.416·10⁻¹⁰
+Orden admitido 2·10⁻⁷         1.141466         1.138745       2.332·10⁻¹⁰   1.412·10⁻⁹
+VV primero 1.85·10⁻⁷          0.990464         0.985881       7.129·10⁻¹¹   6.992·10⁻¹⁰
+Orden admitido 1.68·10⁻⁷      0.993827         0.988909       2.113·10⁻¹⁰   1.291·10⁻⁹
+
+Los techos de cola se redondean hacia arriba. En los dos ensayos a r_c=2·10⁻⁷
+la raíz C excede su presupuesto en más del 5.20 % y del 13.87 %,
+respectivamente, ya con los primeros diez tamaños. También lo excede la
+raíz V. Ajustar únicamente la cola de orden once en adelante dejaría ese
+exceso en los testigos publicados aquí. La existencia de otros testigos a
+esa tasa sigue abierta. La esquina G3, p=10⁻⁶ y q=10⁻³, es un objetivo
+distinto y sigue abierta.
+
+Cómo se trasladó el certificado
+
+Se conservan la geometría, los histogramas de la columna general y los
+primeros apagados de v29. Se fijan θ=0.000108, b=0.0001085, η=0.0001,
+λ=0.015 y los presupuestos α=0.004 en Bernoulli y α=0.002 en circuito.
+Con L(x)=x+x²/[2(1−x)], el campo de guardia es A=L(θ)−(89/2)L(θ²),
+aproximadamente 0.000107486784627. El complementario es
+B=b+89L(θ²)−L(θ), aproximadamente 0.000001532263376. Ambos son positivos.
+
+Para cada ahorro geométrico d se usa el techo racional
+χ(d) = 1 / Σ_{j=0}^8 (A d)^j/j! de v27 sobre exp(−A d). Se evalúan con A
+tanto la tabla ordinaria como los tres descuentos adicionales de pares
+disjuntos. La tabla histórica de descuentos aporta únicamente el índice
+de composiciones. La enumeración de v12 verifica con fracciones los techos
+0.013611, 0.015012 y 0.04752 para las incidencias locales VV–VV, VV–CC y
+CC–CC, respectivamente. Se sustituyen en los precios Bernoulli de v12, v18
+y v22. En el circuito se recalcula la ley a la tasa de operaciones de cada
+fila y se comprueba la dominación de la medida auxiliar.
+
+Cada testigo tiene ocho suelos congelados, iguales a sus ocho campos a la
+tasa máxima de su fila. La iteración racional positiva de v22 construye
+una supersolución U⁺ en los pesos w. Para cada raíz se resta el polinomio
+hasta grado diez de la misma serie calculada con los mismos suelos.
+La contribución ordinaria de los primeros diez tamaños se calcula aparte.
+La rama física conserva la sustracción de los grados once a trece sin hijo
+exterior según v22 §3. El código verifica ambas desigualdades de medida,
+las filas de datos, las ordinarias y físicas y las de raíces de generador.
+
+La dominación por pesos primitivos de v22 §4 extiende cada extremo aprobado
+al rectángulo desde cero. En circuito se aplica antes de normalizar las
+fibras. Con la inclinación λ=0.015 se conserva la cola de truncamiento
+≤ N exp[−0.015(m+1)] en Bernoulli y ≤ (n+m_X) exp[−0.015(k+1)] en
+circuito. Estas colas de truncamiento son distintas de la suma de grupos
+de tamaño al menos once de la tabla.
+
+Reproducción desde 05_COMPROBACIONES
+
+    python -I -B -X utf8 verificar_H5A_3_4_esquina_2.py
+
+SHA-256 del verificador
+05a1d06e825c628e10dd3954caec80fed9a3a56947e9b54b577045bce81071de
+
+El programa reconstruye las tablas desde las definiciones, comprueba los
+cinco testigos con aritmética racional y muestra las contribuciones por
+raíz. Los diez campos decimales de cada testigo están en CASES. Se requiere
+Python 3.10 o posterior con la biblioteca estándar.
+
+Dependencias matemáticas en la misma carpeta
+
+    H5A_3_4_episodios_compartidos.txt, §§2–3
+    H5A_3_4_cola_por_lectores.txt, §§3–4
+    H5A_3_4_reuniones_cruzadas.txt
+    H5A_3_4_primer_apagado_de_ternas.txt, §§1–3

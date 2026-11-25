@@ -1,0 +1,425 @@
+H5-A · Cumulantes de fuentes e interacciones entre componentes
+17 de noviembre de 2026
+
+Resultado
+=========
+
+Para toda semilla binaria (17,18)-regular y cualquier tamaño, la derivación
+da acceso a las particiones físicamente filtradas en el rectángulo conjunto
+
+                  0 ≤ p ≤ 3.6·10⁻³⁶,       0 ≤ q ≤ 2·10⁻¹¹.
+
+El extremo anterior de p era 2·10⁻³⁶. El factor de mejora es 1.8. Se
+consideran una ronda Bernoulli independiente en datos y medidas, todos los
+candidatos FGL del manuscrito, β=1/100, máximo global de puntuación y orden
+de desempate fijo independiente del síndrome. Se permiten duplicados y
+ciclos de longitud cuatro. La estimación es uniforme en la máscara y el
+subhost. La transferencia al fallo silencioso positivo utiliza además
+las hipótesis de thm:silent-conditioned, con testigo lógico verificado
+de peso w y factor 1+z_p^(−w). El eje p=0 se trata como en el manuscrito.
+
+En la esquina aspiracional p=10⁻⁶, q=2·10⁻¹¹, se controlan todos los
+pares y tríos de fuentes, todos los cumulantes de sólo medidas y una
+contribución de orden arbitrario que permite interacciones internas
+cruzadas. La sección 5 precisa la suma que sigue abierta en esa esquina.
+Los resultados numéricos se reproducen con fracciones. La derivación
+combinatoria está pendiente de revisión matemática independiente.
+
+1. Un criterio sobre las fuentes
+===============================
+
+Para un conjunto U de sitios fuente del subhost J, T(U) es la marca física.
+Vale cero si el filtro falla o el soporte sale de J. En otro caso es el
+carácter del residuo para la máscara fijada. T(∅)=1. Usamos la huella
+ψ_v de 17 checks para un dato VV, de 18 para uno CC y de un check para
+una medida. Para g un generador, su rectángulo P_g tiene 18×17 checks.
+Compartir un rectángulo leído da una arista en el host físico K. Todos los
+ganadores y rivales se evalúan en el código completo.
+
+Escribir z_i=r_i/(1−r_i), η_i=T({i}), b_i=z_i/(1+η_i z_i), con r_i=p o q.
+Sea k(B) el coeficiente de z^B en log Ξ_J, donde Ξ_J=Σ_U T(U)z^U y el
+monomio z^B usa cada sitio exactamente una vez. La identidad de particiones
+T(U)=Σ_π ∏_{B∈π}k(B) implica la igualdad exacta
+
+  Ξ_J / ∏_i(1+η_i z_i)
+     = Σ_{familias de B disjuntos, |B|≥2} ∏_B k(B)b^B.                 (1)
+
+La familia vacía aporta 1. Los bloques se excluyen al compartir un sitio.
+Los signos, los ceros y las dependencias de la traza entran en k(B).
+Para un presupuesto a por fuente y una inclinación τ basta, para todo i,
+
+  Σ_{B∋i, |B|≥2} |k(B)| ∏_{j∈B}|b_j| exp[(a+τ)|B|] ≤ a.             (2)
+
+La suma de las filas de los sitios de un bloque cubre todos sus
+incompatibles, incluida la repetición del propio bloque. Usamos el
+criterio de Kotecký–Preiss y la estimación enraizada, teorema 1,
+ecuaciones (3) y (4), de D. Ueltschi, Cluster expansions and correlation
+functions, Moscow Mathematical Journal 4 (2004), 511–522.
+https://arxiv.org/pdf/math-ph/0304003
+
+2. Certificado de toda la partición
+===================================
+
+Tomar a=1/10000 y τ=1/100. Para probar (2) considerar primero la expansión
+física heredada, con actividad de fuente y_i=|b_i|exp(a+τ) y presupuesto
+λ=1/100 por fuente de cada decoración física. El peso absoluto que debe
+entrar en el recuento físico está acotado, por sitio de tasa r, por
+
+                    r/(1−2r) exp(0.0201).
+
+Se distinguen las dos longitudes de huella en el presupuesto cronológico de
+H5A_consumo_y_alcance.txt. Para cada nivel dual u poner b_n=⌈n(1+u)/2⌉−1.
+En un grupo grueso con v fuentes VV y c fuentes CC, k_j es el máximo de
+episodios iniciales vivos por huella en el instante j de esa prueba.
+El saldo inicial es h₀=v min(17,k₀)+c k₀. En el nivel siguiente se usa
+
+  h_j = min{v min(k_j,b₁₇)+c min(k_j,b₁₈),
+            max(0,h_{j−1}−1_{k_j<k_{j−1}} max(⌈17k_{j−1}/18⌉,b₁₇+1))}.
+
+Los k son enteros no crecientes, inicialmente ≤18 o ≤17 si c=0. En cada
+nivel quedan acotados por el mayor b_n de los tipos presentes. Cada
+singleton de longitud n compite en el mismo máximo global, por lo que
+su huella conserva a lo sumo b_n episodios iniciales en ese instante.
+Cuando cae el máximo, la primera acción que toca la huella que lo
+alcanzaba consume al menos la cantidad restada. Las acciones elegidas son
+distintas entre grupos y entre intervalos. Los episodios creados y los
+checks de medida se pagan como en las ecuaciones (1)–(3) de la nota de
+consumo. Esto justifica aplicar los mismos multiplicadores duales positivos
+a los nuevos saldos. Sea Φ(v,c) el máximo de su combinación, incluido h₀.
+Puesto que h_j≤v b₁₇+c b₁₈ y h₀≤17v+18c, para todo tamaño se tiene
+
+  Φ(v,c) ≤ (10039577/816816)v+(3446943/272272)c ≤ 12.30v+12.66c.
+
+Usar t=0.00665, s=4, ρ=4⁻¹⁷, x=1.36·10⁻⁸ y ξ=2.07·10⁻¹¹. Para e=v+c≥2,
+
+               t^[12.30v+12.66c−Φ(v,c)] ≤ ρsᵉ.                     (3)
+
+Hasta e=16 se maximiza la recurrencia entera sobre todos sus estados y
+se comprueba (3) con potencias enteras. Para e≥17 se sigue de la cota
+lineal y ρs¹⁷=1. Un precio físico de dato ≤x t^12.66 deja un factor
+t^0.36 por dato VV al usar la fila de 12.30. En los grupos de varios
+datos se usan x_V=0.16452x≥t^0.36 x y x_C=x. Para un solo dato se conserva
+Φ(1,0)=Φ(0,1)=9 y basta x·1.0754·10⁻⁸≥x t^3.66, de ambos tipos.
+
+También se distinguen los tipos al contar los contactos. Dos datos son
+de contacto si sus huellas se cortan, o cubren juntos una huella de acción
+que toca a ambos. Un dato tiene a lo sumo 28200 vecinos de datos. Las
+cotas adicionales VV–VV, CC–CC y VV–CC son 10700, 10100 y 17600. Para
+dos VV hay a lo sumo 17·17 por check común. Si sus huellas disjuntas
+cubren una línea, elegir esa línea que salga de la primera huella y luego
+un lector de un check que falta da ≤17·17·18. Para una acción pura de
+dos líneas vale el mismo límite. Un par de acción mixto requiere ambos
+tipos de fuente. En CC los tres términos son 18·16, 18·16·17, 18·16·17.
+Entre tipos se permiten 324 por intersección. Si la línea cubierta tiene
+el tipo de la raíz, debe faltarle exactamente un check y hay ≤20·18
+elecciones. En la otra orientación bastan 324·18. Para la acción mixta
+se añaden los 11016 de la cuenta de brazos en la nota de interacciones.
+Por check hay hasta 18 lectores VV, 17 CC y una medida.
+
+Con estas sustituciones se aplican los árboles de H5A_enlaces_entre_grupos.txt
+y las cubiertas minimales de H5A_primera_fusion.txt. En cada fila se conserva
+el tipo de entrada y se suman los hijos por su tipo usando la matriz
+original. Para una entrada de dato, la contribución de vecinos de
+contacto se acota por el mínimo entre 28200 max(w_V,w_C) y la fila de
+tipos anterior aplicada a (w_V,w_C). El peso por check en la serie de
+cubiertas es 18w_V+17w_C+w_m. El factor ρ se aplica una vez por grupo
+de al menos dos datos. Un grupo de un dato utiliza su precio propio.
+Las asignaciones de los sitios restantes y las filas de acción proceden
+del mismo árbol. El verificador incluido especifica todas las filas y
+sus supersoluciones. En particular Λ=48576293/50000000<1.
+
+Los precios exteriores son 5·10⁻³⁶ y 2.055·10⁻¹¹. La conversión a x,ξ
+incluye ambas tasas simultáneamente. En el extremo general quedan
+
+  K_E < 0.00394438,        K_D < 0.00000172429,
+  R_dato < 3.47882·10⁻¹⁶,  R_medida < 2.05622·10⁻¹¹.                 (4)
+
+K_E e+K_D d mayoriza la suma de incompatibles físicos para una
+decoración de e datos y d medidas. Es ≤λ(e+d). R_i mayoriza la suma
+de actividades físicas con su presupuesto al pasar por el sitio i.
+Para obtener k(B), conservar en el logaritmo físico únicamente las
+ocurrencias con las fuentes de B, una vez cada una. Si i∈B, alguna
+ocurrencia contiene i como fuente y por ello en su soporte físico.
+Distinguir tal ocurrencia en la suma absoluta y aplicar la estimación
+enraizada da una cota de R_i para la fila izquierda de (2). Todos los
+signos y todas las máscaras quedan cubiertos por la misma mayoración.
+Ambas R_i son menores que a. La monotonía de los mayorantes cubre el
+rectángulo inferior. La mejora en p procede de las cuentas por tipo y
+de la elección de presupuestos en estas filas.
+
+Para el logaritmo normalizado de (1), cortar al grado total M en las
+fuentes da un error absoluto ≤(n_datos R_dato+n_medidas R_medida)
+exp[−0.01(M+1)]. Se aplica otra vez la estimación enraizada, ahora a
+(1) con presupuesto a|B|, y se retira la inclinación τ del resto. Los
+factores individuales son conocidos y positivos. Para cada k(B) no
+nulo hay una familia conexa de historias físicas cuyo soporte conexo en
+K tiene tamaño ≤135|B|. Los bloques que se solapan unen esos soportes.
+Hasta grado M se enumeran, por tanto, conjuntos conexos de ≤135M sitios,
+sus subconjuntos y las restricciones del oráculo. Inclusión–exclusión
+en el soporte y el logaritmo formal truncado conservan el coste
+N exp(O(M)) con el factor polinómico del oráculo de la nota de decisión.
+Esto permite precisión relativa elegible y positividad en volumen finito.
+
+3. Qué se puede sumar en la esquina p=10⁻⁶
+==========================================
+
+Definir G sobre los sitios fuente con los pares de contacto, más una
+arista entre dos medidas cuyos checks comparten rectángulo. Cada arista
+pertenece a K. Para U no vacío, C₁,…,C_m son sus componentes inducidas en
+G y T_P=T(∪_{j∈P}C_j). Introducir el cumulante de estas m componentes
+
+      d_G(U)=Σ_{π partición de [m]} (−1)^(|π|−1)(|π|−1)! ∏_{P∈π}T_P.
+
+Para m=1 vale d_G(U)=T(U), incluso con interacciones cruzadas en U.
+En general |d_G(U)|≤A_m=Σ_j (j−1)! S(m,j), donde S(m,j) cuenta
+particiones en j clases. A₁=1, A₂=2, A₃=6 y A_m≤m!2^(m−1), enumerando
+permutaciones con cortes. La inversión de esta fórmula sobre las
+componentes de U reconstruye T(U). Una unión de algunas componentes
+induce exactamente las mismas componentes seleccionadas. Sumando en U,
+Ξ_J es el gas de bloques no vacíos de peso d_G(U)z^U, con exclusión al
+compartir un sitio o una arista de G entre bloques. Es una identidad
+algebraica que incluye los singletons.
+
+Para definir la parte sumable, usar el grafo L de checks que comparten
+rectángulo. El coste de una arista de G es cero. Para un par fuera de G
+con checks de las dos huellas alineados a un paso en L, el coste es 8.
+En los demás pares a distancia finita d≥1 es 15+18(d−1). Si las huellas
+están en componentes distintas de L el coste es infinito. También se
+pueden utilizar enlaces que unen todos los r≥3 miembros de una cubierta
+minimal de una acción, a coste 5 por cubierta completa. Sea C_G(U) el
+menor coste de un árbol abarcador de incidencia de sitios y enlaces.
+Tomar la familia admisible
+
+                     C_G(U)+log₂ A_m ≤ |U|.                         (5)
+
+Incluye todos los U conexos por G de cualquier cardinalidad. Para un
+árbol mínimo en (5), el producto de los pesos 2^(−coste) multiplicado
+por 2^|U| paga |d_G(U)|. Poner V=p/(1−2p), D=q/(1−2q),
+T_v=1.35·10⁻⁵, T_c=1.8·10⁻¹⁰, y=35T_v+T_c. El precio sumado de
+aristas fuera de G desde un check es a lo sumo
+
+  H=[578/32+83810/(4096(1−83810/2¹⁸))]/8 < 6.01750.
+
+578 acota los destinos alineados y 83810^d los destinos a distancia d.
+Para cubiertas, B(y)=343944y²+3683016y³+146395296y⁴+306·2³⁴y⁵/(1−y).
+Se usa la enumeración del primer check sin cubrir de la nota de primera
+fusión. Las filas del árbol, con factor 2 por fuente y 1/32 por cubierta,
+son
+
+  2V exp[1.41+(28200+630H)T_v+(40+18H)T_c+18B(y)/32] < T_v,
+  2D exp[1.41+(800+35H)T_v+(83810+H)T_c+B(y)/32]    < T_c.
+
+Sus lados izquierdos son <1.31776·10⁻⁵ y <1.66494·10⁻¹⁰. La exclusión
+de G cuesta por sitio de entrada a lo sumo 28201T_v+40T_c o
+800T_v+83810T_c, ambos <0.4. Esto paga el presupuesto 0.4|U| del
+gas limitado por (5) con actividades inclinadas por exp(1.01|U|).
+Sea k_g(B) el coeficiente de z^B del logaritmo de ese gas. Distinguir un
+bloque que contenga el sitio i y usar la estimación enraizada da
+
+  Σ_{B∋i} |k_g(B)| ∏_{j∈B}|b_j| exp(1.01|B|) ≤ T_tipo(i).            (6)
+
+El cumulante completo k(B) se obtiene al añadir los términos con alguna
+ocurrencia de bloque excluido por (5). Un conjunto B conexo puede
+contener subconjuntos desconectados, de modo que (6) debe aplicarse al
+coeficiente del gas especificado.
+
+Dos consecuencias cubren órdenes arbitrarios. Primero, para sólo medidas
+el filtro exige que la ejecución termine en el mismo síndrome D con el
+que empezó. Cada acción disminuye estrictamente su tamaño. La marca vale
+1 exactamente cuando el síndrome inicial carece de acción elegible.
+Todo candidato lee medidas de una única componente de G cuando ve alguna
+encendida. La marca factoriza sobre las componentes y d_G(U)=0 para m≥2.
+Todos los bloques puros no nulos cumplen (5), luego k_g(B)=k(B) en el
+sector de sólo medidas.
+
+Segundo, una condición sobre el número de componentes basta aun si están
+separadas. Para ρ la partición en componentes de G, expandir cada T_P
+en cumulantes de fuentes y aplicar la inversión de particiones da
+
+  d_G(U)=Σ_{π partición de U, π∨ρ tiene una sola clase} ∏_{A∈π}k(A).
+
+En efecto, para cada π la suma de Möbius sobre las particiones más
+gruesas que π y que ρ vale uno si la unión de las relaciones conecta
+U, y cero en otro caso. Si d_G(U)≠0, cada A de un sumando que
+subsiste admite una familia física conexa con esas fuentes usadas una
+vez. Las aristas de G enlazan las familias a través de las componentes.
+La unión de sus huellas es conexa en L, y el gasto radial total de todas
+las acciones se suma sobre las familias. Por ello la prueba por capas de
+H5A_enlaces_entre_grupos.txt, ecuaciones (3)–(4), se aplica con los
+conjuntos iniciales de checks de estas m componentes. Usa sólo la unión
+conexa de huellas y la separación entre clases de Kruskal. Cada check
+cargado a distancia positiva pertenece a un sitio visitado por una acción.
+Si d_j son las longitudes del árbol mínimo por distancia en L, e es el
+número de datos fuente y k=m−1>0, se obtiene
+
+    Σ_{j=1}^k [(55/54)^max(0,⌊(d_j−2)/2⌋)−1] ≤ 8e,
+    C_G(U) ≤ k[51+36 log_(55/54)(1+8e/k)].
+
+Dentro de las componentes se usan aristas de coste cero. La segunda fila
+sigue de la concavidad del logaritmo y el coste ≤18d_j−3. En particular,
+si f=|U|≥60000k y m(1+log₂ m)≤f/2, todo bloque que contribuya cumple
+(5). En efecto k log(1+8f/k) crece con k, (55/54)^716>480001 y
+51+36·716<30000. Estas condiciones admiten un número creciente de grupos.
+
+4. Todos los tríos en la esquina aspiracional
+=============================================
+
+Para tres sitios distintos se tiene |k(B)|≤6 por la fórmula de
+particiones. Se cuentan los posibles tríos no nulos por un sitio fijo.
+Poner L₀=83810, N₃=343944 y v=V exp(1.01), d=D exp(1.01). Dos hechos de
+la nota de primera fusión se usan en todas las subentradas. Un dato sin
+contacto y sin cubierta minimal de una huella por ≥3 fuentes se retira
+exactamente con su marca individual. Su presencia anula el cumulante
+mixto. Una cubierta de tres entradas tiene a lo sumo N₃ huellas
+candidatas por check fijado. Los otros miembros se eligen en los
+sucesivos primeros checks sin cubrir.
+
+Con tres datos, o bien el grafo de contactos es conexo o hay un dato
+aislado que exige la cubierta de tres. Desde un dato hay a lo sumo
+C(28200,2)+28200² tríos del primer tipo y 18N₃·35² del segundo. Con dos
+datos sin contacto entre ellos y una medida, ambos deben tocarla salvo
+que estén los tres en una cubierta. Desde un dato esto permite
+40·800+18N₃·70 elecciones y desde una medida C(800,2)+N₃·35². Aquí
+70 cuenta los dos órdenes para un dato y una medida.
+
+Con un dato v₀ de longitud n y hasta dos medidas, la huella propia
+retiene al menos n−2 checks encendidos y el total inicial es ≤n+2.
+Una acción múltiple ve fracción encendida ≤20/33, inferior a la de la
+huella propia. Un singleton de otra línea geométrica ve a lo sumo tres
+luces. El ganador es de la misma línea y longitud y tiene al menos n−2
+luces, de las cuales ≥n−4≥13 están en ψ_v₀. Después del paso quedan
+≤6 luces y la ejecución termina. En todas las subentradas con ese dato
+sólo pueden ganar singletons que compartan al menos 13 checks con su
+huella. Una medida fuera de la unión de esas huellas deja idéntico el
+ganador, filtro, signo y contención, tras sumar esa medida como fuente
+en J. Sin dato todas las subentradas de dos medidas pasan. Hay ≤24
+huellas candidatas contando sus sitios, por doble conteo ≤⌊18·18/13⌋.
+La unión tiene ≤432 checks. Desde una medida dada hay ≤35·24=840 datos
+posibles por el mismo recuento en sentido inverso. Las elecciones de
+trío son ≤C(432,2) desde el dato y ≤840·432 desde la medida.
+
+Falta el caso de un par A de datos en contacto y una medida ℓ. Si ℓ
+toca a un dato, se cuenta directamente. En otro caso k(A∪{ℓ})=
+T(A∪{ℓ})−T(A). Comparar las dos ejecuciones globales. Mientras coinciden
+las acciones, los síndromes difieren en el único check ℓ. Una divergencia
+requiere un candidato ganador en alguna de las dos ejecuciones que
+contenga ℓ y lea al menos otra luz de la traza sobre A. Con las mismas
+acciones hasta el final, añadir ℓ conserva la marca porque está en J
+y el síndrome terminal y D cambian en el mismo check. Sobre A hay a lo
+sumo 36 acciones por descenso estricto. Las luces que alguna vez aparecen
+están entre ≤36 checks iniciales y las huellas de esas acciones, de
+tamaño ≤306. Para A fijo hay así ≤80+L₀(36+306·36) opciones para ℓ,
+incluidas las medidas de contacto. Para fijar en cambio ℓ se usa la
+geometría siguiente.
+
+• Si ℓ toca a un dato en el sentido del contacto, hay ≤800·28200 pares.
+  Para dos datos en distintas líneas geométricas, todas las luces de la
+  traza sobre A están a lo sumo a un paso en L de las huellas iniciales.
+  En líneas paralelas disjuntas se empieza con puntuación uno. Un
+  singleton perfecto en ellas tiene la huella entera de uno de los dos
+  datos. Un múltiple perfecto consume ≥33 luces y deja ≤3. Para líneas
+  perpendiculares se tiene masa inicial ≤35 y una columna CC alcanza
+  fracción encendida ≥17/18. Si gana un múltiple, el descenso es ≥(8/9)33
+  y quedan ≤5 luces. Si gana un singleton, cubre ≥17 luces, al menos 16
+  de una de las huellas originales en su línea. Su diferencia simétrica
+  con esa huella tiene ≤4 checks. La otra huella inicial, de longitud n,
+  retiene ≥n−1 luces. El segundo ganador es de esa línea y cubre ≥n−1.
+  Un múltiple tendría a lo sumo 22/33 y un singleton de otra línea vería
+  ≤5. Tras el segundo paso quedan ≤6. Cada huella de acción nueva ha
+  cortado alguna original. Por ello ℓ está a ≤2 pasos de una huella
+  original cuando puede causar la primera divergencia. Fijar ℓ permite
+  ≤35L₀²·28200 pares con estas líneas.
+
+• Si ambos datos están en la misma línea geométrica, un check ℓ fuera
+  de ella queda inerte en toda la traza. Las acciones en esa línea
+  mantienen allí todas las luces salvo, a lo sumo, ℓ. Si hay un múltiple
+  elegible con h luces en un rectángulo, su singleton de la línea ve al
+  menos h−1 y tiene longitud ≤18. Supera al múltiple, de tamaño ≥33 y
+  h≥17. Un singleton de otra línea ve ≤2. Así los dos máximos coinciden
+  al añadir una medida exterior. Si ℓ está en la línea, sólo ganan
+  singletons en ella, de la misma longitud n. En una ejecución que pasa
+  el filtro con los dos datos y d₀∈{0,1} medidas en la línea, poner M₀
+  igual a la masa inicial. Alguno de los dos datos originales ve al menos
+  (M₀−d₀)/2 luces. Tras el primer paso quedan a lo sumo n+d₀. Antes del
+  último hay al menos n−d₀, pues su huella debe dejar D. El descenso
+  integral estricto limita la traza a 2+2d₀ pasos, también si tiene
+  cero o uno. Si las marcas difieren, alguna ejecución pasa. En la
+  primera divergencia hay a lo sumo tres acciones comunes previas.
+  Si la que pasa hubiese terminado al final del prefijo común, la otra
+  tendría ≤2 luces y también habría terminado. Desde la huella ganadora
+  que contiene ℓ se puede seguir una luz anterior hasta una acción común
+  o una huella fuente. Siguiendo hacia atrás se llega a un dato original
+  en ≤4 intersecciones de singletons en la línea. Hay ≤35 elecciones de
+  singleton en ℓ, grado cerrado ≤307 en ese grafo y ≤10700 opciones para
+  el compañero en contacto del mismo tipo. Se obtienen ≤35·307⁴·10700
+  pares desde ℓ. El argumento incluye cambios por desempate y por filtro.
+
+Tres medidas solas siempre pasan porque una acción legal exige al menos
+nueve luces. Su cumulante es cero. Reuniendo las cuentas anteriores,
+llamar A las tres cantidades de la fila siguiente
+
+  A₁=C(28200,2)+28200²+18N₃·35²,
+  A₂=40·800+18N₃·70+28200[80+L₀(36+306·36)],
+  A₃=C(800,2)+N₃·35²+800·28200+35L₀²·28200+35·307⁴·10700.
+
+Las cargas inclinadas de todos los tríos con un sitio dado satisfacen
+
+  L₃,dato   ≤ 6[A₁v³+A₂v²d+C(432,2)vd²] < 1.15482·10⁻⁶,
+  L₃,medida ≤ 6[A₃v²d+840·432vd²]        < 2.54812·10⁻⁵.
+
+5. La suma que queda abierta a 10⁻⁶
+==================================
+
+La nota anterior acotó L₂,dato≤2v(28200v+40d) y L₂,medida≤2d·800v. En (1)
+usar los pares y tríos con su actividad completa. Desde cuatro fuentes
+descomponer cada actividad en dos contribuciones, k_g(B) y k(B)−k_g(B),
+ambas con la misma exclusión por sitio. La suma es exacta. Para la
+subserie que usa pares, tríos y, desde cuatro fuentes, sólo la primera
+contribución, (6) da las cargas por sitio
+
+  L₂,dato+L₃,dato+T_v       < 1.50800·10⁻⁵,
+  L₂,medida+L₃,medida+T_c   < 2.54814·10⁻⁵.
+
+El presupuesto es una unidad por fuente. Por tanto esta subserie del
+logaritmo converge absolutamente con una inclinación adicional de
+0.01 por fuente, incluso con solapamientos, ciclos, repeticiones y un
+número arbitrario de bloques. Los valores anteriores miden la condición
+de convergencia. Para el modelo completo en la esquina aspiracional,
+bastaría probar para cada i
+
+   Σ_{B∋i, |B|≥4} |k(B)−k_g(B)| ∏_{j∈B}|b_j| exp(1.01|B|) ≤ 1−3·10⁻⁵.
+
+También se puede trabajar directamente con los bloques que exceden (5).
+Sea E_i la suma sobre estos bloques U que contienen i de
+|d_G(U)| ∏_{j∈U}|b_j| exp(1.41|U|). Si E_dato≤5·10⁻⁷ y E_medida≤10⁻⁶,
+las cargas completas del gas de componentes se acotan por T_v+E_dato y
+T_c+E_medida. Incluso con estas dos adiciones, ambas filas de exclusión
+de G quedan por debajo de 0.4. La estimación enraizada daría (2) para
+todo el gas de fuentes, con a=1. Estos dos límites son condiciones
+suficientes pendientes de demostrar.
+
+Todos los términos del residuo provienen de algún bloque de componentes
+que excede (5). Un dato aislado de G en uno de esos bloques requiere
+una cubierta minimal de al menos tres fuentes. De lo contrario la
+retirada del dato factoriza la marca en cada unión de componentes y su
+cumulante se anula. Esta condición permite enfocar el siguiente recuento
+en primeras interacciones entre grupos separados. La cota general de
+3.6·10⁻³⁶ de la sección 2 ya incluye ese residuo en su propio rectángulo.
+
+Reproducción
+============
+
+Descomprimir el paquete y ejecutar desde su carpeta con Python 3.10 o
+posterior y la biblioteca estándar
+
+  python verificar_H5A_cumulantes.py
+  python contraste_cumulantes.py
+
+El primer comando verifica el perfil local, los descuentos, las dos
+conversiones de tasas y las filas generales y aspiracionales. El segundo
+recorre la cronología en sentido inverso al algoritmo principal, comprueba
+las dos identidades de componentes sobre marcas con ceros y signos y
+repite todas las comparaciones con otra cota racional de la exponencial.
+Las pruebas uniformes en el tamaño están en las secciones anteriores.
+La carpeta antecedentes contiene las notas de las que proceden las
+reducciones físicas y la decisión de pasar a cumulantes de fuentes.

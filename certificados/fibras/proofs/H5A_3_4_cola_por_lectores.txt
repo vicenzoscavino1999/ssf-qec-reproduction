@@ -1,0 +1,245 @@
+HGP binario (3,4) · Salidas de un mismo grupo y cola por lectores
+23 de noviembre de 2026 · Nota de investigación
+
+Resultado de una ronda
+----------------------
+Modelo y extremo de medidas                    Anterior          Esta nota
+Bernoulli, q ≤ 0.001                          p ≤ 5.15·10⁻⁷     p ≤ 5.22·10⁻⁷
+Circuito, r_m ≤ 0.001, VV primero             r_c ≤ 9.25·10⁻⁸   r_c ≤ 9.75·10⁻⁸
+Circuito, r_m ≤ 0.001, todo orden admitido    r_c ≤ 8.45·10⁻⁸   r_c ≤ 8.90·10⁻⁸
+
+Se mantienen las hipótesis de H5A_3_4_salidas_del_mismo_grupo.txt (v21).
+Se usa el autoproducto de una semilla binaria de grado columna 3 y fila
+4, los subhosts y máscaras admitidos, SSF con competición global sobre
+las acciones FGL, β=.01, desempate físico fijo y el filtro de síndrome
+físico residual cero. En circuito se usa la extracción Z del sector X
+con el calendario voraz del proyecto. Los intervalos son uniformes en el
+tamaño de la semilla. Las afirmaciones sobre precisión relativa para un
+fallo silencioso positivo requieren el testigo lógico del manuscrito.
+
+En G3 (p=10⁻⁶, q=.001) continúa abierto el presupuesto de 0.00078558
+para el complemento de v14. Para las dos elecciones de parámetros del §5,
+dos composiciones de cuatro datos ya impiden cerrar la nueva fila completa.
+
+1. Lectores que permiten un mejor crédito a cualquier tamaño
+------------------------------------------------------------
+Escribir V=VV y C=CC. Un lector es el rectángulo de checks de un
+generador. En el grafo de originales con lector común, O significa
+solapamiento efectivo entre franjas, D indica proyección común sin
+solapamiento y W indica proyecciones disjuntas. Las matrices dirigidas
+de las tres clases son las de H5A_3_4_reunion_de_ramas.txt (v19), §2.
+Los datos con al menos una arista O o D forman las componentes fuertes
+no triviales. Considerar un dato x sin vecinos fuertes.
+
+Si algún lector de x contiene otros dos datos y,z unidos por una arista
+fuerte, llamar a x satélite. Tanto xy como xz son débiles y y,z pertenecen
+a la misma componente fuerte. En cualquier otro caso, todas las franjas
+presentes en cada lector de x tienen proyecciones disjuntas entre sí.
+Llamar múltiple a una arista débil si hay un lector común en el que al
+menos una de las dos franjas ocupa dos o más celdas. Si x está fuera de
+las componentes fuertes, no es satélite y carece de arista múltiple,
+cada lector con varias fuentes que contiene a x lee una celda por fuente.
+En efecto, una segunda celda en otra fuente daría una arista múltiple
+incidente en x. Si la segunda celda es de x, sirve cualquier otra fuente
+del mismo lector.
+
+Se aplican los créditos por primeros apagados, en sextos de descenso.
+
+  Clase de x                                      V             C
+  Solapado o con vecino fuerte                     2,3,6         2,2,4,6
+  Satélite                                         2,3,6         2,2,6,6
+  Separado en todos los lectores                   2,4,8         2,2,7,9
+  Separado y de lectura unitaria con otras fuentes  2,4,12        2,2,8,12
+
+Las dos primeras filas son compatibles por la verificación de v6
+(verificar_H5A_3_4_medidas_por_historia.py, far_credits). En un lector
+de proyecciones disjuntas se aplica la prueba de v9, §1. El crédito
+empleado por cada fuente puede rebajarse al que le permiten sus otros
+lectores. En un lector con varias fuentes y alguna de varias celdas,
+ninguna de ellas puede exigir aquí el crédito unitario. En un lector
+con dos fuentes no separadas las no fuertes presentes son satélites.
+Así los créditos simultáneos caben en el descenso de cada ocurrencia.
+En Bernoulli, con precio a por sexto, se pueden usar techos (7,10)
+para la primera clase, (7,8) para la segunda, (4,4) para la tercera
+y (0,0) para la cuarta. El hacinamiento en un lector se decide antes
+de sumar las posiciones, sin imponer un máximo de datos al grupo.
+
+En circuito, con n=3,4 y un control de paridad uno sobre una franja
+disjunta, h lecturas omitidas dejan r=n−h−X+Z luces, donde X y Z son
+binomiales independientes de parámetros (n−h,θ) y (h,θ) en la ley
+auxiliar. El precio para una tabla de créditos c es cero si 2r<n, y
+a^(Σ_{j≤r}c_j−6(2r−n)) en otro caso. Para varios controles se toma el
+máximo entre 1 y el precio de rango lleno. Las franjas disjuntas se
+reservan enteras y las listas de los restantes marcados se reparten
+antes de revelar los bits auxiliares, como en fase 5, §3. Para un
+dato solapado se usa la ley genérica de fase 5. El precio y la
+diferencia entre el precio de satélite y el unitario son crecientes
+en r. Esta última es el precio de satélite multiplicado por
+1−a^(Σ_{j≤r}(c_unitario,j−c_satélite,j)). La dominación de calendario
+de v19 se aplica también al recargo, con θ=.00115. Se integran las
+etiquetas y bits una vez por fibra, incluidas las fibras de paridad cero.
+
+2. Contar opciones de posición para todo el grupo
+-------------------------------------------------
+Para un extremo y tipo fijos, si g destinos débiles tienen lectura
+unitaria en todo lector común y b son múltiples, entonces g+2b≤W_ij.
+Para V,V débiles las distancias en los dos factores son (2,4).
+El segundo eje pasa por la coordenada del lector común. Si la franja
+ocupa al menos dos celdas allí, se obtienen dos caminos distintos de
+longitud cuatro hacia el mismo destino, sin retroceso porque los dos
+extremos tienen vecindades disjuntas. Para C,C se intercambian los ejes.
+En un par mixto débil ambas distancias son tres. Una segunda celda
+duplica los caminos de uno de los ejes a través de la coordenada del
+lector. En todos los casos los pares de caminos de extremos distintos
+son disjuntos como objetos de recuento. Esto permite ciclos en la semilla.
+Todos los destinos débiles de cada par de tipos tienen el mismo
+desplazamiento. Para mayorar se completan las opciones hasta W_ij
+y se promueven hasta W_ij/2 a múltiples. El número total y el de
+opciones múltiples dominan los físicos, y la promoción sólo encarece
+una rama si cambia el crédito de un extremo.
+
+Elegir primero árboles en cada componente O y completar por aristas D
+cada componente fuerte. Para una fuente no fuerte usar el precio unitario
+si carece de arista múltiple y el separado en otro caso. Si es satélite
+añadir el recargo «satélite menos unitario». Expandir el producto sobre
+subconjuntos de satélites que llevan el recargo. Para cada uno de ellos
+fijar un lector y una pareja fuerte testigo y elegir entre sus dos
+extremos para unirlo a esa componente. Son al menos 2^k elecciones
+distintas para k recargos. Ninguna crea ciclos en el bosque ya escogido.
+Extender cada elección por un bosque maximal de aristas débiles múltiples
+en el grafo contraído y después por otras débiles hasta obtener un árbol.
+Toda fuente no fuerte sin un recargo seleccionado que tenía una arista
+múltiple empieza esta extensión como vértice aislado. El bosque maximal
+le conserva una múltiple. Cada dato fuerte conserva una incidencia fuerte,
+y cada dato solapado una incidencia O. La raíz se fija al final. Si hay
+otros árboles admisibles, sumarlos sigue mayorando las posiciones.
+
+En cada arista se aplica el ahorro de v21, §§2–3, para su desplazamiento
+en el recubrimiento. En particular, las posiciones de los hijos que pueden
+alcanzarse desde más de un dato se suman por la unión de sus bolas. Para
+cada árbol admisible el precio resultante domina la contribución física
+fijada con las mismas medidas. Por ello se puede dividir por 2 por cada
+satélite seleccionado. La raíz y cada nuevo dato aportan su peso una vez,
+también cuando salen varias ramas. Los presupuestos de profundidad y los
+volúmenes de enlace utilizados son los de dos niveles de v21.
+
+3. Serie positiva y uso de la cola
+-----------------------------------
+En el programa W,D,O incluyen la suma por desplazamiento de los
+descuentos de v21. Para estos tres núcleos se congelan los campos al
+suelo (.001,0,0,0,0,10⁻⁸,3·10⁻⁸,10⁻⁷), en el orden de v21. Cada
+testigo se verifica por encima de ese suelo. En estas series se omite
+el descuento de destinos prohibidos en la raíz, lo que amplía la cota.
+
+Por tipo de raíz sean c₀,c_s,c_D,c_O los precios de lectura unitaria,
+separada, fuerte sin solape y solapada, y j la mitad del recargo de
+satélite. Sea x el peso del dato de raíz. Se suprime el índice del tipo
+donde un producto por matriz ya selecciona su fila. U es un árbol libre.
+D' y O' reciben una arista fuerte de su clase. C' tiene un hijo fuerte,
+T lleva el recargo de satélite y Δ es el incremento de U al recibir una
+débil múltiple. Con g=WU/2, b=g+WΔ/2, E₀=exp(g), E=exp(g+b),
+A=exp(WT), d=DD', o=OO', las series satisfacen
+
+  C' = x E A [c_D(exp(d)−1)+c_O exp(d)(exp(o)−1)],
+  T  = x j E,           D' = x c_D E A+C',       O' = x c_O E A exp(d+o),
+  U  = x E₀ [c₀+c_s(exp(b)−1)]+C'+T (W C'),     Δ = x(c_s−c₀)E₀.
+
+Las aristas de satélite distinguidas se orientan hacia un C' hijo o salen
+del núcleo fuerte hacia un T hijo. Los otros hijos forman conjuntos
+sin orden, de donde salen las exponenciales. Todos los coeficientes
+tienen interpretación positiva. Se redondean hacia arriba c₀, c_s−c₀,
+j, c_D y c_O antes del cálculo racional. Para los dos primeros esto es
+seguro al escribir el coste como precio base más el incremento en el
+suceso de al menos una arista múltiple. La iteración racional al alza
+produce una supersolución U⁺(w). Los coeficientes U_i[v,c] se calculan
+por la identidad de series (exp F)'=F' exp F por grado total.
+
+Para tamaños hasta diez se conserva el menor entre la tabla de v21
+con los campos del testigo y χ_vc U_i[v,c]. Para una pareja se admite
+también el reparto por desplazamientos de la ecuación (5) de v12 y los
+límites por columna de v18. En VV el saldo dos requiere posición (0,2).
+En CC exige la misma columna, con ≤56,32,12 posiciones por los niveles
+0,1,2 respectivamente. Se asignan los niveles superiores a los
+desplazamientos permitidos más costosos hasta agotar esos límites.
+El término mixto excepcional de hasta 24 destinos es débil. En circuito el
+escalón dos bruto se recupera de la tabla marcada previa al descuento de
+v21 y se aplica sólo a los desplazamientos que lo permiten. El escalón
+uno se restringe a la misma fila para VV, excluye el desplazamiento
+débil para CC y el solapado para pares mixtos. El nivel cero conserva
+todas sus posiciones. La geometría precede a la integración por etiquetas.
+
+Con w_i=m_i exp(S_i) de v21 se usa, para tamaños once en adelante,
+
+  T_i(w) = U⁺_i(w) − Σ_{v+c≤10} U_i[v,c] w_V^v w_C^c,
+  L_i(m) = Σ_{11≤v+c≤13} U_i[v,c] m_V^v m_C^c.
+
+La primera sustracción usa la misma serie que se ha mayorado. La fila
+ordinaria suma T_i(w) completo. En la rama física que requiere hijo
+exterior vale T_i(w)−L_i(m). En efecto, para cada forma del árbol,
+exp(−g₀)[exp(S−l)−1]≤exp(−g₀−l)[exp(S)−1], donde g₀ es ahorro inicial
+y l es ahorro en los enlaces. El descuento congelado del propio término
+mayora exp(−g₀−l) y multiplica la diferencia completa exp(S)−1.
+Así se restan los coeficientes sin hijo de esa misma
+serie en los grados indicados. Los demás grados se mantienen íntegros.
+También se añade L_i(m) a la sustracción de la raíz lejana con un único
+hijo de tipo i que necesita descendencia (v21, §3). La cola directa de
+una raíz con un grupo solo y los núcleos simples conservan sus cuentas.
+
+4. Comprobación en los extremos
+-------------------------------
+Modelo                     (a,s)            Fila R            Máximo de cocientes
+Bernoulli                  (.567,.685)      .000921689387352   .999513235819
+Circuito VV primero        (.558,.750)      .000785415753659   .999521593544
+Circuito orden admitido    (.555,.780)      .000909879293995   .999528337645
+
+Cifras redondeadas. Las desigualdades se comprueban con fracciones,
+incluidos los extremos exactos de las leyes circuitales. Se usa b=.001145,
+θ=.00115, inclinación .015 y presupuestos de fila .004 y .002. Los pesos
+primitivos positivos en la esquina dominan los de todo el rectángulo,
+usando en circuito la dominación antes de normalizar las fibras (v19).
+El valor .000785415753659 corresponde a la fila circuital con VV primero.
+El presupuesto de .00078558 corresponde al complemento fenomenológico en G3.
+
+5. Qué subsiste en G3
+---------------------
+Para a=.569, s=.673, a los mismos pesos de comparación de v21
+(m_V,m_C)=(1.84·10⁻⁶,2.14·10⁻⁶), el coeficiente ponderado de grado once
+pasa de 6.453533315·10⁻⁸ a 9.639421823·10⁻⁹ desde V y de
+3.480235204·10⁻⁷ a 6.124532151·10⁻⁸ desde C. Son factores 6.69 y 5.68
+de reducción de ese grado del mayorante a pesos iguales.
+
+Hay una obstrucción anterior a la cola. Conservar en la propia fila h_C
+sólo las composiciones (1 V,3 C) y (2 V,2 C). Para minorar sus coeficientes
+al evaluar esa fila se usa una estrella centrada en C con desplazamientos
+(3,3) para las aristas VC y (4,2) para CC. Es una elección en la
+minimización de ahorro de v21, por lo que da un techo al descuento en
+el exponente. El precio alternativo χU ya está congelado, y se puede
+multiplicar por el mismo factor ≤1 al tomar un minorante. Los otros
+campos tienen coeficientes netos no negativos tras restar dichos ahorros.
+Se descartan y se usa m_i ≥ p exp(.0191+F_i A+K_i B) con las exposiciones
+que correspondan. El programa conserva los términos de cobertura necesarios
+hasta restar el ahorro de la estrella. La fila exige, con h=h_C>0,
+
+                     h ≥ c₁ exp(L₁h)+c₂ exp(L₂h).
+
+ (a,s)          c₁ (red.)   L₁       c₂ (red.)   L₂        e Σ c_j L_j
+ (.569,.673)   6.45933e−8  3159792   5.70544e−8  3024893    >1.02393
+ (.567,.685)   7.16541e−8  2799115   6.33511e−8  2679614    >1.00664
+
+Como exp(t)≥e·t para t>0, se necesitaría e Σ c_j L_j≤1. Las cotas
+inferiores de la última columna usan Taylor de grado diez con fracciones positivas
+y pendientes redondeadas hacia abajo. La incompatibilidad vale aunque
+se omita toda la cola grande en esas dos elecciones de (a,s). Abarca
+ramificaciones de profundidad arbitraria entre grupos. El resto físico
+y el efecto de otras elecciones de parámetros siguen abiertos. Para
+G3 queda por controlar el peso conjunto de las ramas que estos grupos
+mixtos pueden alimentar. Recortar sólo la cola grande deja intacta
+la desigualdad anterior en esos parámetros.
+
+Reproducción con la biblioteca estándar, desde 05_COMPROBACIONES
+
+    python -I -B -X utf8 verificar_H5A_3_4_cola_por_lectores.py
+
+Se reconstruyen las tablas locales anteriores, se cotejan los créditos
+y se comprueban las tres supersoluciones y las dos obstrucciones.
+

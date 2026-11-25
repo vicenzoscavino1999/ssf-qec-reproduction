@@ -1,0 +1,275 @@
+{
+ "A_F17_logical_query_basis": {
+  "dual_family": "L_(g,d) = (e_{j_g} c_d^T, 0)",
+  "k_logical": 289,
+  "kernel_dimension": 17,
+  "pairing": "identidad 289x289: las 289 consultas son base de ker(H_Z)/fila(H_X)",
+  "preprocessing": "una eliminacion binaria 289x306 (rango de H_0); las consultas son explicitas",
+  "query_family": "u_(a,b) = (c_a e_{j_b}^T, 0), c_a = 1_{P_a}+1_{P_inf}, j_b = recta y=b*x",
+  "query_weight_each": 34,
+  "seed_rank": 289
+ },
+ "B_small_code_exhaustive_control": {
+  "P0": {
+   "lower_reading": "9.41192E-1",
+   "upper_reading": "9.41192E-1"
+  },
+  "P_sil": {
+   "lower_reading": "2.4912763995E-1",
+   "upper_reading": "2.4912763995E-1"
+  },
+  "Q_sil": {
+   "lower_reading": "2.6469375E-1",
+   "upper_reading": "2.6469375E-1"
+  },
+  "budget_with_adversarial_access_errors": {
+   "improved": {
+    "sign_patterns": 404,
+    "worst_relative_error_Psil": {
+     "lower_reading": "1.862841022968E-3",
+     "upper_reading": "1.862841022969E-3"
+    },
+    "worst_relative_error_Qsil": {
+     "lower_reading": "1.724052815400E-3",
+     "upper_reading": "1.724052815401E-3"
+    },
+    "zeta_num": {
+     "lower_reading": "1.390278990087E-4",
+     "upper_reading": "1.390278990088E-4"
+    }
+   },
+   "witness": {
+    "sign_patterns": 404,
+    "worst_relative_error_Psil": {
+     "lower_reading": "1.031295335660E-3",
+     "upper_reading": "1.031295335661E-3"
+    },
+    "worst_relative_error_Qsil": {
+     "lower_reading": "1.029139407525E-3",
+     "upper_reading": "1.029139407526E-3"
+    },
+    "zeta_num": {
+     "lower_reading": "2.158149171270E-6",
+     "upper_reading": "2.158149171271E-6"
+    }
+   }
+  },
+  "candidates": 40,
+  "code": "HGP de la semilla [1 1 1]: n=10, m_X=3, k=4, d=n-dim S_X=7",
+  "decoder": "SSF, todos los subconjuntos de generadores con huella no vacia, beta=1/2, orden (|F|,mask)",
+  "explicit_small_bias": {
+   "F_over_Qsil": {
+    "lower_reading": "9.989818163974E-1",
+    "upper_reading": "9.989818163975E-1"
+   },
+   "exact_bias": "3/1024",
+   "field_bits": 10,
+   "multiset_size": 1048576
+  },
+  "histories": 8192,
+  "lower_bounds": {
+   "improved": {
+    "lower_reading": "1.779557107312E-1",
+    "upper_reading": "1.779557107313E-1"
+   },
+   "sector_at_most_one_fault": {
+    "lower_reading": "1.779557107312E-1",
+    "upper_reading": "1.779557107313E-1"
+   },
+   "witness": {
+    "lower_reading": "2.762430939226E-3",
+    "upper_reading": "2.762430939227E-3"
+   },
+   "witness_weight": 2
+  },
+  "queries_full_quotient_dimension": 7,
+  "queries_logical_quotient_dimension": 4,
+  "rates": {
+   "p": "1/20",
+   "q": "1/50"
+  }
+ },
+ "C_rectangle_family_reverification": {
+  "description": "E = clase P menos 2 rectas, D = 4 cruces con 2 rectas de la primera clase; residual P xor Q",
+  "inherited_source": "ETAPA2R1_PARTICION_REVISOR_20261104/CONTROL_RECTANGULOS.json (N_2)",
+  "row_decoder_runs": 314432,
+  "silent_all_rows": 96216192,
+  "silent_per_row": 314432
+ },
+ "D_before_after_at_certified_corners": {
+  "KP_rate_theta": "17/361700",
+  "circuit_corner": {
+   "L_fin_lower": {
+    "lower_reading": "7.983395610556E-1258",
+    "upper_reading": "7.983395610557E-1258"
+   },
+   "after": {
+    "KP_truncation_order_M": 89637771,
+    "bits_of_relative_precision": 4187,
+    "log10_lower_bound": -1257.098,
+    "lower_bound_on_Qsil": {
+     "lower_reading": "7.983395610556E-1258",
+     "upper_reading": "7.983395610557E-1258"
+    },
+    "relative_tolerance_per_partition": {
+     "lower_reading": "6.237027820747E-1261",
+     "upper_reading": "6.237027820748E-1261"
+    }
+   },
+   "before": {
+    "KP_truncation_order_M": 195892465,
+    "bits_of_relative_precision": 9181,
+    "log10_lower_bound": -2760.494,
+    "lower_bound_on_Qsil": {
+     "lower_reading": "3.206388824235E-2761",
+     "upper_reading": "3.206388824236E-2761"
+    },
+    "relative_tolerance_per_partition": {
+     "lower_reading": "2.504991268933E-2764",
+     "upper_reading": "2.504991268934E-2764"
+    }
+   },
+   "orders_gained_in_lower_bound": 1503.396,
+   "point": {
+    "R_c": {
+     "lower_reading": "9.662549574567E-82",
+     "upper_reading": "9.662549574568E-82"
+    },
+    "R_m": {
+     "lower_reading": "1.471190254576E-20",
+     "upper_reading": "1.471190254577E-20"
+    }
+   }
+  },
+  "per_query_cost_form": "N * exp[O(M log max(2,Delta))] * poly(N, M, L_in), con M el orden de truncamiento",
+  "phenomenological_corner": {
+   "after": {
+    "KP_truncation_order_M": 89084583,
+    "bits_of_relative_precision": 4166,
+    "log10_lower_bound": -1250.834,
+    "lower_bound_on_Qsil": {
+     "lower_reading": "1.466237187586E-1251",
+     "upper_reading": "1.466237187587E-1251"
+    },
+    "relative_tolerance_per_partition": {
+     "lower_reading": "1.145497802802E-1254",
+     "upper_reading": "1.145497802803E-1254"
+    }
+   },
+   "before": {
+    "KP_truncation_order_M": 190466965,
+    "bits_of_relative_precision": 8931,
+    "log10_lower_bound": -2685.1,
+    "lower_bound_on_Qsil": {
+     "lower_reading": "7.951888638735E-2686",
+     "upper_reading": "7.951888638736E-2686"
+    },
+    "relative_tolerance_per_partition": {
+     "lower_reading": "6.212412999012E-2689",
+     "upper_reading": "6.212412999013E-2689"
+    }
+   },
+   "orders_gained_in_lower_bound": 1434.266,
+   "point": {
+    "p_star": {
+     "lower_reading": "1.062880453202E-79",
+     "upper_reading": "1.062880453203E-79"
+    },
+    "q_star": {
+     "lower_reading": "2.795261483694E-19",
+     "upper_reading": "2.795261483695E-19"
+    }
+   },
+   "sector_masses_over_B0": {
+    "(15,4)_96216192": {
+     "lower_reading": "1.466237187586E-1251",
+     "upper_reading": "1.466237187587E-1251"
+    },
+    "(16,1)_1503378": {
+     "lower_reading": "1.114913965222E-1276",
+     "upper_reading": "1.114913965223E-1276"
+    },
+    "(17,0)_5202": {
+     "lower_reading": "1.466916834325E-1339",
+     "upper_reading": "1.466916834326E-1339"
+    }
+   }
+  },
+  "queries": {
+   "after": {
+    "dimension": 289,
+    "field_bits": 17,
+    "masks": "2^34"
+   },
+   "asymptotic_ratio_of_dimensions_for_17_18_regular_seeds": "k/d = (1-r)^2/(1-r+r^2) = 1/307 con r=17/18",
+   "before": {
+    "dimension": 88723,
+    "field_bits": 25,
+    "masks": "2^50"
+   },
+   "construction": "potencias sobre GF(2^m), sesgo <= (dim-1)/2^m; el manuscrito cita Naor-Naor (poly)",
+   "delta_small_bias": "1/320",
+   "ratio": "2^16"
+  }
+ },
+ "budget": {
+  "delta_small_bias": "1/320",
+  "e": "1/80",
+  "epsilon": "1/10",
+  "eta": "e*ell/4",
+  "zeta_den": "min(e, e*ell/16)",
+  "zeta_num": "e*ell/16"
+ },
+ "checks": {
+  "17_kernel_vectors_of_weight_34": true,
+  "289x289_logical_pairing_is_identity": true,
+  "F17_quotient_dimensions": true,
+  "F17_seed_full_row_rank_289": true,
+  "L_fin_at_least_manuscript_value": true,
+  "L_fin_below_next_digit": true,
+  "Lambda_separates_all_16_classes": true,
+  "absence_bound_positive": true,
+  "all_8192_histories_enumerated": true,
+  "budget_improved_P0_within_e": true,
+  "budget_improved_Psil_within_epsilon": true,
+  "budget_improved_Qsil_within_e": true,
+  "budget_witness_P0_within_e": true,
+  "budget_witness_Psil_within_epsilon": true,
+  "budget_witness_Qsil_within_e": true,
+  "circuit_corner_identities": true,
+  "circuit_witness_matches_plan_3.2064e-2761": true,
+  "dimension_ratio_formula_1_over_307": true,
+  "evaluation_matrix_is_identity_17x17": true,
+  "exact_average_over_full_quotient_equals_Qsil": true,
+  "exact_average_over_logical_quotient_equals_Qsil": true,
+  "explicit_multiset_bias_at_most_3_over_1024": true,
+  "explicit_multiset_bias_within_budget": true,
+  "improved_lower_bound_valid_and_larger": true,
+  "kernel_dimension_is_17": true,
+  "on_T_membership_in_S_iff_Lambda_R_zero": true,
+  "on_T_membership_in_S_iff_Q_R_zero": true,
+  "p_star_reading": true,
+  "phenomenological_improved_exceeds_witness": true,
+  "q_star_odds_equal_nu_xD_over_3": true,
+  "rectangle_15_4_all_silent_with_residual_P_xor_Q": true,
+  "rectangle_15_4_total_matches_inherited_N2": true,
+  "rectangle_run_count": true,
+  "sector_lower_bound_valid": true,
+  "silent_failure_is_positive": true,
+  "small_bias_sandwich": true,
+  "small_code_css_commutation": true,
+  "small_code_d7_k4": true,
+  "small_code_dimensions": true,
+  "small_code_field_bits": true,
+  "witness_lower_bound_valid": true,
+  "zero_class_agrees_between_quotients": true
+ },
+ "counts": {
+  "F17_row_decoder_runs": 314432,
+  "full_FGL_trajectories_F17": 0,
+  "named_checks": 42,
+  "small_code_histories": 8192
+ },
+ "status": "PASS",
+ "unit": "H1_COCIENTE_Y_MENORANTE_20261111"
+}

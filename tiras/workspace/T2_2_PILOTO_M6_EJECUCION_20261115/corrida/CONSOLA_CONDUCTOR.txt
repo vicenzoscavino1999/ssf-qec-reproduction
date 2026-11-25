@@ -1,0 +1,46 @@
+  [PASS] T2-2 sello: SHA-256 del plan, de los 7 programas y de ESCALERA_Y_CLAVES.json = SELLO_T2_2.json
+== etapa preparacion
+  [PASS] T2-2 sello: SHA-256 del plan, de los 7 programas y de ESCALERA_Y_CLAVES.json = SELLO_T2_2.json
+  [PASS] T2-2 sello: el vigente = el de la configuracion de la corrida
+  [PASS] T2-2 TIRA_6x6: matrices iguales a las de B4
+  [PASS] T2-2: 527 ubicaciones (plan: 527)
+  [PASS] T2-2: NS = 91 y 409 clases no nulas (plan: 91 y 409)
+  [PASS] T2-2 r = 1/100: marginales X = formas cerradas
+  [PASS] T2-2 r = 1/100: leyes de sitio desde las marginales = law_of en los 91 sitios
+  [PASS] T2-2 r = 1/1000: marginales X = formas cerradas
+  [PASS] T2-2 r = 1/1000: leyes de sitio desde las marginales = law_of en los 91 sitios
+  [PASS] T2-2 r = 1/10000: marginales X = formas cerradas
+  [PASS] T2-2 r = 1/10000: leyes de sitio desde las marginales = law_of en los 91 sitios
+  [PASS] T2-2 r = 1/100000: marginales X = formas cerradas
+  [PASS] T2-2 r = 1/100000: leyes de sitio desde las marginales = law_of en los 91 sitios
+  [PASS] T2-2 r = 1/1000000: marginales X = formas cerradas
+  [PASS] T2-2 r = 1/1000000: leyes de sitio desde las marginales = law_of en los 91 sitios
+  [PASS] T2-2: propagate de cada fallo unico = resp_formula
+  [PASS] T2-2 V4: propagate = XOR de las respuestas de sitio en 19641 historias del ancla
+  [PASS] T2-2 V5 (T2-0): exhaustivo con 0 silenciosas con 1 y 2 sitios, 78 con 3; f_s_exhaustivo = 3
+  [PASS] T2-2 V5 (T2-1): 8 filas k = 2 con H_comp COMPLETO, L_ing = 0 y L_comp = [0, 0]
+  [PASS] T2-2 escalera: recalculada desde las leyes exactas = sellada (25 niveles; t = 24)
+  [PASS] T2-2 escalera: ningun paso mayor que la regla; los extremos son niveles
+  [PASS] T2-2 claves y logaritmos: SHA-256 = sellados
+  [PASS] T2-2 formato: NS <= 255 (recuento <= 255 y d <= 255) y claves < 65536
+  [PASS] T2-2 referencias: SHA-256 de RESULTADO_T2_1.json
+  [PASS] T2-2 referencias 1/1000|1/1000: intervalo exacto con 0 < L <= U, vista coherente y e_comp(4) coherente
+  [PASS] T2-2 referencias 1/1000|1/1000 k = 3: H_comp COMPLETO (L_ing exacto)
+  [PASS] T2-2 referencias 1/1000|1/1000 k = 4: H_comp COMPLETO (L_ing exacto)
+  [PASS] T2-2 referencias 1/10000|1/10000: intervalo exacto con 0 < L <= U, vista coherente y e_comp(4) coherente
+  [PASS] T2-2 referencias 1/10000|1/10000 k = 3: H_comp COMPLETO (L_ing exacto)
+  [PASS] T2-2 referencias 1/10000|1/10000 k = 4: H_comp COMPLETO (L_ing exacto)
+  [PASS] T2-2 referencias 1/100000|1/100000: intervalo exacto con 0 < L <= U, vista coherente y e_comp(4) coherente
+  [PASS] T2-2 referencias 1/100000|1/100000 k = 3: H_comp COMPLETO (L_ing exacto)
+  [PASS] T2-2 referencias 1/100000|1/100000 k = 4: H_comp COMPLETO (L_ing exacto)
+  [PASS] T2-2 referencias 1/1000000|1/1000000: intervalo exacto con 0 < L <= U, vista coherente y e_comp(4) coherente
+  [PASS] T2-2 referencias 1/1000000|1/1000000 k = 3: H_comp COMPLETO (L_ing exacto)
+  [PASS] T2-2 referencias 1/1000000|1/1000000 k = 4: H_comp COMPLETO (L_ing exacto)
+  [PASS] T2-2 referencias: SHA-256 de RESULTADO_DMC.json
+  [PASS] T2-2 referencias: D-mc COMPATIBLE con x = 477 en N = 7e9 y 99.9 %
+== etapa ancla
+== etapa c_tiempo
+== etapa cadenas
+== etapa estimacion
+  [PASS] T2-2 ancla: recalculada desde ancla/bloques.jsonl = la de la etapa, sin bloques interrumpidos
+T2-2: estado PASS; veredicto PILOTO_CON_DISJUNCION

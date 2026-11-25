@@ -1,0 +1,3629 @@
+{
+  "selected_sources": 565,
+  "multicomponent_cases": 123,
+  "adaptive_multicomponent_cases": 111,
+  "multicomponent_records": [
+    {
+      "E": 9,
+      "Y": 9,
+      "components": [
+        1,
+        8
+      ],
+      "local_sources": [
+        1,
+        8
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        0,
+        3
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          3
+        ]
+      ],
+      "initial_syndrome": 5
+    },
+    {
+      "E": 24,
+      "Y": 24,
+      "components": [
+        8,
+        16
+      ],
+      "local_sources": [
+        8,
+        16
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        3,
+        4
+      ],
+      "local_traces": [
+        [
+          3
+        ],
+        [
+          4
+        ]
+      ],
+      "initial_syndrome": 12
+    },
+    {
+      "E": 129,
+      "Y": 129,
+      "components": [
+        1,
+        128
+      ],
+      "local_sources": [
+        1,
+        128
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        0,
+        7
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          7
+        ]
+      ],
+      "initial_syndrome": 33
+    },
+    {
+      "E": 144,
+      "Y": 144,
+      "components": [
+        16,
+        128
+      ],
+      "local_sources": [
+        16,
+        128
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        4,
+        7
+      ],
+      "local_traces": [
+        [
+          4
+        ],
+        [
+          7
+        ]
+      ],
+      "initial_syndrome": 40
+    },
+    {
+      "E": 257,
+      "Y": 257,
+      "components": [
+        1,
+        256
+      ],
+      "local_sources": [
+        1,
+        256
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        0,
+        8
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          8
+        ]
+      ],
+      "initial_syndrome": 65
+    },
+    {
+      "E": 258,
+      "Y": 259,
+      "components": [
+        3,
+        256
+      ],
+      "local_sources": [
+        2,
+        256
+      ],
+      "local_residuals": [
+        3,
+        0
+      ],
+      "trace": [
+        0,
+        8
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          8
+        ]
+      ],
+      "initial_syndrome": 67
+    },
+    {
+      "E": 260,
+      "Y": 260,
+      "components": [
+        4,
+        256
+      ],
+      "local_sources": [
+        4,
+        256
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        2,
+        8
+      ],
+      "local_traces": [
+        [
+          2
+        ],
+        [
+          8
+        ]
+      ],
+      "initial_syndrome": 70
+    },
+    {
+      "E": 264,
+      "Y": 264,
+      "components": [
+        8,
+        256
+      ],
+      "local_sources": [
+        8,
+        256
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        3,
+        8
+      ],
+      "local_traces": [
+        [
+          3
+        ],
+        [
+          8
+        ]
+      ],
+      "initial_syndrome": 68
+    },
+    {
+      "E": 384,
+      "Y": 384,
+      "components": [
+        128,
+        256
+      ],
+      "local_sources": [
+        128,
+        256
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        7,
+        8
+      ],
+      "local_traces": [
+        [
+          7
+        ],
+        [
+          8
+        ]
+      ],
+      "initial_syndrome": 96
+    },
+    {
+      "E": 513,
+      "Y": 769,
+      "components": [
+        1,
+        768
+      ],
+      "local_sources": [
+        1,
+        512
+      ],
+      "local_residuals": [
+        0,
+        768
+      ],
+      "trace": [
+        0,
+        8
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          8
+        ]
+      ],
+      "initial_syndrome": 193
+    },
+    {
+      "E": 514,
+      "Y": 771,
+      "components": [
+        3,
+        768
+      ],
+      "local_sources": [
+        2,
+        512
+      ],
+      "local_residuals": [
+        3,
+        768
+      ],
+      "trace": [
+        0,
+        8
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          8
+        ]
+      ],
+      "initial_syndrome": 195
+    },
+    {
+      "E": 516,
+      "Y": 772,
+      "components": [
+        4,
+        768
+      ],
+      "local_sources": [
+        4,
+        512
+      ],
+      "local_residuals": [
+        0,
+        768
+      ],
+      "trace": [
+        2,
+        8
+      ],
+      "local_traces": [
+        [
+          2
+        ],
+        [
+          8
+        ]
+      ],
+      "initial_syndrome": 198
+    },
+    {
+      "E": 520,
+      "Y": 776,
+      "components": [
+        8,
+        768
+      ],
+      "local_sources": [
+        8,
+        512
+      ],
+      "local_residuals": [
+        0,
+        768
+      ],
+      "trace": [
+        3,
+        8
+      ],
+      "local_traces": [
+        [
+          3
+        ],
+        [
+          8
+        ]
+      ],
+      "initial_syndrome": 196
+    },
+    {
+      "E": 1025,
+      "Y": 1025,
+      "components": [
+        1,
+        1024
+      ],
+      "local_sources": [
+        1,
+        1024
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        0,
+        10
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          10
+        ]
+      ],
+      "initial_syndrome": 385
+    },
+    {
+      "E": 1026,
+      "Y": 1027,
+      "components": [
+        3,
+        1024
+      ],
+      "local_sources": [
+        2,
+        1024
+      ],
+      "local_residuals": [
+        3,
+        0
+      ],
+      "trace": [
+        0,
+        10
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          10
+        ]
+      ],
+      "initial_syndrome": 387
+    },
+    {
+      "E": 1028,
+      "Y": 1028,
+      "components": [
+        4,
+        1024
+      ],
+      "local_sources": [
+        4,
+        1024
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        2,
+        10
+      ],
+      "local_traces": [
+        [
+          2
+        ],
+        [
+          10
+        ]
+      ],
+      "initial_syndrome": 390
+    },
+    {
+      "E": 1032,
+      "Y": 1032,
+      "components": [
+        8,
+        1024
+      ],
+      "local_sources": [
+        8,
+        1024
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        3,
+        10
+      ],
+      "local_traces": [
+        [
+          3
+        ],
+        [
+          10
+        ]
+      ],
+      "initial_syndrome": 388
+    },
+    {
+      "E": 2049,
+      "Y": 2049,
+      "components": [
+        1,
+        2048
+      ],
+      "local_sources": [
+        1,
+        2048
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        0,
+        11
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          11
+        ]
+      ],
+      "initial_syndrome": 257
+    },
+    {
+      "E": 2050,
+      "Y": 2051,
+      "components": [
+        3,
+        2048
+      ],
+      "local_sources": [
+        2,
+        2048
+      ],
+      "local_residuals": [
+        3,
+        0
+      ],
+      "trace": [
+        0,
+        11
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          11
+        ]
+      ],
+      "initial_syndrome": 259
+    },
+    {
+      "E": 2052,
+      "Y": 2052,
+      "components": [
+        4,
+        2048
+      ],
+      "local_sources": [
+        4,
+        2048
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        2,
+        11
+      ],
+      "local_traces": [
+        [
+          2
+        ],
+        [
+          11
+        ]
+      ],
+      "initial_syndrome": 262
+    },
+    {
+      "E": 2056,
+      "Y": 2056,
+      "components": [
+        8,
+        2048
+      ],
+      "local_sources": [
+        8,
+        2048
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        3,
+        11
+      ],
+      "local_traces": [
+        [
+          3
+        ],
+        [
+          11
+        ]
+      ],
+      "initial_syndrome": 260
+    },
+    {
+      "E": 2064,
+      "Y": 2064,
+      "components": [
+        16,
+        2048
+      ],
+      "local_sources": [
+        16,
+        2048
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        4,
+        11
+      ],
+      "local_traces": [
+        [
+          4
+        ],
+        [
+          11
+        ]
+      ],
+      "initial_syndrome": 264
+    },
+    {
+      "E": 2304,
+      "Y": 2304,
+      "components": [
+        256,
+        2048
+      ],
+      "local_sources": [
+        256,
+        2048
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        8,
+        11
+      ],
+      "local_traces": [
+        [
+          8
+        ],
+        [
+          11
+        ]
+      ],
+      "initial_syndrome": 320
+    },
+    {
+      "E": 4097,
+      "Y": 4097,
+      "components": [
+        1,
+        4096
+      ],
+      "local_sources": [
+        1,
+        4096
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        0,
+        12
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 513
+    },
+    {
+      "E": 4098,
+      "Y": 4099,
+      "components": [
+        3,
+        4096
+      ],
+      "local_sources": [
+        2,
+        4096
+      ],
+      "local_residuals": [
+        3,
+        0
+      ],
+      "trace": [
+        0,
+        12
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 515
+    },
+    {
+      "E": 4100,
+      "Y": 4100,
+      "components": [
+        4,
+        4096
+      ],
+      "local_sources": [
+        4,
+        4096
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        2,
+        12
+      ],
+      "local_traces": [
+        [
+          2
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 518
+    },
+    {
+      "E": 4104,
+      "Y": 4104,
+      "components": [
+        8,
+        4096
+      ],
+      "local_sources": [
+        8,
+        4096
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        3,
+        12
+      ],
+      "local_traces": [
+        [
+          3
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 516
+    },
+    {
+      "E": 4112,
+      "Y": 4112,
+      "components": [
+        16,
+        4096
+      ],
+      "local_sources": [
+        16,
+        4096
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        4,
+        12
+      ],
+      "local_traces": [
+        [
+          4
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 520
+    },
+    {
+      "E": 4128,
+      "Y": 4144,
+      "components": [
+        48,
+        4096
+      ],
+      "local_sources": [
+        32,
+        4096
+      ],
+      "local_residuals": [
+        48,
+        0
+      ],
+      "trace": [
+        4,
+        12
+      ],
+      "local_traces": [
+        [
+          4
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 536
+    },
+    {
+      "E": 4160,
+      "Y": 4160,
+      "components": [
+        64,
+        4096
+      ],
+      "local_sources": [
+        64,
+        4096
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        6,
+        12
+      ],
+      "local_traces": [
+        [
+          6
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 560
+    },
+    {
+      "E": 4224,
+      "Y": 4224,
+      "components": [
+        128,
+        4096
+      ],
+      "local_sources": [
+        128,
+        4096
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        7,
+        12
+      ],
+      "local_traces": [
+        [
+          7
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 544
+    },
+    {
+      "E": 6144,
+      "Y": 6144,
+      "components": [
+        2048,
+        4096
+      ],
+      "local_sources": [
+        2048,
+        4096
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        11,
+        12
+      ],
+      "local_traces": [
+        [
+          11
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 768
+    },
+    {
+      "E": 8193,
+      "Y": 12289,
+      "components": [
+        1,
+        12288
+      ],
+      "local_sources": [
+        1,
+        8192
+      ],
+      "local_residuals": [
+        0,
+        12288
+      ],
+      "trace": [
+        0,
+        12
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 1537
+    },
+    {
+      "E": 8194,
+      "Y": 12291,
+      "components": [
+        3,
+        12288
+      ],
+      "local_sources": [
+        2,
+        8192
+      ],
+      "local_residuals": [
+        3,
+        12288
+      ],
+      "trace": [
+        0,
+        12
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 1539
+    },
+    {
+      "E": 8196,
+      "Y": 12292,
+      "components": [
+        4,
+        12288
+      ],
+      "local_sources": [
+        4,
+        8192
+      ],
+      "local_residuals": [
+        0,
+        12288
+      ],
+      "trace": [
+        2,
+        12
+      ],
+      "local_traces": [
+        [
+          2
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 1542
+    },
+    {
+      "E": 8200,
+      "Y": 12296,
+      "components": [
+        8,
+        12288
+      ],
+      "local_sources": [
+        8,
+        8192
+      ],
+      "local_residuals": [
+        0,
+        12288
+      ],
+      "trace": [
+        3,
+        12
+      ],
+      "local_traces": [
+        [
+          3
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 1540
+    },
+    {
+      "E": 8208,
+      "Y": 12304,
+      "components": [
+        16,
+        12288
+      ],
+      "local_sources": [
+        16,
+        8192
+      ],
+      "local_residuals": [
+        0,
+        12288
+      ],
+      "trace": [
+        4,
+        12
+      ],
+      "local_traces": [
+        [
+          4
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 1544
+    },
+    {
+      "E": 8224,
+      "Y": 12336,
+      "components": [
+        48,
+        12288
+      ],
+      "local_sources": [
+        32,
+        8192
+      ],
+      "local_residuals": [
+        48,
+        12288
+      ],
+      "trace": [
+        4,
+        12
+      ],
+      "local_traces": [
+        [
+          4
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 1560
+    },
+    {
+      "E": 8256,
+      "Y": 12352,
+      "components": [
+        64,
+        12288
+      ],
+      "local_sources": [
+        64,
+        8192
+      ],
+      "local_residuals": [
+        0,
+        12288
+      ],
+      "trace": [
+        6,
+        12
+      ],
+      "local_traces": [
+        [
+          6
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 1584
+    },
+    {
+      "E": 8320,
+      "Y": 12416,
+      "components": [
+        128,
+        12288
+      ],
+      "local_sources": [
+        128,
+        8192
+      ],
+      "local_residuals": [
+        0,
+        12288
+      ],
+      "trace": [
+        7,
+        12
+      ],
+      "local_traces": [
+        [
+          7
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 1568
+    },
+    {
+      "E": 16385,
+      "Y": 16385,
+      "components": [
+        1,
+        16384
+      ],
+      "local_sources": [
+        1,
+        16384
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        0,
+        14
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          14
+        ]
+      ],
+      "initial_syndrome": 3073
+    },
+    {
+      "E": 16386,
+      "Y": 16387,
+      "components": [
+        3,
+        16384
+      ],
+      "local_sources": [
+        2,
+        16384
+      ],
+      "local_residuals": [
+        3,
+        0
+      ],
+      "trace": [
+        0,
+        14
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          14
+        ]
+      ],
+      "initial_syndrome": 3075
+    },
+    {
+      "E": 16388,
+      "Y": 16388,
+      "components": [
+        4,
+        16384
+      ],
+      "local_sources": [
+        4,
+        16384
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        2,
+        14
+      ],
+      "local_traces": [
+        [
+          2
+        ],
+        [
+          14
+        ]
+      ],
+      "initial_syndrome": 3078
+    },
+    {
+      "E": 16392,
+      "Y": 16392,
+      "components": [
+        8,
+        16384
+      ],
+      "local_sources": [
+        8,
+        16384
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        3,
+        14
+      ],
+      "local_traces": [
+        [
+          3
+        ],
+        [
+          14
+        ]
+      ],
+      "initial_syndrome": 3076
+    },
+    {
+      "E": 16400,
+      "Y": 16400,
+      "components": [
+        16,
+        16384
+      ],
+      "local_sources": [
+        16,
+        16384
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        4,
+        14
+      ],
+      "local_traces": [
+        [
+          4
+        ],
+        [
+          14
+        ]
+      ],
+      "initial_syndrome": 3080
+    },
+    {
+      "E": 16416,
+      "Y": 16432,
+      "components": [
+        48,
+        16384
+      ],
+      "local_sources": [
+        32,
+        16384
+      ],
+      "local_residuals": [
+        48,
+        0
+      ],
+      "trace": [
+        4,
+        14
+      ],
+      "local_traces": [
+        [
+          4
+        ],
+        [
+          14
+        ]
+      ],
+      "initial_syndrome": 3096
+    },
+    {
+      "E": 16448,
+      "Y": 16448,
+      "components": [
+        64,
+        16384
+      ],
+      "local_sources": [
+        64,
+        16384
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        6,
+        14
+      ],
+      "local_traces": [
+        [
+          6
+        ],
+        [
+          14
+        ]
+      ],
+      "initial_syndrome": 3120
+    },
+    {
+      "E": 16512,
+      "Y": 16512,
+      "components": [
+        128,
+        16384
+      ],
+      "local_sources": [
+        128,
+        16384
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        7,
+        14
+      ],
+      "local_traces": [
+        [
+          7
+        ],
+        [
+          14
+        ]
+      ],
+      "initial_syndrome": 3104
+    },
+    {
+      "E": 32769,
+      "Y": 32769,
+      "components": [
+        1,
+        32768
+      ],
+      "local_sources": [
+        1,
+        32768
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        0,
+        15
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2049
+    },
+    {
+      "E": 32770,
+      "Y": 32771,
+      "components": [
+        3,
+        32768
+      ],
+      "local_sources": [
+        2,
+        32768
+      ],
+      "local_residuals": [
+        3,
+        0
+      ],
+      "trace": [
+        0,
+        15
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2051
+    },
+    {
+      "E": 32772,
+      "Y": 32772,
+      "components": [
+        4,
+        32768
+      ],
+      "local_sources": [
+        4,
+        32768
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        2,
+        15
+      ],
+      "local_traces": [
+        [
+          2
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2054
+    },
+    {
+      "E": 32776,
+      "Y": 32776,
+      "components": [
+        8,
+        32768
+      ],
+      "local_sources": [
+        8,
+        32768
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        3,
+        15
+      ],
+      "local_traces": [
+        [
+          3
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2052
+    },
+    {
+      "E": 32784,
+      "Y": 32784,
+      "components": [
+        16,
+        32768
+      ],
+      "local_sources": [
+        16,
+        32768
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        4,
+        15
+      ],
+      "local_traces": [
+        [
+          4
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2056
+    },
+    {
+      "E": 32800,
+      "Y": 32816,
+      "components": [
+        48,
+        32768
+      ],
+      "local_sources": [
+        32,
+        32768
+      ],
+      "local_residuals": [
+        48,
+        0
+      ],
+      "trace": [
+        4,
+        15
+      ],
+      "local_traces": [
+        [
+          4
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2072
+    },
+    {
+      "E": 32832,
+      "Y": 32832,
+      "components": [
+        64,
+        32768
+      ],
+      "local_sources": [
+        64,
+        32768
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        6,
+        15
+      ],
+      "local_traces": [
+        [
+          6
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2096
+    },
+    {
+      "E": 32896,
+      "Y": 32896,
+      "components": [
+        128,
+        32768
+      ],
+      "local_sources": [
+        128,
+        32768
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        7,
+        15
+      ],
+      "local_traces": [
+        [
+          7
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2080
+    },
+    {
+      "E": 33024,
+      "Y": 33024,
+      "components": [
+        256,
+        32768
+      ],
+      "local_sources": [
+        256,
+        32768
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        8,
+        15
+      ],
+      "local_traces": [
+        [
+          8
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2112
+    },
+    {
+      "E": 36864,
+      "Y": 36864,
+      "components": [
+        4096,
+        32768
+      ],
+      "local_sources": [
+        4096,
+        32768
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        12,
+        15
+      ],
+      "local_traces": [
+        [
+          12
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2560
+    },
+    {
+      "E": 65544,
+      "Y": 65561,
+      "components": [
+        65553,
+        8
+      ],
+      "local_sources": [
+        65536,
+        8
+      ],
+      "local_residuals": [
+        65553,
+        0
+      ],
+      "trace": [
+        0,
+        3,
+        4
+      ],
+      "local_traces": [
+        [
+          0,
+          4
+        ],
+        [
+          3
+        ]
+      ],
+      "initial_syndrome": 13
+    },
+    {
+      "E": 65664,
+      "Y": 65681,
+      "components": [
+        65553,
+        128
+      ],
+      "local_sources": [
+        65536,
+        128
+      ],
+      "local_residuals": [
+        65553,
+        0
+      ],
+      "trace": [
+        0,
+        4,
+        7
+      ],
+      "local_traces": [
+        [
+          0,
+          4
+        ],
+        [
+          7
+        ]
+      ],
+      "initial_syndrome": 41
+    },
+    {
+      "E": 67584,
+      "Y": 67601,
+      "components": [
+        65553,
+        2048
+      ],
+      "local_sources": [
+        65536,
+        2048
+      ],
+      "local_residuals": [
+        65553,
+        0
+      ],
+      "trace": [
+        0,
+        4,
+        11
+      ],
+      "local_traces": [
+        [
+          0,
+          4
+        ],
+        [
+          11
+        ]
+      ],
+      "initial_syndrome": 265
+    },
+    {
+      "E": 69632,
+      "Y": 69649,
+      "components": [
+        65553,
+        4096
+      ],
+      "local_sources": [
+        65536,
+        4096
+      ],
+      "local_residuals": [
+        65553,
+        0
+      ],
+      "trace": [
+        0,
+        4,
+        12
+      ],
+      "local_traces": [
+        [
+          0,
+          4
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 521
+    },
+    {
+      "E": 73728,
+      "Y": 77841,
+      "components": [
+        65553,
+        12288
+      ],
+      "local_sources": [
+        65536,
+        8192
+      ],
+      "local_residuals": [
+        65553,
+        12288
+      ],
+      "trace": [
+        0,
+        4,
+        12
+      ],
+      "local_traces": [
+        [
+          0,
+          4
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 1545
+    },
+    {
+      "E": 81920,
+      "Y": 81937,
+      "components": [
+        65553,
+        16384
+      ],
+      "local_sources": [
+        65536,
+        16384
+      ],
+      "local_residuals": [
+        65553,
+        0
+      ],
+      "trace": [
+        0,
+        4,
+        14
+      ],
+      "local_traces": [
+        [
+          0,
+          4
+        ],
+        [
+          14
+        ]
+      ],
+      "initial_syndrome": 3081
+    },
+    {
+      "E": 98304,
+      "Y": 98321,
+      "components": [
+        65553,
+        32768
+      ],
+      "local_sources": [
+        65536,
+        32768
+      ],
+      "local_residuals": [
+        65553,
+        0
+      ],
+      "trace": [
+        0,
+        4,
+        15
+      ],
+      "local_traces": [
+        [
+          0,
+          4
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2057
+    },
+    {
+      "E": 135168,
+      "Y": 135168,
+      "components": [
+        4096,
+        131072
+      ],
+      "local_sources": [
+        4096,
+        131072
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        12,
+        17
+      ],
+      "local_traces": [
+        [
+          12
+        ],
+        [
+          17
+        ]
+      ],
+      "initial_syndrome": 530
+    },
+    {
+      "E": 139264,
+      "Y": 143360,
+      "components": [
+        12288,
+        131072
+      ],
+      "local_sources": [
+        8192,
+        131072
+      ],
+      "local_residuals": [
+        12288,
+        0
+      ],
+      "trace": [
+        12,
+        17
+      ],
+      "local_traces": [
+        [
+          12
+        ],
+        [
+          17
+        ]
+      ],
+      "initial_syndrome": 1554
+    },
+    {
+      "E": 147456,
+      "Y": 147456,
+      "components": [
+        16384,
+        131072
+      ],
+      "local_sources": [
+        16384,
+        131072
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        14,
+        17
+      ],
+      "local_traces": [
+        [
+          14
+        ],
+        [
+          17
+        ]
+      ],
+      "initial_syndrome": 3090
+    },
+    {
+      "E": 163840,
+      "Y": 163840,
+      "components": [
+        32768,
+        131072
+      ],
+      "local_sources": [
+        32768,
+        131072
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        15,
+        17
+      ],
+      "local_traces": [
+        [
+          15
+        ],
+        [
+          17
+        ]
+      ],
+      "initial_syndrome": 2066
+    },
+    {
+      "E": 262145,
+      "Y": 262281,
+      "components": [
+        1,
+        262280
+      ],
+      "local_sources": [
+        1,
+        262144
+      ],
+      "local_residuals": [
+        0,
+        262280
+      ],
+      "trace": [
+        0,
+        3,
+        7
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "initial_syndrome": 37
+    },
+    {
+      "E": 262160,
+      "Y": 262296,
+      "components": [
+        262280,
+        16
+      ],
+      "local_sources": [
+        262144,
+        16
+      ],
+      "local_residuals": [
+        262280,
+        0
+      ],
+      "trace": [
+        3,
+        4,
+        7
+      ],
+      "local_traces": [
+        [
+          3,
+          7
+        ],
+        [
+          4
+        ]
+      ],
+      "initial_syndrome": 44
+    },
+    {
+      "E": 262400,
+      "Y": 262536,
+      "components": [
+        262280,
+        256
+      ],
+      "local_sources": [
+        262144,
+        256
+      ],
+      "local_residuals": [
+        262280,
+        0
+      ],
+      "trace": [
+        3,
+        7,
+        8
+      ],
+      "local_traces": [
+        [
+          3,
+          7
+        ],
+        [
+          8
+        ]
+      ],
+      "initial_syndrome": 100
+    },
+    {
+      "E": 266240,
+      "Y": 266376,
+      "components": [
+        262280,
+        4096
+      ],
+      "local_sources": [
+        262144,
+        4096
+      ],
+      "local_residuals": [
+        262280,
+        0
+      ],
+      "trace": [
+        3,
+        7,
+        12
+      ],
+      "local_traces": [
+        [
+          3,
+          7
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 548
+    },
+    {
+      "E": 270336,
+      "Y": 274568,
+      "components": [
+        262280,
+        12288
+      ],
+      "local_sources": [
+        262144,
+        8192
+      ],
+      "local_residuals": [
+        262280,
+        12288
+      ],
+      "trace": [
+        3,
+        7,
+        12
+      ],
+      "local_traces": [
+        [
+          3,
+          7
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 1572
+    },
+    {
+      "E": 278528,
+      "Y": 278664,
+      "components": [
+        262280,
+        16384
+      ],
+      "local_sources": [
+        262144,
+        16384
+      ],
+      "local_residuals": [
+        262280,
+        0
+      ],
+      "trace": [
+        3,
+        7,
+        14
+      ],
+      "local_traces": [
+        [
+          3,
+          7
+        ],
+        [
+          14
+        ]
+      ],
+      "initial_syndrome": 3108
+    },
+    {
+      "E": 294912,
+      "Y": 295048,
+      "components": [
+        262280,
+        32768
+      ],
+      "local_sources": [
+        262144,
+        32768
+      ],
+      "local_residuals": [
+        262280,
+        0
+      ],
+      "trace": [
+        3,
+        7,
+        15
+      ],
+      "local_traces": [
+        [
+          3,
+          7
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2084
+    },
+    {
+      "E": 327680,
+      "Y": 327833,
+      "components": [
+        65553,
+        262280
+      ],
+      "local_sources": [
+        65536,
+        262144
+      ],
+      "local_residuals": [
+        65553,
+        262280
+      ],
+      "trace": [
+        0,
+        3,
+        4,
+        7
+      ],
+      "local_traces": [
+        [
+          0,
+          4
+        ],
+        [
+          3,
+          7
+        ]
+      ],
+      "initial_syndrome": 45
+    },
+    {
+      "E": 524296,
+      "Y": 524568,
+      "components": [
+        8,
+        524560
+      ],
+      "local_sources": [
+        8,
+        524288
+      ],
+      "local_residuals": [
+        0,
+        524560
+      ],
+      "trace": [
+        3,
+        4,
+        8
+      ],
+      "local_traces": [
+        [
+          3
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "initial_syndrome": 76
+    },
+    {
+      "E": 524416,
+      "Y": 524688,
+      "components": [
+        524560,
+        128
+      ],
+      "local_sources": [
+        524288,
+        128
+      ],
+      "local_residuals": [
+        524560,
+        0
+      ],
+      "trace": [
+        4,
+        7,
+        8
+      ],
+      "local_traces": [
+        [
+          4,
+          8
+        ],
+        [
+          7
+        ]
+      ],
+      "initial_syndrome": 104
+    },
+    {
+      "E": 526336,
+      "Y": 526608,
+      "components": [
+        524560,
+        2048
+      ],
+      "local_sources": [
+        524288,
+        2048
+      ],
+      "local_residuals": [
+        524560,
+        0
+      ],
+      "trace": [
+        4,
+        8,
+        11
+      ],
+      "local_traces": [
+        [
+          4,
+          8
+        ],
+        [
+          11
+        ]
+      ],
+      "initial_syndrome": 328
+    },
+    {
+      "E": 557056,
+      "Y": 557328,
+      "components": [
+        524560,
+        32768
+      ],
+      "local_sources": [
+        524288,
+        32768
+      ],
+      "local_residuals": [
+        524560,
+        0
+      ],
+      "trace": [
+        4,
+        8,
+        15
+      ],
+      "local_traces": [
+        [
+          4,
+          8
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2120
+    },
+    {
+      "E": 786432,
+      "Y": 786840,
+      "components": [
+        262280,
+        524560
+      ],
+      "local_sources": [
+        262144,
+        524288
+      ],
+      "local_residuals": [
+        262280,
+        524560
+      ],
+      "trace": [
+        3,
+        4,
+        7,
+        8
+      ],
+      "local_traces": [
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          8
+        ]
+      ],
+      "initial_syndrome": 108
+    },
+    {
+      "E": 2097153,
+      "Y": 2099329,
+      "components": [
+        1,
+        2099328
+      ],
+      "local_sources": [
+        1,
+        2097152
+      ],
+      "local_residuals": [
+        0,
+        2099328
+      ],
+      "trace": [
+        0,
+        7,
+        11
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          7,
+          11
+        ]
+      ],
+      "initial_syndrome": 289
+    },
+    {
+      "E": 2097168,
+      "Y": 2099344,
+      "components": [
+        16,
+        2099328
+      ],
+      "local_sources": [
+        16,
+        2097152
+      ],
+      "local_residuals": [
+        0,
+        2099328
+      ],
+      "trace": [
+        4,
+        7,
+        11
+      ],
+      "local_traces": [
+        [
+          4
+        ],
+        [
+          7,
+          11
+        ]
+      ],
+      "initial_syndrome": 296
+    },
+    {
+      "E": 2097408,
+      "Y": 2099584,
+      "components": [
+        2099328,
+        256
+      ],
+      "local_sources": [
+        2097152,
+        256
+      ],
+      "local_residuals": [
+        2099328,
+        0
+      ],
+      "trace": [
+        7,
+        8,
+        11
+      ],
+      "local_traces": [
+        [
+          7,
+          11
+        ],
+        [
+          8
+        ]
+      ],
+      "initial_syndrome": 352
+    },
+    {
+      "E": 2101248,
+      "Y": 2103424,
+      "components": [
+        2099328,
+        4096
+      ],
+      "local_sources": [
+        2097152,
+        4096
+      ],
+      "local_residuals": [
+        2099328,
+        0
+      ],
+      "trace": [
+        7,
+        11,
+        12
+      ],
+      "local_traces": [
+        [
+          7,
+          11
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 800
+    },
+    {
+      "E": 2162688,
+      "Y": 2164881,
+      "components": [
+        65553,
+        2099328
+      ],
+      "local_sources": [
+        65536,
+        2097152
+      ],
+      "local_residuals": [
+        65553,
+        2099328
+      ],
+      "trace": [
+        0,
+        4,
+        7,
+        11
+      ],
+      "local_traces": [
+        [
+          0,
+          4
+        ],
+        [
+          7,
+          11
+        ]
+      ],
+      "initial_syndrome": 297
+    },
+    {
+      "E": 2621440,
+      "Y": 2623888,
+      "components": [
+        524560,
+        2099328
+      ],
+      "local_sources": [
+        524288,
+        2097152
+      ],
+      "local_residuals": [
+        524560,
+        2099328
+      ],
+      "trace": [
+        4,
+        7,
+        8,
+        11
+      ],
+      "local_traces": [
+        [
+          4,
+          8
+        ],
+        [
+          7,
+          11
+        ]
+      ],
+      "initial_syndrome": 360
+    },
+    {
+      "E": 4194305,
+      "Y": 4198657,
+      "components": [
+        1,
+        4198656
+      ],
+      "local_sources": [
+        1,
+        4194304
+      ],
+      "local_residuals": [
+        0,
+        4198656
+      ],
+      "trace": [
+        0,
+        8,
+        12
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          8,
+          12
+        ]
+      ],
+      "initial_syndrome": 577
+    },
+    {
+      "E": 4194306,
+      "Y": 4198659,
+      "components": [
+        3,
+        4198656
+      ],
+      "local_sources": [
+        2,
+        4194304
+      ],
+      "local_residuals": [
+        3,
+        4198656
+      ],
+      "trace": [
+        0,
+        8,
+        12
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          8,
+          12
+        ]
+      ],
+      "initial_syndrome": 579
+    },
+    {
+      "E": 4194308,
+      "Y": 4198660,
+      "components": [
+        4,
+        4198656
+      ],
+      "local_sources": [
+        4,
+        4194304
+      ],
+      "local_residuals": [
+        0,
+        4198656
+      ],
+      "trace": [
+        2,
+        8,
+        12
+      ],
+      "local_traces": [
+        [
+          2
+        ],
+        [
+          8,
+          12
+        ]
+      ],
+      "initial_syndrome": 582
+    },
+    {
+      "E": 4194312,
+      "Y": 4198664,
+      "components": [
+        8,
+        4198656
+      ],
+      "local_sources": [
+        8,
+        4194304
+      ],
+      "local_residuals": [
+        0,
+        4198656
+      ],
+      "trace": [
+        3,
+        8,
+        12
+      ],
+      "local_traces": [
+        [
+          3
+        ],
+        [
+          8,
+          12
+        ]
+      ],
+      "initial_syndrome": 580
+    },
+    {
+      "E": 4194432,
+      "Y": 4198784,
+      "components": [
+        128,
+        4198656
+      ],
+      "local_sources": [
+        128,
+        4194304
+      ],
+      "local_residuals": [
+        0,
+        4198656
+      ],
+      "trace": [
+        7,
+        8,
+        12
+      ],
+      "local_traces": [
+        [
+          7
+        ],
+        [
+          8,
+          12
+        ]
+      ],
+      "initial_syndrome": 608
+    },
+    {
+      "E": 4196352,
+      "Y": 4200704,
+      "components": [
+        4198656,
+        2048
+      ],
+      "local_sources": [
+        4194304,
+        2048
+      ],
+      "local_residuals": [
+        4198656,
+        0
+      ],
+      "trace": [
+        8,
+        11,
+        12
+      ],
+      "local_traces": [
+        [
+          8,
+          12
+        ],
+        [
+          11
+        ]
+      ],
+      "initial_syndrome": 832
+    },
+    {
+      "E": 4227072,
+      "Y": 4231424,
+      "components": [
+        4198656,
+        32768
+      ],
+      "local_sources": [
+        4194304,
+        32768
+      ],
+      "local_residuals": [
+        4198656,
+        0
+      ],
+      "trace": [
+        8,
+        12,
+        15
+      ],
+      "local_traces": [
+        [
+          8,
+          12
+        ],
+        [
+          15
+        ]
+      ],
+      "initial_syndrome": 2624
+    },
+    {
+      "E": 4456448,
+      "Y": 4460936,
+      "components": [
+        262280,
+        4198656
+      ],
+      "local_sources": [
+        262144,
+        4194304
+      ],
+      "local_residuals": [
+        262280,
+        4198656
+      ],
+      "trace": [
+        3,
+        7,
+        8,
+        12
+      ],
+      "local_traces": [
+        [
+          3,
+          7
+        ],
+        [
+          8,
+          12
+        ]
+      ],
+      "initial_syndrome": 612
+    },
+    {
+      "E": 6291456,
+      "Y": 6297984,
+      "components": [
+        2099328,
+        4198656
+      ],
+      "local_sources": [
+        2097152,
+        4194304
+      ],
+      "local_residuals": [
+        2099328,
+        4198656
+      ],
+      "trace": [
+        7,
+        8,
+        11,
+        12
+      ],
+      "local_traces": [
+        [
+          7,
+          11
+        ],
+        [
+          8,
+          12
+        ]
+      ],
+      "initial_syndrome": 864
+    },
+    {
+      "E": 8388609,
+      "Y": 8388609,
+      "components": [
+        1,
+        8388608
+      ],
+      "local_sources": [
+        1,
+        8388608
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        0,
+        23
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          23
+        ]
+      ],
+      "initial_syndrome": 1153
+    },
+    {
+      "E": 8388610,
+      "Y": 8388611,
+      "components": [
+        3,
+        8388608
+      ],
+      "local_sources": [
+        2,
+        8388608
+      ],
+      "local_residuals": [
+        3,
+        0
+      ],
+      "trace": [
+        0,
+        23
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          23
+        ]
+      ],
+      "initial_syndrome": 1155
+    },
+    {
+      "E": 8388612,
+      "Y": 8388612,
+      "components": [
+        4,
+        8388608
+      ],
+      "local_sources": [
+        4,
+        8388608
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        2,
+        23
+      ],
+      "local_traces": [
+        [
+          2
+        ],
+        [
+          23
+        ]
+      ],
+      "initial_syndrome": 1158
+    },
+    {
+      "E": 8388616,
+      "Y": 8388616,
+      "components": [
+        8,
+        8388608
+      ],
+      "local_sources": [
+        8,
+        8388608
+      ],
+      "local_residuals": [
+        0,
+        0
+      ],
+      "trace": [
+        3,
+        23
+      ],
+      "local_traces": [
+        [
+          3
+        ],
+        [
+          23
+        ]
+      ],
+      "initial_syndrome": 1156
+    },
+    {
+      "E": 16777217,
+      "Y": 16812033,
+      "components": [
+        1,
+        16812032
+      ],
+      "local_sources": [
+        1,
+        16777216
+      ],
+      "local_residuals": [
+        0,
+        16812032
+      ],
+      "trace": [
+        0,
+        11,
+        15
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          11,
+          15
+        ]
+      ],
+      "initial_syndrome": 2305
+    },
+    {
+      "E": 16777218,
+      "Y": 16812035,
+      "components": [
+        3,
+        16812032
+      ],
+      "local_sources": [
+        2,
+        16777216
+      ],
+      "local_residuals": [
+        3,
+        16812032
+      ],
+      "trace": [
+        0,
+        11,
+        15
+      ],
+      "local_traces": [
+        [
+          0
+        ],
+        [
+          11,
+          15
+        ]
+      ],
+      "initial_syndrome": 2307
+    },
+    {
+      "E": 16777220,
+      "Y": 16812036,
+      "components": [
+        4,
+        16812032
+      ],
+      "local_sources": [
+        4,
+        16777216
+      ],
+      "local_residuals": [
+        0,
+        16812032
+      ],
+      "trace": [
+        2,
+        11,
+        15
+      ],
+      "local_traces": [
+        [
+          2
+        ],
+        [
+          11,
+          15
+        ]
+      ],
+      "initial_syndrome": 2310
+    },
+    {
+      "E": 16777224,
+      "Y": 16812040,
+      "components": [
+        8,
+        16812032
+      ],
+      "local_sources": [
+        8,
+        16777216
+      ],
+      "local_residuals": [
+        0,
+        16812032
+      ],
+      "trace": [
+        3,
+        11,
+        15
+      ],
+      "local_traces": [
+        [
+          3
+        ],
+        [
+          11,
+          15
+        ]
+      ],
+      "initial_syndrome": 2308
+    },
+    {
+      "E": 16777232,
+      "Y": 16812048,
+      "components": [
+        16,
+        16812032
+      ],
+      "local_sources": [
+        16,
+        16777216
+      ],
+      "local_residuals": [
+        0,
+        16812032
+      ],
+      "trace": [
+        4,
+        11,
+        15
+      ],
+      "local_traces": [
+        [
+          4
+        ],
+        [
+          11,
+          15
+        ]
+      ],
+      "initial_syndrome": 2312
+    },
+    {
+      "E": 16777472,
+      "Y": 16812288,
+      "components": [
+        256,
+        16812032
+      ],
+      "local_sources": [
+        256,
+        16777216
+      ],
+      "local_residuals": [
+        0,
+        16812032
+      ],
+      "trace": [
+        8,
+        11,
+        15
+      ],
+      "local_traces": [
+        [
+          8
+        ],
+        [
+          11,
+          15
+        ]
+      ],
+      "initial_syndrome": 2368
+    },
+    {
+      "E": 16781312,
+      "Y": 16816128,
+      "components": [
+        16812032,
+        4096
+      ],
+      "local_sources": [
+        16777216,
+        4096
+      ],
+      "local_residuals": [
+        16812032,
+        0
+      ],
+      "trace": [
+        11,
+        12,
+        15
+      ],
+      "local_traces": [
+        [
+          11,
+          15
+        ],
+        [
+          12
+        ]
+      ],
+      "initial_syndrome": 2816
+    },
+    {
+      "E": 16842752,
+      "Y": 16877585,
+      "components": [
+        65553,
+        16812032
+      ],
+      "local_sources": [
+        65536,
+        16777216
+      ],
+      "local_residuals": [
+        65553,
+        16812032
+      ],
+      "trace": [
+        0,
+        4,
+        11,
+        15
+      ],
+      "local_traces": [
+        [
+          0,
+          4
+        ],
+        [
+          11,
+          15
+        ]
+      ],
+      "initial_syndrome": 2313
+    },
+    {
+      "E": 17301504,
+      "Y": 17336592,
+      "components": [
+        524560,
+        16812032
+      ],
+      "local_sources": [
+        524288,
+        16777216
+      ],
+      "local_residuals": [
+        524560,
+        16812032
+      ],
+      "trace": [
+        4,
+        8,
+        11,
+        15
+      ],
+      "local_traces": [
+        [
+          4,
+          8
+        ],
+        [
+          11,
+          15
+        ]
+      ],
+      "initial_syndrome": 2376
+    },
+    {
+      "E": 20971520,
+      "Y": 21010688,
+      "components": [
+        4198656,
+        16812032
+      ],
+      "local_sources": [
+        4194304,
+        16777216
+      ],
+      "local_residuals": [
+        4198656,
+        16812032
+      ],
+      "trace": [
+        8,
+        11,
+        12,
+        15
+      ],
+      "local_traces": [
+        [
+          8,
+          12
+        ],
+        [
+          11,
+          15
+        ]
+      ],
+      "initial_syndrome": 2880
+    },
+    {
+      "E": 327833,
+      "Y": 327833,
+      "components": [
+        65553,
+        262280
+      ],
+      "local_sources": [
+        65553,
+        262280
+      ],
+      "local_residuals": [
+        65553,
+        262280
+      ],
+      "trace": [],
+      "local_traces": [
+        [],
+        []
+      ],
+      "initial_syndrome": 0
+    },
+    {
+      "E": 786840,
+      "Y": 786840,
+      "components": [
+        262280,
+        524560
+      ],
+      "local_sources": [
+        262280,
+        524560
+      ],
+      "local_residuals": [
+        262280,
+        524560
+      ],
+      "trace": [],
+      "local_traces": [
+        [],
+        []
+      ],
+      "initial_syndrome": 0
+    },
+    {
+      "E": 2164881,
+      "Y": 2164881,
+      "components": [
+        65553,
+        2099328
+      ],
+      "local_sources": [
+        65553,
+        2099328
+      ],
+      "local_residuals": [
+        65553,
+        2099328
+      ],
+      "trace": [],
+      "local_traces": [
+        [],
+        []
+      ],
+      "initial_syndrome": 0
+    },
+    {
+      "E": 2623888,
+      "Y": 2623888,
+      "components": [
+        524560,
+        2099328
+      ],
+      "local_sources": [
+        524560,
+        2099328
+      ],
+      "local_residuals": [
+        524560,
+        2099328
+      ],
+      "trace": [],
+      "local_traces": [
+        [],
+        []
+      ],
+      "initial_syndrome": 0
+    },
+    {
+      "E": 4460936,
+      "Y": 4460936,
+      "components": [
+        262280,
+        4198656
+      ],
+      "local_sources": [
+        262280,
+        4198656
+      ],
+      "local_residuals": [
+        262280,
+        4198656
+      ],
+      "trace": [],
+      "local_traces": [
+        [],
+        []
+      ],
+      "initial_syndrome": 0
+    },
+    {
+      "E": 6297984,
+      "Y": 6297984,
+      "components": [
+        2099328,
+        4198656
+      ],
+      "local_sources": [
+        2099328,
+        4198656
+      ],
+      "local_residuals": [
+        2099328,
+        4198656
+      ],
+      "trace": [],
+      "local_traces": [
+        [],
+        []
+      ],
+      "initial_syndrome": 0
+    },
+    {
+      "E": 16877585,
+      "Y": 16877585,
+      "components": [
+        65553,
+        16812032
+      ],
+      "local_sources": [
+        65553,
+        16812032
+      ],
+      "local_residuals": [
+        65553,
+        16812032
+      ],
+      "trace": [],
+      "local_traces": [
+        [],
+        []
+      ],
+      "initial_syndrome": 0
+    },
+    {
+      "E": 17336592,
+      "Y": 17336592,
+      "components": [
+        524560,
+        16812032
+      ],
+      "local_sources": [
+        524560,
+        16812032
+      ],
+      "local_residuals": [
+        524560,
+        16812032
+      ],
+      "trace": [],
+      "local_traces": [
+        [],
+        []
+      ],
+      "initial_syndrome": 0
+    },
+    {
+      "E": 21010688,
+      "Y": 21010688,
+      "components": [
+        4198656,
+        16812032
+      ],
+      "local_sources": [
+        4198656,
+        16812032
+      ],
+      "local_residuals": [
+        4198656,
+        16812032
+      ],
+      "trace": [],
+      "local_traces": [
+        [],
+        []
+      ],
+      "initial_syndrome": 0
+    },
+    {
+      "E": 3855,
+      "Y": 3855,
+      "components": [
+        15,
+        3840
+      ],
+      "local_sources": [
+        15,
+        3840
+      ],
+      "local_residuals": [
+        15,
+        3840
+      ],
+      "trace": [],
+      "local_traces": [
+        [],
+        []
+      ],
+      "initial_syndrome": 0
+    },
+    {
+      "E": 61455,
+      "Y": 61455,
+      "components": [
+        15,
+        61440
+      ],
+      "local_sources": [
+        15,
+        61440
+      ],
+      "local_residuals": [
+        15,
+        61440
+      ],
+      "trace": [],
+      "local_traces": [
+        [],
+        []
+      ],
+      "initial_syndrome": 0
+    },
+    {
+      "E": 61680,
+      "Y": 61680,
+      "components": [
+        240,
+        61440
+      ],
+      "local_sources": [
+        240,
+        61440
+      ],
+      "local_residuals": [
+        240,
+        61440
+      ],
+      "trace": [],
+      "local_traces": [
+        [],
+        []
+      ],
+      "initial_syndrome": 0
+    }
+  ],
+  "first_adaptive_multicomponent_witness": {
+    "E": 9,
+    "Y": 9,
+    "components": [
+      1,
+      8
+    ],
+    "local_sources": [
+      1,
+      8
+    ],
+    "local_residuals": [
+      0,
+      0
+    ],
+    "trace": [
+      0,
+      3
+    ],
+    "local_traces": [
+      [
+        0
+      ],
+      [
+        3
+      ]
+    ],
+    "initial_syndrome": 5
+  },
+  "fixed_pair_count": 12,
+  "scope": "selected sources only; no exhaustive family enumeration"
+}

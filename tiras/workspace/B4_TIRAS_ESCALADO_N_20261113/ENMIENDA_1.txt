@@ -1,0 +1,86 @@
+ENMIENDA 1 A PLAN_B4.txt (ANTES DE EJECUTAR)
+13/11/2026 (Lima). Origen: revision/REVISION_PLAN_B4.txt, pedida por el
+usuario antes de ejecutar ("antes de lo ejecutes dale una pasada sobre las
+metricas que usaste o los parametros...") y aplicada por su orden: "Si
+corrigelo por favor". Regla M9: PLAN_B4.txt (sha 08b3bc64...) queda
+intacto y sellado; donde esta enmienda dice algo, prevalece. El programa
+comprueba los SHA-256 de ambos. Nada de B4 se habia ejecutado.
+
+NO CAMBIA
+n = 6; m en {6, 12, 24, 48}; k = 1..4; la malla de 12 celdas; los
+umbrales; las afirmaciones A1-A3; las decisiones D-t1, D-t2 y D-t4; los
+controles C+, C- y V; la compuerta y los techos. Ninguna cifra cambia por
+esta enmienda; cambia lo que se informa y como se nombra.
+
+E1. Significado de e. e = eps/(2L + eps) = (U - L)/(U + L) con U = L + eps
+    es el error relativo garantizado, respecto del valor verdadero, del
+    estimador puntual 2LU/(L + U) (lem:harmonic-point del manuscrito;
+    ultima columna de tab:finite-intervals). Igual para ambos rivales y
+    para D1-CE y B1.
+
+E2. Coste. En B4 ambos rivales usan el mismo catalogo por crecimiento: el
+    L_ing exacto sale de P3, que usa thm:recomp. La truncacion ingenua
+    hecha como en la literatura (enumerar todos los conjuntos de <= k
+    fallos) cuesta sum_{f <= k} C(NS, f) llamadas. Por tira y k se informan
+    las dos cifras: llamadas del catalogo por crecimiento y
+    sum_{f <= k} C(NS, f). D-t3 pasa a llamarse "ventaja a igual k (igual
+    orden de truncacion)"; su regla no cambia. Ninguna decision depende del
+    coste. eps_ing no necesita enumeracion.
+
+E3. Regimen de tamano de M2 (T: host disperso, grado de K mucho menor que
+    el numero de sitios). El programa informa por tira el grado maximo de
+    K y el cociente grado/NS (calibracion: 42 en todas; 0.46, 0.22, 0.11 y
+    0.055 con m = 6, 12, 24 y 48). Solo m = 24 y 48 estan claramente en ese
+    regimen; m = 6 y 12 estan por debajo, y el informe lo dice junto a cada
+    lectura de A1 y A2. Las decisiones no cambian.
+
+E4. Razon de A2. Se compara con m = 12 porque es la primera tira con zona
+    interior (los recuentos son afines en m desde m = 8) y m = 6 esta
+    dominada por los bordes. El umbral 2 de A2 aplica el umbral nulo de M8
+    a un cociente de errores y no a R: convencion por analogia (T), no un
+    valor de la literatura.
+
+E5. Crecimiento con k (como D-f2 de B1). Por tira se informa el numero de
+    celdas con R_4 > R_3. Informativo.
+
+E6. Literatura en M11 y en los limites. La prediccion (error local
+    extensivo, truncacion global ~ C(N, k+1) p^(k+1)) se apoya en el
+    desarrollo de polimeros (KP86) y, en correccion de errores, en el
+    recuento de racimos con ideas de percolacion para umbrales LDPC
+    (Kovalev y Pryadko, PRA 87, 020304, 2013; FGL17 y FGL18 para el SSF).
+    El rival ingenuo con k = f_s es el recuento de configuraciones minimas
+    que fallan (Fowler, arXiv:1208.1334); que su numero (11m - 10) crezca
+    con el de caminos logicos minimos (m) es el factor de "entropia"
+    (Beverland et al., arXiv:1812.05117). La truncacion ingenua es la cota
+    determinista del muestreo por subconjuntos (HWRM24: subconjuntos no
+    muestreados con valor 0 o 1). Hay evaluaciones certificadas de fallos
+    logicos raros por otras vias (CP26, MSA26 del manuscrito); B4 no se
+    compara con ellas.
+
+E7. Precision de la prediccion (no decide). Con q = 0 la cola ingenua
+    cuenta solo los N datos: eps_ing ~ C(N, k+1) p^(k+1). Con q = p y
+    p = 1e-3 el numero medio de fallos es NS p = 0.091, 0.187, 0.379 y
+    0.763 con m = 6, 12, 24 y 48: con m grande esas celdas salen del
+    regimen asintotico y las pendientes locales de R_4 pueden quedar por
+    debajo de 4.
+
+E8. Muestreo por subconjuntos (M6). Por tira (q = p): w*, n_w*, C(NS, w*),
+    muestras n_SS para el 10 % al 95 % (formula de B1), sum_{f <= w*}
+    C(NS, f) (como B1) y las llamadas del catalogo por crecimiento hasta w*
+    y hasta k = 4.
+
+E9. Desviacion respecto de DISENO_B3.txt, declarada. La opcion A
+    mencionaba la regla de suma para certificar el catalogo. B4 no la usa:
+    la sustituye por el exhaustivo en m = 12 y la comprobacion afin en
+    m = 24 y 48 (hipotesis medida, no demostrada). La regla de suma hasta
+    grado 4 lo certificaria sin hipotesis; no se implementa en B4 y queda
+    como limite.
+
+DATO ANADIDO A M11
+Con n = 5 el orden silencioso es 2 (TIRA_8x5 y TIRA_10x5;
+revision/SALIDA_n5.txt), asi que con k = 4 P3 no valdria: n = 6 es el
+menor camino corto con P3 exacta para k = 4.
+
+ARCHIVOS
+ENMIENDA_1.txt, SELLO_ENMIENDA_1.json; revision/ (REVISION_PLAN_B4.txt,
+SALIDA_n5.txt).

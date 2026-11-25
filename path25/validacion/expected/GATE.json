@@ -1,0 +1,24 @@
+{
+  "worker_sha256": "d0dff22d3ed87b541bfd6fccca91c0577d3e60c076a4718211eff8c5232c3b68",
+  "supervisor_sha256": "eeda621eaa616c3820967c064fa540cb9253e83978c40aa86a93e51fcedcb438",
+  "design_sha256": "ba99badccb133994c23b8f243fc175a1df0d7aafd73aec2a9eef7a2d5f786d90",
+  "attempt": 1,
+  "retries": 0,
+  "budgets": {
+    "fixtures": 1,
+    "syndrome_states": 4096,
+    "candidate_scores_per_reference_engine": 421888,
+    "candidate_scores_two_reference_engines": 843776,
+    "reference_quotient_states": 8192,
+    "reference_dp_final_cells": 212992,
+    "reference_dp_final_raw_uint64_bytes": 1703936,
+    "reference_dp_update_bound": 5324800,
+    "local_oracle_queries_upper_bound": 19714,
+    "low_weight_sources_including_empty": 326,
+    "wall_seconds": 60,
+    "process_memory_MiB": 256,
+    "output_MiB": 32,
+    "automatic_retries_or_scope_expansion": 0,
+    "interpretation": "Techos propuestos, no prediccion medida. Vigilar tiempo y memoria; conservar checkpoint e informar si se alcanza un techo. Desarrollo no incluido en esos 60 segundos."
+  }
+}

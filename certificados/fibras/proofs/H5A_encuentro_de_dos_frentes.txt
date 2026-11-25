@@ -1,0 +1,349 @@
+H5-A · Cuándo dos grupos lejanos cambian la corrección
+18 de noviembre de 2026
+
+Resultado
+=========
+
+El rectángulo general de acceso a las particiones físicas sigue en
+p ≤ 2·10⁻³³ y q ≤ 2·10⁻¹¹. En la esquina objetivo p = 10⁻³⁰, q = 2·10⁻¹¹
+se obtiene una estimación adicional para encuentros detectables al
+ejecutar primero los grupos por separado y después sus uniones. Cubre
+el caso en que es preciso corregir dos grupos juntos para descubrir
+una interacción con un tercero. Admite cualquier número de grupos y
+distancias que crecen con el número de datos de cada grupo o unión.
+El nuevo sector tiene fila ≤1.4·10⁻³⁰ por dato y <8.6·10⁻¹⁰ por medida.
+Las filas designan sumas de pesos absolutos por una fuente fijada.
+
+Dos grupos pueden cambiar la corrección conjunta a distancia arbitraria
+incluso si no hay errores de medida. Para dos grupos sin medidas con
+al menos 2100 datos cada uno, todo primer cambio pasa el test de encuentro
+entre ellos. Para dos uniones construidas, el test del segundo nivel
+admite todo primer cambio sin medidas desde 22000 datos por unión. La
+suma sobre las demás fusiones y anclajes sigue abierta. Rigen
+la semilla binaria (17,18)-regular de cualquier tamaño, una ronda
+Bernoulli independiente, FGL completo con β=1/100, máximo global,
+prioridad fija, las máscaras y los subhosts del manuscrito.
+
+1. Test exacto del primer cambio
+================================
+
+En un núcleo que pasa el filtro físico el síndrome terminal D es el conjunto
+original de medidas erróneas y es estable. Dividir sus fuentes de datos en
+A y B. Ejecutar cada conjunto sobre el mismo fondo D. Para cada copia sea
+X el síndrome observado en diferencia simétrica con D. Al principio
+X_A=H_X A y X_B=H_X B. En cada instante de las dos listas aisladas,
+predecir el siguiente paso por la mejor clave local (puntuación, prioridad)
+y avanzar sólo esa lista. Si ambas claves y acciones son idénticas, usar
+un orden fijo de grupos. La parada tiene clave menor que cualquier paso.
+
+Hasta el primer paso en que difieren las acciones, la discrepancia conjunta
+es X_A ⊕ X_B. Para un candidato de huella φ y área a, su descenso exacto es
+
+    2|D∩φ| − a + 2 Σ_{u∈φ∩(X_A⊕X_B)} (1−2·1_D(u)).                  (1)
+
+Dividir por a y aplicar el umbral y el desempate reales. Un candidato que
+ve discrepancia en un solo grupo conserva su puntuación en esa copia.
+Sin discrepancia, ve el fondo estable. Por tanto basta comparar el mejor
+candidato de los que ven a lo sumo un grupo, obtenido restringiendo las
+listas de candidatos locales en el estado actual, con los candidatos que
+ven ambos grupos, recalculados por (1). Si la acción resultante coincide
+con la prevista, su huella conmuta una sola vez el XOR y se sigue. Si
+difiere, al menos una de las dos acciones, la prevista o la ganadora
+conjunta, veía a ambos grupos. La comparación incluye las paradas.
+Un contacto puede alterar puntuaciones y dejar el mismo ganador. Si al
+final se evalúa el filtro, la condición exacta es X_A ⊕ X_B vacío.
+
+La fórmula usa la paridad en los checks donde las discrepancias coinciden.
+Se extiende a más grupos sustituyendo la diferencia simétrica por la de
+todas sus discrepancias. Sirve para una entrada concreta. El control de
+los coeficientes del logaritmo se hace sobre decoraciones y árboles en
+las secciones 3 y 4, donde también intervienen las subentradas.
+
+2. Dos ejecuciones que se detienen y juntas alcanzan síndrome cero
+==================================================================
+
+En una fila física, construir un grafo de grado 17. Un vértice es un
+dato y cada arista un check distinto. Hacer 17 copias del grafo. La
+semilla tiene una columna de peso 17 por vértice en cada copia. Para
+cada arista original, añadir 16 columnas que cubren sus 17 copias.
+Cada fila de la semilla tiene así 2+16 unos. Sólo hay luz en una fila
+física y en la copia activa. Por el lema de las ocho filas de
+H5A_cortes_y_huecos.txt, §1, un ganador sólo voltea una línea de esa fila.
+Las columnas de relleno ven a lo sumo una luz. El máximo exacto elige un
+vértice con el mayor número h≥9 de aristas del corte de ocupados y vacíos.
+
+Construir dos brazos con niveles 0,…,m cada uno, m≥1. El nivel j tiene
+n_j=2·8^j·9^(m−j) vértices. Los vértices del nivel 0 tienen nueve
+vecinos en su nivel y ocho aristas salientes. En el interior llegan
+nueve y salen ocho, con 8n_j=9n_(j+1). Después de cada último nivel
+poner la misma capa central de n_m vértices. Cada vértice central recibe
+ocho aristas por lado y una más de un emparejamiento dentro de la capa.
+En cada nivel inicial sirve un ciclo con los cuatro vecinos siguientes,
+los cuatro anteriores y el vértice opuesto. Las incidencias entre capas
+se emparejan respetando los grados. Aristas paralelas tienen checks distintos.
+
+A y B ocupan respectivamente los niveles 0 de izquierda y derecha. D es
+vacío. Los ocupados iniciales son estables, y un vacío que se voltea con
+al menos nueve vecinos ocupados permanece estable al crecer el conjunto.
+Por cada brazo sembrado se llenan todos sus niveles, pues hasta entonces
+hay un vértice elegible en el primer nivel incompleto. Con un solo brazo,
+el centro ve a lo sumo ocho y queda vacío. Con ambos, una vez llenos los
+brazos cada centro aún vacío ve al menos 16, y todo el grafo acaba ocupado.
+El síndrome final de cada corrida aislada tiene 8n_m checks. El de la
+corrida conjunta es cero. En subhost completo y con máscara trivial las
+marcas valen respectivamente 0, 0 y 1.
+
+Antes del primer volteo central, cada vértice de un brazo tiene la misma
+puntuación que en su proyección. De ahí que ese primer volteo central
+sea exactamente el primer cambio de acción frente a la intercalación.
+La distancia en L entre las huellas fuente es al menos 2m+1. Numerar los
+niveles de extremo a extremo y asignar a cada arista el menor nivel de sus
+extremos. Un paso en L cambia ese índice a lo sumo en uno, también en las
+copias de relleno. Los dos checks que llegan al centro desde ambos lados
+están a distancia m de las huellas de su brazo y comparten un rectángulo.
+El programa contrasta el orden global para m=3. En el paso 5780 un vértice
+central ve 8+1 luces. Los tamaños terminales son 8192, 8192 y 0.
+La inducción en m establece el alcance arbitrario. Esta familia usa
+singletons y también está cubierta por la cuenta anterior de singletons.
+Su diferencia de marcas para dos grupos no determina el cumulante de
+todas las fuentes individuales.
+
+Una variante requiere de verdad reunir dos grupos antes de detectar el
+tercero. Usar tres brazos iniciales A,B,C del mismo tipo. Una primera
+capa U recibe por vértice cinco aristas desde A y cuatro desde B.
+Salen ocho hacia un tramo de k≥1 capas con nueve llegadas y ocho
+salidas. La segunda capa de unión V recibe ocho desde el final del tramo
+y ocho desde C, con el emparejamiento interior que completa el grado 17.
+La razón de tamaños en cada par de capas es la razón inversa de sus
+grados hacia la otra. El grafo de capas sin los lazos interiores es un
+árbol. Basta elegir un múltiplo par común suficientemente grande para
+realizar todos los tamaños y los grafos interiores.
+
+A o B solos se detienen antes de U. C solo se detiene antes de V. Sus
+checks visitados por separado no comparten rectángulo entre el lado A,B
+y C, pues el tramo los separa. A y B juntos encienden U y recorren el
+tramo hasta V. Al añadir C se activa V y se termina en síndrome cero.
+AC y BC dejan una frontera encendida en ambos lados. Con máscara trivial
+y subhost completo, las seis entradas propias no vacías tienen marca 0
+y ABC tiene marca 1. El cumulante de los tres grupos considerados como
+tres variables vale exactamente 1 por la fórmula de particiones.
+Con brazos de tres niveles de avance o más, las tres huellas iniciales
+están en grupos distintos del grafo de distancia cinco. Variar las
+longitudes y escalar las poblaciones conserva el argumento. El programa
+comprueba los grados y los cierres de las distintas entradas por capas.
+El cierre desde semillas estables es monótono. Si se actualizan a la
+vez todos los elegibles, las capas son homogéneas por sus grados, y el
+cierre es el mismo que con el máximo global paso a paso. Esta segunda
+prueba decide la participación de C sin suponer un orden de desempate.
+
+3. Qué encuentros entran en la suma
+===================================
+
+Usar las piezas y los árboles supervivientes de la expansión física de
+H5A_propagacion_entre_fuentes.txt, §3. Una pieza es un núcleo filtrado
+con datos o una medida pasiva. Al retirar las pasivas, las medidas D de
+cada núcleo forman su propio fondo estable. Sean E sus datos y e=|E|.
+I(A) denota la unión de huellas originales de los datos de A, con todas
+sus celdas antes de calcular la paridad. L une checks que comparten un
+rectángulo. En el núcleo, agrupar los datos por componentes conexas al
+unir huellas a distancia ≤5. Estos grupos se determinan sólo con E.
+
+Para cada grupo A de n datos, correr A por separado sobre D. Guardar I(A)
+y las discrepancias X vistas hasta antes del primer paso que haría superar
+un descenso acumulado de 18n. Si termina antes, guardar la parada. Llamar
+U(A) al conjunto guardado. Para el núcleo completo usar también U(E).
+Una corrida aislada que termina en D siempre cabe entera en ese presupuesto.
+Una corrida aislada que falla puede contribuir con todo su prefijo guardado.
+
+Dos grupos del mismo núcleo admiten enlace si hay u∈U(A), v∈U(B) a
+distancia ≤1 en L y, en sus lados respectivos,
+
+       dist(u,I(A)) ≤ R(|A|),       R(n)=4+⌊(n−1)/5⌋,                (2)
+       dist(v,I(B)) ≤ R(|B|).
+
+Permitir una partición de los grupos en bloques H, cada uno conectado
+internamente por (2). Un solo grupo también es un bloque. Para cada H
+se calcula U(H) desde el principio con sus datos reunidos sobre el mismo
+D. Se exige que los bloques formen un grafo conexo al enlazar checks
+u∈U(H), v∈U(K) a distancia ≤1, con distancias a sus respectivas fuentes
+de a lo sumo S(|H|) y S(|K|), donde S(n)=3+⌊(n−1)/40⌋ y |H| cuenta
+datos. Se elige una partición y unos árboles testigo por orden fijo si
+hay varios. Un solo bloque basta cuando (2) ya conecta todo el núcleo.
+Los encuentros reales del test (1) usan dos checks a distancia ≤1.
+Para el mayorante se admiten también encuentros en tiempos diferentes
+o con un candidato que pierde. Las corridas de los bloques son físicas
+y pueden elegir una trayectoria distinta de la intercalación de sus grupos.
+
+Si D es vacío, |s₀|≤18n y todo el recorrido aislado cabe en U(A). Para
+r=101/99 la suma de r^dist(u,I(A)) sobre las luces nunca aumenta. Los
+pesos de una huella difieren en factor ≤r y la acción consume h≥r c
+luces cuando crea c. Una luz nueva a distancia d≥1 necesita h≥9 luces
+anteriores a distancia ≥d−1, de modo que 9r^(d−1)≤18n. Para n≥2100 se
+tiene r^R(n)>2n, comprobándolo en 2100,…,2104 y usando r>(n+5)/n al
+avanzar cinco. Por tanto ningún check de la corrida queda fuera del radio
+(2) en ese rango. Con dos grupos de ese tamaño y D vacío, (1) implica (2)
+si cambia la acción. Para el segundo nivel, r^S(n)>2n desde n=22000.
+Se comprueba en cuarenta enteros iniciales y luego r>(n+40)/n.
+Los brazos del primer ejemplo satisfacen m≤R(2·9^m) para todo m, incluso
+cuando son menores que 2100. En el de tres brazos se pueden escalar las
+poblaciones conservando las distancias, de modo que ambos niveles del
+test se cumplan para cualquier longitud del tramo entre U y V.
+
+Entre piezas conservar los contactos físicos reales del árbol. Un contacto
+entre núcleos se admite si dos huellas de datos originales están a distancia
+≤5, o si U(E₁) y U(E₂) tienen dos checks a distancia ≤1 y cada uno dista
+≤3 de una huella original propia. Para un enlace núcleo–pasiva exigir
+distancia ≤5 de la pasiva a una huella original del núcleo. Para dos
+pasivas, distancia ≤1. Se usan los contactos fijados en el árbol anterior
+o testigos canónicos en esos mismos pares de piezas. Por último, exigir
+que cada medida activa esté a distancia ≤6+⌊(e−1)/40⌋ de I(E) en su
+núcleo. Sólo se usará esta restricción cuando la medida sea la raíz.
+
+4. Suma por fuente en p=10⁻³⁰ y q=2·10⁻¹¹
+==========================================
+
+Sea s(r)=r exp(0.015)/(1−2r) y poner s_p=s(p), s_q=s(q). Se puede
+descubrir D mientras se reconstruyen las corridas. Con los datos y las
+acciones anteriores se conoce X, incluso antes de consultar D. Todo
+candidato elegible corta X por estabilidad de D. Consultar las celdas
+de los rectángulos que tocan X determina el ganador exacto y la parada.
+Con J=83810, un check origina a lo sumo J posiciones que consultar.
+En todo prefijo guardado la suma de áreas es ≤100·18n. Por tanto
+|U(A)|≤Mn con M=1818, también si la copia aislada falla.
+
+Mantener en cada núcleo una sola tabla de respuestas. Tras elegir los
+datos de un grupo se calcula U(A) para buscar los grupos hijos de su
+bloque. Una vez conocido todo el bloque H se calcula U(H) para buscar
+bloques hijos. Al determinar el núcleo completo se lo simula y se
+consultan además las huellas originales I(E). Toda medida activa pertenece
+a esas huellas o al rectángulo de una acción que la leyó. Se consulta
+todo el rectángulo del ganador, incluidas las intersecciones de filas y
+columnas que no conmuta su corte. Luego las etiquetas positivas recuperan
+todas las medidas de la pieza. Se descartan las ramas incompatibles con
+la estabilidad, el filtro, el subhost o la selección de la pieza. Para
+mayorar basta el árbol de consultas, incluidas las ramas descartables.
+Las ramas aceptadas usan a lo sumo Le=(3MJ+18)e consultas nuevas. Desde
+una historia de respuestas cualquiera, un árbol binario de profundidad b
+con pesos 1 y s_q tiene suma de hojas ≤(1+s_q)^b. Una respuesta ya vista
+se reutiliza. Cada dato aparece en un grupo, en un bloque y en el núcleo
+total. El factor destinado a medidas es ≤exp(Ls_q e), con Ls_q<0.00929.
+Esto también vale si las colocaciones posteriores de datos dependen de
+respuestas anteriores, pues cada cota es uniforme en las respuestas
+conocidas. Para una raíz de medida activa fijar su respuesta positiva
+de antemano, cargar s_q una vez y exigir que pertenezca a la pieza final.
+
+Usar N₅ para el máximo número de datos a distancia ≤5 de una huella y
+N(j) para el número máximo de datos con huella a distancia ≤j de un
+check dado. Las bolas de Tanner de H5A_propagacion_entre_fuentes.txt, §3
+dan N₅≤1404424171116984396229339141 y N(j)≤V_j B_j+C_j A_j en la
+notación de esa nota. Usamos estos lados derechos en las fórmulas que
+siguen. Desde j≥1, N(j+1)≤γN(j), γ=273². Para una pieza plenamente
+conocida, cada dato original permite buscar a lo sumo N₅+MJ N(3)
+datos de entrada a un núcleo hijo en un contacto exterior. Hay ≤135
+datos visitados por dato original y ≤1420146 pasivas vecinas de cada
+dato visitado. Una medida activa tiene el vecindario dominado por el de
+su lector visitado. Desde una pasiva fija se admiten N(5) raíces de dato
+y J pasivas. Cada contacto exterior tiene dos colores, por pertenecer
+al interior de una decoración o al árbol entre decoraciones.
+
+Denotar por T=1.4·10⁻³⁰ y P_m=2.031·10⁻¹¹ las cotas por raíz de dato
+y de pasiva. Con B_d=0.00587 y B_m=0.000118 se verifican
+
+    [N₅+MJ N(3)] T + 135·1420146 P_m < B_d,
+    N(5)T + J P_m < B_m,             s_q exp(2B_m) < P_m.
+
+En el núcleo se elige un árbol de bloques, un árbol de grupos con enlaces
+(2) en cada bloque y un árbol de datos a distancia cinco en cada grupo.
+Los miembros y las aristas testigo se conocen al recuperar las fuentes.
+La entrada en un hijo elige un dato suyo próximo al check de encuentro.
+Cuando se conoce el grupo padre hay ≤MJn checks de entrada para el hijo.
+
+Se usan dos posibles factores θ=7/5, uno por cada dato del núcleo de
+la raíz y otro sólo por cada dato del bloque de entrada. Se permiten
+ambos porque θ²<2. Sin inclinación, utilizar los topes R₁,G₁. Con
+cualquiera de esas inclinaciones, o las dos, usar los topes R₂,G₂ y
+mayorar el precio por 2s_p. R mayora la rama interior enraizada en
+un dato. G añade el factor 32 por cada dato de su grupo de entrada.
+En otro bloque cesa el factor propio del bloque de entrada, en otro
+grupo cesa el 32, y en un núcleo hijo se usan los precios ordinarios.
+Escribir
+
+    h=γ/32⁵,     η=h/[32(1−h)],     Z_k=R_k+ηG_k .
+
+Para k=1 o 2 según estos topes, desde un check fijo la suma de hijos
+cuyo dato de entrada dista ≤4 es
+≤N(4)R_k. En el anillo siguiente de índice j≥1, distancia 4+j, el
+grupo hijo tiene ≥5j+1 datos por (2). Enumerar posibles datos de entrada
+en la bola 4+j y usar G_k/32^(5j+1). La suma sobre j da ≤N(4)ηG_k.
+Así se permite distancia arbitraria y se paga la inclinación una vez
+en la entrada de cada grupo. Para entrar en otro bloque desde U(H), el
+anillo 3+j requiere ≥40j+1 datos en el bloque hijo si j≥1. Se financia
+con el factor θ de ese bloque, compatible con el posible θ del núcleo.
+Con h'=γ/θ⁴⁰<1 y η'=h'/[θ(1−h')], una cota para estas ramas, por dato
+del bloque conocido, es W=MJ N(3)R₂(1+η')<0.000016. Se usa también
+R₂ como cota del término base en el anillo interior.
+
+Con (R₁,G₁)=(1.4·10⁻³⁰,5·10⁻²⁹) y (R₂,G₂)=(5.8·10⁻³⁰,2.8·10⁻²⁸)
+poner C_k=MJ N(4)Z_k+W+2B_d+Ls_q. El verificador comprueba
+
+    k s_p exp(N₅ R_k+C_k) < R_k,     32 k s_p exp(N₅ G_k+C_k) < G_k.
+
+Estas desigualdades se aplican por altura del árbol. Primero se colocan
+los datos conectados de un grupo, después sus consultas y sus grupos
+hijos. Completar un bloque determina sus posibles contactos con otros
+bloques. Completar el núcleo determina sus contactos exteriores. Sus
+costes son uniformes por dato antes de efectuar estas elecciones.
+Dentro de un grupo, N₅ cuenta la arista al siguiente dato.
+Al entrar en otro grupo se usa el coste Z_k recién probado. Los hijos
+sin orden dan la exponencial. Equivalentemente se pueden explorar en
+todos los órdenes y dividir por sus factoriales. Las ramas reales tienen
+etiquetas de fuente distintas y cualquier orden recupera las mismas
+respuestas de D. Las cotas condicionales son uniformes en ese orden.
+Al cortar en el árbol los enlaces entre decoraciones se recuperan las
+familias físicas con sus fuentes. Esto conserva el recuento de árboles
+supervivientes de la expansión anterior, aun si se descartan algunos.
+
+Si la raíz es medida activa, buscar un dato en la bola de radio
+6+⌊(e−1)/40⌋. En el anillo j≥0 hay ≤N(6)γ^j posibilidades y el núcleo
+lleva al menos 40j+1 datos. Aquí R₂ paga el factor θ por todos los datos
+de ese núcleo, una sola vez, manteniendo B_d ordinario. Incluida la
+opción de raíz pasiva, la fila es como máximo
+
+    P_m + s_q N(6)R₂ / [θ(1−γ/θ⁴⁰)] < 8.6·10⁻¹⁰.
+
+5. Lo pendiente
+===============
+
+En k_ext de H5A_primer_apagado_por_grupos.txt, §5, retirar sólo los
+términos cuyos árboles cumplen la sección 3. Llamar k_rest a la suma
+firmada restante. La nueva estimación permite reutilizar el mismo
+presupuesto de cierre. Sumadas las filas anteriores, incluida la referencia,
+
+    Σ_{B∋i, |B|≥4} |k(B)−k⋆(B)−k_rest(B)| s^B
+          < 1.94·10⁻⁵ por dato,       < 0.00070 por medida.
+
+Para el certificado general hasta 10⁻³⁰ falta demostrar que la fila
+absoluta de k_rest es ≤0.004298 por raíz. El segundo nivel incluye el
+ejemplo en que A y B juntos alcanzan a C. Para una cadena que requiera
+volver a fusionar y volver a simular sucesivamente, el número de veces
+que se cargarían los mismos datos ya no tiene aquí una cota uniforme.
+También quedan fuera de este criterio ciertos prefijos sobre D,
+anclajes de medidas y contactos entre piezas. Además,
+el exceso de primeras correcciones débiles y el de las ocurrencias
+débiles exteriores pueden corresponder a partes distintas del mismo
+término. La cota superior de un sector no mide cuánto se ha reducido
+la masa real del resto. El salto pendiente en la tasa general es un
+factor 500. La transferencia a fallo silencioso sigue sujeta a las
+hipótesis adicionales del manuscrito.
+
+Reproducción
+============
+
+En 05_COMPROBACIONES, con los certificados H5-A anteriores, ejecutar
+
+    python -I -B -X utf8 verificar_H5A_encuentro_de_dos_frentes.py
+
+El verificador usa la biblioteca estándar, comprueba las desigualdades
+decisorias con enteros y fracciones y ejecuta las tres corridas del
+ejemplo con el máximo y el desempate reducidos exactamente a la fila.
+La derivación combinatoria queda pendiente de revisión independiente.

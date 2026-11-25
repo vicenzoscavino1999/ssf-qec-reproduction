@@ -1,0 +1,315 @@
+Fase 6 · De las cotas fenomenológicas al circuito de F17
+23 de noviembre de 2026 · Derivación para revisión matemática independiente
+
+1. Resultado y alcance
+
+El punto de partida es el corolario «Uniform mixed rectangle from source
+cumulants» del manuscrito. Para toda semilla binaria (17,18)-regular da
+p≤5·10⁻³³ y q≤2·10⁻¹¹ en el modelo fenomenológico. Los resultados siguientes
+son para el autoproducto, una extracción Z, el sector X y el ruido primitivo
+despolarizante y de lectura del apéndice «A concrete syndrome-extraction
+circuit». Se conservan las esperas, las CNOT dato-control, la familia FGL
+completa con β=1/100, el máximo global normalizado por huella y su desempate
+físico fijo. La corrección final es ideal.
+
+    Alcance                              r_c                     r_m
+    F17 afín original                    0 a 5·10⁻³³             0 a 2·10⁻¹¹
+    Cualquier tamaño (17,18)             0 a 2·10⁻³⁵             0 a 2·10⁻¹¹
+
+Ambos rectángulos son conjuntos y dan acceso determinista a las particiones
+con filtro físico, para toda máscara, todo subhost primitivo inducido y
+toda precisión relativa solicitada en el contrato. En la primera fila
+se usa el volumen real de F17. La segunda admite también ciclos de cuatro
+y líneas duplicadas. Queda un factor 250 en r_c entre las dos esquinas.
+La anterior esquina circuital uniforme del manuscrito era aproximadamente
+(9.66255·10⁻⁸², 1.47119·10⁻²⁰). Para convertir el acceso en precisión
+relativa de un fallo silencioso positivo rigen el testigo lógico, su
+factor de precisión y las demás hipótesis del teorema circuital. El
+testigo de F17 tiene peso 34. En el eje r_c=0 el fallo silencioso es cero.
+
+2. Por qué en F17 original se alcanzan las dos cifras de referencia
+
+Hay n=177157 datos, m=88434 medidas y N=11246724 ubicaciones primitivas.
+Para cada ubicación sea b_ℓ la suma de las razones de las categorías
+no basales respecto de su categoría basal. Las razones agregadas valen
+b_op=r_c/(1−r_c) y b_lectura=1/[(1−r_c)(1−r_m)]−1. En la primera
+esquina S=(N−m)b_op+m b_lectura <1.769·10⁻⁶.
+
+Multiplicar por t cada aparición de una ubicación no basal. La partición
+primitiva normalizada Ξ(t) tiene término constante uno. Por determinismo
+de la trayectoria, cada asignación de categorías aporta una marca de
+módulo ≤1. La norma que suma los módulos de los coeficientes con peso
+2 por grado cumple
+
+    ||Ξ−1||₂ ≤ ∏(1+2b_ℓ)−1 ≤ exp(2S)−1 ≤ 2S/(1−2S) = h < 1.
+
+La misma cota vale tras suprimir ubicaciones y restringir las acciones.
+La serie de log(1+z) da ||log Ξ||₂ ≤ h/(1−h) < 3.538·10⁻⁶. La
+partición física es positiva en el segmento real de cero a uno. Tras el
+grado M, la cola absoluta del logaritmo en t=1 es ≤3.538·10⁻⁶/2^(M+1).
+Esta cota sirve para cualquier precisión, incluida una menor que la masa
+de un fallo individual. Depende explícitamente de S y por tanto del volumen.
+
+Para el acceso efectivo, en el logaritmo formal sólo hay clusters conexos
+de decoraciones primitivas del manuscrito. Un término de grado k, contando
+repeticiones, tiene sus fuentes en un conjunto conexo de ≤199k vértices
+por la desigualdad «circ-density199». Enumerar estos conjuntos hasta
+199M y sus subconjuntos de fuentes sin duplicados. Para cada subconjunto
+calcular la partición con las demás fuentes basales, conservando los
+vértices de acción permitidos de J y todos los rivales. La inclusión y
+exclusión de sus subconsultas sobre el logaritmo truncado selecciona el
+soporte exacto de fuentes. El coste a grados locales fijos es
+N_H exp[O(M)] por un factor polinómico de aritmética y oráculo. Basta
+M=O(1+log(1/ζ)) para la precisión relativa ζ. Aquí se han certificado
+las cotas de acceso, sin calcular el valor físico de P_sil.
+
+3. Actividades independientes por cable y por check para la cota uniforme
+
+Se usa la respuesta conjunta del manuscrito. En la proyección X de una
+CNOT, sean a y b los bits posteriores de control y blanco. Con bits
+independientes de probabilidades 8r_c/15, t=4r_c/(15−8r_c) y 1/2,
+respectivamente a,T,U, poner b=T⊕aU. Esto da los pesos de (00,01,10,11)
+iguales a (1−4r_c/5,4r_c/15,4r_c/15,4r_c/15). Enviar T al check y
+conservar (a,aU) en el dato. Cada espera de dato invierte X con
+probabilidad 2r_c/3. Se obtiene una etiqueta independiente por dato
+x, (e_x,d_x), con s_x=e_x ψ_x⊕d_x su síndrome observado y ψ_x su línea.
+Cada check recibe además un bit independiente B_j. Con A las etiquetas
+de dato no nulas, E={x:e_x=1}, B={j:B_j=1} y D=B⊕(⊕d_x), la entrada
+observada es H_X E⊕D y el terminal de toda historia filtrada es D.
+
+Antes de formar las fibras se fijan a referencia las ubicaciones ausentes
+de J. Una puerta presente puede dar un bit T a un check cuyas ubicaciones
+propias están ausentes. Los vértices de acción permitidos siguen siendo
+los de J. Para recuperar la partición primitiva se multiplica la partición
+efectiva por el producto de las probabilidades de etiqueta cero de todas
+las fibras, dividido por el producto de probabilidades basales de las
+ubicaciones primitivas presentes. Resulta al agrupar las asignaciones que
+dan la misma entrada y traza. Las leyes locales y el factor se calculan
+por convolución XOR en cada fibra, de tamaño acotado por los grados.
+
+Fijar r=2·10⁻³⁵ y g=34r. Un dato de anchura n=17 o 18 tiene n puertas y
+54−n esperas. Escribir u=2r/(3−2r), v=8r/(15−8r). El peso de etiqueta
+cero incluye el suceso de ningún control invertido. Dividiendo por este
+último se obtiene una medida positiva dominante. Su masa no nula está
+acotada por (1+u)^(54−n)(1+v)^n−1 < g. La masa de dos o más controles
+es ≤10⁻³⁰g tras quitar (54−n)u+nv. Para los checks basta
+
+    g_M=(1−2r/3)⁻¹⁹(1−r_m)⁻¹(1−t)⁻³⁵−1.
+
+Se cuentan 19 ubicaciones propias con Pauli, un bit clásico y 35 puertas.
+Suprimir ubicaciones suprime monomios de la medida dominante. Los precios
+se fijan en la esquina superior para cubrir cada subhost y tasas menores.
+
+4. Cuánto cuestan los checks que faltan de una línea
+
+Se reutilizan las desigualdades locales, los árboles causales y los pesos
+del perfil GENERAL de «Contactos entre ejecuciones». El coste de un paso
+es w(m) en bits, donde m cuenta los primeros apagados de I=Σ fuera de D
+y Σ=H_X E. Asignar cada check de I a un dato físico de E que lo lea.
+Los índices de los episodios que quedan vivos en su línea permiten la
+comparación con su singleton. La desigualdad (3) de esa nota vale con
+los mismos λ₀, λ_u y créditos L_n y con cualquier D estable.
+
+En una decoración efectiva conexa de K conservar todas las fuentes A.
+Una medida de B es ligada si es vecina en K de algún dato marcado. Formar
+grupos por aristas dato–dato y dato–medida ligada. Los checks de las líneas
+de grupos distintos son disjuntos. Una medida no ligada y conmutada se
+guarda en su primer apagado en la historia. Las otras no ligadas se retiran
+como pasivas. La proyección conserva los ganadores porque sólo quita luces
+en sitios que ningún ganador conmutó. Las componentes conexas restantes
+son núcleos filtrados del mismo decodificador. Un núcleo contiene al
+menos un dato marcado, incluso cuando su paridad física resulta cero.
+
+En el árbol causal de cada núcleo, todo check encendido desde el inicio
+en una línea marcada tiene un lector inicial en A. Los primeros apagados
+de I admiten los enlaces directos de la nota de contactos. Fuera de las
+líneas, una luz inicial sólo puede venir de B. Toda medida ligada se
+guarda aunque su bit se haya cancelado. Así permanecen válidos el enlace
+ordinario al último encendido, los orígenes con tres medidas no ligadas
+y la cobertura por puentes. Se guardan las etiquetas en los datos y los
+bits ligados o conmutados en los checks. Reconstruyen cada entrada, y su
+ejecución determina los desempates y la contención en J. Las quince
+filas de ramas de aquella nota sólo requieren volver a acotar los tres
+tipos de grupo fuente. La retirada opcional de datos con corrección
+perfecta se omite en esta cuenta.
+
+Para un grupo G, poner Σ_G=H_X(E∩G), T_G=Σ_G∩D. El coste cronológico
+original admite una deducción adicional de S_λ |T_G|, donde
+
+                  S_λ=λ₀+Σ_u λ_u=7.112874 bits.
+
+En efecto, la suma total de descensos es |I|−Σ_G |T_G|. Para un umbral u,
+antes del primer paso con puntuación <u todos los pasos del prefijo
+tienen puntuación ≥u. Si ninguno llega, se usa la parada. La suma de
+descensos de los pasos <u, menos las luces creadas por los pasos ≥u,
+es como máximo el peso observado al cruce menos |D| y menos todas las
+creaciones del prefijo. Esto es el número de luces de I todavía vivas,
+menos los apagados de luces iniciales de D fuera de Σ, menos las
+creaciones ya apagadas y menos Σ_G |T_G|. Una luz consumida pertenece
+a un episodio distinto. Cuando baja el máximo de rangos en un grupo, la
+primera acción que toca una línea que alcanzaba ese máximo consume las
+luces exigidas por la recurrencia de primeros cruces. Todas las fuentes
+iniciales que pudieron iluminarlas están en el mismo grupo por la regla
+de lectores del rectángulo. Se pueden cobrar sus apagados o las creaciones
+ya gastadas a esa acción, una sola vez. Para los saldos de la recurrencia
+se puede truncar por cero antes de restar |T_G|. Así el término adicional
+se conserva en cada fila λ_u y en la fila λ₀. Los datos de paridad cero
+tienen cero primeros apagados propios y se pueden incluir en las capacidades.
+
+Una línea disjunta de las otras, sin B propio y con un solo control
+invertido, tiene e_x=1. Si le faltan h checks observados al inicio,
+aporta exactamente h a |T_G|. Si h=0 conserva la hipótesis decisiva del
+Lema 14. Su primer contacto ocurre en el prefijo de puntuación uno. Las
+acciones que reciben estas asignaciones son los centros. Cada singleton
+aporta una marca y cada acción múltiple dos. Con j marcas se apagan
+≥ceil(33j/2) episodios iniciales distintos. Un episodio aportado por
+una etiqueta intrínseca también estaba en ese rectángulo. Se conserva el
+crédito extra max(0,6.990j−0.421e) por grupo de e datos de «El primer
+apagado de los datos», §1. El coste en el grupo queda dominado por
+Φ(e,j) de esa nota menos S_λ por cada check ausente de las líneas
+disjuntas aquí cobradas.
+
+Con un control en la puerta de rango temporal k, se omiten k−1 o k checks
+con pesos v/2. Una espera omite las puertas ya leídas. En el coloreo
+voraz, la puerta h-ésima procesada en un cable tiene ≤34+(h−1) colores
+prohibidos. La h-ésima por orden creciente de capa también está a más
+tardar en 35+h−1, pues las primeras h procesadas cumplen ese techo.
+Incluida la espera inicial hay ≤35 esperas antes de la última puerta.
+La dosis de línea completa es ≤35u+v/2 < 0.704g. Para h≥1 se cobra
+t_h=t₀^h, con t₀ un mayorante racional de 2^(−S_λ). Poniendo todas
+las esperas interiores a precio t₀ y las tardías a t₀^n, la dosis
+mayorada de línea incompleta más la de controles múltiples es <0.0052g.
+El verificador contrasta además ambas cotas por programación dinámica
+sobre todas las sucesiones de capas permitidas en un cable. En las líneas
+solapadas y las que se asocian a una medida de B basta cobrar g.
+
+5. Suma uniforme de los grupos
+
+Usar ξ=2.055·10⁻¹¹, y=ξ exp(0.001) con el redondeo heredado, y un precio
+por dato x=1.032 g exp(0.075). En las series de «El primer apagado de los
+datos», §3, un dato pertenece a un bloque de solapamiento, se asocia a
+un B de su línea, se asigna a un centro o es una línea disjunta cubierta
+por la dosis de 0.0052. Las medidas asignadas a líneas disjuntas son
+distintas. Para variable z de datos, marca t y escala x₀=10⁻⁸, las series
+positivas con entrada por dato o medida y el auxiliar T son
+
+ a=x₀z exp(46870021 A+1420146 D'),    T=a exp(612 T),
+ D'=y exp(2766309 A),
+ A=a [exp(612T)−1+18y+0.0052
+      +0.704t(1+613(exp(630·0.704a)−1))
+      +0.704t²(1+5508(exp(10133·0.704a)−1))].
+
+La medida raíz admite D'+35ya. Cada factor 0.704 paga un miembro del
+centro, incluida la raíz. Se pueden fijar primero las posiciones y clases
+del registro y sumar sus etiquetas con las cotas locales. La independencia
+de las fibras y la disjunción de las líneas que gastan su saldo justifican
+el producto. La cuenta admite elecciones de centros que el decodificador
+real descartaría. Para 2≤e≤28 se multiplica [z^e t^j] por
+(x/x₀)^e 2^Φ(e,j). Para un dato real único, k luces iniciales en su
+línea dejan n−k ausencias. La recurrencia exacta con rango k, después
+de la deducción S_λ(n−k), da menos de 18 bits para cada k=0,…,n.
+Una sola etiqueta de paridad cero tiene I vacío y coste atribuido ≤0.
+Por dato raíz basta x exp(1420146y) 2^18. Por medida ligada raíz se
+multiplica por 2766309y.
+
+Para la fila de dato con e=2 hay una cuenta más precisa. La parte con
+algún B ligado se cubre en la misma serie sustituyendo y por 10⁻⁷ y
+multiplicando por y/10⁻⁷, por positividad. En el resto, los dos datos son
+vecinos en K. Si algún cable tiene varios controles, su masa relativa
+es ≤2·10⁻³⁰ y basta la cota completa de Φ. En los demás casos ambos
+tienen paridad uno. Sean n,m sus anchuras. Si comparten i checks, Σ tiene
+n−i y m−i celdas privadas. Si k,l están encendidas en esas partes, el
+coste es ≤pair_fee(n,m,k,l)−S_λ(n+m−2i−k−l). Se maximiza en esos
+rangos. El número c_i de posiciones cumple Σ i c_i ≤ I(n,m), como en
+«Cadenas de fusiones», §1. Se usa I(n,m) max_i(peso_i/i).
+
+Para dos líneas disjuntas con k<n, l<m vale la misma fórmula con i=0.
+Si al menos una está completa, hasta el primer paso del grupo todos los
+ganadores son perfectos. En el rectángulo de ese primer paso sólo las dos
+líneas pueden haber encendido checks, por la definición de grupo y la
+ausencia de B ligado. Si sólo interviene una, la acción perfecta cubre
+su línea entera. Una línea transversal la corta en un check y un múltiple
+tiene área ≥33. Se quita esa entrada y ese paso para acotar el coste.
+Los ganadores perfectos anteriores evitan la línea y mantienen su clave.
+Al pasar el paso suprimido los síndromes coinciden. La acción consumió
+menos de un bit de coste y queda el techo de 18 bits del otro dato.
+Este argumento usa la huella, incluso si la acción física elegida era
+otro dato con huella idéntica.
+
+Si participan ambas líneas y la acción es múltiple, se quitan al menos
+33 luces de su saldo de k+l, permitiendo cualquier máximo posterior.
+Si es singleton de anchura h, sean i,h−i sus dos intersecciones, ambas
+positivas. Los rangos que quedan justo después son k−i,l−(h−i).
+La fila inicial conserva los créditos de todos los primeros apagados.
+Para cada línea singleton que toca la raíz, escoger un check fijo de
+ella que falta en la línea raíz. El otro dato es uno de sus lectores.
+Si faltan al menos dos, debe tener la misma orientación que la línea
+singleton. Para sumar sobre i se usa otra vez el presupuesto de
+incidencias I(n,h) antes de multiplicar por el número de lectores.
+Estas son las cuatro clases del cálculo two_data.
+
+Desde e=29 se reserva medio bit de los multiplicadores de primeros
+cruces como en «El primer apagado de los datos», §2. El límite lineal
+85.857226e−15.240j conserva la deducción terminal ya distribuida en la
+dosis 0.0052. Se evalúan las mismas series con x₀z=4x·2^85.857226 y
+t=2^(−15.240). En esos precios hay supersolución racional
+
+       a≤3·10⁻⁷,   T≤3.1·10⁻⁷,   A≤2.1·10⁻⁹,   D'≤2.071·10⁻¹¹.
+
+Dividir las filas por 4²⁹ cubre toda la cola. Las tres filas completas
+son <5.507·10⁻²⁴ (VV), <8.023·10⁻²⁴ (CC) y <2.725·10⁻²⁷ (medida).
+
+6. Cierre en los subhosts y reproducción
+
+Se insertan en las quince desigualdades del árbol causal los techos
+(6·10⁻²⁴, 1.3·10⁻²³, 1.5·10⁻²⁵), iguales a los del certificado
+fenomenológico final. Las matrices, el puente entre lectores y la
+reconstrucción por último encendido son los de «Contactos entre ejecuciones»,
+§§1, 2 y 5. Una luz intrínseca ya tiene un lector en su línea para el
+enlace ordinario, y toda elección directa procede de I. Al anclar un núcleo
+en un dato se cubren su fuente, su singleton y sus generadores. Al anclar
+en una medida se cubren además los 35 lectores de una conmutación.
+
+Sólo hacen falta piezas exteriores de B pasivo. Dos núcleos restantes
+son componentes diferentes en K y sólo se enlazan a través de esas
+piezas al reconstruir una decoración conexa. Guardar el árbol de
+contactos y todas las fuentes recupera la entrada. Los hijos pasivos de
+un núcleo se cubren con 1420146 posiciones por dato visitado y 83811
+por medida conservada. La cota |F|≤11δ del manuscrito y el descenso
+total ≤18|E| dan ≤199|A| datos visitados, incluyendo los marcados.
+La carga pasiva por sitio se toma igual a ξ. El verificador comprueba
+que x antes del factor exp(0.075) cubre la inclinación 0.025 y esos
+hijos por dato, que ξ cubre el precio por medida y sus hijos pasivos,
+y que la medida exterior con posibles hijos de ambos tipos cabe en ξ.
+El presupuesto de incompatibles es <0.005812 por dato marcado y
+<0.000001724 por medida. Ambos caben en 0.01 por fuente efectiva.
+
+Aplicar el criterio enraizado de polímeros al gas físico de las fibras
+con inclinación 0.015 y presupuesto 0.01. La suma de los módulos de
+clusters con peso adicional exp(0.015 k) está acotada por n+m, con k
+el grado total de fuentes efectivas con multiplicidad. La cola estricta
+después de M es ≤(n+m)exp[−0.015(M+1)]. El logaritmo converge y la
+partición es positiva en la especialización real. Se evalúa como en §2
+a partir de conjuntos conexos de hasta 199M sitios efectivos. La ley
+de cada etiqueta ya está sumada en el cable del J solicitado. El número
+de categorías por cable es una constante para estos grados. Esto da
+el algoritmo del contrato y se aplica después el factor exacto de §3.
+
+Reproducir con Python 3.10 o posterior desde la carpeta descomprimida
+
+    python -I -B -X utf8 verificar_FASE6_F17_circuito.py
+
+El script usa el paquete original SOURCE_CUMULANT_CERTIFICATE.zip del
+manuscrito y comprueba su SHA-256 antes de cargarlo. La salida distingue
+el cálculo al volumen de F17 de las filas uniformes. No hay simulación
+ni extrapolación en tamaño. La demostración combinatoria sigue pendiente
+de revisión independiente.
+
+Fuentes del proyecto. BORRADOR_INTRODUCCION_Y_RESULTADOS_EN_v2.tex,
+apéndices «Expansion in the original fault sources» y «A concrete
+syndrome-extraction circuit». Pruebas y datos racionales de
+SOURCE_CUMULANT_CERTIFICATE.zip. Para la separación por fibras véase
+también FASE5_CIRCUITO_3_4_PROPAGACION.txt, §2, con los grados propios
+de F17 calculados arriba. El criterio general de convergencia utilizado
+en §6 es el Teorema 1 de D. Ueltschi, Cluster expansions and correlation
+functions, Moscow Math. J. 4 (2004). https://arxiv.org/abs/math-ph/0304003

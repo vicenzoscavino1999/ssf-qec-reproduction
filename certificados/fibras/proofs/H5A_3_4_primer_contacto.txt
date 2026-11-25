@@ -1,0 +1,215 @@
+H5-A · Primer contacto en grados (3,4)
+21 de noviembre de 2026
+
+Para el producto de una semilla binaria (3,4) consigo misma se deriva
+acceso a las particiones filtradas en el rectángulo completo
+
+                    0 ≤ p ≤ 2.4·10⁻¹¹,       0 ≤ q ≤ 10⁻³.             (1)
+
+El extremo de p aumenta por un factor 24 al mismo q. Se usa una ronda
+Bernoulli independiente, SSF con todos los candidatos FGL, β=1/100,
+puntuación por tamaño de la huella, máximo global y desempate fijo
+independiente del síndrome. La cota es uniforme en tamaño, máscara y
+subhost inducido del host K del manuscrito. El paso a precisión relativa
+para un fallo silencioso positivo exige el testigo lógico y las hipótesis
+del Teorema 1. La aritmética es reproducible. La derivación combinatoria,
+incluidas las cotas heredadas, queda pendiente de revisión independiente.
+
+1. Cuánto descenso exige el primer contacto con un dato
+=======================================================
+
+La adaptación literal del Lema 14 vale para un dato cuya huella evita las
+medidas erróneas y las huellas de los demás datos originales. Hasta el
+primer contacto su singleton tiene puntuación uno. Cada acción elegida
+hasta entonces apaga su huella completa y dichas huellas son disjuntas.
+La asignación por grupo se conserva por (K1). En el rectángulo local 4×3
+una acción que usa x filas e y columnas tiene área 3x+4y−2xy. Un singleton
+tiene área 3 o 4. Con dos qubits el mínimo es 5, y con tres o más el
+filtro FGL exige área ≥⌈3(x+y)/2⌉≥5. Con una marca por acción individual
+y dos por acción múltiple, j marcas apagan al menos ⌈5j/2⌉ checks distintos.
+
+Para obtener (1) se necesita que el argumento admita medidas cercanas.
+Sea E el conjunto de datos originales en una ejecución con síndrome físico
+residual cero. D es el conjunto de medidas erróneas. El síndrome observado
+termina en D, por lo que D es estable. Sea I el conjunto de vértices de
+grado cero en K[E], y sea A=E∖I. En particular, ninguna acción puede leer
+las huellas de dos datos originales si uno de ellos pertenece a I. Las
+huellas de I son disjuntas entre sí y de las de A. D puede tocar cualquiera.
+
+Para x∈I poner n=|ψ_x|, t=|D∩ψ_x| y b_x=n−2t. Por estabilidad, t≤1
+si n=3 y t≤2 si n=4. Alguna acción debe tocar ψ_x, ya que cada check de
+esa huella tiene distinta paridad en los síndromes inicial y final. Sea
+F_x la primera. Hasta entonces el singleton x conserva puntuación b_x/n.
+El descenso δ_x del ganador satisface
+
+                              δ_x ≥ b_x.                               (2)
+
+Con n=3 basta la comparación de puntuación y el área mínima 3.
+Con n=4 y t=1, δ_x es entero y vale al menos ⌈3/2⌉=2. Con t=2 basta
+el descenso positivo. Con n=4 y t=0 el ganador es perfecto y todos los
+pasos anteriores sólo han retirado luces. Una acción perfecta de área 3
+sería un singleton VV. Su fila intersecta la huella CC de x en a lo sumo
+una celda y contiene a lo sumo una medida encendida de D. Si toca ψ_x,
+por (K1) ningún otro dato original ilumina esa fila. Dos luces no bastan
+para que la fila sea perfecta. Por tanto el área, y el descenso, son ≥4.
+
+Los pasos F_x son distintos y ninguno toca una huella de A. Sea T el
+número total de pasos y e₁(A),e₂(A) los números de datos VV y CC de A.
+El descenso total se descompone exactamente en la suma de los b_x de I
+y |H_X A∖D|−|H_X A∩D|, por disjunción de huellas. Tras descontar F_x,
+el descenso de los pasos restantes es ≤|H_X A∖D|. Cada check inicial de
+H_X A∖D debe apagarse por primera vez en uno de estos pasos.
+
+Asignar cada uno de esos checks a un dato de A que lo lea y usar el
+presupuesto de primer apagado de §1 de H5A_grados_3_4_cotas_y_obstruccion.txt.
+Para el coste de un paso, K_b=1 y las filas de rangos de anchura 3 y 4 son
+(1,1,1/3) y (1,1,2/3,1/3). En un paso con h luces y descenso δ, cada rango k
+asignado ahorra 1−B_n(k)≤(δ−1)/h, y hay a lo sumo h primeros apagados.
+Al sumar, el término de descenso se acota por el número de checks asignados.
+Así se paga una unidad por cada paso restante. Resulta
+
+                   T ≤ |I| + (7/3)e₁(A) + 3e₂(A).                     (3)
+
+En particular, aunque una medida toque a un dato de I, éste sólo aporta
+un paso al presupuesto. Con A no vacío (3) es una cota total de pasos,
+sin presuponer qué corrección aplica el decodificador a cada dato.
+
+2. Cierre uniforme a todos los órdenes
+=====================================
+
+Se usan los núcleos y las medidas pasivas de §§1–3 de
+H5A_3_4_medidas_y_un_dato.txt. En cada núcleo se aplica (3) con su D
+activo. Las cotas previas de soporte y vecindad continúan valiendo:
+
+   |W| ≤ (17/3)e₁+(103/15)e₂,   |Γ(W)| ≤ 528e₁+(3228/5)e₂+90d_act.
+
+En el bosque causal de la nota anterior cada componente tiene una única
+fuente de datos en la raíz. Antes de añadir los demás puentes, enlazar las
+fuentes de cada componente de K[E] por un árbol generador en orden fijo.
+Estos enlaces directos entre datos unen árboles causales distintos sin
+formar ciclos. Completar luego el árbol con los demás puentes como antes.
+La poda conserva las fuentes y cada arista directa entre ellas. La
+compresión sólo elimina generadores interiores de tramos causales. Por
+tanto en el árbol registrado un dato pertenece a A exactamente cuando
+es incidente a un enlace directo entre datos. Las etiquetas recuperan E
+y D activo y el decodificador determina la ejecución. Las cotas de los
+otros tipos de aristas del registro anterior se aplican a esta elección.
+
+Sea y el peso de un generador. Por (3), para un dato VV o CC sin vecino
+en K[E] basta pagar y⁻¹. Para los que tienen vecino se paga y^(−α_i),
+con α=(7/3,3). Sean U,P los mayorantes físicos por dato visitado y medida
+pasiva, B=1297U, B_D=469U+90P, τ=.01, z_r=r/(1−r). Definir
+
+   C_i = z_p exp(τ+σ_i B+2P h_i),   σ=(17/3,103/15), h=(528,3228/5).
+   l_i y ≥ C_i,   x_i y^α_i ≥ C_i,   P ≥ z_q exp(τ+2B_D),
+   s ≥ z_q exp(τ+180P).
+
+Aquí l_i paga una fuente sin vecino, x_i una con vecino y s una medida
+activa. El presupuesto físico y el coste de los posibles hijos pasivos de
+cada núcleo están incluidos en C_i y s por las cotas de |W| y |Γ(W)|.
+
+Una rama de datos tiene mayorante d_i si llega desde otro dato por un
+enlace directo, y u_i si es raíz o llega de un generador. Usar las capas
+de distancia de la ecuación (4) de la nota anterior. En y=.014 sus cinco
+masas admiten techos enteros (j₁,j₂,k₁,k₂,j_g)=(68,81,91,61,191). Poner
+
+   R₁=640d₁+441d₂,                 R₂=784d₁+513d₂,
+   V₁=(1+s)³ exp(1344u_g+j₁v),    V₂=(1+s)⁴ exp(1596u_g+j₂v),
+   L=j_g v,   H=k₁u₁+k₂u₂+j_g c,
+   G=(1+s)¹² exp(1792u₁+1197u₂+3648u_g+L).
+
+Las desigualdades suficientes para los árboles interiores y el ancla son
+
+   d_i ≥ V_i x_i exp(R_i),      u_i ≥ V_i [l_i+x_i(exp(R_i)−1)],
+   v ≥ y(G−1−L),              c ≥ y H(G−1),           u_g ≥ y H G,
+   U ≥ max(u₁+3u_g,u₂+4u_g).                                           (4)
+
+Si el padre es dato ya existe vecino, aunque la fuente carezca de hijos.
+En la otra fila, la fuente sin vecino no tiene hijos por enlace directo.
+Una fuente con vecino debe tener al menos uno, de ahí exp(R_i)−1. Las
+exponenciales acotan los hijos opcionales ordenados por sus posiciones.
+En las ramas de generador se siguen exigiendo la causa y la descendencia
+de la poda original. La resta de las clases vacías o comprimidas en
+G−1−L se hace antes de mayorar las series positivas. Inducción en la
+altura justifica (4) para cualquier árbol, incluidas ramas de un vértice.
+
+Los siguientes decimales representan racionales exactos en la esquina (1).
+
+   U=1.40979e−5, P=.00129806, s=.00128101, y=.014,
+   l₁=7.5864e−9, l₂=1.05234e−8, x₁=2.24836e−6, x₂=5.36909e−5,
+   u₁=7.34039e−8, u₂=1.85538e−6, d₁=2.42172e−6, d₂=5.86162e−5,
+   u_g=3.05009e−6, v=.000528564, c=3.71276e−7.
+
+El mayor de los catorce cocientes es <.998, elevando al cubo la
+comparación de x₁ para eliminar y^(7/3). Con las mismas constantes, cobrar
+tres pasos a una CC sin vecino daría C₂/(y³l₂)≥z_p/(y³l₂)>800, frente
+al presupuesto máximo de 1. Aquí es donde interviene (2). Los mayorantes son crecientes
+en las tasas y cubren los ejes. Con U,P<1 y |Y|≤7F para F fuentes, se
+aplican (6)–(8) de la nota anterior con el mismo presupuesto físico y la
+misma inclinación. En particular, para N sitios y truncamiento de grado m
+por soporte con multiplicidades, |log Ξ(J,u)−L_m(J,u)|≤N exp[−(m+1)/700].
+El apéndice A del manuscrito da la evaluación efectiva. El criterio de
+expansión usado es el teorema 1 de D. Ueltschi, Cluster expansions and
+correlation functions (2004), https://arxiv.org/pdf/math-ph/0304003.
+
+3. Qué queda por sumar en p=10⁻⁶, q=10⁻³
+=========================================
+
+Si K[E] no tiene aristas, (3) da T≤|E| y cada dato exige un primer
+contacto distinto. En toda ejecución aceptada hay exactamente un paso por
+dato. Por aditividad del descenso se alcanza la igualdad δ_x=b_x para
+todos. Un saldo b_x=0 impediría la aceptación, pues todo paso desciende.
+Para b_x>0 la comparación de puntuación implica |φ_Fx|≤n. Cada check de
+ψ_x debe conmutarse y ningún paso asignado a otro dato puede leerlo.
+Luego φ_Fx=ψ_x. Es una acción de un qubit, con el representante determinado
+por el desempate fijo aunque haya qubits distintos con la misma huella.
+
+Recíprocamente, en un fondo estable D, una acción puede leer a lo sumo
+una huella original. Mientras se corrigen singletons de huella idéntica,
+los candidatos de cada dato pendiente conservan sus puntuaciones y su
+desempate local. Si el ganador de cada dato por separado corrige su
+huella, el máximo global intercala esas correcciones y termina en D.
+Si la ejecución conjunta es aceptada, el paso de cada dato tiene que
+ganar esa misma comparación local. La marca residual multiplica y la
+contención en J se exige a cada soporte, incluidas las medidas originales.
+Así, con la notación de (9) de la nota anterior,
+
+            T(E,D)=B(D) ∏_{x∈E} η_x A_x(D∩Γ({x})).
+
+Para D inestable ambos lados valen cero. La identidad se aplica también
+a cada subconjunto de estas fuentes. Sus momentos factorizan sobre el
+grafo con aristas medida–medida de K y aristas dato–medida hacia Γ({x}).
+La cota de §5 de H5A_grados_3_4_cotas_y_obstruccion.txt da para un bloque
+S el factor 2^(|S|−1) por su número de árboles generadores. Se pueden
+sumar todos esos árboles permitiendo también posiciones repetidas y
+relajando la separación de los datos después de tomar el mayorante.
+
+Escribir b=[p/(1−2p)] exp(.015) y a=q exp(.015). Para las raíces de datos
+y de medidas bastan V=.00000195 y M=.00128, por las dos desigualdades
+V ≥ b exp(504M) y M ≥ a exp(178M+938V). Los coeficientes son el doble
+de los grados 252 dato–medida, 89 medida–medida y 469 medida–dato. En
+cada árbol se cuenta el peso de la raíz. Al excluir el árbol unipuntual
+y añadir los pares de datos adyacentes sin medidas, las filas parciales son
+
+   dato    b[exp(504M)−1]+2·1296b²                < 9.23·10⁻⁷,
+   medida  a[exp(178M+938V)−1]                    < 0.0002621.
+
+En consecuencia, en la esquina objetivo sólo resta acotar los bloques de
+tres o más fuentes que contienen dos datos originales adyacentes en K.
+Sirve un límite 0.0047379 por raíz para este resto. Incluye tanto pares
+adyacentes con medidas como grupos con más datos, a todos los órdenes.
+La suma completa en esa esquina sigue abierta. El cierre de (1) procede
+del recuento físico de §2 y cubre también los grupos con datos adyacentes.
+
+Reproducción
+============
+
+En 05_COMPROBACIONES, ejecutar
+
+    python -I -B -X utf8 verificar_H5A_3_4_primer_contacto.py
+
+El verificador reutiliza verificar_H5A_3_4_medidas_y_un_dato.py para
+enumerar todos los empates de las 4096 máscaras del generador local y para
+las cotas racionales de la exponencial. Comprueba los descensos de primer
+contacto, las capas del árbol, (4), los precios y ambas filas parciales.
+La demostración anterior justifica el paso de estas cuentas a todo tamaño.

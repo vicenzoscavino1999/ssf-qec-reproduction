@@ -1,0 +1,251 @@
+H5-A · Comparar dos ejecuciones físicas en p = 10⁻³⁰
+18 de noviembre de 2026
+
+Resultado
+=========
+
+La cota general de la partición física sigue en p ≤ 4.24·10⁻³⁶,
+q ≤ 2·10⁻¹¹. En la esquina solicitada p = 10⁻³⁰, q = 2·10⁻¹¹
+se obtiene una cota uniforme para dos partes del resto de la ecuación (6)
+de H5A_cruces_entre_componentes.txt. Escribir e y d para los números de
+fuentes de datos y de medida del soporte B del coeficiente.
+
+    e ≤ 2, con cualquier d, o bien e ≥ 3 y d ≥ 15e.
+
+Para su unión, sobre |B| ≥ 4, la suma de |k(B)−k⋆(B)| s^B por raíz
+es < 1.94·10⁻⁵ en un dato y < 0.00070 en una medida. Estos son
+límites superiores. Dentro de e ≥ 3, d < 15e se cubren además las
+contribuciones físicas que usan hasta cuatro átomos de acción por dato,
+y más cuando hay suficientes medidas. Los mismos límites incluyen estas
+contribuciones. Para cerrar la esquina basta acotar por 0.004298 en cada
+raíz la suma restante definida al final de la sección 3. Sigue abierta.
+
+La comparación de corridas da un control determinista de la primera
+diferencia en un fondo arbitrario, y un ejemplo físico permite seguirla
+hasta distancia arbitraria. Las cifras para los dos sectores usan además
+las cotas de historias físicas anteriores y dos evaluaciones de sus pesos.
+La prueba conserva toda semilla binaria (17,18)-regular, el máximo global
+FGL con β=1/100, el orden total fijo, las máscaras y los subhosts. La
+derivación matemática queda disponible para revisión independiente.
+
+1. Seguir dos ejecuciones sin cambiar sus ganadores
+===================================================
+
+En cada estado s se usa la clave formada por la puntuación del candidato
+y su prioridad fija. La parada tiene clave inferior a cualquier ganador
+elegible. Si ambas copias eligen el mismo F, ejecutarlo en ambas. Si los
+ganadores difieren, ejecutar sólo el de mayor clave y conservar el estado
+de la otra. Cada proyección reproduce la traza canónica de su entrada.
+La suma de los dos pesos de síndrome baja estrictamente en cada iteración.
+
+Considerar un paso exclusivo de la copia s frente a la copia t, con
+huella φ. En φ, sean u las luces que sólo están en s, v las que sólo
+están en t y w las comunes. Se tiene u > v. En efecto, si el mismo
+candidato tuviese al menos su puntuación en t, allí sería elegible con
+clave al menos igual y la clave ganadora en t no podría ser menor.
+Escribir δ = 2|s∩φ|−|φ|. Al voltear φ únicamente en s se obtiene
+
+    |(s⊕φ)⊕t| − |s⊕t| = 2(w−v)−δ.
+
+Un paso común conserva la diferencia simétrica. Cada paso exclusivo
+lee al menos una discrepancia anterior, y los checks nuevos de esa
+discrepancia comparten un rectángulo con ella.
+
+Fijar una entrada S=(E,D) en J y añadir una medida ℓ de J ausente de D.
+Si ambas listas de acciones son idénticas, los síndromes finales difieren
+en ℓ, al igual que las medidas originales. Coinciden entonces la prueba
+física, el signo y la contención del soporte. Para que cambie la marca
+T debe haber un primer paso exclusivo. Justo antes, s y t sólo difieren
+en ℓ. La huella ganadora contiene ℓ y al menos ocho luces comunes,
+pues el área mínima es 17 y la puntuación es positiva.
+
+Si alguna copia pasa, el prefijo común en la trayectoria de S sólo puede
+alcanzar estados con |s| ≥ |D|. Para la copia sin ℓ esto sigue del
+descenso. Para la copia que sí tiene ℓ, su peso es ≥ |D|+1 y difiere
+del de la primera en uno. En la corrida fija de S reunir todas las luces
+vistas hasta el último estado con |s| ≥ |D|. Si el inicial ya está por
+debajo no hay inserción efectiva. Un paso que baja en δ crea a lo sumo
+(99/2)δ checks. Como |s_inicial| ≤ 18e+d, esta unión tiene tamaño
+≤ 909e+d. Contiene las ocho luces para toda elección de ℓ que cambie T.
+Un check comparte rectángulo con a lo sumo 83810 checks, incluyéndose
+a sí mismo. Contar pares (luz común, ℓ) da
+
+    #{ℓ de medida que cambian T(S)} ≤ 83810(909e+d)/8.               (1)
+
+Para la inserción de un dato v usar η_v=T({v}). Si ninguna fuente de S
+lee un rectángulo en común con v, su corrección perfecta aislada se
+intercala en el prefijo perfecto y las continuaciones coinciden. El signo
+y la contención aportan el factor η_v incluso con datos duplicados.
+Esta retirada está probada en H5A_interacciones_por_fuentes.txt, §1.
+La geometría del host así da ≤ 46870021e+2766309d inserciones de datos
+con T(S+v) distinto de η_v T(S).
+
+Con s(r)=r exp(0.015)/(1−2r), la suma en todas las inserciones de un
+tipo de s_i |T(S+i)−η_i T(S)| en la esquina objetivo queda acotada por
+
+    medidas     0.000387e + 4.26·10⁻⁷d,
+    datos       9.52·10⁻²³e + 5.62·10⁻²⁴d.
+
+Aquí e,d pertenecen al fondo fijo S. En las sumas de cumulantes e,d
+pertenecen al soporte B. Para ver qué separa ambas cuestiones, fijar i
+y escribir Z=Σ_A T(A)z^A y H_i=Σ_A [T(A+i)−η_i T(A)]z^A sobre las
+fuentes distintas de i. En el álgebra donde z_j²=0 se tiene
+
+    [z^A] H_i/Z = k(A∪{i})     para A no vacío.                     (2)
+
+Se deriva log(Z+z_i Σ_A T(A+i)z^A) en z_i antes de poner z_i=0.
+La inversión de Z en (2) combina todas las subentradas. Una cota de
+inserción para un solo fondo no controla por sí sola esa inversión.
+
+2. La influencia de una medida alcanza distancias arbitrarias
+==============================================================
+
+Para k≥3 formar un ciclo de 2k bloques de checks B₀,…,B₂ₖ₋₁ de tamaños
+alternos 9 y 8. Cada ventana W_j=B_j∪B_(j+1 mod 2k) es una columna de
+datos de peso 17. Crear 17 copias de las ventanas. Para cada coordenada
+añadir 16 columnas que leen esa coordenada en las 17 copias. Cada fila
+de la semilla tiene 18 unos y cada columna 17. En una fila VV de la
+copia activa se priorizan los singletons W₀,W₁,…,W₂ₖ₋₁ en ese orden.
+En una sola fila encendida el lema de H5A_cortes_y_huecos.txt, §1,
+obliga a que el ganador conmute una línea de esa fila. Su área 17 y
+el filtro FGL sólo permiten el singleton correspondiente. El relleno
+ve a lo sumo una luz. Así la comparación de ventanas da el máximo global.
+
+Con los k datos pares A={W₀,W₂,…,W₂ₖ₋₂} y sin medidas, se corrigen
+los pares y se termina en cero. Añadir una medida ℓ∈B₀ da los impares
+W₁,W₃,…,W₂ₖ₋₃ perfectos. Luego W₂ₖ₋₁ tiene 16 luces y se corrige.
+El síndrome termina en {ℓ}. Las dos entradas pasan. En el primer paso
+exclusivo la distancia de Hamming entre síndromes sube de 1 a 16. El
+dato impar más próximo al bloque opuesto al B₀ cambia de corrección.
+Una arista del grafo de checks que comparten rectángulo cambia el índice
+de bloque en a lo sumo uno, aun pasando por el relleno o cambiando de
+fila. La distancia a esa corrección crece con k.
+
+Se obtiene también el cumulante físico exacto. Con el subhost completo,
+elegir máscara cero (c=1), o una máscara que marque sólo ese dato impar
+distante (c=−1). Para todo subconjunto S⊆A se tiene
+
+    T(S)=1,
+    T(S+ℓ)=1−1[{W₀,W₂}⊆S]+c·1[S=A].                                 (3)
+
+Sin medida, cada tramo de datos pares consecutivos se corrige por sus
+pares. Con ℓ, sea t la longitud del tramo de pares ocupados desde W₀.
+Los tramos posteriores siguen corrigiéndose por sus pares, pues el primer
+par de cada uno tiene prioridad sobre el impar siguiente y el par anterior
+ausente interrumpe la otra ventana. La ventana de cierre tiene prioridad
+última. Si t=0 queda la medida. Si t=1, W₀ se corrige con 16 luces.
+Si 2≤t<k, tras los pasos perfectos quedan ocho luces de B₀ y las ocho
+de B_(2t−1). Ninguna ventana toca ambos bloques, todos los candidatos
+quedan por debajo del umbral y el filtro falla. Si t=k, el cierre deja
+la medida y se obtiene el signo c. Esto demuestra (3).
+
+Como los datos sin ℓ dan Z=∏(1+z_j), (2) es la diferencia alternada
+de (3) en A. El término constante y el de dos datos se cancelan para
+k≥3. Por tanto k(A∪{ℓ})=c para todo k. Con máscara cero ambas marcas
+de la pareja completa valen uno y el cumulante vale uno. El cálculo
+atestigua el alcance de una comparación y la necesidad de las subentradas.
+No proporciona un límite inferior para |k−k⋆| ni implica divergencia.
+
+3. Dos acotaciones de la suma en la esquina objetivo
+====================================================
+
+Poner p₀=4.24·10⁻³⁶, P=10⁻³⁰, Q=2·10⁻¹¹ y b(r)=r/(1−2r).
+Se trabaja en las series absolutas con fuentes sin repetición. La
+estimación enraizada de Ueltschi permite distinguir la decoración física
+que contiene la fuente raíz de un monomio. Una cota R_i sobre las
+decoraciones en ese sitio, incluido su presupuesto exponencial,
+domina la suma absoluta de los correspondientes coeficientes físicos.
+Véanse H5A_cumulantes_y_componentes.txt, §§1–2, y el teorema 1 de
+D. Ueltschi, Cluster expansions & correlation functions (2004).
+https://arxiv.org/pdf/math-ph/0304003
+
+Hasta dos datos. En la esquina (p₀,Q) se usan las ramas de
+H5A_resto_global.txt. El precio exterior por medida se puede estrechar a
+2.05065·10⁻¹¹. El verificador repite las dos desigualdades exteriores
+y las conversiones interiores. Con V₀,C₀ los núcleos de esa nota,
+R_v=V₀+18·l_v y R_m=C₀+l_m. La carga de incompatibles de una sola
+medida es K_D=2766309 R_v+83810 R_m<2·10⁻⁶. Se puede asignar el
+presupuesto K_D a la decoración singleton de una medida y dejar el
+anterior 0.01 por fuente a las restantes. Las filas de incompatibles
+sólo disminuyen, y la fila de ese singleton ya cabe en K_D.
+
+Su actividad física exacta es s(Q) en cualquier subhost que contenga
+esa fuente. Descontar s(Q) exp(0.01) de la suma anterior y reponer sólo
+los cúmulos con algún acompañante cuesta ≤s(Q)[exp(K_D)−1]. Así la
+fila física de medida para grados ≥4 es menor que 1.25·10⁻¹⁴.
+La fila de datos es menor que 3.47882·10⁻¹⁶. Al pasar de p₀ a P cada
+soporte con uno o dos datos multiplica su peso a lo sumo por
+[b(P)/b(p₀)]². No interviene d en esta comparación.
+
+Desde tres datos. En el logaritmo del gas físico se conserva cada
+decoración con sus fuentes y su ejecución determinista, incluso si hay
+varias con idéntico soporte. En una decoración γ, h(γ) cuenta los átomos
+de acción de H5A_p_general.txt, §§1–3. Un singleton aporta una vez por
+sitio de dato en el que se usó y una acción múltiple una vez por generador
+asignado que se usó. Un uso repetido del mismo átomo no vuelve a contarse.
+En un término del logaritmo sea H la suma de h(γ) de sus ocurrencias.
+Para un coeficiente sin repetición, e y d son también las sumas de los
+números de fuentes en esas ocurrencias. El perfil anterior da H≤(38/3)e.
+
+En el mismo gas auxiliar se da a cada decoración de e' datos, d' medidas
+y h átomos el peso absoluto x^e' ξ^d' y^h exp(−a(e',d')). Se conserva
+la incompatibilidad física. Al cargar el presupuesto a, los pesos
+inclinados son exactamente los que dominan los árboles de seis tipos de
+H5A_p_general.txt. Con x=10⁻¹¹, ξ=2·10⁻⁸, y=2·10⁻⁵ y
+a(e',d')=7e'+0.0031d', las filas racionales del verificador dan
+K_E<7 y K_D<0.0031. En la notación de esa prueba,
+R_v=max(S₁+S₄+17S₆,S₂+S₅+18S₆)<4.80·10⁻¹⁰ y R_m=S₃<2.007·10⁻⁸.
+Estas cantidades dominan las filas absolutas del logaritmo auxiliar
+por el teorema enraizado. Para cada término, la razón entre su peso físico
+en la esquina y su peso auxiliar es
+
+    [s(P) exp(7)/x]^e [s(Q) exp(0.0031)/ξ]^d y^(−H).
+
+El primer corchete es <0.52 y^(10/3), el segundo <0.90 y^(5/8).
+Si H≤(10/3)e+(5/8)d, la razón es <0.52^e 0.90^d. Así basta 0.52³R_i
+desde tres datos. Esto incluye todos los términos de d≥15e, pues
+(38/3)e≤(10/3)e+(5/8)d en ese caso. Se ha impuesto la condición sobre
+el término completo, por lo que las decoraciones pueden tener cocientes
+de pesos distintos entre sí.
+
+Para los mismos árboles se usan también las filas originales de
+H5A_p_general.txt, §4, con x₀=2.02·10⁻¹¹, ξ₀=5.55·10⁻¹¹,
+y₀=5.6·10⁻⁵ y presupuesto e'+d'. Se cumplen
+s(P)exp(1)/x₀ < 0.015 y₀⁴ y s(Q)exp(1)/ξ₀ < 1. Si H≤4e, la
+razón entre los pesos es <0.015^e, para cualquier d, incluido cero.
+Desde tres datos se añade 0.015³R_i de esta segunda evaluación. La
+suma de ambos mayorantes permite su posible solapamiento.
+
+Por último, k=k⋆ para toda entrada exclusivamente de medidas
+(H5A_resto_global.txt, §2). La suma de |k⋆| desde grado cuatro, sobre
+todos los soportes que sí contienen un dato, es menor que
+1.907·10⁻⁶ b(P)/b(10⁻⁶)<1.907·10⁻³⁰ por raíz, por la sección 6
+de H5A_cruces_entre_componentes.txt. Se añade una sola vez a la suma
+de las cotas físicas. Para precisar el resto, en cada B con e≥3 definir
+k_largo(B) como la suma con signo de los términos físicos sin repetición
+que cumplen simultáneamente
+
+                 H > 4e,            H > (10/3)e+(5/8)d.
+
+Ponerlo igual a cero en los demás B. Sólo puede sobrevivir si d<15e.
+Para toda raíz, la fila de |k−k⋆−k_largo| desde grado cuatro queda
+por debajo de los límites indicados en la primera página. Basta por tanto
+
+     Σ_{B∋i, |B|≥4} |k_largo(B)| s^B ≤ 0.004298.                   (4)
+
+La restricción de H pertenece al término del logaritmo. Un mismo B puede
+aportar términos a ambos lados del corte. La monotonía de la fila absoluta
+extiende lo cubierto al rectángulo inferior.
+
+Reproducción
+============
+
+En 05_COMPROBACIONES, junto a verificar_H5A_resto_global.py y al archivo
+H5A_CUMULANTES_Y_COMPONENTES_20261117.zip, ejecutar
+
+    python -I -B -X utf8 verificar_H5A_comparacion_de_ejecuciones.py
+
+El programa verifica las desigualdades, la regularidad de las semillas
+construidas y la proyección de la comparación sobre las trazas físicas.
+Las 514 parejas de entradas contrastan (3) para ambas máscaras. La prueba
+de los ciclos y las dos cotas por sector valen para tamaños arbitrarios.

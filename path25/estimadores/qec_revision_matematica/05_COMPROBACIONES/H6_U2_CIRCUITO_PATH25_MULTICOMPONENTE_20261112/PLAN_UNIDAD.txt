@@ -1,0 +1,140 @@
+H6 — UNIDAD 2: CIRCUITO CONECTADO PEQUENO CON VARIAS COMPONENTES Y ACCIONES (G1)
+Fijado el 12/11/2026 (Lima) ANTES de escribir y ejecutar el verificador.
+Sesion Claude abierta por el usuario ("ok esta bien continua", tras aceptar
+el borrador de la unidad 1). Controles releidos: sin cambios desde DEC-024.
+Leido antes de fijar el plan (sin ejecutar nada): el contrato y el codigo
+del piloto PATH25 (P1_WORKER.py, worker.py), su PREFLIGHT.json y la cabecera
+de su tabla congelada, y el apendice C del manuscrito. Todas las
+predicciones de la seccion 6 estan hechas a mano a partir de esas reglas.
+
+1. CARENCIA QUE SE ATACA (matriz de la unidad 1)
+G1 = V1.3 y V1.4 en el contrato circuital: no hay ninguna evidencia de que
+la ejecucion global y la recomposicion primitiva coincidan cuando varias
+componentes ejecutan acciones intercaladas, ni de cancelacion de clases
+entre componentes que han ejecutado acciones. HGP5 tiene host completo.
+Enunciado que se contrasta: Proposicion "Primitive recomposition and
+physical filtering" del apendice C (biyeccion con familias compatibles de
+componentes decoradas en el host primitivo, residuo, filtro fisico local e
+identidades de particion filtradas), en una instancia finita.
+
+2. RESULTADO HEREDADO (no se presenta como nuevo)
+PATH25 con su contrato generico: semilla (3,6,12) de 4 columnas, 25 datos,
+12 checks, k=1; candidatos = subconjuntos con huella no vacia de soportes de
+generadores de H_Z (103), score (2|s∩phi|-|phi|)/|phi|, beta=1/2, orden
+(|F|, mascara) ascendente; host K por (K1)-(K2). Dos motores coinciden en
+los 4096 sindromes (piloto del 28/10). Circuito, ley categorica y formulas
+de respuesta del apendice C. Control HGP5 (una componente).
+
+3. INSTANCIA FIJA
+Codigo y decoder: PATH25, exactamente el contrato anterior. No es una
+semilla regular: se valida el contrato generico, no la familia FGL regular.
+Circuito: una ronda de extraccion de los checks, calendario voraz del
+apendice C (incidencias (c,v) en orden lexicografico, menor color
+disponible), esperas inicial y final de datos, preparacion y lectura de
+ancillas, esperas en capas sin puerta.
+Cuentas predichas: r=4, d=2, L=5 capas; h_X=42 CNOT; N_loc=7*37-42=217;
+host primitivo de 217+25=242 vertices.
+OCHO ubicaciones con ruido; el resto, ideal (subfamilia de tasas por
+ubicacion, como en HGP5; no es ruido comun en todas las operaciones):
+  0..3  esperas iniciales de los datos 1, 2, 3 y 16      (4 categorias)
+  4..5  esperas iniciales de los datos 9 y 10            (4 categorias)
+  6     CNOT del dato 10 a la ancilla del check 8        (16 categorias)
+  7     lectura conjunta (P,b) de la ancilla del check 1 (8 categorias)
+Total: 4^6 * 16 * 8 = 524288 asignaciones simultaneas.
+Ley: en cada ubicacion Pauli, despolarizacion total e repartida por igual
+entre las categorias no triviales; la lectura lleva ademas un flip clasico
+independiente de tasa e, conservado junto a su categoria Pauli.
+Tasa unica del resultado: e = 1/100. Las sumas se guardan como recuentos
+enteros por tipo de asignacion, de modo que valen para toda e; se evalua
+tambien e = 1/1000 solo como lectura. No se busca una tasa favorable.
+Mascara protegida: u_0 = 4369. Como k=1, con H_X R=0 se tiene R fuera de
+S_X si y solo si u_0.R=1; se comprueba aparte con el rango de H_Z.
+
+4. DOS CAMINOS DE CALCULO Y QUE SE COMPARA
+R1 (referencia global). Propagador Pauli literal: recorre el calendario
+   puerta a puerta con el marco completo (bits X y Z de datos y ancillas)
+   para CADA una de las 524288 asignaciones; decoder global por mascaras de
+   bits; filtro fisico H_X R=0 y clase por reduccion modulo H_Z.
+R2 (representacion). Formulas de respuesta (e_l, s_l) del apendice C;
+   segundo decoder escrito con conjuntos y fracciones; soporte de ejecucion
+   en el host primitivo; componentes; restriccion de cada componente;
+   recomposicion canonica por cabezas locales (score exacto y rango
+   original); residuo como XOR; filtro fisico y marca por componente.
+Se compara, por asignacion: (E_X, s), traza, residuo, sindrome fisico,
+exito o fallo. Por componente: soporte de la ejecucion aislada igual a la
+componente, traza local igual a la subsucesion global, ninguna accion que
+cruce componentes, ninguna componente sin fuentes, huellas fisicas
+disjuntas entre componentes.
+R3 (oraculo de primera salida en el host primitivo). Para cada soporte
+   consultado: fuentes fijadas por el soporte, candidatos que leen la union
+   de las vecindades de sus bases, rechazo en la primera salida, igualdad
+   exacta del soporte final. Se compara con las ejecuciones completas:
+   desenlace y traza por consulta, y los pesos W_0, W_T y W_{T,u}.
+   Soportes consultados: todos los soportes conexos realizados y sus
+   variantes de un vertice de accion (quitar uno; anadir uno adyacente).
+R4 (gas). Con los pesos del oraculo, suma sobre familias compatibles de
+   polimeros: B_c*Xi_0=1, P_0=B_c*Xi_T, E[(-1)^{u.R}; H_X R=0]=B_c*Xi_{T,u},
+   P_sil=(P_0-B_c*Xi_{T,u})/2, y la identidad de recuento (numero de
+   familias con multiplicidad = 524288), frente a las sumas de R1.
+Anclaje al piloto contrastado: H_X, H_Z, candidatos, huellas, host K y la
+tabla completa de transiciones de los 4096 sindromes deben coincidir con
+los archivos congelados del piloto PATH25 (PREFLIGHT.json y
+REFERENCE_TABLE.json). El decoder de esta unidad se escribe de nuevo.
+
+5. METRICA Y CRITERIO DE EXITO (fijados de antemano)
+Cero discrepancias en todas las comparaciones de la seccion 4 y las siete
+predicciones de la seccion 6 cumplidas. Ademas deben existir, y se cuentan
+con multiplicidad: asignaciones con dos o mas componentes con acciones;
+con intercalacion estricta (las acciones de una componente no son
+contiguas en la traza global); con cancelacion (dos componentes con residuo
+no estabilizador y filtro local nulo cuya suma es estabilizadora).
+Se informan P_0, P_sil y Q_sil exactos de la instancia. No son tasas del
+codigo ni de F17: son de esta subfamilia de ocho ubicaciones.
+
+6. PREDICCIONES (todas las demas ubicaciones en su categoria base)
+S0. t(check 8, dato 10) = 1 y t(check 7, dato 10) = 2: el CNOT ruidoso es el
+    primero del dato 10. L=5, N_loc=217, 242 vertices.
+P1. X en la espera del dato 16 y X en la del dato 3: sindrome {0,2,3};
+    traza = volteos de los datos 0, 3, 4 en ese orden; dos componentes,
+    {espera 16, accion 0, accion 4} y {espera 3, accion 3}; las acciones de
+    la primera no son contiguas (intercalacion estricta); residuo 65553, un
+    generador estabilizador; exito.
+P2. X en las esperas de los datos 1 y 2: traza = volteos de 0 y 3; una
+    componente con dos acciones; residuo 15, sindrome fisico nulo, fuera de
+    S_X: fallo silencioso.
+P3. X en las esperas de 1, 2, 9 y 10: traza = volteos de 0, 3, 8, 11; dos
+    componentes, cada una con dos acciones, residuos 15 y 3840, ambos con
+    sindrome fisico nulo y fuera de S_X; su suma 3855 esta en S_X: exito
+    global por cancelacion.
+P4. Z en la espera del dato 1: fuente con respuesta X nula; traza vacia;
+    una componente formada solo por esa ubicacion; exito.
+P5. Lectura del check 1 con (I, flip) y con (X, sin flip): sindrome {1};
+    ninguna accion elegible; residuo 0; una componente formada solo por la
+    lectura; exito.
+P6. CNOT ruidoso, bits X (control, blanco): (1,0) da E=1024, sindrome {7},
+    ninguna accion, sindrome fisico {7,8}: no pasa el filtro. (1,1) da
+    sindrome {7,8}, volteo del dato 10, residuo 0. (0,1) da sindrome {8},
+    volteo del dato 11, residuo 2048, sindrome fisico {8}: no pasa el filtro.
+Una prediccion fallida detiene la unidad y se informa tal cual.
+
+7. PRESUPUESTO Y PARADA
+Python puro (biblioteca estandar), un proceso. Techos: 524288 asignaciones
+(por debajo del tope de 5 000 000 del borrador); 20 minutos de reloj para
+la ejecucion completa; 1 GiB de memoria; 64 MiB de salidas; como maximo
+20000 soportes consultados al oraculo.
+Ejecuciones: UNA ejecucion completa. Se permiten pruebas parciales de
+depuracion con una lista reducida de ubicaciones (como maximo 4096
+asignaciones cada una); se cuentan y se declaran. Si la ejecucion completa
+se detiene por un defecto del verificador y no por una discrepancia del
+enunciado, se corrige, se conserva la salida fallida y se declara; como
+maximo dos ejecuciones completas. Una discrepancia exacta del enunciado o
+una prediccion fallida detiene la unidad: no se cambia la instancia, la
+lista de ubicaciones ni la tasa para evitarla.
+Cero censos, muestreos, agentes e instalaciones; nada sobre F17.
+Manuscrito, PDF y ZIP no se modifican.
+
+8. LO QUE ESTA UNIDAD NO PUEDE DAR
+No es V3 ni V4: no ejecuta ningun estimador ni mide ventaja. No valida
+ruido en todas las ubicaciones, varias rondas, la familia FGL regular ni
+F17. No da tasas practicas ni umbrales. Cubre G1 en UNA instancia y UNA
+subfamilia de ruido, con el mismo tipo de alcance que HGP5.

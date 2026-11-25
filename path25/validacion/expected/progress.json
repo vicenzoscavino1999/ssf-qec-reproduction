@@ -1,0 +1,10 @@
+{
+  "phase": "complete",
+  "elapsed_seconds": 0.7464808999793604,
+  "counts": {
+    "oracle_queries": 12438,
+    "oracle_score_evaluations": 1189821,
+    "reference_table_lookups": 14016,
+    "recomposition_sources": 565
+  }
+}

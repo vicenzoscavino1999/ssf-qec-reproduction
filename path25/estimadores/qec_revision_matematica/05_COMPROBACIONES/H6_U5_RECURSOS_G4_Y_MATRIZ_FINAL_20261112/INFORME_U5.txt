@@ -1,0 +1,190 @@
+H6 — UNIDAD 5: COMPARACION DE RECURSOS (G4) Y MATRIZ FINAL V1-V4
+12/11/2026 (Lima). Sesion Claude abierta por el usuario. Plan fijado antes de
+medir (PLAN_UNIDAD.txt). Entrega sin contraste del revisor. Manuscrito no
+modificado. Ningun programa sellado se modifico.
+
+SITUACION EN UNA FRASE
+Comparacion hecha y SIN ventaja de coste acreditada: en las dos instancias
+el estimador y la referencia exacta cuestan lo mismo en orden de magnitud y
+todo cabe en menos de dos segundos. Con esto las cuatro condiciones V1-V4
+quedan cubiertas en un alcance finito declarado; H6 sigue PARCIAL porque
+faltan el contraste del revisor de las unidades 3 a 5 y la consolidacion
+editorial.
+
+1. REPRODUCIBILIDAD (prediccion M1, cumplida)
+28 ejecuciones de los programas sellados, sin modificarlos. Las salidas
+deterministas son identicas byte a byte a las selladas: RESULTADO de la
+unidad 2; ESTIMACION de las unidades 3 y 4; RESULTADO de los contrastes de
+las unidades 3 y 4 (cinco veces cada uno). Las ejecuciones con corte
+parcial dan las mismas filas que las tablas selladas (M2). Esto cierra el
+limite "sin reejecucion de reproducibilidad" declarado en las unidades 2,
+3 y 4.
+
+2. TABLA DE COMPARACION (G4)
+Tiempos: mediana de 5 ejecuciones del proceso entero, arranque del
+interprete incluido; entre parentesis, el tiempo interno del calculo.
+Memoria: pico del proceso. No son deterministas. Los contadores si lo son.
+
+CIRCUITO (PATH25, una ronda, 8 ubicaciones ruidosas, e=1/100).
+Evento: P_sil. Exacto 1.4741e-4.
+ metodo                 garantia              decodificaciones   scores   tiempo (s)      memoria
+ estimador, k=2         determinista,         158 historias       1850   0.073 (0.016)   18.8 MiB
+                        error <= 9.65 %       locales; 47 sindr.
+ estimador, k=8         exacto                10934 historias     6784   1.07 (1.01)     21.9 MiB
+ (= enumeracion por                           locales; 128 sindr.        [1 ejecucion]
+ clases de respuesta)
+ referencia global      exacto                524288 asignaciones 421888 1.62 (1.54)     23.4 MiB
+                                              (22020096 puertas);
+                                              tabla de 4096 sindr.
+ Monte Carlo directo    estadistica, 95 %,    ~2.6e6 muestras     -      no ejecutado    -
+                        error 10 %
+
+FENOMENOLOGICO (PATH25, 37 sitios, 2^37 historias).
+Par principal p=1/50, q=1/100. Evento: P_sil. Exacto 4.6517e-3.
+ metodo                 garantia              decodificaciones   scores   tiempo (s)      memoria
+ estimador, k=3         determinista, 19.95 % 8473 historias     221526   0.24 (0.19)     23.2 MiB
+                        (no alcanza el 10 %)  locales; 1416 sindr.
+ estimador, k=4         determinista,         74518 historias    676291   1.11 (1.06)     54.6 MiB
+                        error <= 2.83 %       locales; 3117 sindr.
+ estimador, k=5         determinista,         510415 historias   980889   10.4 (10.3)     262.6 MiB
+                        error <= 0.28 %       locales; 3969 sindr.        [1 ejecucion]
+ referencia exacta      exacto                tabla de 4096       421888  0.81 (0.72)     24.5 MiB
+                                              sindromes; 14286848
+                                              evaluaciones de peso
+ Monte Carlo directo    estadistica, 95 %,    ~8.2e4 muestras     -       no ejecutado    -
+                        error 10 %
+Pares de lectura (1/100, 1/200) y de control (1/100, 0): el estimador para
+en k=3 (0.24 s; errores garantizados 6.28 % y 2.79 %); la referencia exacta
+cuesta lo mismo que arriba (0.81 s). Monte Carlo: ~3.0e5 y ~2.9e5 muestras.
+Aritmetica: racionales de 114 bits como maximo en el circuito con k=2 y de
+250 bits en el fenomenologico con k=4; la suma del gas recorre 625 familias
+explicitas en el primero y 44575 terminos de recurrencia (240 estados) en
+el segundo. Preparacion del estimador (candidatos, listas inversas, host):
+menos de 1 ms en los dos contratos.
+
+3. LECTURA DE G4
+- En el circuito el estimador al 10 % es entre 15 y 22 veces mas rapido que
+  las dos formas de calculo exacto. En el fenomenologico, en el par principal es
+  1.4 veces mas LENTO que la referencia exacta y usa el doble de memoria; en
+  los otros dos pares es unas 3 veces mas rapido.
+- Ninguna de esas razones es una ventaja acreditable: todos los calculos
+  exactos caben en menos de dos segundos, y la referencia exacta da el
+  valor exacto, no un intervalo. A precision igual (exacta), el estimador
+  cuesta lo mismo que la enumeracion por clases o mas.
+- La referencia fenomenologica es barata porque el decoder solo depende del
+  sindrome y hay 2^12. El estimador no usa esa tabla; eso solo pesaria en un
+  tamano donde no quepa, que aqui no se ha medido.
+- El coste del estimador crece deprisa con el corte: de k=4 a k=5, diez
+  veces mas tiempo y cinco veces mas memoria, dominado por la suma del gas.
+- Monte Carlo directo necesitaria entre 8e4 y 2.6e6 decodificaciones para
+  un 10 % con confianza estadistica; no se ejecuto y no es una comparacion
+  de garantias iguales. No se compara con metodos de eventos raros
+  (splitting, muestreo de importancia): no se pretende una ventaja amplia.
+RESULTADO DE G4: COMPARACION REALIZADA, SIN VENTAJA DE COSTE ACREDITADA. El
+plan de validacion admite cubrir V4 asi. El objetivo transversal de
+diferenciacion sigue PENDIENTE.
+
+4. CONTROL COMPLEMENTARIO DE V1.4 EN EL CONTRATO FENOMENOLOGICO
+Las 74518 historias (E,D) de peso 1 a 4 sobre los 37 sitios: en todas, cada
+componente aislada reproduce su soporte y su parte de la traza, ninguna
+accion cruza componentes, el residuo es el XOR de los locales, las huellas
+fisicas son disjuntas y la recomposicion por cabezas locales da la traza
+global. Predicciones cumplidas: en peso <=3, 4705 historias con una
+componente, 3234 con dos y 534 con tres, y 3131 con dos o mas trazas
+activas (las cifras publicadas); las 66045 de peso 4 pasan; la historia
+E={1,2,9,10} da la traza 0, 3, 8, 11, residuos locales 15 y 3840 fuera de
+S_X con sindrome fisico nulo, y residuo 3855 en S_X.
+En peso 4 hay 20 historias con cancelacion entre componentes que han
+ejecutado acciones; 25982 tienen varias componentes (256 tienen cuatro) y
+21966 dos o mas trazas activas. La celda V1.4 del contrato fenomenologico
+deja de ser PARCIAL.
+
+5. MATRIZ FINAL V1-V4 (tras las unidades 1 a 5)
+A0 = fenomenologico con q=0 (control); A = fenomenologico con q>0;
+B = circuito. "s.c." = sin contraste del revisor. "rev." = el revisor
+recomendo aceptarla en su alcance (lectura y aritmetica, no reproduccion).
+ V1.1 decoder frente a segunda implementacion
+      A0, A: cubierto (PATH25, MOD25; planos AG(2,q) en H3, s.c.).
+      B: cubierto (HGP5; PATH25 con ocho ubicaciones, unidad 2, rev.).
+ V1.2 oraculo de primera salida
+      A0, A: cubierto (PATH25, fixtures de intervalos; AG(2,q) con checks
+      ruidosos, s.c.). B: cubierto (HGP5; unidad 2, rev., con 39373
+      variantes de soporte sin consultar).
+ V1.3 recomposicion con varias componentes y acciones
+      A0, A: cubierto (PATH25: piloto q=0; peso <=3 publicado; peso <=4 en
+      esta unidad, s.c.). B: cubierto en PATH25 con ocho ubicaciones (unidad
+      2, rev.); HGP5 solo una componente.
+ V1.4 cancelaciones entre componentes que han ejecutado acciones
+      A: cubierto (esta unidad: 20 historias de peso 4; s.c.).
+      B: cubierto (unidad 2: 4096 asignaciones; rev.).
+ V2.1 identidades de P_0, P_sil, Q_sil frente a referencia exacta
+      A0, A: cubierto (fixtures; n=10 de H1; PATH25 mixto publicado).
+      B: cubierto (HGP5; identidades del gas en la unidad 2, rev.).
+ V2.2 intervalos certificados que contienen la referencia
+      A0: cubierto (Tabla 2 del manuscrito; par de control de la unidad 4).
+      A: cubierto en PATH25, dos pares (unidad 4, s.c.).
+      B: cubierto en PATH25 con ocho ubicaciones (unidad 3, s.c.).
+ V3   estimador completo, forma declarada (a): certificado finito por
+      componentes, sellado antes de contrastar
+      A0: cubierto como control. A: cubierto en PATH25 (unidad 4, s.c.).
+      B: cubierto en PATH25 con ocho ubicaciones (unidad 3, s.c.).
+      Forma (b), algoritmo del teorema: NO ejecutado; solo piezas sueltas
+      (H1 con errores de acceso simulados; logaritmos de particiones de
+      HGP5). El complemento en HGP5 sigue sin evaluar.
+ V4   recursos y comparacion con la referencia exacta
+      A y B: cubierto (esta unidad, s.c.), con resultado "sin ventaja de
+      coste acreditada".
+Alcance que hay que decir siempre con esta matriz:
+- El estimador se ha validado en UNA instancia, PATH25, de semilla no
+  regular y contrato generico; en el circuito, con 8 de 217 ubicaciones
+  ruidosas y una ronda; tasas de lectura del 1-2 %.
+- No esta validado en la familia FGL regular con host conectado no
+  completo, ni en F17 (alli solo seis consultas de acceso, H3), ni con
+  ruido en todas las ubicaciones, ni con varias rondas.
+- Es validacion del certificado finito, no del algoritmo general del
+  teorema ni de su coste asintotico.
+- No hay ventaja de coste acreditada; el objetivo de diferenciacion sigue
+  pendiente.
+
+6. QUE FALTA PARA CERRAR H6
+ - Contraste del revisor de las unidades 3, 4 y 5 (la 2 tiene recomendacion
+   de aceptacion por lectura).
+ - Consolidacion editorial: decidir que entra en el manuscrito (la matriz,
+   las dos estimaciones certificadas, la tabla de recursos con su "sin
+   ventaja") y que paquete reproducible lo acompana. Es decision del
+   usuario; esta unidad no toca el manuscrito.
+ - Opcional: el complemento del algoritmo del teorema en HGP5, calculando
+   antes su coste.
+Ninguna de las tres es una carencia de evidencia de V1-V4 en el alcance
+declarado.
+
+7. LIMITES DE ESTA UNIDAD
+- Tiempos y memoria de una sola maquina, Python puro, cinco repeticiones;
+  los procesos cortos estan dominados por el arranque del interprete.
+- El contador de scores del estimador fenomenologico esta inflado por su
+  implementacion (no reutiliza sindromes intermedios); no se corrigio para
+  no tocar el programa sellado.
+- La comparacion "a igual precision" es asimetrica por naturaleza: la
+  referencia es exacta y el estimador certifica un intervalo.
+- El control de V1.4 cubre peso <=4 y usa el decoder de la unidad 2.
+- La matriz final es una lectura de esta sesion.
+
+8. RECURSOS Y DESVIACIONES
+28 ejecuciones de programas sellados (techo 30) y una del control; 41 s en
+total. Ninguna desviacion del plan. Cero censos, muestreos, agentes e
+instalaciones; nada sobre F17. Manuscrito, PDF y ZIP intactos.
+
+9. DECISION
+Clasificacion: UNIDAD COMPLETADA. G4 cubierta con resultado "sin ventaja".
+V1-V4 cubiertas en su alcance finito declarado, con las unidades 3 a 5 sin
+contraste. H6 sigue PARCIAL hasta el contraste y la consolidacion. Esta
+sesion no marca nada como cerrado.
+
+10. ARCHIVOS (en esta carpeta)
+PLAN_UNIDAD.txt, medir_h6_u5.py, MEDICIONES_H6_U5.json (no determinista),
+SALIDA_MEDICIONES.txt, carpeta mediciones (73 archivos de las 28
+ejecuciones), control_v14_fenomenologico.py,
+CONTROL_V14_FENOMENOLOGICO.json, SALIDA_CONTROL_V14.txt,
+MATRIZ_FINAL_V1_V4.json, INFORME_U5.txt.
+Uso: python -I -B medir_h6_u5.py --output <nuevo.json>   (crea `mediciones`)
+     python -I -B control_v14_fenomenologico.py --output <nuevo.json>

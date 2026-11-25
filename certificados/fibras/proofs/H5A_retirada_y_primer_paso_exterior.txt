@@ -1,0 +1,311 @@
+H5-A · Retirar datos originales y localizar la primera acción exterior
+18 de noviembre de 2026, Lima
+
+Resultados
+==========
+
+En todas las afirmaciones se conservan las semillas binarias (17,18)-
+regulares de tamaño arbitrario, el ruido Bernoulli independiente, las
+máscaras, los subhosts, la familia FGL completa, β=1/100 y el orden fijo
+del manuscrito. El extremo de q es siempre 2·10⁻¹¹.
+
+• Para la partición física de las historias que pasan usando sólo pasos
+  con puntuación ≥15/17 se demuestra acceso determinista con precisión
+  relativa elegible hasta p=2.28·10⁻¹³. También se certifica la partición
+  que exige como máximo un check nuevo por paso. En ambos casos el número
+  de pasos es arbitrario y se admiten creaciones fuera de las huellas de
+  los datos originales, fusiones y reutilización de fuentes.
+• A p=10⁻⁶ se puede sumar una referencia que ejecuta el decodificador físico
+  completo dentro de cada componente de un grafo de fuentes. El grafo
+  incluye los dos tipos de pareja que pueden explicar la primera acción
+  exterior de un check nuevo con a lo sumo dos lectores iniciales. La
+  carga inclinada, después de insertar TODOS los pares y tríos físicos,
+  es <1.804·10⁻⁶ por dato y <1.288·10⁻⁶ por medida.
+• Para toda la partición física, la última cota demostrada sigue en
+  p=3.6·10⁻³⁶. La ecuación (4) precisa el trabajo necesario para la meta.
+  Las cifras de esta nota se comprueban con fracciones. Las pruebas
+  uniformes son las que siguen y quedan pendientes de revisión independiente.
+
+1. Etiquetas que se conservan al compartir una fuente
+=====================================================
+
+En un paso de área A, h luces se apagan, c=A−h se encienden y el descenso
+es δ=h−c>0. Etiquetar cada luz inicial con un check y uno de los sitios
+originales que lo suministran, eligiendo uno por orden fijo cuando hay
+varios. Se pueden traspasar c etiquetas distintas desde las h luces que
+se apagan a las c que se encienden. El resto se retira. Así una etiqueta
+nunca se duplica y cada dato original suministra a lo sumo 18 etiquetas.
+Con inyección uniforme, la probabilidad de conservar r etiquetas indicadas
+entre las h es (c)_r/(h)_r≤(c/h)^r, con factoriales descendentes y r≤h.
+Es aleatoriedad auxiliar para una traza ya fijada.
+
+Cuando c≤1 se obtiene además una genealogía determinista. Para cada única
+creación, hacer de TODAS las luces consumidas sus antecesoras. Hay al
+menos 16. Cada episodio se consume a lo sumo una vez y tiene a lo sumo
+un sucesor. Por ello las luces presentes simultáneamente tienen conjuntos
+de hojas iniciales disjuntos. Si una está a distancia d de las luces
+iniciales en el grafo de checks que comparten generador, cada camino a
+una hoja necesita al menos d pasos y aporta en conjunto al menos 16^d
+hojas. La suma de 16^d sobre luces simultáneas es ≤|s₀|≤18|E|+|D|.
+Este conteo admite que hasta 18 hojas provengan del mismo error de datos.
+
+2. Un certificado para todas las creaciones de un check por paso
+===============================================================
+
+La puntuación es δ/A=1−2c/A. Como A≥17, c≤1 implica δ/A≥15/17.
+Para cualquier acción con puntuación ≥15/17, un singleton VV consume
+h≥16 luces, uno CC h≥17 y un múltiple h≥32 porque A≥33. Un singleton
+desciende ≥15 y un múltiple ≥30 por integridad. Si e es el número de
+datos fuente en una decoración filtrada, la parada en D da Σδ≤18e.
+Por tanto, con ocurrencias repetidas incluidas,
+
+   #singletons + 2 #múltiples ≤ 6e/5,       |Y∩datos| ≤ 17e/5.        (1)
+
+La segunda desigualdad usa |F|≤2A/17≤2δ/15 y añade los datos fuente.
+Ambas restricciones de pasos se aplican a la ejecución canónica original.
+Se multiplican sobre sus componentes físicas compatibles por el teorema
+de recomposición, que conserva las luces de cada ganador. Por ello pueden
+usarse tanto el filtro de puntuación como el de c≤1 por separado.
+
+Usar el bosque de H5A_p_general.txt, secciones 2–4. Hay tres tipos de
+fuente (VV, CC y medida), dos de acción singleton y uno de generador con
+acción múltiple. Una acción usada varias veces sólo necesita un átomo.
+En su primer uso se elige uno de k=(16,17,32) checks encendidos. Su causa
+es el último encendido o un lector inicial. Los tiempos decrecen hasta
+una fuente. Se conservan todas las fuentes y se completa a un árbol por
+los puentes del host físico K. Recuperar las fuentes reconstruye la traza.
+Dar precio t a un átomo singleton y t² al múltiple. La elección del check
+se normaliza por 1/k. Así (1) paga todos los átomos incluso en trayectorias
+que revisitan el mismo check, o donde un dato aporta a varios pasos.
+
+En el orden anterior usar f=(17,18,1,17,18,306), l=(18,17,1,18,17,306),
+H_ij=f_i l_j y la matriz M de puentes de la nota citada. S acota una rama
+que aún debe llegar a una fuente y P una acción que llega desde su causa.
+Con I los tres tipos de acción y G_i=exp(Σ_{j∈I}H_ij P_j/k_j + Σ_j M_ij S_j),
+las filas son S_i≥actividad_i G_i para fuentes, P_i≥actividad_i G_i para
+acciones y S_i≥(P_i/k_i)Σ_j H_ij S_j para éstas. El verificador incluye
+M, los dos vectores de supersolución y todas las comparaciones racionales.
+Usar t=0.0015, x=1.54·10⁻⁹ para fuentes de datos, ξ=5.55·10⁻¹¹ para
+medidas y odds z_r=r/(1−r). En la esquina física certificada se cumple
+
+        z_p exp(1.01) ≤ x t^(6/5),       z_q exp(1.01) ≤ ξ.
+
+Anclar en cada posible átomo que cubre el sitio y aplicar (1) da
+K_dato<0.449779, K_medida<0.007808. Estos coeficientes, uno por fuente,
+son menores que el presupuesto unitario del compilador de particiones
+físicamente filtradas del manuscrito. La inclinación sobrante de 0.01
+da la cola exponencial. Se utiliza su oráculo físico añadiendo al final
+la comprobación de los pasos observados. Esto prueba positividad y acceso
+relativo para cada una de las dos particiones de esta sección.
+
+3. Una referencia que permite apagar y volver a encender checks
+=================================================================
+
+Para una entrada física con datos E y medidas D guardar un conjunto U que
+comienza en E. Dos datos se llaman equivalentes si tienen la misma huella.
+Un candidato F del decodificador es representable si, para algún generador
+que lo contenga, F o el complemento de F en ese generador se puede emparejar
+con datos distintos de U de igual huella, miembro a miembro. El complemento
+tiene el mismo síndrome porque la fila de H_Z conmuta con H_X. Sólo el
+candidato F que se ejecuta debe pertenecer a la familia FGL.
+
+En la ejecución de referencia elegir el primer máximo elegible entre los
+candidatos representables y retirar de U sus datos emparejados. Usar un
+orden fijo para elegir el testigo si hay varios. Ejecutar y registrar el
+F real, incluidos sus sitios para el signo y la contención en el subhost.
+En cada instante el síndrome es exactamente
+
+                         s = H_X U ⊕ D.                                (2)
+
+Esto sigue por inducción sobre las retiradas, aun si cada una enciende
+varios checks. Al detenerse, conservar la marca si s=D, D es estable frente
+a TODOS los candidatos físicos y el soporte visitado está en J. La marca
+individual coincide con la física, también para datos duplicados. Para
+una fuente de datos aislada todo ganador perfecto tiene la misma huella
+de línea y es representable. Para una medida aislada hay parada.
+
+En el grafo G₀ unir los datos de huellas solapadas y los que tienen
+equivalentes en un mismo generador. Una medida se une a sus lectores
+y a las medidas de un mismo rectángulo. Los datos que explican un paso
+están en una componente, y la huella del paso está en sus huellas
+originales. Si hubiese dos testigos para el mismo F, sus huellas
+compartirían algún check de la huella no vacía de F. En (2) las
+componentes tienen síndromes disjuntos. Las ejecuciones de referencia
+se intercalan por el orden real. Los soportes se unen, los caracteres
+se multiplican y la estabilidad terminal en D se comprueba por componente.
+Esto prueba factorización marcada en G₀ para TODAS las subentradas.
+
+La clase VV de huella igual tiene a lo sumo 18 miembros, la CC a lo sumo
+17. Para VV, los vecinos VV por cogenerador tienen primera coordenada
+a distancia de Tanner ≤2 (hasta 290 opciones) y segunda en la misma clase
+de huella (hasta 18). Para CC resultan 289·17. Los de igual tipo por
+solapamiento añaden ≤290 o ≤289. Para tipos opuestos, tanto el solapamiento
+como el cogenerador de equivalentes exigen incidencia en las dos coordenadas,
+con ≤17² o ≤18² opciones desde la raíz. Las filas (datos,medidas) de G₀
+se acotan por (5799,17), (5526,18) y (35,83810). La sección 5 verifica que
+la referencia de retirada por sí sola converge incluso hasta p=3·10⁻⁵.
+
+Comparar ahora la ejecución FÍSICA con la de retirada hasta que difieren.
+El primer desacuerdo exige que el ganador físico carezca de testigo en U.
+Un ganador representable conserva el máximo y el desempate al restringir
+los candidatos. Llamamos exterior al primer ganador sin testigo. Justo
+antes de él todavía vale (2), después de cualquier número de creaciones.
+Un desacuerdo de marcas requiere además |s|>|D| en ese instante. Si
+|s|≤|D| y hay una acción elegible, el descenso o la prueba de estabilidad
+terminal impiden que cualquiera de las dos marcas pueda pasar.
+
+4. Dónde puede aparecer el primer ganador exterior con c=1
+==========================================================
+
+Si una huella pura de varias líneas paralelas gana, todas sus líneas
+tienen la misma fracción encendida porque cada singleton compite con el
+promedio. Con exactamente un hueco, la huella pura es de un singleton w.
+Sea n=|ψ_w| igual a 17 o 18. Supongamos que a lo sumo dos sitios de la
+entrada original leen ψ_w. Por (2) alguno de los proveedores actuales v
+cubre al menos ⌈(n−1)/2⌉≥8 celdas. Es dato del mismo tipo y de la misma
+línea. Su huella difiere de ψ_w, pues en otro caso w sería representable.
+Poner j=|ψ_w∖ψ_v|. Registrar las siguientes parejas potenciales por v,w.
+
+• Si j≥2, fijar los dos primeros checks de ψ_w∖ψ_v según un orden fijo.
+  El otro proveedor debe leer uno de ellos porque puede faltar a lo sumo
+  uno y hay como máximo otro proveedor en la huella de w.
+• Si j=1, tomar el único check de ψ_w∖ψ_v y el único de ψ_v∖ψ_w. Si
+  ningún otro proveedor lee el primero, todos los checks comunes están
+  encendidos. Para que el singleton v no sea perfecto, algún otro sitio
+  original de (2) debe leer el segundo. En ambos casos hay una segunda
+  fuente distinta, dato o medida, en uno de los dos checks señalados.
+
+Por doble conteo de incidencias hay ≤⌊306/8⌋=38 opciones de v para w y
+viceversa. Por ello, con p=10⁻⁶, q=2·10⁻¹¹ y fuentes independientes, para
+un singleton FIJADO, la probabilidad de ser el primer exterior con c=1 es
+
+         ≤38p(70p+2q)+[18(35p+q)]³/6 < 2.702·10⁻⁹.                 (3a)
+
+El último término cuenta al menos tres lectores originales por el tercer
+momento factorial. Los demás lectores del código son arbitrarios. Las
+elecciones de qué datos quedan en U pueden depender de toda la traza.
+El testigo sólo exige la presencia de fuentes distintas en la entrada.
+
+Para un ganador mixto en el rectángulo P, la huella antes de quitar el
+hueco ocupa TODAS sus 18 filas y 17 columnas. Con dos lectores originales
+como máximo, deben ser un dato horizontal y otro vertical. Sus huellas
+sólo pueden cubrir 35 checks. Como A−1≤35, la forma mixta es una fila y
+una columna, o su representación complementaria, por A=17x+18y−2xy.
+Sus brazos miden 16 y 17. Los dos proveedores pertenecen a esas líneas
+y deben cubrir al menos 15 y 16 checks en las respectivas direcciones.
+En un P fijo hay ≤20 lectores de solapamiento ≥15 por fila y ≤19 de
+solapamiento ≥16 por columna. Los lectores totales de P son ≤10133 datos
+y 306 medidas. Así la probabilidad por generador es
+
+         ≤(18·20)(17·19)p²+(10133p+306q)³/6 < 2.897·10⁻⁷.           (3b)
+
+5. Sumar las parejas que pueden compartir el mismo error
+========================================================
+
+A G₀ añadir las aristas de pareja de la sección 4. Para el singleton,
+desde el proveedor principal hay ≤38·70 segundos datos y ≤38·2 medidas.
+Desde el segundo dato, elegir uno de sus ≤18 checks. Está en w o en v.
+En cada caso hay ≤35 lectores para fijar ese dato de línea y ≤38 opciones
+para la otra línea de gran solapamiento. Esto añade ≤18·2·35·38 datos
+desde un dato, y ≤2·35·38 desde una medida. Para el mixto, desde VV hay
+≤20 líneas de generador por solapamiento, ≤17 generadores de la otra
+coordenada que contienen la fila, ≤17 columnas en el rectángulo y ≤19
+lectores verticales de gran solapamiento. Desde CC se intercambian los
+papeles y los dos factores de grado valen 18. El grafo resultante G tiene
+las siguientes cotas de grado, con sobreconteo permitido.
+
+              raíz           datos         medidas
+              VV           166 159            93
+              CC           179 186            94
+              medida         2 695        83 810
+
+Hasta el primer exterior, (2) descompone el síndrome sobre las componentes
+iniciales de G. Si ese exterior crea un solo check y tiene a lo sumo dos
+lectores originales en la huella del singleton o en P para el mixto,
+TODAS sus luces proceden de una componente de G. En el caso singleton
+con j=1 y sin proveedor en el check que falta, sólo v aporta luces. En
+los demás casos la pareja de la sección 4 une los proveedores. El paso
+puede entonces asignarse a esa componente. Su puntuación allí es la misma
+y ningún rival gana luces al proyectar. La evolución posterior a ese
+primer exterior puede producir un síndrome fuera de (2).
+
+Sea T la marca física en J y poner T_G(Q)=∏_{C componente de G[Q]}T(C).
+Cada T(C) se obtiene del decodificador físico completo con todos sus
+rivales. La partición de esta referencia admite todas las evoluciones
+internas, incluidas salidas, correcciones imperfectas y fallos de filtro.
+Es una referencia definida por componentes. Si la traza física conjunta
+entera es representable ya se tiene T_G(Q)=T(Q) por proyección de cada
+ganador y de la parada. También hay igualdad en cada Q conexo por G.
+Un cumulante mixto puede depender de subentradas desconectadas aunque
+su soporte total sea conexo.
+
+Para los cumulantes k_G, la factorización en todas las subentradas da
+|k_G(B)|≤2^{|B|−1}τ(G[B]), con τ el número de árboles abarcadores, como
+en H5A_arboles_de_dependencia.txt. Escribir s_i=r_i exp(a+ε)/(1−2r_i),
+ε=0.01. Sea M el máximo de las tres filas multiplicadas por los precios
+(s_dato,s_medida), y R=2 exp(1)M. Para tamaños n≥m≥2, la carga enraizada
+se acota por (exp(1)−1)s_i R^{m−1} cuando R<1. Se suman desde las hojas
+los n^{n−2} árboles con etiquetas y se divide por (n−1)! con la raíz fija.
+La normalización usa los factores individuales 1+T({i})z_i y el gas de
+bloques de fuentes disjuntos de H5A_cumulantes_y_componentes.txt.
+
+Para G₀, p=3·10⁻⁵, a=0.01, resulta R<0.965 y ambas cargas son <a.
+Para G, p=10⁻⁶, a=0.005, resulta R<0.989. Insertar k físico completo
+en los órdenes dos y tres y k_G desde cuatro. Las fórmulas verificadas
+de H5A_cumulantes_y_componentes.txt, secciones 4–5, y m=4 dan cargas
+<1.804·10⁻⁶ para datos y <1.288·10⁻⁶ para medidas. Así se suman árboles
+y ciclos con los mismos errores en varias parejas, pagando la actividad
+de cada fuente una vez por bloque. Se mantiene inclinación ε y se pueden
+enumerar los soportes conexos hasta el grado truncado. Para el certificado
+físico completo en la meta bastaría demostrar en todas las raíces i
+
+       Σ_{B∋i, |B|≥4}|k(B)−k_G(B)| ∏_{j∈B}s_j ≤ 0.004998.             (4)
+
+El margen es un presupuesto de convergencia. Las cotas locales (3a,b)
+no pueden multiplicarse en (4) porque dos acciones pueden tener las
+mismas fuentes. El resto exige un desacuerdo de la marca física con la
+composición de componentes en alguna subentrada. Puede ocurrir al salir
+con tres o más lectores o varios huecos, o más adelante, después de que
+una primera acción exterior ya asignada a una componente propague señal.
+
+Con los precios ANTERIORES de p=2.51·10⁻⁷, a=10⁻⁵ y el mismo ε, la
+desigualdad original (3) de H5A_cortes_y_huecos.txt sí admite una
+sustracción inmediata. Escribir k−k_P=(k−k_G)+(k_G−k_P). La fila completa
+del segundo sumando desde orden cuatro es <4.423·10⁻⁷, usando la fila
+del prefijo perfecto y el mayorante anterior con G y m=4. Bastaría
+≤9.10·10⁻⁶ para el primer sumando y todas las raíces. Es una contribución
+sumada con cualquier número de errores. No se ha probado aún esa
+desigualdad para el primer sumando.
+
+6. Contraste físico del primer exterior
+======================================
+
+Usar la familia cíclica anterior de 17m checks y ventanas de 17, con m≥4,
+incluidas las ventanas repetidas que completan la regularidad. En una
+misma fila tomar datos de inicio 0 y 16. Dar prioridad a las ventanas
+de inicio −1, 0 y 16 en ese orden y usar máscara cero, J completo, D vacío.
+Por el lema de las ocho filas sólo pueden ganar singletons de esa línea.
+La ventana −1 ve 16 luces y es el primer exterior. Deja una luz en −1
+y el tramo [17,32]. Gana la ventana 16, quedan dos luces y falla el filtro.
+La referencia de retirada elige 0 y después 16, con síndrome final vacío.
+Las fuentes forman una pareja de G y su componente física reproduce el
+fallo. La cadena arbitrariamente larga de la nota anterior, con su propio
+desempate que prioriza los datos originales, queda reproducida por retirada
+en todas las subentradas. Estos cálculos contrastan el mecanismo y los
+empates. Las cotas de las secciones 2 y 5 provienen de pruebas para toda
+semilla y todo tamaño.
+
+Reproducción y fuentes
+=====================
+
+Desde esta carpeta, con Python 3.10 o posterior y la biblioteca estándar,
+
+    python -I -B -X utf8 verificar_H5A_retirada_y_primer_paso_exterior.py
+
+La cota de árboles usa la demostración combinatoria de Féray, Méliot y
+Nikeghbali, secciones 9.3–9.4, adaptada a marcas formales en la nota
+del proyecto sobre árboles. https://arxiv.org/pdf/1304.2934
+
+Las dos aplicaciones de expansión de polímeros usan el criterio y la cota
+enraizada del teorema 1 de Ueltschi, con los presupuestos y fugacidades
+especificados en cada sección. https://arxiv.org/pdf/math-ph/0304003

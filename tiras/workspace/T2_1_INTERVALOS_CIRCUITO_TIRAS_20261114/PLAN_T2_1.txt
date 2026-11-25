@@ -1,0 +1,1195 @@
+PLAN SELLADO DE T2-1 (ejecutor, 14/11/2026, America/Lima)
+Este plan es el borrador v10 revisado (BORRADOR_PLAN_T2_1.txt, sha256
+2b257a9949eec29bcdb7c5cf51dbada4e81f39078717a6e654c8846088f747bd),
+copiado sin cambios debajo de la linea de separacion. El borrador
+conserva su historial: donde dice "sin sellar" o "borrador", describe
+el estado de cada version anterior a este sello.
+
+Revision. DICTAMEN_CIERRE_R3.txt (T2_1_CIERRE_REVISION_N3_V4_20261114,
+sha256 1cfe41c6...) cierra la revision de codigo previa a la ejecucion
+y no pone impedimentos para sellar con N1 v2 y N3 v4. No declara
+terminado T2-1.
+
+Programas sellados (SHA-256 completos en SELLO_PLAN.json):
+- t2_intervalos.py (N3 v4): 95799c8e...;
+- t2_rival.py (N1 v2): 72174b6f...;
+- t2_solo_u.py: 30d2a0fc...;
+- t2_mc.py: fcf0323c...;
+- t2_cp.py: 7e1a913b....
+El conductor comprueba por SHA-256 las 11 dependencias (modulos
+sellados, resultados y el manifiesto de trabajo/), que tambien se
+registran en SELLO_PLAN.json. No se cambia el codigo aprobado.
+
+Orden del usuario (14/11/2026): sellar el plan y ejecutar unicamente
+la corrida 1 (m = 6, 12 y 24), con los presupuestos de TECHOS:
+- corrida 1: 6.5 h, Monte Carlo incluido;
+- etapas anteriores al Monte Carlo: 4.75 h;
+- Monte Carlo: 1.5 h de trabajo y 600 s de cierre, con 60 s de
+  limpieza dentro del cierre;
+- memoria: 24 GiB en total, 12 GiB en el proceso principal y 4 GiB por
+  proceso de la DP;
+- disco nuevo de la corrida: 60 GB;
+- 14 procesos y 384 bits.
+D-mc: m = 6, r_c = r_m = 1e-3, N = 7e9 historias, techo de 2e8
+llamadas al decoder (con la comprobacion del atajo), Clopper-Pearson
+y criterio sellados.
+La corrida 2 NO esta autorizada, aunque la lectura de la corrida 1 diga
+LANZAR_CORRIDA_2: necesita una orden nueva. No se inicia T2-2 ni se
+modifica el manuscrito.
+Ante un control fallido, una discrepancia de SHA-256, un techo,
+INCOMPATIBLE, NO_EVALUADO o un cierre anormal: se guarda la evidencia
+y se detiene, sin reintento, sin ampliar presupuestos y sin cambiar
+criterios.
+
+Sin cambios respecto al borrador v10: las decisiones U2 a U6, los
+criterios, las metricas, las reglas de parada, los techos y los
+presupuestos.
+
+Carpeta de la corrida 1 (nueva): 05_COMPROBACIONES/
+T2_1_CORRIDA_1_EJECUCION_20261114/, con la carpeta de la corrida en
+corrida_1/ (la que mide el techo de disco) y la consola en
+SALIDA_T2_1_C1.txt.
+======================================================================
+NOTA DEL REVISOR - 14/11/2026: corregidas la masa omitida y el
+alcance de S2; explicitado el intervalo final con redondeo. Sigue siendo
+un borrador sin sellar. No se ha escrito el conductor ni el adaptador
+SOLO_U; no se autoriza ni ejecuta ninguna corrida en esta correccion.
+La revision no valida globalmente el diseno: las previsiones basadas
+en 384/L_comp o en el termino dominante siguen siendo estimaciones;
+no prueban un coste minimo de Monte Carlo ni una cobertura finita del
+95 %. Esas afirmaciones se deben precisar antes de sellar A4/U4.
+
+SEGUNDA REVISION (ejecutor, 14/11/2026, con la respuesta del revisor):
+- A4 es solo determinista; los presupuestos de muestras quedan
+  etiquetados como aproximacion normal (no deciden nada).
+- U4/D-mc: Clopper-Pearson bilateral al 99.9 % con N fijado, recuento
+  publicado entero, sin parada temprana ni repeticion; submuestra
+  estratificada de los estratos que el atajo no decodifica.
+- N2: contrato completo del adaptador SOLO_U y orden de revision.
+- P3C: dos condiciones explicitas (localidad del filtro y completitud
+  del catalogo) y regla si falla la completitud.
+- Rival: coste de construir las leyes de fibra; igual corte frente a
+  igual tiempo.
+- k*: NO_DETERMINADO si ninguna cota certifica.
+- Orden del contraste: primero la localidad del filtro en las tiras.
+
+TERCERA REVISION (ejecutor, 14/11/2026, tras DICTAMEN_SOLO_U_LOC.txt
+del revisor, que contrasto la version anterior, sha 1f3ad27e...):
+- LOC: se incorpora la prueba del revisor para las tiras; los hechos
+  de codigo que usa se comprobaron por lectura.
+- SOLO_U: firma ponderada n[Y,a,b] (no un solo total por soporte);
+  DP de un canal del motor sin cambios; enlace con referencia comun.
+- Completitud por instancia y corte, con su procedencia; COMPLETO,
+  INCOMPLETO y NO_DECIDIBLE separados; L_cat nunca como L_ing exacto.
+- Igual tiempo: L_ing(4) exacto o cota superior certificada; k' es
+  una proyeccion de coste.
+- D-mc: p_sup = 1 si x = N; colas en aritmetica de intervalos con
+  redondeo dirigido y biseccion con signo certificado; Garwood solo
+  como control; marginal X exacta por ubicacion; la comprobacion del
+  atajo pasa a ser exhaustiva (estratos 0, 1 y 2 completos).
+- Codigo nuevo preparado para revision: ver ARCHIVOS.
+Sigue siendo un borrador: no se sella, no se registra y no se ejecuta
+nada. Las versiones anteriores estan en versiones/.
+
+CUARTA REVISION (ejecutor, 14/11/2026, tras DICTAMEN_CODIGO_T2_1.txt,
+revision estatica del codigo; borrador contrastado: sha 903d1616...):
+- R1: techos globales y estrictos de llamadas y de tiempo en t2_mc.py
+  y t2_solo_u.py, contados desde la comprobacion del atajo (TECHOS).
+- R2: SOLO_U guarda U_lo, U_hi, la precision y B exactos, y se puede
+  verificar despues sin repetir la DP (N2).
+- R3: el 99.9 % de D-mc es una cobertura nominal bajo el modelo
+  binomial ideal; los supuestos de simulacion se declaran (LIMITES).
+- R4: el certificado entra con metadatos que se comprueban; el
+  recuento se guarda antes de Clopper-Pearson (U4, N3).
+- Precisiones: LOC ya no figura como lema sin contraste; ensanche de
+  dos ulps; la comprobacion del atajo son 279049 llamadas.
+Sigue sin sellar; el codigo nuevo no se ha ejecutado.
+
+QUINTA REVISION (ejecutor, 14/11/2026; borrador v5, sha 898e0e57...):
+- Pruebas acotadas de t2_solo_u.py, --verificar y t2_mc.py
+  --solo-atajo, con codigo 0 y controles PASS
+  (T2_1_PRUEBAS_ACOTADAS_EJECUCION_20261114), recibidas por el revisor
+  en su alcance (T2_1_RECEPCION_PRUEBAS_ACOTADAS_20261114).
+- Decisiones U2 a U5 del usuario registradas, las cuatro con la opcion
+  recomendada (ver DECISIONES DEL USUARIO).
+Sigue sin sellar: faltan N1 y N3, su revision y el sello.
+
+SEXTA REVISION (ejecutor, 14/11/2026; borrador v6, sha 2915cabb...):
+- N1 (t2_rival.py) y N3 (t2_intervalos.py) escritos, version 1, para
+  revision. Ninguno se ha usado en una corrida. Solo se ejecutaron la
+  autoprueba de N1 (matematica) y la prueba de humo de N3 (sin decoder
+  ni DP; datos sinteticos), las dos con codigo 0 (ver ARCHIVOS).
+- Hallazgo que cambia lo previsto (U6, nueva, abierta): con D = 1e14
+  la condicion previa de la regla de suma NO se cumple con k = 4 en
+  m = 24 (cola/umbral 1.29) ni en m = 48 (44.0). La condicion solo
+  depende de las clases, de k y de D; se calculo ahora, sin U, sin
+  decoder ni DP. Con D = 1e14 esas dos reglas darian NO_DECIDIBLE sea
+  cual sea la DP: L_ing(4) quedaria como cota en m = 24 y 48, y D-t3 y
+  la linea de igual tiempo, PENDIENTES alli. Las versiones v4 a v6 no
+  lo vieron. Ver U6.
+- H-comp: COMPLETO en el corte k cubre todos los cortes <= k (la
+  regla de suma con k demuestra que no falta ninguna decoracion con
+  <= k sitios). Asi lo usan ya m = 6 y 12; en m = 48, k <= 3 solo
+  queda cubierto si la regla con k = 4 sale COMPLETO.
+- N2: T2-1 reutiliza el resultado de la prueba acotada de SOLO_U
+  (RESULTADO_SOLO_U.json, sha 9c49caa9...), con su verificador sin
+  DP y el SHA-256 sellado de t2_solo_u.py; no lo repite (lo acepto
+  el revisor: "no hace falta repetir ... estas pruebas"). Por eso T2-1
+  no llama al decoder fuera del Monte Carlo.
+- Sello: SELLO_PLAN.json fija el SHA-256 del plan y el de los cinco
+  programas (t2_intervalos, t2_rival, t2_solo_u, t2_mc, t2_cp).
+- Detalles de N3 fijados en el codigo y aqui: archivos de las dos
+  corridas, techo de tiempo repartido (etapas hasta 4.75 h, Monte
+  Carlo con su 1.5 h), proyeccion a igual tiempo y paradas.
+Sigue sin sellar: faltan la revision de N1 y N3, la decision U6 y el
+sello.
+
+SEPTIMA REVISION (ejecutor, 14/11/2026; borrador v7, sha 4c63f608...):
+- U6 DECIDIDA por el usuario: opcion A, D = 1e16 en las dos reglas de
+  suma con k = 4 (m = 24 y 48), el mismo D en toda la comprobacion y
+  la anchura acumulada verificada. Ver U6.
+- N3 version 2 (t2_intervalos.py; la version 1 esta en
+  versiones/codigo_N3_v1/): regla de suma con D = 1e16; condicion
+  previa comprobada antes de la DP; copia de las formulas selladas
+  con D explicito y su identidad con D = 1e14 comprobada en cada
+  evaluacion; prevision de la anchura de U antes de la DP; C-anch
+  sobre la anchura medida antes del criterio. Ver N3 y CONTROLES.
+- Corregido: v7 decia que la precision "sobra" por los 384 bits. Eso
+  fija el redondeo de cada operacion, no la anchura final.
+- Sin cambios: t2_motor.py, t2_calibracion.py, b4_tiras.py (sellados),
+  t2_rival.py (N1 v1), t2_cp.py, t2_mc.py, t2_solo_u.py, los techos y
+  los presupuestos. El coste de la DP no cambia.
+- Prueba de humo de N3 v2 (sin decoder ni DP): codigo 0, 26 grupos,
+  1368 controles, 0 llamadas al decoder (ver ARCHIVOS). Prevision de
+  la anchura de U: 1.8e-106 en m = 24 y 4.2e-106 en m = 48, frente a
+  la cota de C-anch de 1e-76; la que decide es la medida tras la DP.
+Sigue sin sellar: faltan la revision de N1 y de N3 version 2 y el
+sello. No se ha ejecutado ninguna corrida.
+
+OCTAVA REVISION (ejecutor, 14/11/2026; borrador v8, sha 94fee452...):
+- El revisor reviso N1 v1 y N3 v2 (T2_1_REVISION_N1_N3_V2_20261114,
+  DICTAMEN_N1_N3.txt). Acepto U6 por lectura y pidio corregir cuatro
+  puntos antes de sellar. Segun el dictamen, no invalidan T2-1M, B4,
+  SOLO_U ni las pruebas anteriores.
+- R1 (N1 version 2): la lectura agrupa las silenciosas de 3 sitios
+  por (seccion, indice local). La v1 usaba solo el indice local y
+  podia mezclar los soportes de dos secciones del mismo grupo, lo que
+  alteraba los pares compatibles y L_ing(4). La regresion (lector
+  real y grupos sinteticos en el formato del motor) falla con v1 y
+  pasa con v2. Ver N1.
+- R2 (N1 v2 y N3 v3): los techos (plazo, memoria y disco) se
+  consultan durante la lectura de N1, en los bucles de P3C y del
+  rival y en la evaluacion; si hay parada, se guarda el avance de la
+  lectura. Ver TECHOS.
+- R3 (N3 v3): el Monte Carlo corre en un arbol de procesos propio,
+  medido y terminado entero, con el plazo duro dentro de las 6.5 h.
+  Ver TECHOS.
+- R4 (N3 v3): --verificar exige la entrega completa y recalcula N2 y
+  las decisiones; --parcial es solo una inspeccion (codigo 2). Ver N3.
+- Pruebas solo sinteticas: sin decoder, DP ni Monte Carlo y sin leer
+  los catalogos reales. Desde ahora se conservan los intentos
+  fallidos (ver ARCHIVOS).
+- Sin cambios: t2_motor.py, t2_calibracion.py y b4_tiras.py
+  (sellados), t2_cp.py, t2_mc.py, t2_solo_u.py, los techos y los
+  presupuestos. D = 1e16 en las reglas nuevas y 1e14 en la
+  procedencia.
+Sigue sin sellar: faltan la revision de N1 v2 y N3 v3 y el sello. No
+se ha ejecutado ninguna corrida.
+
+NOVENA REVISION (ejecutor, 14/11/2026; borrador v9, sha f26a33f2...):
+- El revisor reviso N1 v2 y N3 v3 (T2_1_REVISION_N1_V2_N3_V3_20261114,
+  DICTAMEN_N1_V2_N3_V3.txt y ENCARGO_CIERRE_R3.txt). Dio por
+  atendidos R1, R2 y R4. Pidio dos ajustes locales del cierre de R3.
+  Segun el dictamen, no invalidan los resultados anteriores ni exigen
+  repetir corridas.
+- R3-A (N3 version 4): una consulta u orden a Windows que falla ya no
+  se lee como 0 procesos ni como memoria nula. Se registra (funcion y
+  GetLastError), detiene la supervision e impide confirmar el cierre.
+  La limpieza se ejecuta igual. Ver TECHOS.
+- R3-B (N3 v4): el plazo tambien se comprueba cuando t2_mc.py sale con
+  normalidad. Ninguna espera pasa del plazo de aceptacion (plazo duro
+  menos 60 s de limpieza, dentro de los 10 min de cierre). Una salida
+  observada despues deja D-mc NO_EVALUADO. Ver TECHOS.
+- Regla de recepcion (respuesta 1 del revisor): si hay que terminar
+  hijos por fuerza, D-mc queda NO_EVALUADO, con la salida y el
+  recuento conservados y pendiente de inspeccion, sin reintento.
+- Se registra el entorno y, si el arbol no se puede crear, no se
+  ejecuta nada (respuesta 2). El disco se describe como espacio nuevo
+  de la corrida (respuesta 3).
+- Pruebas solo sinteticas, dirigidas al cierre: procesos sinteticos,
+  fallos de Windows inyectados y un reloj de prueba. Sin t2_mc.py,
+  decoder, DP ni Monte Carlo y sin catalogos. Ver ARCHIVOS.
+- Sin cambios: N1 v2, t2_motor.py, t2_calibracion.py y b4_tiras.py
+  (sellados), t2_cp.py, t2_mc.py, t2_solo_u.py, los resultados, las
+  tasas, D, los techos y los presupuestos.
+Sigue sin sellar: faltan la revision local final de N3 v4 y el sello.
+No se ha ejecutado ninguna corrida.
+
+T2-1: INTERVALOS CERTIFICADOS DE P_SIL CON RUIDO DE CIRCUITO EN LAS
+TIRAS HGP(CAMINO_m, CAMINO_6), m = 6, 12, 24 Y 48 - BORRADOR
+14/11/2026 (Lima). BORRADOR: no esta sellado ni registrado. El codigo
+esta escrito para revision y no se ha ejecutado ninguna corrida de
+esta unidad (solo pruebas acotadas, autopruebas y pruebas de humo,
+ver ARCHIVOS). Pedido por el usuario tras
+T2-1M (DEC-056): "Si por favor ... esta bien dos corridas". Aplica
+METODOLOGIA_FIJACION_PARAMETROS.txt. Las decisiones marcadas [USUARIO]
+se cierran con el antes de sellar; el resto lo fija la metodologia.
+
+PREGUNTA
+Con el ruido de circuito del apendice C en todas las ubicaciones (una
+ronda), el mismo decoder (SSF) y el mismo evento que B4, se mantiene lo
+que B4 midio con ruido fenomenologico? Es decir: con el mismo catalogo
+(mismo k), el error garantizado del certificado por componentes casi no
+cambia al crecer el numero de sitios, mientras el de la truncacion
+ingenua crece. Y da el certificado P_sil con precision util en tasas
+donde el Monte Carlo directo no llega?
+
+AFIRMACIONES MEDIBLES (M1)
+A1. Con k = 4, R_4 = eps_ing(4)/eps_comp(4) crece estrictamente con m en
+    las 8 celdas (m = 6 -> 12 -> 24 -> 48). Negacion: en alguna celda R_4
+    no crece en algun paso.
+A2. Con k = 4, el error relativo garantizado de las componentes no crece
+    con m: e_comp(4, m)/e_comp(4, 12) < 2 en las 8 celdas para m = 24 y
+    48. Negacion: el cociente es >= 2 en alguna celda.
+A3. Control negativo (M7): en S2, con el host casi completo, R_3 < 2 en
+    las 12 celdas de D1-CE por el camino de calculo nuevo (N2, solo U).
+    Negacion: R_3 >= 2 en alguna celda.
+A4. Alcance (determinista): en las 24 celdas con r_c <= 1e-4 (6 de 8
+    por tira, cuatro tiras), el certificado con k = 4 tiene extremos
+    [ell, h] con ell > 0 y error relativo garantizado
+    e_comp(4) = (h - ell)/(h + ell) <= 10 %. Negacion: en alguna de
+    esas 24 celdas ell = 0 o e_comp(4) > 10 %.
+    Las 24 celdas se eligieron antes de calcular, con un presupuesto de
+    Monte Carlo por aproximacion normal (ver PARAMETROS). Ese
+    presupuesto solo motiva la eleccion; no forma parte de A4, no es un
+    coste minimo de Monte Carlo ni una cobertura finita del 95 %.
+
+DEFINICIONES (corregidas por el revisor el 14/11/2026; motor sin cambios)
+- Ruido, sitios y clases: lema F de T2-0 (un sitio categorico por base,
+  con la ley de su fibra). Decoder SSF y evento de B4.
+- Certificado: U es la suma sin filtro de todas las familias retenidas;
+  E y O son las masas sin normalizar que pasan el filtro fisico con
+  clase logica trivial y no trivial, respectivamente, en las tiras
+  con k_log = 1. B es la probabilidad de todas las bases nulas.
+  P_0(k) = B (E + O), L_comp(k) = B O y eps_comp(k) = 1 - B U.
+  P_0(k) es la contribucion retenida al evento de pasar el filtro;
+  no es la masa total retenida. No usar 1-P_0(k) como masa omitida.
+  Si el motor devuelve U en [U_lo,U_hi] y O en [O_lo,O_hi], las cotas
+  son eps_lo = 1-B U_hi, eps_hi = 1-B U_lo, L_lo = B O_lo y
+  L_hi = B O_hi, con redondeo hacia fuera. El intervalo final es
+  P_sil en [L_lo, min(1,L_hi+eps_hi)]. Las identidades anteriores son
+  las de cell_intervals del motor sellado; no requieren cambiarlo.
+- Rival ingenuo (M6, obligatorio), con la misma exactitud (M5):
+  eps_ing(k) = Pr[|F| >= k + 1], donde |F| es el numero de sitios no
+  nulos (cola exacta de una suma de Bernoulli independientes, una por
+  sitio, con Pr[no nulo] = 1 - p_0(b) de la ley de su fibra). L_ing(k) es
+  la suma de las historias silenciosas con <= k sitios no nulos (lema P3C).
+  Es la version fuerte del rival: truncar sobre las ubicaciones del
+  circuito (de 527 a 4391) da una cola mayor con el mismo corte. Esa
+  version se informa aparte, solo como informativa. El revisor
+  confirmo que la comparacion sobre sitios es justa y mas exigente.
+- El rival sobre sitios necesita las leyes de fibra (lema F), igual
+  que el certificado. Su coste de construccion (respuestas por
+  ubicacion, XOR por fibra, leyes por celda; segundos y operaciones)
+  se mide y se informa aparte, y se suma al coste de ambos metodos.
+- Con masas exactas, e = eps/(2 L + eps) para ambos rivales. Con
+  extremos certificados [ell,h] y ell>0, publicar 2 ell h/(ell+h)
+  con error relativo garantizado (h-ell)/(h+ell); asi se incluye el
+  redondeo del motor. Si ell=0 no se declara garantia relativa.
+  R_k = eps_ing(k)/eps_comp(k), evaluado con extremos hacia fuera.
+  R_k no depende de L_ing ni del catalogo del rival.
+
+LEMA P3C (P3 de B4 con clases; se escribe aqui y se contrasta con B4)
+Hipotesis explicitas:
+  H-loc (localidad del filtro): si una historia se parte en
+    componentes compatibles, pasa el filtro si y solo si pasa cada
+    componente, y su clase logica es la suma de las clases. La da el
+    lema LOC (abajo), probado para las tiras del contrato; C-rec de
+    T2-0 queda como control numerico adicional.
+  H-comp (completitud del catalogo en el corte k de esa instancia):
+    el catalogo contiene todas las decoraciones validas requeridas con
+    <= k sitios, una sola vez y con su firma y multiplicidad correctas.
+    Se exige por instancia y por corte. Solo la certifica la regla de
+    suma con veredicto COMPLETO en ese corte y esa instancia
+    (condicion previa cierta y COMPLETO en los dos extremos del
+    intervalo de U). Procedencia:
+      m = 6 y 12, k <= 4: COMPLETO en T2-0, reproducido por C-T20 de
+        T2-1M (hasta k = 4);
+      m = 24, k <= 3: COMPLETO en T2-0 y C-T20 (hasta k = 3);
+      m = 24 y 48, k = 4: sin certificar; la regla de suma de T2-1
+        (corridas 1 y 2) es la que debe hacerlo, con D = 1e16 (U6,
+        decidida). Con D = 1e14 su condicion previa era falsa en las
+        dos; con D = 1e16 es cierta (cola/umbral 1.29e-2 y 0.440) y
+        N3 lo comprueba antes de la DP;
+      m = 48, k <= 3: sin regla propia; lo cubre la de k = 4 si sale
+        COMPLETO (COMPLETO en k cubre los cortes <= k); si no, L_cat
+        es solo cota.
+    Coincidir en estructura o en numero de polimeros con una corrida
+    anterior no sustituye ese certificado, y el exhaustivo de m = 6
+    con f <= 3 no prueba k = 4 en otra tira.
+    Veredictos de la regla de suma con intervalos: COMPLETO (los dos
+    extremos COMPLETO), INCOMPLETO (los dos extremos INCOMPLETO: la
+    regla demuestra que falta masa) y NO_DECIDIBLE (no se cumple la
+    condicion previa o los extremos discrepan: el chequeo no logra
+    certificar, sin demostrar que falte nada). Solo COMPLETO da H-comp.
+Enunciado: sea f_s = 3 el orden silencioso con circuito (T2-0). Bajo
+H-loc y H-comp, si k <= f_s + 1, una historia con <= k sitios no nulos
+es silenciosa si y solo si es: (a) una sola decoracion valida
+silenciosa con <= k sitios; o (b) una decoracion valida silenciosa con
+f_s sitios mas un singlete que pasa con clase trivial, con Y(x)
+disjunto de N_K[Y(g)]. Entonces
+  L_ing(k) = B [ suma_(a) W_-(g) + suma_(b) W_-(g) W_+(x) ],
+con los pesos por firma del catalogo (n_minus y n_plus) y los odds de la
+celda. Prueba: la de P3 (thm:recomp con clases, recomposicion por
+componentes y suma de clases), sin cambios. Con k <= 2, L_ing = 0.
+Bajo LOC, y con f_s = 3 certificado en la instancia, una historia
+silenciosa con <= 4 sitios tiene un solo componente silencioso; si este
+tiene tres fuentes, lo acompana como mucho un singlete de clase
+trivial. Dos componentes silenciosos exigirian al menos seis fuentes.
+Esto justifica la forma combinatoria; la igualdad con L_ing exige
+ademas H-comp.
+Si H-comp no esta certificado en ese corte e instancia (NO_DECIDIBLE,
+INCOMPLETO o sin regla de suma), la suma del catalogo L_cat es solo una
+cota inferior de L_ing: no se presenta como la masa exacta del rival ni
+se usa como tal en la tabla del rival. Entonces e_ing y D-t3 quedan
+PENDIENTES en ese corte, o se informan como comparacion de cotas
+(e_ing <= eps_ing/(2 L_cat + eps_ing), favorable al certificado y por
+eso no decide). eps_ing, R_k, D-t1 y D-t2 no dependen de L_ing.
+
+LEMA LOC (localidad del filtro fisico en las tiras). Prueba del
+revisor (DICTAMEN_SOLO_U_LOC.txt, 14/11/2026, seccion 3), aceptada por
+el como puente entre la recomposicion canonica y el filtro de T2-1.
+Los hechos de codigo que usa los comprobo el ejecutor por lectura.
+Hipotesis concretas:
+- El SSF fijo de B4/T2-0 (control_exacto.make_decoder): familia finita
+  de candidatos de build_rect, puntuacion g/d con
+  g = 2 |s & huella| - d, desempate por el mismo indice global, para
+  si 2 g < d (beta = 1/2) o s = 0, sin tope externo de pasos. No se
+  cambia el codigo al restringir una historia. Se conservan todos los
+  candidatos que pueden competir, tambien los que saldran del soporte.
+- Respuestas: para un sitio de datos v, psi_v = supp(H_X e_v); para un
+  sitio de checks c, psi_c = {c}. Una clase de fibra en v tiene error
+  final en {v} y lectura dentro de psi_v; una fibra de checks no
+  aporta error de datos y su lectura queda en {c} (resp_formula, tmask
+  y site_classes de t2_calibracion.py). Es la subfamilia circuital del
+  contrato, no un circuito arbitrario.
+- K = K1 (los lectores potenciales de un candidato forman un clique)
+  mas K2 (esos lectores unidos a los vertices de su accion), como en
+  build_rect. Los soportes Y contienen las bases de las fuentes y todos
+  los vertices tocados. Compatibles = soportes disjuntos y sin aristas
+  de K entre ellos.
+Paso 1, recomposicion con prefijos (thm:recomp y prop:circ-recomp; la
+regularidad y la expansion no intervienen):
+- En cada prefijo, un candidato lee contribuciones de a lo sumo un
+  componente compatible: dos lectores de componentes distintos
+  estarian unidos por K1. Las respuestas iniciales y las acciones
+  anteriores quedan en las huellas de sus sitios, asi que esto se
+  mantiene al avanzar. Su puntuacion es la de la ejecucion local del
+  componente que lee; si no lee ninguno, g = -d < 0.
+- Sea H el siguiente ganador global. Supera el umbral, luego lee un
+  componente j. El siguiente ganador local F de j tiene la misma
+  puntuacion global y local; F no puede ser peor que H en el orden
+  total fijado, y la maximalidad global de H obliga a H = F (la
+  comparacion incluye candidatos no elegidos y exteriores). La accion
+  siguiente es la local y no sale de Y_j; K2 asigna sus vertices al
+  componente de sus lectores. Por induccion se conservan trazas,
+  tocados y residuos, y la parada global ocurre exactamente cuando no
+  queda ganador local elegible.
+- No hace falta que las huellas de candidatos sean disjuntas; basta la
+  unicidad del componente que contribuye a la lectura de cada
+  candidato. (Sustituye a la formulacion de la version anterior, mas
+  fuerte y ambigua.)
+Paso 2, separacion del sindrome fisico:
+- build_rect incluye todo subconjunto no vacio de un generador de H_Z
+  con sindrome no nulo. En las tiras, path_seed(L) da filas 3 << r con
+  L >= 2: todas las filas y columnas son no nulas, asi que cada qubit
+  esta en un generador de H_Z y H_X e_v != 0. Luego {v} es candidato
+  para todo qubit de datos v (propiedad de la familia, no de
+  elegibilidad en cada paso).
+- Si v y w comparten un check, la huella psi_v del candidato {v} corta
+  psi_v y psi_w, y K1 une v y w. Para soportes compatibles Y_i, los
+  conjuntos C_i = union de supp(H_X e_v) sobre los datos v de Y_i son
+  disjuntos dos a dos.
+- La recomposicion da R = XOR_i R_i con supp(R_i) en los datos de Y_i.
+  Con los C_i disjuntos: H_X R = 0 si y solo si H_X R_i = 0 para todo i.
+  No se identifica el sindrome de lectura ruidoso con H_X R.
+- Tras el filtro, las clases se suman en ker(H_X)/S: [R] = XOR_i [R_i].
+  Las clases pueden cancelarse; NO se concluye que el exito logico
+  global sea el producto de los exitos de los componentes.
+Conclusion: H-loc vale en las tiras del contrato. Extiende el argumento
+del singleton de lem:conditioned-gas (escrito para la familia FGL
+regular). No depende de regularidad, de una corrida nueva ni de la
+completitud del catalogo, y no sustituye la auditoria de los lemas F,
+S, A, N, EO y R. S2 no la necesita: en S2 solo se usan U y eps_comp,
+que no pasan por el filtro.
+Verificacion por lectura del ejecutor (14/11/2026): rect.build_rect
+(candidatos = subconjuntos no vacios de filas de H_Z con lin != 0;
+lectores rm = sitios x con psi[x] & huella != 0; adjK[x] |= rm | f para
+x en rm y adjK[y] |= rm para y en f); control_exacto.path_seed(L) =
+([3 << r for r in range(L - 1)], L); make_decoder (sorted(readers),
+desempate estricto g * den > num * d, parada 2 num < den, sin tope).
+Orden del contraste que queda: (1) normalizacion (B y odds), redondeo
+hacia fuera e identidades de cell_intervals; (2) regla de suma (lema S
+y su uso con k = 4); (3) los demas lemas de T2-0 y T2-1M.
+
+PIEZAS NUEVAS Y SU CONTROL
+N1. Rival ingenuo con clases (eps_ing, L_ing por P3C), en fracciones
+    exactas. Control: con las clases fenomenologicas, eps_ing y L_ing con
+    k = 1..4 en las 12 celdas de B4 deben ser identicos (fracciones) a
+    RESULTADO_B4.json en m = 6, 12, 24 y 48. En S2 se contrasta
+    solamente eps_ing contra RESULTADO_CONTROL.json con k <= 3;
+    L_ing y el fallo silencioso de S2 no son controles de este motor.
+    Implementacion (t2_rival.py, version 1, sin decoder):
+    - eps_ing(k) = 1 - suma_(j<=k) Pr[|F| = j], con la Poisson-binomial
+      agrupada por tipo de ley (pi = 1 - z del tipo; en el fenomenologico,
+      grupos (N, p) y (M, q)); control: Pr[|F| = 0] = B en cada celda.
+    - L_ing por P3C desde los catalogos de T2-1M (trabajo/), leidos por
+      grupo con su SHA-256 y con 14 procesos: (a) suma de n_minus W de
+      las firmas silenciosas con <= k simbolos; (b) solo con k = 4,
+      pares (g silenciosa de 3 sitios, singlete x con n_plus) con
+      Y(x) & N_K[Y(g)] = 0, contados con un indice por bit. W es el
+      producto de los odds de la celda por simbolo de la firma.
+    - Controles de la lectura frente a T2-1M: grupos, sitios, anclas
+      por grupo, validas por f, polimeros y entradas por k, numero de
+      firmas, bytes y odds definidos; validas con f = 1 = suma de
+      clases; n_plus + n_minus <= n_all; P3C aplicable (f_s >= 3).
+      Frente a T2-0 (circuito, m <= 24): silenciosas por f, truncacion
+      ingenua, f_s = 3 y L_ing(3) = termino dominante (mismo float).
+    - L_cat = L_ing solo con H-comp COMPLETO en ese corte (procedencia
+      de P3C y regla de suma de T2-1); si no, L_cat es cota inferior.
+    - Evidencia para --verificar: silenciosas por firma y pares por
+      firmas; con ellas se recalcula el rival sin releer catalogos.
+    - Autoprueba matematica: cola frente a la enumeracion de 2^9
+      subconjuntos, formula fenomenologica de B4, pares frente a fuerza
+      bruta, P3C, H-comp y truncacion ingenua (6 grupos, PASS).
+    Version 2 (R1 y R2 de la revision de N1 v1):
+    - R1: en la lectura (_scan), las silenciosas de 3 sitios se agrupan
+      por (seccion, indice local). La v1 usaba solo el indice local,
+      que se repite entre las secciones de un grupo: con grupos de 2 y
+      3 anclas (m = 24 y 48) podia dar a un polimero el YR y el NB de
+      otro y cambiar los pares, L_b, L_ing(4), e_ing, D-t3 y la
+      proyeccion. Regresion en la autoprueba con el lector real
+      (read_group y _scan sobre grupos sinteticos en el formato del
+      motor): dos secciones con el mismo indice local y NB 7 y 26, en
+      un caso directo, uno inverso y uno conjunto. Se compara el grupo
+      completo con cada seccion en un grupo aparte, con el conteo
+      directo y con lo esperado. Con el lector de v1 la misma prueba
+      falla.
+    - R2: la espera de los grupos usa un plazo de 5 s y consulta los
+      techos del conductor (riv.GUARD = guard de N3) en cada espera y
+      tras cada grupo; tambien lo hacen los bucles de P3C y del rival
+      (cada 4096 iteraciones) y cada celda. El avance de la lectura
+      (grupos leidos, secciones, bytes, esperas) queda como evidencia
+      si hay una parada.
+N2. Adaptador SOLO_U para S2_34_6x8 (k_log = 4). El motor sellado usa
+    chis[0] y dos canales E/O, por lo que no representa su fallo
+    silencioso total. S2 se limita al canal sin filtro U y a
+    eps_comp = 1-B U, que bastan para A3 y D-t4 (R_3). No se comparan
+    L_comp ni P_0 de S2 con esos canales ni se desactiva el guard
+    k_log == 1. La generalizacion del fallo total a cuatro bits
+    requeriria, por ejemplo, los 16 sectores logicos o sus caracteres;
+    queda fuera.
+    CONTRATO (se revisa antes de sellar el plan):
+    - Archivo propio, t2_solo_u.py. Importa t2_motor.py y b4_tiras.py
+      tras comprobar su SHA-256; no los modifica.
+    - Instancia: rows, a = ce.regular_seed_34() y
+      rect.build_rect(ce, "S2_34_6x8", rows, a, rows, a), como B4.
+      Control: matrices_sha256 igual al de FASE_A.json de D1
+      (f56eb452...).
+    - Ruido: el fenomenologico de B4 en las 12 celdas de D1-CE
+      (p en GRID_P, q en {p, p/2, 0}), con los odds del motor.
+    - Orden de sitios: el de la fase A (ce.phase_a_order), como el
+      control C- de B4.
+    - Catalogo por crecimiento con f <= 3, sin filtro fisico ni
+      logico: no lee chis ni separa por clase, pero conserva la firma
+      que da el peso (precision del revisor):
+        n[Y,a,b] = numero de decoraciones validas con soporte
+                   extendido Y, a fuentes de datos y b de checks;
+        W_U^(<=k)(Y) = suma_(a+b<=k) n[Y,a,b] z_p^a z_q^b,
+      con z_p = p/(1-p) y z_q = q/(1-q). Un mismo Y puede venir de
+      fuentes de pesos y tipos distintos (los tocados no son fuentes),
+      y p != q en 8 de las 12 celdas; un solo total por Y no basta. Se
+      guarda en el formato del motor: firma = simbolos ordenados de 6
+      bits (dato y check), que recupera (a, b); n_all por firma; n_plus
+      y n_minus vacios. Con q = 0 desaparecen los terminos con b > 0 y
+      queda el de b = 0 (exponente cero). Control: validas por f (148,
+      10682, 526848) y polimeros iguales a los de RESULTADO_B4 (S2) y
+      RESULTADO_CONTROL.
+    - DP por anclas con un solo canal, la suma sin filtro U: la de
+      t2_motor.py sin cambios, en su modo de un canal ("suma"), con
+      los odds fenomenologicos de cada celda en lugar de 1/D y el punto
+      fijo de 384 bits. Ese modo no lee n_plus, n_minus ni chis[0]. La
+      DP suma familias compatibles cuyos componentes cumplen cada uno
+      el corte (firma con <= k simbolos); no impone un corte global a
+      las fuentes de toda la familia. Control: polimeros, estados y
+      terminos con k = 1..3 iguales a gas_por_k de S2 en B4 (163
+      estados en los tres cortes).
+    - Salidas: U en [U_lo, U_hi] y eps_comp = 1 - B U con extremos
+      hacia fuera, por celda y k = 1..3, con B = (1-p)^N (1-q)^M.
+      Control: el intervalo contiene la fraccion exacta de eps_comp de
+      RESULTADO_CONTROL.json y de RESULTADO_B4.json en las 12 celdas.
+      R_3 = eps_ing(3)/eps_comp(3) con eps_ing de N1.
+    - Evidencia: por celda y corte se guardan U_lo y U_hi como enteros
+      de punto fijo (U = valor/2^384, con la precision), B y eps_lo,
+      eps_hi como fracciones exactas, ademas de la vista de 25 cifras;
+      tambien el manifiesto de los catalogos y los datos de cada
+      trabajo de la DP. Con --verificar se recalculan, sin DP, los
+      extremos, B, las contenciones y la anchura relativa.
+    - Control positivo de enlace en TIRA_6x6 (k_log = 1, fenomenologico,
+      orden del motor), con referencia comun: (i) las secciones del
+      catalogo del adaptador con f <= 3 coinciden entrada a entrada
+      (Y, firma, n_all) con las de trabajo/fen_TIRA_6x6 restringidas a
+      firmas con <= 3 simbolos; (ii) en las 12 celdas de B4, el
+      intervalo de eps_comp con k = 3 contiene la fraccion exacta de
+      RESULTADO_B4.json. No se exige identidad byte a byte de los
+      extremos (solo la tendrian con la misma secuencia aritmetica).
+    - Estados: NO_IMPLEMENTADO -> CONTRATO_REVISADO ->
+      CODIGO_ESCRITO -> CODIGO_REVISADO. La corrida 1 solo arranca en
+      CODIGO_REVISADO; nunca PASS por herencia ni por chis[0].
+    Orden: contrato -> revision del revisor -> codigo y su prueba ->
+    revision del revisor -> sello del plan -> corrida 1.
+    Estado al 14/11/2026: contrato revisado (DICTAMEN_SOLO_U_LOC.txt,
+    con la precision de la firma ponderada); codigo escrito y revisado
+    sin ejecutar (DICTAMEN_CODIGO_T2_1.txt); version 2 con R1 y R2.
+    Prueba acotada hecha con codigo 0 y recibida por el revisor en su
+    alcance (T2_1_PRUEBAS_ACOTADAS_EJECUCION_20261114). T2-1 reutiliza
+    su resultado: N3 comprueba su SHA-256 (9c49caa9...), pasa su
+    verificador sin DP (48 celdas y cortes), exige que lo haya escrito
+    el t2_solo_u.py sellado, sin parada y con sus controles PASS, y
+    calcula R_3 y D-t4 con eps_ing de N1.
+N3. Conductor de T2-1 (tiras con k_log = 1): por tira, k = 1..4 y
+    celda, un trabajo de la DP de T2-1M (modo celdas); regla de suma de
+    B4R con k = 4 en m = 24 y 48 (modo suma, D = 1e16; U6). Sin
+    cambios en t2_motor.py (se importa tras comprobar su SHA-256). Para
+    D-mc, N3 toma de su propio resultado el registro de la celda
+    TIRA_6x6, r_c = r_m = 1e-3, k = 4, comprueba sus metadatos y
+    escribe el archivo del certificado con ellos y con el SHA-256 de
+    ese resultado; no basta con copiar dos numeros.
+    Implementacion (t2_intervalos.py, version 1; version 2 abajo):
+    - Etapas de la corrida 1: sello, capacidad (15 s, sin decoder),
+      trabajo/ (1412 SHA-256), N1_control (procedencia de H-comp e
+      identidad con B4 en las 4 tiras fenomenologicas), N2_S2,
+      rival_circuito (m = 6, 12, 24), DP (97 trabajos: 96 de celdas y
+      la regla de suma de m = 24), evaluacion y llamadas (0 llamadas al
+      decoder en el conductor). Despues, fuera del techo de las
+      etapas: certificado, Monte Carlo (t2_mc.py como proceso aparte,
+      en su arbol de procesos; ver TECHOS) y lectura con la regla de
+      paso.
+    - Corrida 2: sello, previa (lectura de la corrida 1 con
+      LANZAR_CORRIDA_2, mismo programa y mismo sello, y la entrega
+      completa segun el contrato de --verificar (R4, v9); las filas de
+      la corrida 1 se recalculan desde su evidencia y deben coincidir),
+      capacidad, trabajo/, rival_circuito (m = 48), DP (33 trabajos),
+      evaluacion, decisiones (D-t1 a D-t5 con las cuatro tiras) y
+      llamadas.
+    - DP: 14 procesos, un trabajo por proceso y prioridad por terminos
+      previstos; mientras espera comprueba cada 5 s el plazo, la
+      memoria del proceso principal y la total (Monitor del motor).
+    - Evaluacion por tira (con todos sus controles): estructura igual
+      en las 8 celdas y a T2-0/T2-1M donde existe; C-anc; lo <= hi y
+      C-anch (1e-30; en la regla de suma 1e-12 D^-k, ver abajo); las
+      desigualdades
+      de B4 con los extremos; H-comp, k*, presupuestos, coste a igual
+      corte y proyeccion a igual tiempo. Cada fila guarda el punto fijo
+      de la DP, B exacto, las vistas de 25 cifras y, con k = 4, el
+      intervalo [ell, h] exacto.
+    - Paradas: un control fallido deja FALLA; un techo, un error de un
+      trabajo o un error inesperado dejan NO_EVALUADO, con el motivo,
+      el coste consumido y los trabajos recibidos (sin sus valores).
+      Las etapas no alcanzadas quedan NO_EVALUADO y no hay decisiones.
+      Nunca hay PASS parcial.
+    - --verificar recalcula, sin DP ni catalogos, todas las filas y sus
+      controles, N2 y las decisiones desde la evidencia guardada.
+      Version 3 (R4): la verificacion integral exige ademas la entrega
+      completa del contrato:
+      - unidad, corrida, programa y sello vigentes;
+      - dependencias, precision, D = 1e16 y D de procedencia 1e14;
+      - estado PASS, con las etapas previstas, todas PASS;
+      - controles PASS y 0 llamadas al decoder;
+      - conjuntos exactos de instancias, celdas, cortes, trabajos (los
+        de suma incluidos), reglas de suma y H_comp;
+      - 96 filas en la corrida 1 y 128 en el resultado de la corrida 2;
+      - trabajos recibidos y condicion previa antes de la DP;
+      - campos de decisiones, final y tiras;
+      - N2_S2 en la corrida 1; en la corrida 2, el SHA-256 y las
+        instancias del resultado de la corrida 1.
+      Una celda borrada tambien es discrepancia, porque se compara la
+      union de claves. N2 se recalcula desde SOLO_U con el SHA-256
+      sellado de t2_solo_u.py, y las decisiones con ese D-t4, no con el
+      D-t4 del propio resultado. Codigo 0 solo si todo cumple; 1 si hay
+      algun problema. --parcial es una inspeccion de las filas
+      presentes: se etiqueta INSPECCION_PARCIAL y devuelve siempre el
+      codigo 2. La lectura previa de la corrida 2 aplica el mismo
+      contrato a la corrida 1.
+    Version 2 (U6, opcion A): regla de suma con D = D_SUMA = 1e16 en
+    m = 24 y 48, el mismo D en toda la comprobacion: odds 1/D de la
+    especificacion del trabajo, condicion previa, X0 en los dos
+    extremos (floor y ceil de D^NS U), umbral D^(NS-k), cola y cota de
+    C-anch. t2_motor.odds_sum y sum_interval y t2_calibracion.criterion
+    leen D de t2_calibracion (1e14) y no cambian; N3 copia sus formulas
+    con D explicito, y antes de cada evaluacion comprueba que la copia
+    da lo mismo que las funciones selladas con D = 1e14 (odds, el
+    intervalo y el criterio en cuatro valores de X0 alrededor del
+    umbral, con la tira y el k de esa regla).
+    - Antes de la DP (etapa DP, sin U): la condicion previa con
+      D = 1e16 en cada tira de la corrida; si es falsa, se detiene.
+      Se guarda en el resultado con una prevision de la anchura de U:
+      la anchura por termino mas alta de las reglas de suma de T2-1M
+      (anchura de U / terminos, en C-T20) por los terminos previstos.
+    - Anchura acumulada: los 384 bits fijan el redondeo de cada
+      operacion, no la anchura final, que crece con el numero de
+      terminos. Por eso, con el intervalo [U_lo, U_hi] que devuelve la
+      DP, C-anch exige 0 <= U_hi - U_lo <= 1e-12 D^-k (1e-76 con
+      k = 4) antes de evaluar el criterio; si no, la etapa FALLA. Se
+      informan la anchura sobre el umbral relativo D^-k, la anchura de
+      X0 en unidades del umbral, la holgura 1 - cola/umbral y la
+      anchura por termino. El veredicto exige los dos extremos.
+    - El resultado guarda el D de la regla de T2-1 y el de la
+      procedencia (T2-0 y T2-1M, 1e14).
+N4. Monte Carlo directo de control (ver U4 y D-mc; incluido por el
+    usuario, U4).
+
+REUTILIZACION DE CATALOGOS
+Los catalogos de T2-1M (trabajo/, 1412 ficheros, 6.83 GB) se reutilizan:
+antes de usarlos se comprueba el SHA-256 de cada fichero contra
+MANIFIESTO.json (sha 4671bab0...) y el del propio manifiesto. Si alguno no
+coincide, la unidad se detiene. Ahorra unas 3 h y unas 6.6e9 llamadas.
+El auxiliar corregido del revisor ya comprobo esos 1412 SHA-256 el
+14/11/2026 (codigo 0), pero la unidad los vuelve a comprobar.
+
+LO QUE YA SE SABE AL FIJARLO (M11)
+- B4 (fenomenologico, k = 4): R_4 de 5.4-8.0 (m = 6) a 8896-19160
+  (m = 48); e_comp(4) estable (cociente 1.26 a 1.36 en m = 48); e_comp(4)
+  de 2.4e-8 a 0.105, el maximo en p = q = 1e-3 con m = 48.
+- T2-0: f_s = 3 con circuito en m = 6, 12 y 24. Termino dominante de P_sil
+  con r_m = r_c: 5.5e-8, 8.1e-8 y 7.4e-8 en r_c = 1e-3; 7.8e-11, 1.7e-10 y
+  3.2e-10 en r_c = 1e-4. Presupuesto de Monte Carlo directo por
+  aproximacion normal (384/termino dominante, 10 % al 95 % aprox.
+  normal): unos 5e9 a 7e9 ejecuciones en r_c = 1e-3 y de 1e12 a 5e12 en
+  r_c = 1e-4. No es una cobertura finita ni un coste minimo.
+- T2-1M: estructura con k = 4 medida en las cuatro tiras; nada de valores
+  de P_sil con circuito (la calibracion de tiempo descarto los suyos).
+- Prediccion gruesa, solo para presupuestar (M5): un sitio de dato tiene
+  7 franjas temporales con ruido, asi que su probabilidad de no ser nulo
+  es unas 5 veces r_c. A r_c = 1e-3 el circuito se parece al modelo
+  fenomenologico con p de unos 5e-3, por encima de la malla de B4. Lo
+  probable es que alli ningun rival llegue al 10 % con k = 4 (A4 no
+  incluye esas celdas). A r_c <= 1e-4 lo probable es que el
+  certificado si llegue. No se usa para fijar ningun criterio.
+
+PARAMETROS Y FUENTE (M2)
+- Tiras m en {6, 12, 24, 48}, n = 6 (replicacion declarada de B4; T).
+- k = 1..4 (R: k = 4 es el mayor con catalogo y motor validados).
+- Malla (decidida por el usuario, U3): r_c en {1e-3, 1e-4, 1e-5, 1e-6}, con
+  r_m = r_c (modelo despolarizante estandar; L) y r_m = 0 (control); 8
+  celdas, todas informadas (M3). Es la malla de T2-0 y de D-m2.
+- Umbrales (T, M8): relevante R >= 10, nulo R < 2; para A2, el 2 como
+  crecimiento nulo; objetivos 10 % con sensibilidad 5 % y 25 % (M4).
+- Celdas de A4: se toma 1e11 ejecuciones de Monte Carlo como frontera
+  de lo alcanzable (R: mas de un dia de computo en esta maquina con un
+  decoder en Python). Las celdas por encima de esa frontera (r_c <=
+  1e-4) salen del presupuesto por aproximacion normal con los terminos
+  dominantes de T2-0, conocidos antes (M11). En m = 48 se supone lo
+  mismo, porque con r_c <= 1e-4 el termino dominante crece con m (x2.1
+  y x1.9 por cada duplicacion en T2-0). La regla no depende de lo que
+  se calcule en T2-1, y el presupuesto no entra en la afirmacion A4.
+- P = 384 bits (el de T2-1M).
+- D de la regla de suma de T2-1 (k = 4 en m = 24 y 48): 1e16 (U6,
+  decidida por el usuario). Regla: la menor potencia de 10 con la
+  condicion previa cierta en las dos tiras, fijada antes de calcular
+  ningun U. El mismo D en toda la comprobacion. La procedencia de T2-0
+  y C-T20 (m = 6 y 12 con k <= 4; m = 24 con k <= 3) se calculo con
+  D = 1e14, ya cerrada, y no se recalcula.
+
+METRICAS (continuas, M4)
+- Por tira, k y celda: L_comp, eps_comp, P_0, e_comp; eps_ing, L_ing,
+  e_ing; R_k. Intervalos con 25 cifras, redondeados hacia fuera.
+- Pendientes log2(R_4(2m)/R_4(m)) (informativas).
+- k* para el 10 % (5 % y 25 %) de cada rival: el menor k <= 4 cuya cota
+  certifica el objetivo. Una cota que no certifica en un k no prueba
+  que ese k sea insuficiente. Si ninguna cota certifica con k <= 4, se
+  informa NO_DETERMINADO, nunca "> 4".
+- Coste a igual corte: terminos y estados de la DP, segundos y memoria
+  del certificado; para el rival, la cola exacta, P3C y la truncacion
+  ingenua como en la literatura (sum_(f <= k) e_f(n) decodificaciones).
+  En ambos, aparte, el coste de construir las leyes de fibra.
+- Igual tiempo, proyectado (informativo, no decide): con el tiempo de
+  reloj medido del certificado con k = 4 en cada tira, el corte k' que
+  la truncacion ingenua alcanzaria en ese tiempo segun su coste
+  (sum_(f <= k') e_f(n) decodificaciones, leyes de fibra incluidas) y
+  la tasa media medida del decoder. Es una proyeccion de coste, no el
+  mayor corte alcanzable demostrado, y se informa aparte de cualquier
+  comparacion medida. Si k' > 4, se usa la cota favorable al rival
+  L_ing(k') <= L_hi + eps_ing(4) - eps_ing(k'), con L_hi = L_ing(4)
+  exacto (H-comp certificado) o una cota superior certificada de
+  L_ing(4), nunca L_cat; da
+  e_ing(k') >= eps_ing(k')/(2 (L_hi + eps_ing(4) - eps_ing(k'))
+  + eps_ing(k')). Sin L_hi certificado, esa linea queda PENDIENTE.
+  Concrecion en N3: tiempo del certificado = segundos del catalogo y
+  de la fusion de T2-1M (se reutilizan, pero se cuentan) + el trabajo
+  de la DP con k = 4 mas largo de la tira (una celda); tasa = las
+  asignaciones del catalogo de T2-1M con f = 4 entre sus segundos (14
+  procesos); el rival paga sus clases y las leyes de una celda (asi
+  le favorece). k' se busca hasta 12. L_hi = L_ing(4) solo si es
+  exacto; no se usa L_comp como cota de L_ing.
+- Muestreo por subconjuntos (M6, formula de B1 con la ley condicionada
+  al estrato de f_s sitios; no da certificado): campo
+  muestras_10_por_ciento_95_aprox_normal.
+- Monte Carlo directo: 384/L_comp(4), campo
+  muestras_10_por_ciento_95_aprox_normal. Ninguno de los dos es una
+  cobertura finita del 95 % ni un coste minimo.
+
+DECISIONES (fijadas antes)
+D-t1 (A1): por tira, categoria de R_4 en las 8 celdas (RELEVANTE si >= 10
+     en todas; NULA si alguna < 2; ZONA_GRIS si no), y CRECE_CON_N si R_4
+     crece en cada paso en las 8 celdas; si no, NO_CRECE con el numero de
+     celdas.
+D-t2 (A2): ESTABLE si e_comp(4, m)/e_comp(4, 12) < 2 en las 8 celdas
+     para m = 24 y 48; si no, CRECE con el numero de celdas.
+D-t3 (secundaria): por tira, celdas con ventaja a igual k
+     (e_comp(4) <= 10 % < e_ing(4)), con sensibilidad al 5 % y al 25 %.
+     Solo con L_ing exacto (H-comp certificado en esa tira con k = 4);
+     si no, PENDIENTE en esa tira.
+D-t4 (A3, M7): PASA si R_3 < 2 en las 12 celdas de S2. Si no, se detiene
+     la lectura y se revisa antes de informar.
+D-t5 (A4): CUMPLE si en las 24 celdas con r_c <= 1e-4 de las cuatro
+     tiras ell > 0 y e_comp(4) = (h - ell)/(h + ell) <= 10 %; si no,
+     NO_CUMPLE con el numero de celdas. Se informan las 32 celdas;
+     384/L_comp(4) se informa como presupuesto aprox. normal y no
+     decide.
+Completitud: regla de suma con k = 4 en m = 24 y 48, con D = 1e16
+(U6). Para el
+certificado por componentes es informativa y no decide: sus intervalos
+siguen siendo validos con un catalogo parcial, solo menos ajustados
+(lema 2 de B2). Para el rival si decide: sin COMPLETO en ese corte e
+instancia, L_ing no es exacto (regla de P3C) y D-t3 queda PENDIENTE.
+Se informa por separado INCOMPLETO (falta masa demostrada) y
+NO_DECIDIBLE (no se logro certificar).
+
+CONTROLES QUE DETIENEN
+- SHA-256 del plan sellado, t2_motor.py, t2_calibracion.py, b4_tiras.py,
+  t2_solo_u.py, RESULTADO_B4.json, RESULTADO_T2_0.json,
+  RESULTADO_T2_1M.json, RESULTADO_CONTROL.json y FASE_A.json de D1;
+  trabajo/ contra su manifiesto. Ademas, SELLO_PLAN.json con el
+  SHA-256 de los cinco programas y RESULTADO_SOLO_U.json (sha
+  9c49caa9...).
+- Estructura de la DP (polimeros, estados, terminos) igual en las 8
+  celdas de cada tira y corte, e igual a T2-0 o T2-1M donde existe; en
+  cada intervalo, extremo inferior <= superior.
+- N1 y N2 como arriba (B4 en todos los canales; S2 solo masas sin
+  filtro y colas). N2 sin CODIGO_REVISADO impide lanzar la corrida 1;
+  no se sustituye por un resultado historico ni por chis[0].
+- Desigualdades de B4 en cada tira, k y celda: 0 <= eps_comp <= eps_ing,
+  L_ing <= L_comp, e_comp <= e_ing; L no decrece y eps no crece con k.
+- C-anc y C-anch de T2-1M en todos los trabajos (anchura relativa
+  <= 1e-30; en la regla de suma, anchura de U <= 1e-12 D^-k con
+  D = 1e16, comprobada antes del criterio).
+- Regla de suma (U6): condicion previa cierta con D = 1e16, comprobada
+  antes de la DP; la copia de las formulas con D explicito igual a las
+  funciones selladas con D = 1e14; veredicto con los dos extremos.
+- P3C aplicable: ninguna decoracion silenciosa con < f_s sitios. La
+  completitud (H-comp) se toma solo de la regla de suma COMPLETO en ese
+  corte e instancia (procedencia en P3C). Si falta, se aplica la regla
+  de P3C (L_ing como cota, D-t3 pendiente); no detiene la unidad.
+- Con Monte Carlo: los controles de D-mc (abajo).
+
+DOS CORRIDAS (operativas; un solo plan)
+Las dos corridas son del mismo programa, con los mismos parametros. Lo
+que salga en la primera no cambia nada de la segunda.
+- Corrida 1 (m <= 24): controles N1 y N2 (con S2 y D-t4), circuito en
+  m = 6, 12 y 24 con k = 1..4 en las 8 celdas, regla de suma con k = 4 en
+  m = 24 y el Monte Carlo de control (U4). Prevision con los
+  tiempos de T2-1M: de 2.5 a 3 h (camino critico: una celda de m = 24,
+  unas 2.5 h), mas de 0.5 a 1.5 h del Monte Carlo.
+- Regla de paso fijada: la corrida 2 solo se lanza si todos los controles
+  de la corrida 1 pasan y D-mc es COMPATIBLE.
+- Corrida 2 (m = 48): circuito con k = 1..4 en las 8 celdas y regla de
+  suma con k = 4. Prevision: unas 6 h (camino critico: una celda de
+  m = 48, 5.72 h con los tiempos de T2-1M). Despues se deciden D-t1, D-t2,
+  D-t3 y D-t5 con las cuatro tiras.
+- Archivos de la corrida 1 (carpeta nueva): RESULTADO_T2_1_C1.json,
+  RECURSOS_T2_1_C1.json, CERTIFICADO_DMC.json, RESULTADO_DMC.json y su
+  _recuento.json (los escribe t2_mc.py), SALIDA_DMC.txt (su consola) y
+  LECTURA_T2_1_C1.json (D-mc, regla de paso y SHA-256 del resultado).
+  Corrida 2 (otra carpeta nueva): RESULTADO_T2_1.json (las cuatro
+  tiras y las decisiones) y RECURSOS_T2_1_C2.json. La consola de cada
+  corrida se guarda como SALIDA_T2_1_C1.txt y SALIDA_T2_1_C2.txt.
+- Los tiempos de T2-1M se midieron con la maquina a capacidad reducida
+  (14 procesos en unos 4 a 6 nucleos). Con el plan de energia en alto
+  rendimiento podrian bajar; antes de cada corrida se mide y se anota la
+  capacidad (prueba de 15 s, sin decoder). No cambia ningun parametro.
+
+TECHOS (R)
+Corrida 1: 6.5 h de reloj, con el Monte Carlo (U4); corrida 2:
+9 h. 24 GiB de memoria en total, 12 GiB en el proceso principal, 4 GiB
+por proceso de la DP, 14 procesos; 60 GB de disco. Llamadas al
+decoder: solo las del Monte Carlo (techo 2e8, con las 279049 de la
+comprobacion del atajo); las de S2 ya se hicieron en la prueba acotada
+de SOLO_U (559086), que se reutiliza, y el conductor no hace ninguna
+(control). Reparto del techo de la corrida 1: las etapas de N3 deben
+terminar antes de 6.5 h - 1.5 h - 15 min = 4.75 h. El Monte Carlo
+(R3) solo se lanza si caben antes de las 6.5 h su plazo de trabajo
+(1.5 h, el techo propio de t2_mc.py) y un margen de cierre de 10 min.
+Corre en un arbol de procesos propio (Job Object de Windows: t2_mc.py
+y todos sus descendientes). Plazos del arbol:
+- plazo duro: min(inicio + 1.5 h + 10 min, 6.5 h);
+- plazo de aceptacion (v10): el plazo duro menos una reserva de
+  limpieza de 60 s, dentro de esos 10 min. Ninguna espera pasa de el.
+Si t2_mc.py no ha salido al llegar al plazo de aceptacion, el arbol se
+termina entero y D-mc es NO_EVALUADO.
+Aceptacion de D-mc (v10). Ademas de las comprobaciones de su salida,
+D-mc solo se acepta si:
+- la salida se observa dentro del plazo de aceptacion;
+- el arbol queda vacio sin forzarlo, segun una consulta valida de 0
+  procesos activos;
+- ninguna consulta ni orden a Windows del cierre falla;
+- el cierre acaba antes del plazo duro.
+Si no, D-mc es NO_EVALUADO, con el motivo, la salida y el recuento
+conservados, y queda pendiente de inspeccion, sin reintento. Es una
+regla operativa de recepcion: no declara falso el recuento.
+Una consulta a Windows que falla nunca se lee como 0 procesos ni como
+memoria nula. Se registra con la funcion y GetLastError; durante la
+supervision detiene el arbol, y en el cierre impide confirmarlo. La
+terminacion de emergencia y el cierre del manejador se ejecutan
+aunque fallen las consultas (con KILL_ON_JOB_CLOSE, Windows termina
+lo que quede). La salida y los excesos se registran.
+Si el arbol no se puede crear, o t2_mc.py no entra en el, t2_mc.py no
+se ejecuta y D-mc es NO_EVALUADO. Se registra el entorno (sistema,
+Windows, Python y bits). La interfaz (Job Object y NtResumeProcess)
+solo esta probada en Windows 11 10.0.26200 con Python 3.12.10 de 64
+bits; no se acredita su portabilidad.
+Corregido en v9: v8 decia "un plazo de respaldo de 10 min mas", que
+podia pasar de las 6.5 h. Corregido en v10: v9 podia aceptar una
+salida observada despues del plazo y tomar un fallo de consulta por 0
+procesos. Ademas, v9 aceptaba por diseno un cierre con hijos
+terminados por fuerza; ahora queda NO_EVALUADO, como recomendo el
+revisor.
+Memoria y disco (R2 y R3, v9). La memoria total (24 GiB) la mide el
+Monitor del motor cada 5 s en la lectura y en la DP (principal mas los
+procesos del pool), y run_mc en el Monte Carlo (principal mas todos
+los procesos del arbol). Los techos (plazo, memoria del principal,
+memoria total y disco) se consultan:
+- en la lectura de N1: en cada espera de 5 s y tras cada grupo;
+- en los bucles de P3C y del rival: cada 4096 iteraciones y por celda;
+- en la DP: en cada espera de 5 s;
+- en la evaluacion: por celda;
+- en el Monte Carlo: cada 5 s.
+Al detenerse se termina el pool o el arbol, y se guarda el avance de la
+lectura y los trabajos recibidos, sin valores. Disco (60 GB): se mide
+la carpeta de la corrida, que es lo unico que escribe T2-1 (trabajo/
+solo se lee y la DP en modo celdas y suma no escribe), como mucho cada
+5 s. Es el espacio nuevo de la corrida, no el almacenamiento total del
+proyecto.
+Los techos de llamadas y de tiempo son globales. Un contador comun a
+todos los procesos reserva cada llamada al decoder antes de hacerla,
+de modo que el total no pasa del techo. El plazo, comun y de reloj de
+pared, se consulta antes de cada llamada, al empezar cada bloque, cada
+2^16 pasos del muestreo y, dentro de la DP, tras cada ancla. La parada
+es cooperativa: su latencia es una llamada, 2^16 pasos de muestreo o
+un ancla. La salida registra la duracion maxima medida de una llamada
+(ya en la comprobacion del atajo, antes del Monte Carlo) y el exceso
+sobre el plazo. Si se alcanza un techo, la etapa pendiente queda
+NO_EVALUADA, con el motivo y el coste consumido; en el Monte Carlo eso
+significa D-mc NO_EVALUADO, nunca un recuento parcial.
+
+LIMITES QUE PESAN IGUAL (M10)
+- Una ronda, SSF y no MWPM, una seccion (n = 6), familia de camino: no es
+  un experimento de memoria tolerante a fallos ni compite con Fail fast.
+- Lemas F, S (T2-0), A, N, EO, R (T2-1M) y P3C sin contraste completo
+  del revisor. LOC esta probado para las tiras (prueba del revisor en
+  DICTAMEN_SOLO_U_LOC.txt), asi que EO y P3C ya no dependen de un LOC
+  sin probar; los demas lemas no quedan revisados por arrastre.
+- El crecimiento de R_k con N es el esperado para un metodo local frente
+  a una truncacion global; con circuito se mide, no se descubre.
+- Rival estadistico solo en coste (muestreo por subconjuntos); sin
+  splitting.
+- D-mc: el 99.9 % es una cobertura nominal bajo el modelo binomial
+  ideal. El muestreo implementado descansa en supuestos de simulacion
+  que se declaran y no se acotan: MT19937 como fuente de uniformes
+  ideales, con flujos independientes entre bloques; resolucion de 53
+  bits de random(); inversion geometrica y umbrales de categoria en
+  coma flotante. No se reclama una cota del error de ley. A4 es
+  determinista y no depende de esto. En r_c = 1e-3 el intervalo
+  certificado puede ser ancho, y entonces D-mc pone a prueba sobre todo
+  la cota inferior L_lo.
+- El objetivo diferencial sigue PENDIENTE hasta que el usuario decida, tras
+  el contraste, si esto basta.
+
+DECISIONES DEL USUARIO (antes de sellar; con la recomendacion)
+U1. Dos corridas, m <= 24 y luego m = 48. DECIDIDO ("esta bien dos
+    corridas").
+U2. Reutilizar los catalogos de T2-1M, verificados por SHA-256.
+    Recomendado: si. DECIDIDO el 14/11/2026: reutilizar.
+U3. Malla: las 8 celdas de arriba. Recomendado: si. Alternativa: anadir
+    r_m = r_c/2 (12 celdas, como la q = p/2 de B4). En m = 48 serian 12
+    trabajos largos a la vez en lugar de 8; con la maquina limitada,
+    alargaria la corrida 2 del orden de 1.5 veces. DECIDIDO el
+    14/11/2026: las 8 celdas.
+U4. Monte Carlo directo de control. DECIDIDO el 14/11/2026: incluido,
+    en la celda y con los parametros de abajo; se ejecuta solo despues
+    de escribir y revisar N1 y N3 y de sellar el plan.
+    Recomendado: si, en una celda: m = 6,
+    r_c = r_m = 1e-3, N = 7e9 historias fijadas antes (presupuesto por
+    aproximacion normal con el termino dominante de T2-0; se esperan
+    unas 385 silenciosas). Es el unico control de extremo a extremo con
+    ruido de circuito: lema F, respuestas, recomposicion y motor a la
+    vez. Sin el, el certificado con circuito descansa en los controles
+    parciales de T2-0 y T2-1M.
+    - Simulacion: el circuito por ubicaciones (527 en m = 6: 317
+      esperas de datos, 110 CNOT, 30 preparaciones, 40 esperas de
+      ancilla y 30 lecturas), propagacion de Pauli de T2-0
+      (t2_calibracion.propagate, independiente de las formulas de
+      respuesta y del lema F) y decodificacion con el SSF. El evento
+      solo depende de la parte X de cada ubicacion, asi que se sortea
+      la marginal X exacta de cada ley del apendice C (suma sobre las
+      partes Z): espera o preparacion, X o Y con 2 r_c/3; CNOT, cada
+      una de las tres partes X no nulas con 4 r_c/15; lectura, un flip
+      visible con w (1 - r_m) + (1 - w) r_m, w = 2 r_c/3 (los mismos
+      numeros que law_of). Las ubicaciones son independientes, asi que
+      la ley conjunta de las partes X es el producto: igual en ley.
+      Historias independientes: cada ubicacion de cada historia se
+      sortea aparte (por saltos geometricos sobre la secuencia de
+      ubicaciones, igual en ley con uniformes ideales; los supuestos
+      de simulacion estan en LIMITES). Semilla maestra fija en el plan
+      (20261114); un flujo por bloque con semilla derivada por SHA-256
+      de "T2-1 D-mc" y el numero de bloque.
+    - Atajo declarado: las historias con <= 2 ubicaciones con fallo X
+      visible no se decodifican y cuentan como no silenciosas. Motivo:
+      cada ubicacion afecta a una sola fibra, asi que el numero de
+      sitios no nulos es <= el de ubicaciones con fallo visible, y no
+      hay historias silenciosas con <= 2 sitios (f_s = 3, exhaustivo de
+      T2-0 en m = 6). Quedan unas 5e7 decodificaciones. El denominador
+      son las 7e9 historias.
+    - Comprobacion del atajo (no reemplaza esa prueba ni entra en el
+      recuento binomial): con propagacion literal y decodificacion
+      completa, los estratos 0, 1 y 2 enteros, porque son pequenos: la
+      historia sin fallos, las 747 historias con una ubicacion con
+      fallo visible (cada categoria visible) y las 278301 con dos
+      ubicaciones distintas: 279049 llamadas en total. Exhaustivo, sin
+      muestra ni semilla. Cualquier silenciosa detiene la unidad.
+      Comparte el decoder con los demas controles: comprueba la
+      implementacion, no es una auditoria independiente de todas las
+      dependencias.
+    - Recuento x de silenciosas sobre N. Intervalo de Clopper-Pearson
+      bilateral al 99.9 % (5e-4 en cada cola): p_inf resuelve
+      Pr[Bin(N,p) >= x] = 5e-4, con p_inf = 0 si x = 0; p_sup resuelve
+      Pr[Bin(N,p) <= x] = 5e-4, con p_sup = 1 si x = N.
+    - Evaluacion conservadora y verificable: las colas se evaluan en
+      aritmetica de intervalos con Decimal (al menos 60 cifras):
+      sumas, productos y cocientes con redondeo dirigido (ROUND_FLOOR
+      para la cota inferior, ROUND_CEILING para la superior); ln y exp,
+      que Decimal redondea al mas cercano, se ensanchan dos ulps hacia
+      fuera; todos los terminos son positivos y la recursion
+      t_(j+1) = t_j (N-j)/(j+1) p/(1-p) es monotona. La biseccion solo
+      avanza cuando el signo esta certificado por el intervalo: para
+      p_inf se conserva el mayor p con cota superior de
+      Pr[X >= x] <= 5e-4; para p_sup, el menor p con cota superior de
+      Pr[X <= x] <= 5e-4. Si el intervalo no decide, la biseccion para
+      y devuelve el extremo ya certificado (mas ancho, nunca mas
+      estrecho). Anchura relativa objetivo 1e-12. Controles previos:
+      con N <= 40, las colas en fracciones exactas caen dentro de los
+      intervalos y los extremos encierran los de una biseccion exacta;
+      formas cerradas x = 0 (p_sup = 1 - (5e-4)^(1/N)) y x = N
+      (p_inf = (5e-4)^(1/N)). Garwood (Poisson) con N grande es solo
+      un control de aproximacion; no sustituye la cola binomial.
+      Alcance: x <= 1e6 (XMAX) o x = N; alfa y la anchura objetivo se
+      validan (finitos, entre 0 y 1) antes de buscar raices.
+    - Certificado: entra como archivo con metadatos (lo escribe N3):
+      unidad, instancia TIRA_6x6, r_c, r_m, k = 4, SHA-256 del decoder
+      (b4_tiras.py) y de la propagacion (t2_calibracion.py), L_lo y
+      H_hi = min(1, L_hi + eps_hi) como fracciones, y el SHA-256 del
+      archivo de origen. t2_mc.py lo comprueba antes de muestrear y lo
+      rechaza si no es el de esta celda; la salida guarda su SHA-256.
+    - D-mc: COMPATIBLE si [p_inf, p_sup] corta el intervalo certificado
+      de la celda con k = 4, [L_lo, H_hi]. Significa solo "no se
+      detecto incompatibilidad"; no prueba que el certificado sea
+      correcto ni da un error de Monte Carlo del 10 %. La cobertura es
+      la nominal del 99.9 % bajo el modelo binomial ideal y los
+      supuestos de simulacion de LIMITES; A4 sigue siendo determinista.
+      Si no corta: INCOMPATIBLE, se detiene la unidad (no se lanza la
+      corrida 2) y se revisa.
+    - Con la muestra completa, el recuento (x, N, historias por numero
+      de fallos y los recuentos e identificadores de los 7000 bloques)
+      se escribe en disco antes de evaluar Clopper-Pearson. Si esa
+      evaluacion falla, D-mc queda NO_EVALUADO (nunca COMPATIBLE) y el
+      recuento se conserva. Se publican x, N y el intervalo entero.
+      Sin parada temprana, sin repetir con otra semilla y sin cambiar N
+      despues de empezar.
+    - Coste previsto: de 0.5 a 1.5 h con 14 procesos, mas unos minutos
+      de la comprobacion del atajo (279049 decodificaciones).
+U5. Afirmaciones A1 a A4 y decisiones D-t1 a D-t5 como estan. Recomendado:
+    si. DECIDIDO el 14/11/2026: se mantienen, con A4 determinista, el
+    alcance nominal de D-mc declarado y las comparaciones a igual
+    corte y a igual tiempo separadas. Se informan tambien los
+    resultados que no cumplan lo previsto, sin cambiar criterios
+    despues de verlos.
+U6. D de la regla de suma con k = 4 en m = 24 y 48. DECIDIDO el
+    14/11/2026: opcion A ("Prepara N3 v2 con D = 10^16 para esas dos
+    reglas. Manten los modulos sellados y los presupuestos. Usa el
+    mismo D en toda la comprobacion y verifica la anchura acumulada
+    del intervalo: los 384 bits por si solos no la garantizan."). Hecho
+    en N3 version 2 (N3, arriba). Hallazgo
+    del 14/11/2026 al escribir N3. La condicion previa de t2_calibracion
+    (cola < D^(NS-k)) solo depende de las clases, de k y de D, y es una
+    comparacion exacta de enteros; se calculo sin U, sin decoder y sin
+    DP. Cola/umbral con k = 4 (la condicion es cola/umbral < 1); entre
+    parentesis, con k = 3 y D = 1e14:
+               D = 1e14     1e15       1e16       1e18
+      m = 24   1.29         0.129      1.29e-2    1.29e-4   (3.7e-3)
+      m = 48   44.0         4.40       0.440      4.40e-3   (6.3e-2)
+    Con D = 1e14 la regla con k = 4 sale NO_DECIDIBLE en las dos tiras,
+    haga lo que haga la DP.
+    Opcion A (recomendada; ELEGIDA): D = 1e16 en esas dos reglas, la
+      menor potencia de 10 con la condicion previa cierta en las dos
+      tiras (regla fijada ahora, antes de calcular ningun U). El lema S
+      vale para cualquier D con la condicion cierta, y el veredicto es
+      exacto. Redondeo de cada operacion: 2^-384 = 2.5e-116, frente a
+      un umbral relativo de D^-4 = 1e-64 y a la cota de C-anch de
+      1e-12 D^-4 = 1e-76. (Corregido en v8, como senalo el usuario: eso
+      no garantiza la anchura acumulada del intervalo, que crece con el
+      numero de terminos; N3 version 2 la preve antes de la DP y la
+      comprueba despues, ver N3.) El coste de la DP no cambia, porque
+      solo cambian los odds
+      (1/D). Exige un cambio local en N3 (version 2): odds 1/D en la
+      especificacion del trabajo y el criterio de t2_calibracion
+      evaluado con ese D. Si se replica la formula en N3, un control
+      debe mostrar que con D = 1e14 da lo mismo que la funcion sellada.
+      El motor y t2_calibracion no cambian. m = 6 y 12 siguen con la
+      procedencia de T2-0 (D = 1e14).
+    Opcion B: mantener D = 1e14. L_ing(4) queda como cota en m = 24 y
+      48, y D-t3 y la linea de igual tiempo quedan PENDIENTES alli. Los
+      dos trabajos de suma se pueden quitar, porque su veredicto ya se
+      sabe. D-t1, D-t2, D-t4 y D-t5 no cambian.
+    En las dos opciones, m = 48 con k <= 3 queda sin H-comp, salvo que
+    la regla con k = 4 salga COMPLETO (o que se anada una con k = 3, que
+    con D = 1e14 si cumple la condicion previa; no se propone).
+
+FUERA DE ALCANCE
+Sin splitting ni varias rondas; no se cambian decoder, evento ni ruido;
+no se toca el manuscrito ni el paquete del revisor; no se inicia HGP5,
+H5-B, N11/N12, M2 ni C3; no se descarga nada. El plan de energia lo
+cambia el usuario, no el programa.
+
+ARCHIVOS
+Ahora: BORRADOR_PLAN_T2_1.txt (versiones anteriores en versiones/).
+Codigo preparado para revision (14/11/2026; ninguno se ha usado en una
+corrida; guia en revision_codigo/LEEME_REVISION_CODIGO.txt). Version 2,
+tras DICTAMEN_CODIGO_T2_1.txt; la version 1 esta en versiones/codigo_v1:
+- t2_cp.py: intervalo de Clopper-Pearson conservador. Su autoprueba,
+  solo matematica, se ejecuto (revision_codigo/SALIDA_AUTOPRUEBA_CP_v2.txt,
+  codigo 0).
+- t2_mc.py: Monte Carlo de control (N4). No ejecutado. Una prueba de
+  humo sin muestreo y sin ninguna llamada al decoder corrio sus
+  controles estructurales y los caminos de parada, certificado y
+  recuento con datos sinteticos (revision_codigo/SALIDA_HUMO_v2.txt).
+- t2_solo_u.py: adaptador SOLO_U (N2) y su enlace. No ejecutado; la
+  misma prueba de humo corrio sus caminos de parada y su verificador
+  sin DP con una salida sintetica.
+Pruebas acotadas ya hechas, con codigo 0 (la prueba de t2_solo_u.py,
+su --verificar y t2_mc.py --solo-atajo): ver
+T2_1_PRUEBAS_ACOTADAS_EJECUCION_20261114/LEEME.txt.
+Escritos el 14/11/2026, version 1, para revision (ninguno usado en una
+corrida):
+- t2_rival.py (N1). Su autoprueba matematica se ejecuto
+  (revision_codigo/SALIDA_AUTOPRUEBA_N1_v1.txt, codigo 0, 6 grupos).
+  Tiene ademas --control-fen (lee los catalogos fenomenologicos de
+  T2-1M y compara con B4, sin decoder ni DP); no se ha ejecutado.
+- t2_intervalos.py (N3). Su prueba de humo se ejecuto
+  (revision_codigo/SALIDA_HUMO_N3_v1.txt y HUMO_N3_v1/, codigo 0, 22
+  grupos, 1031 controles, 98 s, 0 llamadas al decoder, sin DP). Uso
+  datos sinteticos donde irian la DP y los catalogos. Lo real fue: las
+  clases de las cuatro tiras, la procedencia de H-comp, los 80
+  SHA-256 de fen_TIRA_6x6, N2 sobre SOLO_U (reproduce el D-t4 de
+  referencia ya conocido) y el certificado con t2_mc.load_cert.
+  Cubrio el sello, los negativos, las paradas, la espera con techos,
+  el Monte Carlo sustituido y --verificar. Tambien las corridas 1 y 2
+  completas de run_main, con sustitutos de N1, la DP, el sello y
+  trabajo/: regla de paso, previa y decisiones finales.
+- t2_intervalos.py (N3), version 2 (U6, 14/11/2026; la version 1 esta
+  en versiones/codigo_N3_v1/, diferencia en
+  diferencias/N3_v1_a_v2.diff). Su prueba de humo se ejecuto
+  (revision_codigo/SALIDA_HUMO_N3_v2.txt y HUMO_N3_v2/, codigo 0, 26
+  grupos, 1368 controles, 126 s, 0 llamadas al decoder, sin DP).
+  Ademas de lo de v1, real: la condicion previa con D = 1e16 (cierta
+  en m = 24 y 48) y con D = 1e14 (detiene en m = 48), y la identidad
+  de la copia con D explicito con las funciones selladas (D = 1e14 y,
+  cambiando t2.D solo en la prueba, 1e16). Sintetico: U de la regla
+  de suma para cada veredicto (COMPLETO, INCOMPLETO, NO_DECIDIBLE) y
+  una anchura de 1e-70 que FALLA en C-anch antes del criterio. Las
+  corridas 1 y 2 sinteticas se repitieron con la regla COMPLETO: H-comp
+  COMPLETO en k = 1..4 en m = 24 y 48 y D-t3 calculado. La anchura
+  real de U solo sale de la DP de la corrida.
+Version 2 de N1 y version 3 de N3 (R1 a R4, 14/11/2026), tras
+DICTAMEN_N1_N3.txt del revisor. Las versiones anteriores estan en
+versiones/codigo_N1_v1/ y versiones/codigo_N3_v2/, con sus
+diferencias en diferencias/ (N1_v1_a_v2.diff, N3_v2_a_v3.diff). Guia
+para la revision: revision_codigo/LEEME_REVISION_CODIGO.txt. Todo se
+ejecuto con datos y procesos sinteticos, sin decoder, DP ni Monte
+Carlo y sin leer los catalogos reales; desde ahora se conservan los
+intentos fallidos:
+- t2_rival.py (N1 v2): autoprueba en
+  revision_codigo/SALIDA_AUTOPRUEBA_N1_v2_intento1.txt (codigo 0, 8
+  grupos; el 7 es la regresion de R1 y el 8, R2). Regresion R1 con el
+  lector de v1 y el de v2 (revision_codigo/regresion_R1_v1_v2.py;
+  SALIDA_REGRESION_R1_intento1.txt y REGRESION_R1_intento1/, codigo
+  0): v1 falla y v2 acierta. --control-fen sigue sin ejecutarse.
+- t2_intervalos.py (N3 v3), prueba de humo:
+  - Intento 1 (revision_codigo/SALIDA_HUMO_N3_v3_intento1.txt y
+    HUMO_N3_v3_intento1/): codigo 1, por un sustituto del sello de la
+    propia prueba. El codigo de ese intento esta en
+    versiones/codigo_N3_v3_intento1/ y la explicacion en
+    revision_codigo/NOTA_HUMO_N3_v3_intento1.txt.
+  - Intento 2, que solo cambia la prueba
+    (diferencias/N3_v3_intento1_a_intento2.diff):
+    revision_codigo/SALIDA_HUMO_N3_v3_intento2.txt y
+    HUMO_N3_v3_intento2/. Codigo 0, 38 grupos, 1362 controles, 358 s
+    y 0 llamadas al decoder. Ademas de lo de v2 cubre:
+    - R2: paradas con el Monitor real, el plazo y el disco;
+    - R3: el arbol de procesos sintetico, terminado entero por plazo
+      y por memoria, con un proceso ajeno que sigue vivo;
+    - R4: --verificar integral con codigo 0 en las dos corridas
+      sinteticas y 20 entregas alteradas rechazadas, cada una por su
+      defecto;
+    - la corrida 1 detenida durante la lectura de N1.
+  Junto a cada intento esta el SHA-256 del codigo usado
+  (revision_codigo/CODIGO_HUMO_N3_v3_intento*.sha256).
+Version 4 de N3 (cierre de R3, 14/11/2026), tras
+DICTAMEN_N1_V2_N3_V3.txt y ENCARGO_CIERRE_R3.txt. N3 v3 esta en
+versiones/codigo_N3_v3/ (con su guia) y la diferencia en
+diferencias/N3_v3_a_v4.diff. Guia: revision_codigo/
+LEEME_REVISION_CODIGO.txt. Solo procesos sinteticos, fallos de
+Windows inyectados y un reloj de prueba; sin t2_mc.py, decoder, DP ni
+Monte Carlo y sin catalogos. Junto a cada intento esta el SHA-256 del
+codigo usado (revision_codigo/CODIGO_*_intentoN.sha256):
+- prueba de cierre (t2_intervalos.py --prueba-cierre; la misma
+  funcion corre en el paso 7b de --humo):
+  - intento 1: revision_codigo/SALIDA_CIERRE_R3_N3_v4_intento1.txt y
+    CIERRE_R3_N3_v4_intento1/, codigo 0, 11 de 11 casos;
+  - intento 2: SALIDA_CIERRE_R3_N3_v4_intento2.txt y
+    CIERRE_R3_N3_v4_intento2/, codigo 0, 11 de 11 casos;
+- regresion v3 frente a v4 (revision_codigo/regresion_R3_v3_v4.py):
+  - intento 1: SALIDA_REGRESION_R3_intento1.txt y
+    REGRESION_R3_intento1/, codigo 1. Un caso salio INESPERADO
+    porque un padre sintetico tardo en salir. Ver
+    NOTA_REGRESION_R3_intento1.txt;
+  - intento 2: SALIDA_REGRESION_R3_intento2.txt y
+    REGRESION_R3_intento2/, codigo 0. v3 muestra cada defecto y v4 lo
+    rechaza por su causa;
+  - el codigo del intento 1 esta en
+    versiones/codigo_N3_v4_cierre_intento1/, y las diferencias en
+    diferencias/N3_v4_cierre_intento1_a_intento2.diff y
+    regresion_R3_intento1_a_intento2.diff;
+- diagnostico de la salida del padre sintetico
+  (revision_codigo/diagnostico_salida_huerfano.py;
+  SALIDA_DIAGNOSTICO_SALIDA_intento1.txt y
+  DIAGNOSTICO_SALIDA_intento1/): 20 salidas dentro del arbol y 20
+  fuera; todas salieron, la mas lenta 2.8 s despues de escribir su
+  salida;
+- prueba de humo completa de N3 v4, como regresion
+  (SALIDA_HUMO_N3_v4_intento1.txt y HUMO_N3_v4_intento1/): codigo 0,
+  45 grupos y 1369 controles PASS, 0 llamadas al decoder. Los 4
+  grupos de R3 de v3 se sustituyen por los 11 casos de la prueba de
+  cierre; los negativos coinciden con los de v3.
+Despues: la revision local final de N3 v4; si pasa, PLAN_T2_1.txt y
+SELLO_PLAN.json. Despues, los archivos de las dos corridas (DOS
+CORRIDAS) e INFORME_T2_1.txt.

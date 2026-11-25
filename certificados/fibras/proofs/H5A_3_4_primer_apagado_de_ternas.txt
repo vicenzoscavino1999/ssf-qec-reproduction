@@ -1,0 +1,235 @@
+HGP binario (3,4) · Primer apagado de tres fuentes y conexiones con el exterior
+23 de noviembre de 2026 · Nota de investigación para revisión independiente
+
+Resultado general
+=================
+
+En las hipótesis de H5A_3_4_cierre_por_expansion.txt (v28), columna general,
+se verifican los siguientes extremos. V significa VV y C significa CC.
+
+  Modelo de una ronda                    v28 general        Nuevo extremo
+  Bernoulli, q ≤ 10⁻³                    p ≤ 5.30·10⁻⁷      p ≤ 5.40·10⁻⁷
+  Circuito, r_m ≤ 10⁻³, VV primero       r_c ≤ 9.92·10⁻⁸    r_c ≤ 1.005·10⁻⁷
+  Circuito, r_m ≤ 10⁻³, orden admitido   r_c ≤ 9.05·10⁻⁸    r_c ≤ 9.18·10⁻⁸
+
+El resultado vale para todos los tamaños de la semilla (3,4), con ciclos de
+cuatro permitidos, para las máscaras y subhosts admitidos, el filtro de
+síndrome físico residual cero, la competición global SSF/FGL con β=0.01 y el
+desempate físico fijo de v22. El circuito es el de extracción Z del sector X
+con el calendario del proyecto. El paso a precisión relativa para fallo
+silencioso positivo conserva las condiciones y el testigo lógico del manuscrito.
+
+1. Cuándo tres datos pueden dejar su saldo máximo a las ramas exteriores
+=========================================================================
+
+Fijar una componente de tres originales en el grafo G de lector común,
+dentro de una historia aceptada con cualquier número de otras componentes.
+El saldo es el exceso de descenso inicial del grupo sobre el descenso que
+debe gastar en pasos cercanos. Sólo el saldo disponible puede financiar
+pasos lejanos. Para circuitos se aplica primero el argumento a los datos
+de paridad uno con fondo estable D_c.
+
+Para un patrón de relaciones e entre tres originales, sea d_e(r) el coste
+mínimo relajado de extinguir por primera vez las r_i luces originales aún
+pendientes de cada donante. Se reutiliza la recurrencia de v6, implementada
+en verificar_H5A_3_4_medidas_aisladas.py. Cada decremento reparte luces
+distintas de un ganador entre franjas compatibles y paga δ=2|H|−|φ|. Si
+una franja está llena, la competición obliga a que φ=H y las luces
+exteriores a los apagados asignados en ese paso forman un subconjunto
+estable. Se consideran los 771 ganadores del rectángulo, en 25 órbitas.
+Los testigos que usa esta nota son condiciones necesarias obtenidas al
+conservar también los costes de cada vector r en esa misma recurrencia.
+
+Para franjas disjuntas de anchuras w, el saldo inicial es 2Σr−Σw.
+En los patrones capaces de alcanzar K=4 para 3C o K=3 para 1V+2C se
+verifica 2Σr−Σw−d_e(r)<K para todo r distinto de w. Por tanto comienzan
+las tres franjas llenas. Hasta su primer apagado asignado todos los pasos
+de la historia son perfectos y sólo apagan luces. Si ese apagado usa el
+vector u de las tres franjas, su huella satisface
+
+                     |φ| ≤ Σw−K−d_e(w−u).
+
+El verificador cruza esta desigualdad con los primeros movimientos
+permitidos. En ambos tipos de trío disjunto los tres u_i son positivos.
+La celda de cada franja dentro de φ que estaba inicialmente encendida se
+extingue por primera vez en ese paso. En particular u_i=|ψ_i∩φ| y las
+luces restantes de φ provienen del fondo estable. Un original de otra
+componente nunca puede donar en ese lector, por la definición de G.
+
+Para 3C a saldo cuatro las tres columnas físicas son distintas por v18 §1.
+El primer apagado dona (1,1,1) con |φ|=3 o (2,2,2) con |φ|=6. En el primer
+caso φ es una fila. Fijado un C, hay hasta cuatro centros que contienen
+su columna, cuatro filas posibles en su propia franja y tres checks
+incidentes en la fila elegida para cada una de las dos columnas restantes.
+Esto cuenta a lo sumo 4·4·3·3=144 posiciones con fila común.
+
+En el segundo caso las tres parejas de filas de la huella son iguales o
+complementarias. Se verifica directamente en las 63 huellas perfectas.
+Si las tres franjas tienen una fila común en el lector, la cuenta anterior
+ya las contiene. Para las demás, la enumeración de vecindades de dos pasos
+del §2 da hasta 288 posiciones adicionales por raíz C. Así el mayorante a
+saldo cuatro pasa de 2916 a 432.
+
+2. Contar los lectores en la semilla física, incluidos los de cuatro ciclos
+============================================================================
+
+En el lector g=N(R)×N(j), las cuatro variables vecinas de R tienen dos
+checks más cada una. La máscara de un posible centro R' es el subconjunto
+no vacío N(R')∩N(R). El propio R aporta la máscara llena. Los otros
+subconjuntos forman un multiconjunto en el que cada una de las cuatro
+coordenadas aparece exactamente dos veces. En el otro eje hay tres
+coordenadas, cada una con tres incidencias adicionales. Hasta permutar
+las coordenadas hay 23 y 16 perfiles, respectivamente. Se permiten máscaras
+repetidas de centros físicos distintos, incluso la máscara llena. Se usa
+la semilla completa para mayorar un subhost. Un perfil describe lo que se
+ve en un lector de una semilla de cualquier tamaño.
+
+Para 1V+2C disjuntos se recorren los dos perfiles del lector, un dato V y
+dos C distintos sin ordenar. En cada huella perfecta se comprueban los
+tres tamaños efectivos |ψ_i∩φ|, el coste admisible del §1 y la estabilidad
+de φ fuera de las tres franjas. Para un par V,C que toca el lector, las
+coordenadas fijas permiten decidir allí si tiene una proyección común.
+Dos C en columnas distintas pueden compartir una fila fuera del lector
+aunque sus máscaras dentro sean disjuntas. Se permiten ambas relaciones
+cuando la fila común no está determinada. La existencia de al menos una
+huella admisible se cuenta una vez por trío y lector.
+
+Para una raíz de tipo i y máscara de tamaño b, tomar el máximo del número
+de otras dos posiciones admisibles entre los perfiles, con la raíz fijada.
+Sumar estos máximos sobre los centros vistos desde la raíz usando su propio
+perfil de incidencias. Hay además tres opciones de centro en el eje
+transversal para una raíz V y cuatro para C. Esta doble cuenta mayora las
+posiciones para cada raíz física, sin requerir transitividad de la semilla.
+
+En los tríos mixtos con solapamientos se cuentan aparte los patrones
+compatibles con saldo tres. Si h₁,h₂ indican solapamiento de V con cada C,
+b=|ψ_C₁∩ψ_C₂| y t indica que los tres comparten una celda, el vector de
+celdas impares propias, asignando esa celda a V, es
+
+           (3−h₁−h₂+2t,  4−b−h₁+t,  4−b−h₂+t).
+
+Para cada vector U posible se exige 0≤r_i≤U_i y r_i≥U_i−⌊w_i/2⌋ por la
+estabilidad del fondo en el singleton. El saldo inicial exacto es
+2Σr−ΣU. Se retienen los patrones cuyo máximo tras descontar d_e(r) llega a
+tres. Para cada uno se toma el menor de los conteos por árboles enraizados
+de posiciones de v18 y se respeta la simetría de las dos etiquetas C.
+
+   1V+2C de saldo ≥3          Disjuntos       Solapados       Total       Antes
+   Raíz V                          675            4347         5022       17577
+   Raíz C                         2448           15456        17904       62496
+
+Los umbrales superiores 3 y 4 exceden el saldo de todo subconjunto real
+propio de un grupo de tres marcas, pues dos datos reales dan saldo a lo
+sumo dos. Se pueden actualizar a esos niveles tanto el histograma de
+todas las paridades de circuito como el de todas las marcas reales.
+
+3. Acoplar el grupo a las posiciones exteriores
+===============================================
+
+Usar las conexiones débiles y fuertes de v22. Se incluye el solapamiento
+entre las fuertes. Sea t el número de aristas del bosque que conecta primero
+cada componente fuerte de A, igual a la suma de |B|−1 sobre esas componentes.
+Todos los árboles elegidos en v22 §2 conservan exactamente t aristas fuertes.
+Lo mismo vale tras elegir las ramas satélite y enraizar el árbol. La cuenta
+por número de aristas fuertes se aplica a cualquier cantidad de hijos.
+
+En el cálculo ordinario, cada arista con desplazamiento p descuenta un
+vector D(p) de cinco coberturas iniciales y tres solapamientos de bolas
+de posibles destinos exteriores, como en v21 §§2–3. Esos destinos se
+cuentan en un mismo grupo antes de exponenciar la suma de hijos. Para
+cada par de tipos, w es el desplazamiento débil máximo. En todos los
+desplazamientos fuertes el código verifica D(p)−D(w)≥0 coordenada a
+coordenada. Con los suelos de campos f que comprueba la fila completa,
+tomar Δ como el mínimo de [D(p)−D(w)]·f sobre las aristas fuertes de
+los tipos presentes. La suma de ahorros en el árbol supera el ahorro
+genérico de v21 en al menos tΔ. En efecto, D(w) evaluado en los campos
+reales domina el mínimo genérico del par y los campos dominan f.
+Para una raíz de generador se aplica el mismo argumento a las cinco
+coberturas iniciales. Por ejemplo, a (.567,.685), cada arista fuerte
+ahorra al menos 59190 posiciones ponderadas adicionales al sumar un
+hijo de tipo C respecto de su arista débil de referencia.
+
+Sea λ el mayorante racional de exp(−Δ) de v21. Para cada monomio de n
+datos, P es el mayorante ordinario bruto de v28 con los histogramas nuevos.
+U_j mayora el peso bruto de grupos cuyo bosque tiene a lo sumo j aristas
+fuertes. El coste tras incorporar el ahorro adicional está acotado por
+
+          λ^(n−1)P + (1−λ) Σ_{j=0}^{n−2} λ^j min(P,U_j).
+
+La identidad se obtiene para un grupo con t aristas sumando desde j=t.
+Sólo aparecen coeficientes no negativos. Para U_j se pone un marcador x
+en todas las aristas fuertes de la serie positiva de v22, con los grados
+sin descuentos de desplazamiento, y se suman sus coeficientes hasta j.
+El descuento de cobertura posterior χ de v27 entra una vez. Por grado n
+el resultado es un polinomio en x de grado ≤n−1. Se interpola con
+fracciones a partir de x=0,…,9 y se comprueba la no negatividad y cada
+evaluación. Se usan los precios de fuentes del modelo que corresponda.
+
+En Bernoulli, si t=0, no hay satélites y el techo del saldo es ⌊4n/6⌋
+por v22 §1. Si t≤j con j≥1 hay a lo sumo 2j vértices con vecino fuerte.
+El saldo en sextos es a lo sumo 7v+8c+2 min(c,2j) por los créditos de
+esa nota. El histograma truncado a ese techo da otro mayorante de U_j.
+Para los dos tríos de este trabajo sin aristas fuertes, la recurrencia
+física da saldo ≤1 también para todos sus patrones conexos. Una marca
+circuital de paridad cero deja como mucho una pareja débil real, de saldo
+≤1 por v7. Se admite ese techo en ambos modelos. Como la marca de
+generador vale cero a saldo ≤1, todo término marcado positivo de esos dos
+tríos recibe el descuento adicional de una arista fuerte en cobertura.
+
+Se aplica el acoplamiento a las filas ordinarias de órdenes 3 a 10.
+La fórmula se puede usar tanto en la suma de todos los hijos como
+cuando se exige que exista un hijo. Por grupo con ahorro inicial g₀ y de
+enlaces l, e^(−g₀)(e^(S−l)−1) ≤ e^(−g₀−l)(e^S−1), como en v21 §3.
+Las marcas de hijo distinguido conservan su volumen anterior. A partir
+del orden 11 se incluye la cola analítica completa de v22. Las tasas se
+verifican por separado en los tres modelos. Los seis suelos variables
+son 9/10 de los del testigo general de v28 del mismo modelo, antes de
+aplicarles factor alguno. El verificador exige que los domine el testigo
+nuevo y usa los mismos suelos en la serie y en la parte que se sustrae
+para aislar su cola. La dominación de los pesos primitivos de v22 §4
+extiende las esquinas certificadas a todas las tasas inferiores.
+
+4. Qué impide cerrar G3
+=======================
+
+G3 pide p=10⁻⁶ con q=10⁻³. El diagnóstico necesario de v22 es
+eΣ c_j L_j≤1 para toda subsuma de la fila ordinaria de raíz C. Se
+computa con aritmética racional un minorante mediante Taylor para
+la exponencial y se conservan los exponentes y pendientes por grupo.
+Los valores de la tabla se muestran redondeados.
+
+   Parámetros (a,s)                (.567,.685)    (.569,.673)   (.568,.678)
+   3C y 1V+2C, esta nota              .091248        .096783       .093674
+   Esos dos más 1V+3C y 2V+2C         .886178        .904809       .892824
+   Únicamente 1V+4C                  1.651508       1.605530      1.620832
+   Suma de orden 5, con raíz C       2.111302       2.057770      2.075435
+   Suma de orden 6                   3.212410       3.006069      3.086436
+   Suma de orden 7                   6.571427       5.934688      6.191268
+   Suma de orden 8                   3.463001       3.045075      3.219431
+   Suma de orden 9                   3.873232       3.222060      3.430625
+   Suma de orden 10                  2.190666       1.761882      1.901369
+
+Las dos primeras columnas usan los suelos de v28 para comparar los
+mismos diagnósticos. La última usa el testigo y los suelos nuevos de
+Bernoulli. En la primera columna la contribución de los dos tríos en
+v28 era .262048 y los cuatro términos daban 1.078847. Afinar sólo los
+tríos ya no puede cerrar estas filas en los parámetros indicados. El
+complemento físico de G3 sigue sin un mayorante ≤0.00078558. El propio
+SSF y las demás elecciones de parámetros quedan fuera de esta obstrucción.
+
+    Modelo                         (a,s)            Máximo cociente verificado
+    Bernoulli                      (.568,.678)          .999997708893
+    Circuito, VV primero           (.559,.745)          .999826988307
+    Circuito, orden admitido       (.556,.771)          .999998263497
+
+Reproducción desde 05_COMPROBACIONES
+====================================
+
+    python -I -B -X utf8 verificar_H5A_3_4_primer_apagado_de_ternas.py
+    python -I -B -X utf8 verificar_H5A_3_4_primer_apagado_de_ternas.py --global
+
+El primer comando comprueba las posiciones y la recurrencia local. El
+segundo reconstruye las tablas anteriores desde sus definiciones y comprueba
+las tres filas completas y los tres diagnósticos de G3. Se requiere la
+biblioteca estándar de Python. Las cotas quedan disponibles para auditoría.
+

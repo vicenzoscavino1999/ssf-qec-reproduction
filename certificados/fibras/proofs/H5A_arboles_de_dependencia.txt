@@ -1,0 +1,261 @@
+H5-A · Decisión de método y árboles de dependencias para el ruido de datos
+17 de noviembre de 2026, Lima
+
+Decisión
+========
+
+Conservar el certificado general p≤3.6·10⁻³⁶, q≤2·10⁻¹¹ y la identidad
+de cumulantes de fuentes. Dar por terminada la optimización de las últimas
+filas de historias físicas. Con sus exponentes y su serie de tramos,
+incluso una elección óptima de constantes obliga a p<3.31·10⁻³⁴.
+
+Para buscar el salto a 10⁻⁶, cambiar la unidad del recuento. Un árbol
+registra qué conjuntos de fuentes llegan a depender unos de otros en el
+decodificador. Las cancelaciones entre particiones se realizan antes de
+tomar valores absolutos. Esta nota justifica ese cambio para marcas de
+cualquier signo, comprueba la parte geométrica en la esquina objetivo y
+formula la suma de fusiones que falta. La cota general de p sigue en
+3.6·10⁻³⁶. La adaptación combinatoria está pendiente de revisión matemática
+independiente.
+
+1. Hasta dónde llegan las últimas filas
+=======================================
+
+Usar las filas general() de verificar_H5A_cumulantes.py de la entrega
+anterior, con x el precio del dato CC, U_C su supersolución y s≥1.
+Su término de contacto es el mínimo de dos mayorantes, ambos ≥10100w_C.
+De la propia recursión w_C≥sx exp(N_CC U_C) y U_C≥10100w_C², donde
+N_CC=22722625. En consecuencia
+
+    x² ≤ U_C exp(−2N_CC U_C)/10100 ≤ 1/[2 exp(1) N_CC 10100].
+
+La serie de tramos exige Λ(t)=t[289/4+289/7+83232t/17]<1. Es creciente
+y Λ(0.00681)>1. La conversión del precio exige p≤x t^(633/50) incluso
+al llevar el recargo multiplicativo exterior a uno. Combinando las tres
+desigualdades resulta p<3.31·10⁻³⁴, menos de 92 veces la cota actual.
+Esta restricción es propia de esas filas. Cambiar la representación de
+las interacciones permite prescindir de esta conversión.
+
+2. Herramienta publicada y adaptación necesaria
+==============================================
+
+Féray, Méliot y Nikeghbali acotan los cumulantes mediante árboles
+abarcadores de un grafo de dependencias. Su prueba agrupa las particiones
+con la misma descomposición conexa. Las secciones 9.3–9.4 contienen
+la cota del coeficiente de un grafo contraído, el doble conteo de
+árboles con cortes y la suma sobre árboles etiquetados. Esta es la
+herramienta elegida. «Mod-φ convergence I. Normality zones and precise
+deviations». https://arxiv.org/pdf/1304.2934
+
+Fawzi, Grospellier y Leverrier establecen una localidad del small-set-flip
+en el lema 19 y usan conjuntos conectados con suficiente densidad de
+errores en su argumento probabilístico. La corrección robusta utiliza
+hipótesis de expansión. Aquí se permiten todas las semillas binarias
+(17,18)-regulares y se requieren particiones con signo, máscara y subhost.
+Del artículo se aprovecha la idea de proyectar una ejecución sobre
+grupos. La proyección que sigue incluye el máximo global, el desempate
+fijo y el filtro terminal del proyecto. «Constant overhead quantum
+fault-tolerance with quantum expander codes». https://arxiv.org/pdf/1808.03821
+
+La revisión interna del 8 de noviembre ya trató la cuasifactorización
+de Féray. La proposición 5.8 de ese trabajo está formulada para listas
+con condiciones de no anulación y control asintótico. Aquí las marcas
+pueden valer cero y necesitamos constantes sumables a todos los órdenes.
+La prueba combinatoria siguiente sólo exige factorización en componentes
+y |T|≤1. «Weighted dependency graphs». https://arxiv.org/pdf/1605.03836
+
+3. Construcción del grafo a partir de la ejecución física
+=========================================================
+
+Fijar semilla, máscara, subhost J y conjunto finito S de posibles fuentes.
+T(Q), para Q⊆S, es la marca canónica del proyecto y T(∅)=1. Es cero al
+fallar el filtro o salir de J. En otro caso es el signo del residuo. Se
+mantienen β=1/100, la familia FGL completa y la ronda Bernoulli original.
+Sea H₀ un grafo fijo que contiene las intersecciones de huellas iniciales.
+La sección 4 elige uno con geometría explícita. Para cada Q⊆S hacer lo
+siguiente en la ejecución global efectiva, incluso si acaba con marca cero.
+
+• Dar un color a cada componente de H₀[Q]. Los checks inicialmente
+  encendidos pertenecen a un solo color, porque los solapamientos de
+  fuentes se agruparon antes de calcular la paridad.
+• Si el ganador consume luz de varios colores, unir esos colores.
+  Registrar un árbol entre las clases que se fusionan, con un extremo
+  fuente en cada clase por arista. Se puede fijar la elección por orden
+  de distancia entre fuentes y después por los índices. Los checks recién
+  encendidos adquieren el color resultante. El síndrome es exactamente
+  el de la ejecución. Un ganador siempre consume algún check.
+• En la parada unir también colores si una luz terminal de uno está en
+  las medidas originales de otro. Registrar las aristas de esas uniones.
+
+Definir H_S como H₀[S] más las aristas registradas en todas las subentradas
+Q⊆S. El examen de todas ellas asegura la propiedad necesaria para el
+cumulante. Para cualquier Q⊆S se tiene
+
+       T(Q)=∏_{A componente de H_S[Q]} T(A).                        (1)
+
+Para probarlo, tomar en la ejecución de Q cualquier unión de clases
+finales. La subsecuencia de acciones de esas clases es su ejecución
+canónica aislada. En cada uno de sus pasos, la fracción encendida de la
+acción elegida coincide con la global. Todos los rivales ven un subconjunto
+de las luces globales. El mismo máximo y el mismo orden de desempate
+reproducen la elección. Los pasos omitidos preservan el síndrome
+proyectado y la parada global implica la local. El residuo se suma por
+paridad y los soportes se unen, incluso si dos acciones han visitado un
+mismo sitio. Tras las últimas uniones, el síndrome terminal de una clase
+carece de luz perteneciente al D de otra. El filtro pasa en una unión
+exactamente cuando pasan sus clases. Esto prueba factorización para
+cualquier agrupación de clases finales. Cada una de ellas es conexa en
+H_S[Q], de donde sigue (1).
+
+Sea k(S) el coeficiente con cada variable una sola vez de log Σ_Q T(Q)z^Q.
+Para cualquier grafo H que cumpla (1) en S y en todas sus restricciones,
+vale la siguiente versión para marcas formales del argumento publicado
+
+                  |k(S)| ≤ 2^(|S|−1) τ(H),                          (2)
+
+donde τ cuenta árboles abarcadores y vale cero si H es desconexo. En
+efecto, (1) escribe la partición como gas de conjuntos conexos con peso
+T(A)z^A y exclusión al solaparse o ser vecinos. En el monomio con cada
+fuente una vez, los bloques forman una partición π en conjuntos conexos.
+Su coeficiente de logaritmo es la suma alternada sobre los subgrafos
+conexos del grafo de incompatibilidades entre esos bloques. Su valor
+absoluto es ≤τ(H/π), conservando las multiplicidades en la contracción
+para mayorar. Se obtiene por borrado y contracción de aristas, como en
+el corolario 9.14 del artículo. Cada bloque tiene |T(A)|≤1≤τ(H[A]).
+Sumar τ(H/π)∏_A τ(H[A]) equivale a elegir un árbol de H y señalar
+cualquier subconjunto de sus |S|−1 aristas para cortar. Así se obtiene
+(2) sin dividir por ninguna marca. Se puede usar H=H_S. Este argumento
+trata juntas las interacciones cruzadas a todo orden.
+
+4. Prueba en p=10⁻⁶ con q=2·10⁻¹¹
+==================================
+
+Se usa el grafo bipartito de Tanner de la semilla para medir distancias
+entre los índices de los datos VV(i,j) y CC(r,s). H₀ incluye los contactos
+del certificado anterior. Dos VV son vecinos adicionales si tienen la
+misma primera coordenada y las segundas distan ≤4, o si ambas coordenadas
+distan ≤2. Para CC se invierte el papel de las coordenadas en la regla de
+distancia cuatro. Un dato y una medida también se unen si algún check de
+la huella del dato y la medida están alineados en una fila o columna de
+un mismo rectángulo. Las medidas que comparten rectángulo se unen.
+
+Estos radios tienen un significado físico. Dos VV que aportan luz a la
+misma fila de un rectángulo comparten primera coordenada y sus segundas
+coordenadas distan ≤4. Si aportan luz a la misma columna, ambas
+coordenadas distan ≤2. Para CC se intercambian las direcciones. En
+particular, dentro del prefijo inicial de puntuaciones uno, los checks
+consumidos proceden de las fuentes originales. Un ganador cuya huella
+es conexa por filas y columnas y que recibe luz de un solo tipo de
+datos, con cualquier número de medidas, ya tiene conectados en H₀ sus
+proveedores originales. Se escoge un proveedor por check y se sigue
+un camino de filas y columnas dentro de la huella. Proveedores del
+mismo check están unidos. Esto incluye los singletons y las acciones
+puras perfectas con esa propiedad, aunque después haya pasos imperfectos.
+
+Las bolas cerradas de radios dos y cuatro en las coordenadas VV tienen
+a lo sumo 290 y 78898 sitios. Para CC los límites son 289 y 78625.
+Con topes b₂,b₄ del tipo correspondiente se admiten ≤b₄+(b₂−1)b₂
+vecinos del mismo tipo, contando generosamente el propio sitio. Esto
+incluye sus contactos antiguos. Para una acción singleton cubierta
+por dos fuentes del mismo tipo en la misma línea se aplica el radio
+cuatro. Si cubren una acción pura de dos líneas distintas, éstas
+comparten generador y las proyecciones transversales coinciden, por lo
+que se aplica la regla de radios dos. Una acción de dos miembros mixta
+exige ambas orientaciones. Los contactos entre tipos se acotan por
+17600 según la entrega anterior. Para una medida frente a un dato se
+permiten 578 checks alineados por check de partida y 35 lectores por
+check, además del contacto anterior.
+
+Poner V=p/(1−2p), D=q/(1−2q), ω_dato=1, ω_medida=D/V. Son precios
+relativos en la esquina, con |b_i|≤Vω_i para b_i=z_i/(1+T({i})z_i).
+La suma de ω_j sobre los posibles vecinos j de H₀ para una raíz fija
+queda acotada por
+
+   VV       78898+289·290+17600+(18·578+40)D/V < 180309,
+   CC       78625+288·289+17600+(18·578+40)D/V < 179458,
+   medida   35·578+800+83810D/V                < 21032.
+
+Ahora tomar presupuesto a=10⁻⁵ por fuente y τ₀=0.01 para la cola
+exponencial en el grado total. Escribir s=V exp(a+τ₀) y s_i=sω_i.
+Para un árbol etiquetado t en n vértices y raíz x₁=i, W_i(t) es la suma
+de ∏_{j=2}^n ω_(x_j) sobre las listas ordenadas de sitios distintos
+cuya realización de t esté en H_{ {x₁,…,x_n} }. Denotar por W̄_n(i)
+el promedio sobre los n^(n−2) árboles etiquetados. De (2) se deduce
+
+   Σ_{S∋i, |S|≥2}|k(S)| ∏_{j∈S}s_j
+       ≤ s_i Σ_{n≥2} n^(n−2) (2s)^(n−1) W̄_n(i)/(n−1)!.               (3)
+
+El factorial corrige sólo las ordenaciones de los sitios no fijados.
+Para las realizaciones que usan exclusivamente aristas de H₀, eliminar
+hojas una a una da W_i(t)≤180309^(n−1) en esa parte de la suma. Más
+generalmente, D_* = 182000 satisface 2 exp(1) s D_* < 0.999411.
+La serie de árboles enraizados R(x)=Σ_{n≥1}n^(n−1)xⁿ/n! satisface
+R=xe^R y R(1/exp(1))=1. Si W̄_n(i)≤D_*^(n−1) para todo n, el lado
+derecho de (3) está acotado por [exp(1)−1]s_i. En particular, para los
+árboles íntegramente en H₀ se obtiene <1.736·10⁻⁶ por dato y
+<3.472·10⁻¹¹ por medida en todos los tamaños. Se trata de cargas del
+criterio de convergencia sobre fuentes.
+
+5. Qué falta para cerrar el modelo completo
+==========================================
+
+Sea W̄⁺_n(i) el mismo promedio limitado a los árboles con al menos una
+arista de H_S ajena a H₀. Bastaría demostrar, para cada sitio i, máscara,
+subhost y semilla,
+
+    s_i Σ_{n≥2} n^(n−2) (2s)^(n−1) W̄⁺_n(i)/(n−1)! ≤ 8.25·10⁻⁶.       (4)
+
+Junto con la parte geométrica esto deja la fila de cada fuente por
+debajo de a. Sumando las filas de las fuentes de cada bloque se obtiene
+Kotecký–Preiss para el gas exacto de bloques disjuntos con peso k(S)b^S
+y presupuesto a|S|. Sigue la transferencia a las particiones del proyecto
+con la inclinación τ₀. Otra condición suficiente es W̄_n(i)≤182000^(n−1)
+para los árboles completos. 182000 es un límite de crecimiento ponderado
+en las ubicaciones posibles de las fuentes. Contar cuántas ramas tiene
+un árbol realizado deja por determinar cuántos lugares podrían ocuparlas.
+
+Las aristas de (4) tienen un origen comprobable, un ganador que consume
+varios colores o una coincidencia entre luz terminal y la medida original
+de otro color. Las aristas de un mismo árbol pueden proceder de distintas
+subentradas. El siguiente problema es mayorar la suma de sus ubicaciones
+y precios conservando esa dependencia, incluso si varias fusiones usan
+las mismas fuentes. Para una arista de ganador se puede empezar por los
+checks que aportan los colores y remontar sus episodios de luz hasta las
+fuentes. La elección de un árbol por fusión permite evitar cobrar todos
+los pares de colores de una acción. La suma (4) continúa abierta.
+
+Una comprobación física delimita la ganancia frente al grafo de contactos.
+Tomar dos bloques completos disjuntos con 18 variables y 17 checks cada
+uno, con conjuntos de checks A y B. Intercambiar entre una variable
+del primero y una del segundo tres vecinos a₁,a₂,a₃ y b₁,b₂,b₃. Todos
+los grados se conservan. En una fila física fija, llamar w al dato VV
+asociado a la variable modificada del primer bloque, y v a un dato VV
+de esa fila que conserva la huella A. Poner tres medidas en b₁,b₂,b₃
+en la misma fila.
+Usar subhost pleno, máscara cero y desempate fijo que antepone w a v y
+v a los demás singletons. Con las cuatro fuentes gana w y quedan los
+tres a_j, distintos del conjunto de medidas. Todas las subentradas
+propias pasan. Los múltiples tienen huella ≥33 y la masa inicial ≤20
+cuando hay dato con singleton perfecto disponible. La marca completa
+es cero y su cumulante es −1.
+
+En el grafo de contactos previo v estaba separado de las tres medidas.
+Una sola de ellas, junto con v, no cubre una línea que la use. La única
+línea nueva de ese bloque difiere en tres checks. En la antigua condición
+C_G+log₂ A_m≤4, enlazar las dos componentes ya cuesta al menos 5,
+por lo que el cumulante de componentes de esta entrada quedaba en el
+residuo. En H₀ los cuatro sitios forman un clique por las alineaciones en
+la fila. Su cumulante completo entra en la cuenta ordinaria. El ejemplo
+comprueba que se incorpora una interacción física antes pendiente. Las
+cotas (1)–(4) se han deducido para semillas y cantidades de fuentes
+arbitrarias.
+
+Reproducción
+============
+
+Ejecutar python verificar_H5A_arboles_dependencia.py con Python 3.10 o
+posterior. El programa contrasta con enteros y fracciones el techo, las
+filas de los árboles y la holgura restante. Reconstruye los grados y
+las dieciséis subentradas del testigo, y contrasta el doble conteo por
+contracción en un grafo con ciclos. Las cotas de selección de trazas y
+la reducción uniforme (3) se justifican en el texto.

@@ -1,0 +1,5 @@
+__pycache__/
+*.py[cod]
+*.exe
+/REPRODUCCION_SSF_QEC_*.zip
+/tiras/workspace/T2_1M_MOTOR_ANCLAS_PUNTO_FIJO_20261113/trabajo/**/*.bin

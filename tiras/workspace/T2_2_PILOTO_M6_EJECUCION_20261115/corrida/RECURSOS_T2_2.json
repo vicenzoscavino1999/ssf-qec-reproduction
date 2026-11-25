@@ -1,0 +1,72 @@
+{
+ "etapas": [
+  {
+   "estado": "PASS",
+   "etapa": "preparacion",
+   "segundos": 2.042
+  },
+  {
+   "estado": "PASS",
+   "etapa": "ancla",
+   "segundos": 8607.152
+  },
+  {
+   "estado": "PASS",
+   "etapa": "c_tiempo",
+   "segundos": 0.085
+  },
+  {
+   "estado": "PASS",
+   "etapa": "cadenas",
+   "segundos": 338.966
+  },
+  {
+   "estado": "PASS",
+   "etapa": "estimacion",
+   "segundos": 6.428
+  },
+  {
+   "estado": "NO_EJECUTADO",
+   "etapa": "p_conex",
+   "motivo": "opcional (plan 3.4); no implementado en esta version del codigo; sin efecto en las decisiones"
+  }
+ ],
+ "recursos": {
+  "ancla_llamadas": 180564608,
+  "bytes": 12224066,
+  "c_tiempo_llamadas": 1767,
+  "c_tiempo_pasos": 60000,
+  "cadenas_llamadas": 5237946,
+  "cadenas_pasos": 231600000,
+  "disco_pico": 13367825,
+  "memoria_pico_principal": 87703552,
+  "segundos": 8957.024,
+  "techos": {
+   "ancla": {
+    "llamadas": 300000000,
+    "segundos": 14400.0
+   },
+   "c_tiempo": {
+    "llamadas": 60000,
+    "pasos": 60000,
+    "segundos": 900.0
+   },
+   "cadenas": {
+    "fin_s": 26100.0,
+    "llamadas": 400000000,
+    "pasos": 3000000000
+   },
+   "datos_bytes": 1800000000,
+   "disco_bytes": 2000000000,
+   "estimacion": {
+    "fin_s": 26880.0,
+    "segundos": 900.0
+   },
+   "global_s": 28800.0,
+   "memoria_proceso": 1073741824,
+   "memoria_total": 8589934592,
+   "verificar_s": 1800.0
+  }
+ },
+ "unidad": "T2-2 piloto TIRA_6x6"
+}

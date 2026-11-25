@@ -1,0 +1,379 @@
+HGP binario (3,4) · Primera fusión de grupos distintos antes del contacto
+23 de noviembre de 2026 · Derivación para revisión matemática independiente
+
+Resultado
+=========
+
+Fijado un check de llegada, se pueden sumar las posiciones de originales
+de distintos grupos que confluyen antes de alcanzar la región explorada.
+En una misma reunión un grupo puede entregar varias luces por ramas
+diferentes. Se marca una sola vez el dato cuya franja toca el lector de
+su emisión cercana inicial. Se admiten un número arbitrario de grupos,
+cualquier longitud y anidación de los tramos en serie y en paralelo y
+ciclos de cuatro en la semilla. La clase exacta de dependencias figura
+en §§1 y 3.
+
+Por check y con campo auxiliar h_C=10⁻⁶ para cada marca CC, h_V=0, el
+mayorante de las historias con al menos una ocurrencia lejana cumple
+
+    número de grupos de origen       peso en el mayorante
+    1                                < 0.000520602
+    2                                < 0.000131066
+    3 o más, todos los tamaños       < 0.000042007
+    total                            ≤ 0.0006936732.
+
+El total usa una supersolución racional. Los grados uno y dos se calculan
+como coeficientes de la misma serie, por lo que se pueden descontar para
+acotar la cola. En (h_C,h_V)=(5·10⁻⁷,5·10⁻⁷) el total por check es
+≤0.000944112. Los campos ponderan posiciones de originales marcados.
+El presupuesto 0.00078558 corresponde a otra cantidad, el complemento
+de la fila fenomenológica completa de G3.
+
+1. Registros que se suman
+=========================
+
+Se mantiene el autoproducto de una semilla binaria de peso columna 3
+y peso fila 4, en todo tamaño y subhost admitido. Se usa SSF con todas
+las acciones FGL, β=1/100, máximo global y la prioridad física fija de
+H5A_3_4_reuniones_cortas.txt y H5A_3_4_balance_por_pieza.txt.
+Se usa z=0.0012 como techo de la tasa
+por bit fresco, que incluye θ=0.00115 de la ley auxiliar. En circuito se
+fijan las etiquetas de los datos. Un testimonio fija las posiciones
+marcadas y los pasos necesarios para el encuentro. Se puede olvidar
+el resto de la ejecución. En la clase siguiente cada entrada heredada
+de sus pasos lejanos procede de un predecesor designado, y todas las
+demás entradas son primeros apagados de bits iniciales intactos fuera de
+las franjas de datos. Un bit intacto se consume una sola vez en toda
+la ejecución aun si después se vuelve a encender esa celda.
+
+Cada hoja parte de una emisión cercana en un lector que toca la franja
+de su original marcado. Cada hoja pertenece a un grupo distinto de
+G[originales]. Se puede continuar por una red de dos terminales de v25,
+formada por tramos en serie y bifurcaciones que vuelven a reunirse. Se
+abre también la posibilidad de que un estado doble separe sus dos
+celdas, cada una siga una rama y ambas entreguen sus luces al mismo
+lector de la próxima fusión. Cada rama puede dividirse de nuevo. Sus
+interiores hermanos son disjuntos en ocurrencias. Entre dos divisiones
+abiertas se permiten las redes cerradas de dos terminales de v25.
+
+Una fusión entre grupos es un paso lejano con aportes de al menos dos
+subárboles de orígenes disjuntos. Cada subárbol puede entregar una o
+varias de las entradas al paso. La salida fusionada puede continuar
+con las mismas reglas. Esto incluye aridades hasta seis, el máximo
+número de luces apagadas por un ganador que emite en el catálogo.
+Las posiciones y tiempos de ramas disjuntas pueden intercalarse.
+Esta descripción cubre las fusiones para las que los conjuntos de
+orígenes se incorporan como subárboles disjuntos, conservando las
+bifurcaciones internas de cada uno. Si dos subconjuntos ya mezclados
+comparten parte de sus orígenes sin que uno contenga al otro, tratarlos
+como subárboles disjuntos repetiría el cobro. También queda fuera la
+alimentación mediante emisiones cercanas independientes de un mismo
+grupo. La reducción a una sola emisión inicial por marca forma parte
+de la clase que se cuenta.
+
+2. Sumar un dato de partida una vez
+==================================
+
+Usar los tres tipos de salida de v25, una celda, dos en columna o dos en
+diagonal. Si el conjunto no vacío J de luces heredadas proviene de un
+solo emisor, I(J) cuenta sus estados representados por lector y máscara.
+d_C(J) y d_V(J) cuentan posiciones posibles del original si el emisor
+es la propia emisión cercana exenta.
+
+  J                  I(J)              d_C(J)       d_V(J)
+  una celda          (12,36,72)           189          280
+  pareja en columna  (0,12,0)             135          224
+  pareja diagonal    (0,0,12)              90          128
+  otras formas       (0,0,0)                0            0
+
+Cada check pertenece a doce lectores y un lector que lo contiene permite
+1, 3 o 6 máscaras según el tipo. Para los techos de posiciones, un lector
+es (a,l) con cuatro variables vecinas de a en sus filas y tres checks
+vecinos de l en sus columnas. Un original CC que toca ese lector tiene
+su primera coordenada a distancia ≤2 de a y la segunda vecina de l. Un
+VV tiene la primera vecina de a y la segunda a distancia ≤2 de l.
+
+Con una fila marcada, hay tres checks candidatos a y, para el CC, hasta
+3+3·3·2=21 centros de primera coordenada. Para el VV hay 1+3·3=10.
+Con dos filas distintas y k≤3 vecinos comunes, la unión de los vecinos
+de las filas tiene 6−k checks. Los otros dos vecinos de cada a añaden
+hasta 4k checks. Hay ≤6+3k≤15 opciones CC y ≤2+2k≤8 opciones VV.
+Análogamente con una columna hay ≤9 opciones CC y ≤28 VV. Con dos
+columnas y j≤4 vecinos comunes hay ≤2+j≤6 opciones CC y
+≤8−j+3j≤16 opciones VV. Los productos por ejes dan la tabla. No se
+presupone unicidad de vecino común. En un lector ya fijado hay ≤27
+originales CC y ≤40 VV que pueden tocarlo.
+
+Sea X la supersolución inversa a t=1 de v25, que incluye la red vacía.
+Para un vector W de pesos por estado representado, la masa por check es
+
+                  N(W)=12(W₁+3W₂+6W₃).
+
+Sea s=27h_C+40h_V y d(J)=h_C d_C(J)+h_V d_V(J). Clasificar una red
+no vacía de un solo origen por su primer bloque al salir de la emisión
+cercana. En un primer paso lineal elegir el conjunto real J⊆H de luces
+heredadas. A los otros bits les corresponde z^(|H|−|J|). Para esa J,
+olvidar el lector y la máscara de emisión cercanos y sumar d(J) una
+vez. Para el evento de existencia se han conservado el original, las
+marcas y las exigencias de bits, lo que basta aunque varias emisiones
+cercanas sirvan para las mismas marcas. Si el primer bloque es una
+bifurcación genuina que se cierra, se usa la matriz K_f de bifurcaciones
+de v25, con la posición inicial aún representada, y se paga s. Cualquier
+red cerrada posterior se suma con X. Para un estado de llegada i,
+
+ L_i(d) = Σ_{H,F con salida i} [Σ_{∅≠J⊆H} z^(|H|−|J|) d(J)] / μ(F),
+ S = X [ L(d) + K_f (s,s,s)ᵀ ].                                    (1)
+
+La suma para un tipo i fija una máscara representativa, y se verifica
+la simetría del catálogo. La multiplicidad μ vale 3 en las huellas de
+fila, 4 en las de columna y 1 en las demás. Se utiliza la competición
+física de v19 para recuperar todos los representantes de una franja
+ganadora al sumarlos. El peso de las medidas depende de su huella física.
+Para h_C+h_V>0 se comprueba N(S) < 520.6015 h_C + 774.3966 h_V.
+
+3. Varias ramas de un mismo grupo en un lector
+==============================================
+
+Fijar en H de la fusión el subconjunto no vacío J asignado a un mismo
+subárbol. Desde una celda y de un bifurcador, P(y,J) acota las ramas
+con al menos una nueva ocurrencia que suministran J. Escribir P*(J)
+para el máximo en y. Si la última emisión puede contener J, el término
+sin división abierta se acota por la suma de dos cantidades.
+
+  • Para un paso se toma el menor entre el precio de marcas W(y,J)
+    de v25 y la suma de las columnas admisibles de la primera fila de
+    la matriz lineal hacia delante U.
+  • Para dos pasos o más se suman las columnas admisibles de la primera
+    fila de U(B_f−I), donde B_f es la serie hacia delante de v25.
+
+Aquí I sin argumento es la identidad. Partiendo de una sola celda,
+el primer paso siempre es lineal. Para que se abra una división, el
+tronco no vacío debe acabar en una pareja, de masa total
+σ=(B_f−I)₁₂+(B_f−I)₁₃. Para cada partición no ordenada J=A∪B
+en dos partes disjuntas no vacías, se añade a P(y,J)
+
+  2σ [ 1_{|A|=1} P*(B) + 1_{|B|=1} P*(A) + P*(A)P*(B) ].          (2)
+
+Los dos primeros sumandos admiten una rama directa. Dos ramas directas
+se describen mediante una única emisión que contiene J. El factor 2
+elige las dos celdas de la bifurcación. Al usar (2) se puede olvidar
+la coincidencia de una rama directa con la marca para obtener un techo.
+Para un paso se conservan las igualdades de coordenadas. Las categorías
+para y son las cuatro filas y una fila exterior, y las tres columnas
+y una columna exterior. Todos los P* a la derecha emplean menos marcas.
+
+Sea G(J) el vector inverso de posibles estados de la primera división
+que permanece abierta hacia el lector de llegada, sin pagar la
+ocurrencia que produjo ese estado. G es cero para una marca. Si una
+rama es directa fija x∈J. Por x pasan ≤12 lectores de bifurcación.
+Para un lector y tipo dados sumar P(y,J fuera de {x}) sobre la otra
+celda y. Hay tres posibilidades en columna o seis en diagonal. Como
+en v25, se maximiza la suma sobre coincidencias de filas y columnas
+con el lector final, conservando las multiplicidades exteriores. En
+este caso y puede pertenecer a H, pues otra ocurrencia pudo reencenderla.
+
+Si ambas ramas tienen interior, definir el vector fila
+
+                    V(J) = [ I(J) + G(J) ] (X−I).
+
+Una rama que parte de una sola celda del bifurcador debe ejecutar al
+menos una ocurrencia antes de su emisión terminal o de su primera
+división abierta. Al remontar ese tronco, V permite usar toda la salida
+del bifurcador y amplía el conjunto de opciones. Para una partición
+no ordenada A,B, de nuevo con menos marcas, añadir a G_i(J), i=2,3,
+
+                   2 min{ V_i(A) P*(B), V_i(B) P*(A) }.             (3)
+
+Se remonta primero un brazo para fijar un estado de bifurcación real.
+Elegida la celda para el otro brazo, éste está acotado uniformemente
+desde allí. Ambas orientaciones dan techos al mismo conjunto. (2)–(3)
+terminan por inducción en |J|. Las redondeadas internas se hacen
+hacia arriba con denominador 10¹². El precio resultante para que un
+solo subárbol entregue todas las marcas de J es
+
+           b(J;W) = d(J) + I(J)·W + G(J)·[(s,s,s)ᵀ+W].              (4)
+
+Los tres términos corresponden a una emisión cercana directa, una
+emisión no vacía tras un tronco, y una bifurcación abierta. En el
+último caso el tronco anterior puede empezar directamente en el lector
+cercano o llegar a él tras ocurrencias ya pagadas. En todas las opciones
+el prefijo anterior a una división se paga una sola vez.
+
+4. Fusión y prueba de convergencia
+==================================
+
+Para una máscara terminal fijada, sumar los ganadores (H,F) que la
+emiten. Particionar H en un conjunto fresco de f celdas, que puede
+ser vacío, y a≥2 bloques no vacíos J₁,…,J_a. Cada bloque pertenece a
+un subárbol de orígenes disjuntos. El coste es
+
+             z^f · ∏ b(J_j;W) / μ(F).
+
+La suma define las tres coordenadas de D(W). Las particiones son no
+ordenadas. Tomar sucesivamente la menor celda sin asignar identifica
+una sola vez cada partición y conserva la multiplicidad de formas
+equivalentes. Como control, con n luces la suma de multiplicidades
+antes de filtrar a≥2 es el número de particiones de n+1 elementos,
+donde un elemento adicional distingue las celdas frescas. Al agrupar
+por simetría quedan 21 formas de bloque y 123, 14 y 39 monomios en
+los tres tipos de salida. El catálogo tiene 771 pares ganadores.
+
+La serie por número de grupos es la solución formal sin término
+constante de la recurrencia positiva
+
+                       W = S + X D(W).                              (5)
+
+El último paso que une conjuntos de orígenes lleva los bloques de D.
+La red de dos terminales entre ese paso y la salida se suma con X.
+Cada hijo de la fusión tiene menos grupos que el padre. Los cobros
+producto se aplican primero a los registros físicos con bits frescos
+distintos. Después se sueltan las coincidencias para mayorar las sumas
+de pesos. Esta construcción estima existencia de registros compatibles
+sin suponer independencia de las historias después de condicionar en
+el filtro ni monotonía del SSF. La convergencia para cualquier número
+de grupos se deduce por iteración desde cero bajo una supersolución.
+
+Los coeficientes de grado dos se obtienen con dos bloques exactamente
+y W=S en (4), incluyendo todos los tramos de las dos ramas. Se verifica
+
+  N(W de grado 2) < 131065526 h_C² + 392550876 h_C h_V
+                                     + 293958731 h_V²
+
+cuando al menos un campo es positivo. Para la suma de todos los grados
+el verificador comprueba las tres desigualdades coordenada a coordenada
+S+XD(W⁺)<W⁺ para cada fila de esta tabla.
+
+   (h_C, h_V)          W⁺ en unidades de 10⁻⁶                 N(W⁺)
+   (10⁻⁶, 0)           (4.7793, 1.3620, 8.1568)             .0006936732
+   (2·10⁻⁶, 0)         (15.630, 4.636, 26.365)              .002252736
+   (5·10⁻⁷, 5·10⁻⁷)    (6.514, 1.890, 11.082)               .000944112
+
+La positividad extiende las afirmaciones a los campos menores coordenada
+a coordenada. Para h_C≤10⁻⁶, h_V=0, la masa de grado ≥k es además
+≤.002252736·2^(−k), usando la segunda fila en el campo doble. La cota
+más ajustada para k=3 en la primera página descuenta los dos primeros
+coeficientes calculados antes de redondearlos. En campo nulo la masa
+es cero.
+
+5. Qué llega a la exploración del grupo fijo
+===========================================
+
+Fijar un grupo A completo de G[originales] en un núcleo global conectado
+que contiene otros grupos. Ejecutar la exploración aislada de v24 sobre
+los mismos bits auxiliares y con las etiquetas de A en circuito. Sean
+S_A la unión de franjas iniciales y huellas de esa exploración, y
+Q=N_L[S_A] su conjunto final de consultas. Se obtiene la siguiente
+propiedad hasta el primer contacto.
+
+Si ninguna franja exterior toca Q, recorrer la historia global en orden.
+Asignar a A un paso cuando su huella toca la discrepancia física actual
+X_A de su ejecución aislada y asignar los demás al exterior. Mientras
+ninguna huella asignada al exterior haya tocado Q, los pasos asignados a
+A forman un prefijo de su exploración. En efecto, inicialmente coinciden
+en Q tanto la discrepancia física como el síndrome observado de ambas
+corridas. Las etiquetas intrínsecas de los datos exteriores están en
+sus franjas y los bits auxiliares son comunes. Un paso exterior disjunto
+de Q conserva esas igualdades. Todo rival que toca X_A está en Q,
+porque X_A está en el soporte ya leído, y también toca X_global.
+La regla global compara ese rival con la misma puntuación y la misma
+prioridad física. Cuando el elegido global toca X_A, es por tanto el
+elegido aislado. Pasa la guarda de catálogo. Si una franja de A está
+enteramente encendida, la corrida física aceptada conserva el competidor
+perfecto de esa franja y el ganador no puede emitir. En los cilindros
+auxiliares admisibles de v7 se reproducen los pasos aceptados y todos
+los bits de las franjas y huellas ejecutadas están fijados en su
+soporte global. Esto conserva la guarda aun cuando se han permitido
+otros bits fuera del soporte físico. La inducción también permite que
+X_A ya se haya anulado y los pasos restantes sean exteriores.
+
+Si todas las huellas exteriores permaneciesen disjuntas de Q, la
+discrepancia global final cero implicaría X_A final cero. Los soportes
+de las franjas y huellas asignadas a A y al exterior serían disjuntos,
+y sus originales están separados en G. Esto contradice la definición
+de un único núcleo por contactos de huellas de v4. Por tanto hay al
+menos un contacto exterior. Este argumento localiza un primer encuentro.
+Para emplear (5) con todas las marcas de un árbol, su última fusión
+entre grupos debe haber ocurrido antes del primer contacto que se corta,
+con toda su ascendencia exterior. Si el corte cae dentro de una red de
+dos terminales posterior a esa fusión, seguir el brazo que llega primero
+retiene el ancestro fusionado y con él todos sus orígenes. Cortar una
+rama antes de esa fusión podría perder los demás originales.
+
+En una hoja de la exploración sean Y los unos consultados fuera de las
+franjas de A y T₀=Q unido a las vecindades de los unos de Q fuera de S_A.
+Así |T₀|≤|Q|+89Y. Si un primer contacto apaga una medida ya leída en Q,
+se corta al estado precedente en su vecindad, como en v24. Para cada
+check de T₀ se aplica (5) sólo a registros cuyos bits cobrados están
+fuera de Q. Su ley sigue siendo producto en esa hoja, pues el siguiente
+check consultado está determinado por las respuestas anteriores. Basta
+multiplicar las probabilidades a lo largo de la hoja. Para bits
+uniformes, esta propiedad de una exploración adaptativa aparece en
+Schramm y Steif, Quantitative noise sensitivity and exceptional times
+for percolation, §2.2, p. 629.
+https://annals.math.princeton.edu/wp-content/uploads/annals-v171-n2-p01-p.pdf
+
+La opción directa
+de un original de tipo i, sin recorrido lejano, tiene ≤P₀ⁱ+K_i Y
+posiciones, con K_C=7353 y K_V=11008.
+
+Para varias llegadas compatibles cobrar cada árbol que ya se ha unido
+antes del contacto y cada llegada directa. En el bosque sus conjuntos
+de grupos, ocurrencias y medidas cobradas son disjuntos entre árboles.
+Al olvidar el orden de los árboles aparece el factorial del número de
+árboles. Permitir todas las elecciones da la exponencial de la suma de
+sus pesos. Para h_C=ρ h_C*, h_V=ρ h_V*, 0≤ρ≤1, y g=N(W⁺) de la tabla
+para la esquina marcada *, la positividad da masa ≤ρg por check. La
+función generadora condicional está acotada por
+
+ exp{ρ [h_C* D_C + h_V* D_V + g C
+              + (23454 h_C* + 35120 h_V* + 293 g)Y]}.
+
+Para A con v originales VV y c CC, u=2v+3c, se emplean
+
+  C   = 210v+252c+114u,       |Q|≤ C+204Y,
+  D_C = 16641v+19665c+8748u,  P₀ᶜ ≤ D_C+(7353+8748)Y,
+  D_V = 24832v+29584c+13104u, P₀ⱽ ≤ D_V+(11008+13104)Y.
+
+D_V proviene del mismo recubrimiento por ejes de v24, con radios (4,5)
+para los centros VV. La desigualdad de momento de v24, con λρ en su
+parámetro, da E[serie]≤exp(ρK_A). Basta poner
+r=zλ[1+λ/(2(1−λ/3))] y verificar
+λ−204r ≥23454h_C*+35120h_V*+293g. Entonces
+K_A=h_C* D_C+h_V* D_V+(g+r)C. Los límites son
+
+  Campos máximos (h_C*,h_V*)      λ         K para 1V+3C     K para 2V+2C
+  (10⁻⁶,0)                        .319        <2.713309        <2.522949
+  (5·10⁻⁷,5·10⁻⁷)                 .450        <3.826855        <3.558220.
+
+En la primera fila, por unidad de h_C, las pendientes son <2713309 y
+<2522949. La nota de reuniones cortas daba <2731725 y <2540071 para
+llegadas con un solo origen en cada árbol. La pequeña reducción se debe
+a (1). El nuevo alcance son los árboles con fusiones previas y grupos
+que pueden aportar más de una rama al mismo lector.
+
+6. Estado del objetivo general
+==============================
+
+El certificado global en verificar_H5A_3_4_cola_por_lectores.py da
+p≤5.22·10⁻⁷ a q≤10⁻³ y r_c≤9.75·10⁻⁸ con VV primero, o
+r_c≤8.90·10⁻⁸ con cualquiera de los órdenes admitidos, a r_m≤10⁻³.
+Al volver a ejecutar la fila global, su diagnóstico en G3 con
+(a,s)=(.567,.685) reproduce e Σ c_j L_j > 1.0066463, con requisito
+≤1. La nueva serie termina
+en un encuentro con una exploración fijada. Para
+pasarla a la fila global todavía hay que cubrir dependencias cruzadas
+y asignar las marcas de grupos cuyo primer encuentro se produce antes
+de la fusión relevante o cuya evolución posterior genera otro contacto.
+Por ejemplo, dos emisores dobles podrían enviar un brazo cada uno a dos
+reuniones diferentes que más tarde confluyen. En ese esquema ambas
+reuniones contienen los mismos dos orígenes. Aplicar dos factores de
+(4) al juntarlas pagaría dos veces los datos. Es un ejemplo de la
+dificultad de descomposición, sin presuponer que un ganador físico
+realiza ese esquema. Se requiere además componer los contactos cubiertos
+con los pesos de datos y medidas de la fila. El complemento de G3
+sigue sin una cota certificada ≤0.00078558.
+
+Reproducción con la biblioteca estándar, desde 05_COMPROBACIONES
+
+    python -I -B -X utf8 verificar_H5A_3_4_fusion_de_origenes.py
+    python -I -B -X utf8 verificar_H5A_3_4_cola_por_lectores.py

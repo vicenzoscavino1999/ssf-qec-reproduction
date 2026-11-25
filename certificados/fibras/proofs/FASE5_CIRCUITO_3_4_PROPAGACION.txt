@@ -1,0 +1,243 @@
+Fase 5 · Propagación de fuentes de circuito en el HGP (3,4)
+23 de noviembre de 2026 · Derivación para revisión matemática independiente
+
+1. Resultado y comparación
+
+En el autoproducto de cualquier semilla binaria de peso de columna 3 y peso
+de fila 4, las particiones de circuito filtradas por síndrome físico residual
+cero tienen acceso efectivo uniforme en el rectángulo
+
+            0 ≤ r_c ≤ 4.2·10⁻⁸,             0 ≤ r_m ≤ 10⁻³.             (1)
+
+Rigen la ronda de extracción Z y el sector X de FASE5_CIRCUITO_HGP_3_4.txt,
+§§1–2, las esperas y la lectura especificadas allí, todas las acciones FGL
+con β=1/100, el máximo global normalizado por huella y el desempate físico
+fijo. La afirmación cubre todo tamaño, máscara de carácter y subhost primitivo
+inducido J. La estimación relativa de un fallo silencioso positivo usa además
+el testigo lógico y las hipótesis del teorema circuital del manuscrito.
+
+El extremo anterior era 2.9·10⁻¹⁰ al mismo r_m. El factor ganado es 4200/29,
+aproximadamente 144.83. Frente a la meta intermedia de 10⁻⁸ el factor es 4.2.
+Para llegar a 3.75·10⁻⁷ queda un factor 125/14, aproximadamente 8.93.
+El resultado procede de un recuento de todos los tamaños.
+
+2. Una descomposición exacta de cada CNOT
+
+Escribir a,b para las componentes X de control y blanco del Pauli posterior
+a una CNOT. Los pesos de 00,10,01,11 son 1−4r_c/5, 4r_c/15, 4r_c/15 y
+4r_c/15. Tomar tres bits independientes con probabilidades
+
+       Pr(a=1)=8r_c/15,     Pr(t=1)=4r_c/(15−8r_c),     Pr(u=1)=1/2.
+
+Poner b=t ⊕ (a u). Para a=0 la masa conjunta de 01 es 4r_c/15.
+Para a=1 el bit b es uniforme, de modo que 10 y 11 tienen la misma masa
+4r_c/15. Esto prueba la identidad para toda tasa del intervalo. Enviar
+el bit t a la fibra del check correspondiente. En la fibra del dato quedan
+a y el bit a u. Ambos contribuyen según la respuesta XOR de la ronda. La
+ancilla es el blanco durante toda la extracción, de modo que t invierte
+sólo ese check en el sector X. Esta asignación conserva la ley conjunta
+de la paridad final del dato e_x y de su contribución al síndrome.
+
+Un dato VV tiene nueve esperas y tres CNOT, y un CC ocho esperas y cuatro
+CNOT. Un check tiene cinco oportunidades propias de Pauli X (incluido Y),
+un bit clásico y siete incidencias CNOT. Las fibras así construidas usan
+variables independientes entre sí. Se conserva dentro de cada fibra de dato
+la etiqueta conjunta (e_x,d_x), con d_x⊆ψ_x. Si A contiene las fibras de
+dato de etiqueta distinta de cero, E={x∈A:e_x=1}, y B contiene los checks
+de paridad propia impar, el síndrome observado inicial es H_X E ⊕ D,
+con D=B ⊕ (⊕_{x∈A}d_x).
+
+En J se fijan las ubicaciones primitivas ausentes a su categoría de
+referencia antes de descomponer. Una CNOT ausente aporta cero en ambas
+fibras. Una CNOT presente puede aportar t a un check cuyas ubicaciones de
+ancilla estén todas ausentes. Se incluyen esos checks efectivos y se exige
+que toda acción visitada esté permitida por J. La competición y la primera
+salida siguen siendo las físicas completas. Con η_x(0) y ν_j(0) las masas de
+etiqueta cero, la partición normalizada de fibras se multiplica por
+
+          [∏_x η_x(0) ∏_j ν_j(0)] / ∏_{ℓ primitiva en J} Pr_ℓ(referencia).
+
+Esto resulta de reagrupar, para cada entrada efectiva, su ley conjunta.
+La historia, el filtro y el carácter dependen sólo de esa entrada. Las leyes
+tienen tamaño acotado por los grados y el factor se calcula para cada J.
+
+Sea g_D la suma de las razones de etiquetas no nulas respecto de la etiqueta
+cero en un dato y g_M la razón análoga en un check. Basta pedir que no haya
+ninguna inversión de control ni de espera para que una etiqueta de dato sea
+cero. La espera tiene probabilidad de inversión 2r_c/3, mayor que 8r_c/15.
+Para un check basta que todas las causas de inversión sean cero. Resulta
+
+   g_D ≤ (1−2r_c/3)⁻⁹(1−8r_c/15)⁻³−1,
+   g_M ≤ (1−2r_c/3)⁻⁵(1−r_m)⁻¹[1−4r_c/(15−8r_c)]⁻⁷−1.               (2)
+
+Cada supresión primitiva mejora estos techos. En (1) son <3.192001·10⁻⁷
+y <0.001001220. Caben respectivamente en p₀/(1−2p₀) y q₀/(1−2q₀) para
+p₀=3.2·10⁻⁷ y q₀=10⁻³. Los apartados siguientes justifican que se pueden
+usar las desigualdades de H5A_3_4_propagacion_lejana.txt a esos precios.
+
+3. Historias con etiquetas y suma de las medidas
+
+Usar la descomposición por contactos de checks de H5A_3_4_contacto_de_checks.txt,
+§§1–2. Los originales geométricos son todos los de A, incluso e_x=0. Unir
+sus huellas ψ_x y las huellas φ de las acciones por intersección, añadiendo
+los enlaces entre originales vecinos en G, el grafo de datos lectores.
+Sea S_c la unión de huellas de una componente, B_c=B∩S_c y P el resto de B.
+Los S_c son disjuntos. Dentro de S_c el terminal es D_c=B_c ⊕ (⊕d_x en c).
+Cada núcleo contiene algún x∈A porque un núcleo de sólo pasos comenzaría y
+terminaría en los mismos bits y cada paso reduce estrictamente su peso.
+
+Retirar un núcleo elimina todas sus luces en su S_c. En los demás S el
+estado local y el desempate se conservan al proyectar la historia. Retirar
+un bit de P sólo puede quitar una luz a los competidores. Inversamente,
+intercalar las cabeceras por el orden físico y comprobar cada rival sobre
+todos los núcleos que lee y sobre P recupera la corrida y su parada, como
+en la nota de contactos. La paridad y el carácter se recomponen por XOR.
+Los cocientes de fijación de especies usan la misma herencia y las mismas
+vecindades Q=N_L[S], donde L une checks de un mismo rectángulo generador.
+
+Fijar A y todas sus etiquetas. La historia auxiliar consulta únicamente los
+bits independientes de B. Si la discrepancia física X es no nula, compara
+las acciones que tocan X. En la entrada aceptada el D_c terminal es estable,
+así que toda acción elegible toca X. En X=0 se leen los bits de B en S.
+Se usa J₂ de H5A_3_4_medidas_aisladas.txt, §1. Contiene S y los j de Q que
+ven dos celdas de S o una de su misma fila. Fijar los bits de J₂ como en
+B_c y permitir unos adicionales sin parejas vecinas en Q fuera de J₂
+reproduce esa hoja auxiliar. Toda etiqueta intrínseca está en S. Un rival
+comparado que lea un uno adicional puede ver a lo sumo una celda de S y
+un uno adicional. En huella de tamaño ≥4, dos luces son insuficientes.
+Una huella de tamaño tres ocupa una fila y activaría la condición de J₂.
+Lo que ocurra fuera de Q tampoco altera la hoja. Distintos B_c para las
+mismas etiquetas se distinguen al leer S. Con d=|B_c|, la probabilidad
+auxiliar inferior por hoja sigue siendo
+
+   θ^d (1−θ)^(|J₂|−d) (1−θ²)^[(89/2)(|Q|−|J₂|)].
+
+Así, la integración del peso g_M^d (con las inclinaciones de la prueba)
+cuenta bits de B_c aunque éstos cancelen luces de d_x. Al iniciar las
+coberturas con O_A=∪_{x∈A}ψ_x y B_c, toda luz de una acción está ya
+cubierta por estos sitios o por una acción anterior. Los presupuestos de
+primeros apagados se aplican al verdadero H_X E y al verdadero D_c.
+Resultan las cuatro filas de centros de la nota de contactos, §3, con los
+coeficientes iniciales por A y los incrementos por E, que se pueden
+mayorar por A. También |Q|≤414a_V+536a_C+90d y F(S)≤504a_V+628a_C+99d,
+donde F(S)=|Q|+|J₂|. Las mejoras de F por grupo se verifican en §4.
+Para un A admisible basta una historia testigo para contar sus posiciones.
+Tras fijar las posiciones, los pesos de todas las etiquetas suman a lo
+sumo g_D^|A|. La cota por hojas es uniforme en esas etiquetas.
+
+4. Coste de los grupos que contienen fuentes de paridad cero
+
+Formar los grupos Γ de G[A]. Cada rectángulo cercano toca la franja de
+un solo grupo. Poner Σ_Γ=H_X(E∩Γ), b_Γ=|Σ_Γ fuera de D_c|−|Σ_Γ dentro de D_c|.
+Las distintas Σ_Γ son disjuntas. Si δ=2h−v≥1 es el descenso de un paso,
+el descenso total en pasos cuyos rectángulos evitan O_A es exactamente
+
+          Σ_Γ [b_Γ−Σ_{pasos cercanos a Γ}δ].                           (3)
+
+Para un grupo de un solo marcado x de paridad física uno, aplicar el primer
+contacto del Lema 14 con D_c estable. El primer paso que conmuta una celda de ψ_x tiene
+δ≥b_Γ. Si hay igualdad y es el único paso cercano, su huella es ψ_x, por
+paridad y comparación con el singleton. Forma por sí solo un núcleo simple.
+En los demás casos la contribución de x a (3) es ≤−1. Si x tiene paridad
+cero, su saldo inicial es cero. Si hay un paso cercano, su contribución
+es ≤−1. Si no lo hay, es un núcleo sin pasos con S=ψ_x. En ambos tipos de
+núcleo simple los posibles B_c están en ψ_x y su peso de medidas está
+acotado por (1+y)^|ψ_x|. Así se obtiene el mismo descuento por aislado en
+un núcleo no simple.
+
+Para |Γ|≥2 se pueden reservar en (3) los pasos de sus componentes de
+G[E∩Γ]. Todos quedan en Γ. Un singleton real aporta a lo sumo cero después
+de su primer contacto. Para el recuento a cualquier tamaño se conservan
+7 sextos por VV y 8 por CC sin vecino fuerte, o 10 por los demás CC. Un
+CC sin vecino fuerte en A tampoco lo tiene en E. Añadir vértices de paridad
+cero sólo aumenta esta cota por rangos. La parte entera por grupo vale
+porque su saldo en (3) es entero. Para los descuentos adicionales se
+verifican las siguientes comparaciones exactas.
+
+• Parejas. Con menos de dos datos reales su contribución es ≤0. Con ambos
+  reales valen los techos según solapamiento y multiplicidad de caminos del
+  §3 de la nota de propagación, para cualquier D_c estable. Los precios
+  son crecientes en el saldo tanto para los enlaces como para una raíz lejana.
+• Grupos de tres y cuatro. Todo subconjunto propio tiene a lo sumo una
+  componente real de tamaño ≥2. Sus bloques fuertes refinan la restricción
+  de los bloques fuertes de Γ. Se reproducen el coste heredado K y los 7,
+  8 o 10 sextos por tipo de H5A_3_4_medidas_por_historia.txt, §2.
+  En 47 perfiles y 643 comparaciones, el techo entero del subconjunto
+  queda bajo el de Γ. Entre bloques distintos una pareja VV–VV, mixta o
+  CC–CC cuesta a lo sumo 0, 1 o 0. Dentro de un mismo bloque basta 2.
+  Para la tabla alternativa de tríos se comprueban por separado los 144
+  patrones de tipo y relación por pares. El coste de cada pareja presente
+  es ≤ el techo del trío en cada patrón, antes de sumar posiciones.
+• Hasta seis marcados. Para el límite de j lectores de un rectángulo, el
+  cálculo K(v,c,j) sobre las fuentes reales usa sus anchuras reales. El
+  número de lectores reales nunca excede el de marcados. La cota de saldo
+  inicial s−((3v+4c−s) mod 2) y las transiciones del §4 de la nota de
+  propagación valen aun si los reales están desconectados dentro de Γ.
+  Cuando queda una franja completa, todo ganador previo fue perfecto.
+  Una luz restante que no sea un primer apagado estaba en el D_c estable,
+  pues ningún rectángulo del paso lee otra Γ. Para 0 o 1 real se usa cero
+  como techo del saldo lejano. Se comprueba para todo subconjunto propio
+  (v',c') la desigualdad K(v',c',min(j,v'+c'))≤K(v,c,j) en los 707
+  casos requeridos, tomando los casos de 0 o 1 por la convención anterior.
+• Cobertura. Sea C(v,c) el menor entre 246v+340c y la recurrencia de
+  propagación con coste 138δ−[F(φ)−F(H)], usando hasta v+c lectores.
+  Para 0 reales el incremento es cero. Los 182 pares propios de conteos
+  con 1≤v+c≤6 cumplen C(v',c')≤C(v,c). Por tanto el coste inicial por
+  todas las franjas marcadas más el incremento atribuido a los reales
+  conserva el descuento χ de la nota. Desde siete se usa la cota lineal.
+
+El número T₁ de pasos lejanos está acotado por (3). La unión de rectángulos
+de profundidad ≥j, j≥2, evita O_A, de modo que allí los estados inicial y
+final coinciden. Cada paso de la capa j−1 crea a lo sumo dos luces, y los
+pasos más cercanos evitan esa unión. Se conserva T_j≤2n_{j−1}, con n_{j−1}
+el número de pasos de la capa anterior. Los rectángulos lejanos son
+alcanzables desde las zonas N_L[ψ_x] porque cada ganador toca la discrepancia.
+El anclaje, la poda y las bolas de Tanner de la nota de propagación usan
+estas zonas para todos los de A. Si se exige una raíz lejana y sólo hay un
+grupo de marcados, se conserva la cota de posiciones por profundidad. Los
+grupos de siete a diez usan el redondeo de los sextos y desde once entra
+la cola exponencial de árboles. Se cubren arbitrarios tamaños y distancias.
+
+5. Cierre, reproducción y límite del método
+
+Con §§2–4 se aplican las filas positivas de H5A_3_4_propagacion_lejana.txt,
+§5, a los marcados A. Sus sustracciones eliminan los términos formales sin
+conexión exterior del mismo árbol congelado. Los grupos y la presencia de
+esa conexión se definen por A. La cota (2) permite usar los radios de esa
+prueba con α=.001 e inclinación .015. La fila completa es <.00058067 en
+un presupuesto de .001. Los cocientes de medidas pasivas y activas son
+<.995746 y <.999901. El mayor cociente de la supersolución es <.99999981.
+Los restos desde once datos por raíz VV y CC son <8.844·10⁻¹¹ y <5.403·10⁻¹⁰.
+Todas las desigualdades se evalúan con fracciones. La monotonía de (2)
+extiende el cierre a todo (1).
+
+La retirada de especies da norma del logaritmo en los radios inclinados
+≤n+m_X, contando sitios efectivos de datos y de checks. Tras grado total k
+de fibras con multiplicidad, la cola es ≤(n+m_X)exp[−.015(k+1)]. Para
+evaluar coeficientes se aplica el oráculo en el host efectivo, con las leyes
+calculadas según el J primitivo y las acciones permitidas en ese J. Las
+etiquetas tienen soporte en la franja del dato y el soporte proyectado de
+cada término de grado k tiene ≤7k sitios como en la primera nota circuital.
+El factor explícito de §2 devuelve la partición primitiva solicitada.
+
+En r_c=3.75·10⁻⁷, una fibra VV completa tiene probabilidad exacta de paridad
+X impar [1−(1−4r_c/3)⁹(1−16r_c/15)³]/2 = 2.84999256…·10⁻⁶. La suma de
+las razones de todas las etiquetas no nulas es al menos el
+cociente entre esa probabilidad y su complemento. Es >7.59 veces el precio
+p/(1−2p) en el mejor p fenomenológico actual, p=3.75·10⁻⁷. Por tanto una
+comparación que carga cada fibra completa a ese único precio por dato
+no alcanza la igualdad r_c=p con ese testigo. Sigue abierta la región
+circuital a esa tasa. La observación cuantifica la pérdida de esa comparación.
+
+Reproducir desde 05_COMPROBACIONES con Python 3.10 o posterior
+
+    python -I -B -X utf8 verificar_FASE5_circuito_propagacion.py
+
+La primera línea de recuentos verifica las restricciones propias de las
+etiquetas. Las siguientes reconstruyen la supersolución de referencia y
+las últimas dan los pesos circuitales y la paridad en la meta.
+
+Antecedente de las acciones SSF de la ronda. O. Fawzi, A. Grospellier y
+A. Leverrier, Constant overhead quantum fault-tolerance with quantum
+expander codes. https://arxiv.org/abs/1808.03821
+

@@ -1,0 +1,249 @@
+H5-A · Síndrome efectivo y correcciones compartidas en HGP (3,4)
+22 de noviembre de 2026
+
+Para el producto de una semilla binaria de peso de columna 3 y peso de fila 4
+consigo misma, se deriva acceso uniforme a las particiones filtradas en
+
+                    0 ≤ p ≤ 3.25·10⁻⁷,       0 ≤ q ≤ 10⁻³.             (1)
+
+El anterior extremo de datos era 3.2·10⁻⁷. La mejora es 65/64. En el
+objetivo G3, p=10⁻⁶ y q=10⁻³, queda acotada una parte de la fila que
+admite cualquier número y tamaño de grupos. Su valor es <0.001992 frente
+a un presupuesto de 0.004. La condición geométrica de inclusión figura
+en (6). La suma complementaria continúa abierta. La aritmética se ha
+reproducido y queda pendiente revisión matemática independiente.
+
+Rigen las hipótesis de H5A_3_4_propagacion_lejana.txt. Una ronda Bernoulli
+independiente, todos los candidatos SSF/FGL del manuscrito, β=1/100,
+máximo global del descenso por tamaño de la huella y desempate físico
+fijo. El filtro exige síndrome físico residual cero. La semilla, su tamaño,
+la máscara y el subhost físico inducido J son arbitrarios. J restringe los
+soportes admitidos en la partición. El oráculo conserva la competición
+física completa, incluida una posible primera salida. Para precisión
+relativa sobre un fallo silencioso positivo se requieren además el
+testigo lógico y las demás hipótesis del Teorema 1 del manuscrito.
+
+1. El saldo de cada componente del síndrome efectivo
+=====================================================
+
+Trabajar en una historia aceptada de un núcleo. D es su conjunto de
+errores activos de medida, estable al acabar. El observado inicial es
+(H_X E)△D y el terminal es D. En el grafo de datos G del manuscrito,
+sea A una componente de G[E] y sea Σ_A=H_X A la diferencia simétrica
+de las huellas de sus datos. Un rectángulo físico de generador P mide
+4×3 celdas. En el grafo de checks L, dos celdas distintas son vecinas
+si están en un mismo P. Descomponer Σ_A en las componentes C de
+L[Σ_A]. Un rectángulo que toca C no puede tocar otro C de la misma A,
+por la arista de L que las uniría. Tampoco puede tocar Σ de otra A,
+pues los datos originales correspondientes serían adyacentes en G.
+
+Poner t=|C∩D|, s_C=|C| y U₀=C fuera de D. Las celdas de U₀ empiezan
+encendidas y acaban apagadas. Apuntar, para cada una, la primera vez que
+se apaga. Sea δ=2h−v el descenso de un paso que conmuta una huella de
+v checks entre los cuales h están encendidos. Sumar δ sobre los pasos que
+apagan por primera vez alguna celda de U₀. Cada uno es cercano en el sentido
+de la nota de propagación y se carga a un único C. Definir el saldo firmado
+
+          b_C = s_C−2t − Σ_{pasos con primer apagado en C} δ.           (2)
+
+El descenso inicial menos el terminal se reparte exactamente en s_C−2t.
+Por telescopía, una cota de b_C para cada C da una cota de lo que A puede
+aportar al total de pasos lejanos. Un aislado de G se trata por el primer
+contacto del Lema 14 como en la nota anterior. En un núcleo no simple ese
+aislado consume una unidad. Un paso lejano cuesta al menos una unidad. El
+saldo es una contribución al presupuesto común de toda la historia.
+
+Sea f el número de primeros apagados asignados a un paso. Los 771 ganadores
+locales del §1 de H5A_3_4_contacto_de_checks.txt cumplen f≤h≤3δ. Como
+Σ f=s_C−t,
+
+             3 b_C = 2s_C−5t−Σ(3δ−f) ≤ 2s_C.                          (3)
+
+La desigualdad vale para cualquier C y para toda cantidad de datos.
+
+2. Todas las correcciones locales compiten con el grupo
+=======================================================
+
+Supongamos que C cabe en un generador P₀. Sus cuatro filas y tres
+columnas son las huellas de sus siete datos físicos. Para cada subconjunto
+F de estos datos, su huella ψ es la diferencia simétrica de las franjas
+seleccionadas. Con la condición FGL 2|ψ|≥3|F| y ψ no vacía, los
+101 subconjuntos admisibles dan 63 huellas distintas. Para los primeros
+apagados aún pendientes en U⊆U₀, definir
+
+                  ρ(U)=máx_ψ |ψ∩U|/|ψ|.
+
+Antes de un paso que registra primeros apagados, todo U sigue encendido.
+Por máximo global, el ganador cumple h/v≥ρ(U). Si el rival no alcanza
+la elegibilidad con sus luces reales, todo ganador elegible lo supera
+igualmente. Para cada conjunto no vacío a⊆U que se apaga por primera vez
+en el paso, éste admite la siguiente representación en las 12 celdas.
+
+Identificar las coordenadas de filas y columnas que comparten el
+rectángulo del paso y P₀. Extender esas dos identificaciones parciales
+a biyecciones de cuatro filas y tres columnas. La imagen de las luces
+H del ganador contiene a. La extensión permite coincidencias adicionales
+y conserva la lista de candidatos y los 771 pares locales (H,φ),
+incluidos los empates. Así admitimos todo paso físico posible.
+
+Si ρ(U)=1, toda una huella candidata está en U y ha permanecido
+encendida desde el comienzo. Por ello los ganadores anteriores y el
+actual son perfectos y sólo apagan luces. Cualquier celda de H que
+inicialmente estaba en Σ fuera de D pertenece a este mismo C y se apaga
+por primera vez en el paso actual. Por tanto H fuera de a está en D.
+El D terminal es estable en ese rectángulo, y cada subconjunto de D
+también lo es, por monotonía de los puntajes. Esta condición se conserva
+tras reetiquetar filas y columnas.
+
+Sea c(r,a) el menor δ entre los ganadores con a⊆H, h/v≥r y, cuando
+r=1, H fuera de a estable. Un mínimo vacío vale infinito. Se obtienen
+
+   l(∅)=0,   l(U)=mín_{∅≠a⊆U} [c(ρ(U),a)+l(U fuera de a)],
+   K(C)=máx(0, máx_{U⊆C, C fuera de U estable} [2|U|−|C|−l(U)]).     (4)
+
+Al ordenar los pasos que registran primeros apagados, la recurrencia
+subestima la suma de sus descensos. En particular b_C≤K(C).
+El verificador de esta nota recorre las 4096 máscaras sin hipótesis sobre
+el resto del código. Da 208 máscaras con techo 0, 2274 con techo 1 y
+1614 con techo 2. Las 63 huellas de acción tienen techo 0. Estos números
+son techos garantizados. El cálculo local es el mismo en cualquier
+semilla y tamaño.
+
+En particular VV(i,j) y CC(r,c) que comparten un check satisfacen
+i∈N(r), c∈N(j). Ambos son datos del generador físico P=(r,j).
+El check común se cancela en Σ_A, que tiene cinco checks y es la
+huella de una acción admisible. Si A consta de esta pareja, su saldo
+es ≤0, aun si hay errores de medida o ramas de otros grupos. Se usó
+la candidatura de la corrección conjunta, sin exigir que gane. Otro
+ejemplo son tres datos VV que ocupan tres filas del mismo generador.
+Su síndrome tiene nueve checks y techo cero.
+
+3. Un descuento que también vale en síndromes extendidos
+========================================================
+
+Para cualquier parche no vacío B⊆C∩P₀, definir lₑ por la recurrencia
+de l, usando como coste para a el mínimo de 3δ−h entre ganadores con
+a⊆H y h/v≥ρ(U). Se omite la condición de estabilidad de H fuera de a,
+ya que el paso puede apagar otros checks de C fuera de B. Poner
+
+             g(B)=mín_{U⊆B} [5(|B|−|U|)+lₑ(U)].
+
+Para cualquier historia, el término 5t de (3) contiene el aporte de los
+checks de D en B. De los pasos con primeros apagados en B, cada uno
+aporta al menos 3δ−h al descuento de (3). La recurrencia da un descuento
+certificado de al menos g(B). Los valores calculados para una fila, una
+columna y la cruz de cinco checks de una pareja son 6, 8 y 9.
+
+Se pueden usar varios parches B_j con pesos λ_j≥0. En cada check, la
+suma de pesos de los parches que lo contienen debe ser ≤1. En cada
+rectángulo físico, la suma de pesos de los parches que toca debe ser ≤1.
+Con estas dos condiciones cada check de D y cada paso se cobran a lo
+sumo una vez. Así 3 b_C≤2|C|−Σ_j λ_j g(B_j). Es válido tomar un solo
+parche de peso uno, varios separados, o ninguno. Sea κ(A) la suma sobre
+los C del siguiente techo entero de (2)
+
+   mín { K(C) si C cabe en un P,
+         máx(0, ⌊(2|C|−máx_{λ} Σ_j λ_j g(B_j))/3⌋) }.                 (5)
+
+El primer término se omite si ningún P contiene C. El segundo máximo
+se toma sobre los parches y pesos admisibles en el host finito. Un
+certificado con cualesquiera pesos factibles basta para comprobar la
+inclusión en (6). Para Σ_A vacío se toma κ(A)=0. Esta cantidad depende
+sólo de los datos y la geometría del host.
+
+4. Una parte de la fila a todos los órdenes en G3
+=================================================
+
+Llamar admisible, sólo para esta suma parcial, al conjunto E para el cual
+cada componente A de G[E] cumple
+
+              |A|≤2     o bien     κ(A)≤⌊2|A|/3⌋.                      (6)
+
+La condición admite toda pareja, todas las componentes con |Σ_A|≤|A|
+por (3), y toda componente con su síndrome en un solo P por (4) si
+|A|≥3. Se permiten cualquier número de componentes, todos los tamaños
+y separaciones que satisfagan (6), y todas las medidas de la expansión.
+
+La norma y las marcas son las de H5A_3_4_fondo_pasivo.txt, §4. En cada
+núcleo introducir una variable t_A por componente original. Poner t_A=0
+para las que incumplen (6). Entre núcleos compatibles no hay aristas G
+entre sus datos originales. En el logaritmo, el coeficiente sin repetición
+de marcas distintas y compatibles de un E admitido sigue siendo el
+cumulante integrado original d(E) multiplicado por z^|E|. Esto vale
+formalmente, porque anular las demás variables conserva ese coeficiente.
+El fondo de sólo medidas se conserva. Por tanto la fijación en un dato
+v acota la suma parcial de los módulos originales en la misma norma
+que se necesita para completar G3.
+
+Se usan α=.004, η=.0001, b=.00118, Y=1/50 y s=.9 del método por
+profundidad. Sus pesos por enlace tienen u=Y/s², ρ_geom=Ys y
+36ρ_geom<1. N=((640,441),(784,513)) es el mayorante de vecinos de
+datos de los tipos VV y CC. Por el ejemplo mixto de §2, en las filas
+de pares del §3 de la nota anterior los términos 9 f(2) en VV→CC
+y 16 f(2) en CC→VV pasan a 9 f(0) y 16 f(0), respectivamente. Los
+otros sumandos conservan sus valores. Los dos precios usados son
+f(k)=Y^(−k) y f(k) de la marca física de propagación, con f(0)=0 para
+esta última. Se conservan los descuentos por guardas χ de los grupos de
+uno y dos datos. Los ahorros brutos son 108 y 64 para aislados de ambos
+tipos, y 12,118,74 para VV–VV, VV–CC y CC–CC.
+
+Para n≥3, (6) permite asignar a todo grupo admitido el coste entero
+k=⌊2n/3⌋ con multiplicidad mayorada por todos los árboles enraizados
+C_i(z)=z_i exp((N C)_i). Cada registro geométrico de la subclase cabe
+en este mayorante coeficiente a coeficiente. Se emplean f(k), con el
+precio ordinario o el físico, en los grados tres a diez. Para el resto
+ordinario usar c=13.58, pues c³≥Y⁻² y Y^(−⌊2n/3⌋)≤c^n. Para pesos
+congelados w, si d_i≥cw_i exp((Nd)_i), la cola desde once queda acotada
+por cw_i exp((Nd)_i) menos los primeros diez grados exactos de C_i(cw).
+Las marcas físicas para el resto siguen en el recuento general con
+enlace distinguido. Se conservan las sustracciones y los núcleos simples
+del §5 de la nota anterior. La fijación pasiva sigue incluyendo todos
+los errores de medición.
+
+Con x(r)=r exp(.015)/(1−2r), z=x(p)exp(α), y=x(q), en G3 se obtiene,
+para todo dato de anclaje v,
+
+        Σ_{E∩N_G[v]≠∅, E cumple (6)} z^|E| ||d(E)||_y
+                       ≤ R < .001992 < .004.                           (7)
+
+El verificador da R=0.0019915646772… para el mayorante. Las dos colas
+ordinarias desde once, VV y CC, son <3.30·10⁻¹³ y <5.00·10⁻¹³.
+Queda presupuesto suficiente si se demuestra que la contribución
+complementaria a esta misma fila y con este mismo α es ≤0.002008. El
+complemento comprende los E con alguna componente A de tres o más datos
+para la que (5) supera ⌊2|A|/3⌋. Necesariamente |Σ_A|>|A| y Σ_A
+rebasa un único generador. Las ramas e interacciones de esas componentes
+con cualquier otra siguen dentro del problema pendiente.
+
+5. Extremo general y comparación con la obstrucción previa
+===========================================================
+
+Para (1), sustituir las dos clases de pares mixtos en las filas completas
+del §5 de H5A_3_4_propagacion_lejana.txt. Los grupos de tres o más datos
+conservan sus cotas generales anteriores, incluidas las dos ecuaciones
+de cola débil y fuerte. El cálculo completo usa a=.5488178589126,
+Y=a⁶, s=.86, b=.001155, α=.001, η=.0001. La fila uniforme en (1)
+es ≤0.000588779518 <0.000589. Los restos desde once datos por raíz son
+<9.95·10⁻¹¹ y <6.08·10⁻¹⁰. La monotonía de la norma en las actividades
+extiende la esquina a todo (1). Se heredan el control de la cola del
+logaritmo N_sitios exp[−.015(m+1)] y la construcción de coeficientes
+del apéndice A.
+
+En G3, el §6 de la nota anterior usaba m_i≥p exp(qΓ_i), Γ=(504,628),
+los términos de grados uno y dos, y las filas a granel débil y fuerte.
+Con los costes de pares de entonces ese subsistema necesario conducía
+a una contradicción en 33 iteraciones inferiores. Con los nuevos costes,
+mantener a,s,χ y tomar exactamente la cota mínima de m en ese subsistema.
+El verificador presenta una supersolución racional usando una envolvente
+superior de m. Sus seis cocientes son <0.998004 y e_C<0.00172. Esto
+elimina la obstrucción específica de las 33 iteraciones. La verificación
+de toda la fila en G3 se limita por ahora a (7).
+
+Reproducción con Python 3.10 o posterior, desde 05_COMPROBACIONES
+
+    python -I -B -X utf8 verificar_H5A_3_4_sindrome_efectivo.py
+
+El programa recorre las máscaras y los ganadores con enteros, forma los
+coeficientes con fracciones y evalúa todas las condiciones del certificado
+con cotas superiores racionales de las exponenciales. Los decimales
+impresos son informativos. Las desigualdades del verificador son exactas.

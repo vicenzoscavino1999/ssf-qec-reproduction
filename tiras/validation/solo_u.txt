@@ -1,0 +1,2 @@
+VERIFICACION SIN DP: 48 celdas y cortes; fallos: ninguno
+PACKAGING GUARD PASS: original workspace blocked; no producer/decoder/DP entry; no writes

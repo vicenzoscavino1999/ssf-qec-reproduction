@@ -1,0 +1,164 @@
+H6 — UNIDAD 3: ESTIMADOR CON CERTIFICADO FINITO POR COMPONENTES EN EL CIRCUITO (G3)
+12/11/2026 (Lima). Sesion Claude abierta por el usuario. Plan fijado antes de
+escribir el estimador (PLAN_UNIDAD.txt), con las cuatro condiciones del
+dictamen del revisor sobre las unidades 1 y 2. Entrega sin contraste del
+revisor. Manuscrito no modificado.
+
+SITUACION EN UNA FRASE
+Unidad terminada con resultado positivo en su alcance: un procedimiento
+basado en componentes produjo, sin leer ninguna referencia, intervalos
+certificados de P_0, P_sil y Q_sil para el circuito de la unidad 2; la
+estimacion se sello y solo despues se contrasto. Los valores exactos estan
+dentro de todos los intervalos y el valor informado cumple el objetivo del
+10 %. H6 sigue PARCIAL: faltan G2 (ruido fenomenologico mixto) y G4.
+
+1. QUE SE EJECUTO Y QUE NO
+Forma de V3 declarada: (a) certificado finito propio, basado en
+componentes. NO se ejecuto el algoritmo general del teorema principal
+(desarrollo truncado de particiones, test de sesgo pequeno, menorante).
+Instancia: la de la unidad 2, sin cambios (PATH25, una ronda, ocho
+ubicaciones ruidosas, 524288 asignaciones; e=1/100 y e=1/1000 de lectura).
+
+2. EL PROCEDIMIENTO (el del plan, sin cambios)
+Catalogo C_k: para cada conjunto S de a lo sumo k ubicaciones ruidosas y
+cada eleccion de categorias no base (agrupadas por respuesta), se ejecuta
+el decoder sobre esa historia sola, al vuelo y solo sobre los candidatos
+que leen el sindrome; si el soporte es conexo en el host primitivo, es un
+polimero y aporta a W_0, W_T y W_{T,u}. Cobertura completa hasta k fuentes
+por construccion.
+Gas truncado: suma sobre familias compatibles de polimeros de C_k.
+Certificado: masa omitida exacta eps_k = 1 - B_c*Xi_0^(k), y
+  P_0 en [B_c*Xi_T^(k), + eps_k], P_sil en [B_c(Xi_T^(k)-Xi_{T,u}^(k))/2, + eps_k],
+  Q_sil en [a/(b+eps_k), (a+eps_k)/(b+eps_k)], con a, b los extremos inferiores.
+Valor informado 2LU/(L+U); regla de parada: el menor k con L>0 y error
+garantizado de P_sil <= 1/10.
+El certificado descansa en la Proposicion de recomposicion primitiva del
+apendice C, en la completitud del catalogo y en aritmetica exacta.
+
+3. CONDICIONES DEL REVISOR Y COMO SE CUMPLEN
+- Catalogo por procedimiento propio: estimador_h6_u3.py es autonomo; no
+  importa codigo de la unidad 2, no lee sus resultados ni la tabla congelada
+  del piloto y no usa ninguna tabla de los 4096 sindromes. No recorre las
+  historias completas: en k=2 ejecuta 158 historias locales.
+- Cobertura o cota de lo omitido: cobertura completa hasta k fuentes y masa
+  omitida exacta eps_k, calculada por el propio estimador; control interno
+  eps_k <= cola binomial exacta.
+- Estimacion antes de la referencia: dos programas y dos procesos. La
+  estimacion se escribio y se sello a las 14:39:51 (SHA-256 34965883...);
+  el contraste comprueba el sello, calcula la referencia y solo entonces
+  abre la estimacion. Su resultado es de las 14:40:04.
+- Recursos medidos: seccion 6.
+
+4. RESULTADO (e = 1/100; estimacion informada, k* = 2)
+            intervalo certificado            valor      error      error   exacto
+                                             informado  garantiz.  real
+ P_0    [0.9813236356, 0.9813546016]   0.9813391183  1.58e-5   1.61e-6  0.9813375354
+ P_sil  [1.449261e-4, 1.758922e-4]     1.589147e-4   9.652 %   7.804 %  1.474106e-4
+ Q_sil  [1.476797e-4, 1.792340e-4]     1.619340e-4   9.652 %   7.802 %  1.502140e-4
+Masa omitida eps_2 = 3.0966e-5. Catalogo: 72 polimeros; 625 familias.
+En e = 1/1000, tambien k* = 2: error garantizado de P_sil 1.049 %, real
+0.878 %.
+Tabla completa de P_sil en e = 1/100:
+  k  hist. locales  polimeros  familias     eps_k     error garantiz.  error real
+  1        18           16         70     1.848e-3    sin garantia (L=0)
+  2       158           72        625     3.097e-5    9.652e-2       7.804e-2
+  3       774          233       1540     4.734e-7    1.604e-3       1.249e-3
+  4      2454          689       2176     5.242e-9    1.778e-5       1.388e-5
+  5      5366         1549       3036     3.521e-11   1.194e-7       9.622e-8
+  6      8502         2407       3894     1.282e-13   4.349e-10      3.647e-10
+  7     10422         2815       4302     1.990e-16   6.750e-13      5.898e-13
+  8     10934         2887       4374     0           0              0
+Las fracciones exactas estan en ESTIMACION_H6_U3.json.
+
+5. CONTROLES (estimador 27, contraste 12; cero fallos)
+Predicciones del plan, cumplidas: N1 historias locales acumuladas 18, 158,
+774, 2454, 5366, 8502, 10422, 10934; N2 en k=8, 2887 polimeros, 4374
+familias y eps_8=0 exacto; N3 P_sil^(1)=0.
+Criterios, cumplidos: E1 los valores exactos estan dentro de los intervalos
+de las tres cantidades para todo k y las dos tasas; E2 en k=8 hay igualdad
+exacta con la referencia; E3 el error real nunca supera el garantizado; E4
+L_k no decrece y eps_k no crece; E5 la estimacion informada cumple el 10 %.
+Referencia: propagacion literal de las 524288 asignaciones con las funciones
+del verificador sellado de la unidad 2; sus recuentos por tipo son los
+guardados en RESULTADO_H6_U2.json.
+La estimacion a mano del plan (k*=2; eps_2 del orden de 2e-5) se cumplio en
+orden de magnitud; no era criterio de exito.
+
+6. RECURSOS MEDIDOS, PARA G4 (los tiempos no son deterministas ni resultado)
+                               estimador k=2   estimador k=8   referencia global
+ historias decodificadas            158           10934           524288
+ sindromes distintos evaluados       47             128             4096 (tabla)
+ evaluaciones de score             1850            6784           421888 (tabla)
+ puertas CNOT propagadas              0               0         22020096
+ pruebas de conexidad               158           10934                -
+ familias sumadas                   625            4374                -
+ pruebas de compatibilidad        14183         6533439                -
+ bits del mayor racional            114             202                -
+ tiempo de reloj (s)             ~0.008           ~0.37      ~1.45 + 0.08 prep.
+ pico de memoria del proceso      22 MiB (toda la tabla)        23 MiB
+Preparacion del estimador: 103 candidatos, 210 entradas de listas inversas,
+388 aristas del host K, calendario de 5 capas; menos de 1 ms.
+Lectura, sin extrapolar: a precision del 10 % el estimador decodifica 158
+historias locales frente a las 10934 de la enumeracion exacta por clases
+(k=8) y las 524288 de la referencia por asignaciones. En k grande el coste
+lo domina la suma del gas (pruebas de compatibilidad), no el decoder. La
+memoria es practicamente la del interprete en los dos procesos.
+
+7. LIMITES
+- La instancia es minuscula: la referencia exacta cuesta un segundo y medio.
+  Ninguna ventaja de coste de aqui se extrapola a tamanos mayores. Esto no
+  es la comparacion G4.
+- El objetivo del 10 % se cumple en k=2 con poco margen en e=1/100 (9.65 %).
+- La cota superior es gruesa: eps_k acota TODA la masa omitida, no solo la
+  silenciosa. Por eso el valor informado queda por encima del exacto y el
+  error real (7.8 %) esta cerca del garantizado.
+- El certificado es valido bajo la Proposicion del apendice C. La unidad 2
+  la contrasto en esta instancia; aqui no se vuelve a probar.
+- La sesion conocia el valor exacto por la unidad 2 antes de escribir el
+  estimador. El procedimiento no lo usa y el diseno quedo fijado en el plan
+  antes de ejecutar, pero la independencia es del procedimiento y del
+  codigo, no del conocimiento del autor.
+- Estimador y referencia son de la misma sesion. El estimador no comparte
+  codigo con la unidad 2; la referencia si usa sus funciones.
+- Mismo alcance que la unidad 2: 8 de 217 ubicaciones ruidosas, una ronda,
+  semilla no regular, como mucho dos componentes. P_0, P_sil y Q_sil son de
+  esta subfamilia, no tasas del codigo.
+- No se repitieron las ejecuciones completas: el plan fijaba una de cada
+  programa. No hay contraste del revisor.
+
+8. DESVIACIONES Y RECURSOS DE LA UNIDAD
+- Una prueba parcial de depuracion del estimador con k<=2, prevista en el
+  plan; se conserva. El estimador no se modifico despues de ella.
+- Una ejecucion completa del estimador y una del contraste, sin reintentos y
+  sin cambios de codigo entre ambas. Ninguna desviacion del plan.
+- SHA-256: estimador 6b6812fb...; contraste e3205070...; estimacion sellada
+  34965883... (completos en HASHES.sha256.txt y en el sello).
+- Cero censos, muestreos, agentes e instalaciones; nada sobre F17.
+  Manuscrito, PDF y ZIP intactos.
+
+9. EFECTO SOBRE LA MATRIZ, CUELLO Y DECISION
+G3 queda cubierta en su alcance: V2.2 y V3 (forma a) en el contrato
+circuital tienen su primera estimacion certificada contrastada. Sin efecto
+sobre garantias generales, tasas, regiones o coste asintotico.
+Lo que falta para cerrar H6: G2, la misma validacion con ruido
+fenomenologico mixto (q>0); y G4, la comparacion de recursos, para la que
+esta unidad ya deja las mediciones del contrato circuital.
+Clasificacion: UNIDAD COMPLETADA CON RESULTADO POSITIVO EN SU ALCANCE. H6
+sigue PARCIAL. Esta sesion no marca nada como cerrado.
+Siguiente unidad propuesta, segun el orden del dictamen: G2 en PATH25 con
+ruido de datos y de medicion, mismo procedimiento. No se inicia aqui.
+El complemento del algoritmo del teorema en HGP5 sigue sin evaluar: antes
+hay que calcular su coste.
+
+10. ARCHIVOS (en esta carpeta)
+PLAN_UNIDAD.txt, estimador_h6_u3.py, contrastar_h6_u3.py,
+ESTIMACION_H6_U3.json, SELLO_ESTIMACION.json, RESULTADO_H6_U3.json,
+RECURSOS_ESTIMADOR.json y RECURSOS_CONTRASTE.json (no deterministas),
+SALIDA_ESTIMADOR.txt, SALIDA_CONTRASTE.txt,
+PRUEBA_PARCIAL_ESTIMADOR_K2.json, INFORME_U3.txt.
+Uso:
+ python -I -B estimador_h6_u3.py --output <nuevo.json> --sello <nuevo.json> --recursos <nuevo.json>
+ python -I -B contrastar_h6_u3.py --estimacion <json> --sello <json> --recursos-estimador <json>
+        --output <nuevo.json> --recursos <nuevo.json>
+Dictamen que fija las condiciones:
+ ../H6_DICTAMEN_REVISOR_U1_U2_20261112/DICTAMEN_REVISOR.txt

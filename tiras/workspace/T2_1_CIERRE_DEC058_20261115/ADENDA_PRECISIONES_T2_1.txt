@@ -1,0 +1,53 @@
+ADENDA DE PRECISIONES A LA ENTREGA DE T2-1
+15/11/2026, America/Lima. Ejecutor.
+
+Origen: T2_1_REVISION_RECEPCION_C2_20261115/
+DICTAMEN_RECEPCION_C2_Y_CIERRE.txt (sha256 39abe74b...), secciones 1
+y 2. Esta adenda no modifica la evidencia congelada, los informes, los
+manifiestos ni el plan sellado: solo precisa como se presentan. Los
+valores citados se leen de RESULTADO_T2_1.json (sha256 9769c76e...).
+
+1. NUMERO DE HASHES DE LA CORRIDA 2
+- HASHES_C2.sha256.txt contiene 11 entradas. La carpeta tiene 12
+  archivos si se cuenta el propio manifiesto. En la respuesta al
+  usuario del 15/11/2026 se escribio "12 entradas"; la cifra correcta
+  es 11. No falta ningun archivo del resultado.
+- Para la corrida 1, HASHES_C1.sha256.txt contiene 14 entradas (15
+  archivos con el manifiesto), como ya se dijo.
+
+2. REDONDEO DE COTAS PORCENTUALES
+Valores guardados de e_comp(4) = (h - ell)/(h + ell):
+- Maximo de las 16 celdas que cumplen A4 (m = 48, r_c = 1e-5,
+  r_m = r_c): 1.2206191225 %. Se escribe "aproximadamente 1.22 %" o
+  "<= 1.221 %". INFORME_T2_1_C2.txt da "1.2206 %" como aproximacion,
+  sin simbolo de cota.
+- Maximo en la corrida 1 (m = 24, r_c = 1e-5, r_m = r_c):
+  1.1337210325 %. Se escribe "aproximadamente 1.13 %" o "<= 1.134 %".
+  La respuesta al usuario de la corrida 1 decia "<= 1.1 %", que no es
+  una cota literal.
+- Fila r_c = 1e-6, r_m = r_c: m = 24, 0.0113979 %; m = 48,
+  0.0121767 %. La respuesta al usuario del 15/11/2026 decia
+  "<= 0.011 %" y "<= 0.012 %", algo por debajo de los valores. Se
+  escribe "<= 0.0114 %" y "<= 0.0122 %", o aproximaciones sin cota.
+Ninguna de estas precisiones cambia una decision al 10 %.
+
+3. LECTURA DE A2
+- Criterio fijado: e_comp(4, m)/e_comp(4, 12) < 2 en las 8 celdas
+  para m = 24 y 48.
+- Los 16 cocientes van de 1.0039011 a 1.2709793. El error garantizado
+  SI crece respecto de m = 12, como maximo un 27.10 % en estas
+  comparaciones.
+- A2 se presenta como crecimiento acotado por el criterio < 2. No es
+  ausencia de crecimiento, constancia, decrecimiento ni una cota
+  uniforme para la familia. La frase informal del plan sellado ("no
+  crece con m") no se corrige en el plan; se usa esta formulacion al
+  presentar.
+
+4. LECTURAS QUE SE CONSERVAN
+- Nueve celdas certifican el 10 % con componentes y no con el rival
+  al mismo corte k = 4. Es una mejora del certificado a igual corte
+  bajo el rival fijado; no es una aceleracion temporal demostrada.
+- Las comparaciones a igual tiempo son proyecciones informativas.
+- R_4 = eps_ing/eps_comp es un cociente de masas omitidas, no de
+  tiempos ni de muestras.
+- D-mc COMPATIBLE significa que no se detecto incompatibilidad.

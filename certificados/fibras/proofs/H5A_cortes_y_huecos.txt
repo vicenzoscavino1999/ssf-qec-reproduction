@@ -1,0 +1,303 @@
+H5-A · Cortes del generador y correcciones que encienden checks
+17 de noviembre de 2026, Lima
+
+Resultado y alcance
+===================
+
+La partición marcada de las ejecuciones que pasan el filtro físico usando
+exclusivamente pasos de puntuación uno tiene expansión absolutamente
+convergente y acceso con precisión relativa elegible para
+
+             0 ≤ p ≤ 2.51·10⁻⁷,             0 ≤ q ≤ 2·10⁻¹¹.          (1)
+
+Se admiten todas las semillas binarias (17,18)-regulares, cualquier
+tamaño, máscara, subhost inducido y orden total fijo del manuscrito. El
+resultado permite fusiones, candidatos mixtos y arbitrariamente muchas
+fuentes y acciones. La contribución exacta de todos los pares y tríos del
+modelo completo también cabe en el presupuesto de (1). Para el modelo
+completo, el rectángulo demostrado en H5A_cumulantes_y_componentes.txt
+sigue siendo p≤3.6·10⁻³⁶, q≤2·10⁻¹¹. La sección 4 da la desigualdad que
+permitiría llevar el modelo completo a (1). Los argumentos uniformes son
+analíticos. El programa adjunto comprueba la aritmética y los contrastes
+combinatorios. La derivación está pendiente de revisión independiente.
+
+1. Restricción de los ganadores en cualquier instante
+=====================================================
+
+En un generador g=(r,j) el rectángulo de checks es P=R×C con R=N(r),
+|R|=18, C=N(j), |C|=17. Seleccionar datos en las filas X⊆R y columnas
+Y⊆C conmuta la unión disjunta X×(C∖Y) y (R∖X)×Y. Su área es
+A=17x+18y−2xy, x=|X|, y=|Y|. Complementar X e Y da la misma huella.
+La representación más corta de un corte no vacío tiene x+y≤17 y cumple
+2A≥17(x+y), puesto que 2xy≤(x+y)²/2. Por ello sirve como rival FGL.
+Este uso de las huellas preserva el desempate original entre las acciones.
+
+Sea ρ=h/A la fracción de la huella encendida. Un ganador tiene
+ρ≥(1+β)/2>1/2. Cada fila y columna completa compite como singleton.
+Si la huella ganadora es unión de líneas paralelas, su densidad es el
+promedio de las de sus líneas. Así, cada línea tiene la misma densidad
+ρ. Una fila elegida contiene al menos nueve luces, una columna al menos
+diez.
+
+Si P tiene luz en r₀≤8 filas, todo ganador de P conmuta sólo filas
+completas ya tocadas por la luz. Para verlo elegir la representación
+y≤8. Quitar de X las filas totalmente apagadas conserva h y reduce el área
+en 17−2y por fila. Si se quita alguna, queda un rival de a lo sumo 8+8
+miembros, de huella no vacía porque h>0, con mejor puntuación. Por tanto
+x≤r₀ y todas las filas elegidas están activas. Los singletons de fila
+dan h≤17ρx+(r₀−x)y. Sustituyendo h=ρA, si y>0 se obtiene
+ρ(18−2x)≤r₀−x≤8−x, imposible. Si hay luz en c₀≤8 columnas, elegir
+x≤9. Para x=9 el corte tiene nueve celdas por columna, de modo que
+h≤72 y A=153. Para x≤8 se pueden quitar las columnas oscuras de Y,
+con ahorro de 18−2x por columna. Luego y≤c₀, y los singletons de
+columna dan, si x>0, ρ(17−2y)≤c₀−y≤8−y, también imposible.
+
+Una huella genuinamente mixta exige por tanto al menos nueve filas
+activas, nueve columnas activas y 17 luces, ya que A≥33 en ese caso.
+Las tres restricciones valen incluso después de pasos imperfectos.
+Dan una envolvente determinista para las subentradas de un mismo conjunto
+de fuentes. Partir de la unión de sus huellas y añadir, repetidamente,
+cada fila con nueve luces posibles, cada columna con diez y cada P que
+satisfaga las tres restricciones mixtas. Por inducción la envolvente
+contiene todo síndrome alcanzado. La sección 5 muestra por qué conviene
+conservar también el apagado real.
+
+Esta envolvente también certifica que ciertos cumulantes del modelo
+completo son exactamente cero, antes de sumar magnitudes. Para probarlo,
+dar inicialmente un color a la huella de cada fuente de S y unir los
+colores que se solapen. En cada generador unir los colores presentes en
+el conjunto de TODAS las filas que califican y extender ese color a esas
+filas completas. Repetir por columnas. Si califica el generador para
+el caso mixto, unir sus colores y extenderlos a todo P. Repetir hasta
+que no se añadan celdas ni se unan colores. Combinar todas las filas
+que califican en el mismo generador cubre los empates entre acciones
+de una o varias filas.
+
+Fijar los colores finales y tomar cualquier subentrada Q⊆S. Por inducción
+sus luces están en las celdas coloreadas, y la huella de cada ganador
+está contenida por completo en un color. Al proyectar la ejecución sobre
+c, cada ganador de ese color conserva su puntuación, mientras que ningún
+rival gana luces por la proyección. El orden fijo reproduce su elección
+y la parada global implica la local. Los soportes se unen, los signos
+se multiplican y los síndromes terminales se comparan con las medidas
+de su propio color, que están coloreadas desde el inicio. Por tanto
+T(Q)=∏_c T(Q∩S_c), donde S_c denota las fuentes del color c. Si quedan
+al menos dos colores de fuentes, k(S)=0. Un solo cierre sobre S sirve
+para todas sus subentradas. Cuando queda un único color, esta prueba
+de anulación es inconcluyente.
+
+2. Una partición de referencia con interpretación física
+=======================================================
+
+Para la marca canónica T(S), usar un parámetro formal t y poner
+
+         Ξ(t,z)=Σ_S T(S) z^S t^{H(S)},     H(S)=Σ_pasos(A−h).
+
+H cuenta los episodios en los que se encienden checks, con multiplicidad.
+Ξ(1,z) corresponde a la partición completa y Ξ(0,z)=Ξ_P a las historias
+sin creaciones. En una historia filtrada con e errores de datos,
+Σ(2h−A)=|s₀|−|D|≤18e. Como β=1/100, (A−h)≤99(2h−A)/2 en cada paso.
+Por consiguiente H(S)≤891e en los términos de marca no nula. Este
+techo por sí solo no controla la suma evaluada en t=1.
+
+Para evaluar la marca T_P de Ξ_P, ejecutar el prefijo canónico de pasos
+de puntuación uno. Sólo borra checks. Conservar la marca si el síndrome
+obtenido es la medida original D, D es estable frente a la familia FGL
+completa y el soporte visitado pertenece al subhost solicitado. Se usa el
+signo físico del residuo. En los demás casos la marca de referencia vale
+cero. T_P(∅)=1 y T_P({i})=T({i}) para todo i. Una sola fuente de datos
+admite un paso perfecto de su misma huella, y una medida aislada es estable.
+
+3. Conectar los dos brazos de cualquier corte
+=============================================
+
+Fijar una permutación cíclica de los vecinos en cada N(r) y en cada N(j).
+Unir checks de una misma fila o columna dentro de P. Añadir sólo la
+diagonal que avanza un lugar en ambos ciclos a la vez, como arista no
+orientada. Cada celda tiene allí hasta dos vecinos diagonales. Los órdenes
+se usan para demostrar conectividad y se pueden elegir por índice.
+
+Cada brazo no vacío del corte es un rectángulo conexo por filas y columnas.
+Si hay dos brazos, tomar una fila que sale de X al avanzar en su ciclo y
+una columna que entra en Y al avanzar en el suyo. La diagonal correspondiente
+une los brazos. Así queda conectada toda huella, también la de un candidato
+mixto. Incluso tras borrar una celda, lo que queda de cada brazo sigue
+conexo si no está vacío. Las proyecciones de los extremos de las diagonales
+entre brazos en X recorren todos los vértices de X cuya fila anterior o
+siguiente está fuera. Lo mismo ocurre en C∖Y y en el otro brazo, porque
+existen cruces en ambos sentidos en cada ciclo. Un subconjunto propio
+no vacío de un ciclo tiene un único vértice de frontera dentro sólo si es
+singleton. Si la celda borrada interceptaba todos los puentes, su brazo
+tenía entonces una sola fila y una sola columna. Esto prueba también
+conectividad de las luces consumidas por el primer paso que crea un solo
+check tras un prefijo perfecto.
+
+Construir el grafo fijo G_P sobre fuentes. Unir dos fuentes cuando sus
+huellas se cortan o contienen sendas celdas vecinas en el grafo de
+checks anterior. Unir además dos medidas de cualquier mismo generador.
+Para Q arbitrario, las componentes de G_P[Q] tienen huellas inicialmente
+disjuntas. En cualquier paso perfecto las luces de la huella estaban ya
+al inicio, y su conectividad coloca a todos los proveedores en una misma
+componente. Una acción perfecta local sigue siéndolo globalmente hasta
+que se borre alguna de sus luces. Por inducción, el máximo global y el
+orden fijo intercalan exactamente los prefijos perfectos locales.
+
+El síndrome final de cada prefijo coincide con sus propias medidas si
+y sólo si esto ocurre conjuntamente, por disjunción de huellas. Para
+la prueba de estabilidad en D, todas las medidas que lee cualquier
+rival con luz están en una componente, al compartir generador. Los
+soportes visitados se unen y los caracteres del residuo se multiplican,
+incluso si se visitan miembros de acción en común. Se sigue, para toda Q,
+
+        T_P(Q)=∏_{K componente de G_P[Q]} T_P(K).                      (2)
+
+4. Coste por fuente y residuo pendiente
+=======================================
+
+Sea k_P(B) el coeficiente de z^B, con cada fuente una vez, en log Ξ_P.
+Por (2) y el argumento de árboles con cortes ya demostrado en
+H5A_arboles_de_dependencia.txt, |k_P(B)|≤2^{|B|−1} τ(G_P[B]), donde
+τ cuenta árboles abarcadores. Aquí los árboles se usan después de
+resolver la geometría de la ejecución y factorizar su marca.
+
+La siguiente tabla acota por separado los vecinos de datos y de medida.
+
+    raíz          datos        medidas
+    VV          684 642        20 230
+    CC          724 321        21 420
+    medida       41 650        83 810
+
+Por check, 290+289−1=578 destinos corresponden a coincidencias o
+alineamientos. Cada signo del paso diagonal síncrono ofrece hasta 17
+elecciones del generador en la fila y 18 en la columna, es decir, 612
+destinos para ambos signos. Cada destino tiene a lo sumo 35 lectores de
+datos. Para una medida raíz, la unión de los rectángulos que la contienen
+incluye a lo sumo 290·289 checks de medida.
+Para un dato VV o CC, el número de datos del mismo tipo enlazados por
+alineamiento es ≤b₄+(b₂−1)b₂, con bolas cerradas de Tanner de radios dos
+y cuatro acotadas por (290,78898) o (289,78625). La unión incluye sitios
+en la misma línea transversal a distancia ≤4 y sitios en ambas coordenadas
+a distancia ≤2. Para el tipo opuesto una coordenada está a distancia uno y
+la otra a lo sumo tres, en cualquiera de los dos órdenes. Esto añade ≤2n b₃
+con (n,b₃)=(17,4641) o (18,4914). Los enlaces diagonales añaden ≤n·612·35.
+
+Escribir z_i=r_i/(1−r_i), b_i=z_i/(1+T({i})z_i), r_i=p o q. En la esquina
+de (1) usar a=10⁻⁵, ε=0.01, v=p exp(a+ε)/(1−2p), d=q exp(a+ε)/(1−2q).
+El precio inclinado s_i es v o d según el tipo. Si M es el máximo producto
+escalar de una fila de la tabla por (v,d), se verifica 2 exp(1) M<0.99834.
+Con raíz fija, la suma de |k_P(B)|∏s_j sobre bloques de tamaño n≥2 es
+≤s_i n^{n−2}(2M)^{n−1}/(n−1)!, al sumar árboles etiquetados desde las
+hojas y permitir sobreconteo. La identidad del árbol enraizado
+Σ_{n≥2} n^{n−1}exp(1−n)/n! = exp(1)−1 (por T=x exp(T) en x=1/e)
+da las filas <4.357·10⁻⁷ para datos y <3.472·10⁻¹¹ para medidas. Ambas
+son menores que a. La monotonía cubre los ejes y todo el rectángulo.
+
+Aplicar el criterio de Kotecký–Preiss al gas de bloques disjuntos con
+actividades k_P(B)b^B y los factores individuales 1+T({i})z_i separados,
+como en H5A_cumulantes_y_componentes.txt, sección 1. Si hay n_v datos y
+n_m medidas, truncar el logaritmo normalizado al grado L deja un error
+absoluto ≤(4.357·10⁻⁷ n_v+3.472·10⁻¹¹ n_m)exp[−0.01(L+1)]. G_P tiene
+grado acotado. Se enumeran los soportes conexos hasta L, sus subentradas
+y los coeficientes truncados por inclusión–exclusión en el soporte. La
+evaluación usa el oráculo del prefijo con la prueba de estabilidad de la
+sección 2. Esto da acceso determinista con precisión relativa elegible.
+La rama real parte de 1 en el origen y los factores individuales son
+positivos en (1).
+
+Para insertar todos los pares y tríos completos, usar las filas L₂ y L₃
+de H5A_cumulantes_y_componentes.txt, secciones 4–5, con estos v,d.
+Sumadas a la cota de todos los órdenes de referencia dan <4.404·10⁻⁷ y
+<8.00·10⁻⁸ para cada raíz de datos o medida, respectivamente. En orden
+cuatro y superior queda la siguiente condición suficiente para certificar
+el modelo completo en (1), con k los cumulantes completos y para cada i,
+
+              Σ_{B∋i, |B|≥4} |k(B)−k_P(B)| ∏_{j∈B} s_j ≤ 9.55·10⁻⁶.    (3)
+
+Este número es margen disponible. La carga de la izquierda sigue abierta.
+Por la fórmula de cumulantes, cada diferencia no nula requiere alguna
+subentrada de B que pase con al menos una acción imperfecta. Todo bloque
+de sólo medidas tiene diferencia cero a cualquier orden, ya que el
+síndrome comienza en D y el primer paso reduce estrictamente su tamaño.
+Para acceder al modelo completo si se establece (3), los soportes no
+nulos de k y k_P siguen enumerables a grado L usando el soporte físico
+de ≤135L de la entrega anterior y el grafo fijo G_P, respectivamente.
+
+5. Qué ocurre en el primer paso imperfecto
+==========================================
+
+Hasta ese paso, todo check encendido ya estaba presente al inicio. Para
+que un generador fijado contenga una primera acción imperfecta mixta,
+necesita las nueve filas y nueve columnas de la sección 1 desde el inicio.
+Con sólo dos fuentes que lean P éstas deben ser un dato horizontal y
+uno vertical, cada uno con al menos ocho checks dentro de P. Por fila,
+la suma de tamaños de intersección sobre los posibles lectores
+horizontales es 17·18=306, luego hay a lo sumo 38 con tamaño ≥8.
+Por columna vale lo mismo para el lector vertical. En total hay ≤10133
+lectores de datos en P y 306 de medida. La unión de pares y el tercer
+momento factorial para al menos tres lectores independientes dan, en
+p=10⁻⁶ y q=2·10⁻¹¹,
+
+     P(primera acción imperfecta mixta en P)
+         ≤ (18·38)(17·38)p² + (10133p+306q)³/6 < 6.153·10⁻⁷.
+
+Esta cota por generador admite fuentes arbitrarias en el resto del código.
+Generadores distintos pueden compartir la misma fuente. Multiplicar estas
+cotas sin contabilizarla de nuevo no proporcionaría una prueba de (3).
+También pueden ocurrir primeros pasos imperfectos de una sola fila.
+
+Para ver ambos límites con semillas explícitas de tamaño arbitrario, tomar
+17m checks en un ciclo, las 17m columnas de datos con ventanas [j,j+16]
+módulo 17m y m columnas adicionales que repitan las ventanas disjuntas
+de inicio 0,17,…,17(m−1). Cada columna tiene grado 17 y cada check 18.
+Un dato en una fila física ilumina una ventana entera. El decodificador
+la borra en un paso perfecto, pero la envolvente de la sección 1 se
+extiende a toda la fila porque cada ventana siguiente tiene 16 checks ya
+cubiertos. Esto explica por qué un umbral de percolación por líneas en
+un retículo independiente no resuelve la propagación en esta semilla.
+
+Para cualquier k≥2 tomar m=k+2 y en esa fila los k datos con ventanas de
+inicio 0,16,…,16(k−1). Usar máscara cero, subhost completo, sin medidas y
+un orden fijo que priorice esos k singletons en esa fila. Ventanas
+consecutivas comparten sólo su extremo. Todas las demás son disjuntas.
+En cualquier subentrada elegida, el síndrome es la suma por paridad de
+sus ventanas. Un dato aislado en el camino de los elegidos tiene sus 17
+checks encendidos y se borra perfectamente. Cuando sólo quedan tramos de
+dos o más, ningún intervalo de 17 está encendido. Los datos en los extremos
+de cada tramo alcanzan 16/17, los interiores 15/17 y las ventanas
+priorizadas ausentes tienen a lo sumo dos luces. Mientras sólo hay una
+fila encendida, la sección 1 obliga al ganador a conmutar esa fila en un
+generador, es decir, una de las ventanas. El orden elegido garantiza que
+se borra un dato real del extremo. El nuevo síndrome es exactamente el
+de los datos restantes. Por inducción todas las subentradas pasan.
+
+Así T=1 en todas ellas y T_P=1 exactamente para los conjuntos independientes
+del camino. El cumulante completo sobre los k sitios vale cero y k_P vale
+(−1)^{k−1}. En efecto, al expandir ∏_{uv arista}(1−1_{u,v elegidos})
+en la partición de conjuntos independientes, el coeficiente de log con
+cada fuente una vez conserva sólo los subgrafos conexos abarcadores. En
+un camino existe uno solo. Por tanto el resto de (3) tiene términos de
+módulo uno a órdenes arbitrarios incluso con datos solos. Esta familia
+es de contacto en la clasificación anterior. Sirve para contrastar el
+resto de esta representación, sin implicar divergencia. Su primera
+creación física cuesta sólo dos datos. Para sumar muchas creaciones en
+el modelo completo hace falta controlar cuándo reutilizan los mismos datos.
+
+Fuentes y reproducción
+======================
+
+La comparación con la percolación por líneas usa P. Balister, B. Bollobás,
+J. Lee y B. Narayanan, «Line percolation». Su modelo principal parte de
+sitios independientes de una cuadrícula. https://arxiv.org/abs/1403.6851
+
+La cota por árboles para cumulantes usa la demostración por particiones
+de V. Féray, P.-L. Méliot y A. Nikeghbali, «Mod-φ convergence, I»,
+secciones 9.3–9.4, con la adaptación a marcas con ceros y signos de la
+nota anterior. https://arxiv.org/pdf/1304.2934
+
+El criterio de convergencia y la estimación enraizada se aplican como en
+D. Ueltschi, «Cluster expansions and correlation functions», teorema 1.
+https://arxiv.org/pdf/math-ph/0304003
+
+Desde la carpeta de la nota, con Python 3.10 o posterior, ejecutar
+
+    python -I -B -X utf8 verificar_H5A_cortes_y_huecos.py

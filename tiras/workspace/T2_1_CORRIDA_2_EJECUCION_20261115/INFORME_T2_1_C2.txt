@@ -1,0 +1,260 @@
+INFORME DE T2-1, CORRIDA 2 (m = 48), Y RESULTADO CONJUNTO
+15/11/2026, America/Lima. Ejecutor. Entrega para revision.
+
+ORDEN
+- Usuario, 15/11/2026: registrar la recepcion de la corrida 1 (hecho:
+  DEC-057) y ejecutar UNA VEZ la corrida 2 bajo el plan ya sellado.
+- No se cambio codigo, sello, parametros, criterios, prioridades ni plan de
+  energia. No se repitieron la corrida 1, el Monte Carlo, SOLO_U, T2-1M, B4
+  ni B4R. No se inicio T2-2. Manuscrito, salidas congeladas y carpetas del
+  revisor sin cambios.
+
+RUTAS (desde 05_COMPROBACIONES)
+- Plan sellado: T2_1_INTERVALOS_CIRCUITO_TIRAS_20261114/PLAN_T2_1.txt,
+  sha256 dd52e6028cf6aad1afffe19afd8b0ec0452e2f4f39c4245ad5d92c0e8113c3a9.
+- Sello: T2_1_INTERVALOS_CIRCUITO_TIRAS_20261114/SELLO_PLAN.json, sha256
+  525b8b1734f85d71d1f3f0864394113805e309be12eb232862f88ed9f2996c6a.
+- Previa (corrida 1): T2_1_CORRIDA_1_EJECUCION_20261114/corrida_1;
+  RESULTADO_T2_1_C1.json
+  f005e1665db16cbc21135918ba3bc74352bd5e3a8a3db9de29354ffdbd94f076;
+  LECTURA_T2_1_C1.json
+  086fddf695369fbcb629acbe3dd454b6e0b062496e0ab9320f9d4cb882308ba1.
+- Corrida 2: T2_1_CORRIDA_2_EJECUCION_20261115/corrida_2:
+  RESULTADO_T2_1.json (resultado completo de las cuatro tiras), sha256
+  9769c76eae7d54a5377b0397d3ad0e0ee6f68207cef8f3c70ec4971fe9f6df69;
+  RECURSOS_T2_1_C2.json, sha256
+  52cc6f48786a923332f99e1fd21d448d7a7f37649368e94fb19853eab58c1eac.
+- Consola: T2_1_CORRIDA_2_EJECUCION_20261115/SALIDA_T2_1_C2.txt;
+  verificacion: SALIDA_VERIFICAR_C2.txt; codigos: CODIGO_RETORNO_C2.txt y
+  CODIGO_RETORNO_VERIFICAR_C2.txt; identidades previas:
+  IDENTIDADES_ANTES_C2.sha256 (22); lista de hashes: HASHES_C2.sha256.txt.
+- Registro de la corrida 1: T2_1_REGISTRO_DEC057_20261115/ (DEC-057).
+
+COMANDOS (desde 05_COMPROBACIONES)
+  python -I -B T2_1_INTERVALOS_CIRCUITO_TIRAS_20261114/t2_intervalos.py \
+    --corrida 2 --dir T2_1_CORRIDA_2_EJECUCION_20261115/corrida_2 \
+    --previa T2_1_CORRIDA_1_EJECUCION_20261114/corrida_1
+  python -I -B T2_1_INTERVALOS_CIRCUITO_TIRAS_20261114/t2_intervalos.py \
+    --verificar \
+    T2_1_CORRIDA_2_EJECUCION_20261115/corrida_2/RESULTADO_T2_1.json
+
+CODIGOS DE RETORNO Y TIEMPOS
+- Corrida 2: codigo 0; inicio 2026-11-15T05:30:51-0500, fin
+  2026-11-15T09:49:18-0500; 15507 s de consola (4.31 h); techo de las
+  etapas 32400 s (9 h).
+- Estado PASS: 241 controles PASS y 0 fallidos; 33 trabajos de 33; 0
+  llamadas al decoder en el conductor.
+- --verificar (una vez, sin --parcial, sin DP): codigo 0 en 12 s (inicio
+  2026-11-15T09:49:42-0500). "VERIFICACION INTEGRAL SIN DP: CUMPLE; 128
+  filas; contrato: completo; discrepancias: ninguna".
+- Antes del lanzamiento y despues: las 22 identidades (plan, sello,
+  borrador v10, 5 programas, 11 dependencias, resultado y lectura de la
+  corrida 1 y su lista de hashes) coinciden; tambien las 14 entradas de la
+  entrega de la corrida 1 y las 512 de la unidad.
+- Etapas (s): sello 0.1; previa 2.8; capacidad 15.6; trabajo 5.0;
+  rival_circuito 213.4; DP 15254.2; evaluacion 12.1; decisiones 1.0;
+  llamadas 0.0.
+- Etapa previa: lectura de la corrida 1 con LANZAR_CORRIDA_2 (D-mc
+  COMPATIBLE), contrato completo y sus 96 filas reproducidas desde su
+  evidencia (punto fijo, B y rival).
+
+ALCANCE EJECUTADO
+- m = 48; 8 celdas; k = 1..4; 33 trabajos (32 celdas y la regla de suma con
+  k = 4 y D = 1e16); 384 bits. Procedencia historica con D = 1e14
+  conservada: la copia con D explicito coincide con las funciones selladas
+  con D = 1e14.
+- Estructura de m = 48 por k (polimeros, estados, terminos), igual en las 8
+  celdas: k = 1: 1141, 6459, 10441; k = 2: 32692, 19509, 543948; k = 3:
+  1154916, 89001, 29945741; k = 4: 45005423, 582583, 1953983141. k = 4 y k
+  = 3 coinciden con T2-1M y T2-0/T2-1M; k = 1 y 2 no tenian referencia
+  anterior.
+
+H_COMP Y PROCEDENCIA
+- m = 6: COMPLETO con k = 1..4. k = 1,2,3,4: T2-0 (regla de suma con k = 4,
+  COMPLETO), reproducida por C-T20 de T2-1M.
+- m = 12: COMPLETO con k = 1..4. k = 1,2,3,4: T2-0 (regla de suma con k =
+  4, COMPLETO), reproducida por C-T20 de T2-1M.
+- m = 24: COMPLETO con k = 1..4. k = 1,2,3: T2-0 (regla de suma con k = 3,
+  COMPLETO), reproducida por C-T20 de T2-1M; k = 4: regla de suma de T2-1
+  con k = 4.
+- m = 48: COMPLETO con k = 1..4. k = 1,2,3,4: regla de suma de T2-1 con k =
+  4.
+- Regla de suma de m = 48 con k = 4 y D = 1e16: COMPLETO en los dos
+  extremos; condicion previa cierta (cola/umbral 0.440); anchura acumulada
+  de U 9.103e-107 <= 1e-76; margen log10 4.395. En m = 24: COMPLETO,
+  anchura 4.219e-107.
+- L_ing exacto en las 128 filas (0 con L_cat como cota), de modo que D-t3
+  se calcula en las cuatro tiras.
+
+RESULTADOS CONJUNTOS CON k = 4 (cuatro tiras, 8 celdas)
+Error relativo garantizado e_comp(4) = (h - ell)/(h + ell), en %:
+  celda                     m = 6    m = 12    m = 24    m = 48
+  r_c=1e-3 r_m=r_c        98.3553   99.1696   99.5565   99.8416
+  r_c=1e-3 r_m=0          97.7189   98.8549   99.3753   99.7656
+  r_c=1e-4 r_m=r_c        37.4110   49.8389   54.8984   58.8480
+  r_c=1e-4 r_m=0          30.0133   42.1087   47.1898   51.1423
+  r_c=1e-5 r_m=r_c         0.5946    0.9671    1.1337    1.2206
+  r_c=1e-5 r_m=0           0.4273    0.7106    0.8375    0.9032
+  r_c=1e-6 r_m=r_c         0.0060    0.0097    0.0114    0.0122
+  r_c=1e-6 r_m=0           0.0043    0.0071    0.0084    0.0090
+
+Extremo inferior ell de P_sil (L_lo):
+  celda                     m = 6    m = 12    m = 24    m = 48
+  r_c=1e-3 r_m=r_c      6.510e-08 1.132e-07 1.461e-07 1.133e-07
+  r_c=1e-3 r_m=0        6.617e-08 1.166e-07 1.543e-07 1.258e-07
+  r_c=1e-4 r_m=r_c      7.977e-11 1.724e-10 3.445e-10 6.402e-10
+  r_c=1e-4 r_m=0        7.990e-11 1.729e-10 3.463e-10 6.467e-10
+  r_c=1e-5 r_m=r_c      8.136e-14 1.797e-13 3.749e-13 7.597e-13
+  r_c=1e-5 r_m=0        8.137e-14 1.797e-13 3.751e-13 7.604e-13
+  r_c=1e-6 r_m=r_c      8.152e-17 1.804e-16 3.781e-16 7.728e-16
+  r_c=1e-6 r_m=0        8.152e-17 1.804e-16 3.781e-16 7.729e-16
+
+Extremo superior h de P_sil (min(1, L_hi + eps_hi)):
+  celda                     m = 6    m = 12    m = 24    m = 48
+  r_c=1e-3 r_m=r_c      7.851e-06 2.715e-05 6.575e-05 1.428e-04
+  r_c=1e-3 r_m=0        5.735e-06 2.024e-05 4.925e-05 1.072e-04
+  r_c=1e-4 r_m=r_c      1.751e-10 5.151e-10 1.183e-09 2.471e-09
+  r_c=1e-4 r_m=0        1.484e-10 4.245e-10 9.653e-10 2.000e-09
+  r_c=1e-5 r_m=r_c      8.233e-14 1.832e-13 3.835e-13 7.785e-13
+  r_c=1e-5 r_m=0        8.207e-14 1.823e-13 3.814e-13 7.743e-13
+  r_c=1e-6 r_m=r_c      8.153e-17 1.804e-16 3.781e-16 7.730e-16
+  r_c=1e-6 r_m=0        8.153e-17 1.804e-16 3.781e-16 7.730e-16
+
+Error del rival sobre sitios al mismo corte, e_ing(4), en %:
+  celda                     m = 6    m = 12    m = 24    m = 48
+  r_c=1e-3 r_m=r_c        99.7533   99.9846   99.9990   99.9999
+  r_c=1e-3 r_m=0          99.6348   99.9776   99.9986   99.9999
+  r_c=1e-4 r_m=r_c        81.4350   98.6763   99.9177   99.9948
+  r_c=1e-4 r_m=0          74.6156   98.0641   99.8799   99.9924
+  r_c=1e-5 r_m=r_c         4.2404   43.1644   92.6349   99.5126
+  r_c=1e-5 r_m=0           2.8794   33.9967   89.5680   99.2901
+  r_c=1e-6 r_m=r_c         0.0443    0.7552   11.2100   67.2877
+  r_c=1e-6 r_m=0           0.0297    0.5133    7.9315   58.4712
+
+R_4 = eps_ing(4)/eps_comp(4) (no es una aceleracion):
+  celda                     m = 6    m = 12    m = 24    m = 48
+  r_c=1e-3 r_m=r_c           6.72     52.37     385.3      1642
+  r_c=1e-3 r_m=0            6.336     50.12     386.6      1795
+  r_c=1e-4 r_m=r_c          7.338     74.99       995 1.325e+04
+  r_c=1e-4 r_m=0            6.854     69.61     929.3 1.251e+04
+  r_c=1e-5 r_m=r_c          7.403     77.77      1097 1.652e+04
+  r_c=1e-5 r_m=0            6.908     71.97      1017 1.535e+04
+  r_c=1e-6 r_m=r_c           7.41     78.05      1108 1.689e+04
+  r_c=1e-6 r_m=0            6.914     72.21      1026 1.566e+04
+
+DECISIONES FINALES (cuatro tiras; reglas fijadas en el plan)
+- D-t1 (A1): m = 6 ZONA_GRIS (R_4 de 6.336 a 7.41); m = 12 RELEVANTE (R_4
+  de 50.12 a 78.05); m = 24 RELEVANTE (R_4 de 385.3 a 1108); m = 48
+  RELEVANTE (R_4 de 1642 a 1.689e+04). Crecimiento: CRECE_CON_N, 24 de 24
+  pasos crecen, 0 no crecen, 0 indecidibles.
+- D-t2 (A2): ESTABLE; e_comp(4,m)/e_comp(4,12) de 1.004 a 1.179 en m = 24 y
+  de 1.007 a 1.271 en m = 48; 0 de 16 celdas >= 2.
+- D-t3 (secundaria, a igual corte k = 4; e_comp(4) <= objetivo < e_ing(4)),
+  celdas por tira para 5 %, 10 % y 25 %: m = 6: 0/0/0; m = 12: 2/2/2; m =
+  24: 4/3/2; m = 48: 4/4/4. Total: 10, 9 y 8 de 32.
+- D-t4 (A3, control negativo): PASA; R_3 <= 1.00096351 en las 12 celdas de
+  S2 (N2 desde SOLO_U, recalculado por --verificar).
+- D-t5 (A4): NO_CUMPLE; 16 de 24 celdas con r_c <= 1e-4 cumplen. No cumplen
+  las 8 con r_c = 1e-4: m = 6 r_m=r_c 37.41 %, m = 6 r_m=0 30.01 %, m = 12
+  r_m=r_c 49.84 %, m = 12 r_m=0 42.11 %, m = 24 r_m=r_c 54.90 %, m = 24
+  r_m=0 47.19 %, m = 48 r_m=r_c 58.85 %, m = 48 r_m=0 51.14 %. Las 16 de
+  r_c = 1e-5 y 1e-6 cumplen, con un maximo de 1.2206 %.
+- D-mc (corrida 1, m = 6, r_c = r_m = 1e-3): COMPATIBLE, es decir, no se
+  detecto incompatibilidad (x = 477 en N = 7000000000; Clopper-Pearson al
+  99.9 %; certificado ancho en esa celda).
+
+METAS (criterios del plan, sin cambios despues de ver los datos)
+- A1: ALCANZADA. R_4 crece estrictamente con m en las 8 celdas en los tres
+  pasos (6 -> 12 -> 24 -> 48).
+- A2: ALCANZADA. e_comp(4,m)/e_comp(4,12) < 2 en las 8 celdas para m = 24 y
+  48 (maximo 1.271).
+- A3: ALCANZADA (control negativo). R_3 < 2 en las 12 celdas de S2.
+- A4: NO ALCANZADA. 8 de las 24 celdas (todas las de r_c = 1e-4) superan el
+  10 % de error garantizado (30.01 % a 58.85 %). Son errores garantizados
+  por el intervalo, no medidas del error real; no demuestran un error real
+  > 10 %.
+- El objetivo diferencial y el cierre de T2-1 los decide el usuario tras el
+  contraste del revisor.
+
+COMPARACIONES A IGUAL CORTE (medidas en esta unidad)
+- Mismo catalogo y mismo k = 4: el rival sobre sitios se evalua de forma
+  exacta desde el catalogo (L_ing exacto, sin decodificar), con la misma
+  precision. D-t3 da las celdas donde solo las componentes certifican el
+  objetivo: 9 al 10 % en las cuatro tiras. Es una mejora del certificado a
+  igual corte bajo el rival fijado; no acredita por si sola menor tiempo,
+  menos muestras ni ventaja frente a todos los metodos anteriores.
+- Los tiempos de m = 6, 12 y 24 son los de la corrida 1 (filas recibidas
+  como previa); los de m = 48, de esta corrida.
+- m = 6, k = 4: DP del certificado 535 s por celda (maximo; pico 0.43 GiB
+  por trabajo); la truncacion ingenua del rival con k = 4 requeriria
+  1.074e+09 decodificaciones.
+- m = 12, k = 4: DP del certificado 3534 s por celda (maximo; pico 0.48 GiB
+  por trabajo); la truncacion ingenua del rival con k = 4 requeriria
+  2.121e+10 decodificaciones.
+- m = 24, k = 4: DP del certificado 9378 s por celda (maximo; pico 0.51 GiB
+  por trabajo); la truncacion ingenua del rival con k = 4 requeriria
+  3.755e+11 decodificaciones.
+- m = 48, k = 4: DP del certificado 15253 s por celda (maximo; pico 0.56
+  GiB por trabajo); la truncacion ingenua del rival con k = 4 requeriria
+  6.314e+12 decodificaciones.
+
+PROYECCIONES A IGUAL TIEMPO (informativas; no demostradas)
+- Regla del plan: k' = mayor corte del rival cuyo coste (decodificaciones /
+  tasa del catalogo de T2-1M, mas clases y leyes de una celda) cabe en el
+  tiempo del certificado con k = 4 (catalogo de T2-1M mas la DP de una
+  celda). Es una proyeccion de coste, no el mayor corte alcanzable
+  demostrado.
+- m = 6: tiempo del certificado 905 s (catalogo 370 s + DP 535 s); tasa
+  6.79e+05 decodificaciones/s; k' = 3; e_ing(k') de 80.99 % a 99.98 %;
+  celdas al 10 %: 4 con el certificado (k = 4) y 0 con el rival en k'.
+- m = 12: tiempo del certificado 4788 s (catalogo 1254 s + DP 3534 s); tasa
+  6.39e+05 decodificaciones/s; k' = 3; e_ing(k') de 97.24 % a 100.00 %;
+  celdas al 10 %: 4 con el certificado (k = 4) y 0 con el rival en k'.
+- m = 24: tiempo del certificado 12304 s (catalogo 2927 s + DP 9378 s);
+  tasa 6.53e+05 decodificaciones/s; k' = 3; e_ing(k') de 99.65 % a 100.00
+  %; celdas al 10 %: 4 con el certificado (k = 4) y 0 con el rival en k'.
+- m = 48: tiempo del certificado 21699 s (catalogo 6445 s + DP 15253 s);
+  tasa 6.41e+05 decodificaciones/s; k' = 3; e_ing(k') de 99.96 % a 100.00
+  %; celdas al 10 %: 4 con el certificado (k = 4) y 0 con el rival en k'.
+
+MONTE CARLO DIRECTO (presupuesto informativo; no decide)
+- Muestras para un 10 % al 95 % por aproximacion normal, 384/L_lo, en m =
+  48 (r_m = r_c): r_c = 1e-3: 3.39e+09; r_c = 1e-4: 6.00e+11; r_c = 1e-5:
+  5.06e+14; r_c = 1e-6: 4.97e+17. No es una cobertura finita del 95 % ni un
+  coste minimo.
+
+RECURSOS
+- Memoria: proceso principal 427839488 B (0.40 GiB; techo 12 GiB); total
+  por etapa lectura 3860770816 B (3.60 GiB) y DP 2886721536 B (2.69 GiB)
+  (techo 24 GiB); maximo por trabajo de la DP 606453760 B (0.56 GiB; techo
+  4 GiB).
+- Disco: 2329896 B en corrida_2 (techo 60 GB); trabajo/ (6830509776 B) solo
+  se lee.
+- Capacidad (sonda informativa de 15 s): 6.23 nucleos efectivos con 14
+  procesos; tasa total 1.39e+08, como en la corrida 1 (1.41e+08). Durante
+  la DP, los procesos de Python usaron unos 3.9 nucleos en total (0.27 por
+  proceso con 14 activos y 0.48 con 8), como en T2-1M y en la corrida 1;
+  causa no comprobada; sin cambios de prioridad ni de energia.
+- Cuello de botella: la DP de las 8 celdas de m = 48 con k = 4, en
+  paralelo, de 15162 a 15253 s (camino critico); regla de suma 9715 s;
+  celdas con k <= 3 de 450 a 918 s; lectura del rival de m = 48 211 s.
+  Prevision del plan: unas 6 h; real: 4.31 h.
+
+INCIDENCIAS
+- Ninguna parada, control fallido, error ni techo alcanzado; sin
+  reintentos.
+- Al lanzar habia 8.4 GB de memoria disponible y ningun otro proceso del
+  proyecto en marcha.
+- HASHES.sha256.txt del revisor (T2_1_REVISION_RECEPCION_C1_20261115) tiene
+  fin de linea CRLF y sha256sum -c no lo lee tal cual; sin CR, sus 10
+  entradas coinciden. No se modifico.
+- La corrida 2 no tiene DEC propia: la orden no lo pedia. Puede registrarse
+  tras la recepcion del revisor (DEC-058 si sigue libre).
+
+LIMITES CONOCIDOS
+- Una ronda, decoder SSF, una seccion (n = 6); r_m = r_c o r_m = 0;
+  intervalos rigurosos de 384 bits en lugar de fracciones; lemas del motor
+  (A, N, EO, R) y de T2-0 (F, S) sin contraste formal del revisor,
+  controlados por sus consecuencias; D-mc en una sola celda; las
+  proyecciones a igual tiempo usan tiempos del catalogo de T2-1M y no son
+  medidas de esta corrida.

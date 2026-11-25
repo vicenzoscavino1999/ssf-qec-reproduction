@@ -1,0 +1,370 @@
+H5-A · Primera fusión entre grupos de fuentes
+17 de noviembre de 2026
+
+Resultado general
+=================
+
+Para toda semilla binaria (17,18)-regular y cualquier tamaño, el argumento
+da acceso a las particiones físicamente filtradas en el rectángulo conjunto
+
+               0 ≤ p ≤ 2.0·10⁻³⁶,       0 ≤ q ≤ 2·10⁻¹¹.
+
+El extremo anterior era 6.6·10⁻³⁷. El recuento de las fuentes que pueden
+intervenir en una primera acción perfecta da 7.5·10⁻³⁷ con el presupuesto
+unitario literal del manuscrito. El margen de sus mismas filas permite
+2.0·10⁻³⁶ con presupuesto F/80 en la misma demostración de Kotecký–Preiss.
+Los dos factores de mejora son 25/22 y 8/3. El producto es 100/33.
+
+Se mantiene una ronda Bernoulli independiente, candidatos FGL completos,
+β=1/100, máximo global y desempate fijo independiente del síndrome. Las
+marcas físicas, los subhosts inducidos y la precisión relativa elegible
+son los del manuscrito. Para transferir el acceso al fallo silencioso
+positivo se aplican las hipótesis de thm:silent-conditioned, incluido el
+testigo lógico verificado y su coste 1+z_p^(−w).
+
+En p=10⁻⁶ con el mismo q se obtiene además una suma absoluta de coeficientes
+mixtos del logaritmo a cualquier orden para primeras fusiones que satisfacen
+las condiciones geométrica y de factorización de las secciones 4 y 5.
+Ambas admiten cualquier número de fuentes. El extremo general en 10⁻⁶
+sigue abierto.
+
+1. Un testigo de la primera interferencia en el prefijo perfecto
+===============================================================
+
+Escribir ψ_v para la huella de una fuente y φ para la de una acción.
+Una medida tiene un solo check en su huella. Se conservan los pares de
+contacto definidos en H5A_interacciones_por_fuentes.txt. Un par tiene
+al menos un dato y sus huellas se cortan, o bien sus huellas disjuntas
+cubren juntas una acción que toca a ambas.
+
+Marcar cada dato que pertenece a uno de esos pares o a una cubierta
+minimal de φ por al menos tres fuentes. Minimal significa que retirar
+cualquier miembro deja algún check de φ sin cubrir. El conjunto de todos
+los sitios ocupados puede contener además otras cubiertas. La marca es
+creciente y un mismo testigo marca todos sus miembros que son datos.
+
+Sea v un dato sin marcar. Para toda subentrada de las demás fuentes,
+añadir v enciende toda ψ_v porque nadie más lee uno de sus checks. Una
+acción de puntuación uno sólo apaga checks. Si inicialmente es perfecta,
+toca ψ_v y sale de ella, sus checks están cubiertos por las fuentes de la
+subentrada junto con v. Toda subcubierta minimal tiene que incluir v por
+el check de intersección. Debe tener al menos dos miembros. Dos darían un
+par de contacto y tres o más darían la otra marca. Si φ está contenida en
+ψ_v, el tamaño mínimo 33 de un múltiple y la geometría de las líneas
+obligan a que sea un singleton con la misma huella. Como el síndrome sólo
+decrece por inclusión en este prefijo, estas comprobaciones iniciales
+valen hasta su final. Se intercala exactamente el singleton de menor
+rango con esa huella y el resto de la ejecución coincide. Esto incluye
+semillas con filas o columnas duplicadas. Se conserva así la retirada
+exacta y simultánea, con sus residuos y soportes, de la nota antecedente.
+La prueba usa cubiertas como condición necesaria. El máximo global y el
+desempate siguen decidiendo qué acción ocurre realmente.
+
+Fijar una fuente de entrada i en una cubierta minimal de r≥3 fuentes.
+Cada miembro tiene un check privado en la cubierta y el tamaño a de φ
+es ≤18r. Elegir un check de ψ_i que pertenezca a φ. Por check hay a lo
+sumo 306 generadores. En su rectángulo elegir x de las 18 filas y j de
+las 17 columnas. Se tiene a=17x+18j−2xj, 2a≥17(x+j), x+j>0. El check
+elegido está en el corte cuando se ha seleccionado exactamente una de
+sus dos líneas. Para un solo check de la raíz esto da
+
+  N_r = 306 Σ [C(17,x−1)C(16,j)+C(17,x)C(16,j−1)],
+
+con las restricciones anteriores y a≤18r. C(n,k)=0 fuera de rango.
+Se obtiene N₃=343944, N₄=3683016, N₅=146395296 y N_r≤N*=306·2³⁴.
+Las cotas sobre el número de candidatos pueden contar varias veces el
+mismo candidato. El contraste independiente usa la suma de a C(18,x)C(17,j)
+sobre las mismas formas, por doble conteo de incidencias con las celdas.
+
+Fijados φ e i, elegir siempre el primer check de φ aún sin cubrir. En
+un testigo real se puede elegir por orden fijo uno de sus miembros que lo
+cubra. Hay a lo sumo 35 datos y una medida en ese check. La minimalidad
+asegura que se usan los r miembros distintos y que la lista recupera la
+cubierta. No se supone que sus eventos de lectura sean independientes.
+Para precios V,D de datos y medidas, poner y=35V+D<1 y
+
+  B(y)=N₃y²+N₄y³+N₅y⁴+N*y⁵/(1−y).
+
+Desde un dato la suma de los otros miembros es ≤18B(y), desde una medida
+es ≤B(y). Si desde la medida se exige al menos un dato, basta 35V B′(y)
+por distinción de un puesto de dato en la lista. En particular, para v
+fijado, la independencia de las fuentes distintas y la unión de testigos
+dan, condicionando solamente a que v esté ocupado,
+
+  Pr(v marcado | v ocupado) ≤ 28200p+40q+18B(35p+q).
+
+En la esquina aspiracional vale menos de 0.035787. La nota anterior daba
+0.312 con la condición más amplia de tres lectores en el mismo generador.
+Esta probabilidad local no se multiplica entre datos que comparten un testigo.
+
+2. Transferencia al rectángulo general
+=====================================
+
+Se mantiene el bosque causal y el presupuesto cronológico Φ de los dos
+paquetes precedentes. Cada cubierta minimal está dentro del clique K de
+lectores de su generador. En cada grupo grueso se elige por orden fijo una
+familia maximal de testigos disjuntos. Cada dato restante tiene un testigo
+que intersecta la familia y puede adscribirse a uno de sus miembros por
+una arista de K. Las medidas ligadas sobrantes se adscriben a un dato
+vecino. Los bloques se conectan como en la sección 2 de la nota de enlaces,
+de modo que cada fuente paga una vez aunque tenga varios testigos.
+
+En la notación de esa sección se sustituyen las dos filas de entrada a
+un testigo por las siguientes, con y=35w_v+w_c.
+
+  K_v = w_v[d_vv w_v+d_vc w_c+18B(y)],
+  K_c = w_c[d_cv w_v+35w_v B′(y)].
+
+Los grados de contacto generales son (d_vv,d_vc,d_cv)=(28200,40,800).
+Para e=1 se usa B₀=d_vc d₀+18B(d₀). En la entrada por medida el término
+de cubierta dentro de d₀ v₀[ d_cv+l B₀+… ] es 35 B′(d₀). Para e≥2 usar
+t=0.0067, s=4.37, x=7·10⁻⁹, ξ=5.55·10⁻¹¹ y ρ=1.294·10⁻¹¹. El programa
+comprueba t^(633e/50−Φ(e))≤ρsᵉ hasta e=16 y luego usa ρs¹⁷≥1. Para un
+solo dato conserva Φ(1)=9 y el mayorante 1.106·10⁻⁸ para t^(633/50−9).
+
+Las supersoluciones U_v=2.01676·10⁻⁹, U_c=3.20755·10⁻¹³ dan las cuatro
+holguras relativas de bloques y entradas de origen mayores que 0.5984%,
+0.5985%, 12.55% y 6.67%. S,P,C y todas las filas de acción son las de la
+esquina general anterior. Se recalculan las conversiones y el exterior
+de datos al nuevo p. Con p₀=7.5·10⁻³⁷ quedan 2.79 z_p₀<x t^(633/50),
+K_E<0.011142, K_D<0.000004871 y las mismas anclas R_V<1.949·10⁻¹⁶,
+R_C<5.811·10⁻¹¹. Aquí z_s=s/(1−s). Esto satisface literalmente las filas
+de eq:kp-filtered-certificate del manuscrito con τ=0.01 y σ=135.
+
+Para p₁=2·10⁻³⁶ tomar κ=1/80. Las filas anteriores acotan los incompatibles
+por K_E e+K_D d≤κF, con F=e+d, y se incluye la autoincompatibilidad.
+Como z_p₁<z_p₀ exp(1−κ) y la tasa de medida es la misma, para cada especie
+
+  w(p₁,q) exp[(κ+τ)F] ≤ w(p₀,q) exp[(1+τ)F].
+
+Con θ=τ/135 se tiene θ|Y|≤τF. Las actividades inclinadas w exp(θ|Y|)
+satisfacen por tanto el criterio KP con presupuesto a_γ=κF_γ y con las
+mismas anclas. El teorema enraizado permite cualquier función de
+presupuesto no negativa. El resto de la prueba de prop:kp-filtered-compiler
+usa la suma enraizada, la inclinación y el oráculo. Da de nuevo la cola
+(n_datos R_V+|C_X| R_C) exp[−(M+1)/13500], positividad y el algoritmo
+determinista con precisión relativa elegible. La monotonía cubre todo el
+rectángulo inferior, incluidos sus ejes. La fórmula literal del enunciado
+del manuscrito usa F y llega aquí a p₀. La especialización de su prueba
+con F/80 llega a p₁. Para la forma del criterio se usó también el teorema 1
+de D. Ueltschi, Cluster expansions and correlation functions (2004),
+https://arxiv.org/pdf/math-ph/0304003 .
+
+El diagnóstico previo del techo se puede comprobar en las filas originales.
+Λ(t)<1 implica t<0.00681. De U_v≥28200 w_v² y w_v≥sx exp(46870021 U_v),
+s≥1, resulta x²≤1/[2 exp(1)·46870021·28200]. Así x<3.74·10⁻⁷ y la
+conversión literal con 633/50 y 2.79 obliga a p<5·10⁻³⁵. Esta restricción
+se refiere al mayorante con esos parámetros y esa conversión.
+
+3. La primera acción conjunta que puede alterar una marca
+========================================================
+
+Fijar subhost J, máscara y una partición de las fuentes. Supónganse
+disjuntos entre partes los checks de sus síndromes observados iniciales y
+que el síndrome conjunto sea su unión. Basta que sean disjuntas las huellas
+iniciales entre partes. Se puede iniciar también tras prefijos perfectos
+que ya se hayan recompuesto, conservando las fuentes, soportes y signos
+acumulados. Cada parte da un color a sus checks encendidos. Se compara
+siempre con todos los candidatos del código completo.
+
+Si el ganador global consume checks de un solo color, su puntuación
+coincide con la que tendría en el síndrome de esa parte. Cada rival tiene
+puntuación local a lo sumo igual a la global porque los colores están
+disjuntos. Por máximo y desempate fijo, el ganador es el siguiente paso
+canónico de esa parte. Apagar los checks consumidos y dar su color a los
+recién encendidos conserva la disjunción. En la parada global cada parte
+está también parada. Hasta la primera acción que consume dos o más colores
+se obtienen, por inducción, prefijos de las ejecuciones aisladas. Un
+ganador de varios colores es testigo posible de interacción. Para seguir
+la evolución conjunta se pueden unir todos sus colores antes de aplicarlo.
+
+Si toda la traza fue de un solo color por acción, los soportes se unen y
+los caracteres de los residuos se multiplican incluso si una corrección
+visitó un sitio de otra parte. Falta el filtro. Sea s_i el color terminal y
+D_i su conjunto de medidas originales. Como los s_i son disjuntos y los
+D_i también, si la unión termina en D pero algún s_i difiere de D_i,
+necesariamente s_i intersecta D_j para algún i≠j. Si todas las partes pasan
+el filtro, la unión lo pasa. Por tanto, ausencia de ganador de varios
+colores y de cruce terminal implica T(U)=∏ T(U_i) en esa entrada, donde
+T lleva el signo físico, el filtro y la contención en J. Se admite que
+la igualdad ocurra también cuando existe un testigo potencial.
+
+Para comprobar la igualdad en subentradas se aplica el argumento a cada
+una. La separación inicial se conserva al restringir las fuentes cuando
+se parte de huellas disjuntas. En particular, en un soporte fijo se
+pueden unir todos los pares de contacto y los miembros de toda cubierta
+minimal de una huella de acción, incluidas las puramente de medida. La
+fase perfecta se entrelaza entre las componentes para toda subentrada.
+Una acción inicialmente perfecta admite una subcubierta minimal. Las
+cubiertas de tamaño uno sólo tienen un propietario, y las de tamaño dos
+forman un contacto. Todo lector adicional que aporta a un mismo check
+se une a quien ya lo cubre. La fase perfecta sólo apaga checks y respeta
+el desempate. Esto da una partición inicial utilizable antes de estudiar
+quién aporta luz a un ganador posterior. Los bloques de esta sección y
+los grupos gruesos utilizados para el recuento de la sección 2 tienen
+definiciones distintas.
+
+4. Suma geométrica de los primeros contactos en la meta
+======================================================
+
+Con p=10⁻⁶ y q=2·10⁻¹¹ fijar un conjunto S de f fuentes. Se admite un
+árbol sobre ellas en el que un enlace puede juntar r≥3 sitios de una
+cubierta minimal de una sola huella. Formalmente el grafo de incidencia
+de sitios y enlaces ha de ser un árbol. Al enraizarlo en cualquier sitio,
+cada enlace sale de una fuente y añade r−1 fuentes nuevas distintas.
+Un mismo sitio puede ser articulación de muchos enlaces. Se necesita
+la existencia de un árbol abarcador de esta forma, aunque haya más
+enlaces posibles en S. Considerar cualquiera de estas dos condiciones.
+
+  I. Se admiten las aristas ordinarias de la nota de enlaces de coste
+     0 por contacto, 5 por paso alineado o 12+18(d−1) a distancia d.
+     Una cubierta completa cuesta 5 en total. El coste mínimo es ≤f.
+
+  II. Se usan sólo pares de contacto y cubiertas completas. El número
+      de enlaces de ambos tipos es arbitrario y todos son gratuitos.
+
+La condición I incluye todos los árboles anteriores de coste ≤f. Las
+aristas ordinarias entre componentes geométricamente disjuntas tienen
+coste infinito. La condición II permite, por ejemplo, seguir sumando
+cubiertas triples que aporten dos sitios nuevos cada una.
+
+Sean u=(51/50) z_p y z_q=q/(1−q). Para un sitio fijo de tipo dato o
+medida, acotar la suma de uᵉ z_qᵈ exp(1.06 f) sobre esos soportes por
+T_v o T_c. En I usar T_v=1.5·10⁻⁵, T_c=1.25·10⁻¹⁰, peaje A=2 por
+fuente y peso h=1/32 por cubierta. Usar H=578/32+83810/[4096(1−83810/2¹⁸)]
+para las aristas de distancia positiva, como en la nota de enlaces.
+En II usar T_v=6·10⁻⁶, T_c=8·10⁻¹¹, A=h=1 y H=0. En ambos casos,
+con y=35T_v+T_c, bastan las filas
+
+  A u exp[1.06+(28200+630H)T_v+(40+18H)T_c+18h B(y)] < T_v,
+  A z_q exp[1.06+(800+35H)T_v+H T_c+h B(y)]           < T_c.
+
+El peso de un árbol en I es ≥2^(−f) si su coste es ≤f. En II es uno.
+Para cada enlace múltiple, el orden de checks no cubiertos de la sección 1
+enumera los hijos con sus tipos y sus subárboles. Los enlaces que salen de
+una fuente tienen descripciones distintas porque añaden sitios distintos.
+La exponencial cuenta familias no ordenadas de enlaces incidentes. El
+árbol real utiliza sitios distintos y cada fuente aporta su actividad
+una vez. Permitir más elecciones en la inducción sólo mayoriza la suma.
+Las filas izquierdas están por debajo de (1.49487·10⁻⁵,1.20198·10⁻¹⁰)
+en I y (4.58452·10⁻⁶,5.88939·10⁻¹¹) en II.
+
+También se obtiene la cola previa para las historias físicamente filtradas
+conexas de estas clases mediante el reanclaje polinómico en el número
+de datos de H5A_consumo_y_alcance.txt. La cota para el logaritmo que
+sigue utiliza directamente una fuente fija como ancla.
+
+5. Cuándo se puede sumar también el logaritmo con fusiones sucesivas
+=================================================================
+
+En un soporte fijo S, escribir Z_G=Σ_{U⊆G} T(U) z^U para cada G⊆S. Es
+la restricción formal a esas variables, con la misma marca y el mismo
+subhost J. Su constante es uno. Supóngase que G se divide en al menos
+dos partes no vacías G_i y que todas sus subentradas propias satisfacen
+T(U)=∏_i T(U∩G_i). La marca de G puede fallar esta igualdad por primera
+vez. Comparamos coeficientes y obtenemos exactamente
+
+  Z_G=∏_i Z_Gi + Δ_G z^G,        Δ_G=T(G)−∏_i T(G_i),    |Δ_G|≤2,
+  log Z_G−Σ_i log Z_Gi = log(1+Δ_G z^G ∏_i Z_Gi⁻¹).               (1)
+
+Así, sin hipótesis de tamaño ni de estructura interna de los G_i, el
+coeficiente mixto de primer orden en cada fuente de G es Δ_G. Todos los
+términos del lado derecho de (1) tienen como soporte exactamente G. En
+la partición normalizada por ∏(1+η_i z_i), η_i=T({i}), el logaritmo sólo
+cambia en soportes de un sitio. La sustitución z_i=b_i/(1−η_i b_i)
+conserva el soporte y la parte de primer orden en cada variable.
+
+Se puede reconocer el criterio sin adivinar una partición. Sea k(U) el
+coeficiente de z^U, con todas sus potencias iguales a uno, en log Z_U.
+La identidad Z=exp(log Z) da T(U)=Σ_π ∏_{B∈π}k(B) sumando sobre particiones
+de U. La fórmula vale con ceros y signos, pues en un monomio sin repetición
+los soportes de sus factores son disjuntos. En G unir los sitios de cada
+subconjunto propio V de al menos dos sitios con k(V)≠0. Si quedan varias
+componentes, son la partición más fina admisible en (1). En efecto, todos
+los factores de la fórmula para una subentrada propia viven en una de las
+componentes. Recíprocamente, la factorización en las subentradas propias
+anula todo k(V) que cruce dos bloques, aplicando el logaritmo en V. Para
+calcular k(U) se puede distinguir el bloque que contiene un sitio fijo a,
+con k(U)=T(U)−Σ_{a∈B⊊U}k(B)T(U\B). Este reconocimiento puede requerir
+examinar muchas subentradas. Se usa para formular la clase de la prueba.
+
+Para incluir todas las repeticiones, permitir una jerarquía de las
+particiones de (1). La raíz S debe tener una división de ese tipo. Cada
+hijo se divide a su vez o es una hoja. Las hojas pueden ser sitios sueltos
+o conjuntos con interacciones internas arbitrarias y actividad total
+pequeña, Σ_{i∈hoja} t_i≤1/4. No hay un límite al número de divisiones,
+su profundidad ni el número total de fuentes. Distintas ramas pueden
+tener profundidades diferentes. Definimos ahora los t_i para efectuar
+la suma a la tasa física.
+
+Para una serie P poner ||P||_t=Σ_n |[z^n]P| ∏ t_i^(n_i). Esta norma es
+submultiplicativa. Para obtener una cola en el orden N=Σ n_i se usa
+t_i=exp(1)z_i. Si se trabaja en b, tomar primero u_i=exp(1)|b_i| y usar
+t_i=u_i/(1−u_i), que mayora la sustitución inversa en norma. En ambos
+casos t_i<3·10⁻⁶ y W_i=t_i exp(3t_i)≤z_i exp(1.06). En efecto, en b se
+tiene t_i≤exp(1) z_i/[1−(1+exp(1)) z_max], z_max=1/999999, y se puede
+aplicar −log(1−x)≤2x para x≤1/2.
+
+En una hoja de actividad total h≤1/4 se tiene ||Z−1||≤exp(h)−1 y
+||Z⁻¹||≤1/(2−exp(h))≤exp(2h). La última desigualdad sigue integrando
+exp(h)/(2−exp(h))≤2. Todo singleton también cumple esta cota. En toda
+subjerarquía A se verifica ||Z_A⁻¹||≤exp(3 Σ_{i∈A}t_i). Para probarlo
+por inducción, el argumento del logaritmo menos uno en (1) tiene norma
+≤2∏_{i∈G} W_i en cada nodo interno G, usando la hipótesis para los hijos.
+Ese número es <1/2, así que su factor inverso cuesta a lo sumo
+exp(4∏_{i∈G}W_i). Expandir el producto de inversos desde las hojas y
+cobrar cada nodo interno a un sitio descendiente diferente. Existe una
+asignación inyectiva. Cada hijo reserva un sitio libre y, como hay al
+menos dos hijos, se usa uno y se conserva otro para el padre. Con
+W_max=max_i W_i<1, el producto de cada nodo es ≤W_max W_i para su sitio
+asignado i. El exponente total de hojas y nodos es entonces a lo sumo
+
+  [2+4t_max exp(6t_max)] Σ_{i∈A}t_i < 3 Σ_{i∈A}t_i.
+
+Esto cierra la inducción para una jerarquía arbitraria. En la raíz, la
+norma de log(1+Δ_S z^S∏ Z_Gi⁻¹) es ≤4∏_{i∈S}W_i. El argumento también
+cubre las repeticiones del mismo grupo y las medidas repetidas como
+potencias en el logaritmo. No multiplica probabilidades de fusiones.
+
+Por tanto, para cualquier máscara y subhost, en la esquina aspiracional,
+fijar una fuente a y sumar los monomios del logaritmo normalizado con
+soporte S que contenga a y satisfaga I o II y la condición de jerarquía.
+La masa absoluta a orden total N>M es a lo sumo
+
+  8.4·10⁻⁵ exp[−(M+1)]  si a es un dato,
+  8.2·10⁻¹⁰ exp[−(M+1)]  si a es una medida.                        (2)
+
+Se usa 4 veces la suma de las dos filas de ancla de la sección 4. Se
+permite contar dos veces los soportes de la intersección. Al escoger una
+jerarquía para aplicar (1) a un soporte se cuenta ese soporte una sola vez.
+Para los coeficientes sin repetición y una primera división, sin más
+hipótesis sobre los hijos, (2) vale incluso con la mitad del prefactor,
+por |Δ_S|≤2. Las cotas son uniformes en volumen y están expresadas en
+las odds físicas o en las actividades b correspondientes.
+
+Alcance y comprobación
+=====================
+
+El caso que queda abierto en el logaritmo incluye varias interacciones
+propias que se cruzan y conectan el soporte antes de considerar la
+entrada completa. También quedan los soportes que no admiten los árboles
+abarcadores de la sección 4. Un ejemplo físico muestra por qué la primera
+restricción importa incluso si los pares de contacto están controlados.
+En la semilla K_{18,17} escoger tres datos VV de una línea cuya huella
+sea la misma y que sean distintos del singleton de menor rango. Tomar
+la máscara cero y un subhost que contenga esos datos y excluya a ese
+ganador. Para un singleton la ejecución sale del subhost. Para cada par
+el síndrome inicial es cero, no hay acciones y la entrada pasa. Por tanto
+k({i,j})=1 para los tres pares. Esos pares propios conectan todo el
+trío. (1) no se puede invocar en su raíz. El ejemplo local comprueba un
+límite de la hipótesis. Las demostraciones y las filas certificadas se
+aplican a tamaños arbitrarios.
+
+Ejecutar python verificar_H5A_fusiones.py desde la carpeta del paquete.
+Ejecutar python contraste_fusiones.py para repetir con el doble conteo
+por simetría, una identidad algebraica por expansión directa y un segundo
+mayorante racional de las exponenciales. Se necesita Python 3.10 o posterior
+y la biblioteca estándar. Se incluyen las notas y verificadores de enlaces,
+consumo, interacciones y sus dependencias. El manuscrito y su PDF siguen
+en su versión anterior. La derivación combinatoria queda pendiente de
+revisión matemática independiente.

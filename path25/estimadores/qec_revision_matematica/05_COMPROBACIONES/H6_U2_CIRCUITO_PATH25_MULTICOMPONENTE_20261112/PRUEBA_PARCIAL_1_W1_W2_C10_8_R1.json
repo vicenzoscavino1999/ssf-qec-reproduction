@@ -1,0 +1,489 @@
+{
+ "active_locations": [
+  "W1",
+  "W2",
+  "C10_8",
+  "R1"
+ ],
+ "alcance": "una instancia, ocho ubicaciones ruidosas y el resto ideal; contrato generico no regular; no es un estimador ni una medida de ventaja",
+ "archivos_congelados_sha256": {
+  "preflight": "d3ba89f5bb27cd995a2c23e77cb4eaadbbf35e3cdfea3e7de5bf84f1ffebfdda",
+  "table": "85f322e5ffb6d8117301e70ccd2810a1c49eea2d358d2f7c0fe6c745025691ee"
+ },
+ "checks": [
+  {
+   "name": "A0 dos construcciones del codigo coinciden (H_X, H_Z, candidatos, huellas)",
+   "pass": true
+  },
+  {
+   "name": "A1 conmutacion H_X H_Z^T = 0",
+   "pass": true
+  },
+  {
+   "name": "A2 n=25, 12 checks, rangos 12 y 12, k=1, 103 candidatos, 43 huellas",
+   "pass": true
+  },
+  {
+   "name": "A3 u_0=4369 es un representante logico protegido (conmuta con H_Z, fuera del espacio de filas de H_X)",
+   "pass": true
+  },
+  {
+   "name": "A4 H_X y H_Z iguales a los del preflight congelado del piloto PATH25",
+   "pass": true
+  },
+  {
+   "name": "A5 candidatos y huellas iguales a la tabla congelada del piloto",
+   "pass": true
+  },
+  {
+   "name": "B1 los dos motores dan la misma transicion en los 4096 sindromes",
+   "pass": true
+  },
+  {
+   "name": "B2 transiciones iguales a la tabla congelada del piloto en los 4096 sindromes",
+   "pass": true
+  },
+  {
+   "name": "B3 correcciones, sindromes terminales y trazas iguales a la tabla congelada",
+   "pass": true
+  },
+  {
+   "detail": {
+    "dos_o_mas": 4005,
+    "max": 8
+   },
+   "name": "B4 traza maxima de 8 acciones y 4005 sindromes con dos o mas acciones (cifras del manuscrito)",
+   "pass": true
+  },
+  {
+   "name": "C1 host K igual al del preflight congelado",
+   "pass": true
+  },
+  {
+   "detail": {
+    "faltan": 111
+   },
+   "name": "C2 host K: 37 vertices, grado maximo 36, conexo; host de datos conexo con 111 pares no adyacentes",
+   "pass": true
+  },
+  {
+   "detail": {
+    "L": 5,
+    "N_loc": 217,
+    "capas_usadas": 4
+   },
+   "name": "S0a r=4, d=2, L=5, 42 CNOT, colores dentro de L, N_loc=217 por recuento y por formula, 242 vertices",
+   "pass": true
+  },
+  {
+   "detail": {
+    "t_7_10": 2,
+    "t_8_10": 1
+   },
+   "name": "S0b t(check 8, dato 10)=1 y t(check 7, dato 10)=2 (prediccion del plan)",
+   "pass": true
+  },
+  {
+   "name": "S0c el programa literal contiene las 42 puertas",
+   "pass": true
+  },
+  {
+   "detail": {
+    "clases": 135
+   },
+   "name": "D1 R2: restriccion, trazas locales, XOR de residuos, filtro fisico local y recomposicion canonica en todas las clases estructurales",
+   "pass": true
+  },
+  {
+   "detail": {
+    "asignaciones": 2048
+   },
+   "name": "D2 las clases estructurales suman todas las asignaciones",
+   "pass": true
+  },
+  {
+   "detail": {
+    "asignaciones": 2048
+   },
+   "name": "E1 R1 recorre todas las asignaciones",
+   "pass": true
+  },
+  {
+   "name": "E2 respuesta conjunta literal = formula del apendice C en todas las asignaciones",
+   "pass": true
+  },
+  {
+   "name": "E3 residuo, filtro fisico y fallo silencioso globales = los de la recomposicion en todas las asignaciones (clase por rango de H_Z frente a marca u_0)",
+   "pass": true
+  },
+  {
+   "name": "E4 normalizacion: las probabilidades de todas las asignaciones suman 1 (dos tasas)",
+   "pass": true
+  },
+  {
+   "name": "E5 P_0 - E[(-1)^{u.R}; H_X R=0] = 2 P_sil (dos tasas)",
+   "pass": true
+  },
+  {
+   "detail": {
+    "consultas": 1458,
+    "desenlaces": {
+     "accept": 30,
+     "exit": 582,
+     "underfilled": 846
+    },
+    "soportes": 326
+   },
+   "name": "F1 oraculo de primera salida: desenlace y traza iguales al prefijo de la ejecucion completa en todas las consultas",
+   "pass": true
+  },
+  {
+   "name": "F2 pesos W_0, W_T y W_{T,u} del oraculo iguales a los de las ejecuciones completas en todos los soportes consultados (dos tasas)",
+   "pass": true
+  },
+  {
+   "detail": {
+    "accept": 30,
+    "exit": 582,
+    "underfilled": 846
+   },
+   "name": "F3 hay consultas con los tres desenlaces",
+   "pass": true
+  },
+  {
+   "detail": {
+    "familias": 84,
+    "polimeros": 23,
+    "suma": 2048
+   },
+   "name": "G1 identidad de recuento: familias compatibles con multiplicidad = numero de asignaciones",
+   "pass": true
+  },
+  {
+   "name": "G2 B_c * Xi_0 = 1 (dos tasas)",
+   "pass": true
+  },
+  {
+   "name": "G3 P_0 = B_c * Xi_T frente a la suma global de R1 (dos tasas)",
+   "pass": true
+  },
+  {
+   "name": "G4 E[(-1)^{u.R}; H_X R=0] = B_c * Xi_{T,u} frente a R1 (dos tasas)",
+   "pass": true
+  },
+  {
+   "name": "G5 P_sil = B_c (Xi_T - Xi_{T,u}) / 2 frente a R1 (dos tasas)",
+   "pass": true
+  }
+ ],
+ "checks_failed": 0,
+ "checks_total": 30,
+ "counters": {
+  "asignaciones_propagadas_literalmente": 2048,
+  "familias_compatibles": 84,
+  "motor1_scores": 421888,
+  "motor2_scores": 421888,
+  "oraculo_consultas_fuente_soporte": 1458,
+  "oraculo_desenlaces": {
+   "accept": 30,
+   "exit": 582,
+   "underfilled": 846
+  },
+  "oraculo_ejecuciones_restringidas_distintas": 1066,
+  "oraculo_scores": 65188,
+  "oraculo_soportes": 326,
+  "polimeros": 23,
+  "puertas_CNOT_aplicadas": 86016,
+  "residuos_distintos": 12,
+  "tamano_maximo_de_familia": 2
+ },
+ "estadistica_con_multiplicidad": {
+  "asignaciones": 2048,
+  "cancelacion_tras_acciones": 0,
+  "clases": 135,
+  "componente_con_dos_o_mas_acciones": 512,
+  "dos_o_mas_componentes_con_acciones": 768,
+  "fuente_con_respuesta_X_nula_en_soporte": 1463,
+  "intercalacion_estricta": 0,
+  "max_acciones": 3,
+  "max_componentes": 2,
+  "por_componentes": {
+   "0": 1,
+   "1": 142,
+   "2": 1905
+  }
+ },
+ "instancia": {
+  "L": 5,
+  "N_loc": 217,
+  "asignaciones": 2048,
+  "beta": "1/2",
+  "candidatos": 103,
+  "checks": 12,
+  "clases_estructurales": 135,
+  "codigo": "PATH25, semilla (3,6,12), 4 columnas",
+  "n": 25,
+  "orden": "(|F|, mascara) ascendente",
+  "ubicaciones_ruidosas": [
+   {
+    "categorias": 4,
+    "nombre": "W1",
+    "ubicacion": [
+     "dwait",
+     1,
+     0
+    ]
+   },
+   {
+    "categorias": 4,
+    "nombre": "W2",
+    "ubicacion": [
+     "dwait",
+     2,
+     0
+    ]
+   },
+   {
+    "categorias": 16,
+    "nombre": "C10_8",
+    "ubicacion": [
+     "cnot",
+     10,
+     8
+    ]
+   },
+   {
+    "categorias": 8,
+    "nombre": "R1",
+    "ubicacion": [
+     "read",
+     1
+    ]
+   }
+  ],
+  "vertices_host_primitivo": 242
+ },
+ "mode": "PARCIAL",
+ "probabilidades": {
+  "1/100": {
+   "1-P_0": {
+    "decimal": "1.202987140741E-2",
+    "exacto": "2537551/210937500"
+   },
+   "B_c": {
+    "decimal": "9.509900499000E-1",
+    "exacto": "9509900499/10000000000"
+   },
+   "P_0": {
+    "decimal": "9.879701285926E-1",
+    "exacto": "208399949/210937500"
+   },
+   "P_sil": {
+    "decimal": "4.347651160494E-5",
+    "exacto": "171953/3955078125"
+   },
+   "Q_sil": {
+    "decimal": "4.400589688564E-5",
+    "exacto": "1844/41903475"
+   },
+   "Xi_0": {
+    "decimal": "1.051535712813E+0",
+    "exacto": "10000000000/9509900499"
+   },
+   "Xi_T": {
+    "decimal": "1.038885873408E+0",
+    "exacto": "266751934720/256767313473"
+   },
+   "Xi_Tu": {
+    "decimal": "1.038794439199E+0",
+    "exacto": "4000926861056/3851509702095"
+   },
+   "lambda_T": {
+    "decimal": "9.999119882062E-1",
+    "exacto": "41899787/41903475"
+   },
+   "lambda_sin_filtro": {
+    "decimal": "9.866666666667E-1",
+    "exacto": "74/75"
+   }
+  },
+  "1/1000": {
+   "1-P_0": {
+    "decimal": "1.200309867141E-3",
+    "exacto": "1265951813/1054687500000"
+   },
+   "B_c": {
+    "decimal": "9.950099900050E-1",
+    "exacto": "995009990004999/1000000000000000"
+   },
+   "P_0": {
+    "decimal": "9.987996901329E-1",
+    "exacto": "1053421548187/1054687500000"
+   },
+   "P_sil": {
+    "decimal": "4.434676540049E-7",
+    "exacto": "701579687/1582031250000000"
+   },
+   "Q_sil": {
+    "decimal": "4.440005922969E-7",
+    "exacto": "748751/1686373876500"
+   },
+   "Xi_0": {
+    "decimal": "1.005015035070E+0",
+    "exacto": "1000000000000000/995009990004999"
+   },
+   "Xi_T": {
+    "decimal": "1.003808705607E+0",
+    "exacto": "26967591633587200/26865269730134973"
+   },
+   "Xi_Tu": {
+    "decimal": "1.003807814224E+0",
+    "exacto": "404513515295008256/402979045952024595"
+   },
+   "lambda_T": {
+    "decimal": "9.999991119988E-1",
+    "exacto": "843186189499/843186938250"
+   },
+   "lambda_sin_filtro": {
+    "decimal": "9.986666666667E-1",
+    "exacto": "749/750"
+   }
+  }
+ },
+ "recuentos_por_tipo": {
+  "caracter_filtrado": [
+   1,
+   4,
+   -1,
+   7,
+   28,
+   -7,
+   3,
+   8,
+   1,
+   21,
+   56,
+   7,
+   1,
+   2,
+   1,
+   7,
+   14,
+   7,
+   3,
+   10,
+   -1,
+   21,
+   70,
+   -7
+  ],
+  "caracter_sin_filtrar": [
+   1,
+   2,
+   -3,
+   15,
+   30,
+   -45,
+   3,
+   6,
+   -9,
+   45,
+   90,
+   -135,
+   1,
+   2,
+   -3,
+   15,
+   30,
+   -45,
+   3,
+   6,
+   -9,
+   45,
+   90,
+   -135
+  ],
+  "fallo_silencioso": [
+   0,
+   0,
+   4,
+   0,
+   0,
+   28,
+   0,
+   0,
+   4,
+   0,
+   0,
+   28,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   8,
+   0,
+   0,
+   56
+  ],
+  "filtro_fisico_nulo": [
+   1,
+   4,
+   7,
+   7,
+   28,
+   49,
+   3,
+   8,
+   9,
+   21,
+   56,
+   63,
+   1,
+   2,
+   1,
+   7,
+   14,
+   7,
+   3,
+   10,
+   15,
+   21,
+   70,
+   105
+  ],
+  "n_esperas": 2,
+  "tipo": "indice = esperas_no_base + (n_esperas+1)*(cnot_no_base + 2*(pauli_lectura + 2*flip))",
+  "total": [
+   1,
+   6,
+   9,
+   15,
+   90,
+   135,
+   3,
+   18,
+   27,
+   45,
+   270,
+   405,
+   1,
+   6,
+   9,
+   15,
+   90,
+   135,
+   3,
+   18,
+   27,
+   45,
+   270,
+   405
+  ]
+ },
+ "status": "PASS",
+ "unit": "H6-U2"
+}

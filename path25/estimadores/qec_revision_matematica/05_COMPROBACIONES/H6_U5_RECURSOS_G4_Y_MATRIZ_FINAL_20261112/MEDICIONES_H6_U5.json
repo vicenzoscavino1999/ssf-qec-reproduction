@@ -1,0 +1,395 @@
+{
+ "checks": [
+  {
+   "name": "P0 los cinco programas sellados no han cambiado",
+   "pass": true
+  },
+  {
+   "name": "M2 u3_estimador con corte k=2: las filas coinciden con la tabla sellada en las 5 repeticiones",
+   "pass": true
+  },
+  {
+   "name": "M2 u4_estimador con corte k=3: las filas coinciden con la tabla sellada en las 5 repeticiones",
+   "pass": true
+  },
+  {
+   "name": "M2 u4_estimador con corte k=4: las filas coinciden con la tabla sellada en las 5 repeticiones",
+   "pass": true
+  },
+  {
+   "name": "M1 u3_contraste: el resultado del contraste es identico byte a byte al sellado en las 5 repeticiones",
+   "pass": true
+  },
+  {
+   "name": "M1 u4_contraste: el resultado del contraste es identico byte a byte al sellado en las 5 repeticiones",
+   "pass": true
+  },
+  {
+   "name": "M1 unidad 2: RESULTADO reproducido byte a byte",
+   "pass": true
+  },
+  {
+   "name": "M1 unidad 3: ESTIMACION reproducida byte a byte",
+   "pass": true
+  },
+  {
+   "name": "M1 unidad 4: ESTIMACION reproducida byte a byte",
+   "pass": true
+  }
+ ],
+ "ejecuciones": [
+  {
+   "etiqueta": "u3_estimador k=2 #0",
+   "programa": "estimador_h6_u3.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=2 controles=11 t=0.02s sha=3f84e6130135acb3",
+   "segundos_proceso": 0.0791
+  },
+  {
+   "etiqueta": "u3_estimador k=2 #1",
+   "programa": "estimador_h6_u3.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=2 controles=11 t=0.02s sha=3f84e6130135acb3",
+   "segundos_proceso": 0.0729
+  },
+  {
+   "etiqueta": "u3_estimador k=2 #2",
+   "programa": "estimador_h6_u3.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=2 controles=11 t=0.02s sha=3f84e6130135acb3",
+   "segundos_proceso": 0.069
+  },
+  {
+   "etiqueta": "u3_estimador k=2 #3",
+   "programa": "estimador_h6_u3.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=2 controles=11 t=0.02s sha=3f84e6130135acb3",
+   "segundos_proceso": 0.0672
+  },
+  {
+   "etiqueta": "u3_estimador k=2 #4",
+   "programa": "estimador_h6_u3.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=2 controles=11 t=0.02s sha=3f84e6130135acb3",
+   "segundos_proceso": 0.0736
+  },
+  {
+   "etiqueta": "u4_estimador k=3 #0",
+   "programa": "estimador_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=3 completados=3 controles=20 t=0.20s sha=499d483dd5339249",
+   "segundos_proceso": 0.2599
+  },
+  {
+   "etiqueta": "u4_estimador k=3 #1",
+   "programa": "estimador_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=3 completados=3 controles=20 t=0.20s sha=499d483dd5339249",
+   "segundos_proceso": 0.2608
+  },
+  {
+   "etiqueta": "u4_estimador k=3 #2",
+   "programa": "estimador_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=3 completados=3 controles=20 t=0.19s sha=499d483dd5339249",
+   "segundos_proceso": 0.2435
+  },
+  {
+   "etiqueta": "u4_estimador k=3 #3",
+   "programa": "estimador_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=3 completados=3 controles=20 t=0.19s sha=499d483dd5339249",
+   "segundos_proceso": 0.2423
+  },
+  {
+   "etiqueta": "u4_estimador k=3 #4",
+   "programa": "estimador_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=3 completados=3 controles=20 t=0.18s sha=499d483dd5339249",
+   "segundos_proceso": 0.2304
+  },
+  {
+   "etiqueta": "u4_estimador k=4 #0",
+   "programa": "estimador_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=4 completados=4 controles=23 t=1.06s sha=8fe8b175c5c1029c",
+   "segundos_proceso": 1.1105
+  },
+  {
+   "etiqueta": "u4_estimador k=4 #1",
+   "programa": "estimador_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=4 completados=4 controles=23 t=1.04s sha=8fe8b175c5c1029c",
+   "segundos_proceso": 1.1022
+  },
+  {
+   "etiqueta": "u4_estimador k=4 #2",
+   "programa": "estimador_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=4 completados=4 controles=23 t=1.07s sha=8fe8b175c5c1029c",
+   "segundos_proceso": 1.1359
+  },
+  {
+   "etiqueta": "u4_estimador k=4 #3",
+   "programa": "estimador_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=4 completados=4 controles=23 t=1.07s sha=8fe8b175c5c1029c",
+   "segundos_proceso": 1.1404
+  },
+  {
+   "etiqueta": "u4_estimador k=4 #4",
+   "programa": "estimador_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=4 completados=4 controles=23 t=1.05s sha=8fe8b175c5c1029c",
+   "segundos_proceso": 1.104
+  },
+  {
+   "etiqueta": "u3_contraste #0",
+   "programa": "contrastar_h6_u3.py",
+   "rc": 0,
+   "salida": "PASS contraste controles=12 fallidos=0 t=1.55s",
+   "segundos_proceso": 1.6111
+  },
+  {
+   "etiqueta": "u3_contraste #1",
+   "programa": "contrastar_h6_u3.py",
+   "rc": 0,
+   "salida": "PASS contraste controles=12 fallidos=0 t=1.56s",
+   "segundos_proceso": 1.6214
+  },
+  {
+   "etiqueta": "u3_contraste #2",
+   "programa": "contrastar_h6_u3.py",
+   "rc": 0,
+   "salida": "PASS contraste controles=12 fallidos=0 t=1.54s",
+   "segundos_proceso": 1.5927
+  },
+  {
+   "etiqueta": "u3_contraste #3",
+   "programa": "contrastar_h6_u3.py",
+   "rc": 0,
+   "salida": "PASS contraste controles=12 fallidos=0 t=1.55s",
+   "segundos_proceso": 1.6171
+  },
+  {
+   "etiqueta": "u3_contraste #4",
+   "programa": "contrastar_h6_u3.py",
+   "rc": 0,
+   "salida": "PASS contraste controles=12 fallidos=0 t=1.55s",
+   "segundos_proceso": 1.6168
+  },
+  {
+   "etiqueta": "u4_contraste #0",
+   "programa": "contrastar_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS contraste controles=11 fallidos=0 t=0.73s",
+   "segundos_proceso": 0.7984
+  },
+  {
+   "etiqueta": "u4_contraste #1",
+   "programa": "contrastar_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS contraste controles=11 fallidos=0 t=0.73s",
+   "segundos_proceso": 0.844
+  },
+  {
+   "etiqueta": "u4_contraste #2",
+   "programa": "contrastar_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS contraste controles=11 fallidos=0 t=0.74s",
+   "segundos_proceso": 0.8155
+  },
+  {
+   "etiqueta": "u4_contraste #3",
+   "programa": "contrastar_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS contraste controles=11 fallidos=0 t=0.73s",
+   "segundos_proceso": 0.7916
+  },
+  {
+   "etiqueta": "u4_contraste #4",
+   "programa": "contrastar_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS contraste controles=11 fallidos=0 t=0.73s",
+   "segundos_proceso": 0.8071
+  },
+  {
+   "etiqueta": "u2 verificador completo",
+   "programa": "verificar_h6_u2.py",
+   "rc": 0,
+   "salida": "PASS  controles=39  fallidos=0  t=10.3s",
+   "segundos_proceso": 10.417
+  },
+  {
+   "etiqueta": "u3 estimador completo",
+   "programa": "estimador_h6_u3.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=8 controles=27 t=1.01s sha=349658833be721cb",
+   "segundos_proceso": 1.0672
+  },
+  {
+   "etiqueta": "u4 estimador completo",
+   "programa": "estimador_h6_u4.py",
+   "rc": 0,
+   "salida": "PASS estimador kmax=5 completados=5 controles=26 t=10.30s sha=654367777c23c83c",
+   "segundos_proceso": 10.3922
+  }
+ ],
+ "ejecuciones_totales": 28,
+ "nota": "tiempos de reloj y memoria no deterministas; los contadores salen de las salidas selladas",
+ "programa": "mediciones",
+ "resumen": {
+  "reejecuciones_completas": {
+   "u2_verificador_segundos_proceso": 10.417,
+   "u3_estimador_k8": {
+    "pico_memoria_MiB": 21.9,
+    "segundos_internos": 1.0115,
+    "segundos_proceso": 1.067
+   },
+   "u4_estimador_k5": {
+    "pico_memoria_MiB": 262.6,
+    "segundos_internos": 10.303,
+    "segundos_proceso": 10.392
+   }
+  },
+  "u3_contraste": {
+   "pico_memoria_MiB": {
+    "max": 23.4141,
+    "mediana": 23.4102,
+    "min": 23.4102,
+    "n": 5
+   },
+   "segundos_proceso": {
+    "max": 1.6214,
+    "mediana": 1.6168,
+    "min": 1.5927,
+    "n": 5
+   },
+   "segundos_referencia_exacta": {
+    "max": 1.5488,
+    "mediana": 1.5382,
+    "min": 1.5285,
+    "n": 5
+   }
+  },
+  "u3_estimador_k2": {
+   "pico_memoria_MiB": {
+    "max": 18.8477,
+    "mediana": 18.8477,
+    "min": 18.8438,
+    "n": 5
+   },
+   "segundos_catalogo": {
+    "max": 0.0013,
+    "mediana": 0.0012,
+    "min": 0.0012,
+    "n": 5
+   },
+   "segundos_gas": {
+    "max": 0.006,
+    "mediana": 0.0057,
+    "min": 0.0056,
+    "n": 5
+   },
+   "segundos_internos": {
+    "max": 0.0215,
+    "mediana": 0.0164,
+    "min": 0.0154,
+    "n": 5
+   },
+   "segundos_proceso": {
+    "max": 0.0791,
+    "mediana": 0.0729,
+    "min": 0.0672,
+    "n": 5
+   }
+  },
+  "u4_contraste": {
+   "pico_memoria_MiB": {
+    "max": 24.5156,
+    "mediana": 24.5078,
+    "min": 24.5,
+    "n": 5
+   },
+   "segundos_proceso": {
+    "max": 0.844,
+    "mediana": 0.8071,
+    "min": 0.7916,
+    "n": 5
+   },
+   "segundos_referencia_exacta": {
+    "max": 0.7314,
+    "mediana": 0.7176,
+    "min": 0.7127,
+    "n": 5
+   }
+  },
+  "u4_estimador_k3": {
+   "pico_memoria_MiB": {
+    "max": 23.25,
+    "mediana": 23.2461,
+    "min": 23.2461,
+    "n": 5
+   },
+   "segundos_catalogo": {
+    "max": 0.0466,
+    "mediana": 0.0411,
+    "min": 0.0396,
+    "n": 5
+   },
+   "segundos_gas": {
+    "max": 0.1269,
+    "mediana": 0.1171,
+    "min": 0.1102,
+    "n": 5
+   },
+   "segundos_internos": {
+    "max": 0.2021,
+    "mediana": 0.1903,
+    "min": 0.1802,
+    "n": 5
+   },
+   "segundos_proceso": {
+    "max": 0.2608,
+    "mediana": 0.2435,
+    "min": 0.2304,
+    "n": 5
+   }
+  },
+  "u4_estimador_k4": {
+   "pico_memoria_MiB": {
+    "max": 54.5898,
+    "mediana": 54.5859,
+    "min": 54.5781,
+    "n": 5
+   },
+   "segundos_catalogo": {
+    "max": 0.2344,
+    "mediana": 0.2204,
+    "min": 0.2166,
+    "n": 5
+   },
+   "segundos_gas": {
+    "max": 0.8002,
+    "mediana": 0.7866,
+    "min": 0.7742,
+    "n": 5
+   },
+   "segundos_internos": {
+    "max": 1.0726,
+    "mediana": 1.0574,
+    "min": 1.0426,
+    "n": 5
+   },
+   "segundos_proceso": {
+    "max": 1.1404,
+    "mediana": 1.1105,
+    "min": 1.1022,
+    "n": 5
+   }
+  }
+ },
+ "segundos_totales": 41.29,
+ "status": "PASS",
+ "unit": "H6-U5"
+}

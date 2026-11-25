@@ -1,0 +1,178 @@
+T2-0: CALIBRACION DEL CERTIFICADO CON RUIDO DE CIRCUITO EN LAS TIRAS
+13/11/2026 (Lima). Primer paso de la via de tipo 2, por orden del usuario
+("Ok si por favor continua y de ahi miro como continuar"), sobre la
+evaluacion T2_EVALUACION_VERSION_ACOTADA_20261113/EVALUACION_T2.txt y su
+recomendacion: tiras m x 6, r_m = r_c y sin splitting. Aplica
+METODOLOGIA_FIJACION_PARAMETROS.txt. Plan escrito y sellado
+(SELLO_PLAN.json) antes de escribir el programa; antes de sellarlo no se
+ejecuto nada de esta unidad. Es una calibracion: mide y controla, no
+calcula ningun intervalo de P_sil.
+
+QUE CAMBIA Y QUE NO
+- Cambia el modelo de ruido, como recomendaba la evaluacion: se pasa del
+  fenomenologico al circuito del manuscrito (sec:circuit y app:circuit),
+  con ruido en todas las ubicaciones. Una ronda de extraccion de los
+  checks Z, con el calendario voraz del apendice. Ley de la subfamilia
+  concreta: las preparaciones y esperas tienen Paulis (1-r_c, r_c/3,
+  r_c/3, r_c/3); el CNOT tiene identidad 1-r_c y r_c/15 por cada otro
+  Pauli; la lectura es la ley de un qubit mas un flip clasico
+  independiente r_m, en una ubicacion conjunta.
+- No cambian: el decoder (el SSF de B4, control_exacto.make_decoder), el
+  evento (P_sil fisico del sector X: H_X R = 0 y R fuera de S_X) y las
+  tiras HGP(camino_m, camino_6).
+
+LEMA F (fusion por fibras; exacto)
+Cada ubicacion tiene una base pi(l): un dato v o un check c, como en el
+host primitivo del apendice. La fibra de una base es el conjunto de sus
+ubicaciones.
+- Por eq:circ-joint, (E_X, s) es el XOR de las respuestas de las
+  ubicaciones. Agrupandolas por fibra, (E_X, s) = XOR_b R_b, donde R_b es
+  el XOR de las respuestas de la fibra b.
+- Las ubicaciones son independientes y cada una esta en una sola fibra,
+  asi que las R_b son independientes.
+- El evento solo depende de (E_X, s), porque R_X = E_X + C(s).
+- Por tanto, P_0 y P_sil del circuito son los del modelo con un sitio
+  categorico independiente por base, con la ley de R_b.
+Que respuestas tiene cada sitio:
+- Dato v con checks c_1, ..., c_d ordenados por capa: R_v toma valores
+  (a e_v, sindrome dentro de {c_1..c_d}). Con r_c > 0, las 2^(d+1)
+  combinaciones son alcanzables, asi que hay 7 clases no nulas si d = 2 y
+  3 si d = 1.
+- Check c: R_c es un flip de su lectura, una sola clase no nula.
+Los sitios son los mismos 16m - 5 de B4 y el host es el mismo K. Toda
+respuesta de v cae dentro de su huella psi_v, que es como esta definido
+K. Las categorias sin respuesta X quedan en la clase nula, lo cual es
+exacto porque no afectan al evento.
+Este lema corrige la seccion 4 de EVALUACION_T2.txt: el problema no
+crece 2.2 veces en sitios. Tiene los mismos sitios, con varias clases
+por sitio.
+
+DECORACIONES CON CLASES
+- Una decoracion es un conjunto F de sitios no nulos, con una clase no
+  nula en cada uno. Se decodifica su propio sindrome s = XOR de las
+  respuestas, con E = XOR de los e_v.
+- Su soporte es Y = F union los datos tocados por el decoder. Es valida
+  si Y es conexo en K, como en B4.
+- La clave es (na, nb) = (datos no nulos, checks no nulos), y su recuento
+  cuenta asignaciones de clases. El recuento k es |F|.
+
+CATALOGO (regla de crecimiento de B2, ampliada a clases)
+- Los candidatos de f son los conjuntos A + {x}. A es un conjunto de f-1
+  sitios con alguna asignacion valida, y x es un vecino en K de la union
+  de los soportes validos de A. Para cada candidato se prueban todas sus
+  asignaciones de clases.
+- La regla es la de B4 con mas candidatos. No se demuestra su
+  completitud: la certifica el control C-suma.
+- Los procesos agregan por soporte y devuelven agregados, no historias.
+
+LEMA S (regla de suma de B4R con clases)
+Con odds x = 1/D para cada clase no nula de cada sitio, Xi(V) =
+prod_b (1 + n_b x), donde n_b es el numero de clases no nulas de b; esto
+se sigue de la recomposicion. Sea P un subconjunto de las decoraciones
+validas con <= k sitios no nulos (V_k):
+(a) si P = V_k, entonces 0 <= Xi(V) - Xi(P) <= sum_{j >= k+1} e_j(n) x^j,
+    donde e_j son las sumas simetricas elementales de los n_b;
+(b) si falta gamma, Xi(V) - Xi(P) >= x^|F_gamma| >= x^k.
+La prueba es la de B4R con pesos por clase. En enteros: la DP de B1 sin
+cambios (eval_fly) con p = q = 1/(D + 1) y NV = 1 da X0 = D^NS Xi(P).
+Sea T_cat = prod_b (D + n_b).
+- Criterio: T_cat - X0 < D^(NS-k).
+- Condicion previa: T_cat - sum_{j <= k} e_j D^(NS-j) < D^(NS-k).
+- D = 10^14, la menor potencia de 10 con cola/umbral < 0.05 en los tres
+  usos (k = 4 en m = 6 y 12; k = 3 en m = 24). Cola/umbral prevista:
+  8e-4, 0.035 y 0.0037.
+
+INSTANCIAS, ETAPAS Y CONTROLES (en este orden; cada control detiene)
+- C-resp, en m = 6, 12 y 24: la respuesta de cada ubicacion y categoria
+  visible por las formulas de eq:circ-response debe coincidir con una
+  propagacion independiente del marco de Pauli capa a capa. Ademas, en
+  2000 asignaciones aleatorias con varios fallos, el XOR de respuestas
+  debe ser igual a la propagacion conjunta. Se comprueba tambien
+  N_loc = (L + 2)(n + m_X) - h_X.
+- C-ley: cada ley de ubicacion y cada ley de fibra suma 1 exactamente, en
+  las celdas de la malla. Las clases no nulas alcanzables son 7, 3 y 1,
+  segun el lema F.
+- C-fen (control positivo fuerte), en m = 6: con las clases restringidas
+  a las fenomenologicas (un dato antes de la ronda, con sindrome completo;
+  el flip de lectura), el catalogo debe ser igual al de B4. Se comprueban
+  las validas por f, los polimeros distintos y la estructura de la DP con
+  k = 4. Ademas, eps_comp(4) = 1 - X0/T con NV = 1 (el atajo C0 de B4R)
+  debe dar, en las 12 celdas, las fracciones selladas en
+  RESULTADO_B4.json.
+- C-exh, en m = 6: el exhaustivo de todas las asignaciones con f <= 3
+  debe dar las mismas decoraciones validas, una a una, que el catalogo
+  por crecimiento con f <= 3.
+- C-rec (recomposicion, como B2 de D1), en m = 6 y 12: 10000 historias
+  aleatorias con clases y al menos dos componentes con acciones. La
+  ejecucion global debe ser igual a la de cada componente por separado:
+  soporte, tocados y residuo.
+- C-suma: COMPLETO con k = 4 en m = 6 y 12, y con k = 3 en m = 24.
+  Negativo: en m = 6, quitando una decoracion de 4 sitios (regla fija de
+  B4R: el soporte de menor valor con una clave de 4 sitios, la menor
+  clave, recuento - 1), debe decir INCOMPLETO.
+- I4: silenciosa si y solo si algun caracter logico vale -1, sin
+  discrepancias.
+
+MEDIDAS (en m = 6 y 12 con k = 1..4, y en m = 24 con k = 1..3)
+- Llamadas al decoder y decoraciones validas por f.
+- Polimeros, y estados y terminos de la DP con el orden de producto.
+- Orden silencioso con circuito, f_s: en m = 6 por el exhaustivo y en
+  todas las tiras por el catalogo.
+- Decoraciones silenciosas con f_s sitios, por firma (tipo de ley y
+  clase).
+- Tiempo y memoria por etapa.
+
+DECISIONES (fijadas antes)
+- D-c0: todos los controles PASS. Si alguno falla, la unidad se detiene y
+  se informa que la capa de circuito no queda validada.
+- D-c1 (factibilidad de T2-1 con k = 4), por tira m = 6, 12, 24 y 48.
+  Una tira es CABE si sus estados de la DP con k = 4 son <= 5e6 y sus
+  terminos <= 2.5e9 (la compuerta de B4); si no, NO_CABE.
+  - m = 6 y 12: medidos.
+  - m = 24 (proyeccion): terminos_4(24) = terminos_3(24) x
+    terminos_4(12) / terminos_3(12), y lo mismo para estados y llamadas.
+  - m = 48 (proyeccion): afin en m desde m = 12 y 24.
+  Las proyecciones se informan como tales.
+- D-c2: f_s con circuito en cada tira. Si f_s < 3 se informa como orden
+  silencioso menor que en B4; no detiene la unidad.
+
+METRICAS INFORMATIVAS (no deciden)
+- Termino dominante exacto de P_sil: B x (suma, sobre las decoraciones
+  silenciosas con f_s sitios, de los odds de sus clases), donde B es la
+  probabilidad de que todos los sitios sean nulos. A orden f_s toda
+  historia silenciosa es una sola componente. Se calcula en r_c en
+  {1e-3, 1e-4, 1e-5, 1e-6}, con r_m = r_c y con r_m = 0.
+- Ejecuciones de Monte Carlo directo para un 10 % al 95 %: 384 / P_sil
+  dominante.
+- Coste de la truncacion ingenua con clases: sum_{f <= k} e_f(n)
+  decodificaciones.
+- Cocientes de llamadas, polimeros, estados y terminos frente a B4.
+
+TECHOS (R)
+3 h de reloj; a lo sumo 1.2e9 llamadas al decoder; 18 GiB de memoria en
+total y 12 GiB en el proceso principal; 14 procesos para el catalogo y el
+exhaustivo, y 1 GiB por proceso. Si se alcanza un techo, la etapa
+pendiente queda NO_MEDIDA y se informa asi.
+Prevision (no medida): de 4e8 a 8e8 llamadas y de 40 a 90 min. Lo que
+mas pesa es el catalogo con f = 4 de m = 12.
+
+LIMITES QUE PESAN IGUAL (M10)
+- Los lemas F y S estan escritos aqui, sin contraste del revisor. La
+  recomposicion con clases se apoya en Prop. circ-recomp del manuscrito
+  (cociente por fibras), y se controla por muestreo (C-rec), no se prueba.
+- La localidad del filtro fisico, que el manuscrito enuncia para la
+  familia FGL regular, en las tiras solo queda controlada por C-rec y por
+  la regla de suma.
+- Es una calibracion: no da intervalos de P_sil ni compara con rivales.
+  Una ronda, sin splitting.
+
+FUERA DE ALCANCE
+No se calculan intervalos ni celdas; no hay Monte Carlo, splitting ni
+varias rondas; no se toca el manuscrito ni el paquete del revisor; no se
+inicia HGP5, H5-B, N11/N12, M2 ni C3; no se descarga nada. T2-1 necesita
+una orden nueva.
+
+ARCHIVOS
+Ahora: PLAN_T2_0.txt y SELLO_PLAN.json. Despues: t2_calibracion.py,
+RESULTADO_T2_0.json, RECURSOS_T2_0.json, SALIDA_T2_0.txt e
+INFORME_T2_0.txt.

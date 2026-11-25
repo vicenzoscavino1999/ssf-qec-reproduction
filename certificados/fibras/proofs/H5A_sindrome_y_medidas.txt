@@ -1,0 +1,648 @@
+H5-A · Agrupar por síndrome e integrar las redundancias de datos y medidas
+18 de noviembre de 2026
+
+Resultado y decisión
+====================
+
+La tasa general demostrada en el proyecto sigue en p ≤ 5·10⁻³³ y
+q ≤ 2·10⁻¹¹. Esta nota cambia la expansión en la esquina p=10⁻³⁰,
+q=2·10⁻¹¹. Se integra todo el campo de medidas para un síndrome inicial
+fijado. La respuesta depende de las posiciones de los datos sólo a través
+de su síndrome y del signo conocido de la máscara. El coste en suma
+absoluta de coeficientes es <1.000345 por check del síndrome, elevado
+al número de esos checks. Para e datos cuesta a lo sumo 1.0063^e.
+La fórmula vale para cualquier tamaño, separación, trayectoria y número
+de errores de medida. También se suma toda configuración de datos que
+produce el mismo síndrome, con sus signos, incluidos los subconjuntos
+con huellas que se cancelan dentro de un grupo. Si w es el menor número
+de datos que pueden producir un síndrome no vacío, la suma normalizada
+de esa clase, incluidas las medidas, tiene norma ≤ u^w/(1−v). En la
+meta sirven u=3.58·10⁻²⁹ y v=3.554·10⁻²⁹. La sección 2.1 precisa la
+normalización y la desigualdad uniforme. El número de síndromes
+distintos que pueden contribuir juntos todavía requiere control.
+
+El problema completo adquiere así un criterio suficiente sobre grupos
+de datos, con una sola fila por posición de datos. En esa fila se
+anula exactamente un bloque de varios grupos si uno tiene síndrome cero.
+Para dos grupos también se suma, hasta distancia infinita, la parte con
+separación especificada en (10). El radio usa el menor número de datos
+que produce sus síndromes, incluso si las entradas contienen muchas
+redundancias. Además, la sección 5.1 suma a cualquier distancia todos
+los pares que reúnen al menos 2900 datos, también los que cambian la
+corrección conjunta. Su contribución en la meta es <10⁻²⁶⁰ por
+vecindad. Quedan las parejas de menos de 2900 datos fuera de (10) y la
+suma general de tres o más grupos con síndrome propio no vacío. Para
+ese último problema, (14) permite asignar todos los pasos de una
+ejecución a sus checks iniciales, con una sola unidad por check en
+total. En la construcción de dos brazos del proyecto la interacción
+efectiva vale uno ya con q=0 y el ejemplo concreto entra en (13).
+
+Se mantienen la semilla binaria (17,18)-regular, los candidatos FGL
+completos, β=1/100, máximo global de la puntuación, prioridad fija, una
+ronda independiente, y las máscaras y los subhosts del manuscrito.
+
+1. Identidad en el síndrome
+===========================
+
+Fijar el subhost físico J y la máscara. E y D son subconjuntos de sus
+sitios de datos y medidas. Denotar por z_v y u_j las odds de entrada
+r/(1−r) respectivas, tratadas primero como variables independientes.
+Los factores Bernoulli comunes son conocidos. Sea χ el carácter de la
+máscara, σ=H_X E la suma binaria de las huellas y s=|σ|. Sea B(D) el
+indicador de que ningún candidato del código completo es elegible en D.
+El filtro físico sólo acepta si el síndrome observado acaba exactamente
+en D. Por ello B(D)=1 es necesario para cualquier E. Sin datos también
+es suficiente, por el descenso estricto. Definir
+
+          Z₀(u)=Σ_D B(D) u^D,       ⟨f⟩₀=Σ_D B(D) f(D)u^D / Z₀(u).
+
+En el fondo estable, ejecutar el decoder desde D⊕σ. Definir f_σ(D)=0
+si falla la llegada a D o la contención de los datos visitados en J.
+Si pasa, f_σ(D)=χ(C), con C el XOR de las correcciones. El dato original
+ya pertenece a J. La marca física es exactamente χ(E) B(D) f_σ(D).
+Para Z_E=Σ_D T(E,D)u^D resulta
+
+     Z_E/Z₀ = G_E = χ(E) h_σ,      h_σ=⟨f_σ⟩₀,      h_∅=1,
+     Ξ_J/Z₀ = Σ_σ h_σ Σ_{E⊆J_datos, H_X E=σ} χ(E) z^E.             (1)
+
+La corrección y el desempate dependen del síndrome observado. El signo
+se descompone porque χ(E⊕C)=χ(E)χ(C). Ésta es la razón por la que
+dos representantes del mismo síndrome usan una sola respuesta. (1)
+sirve como identidad analítica. Para evaluar coeficientes basta el
+oráculo físico anterior, sin enumerar todas las clases de síndrome.
+
+Para extender f_σ a cualquier D, mantener X, inicialmente σ, y buscar
+ganadores sólo entre candidatos cuya huella corta X. Consultar las
+medidas de los rectángulos que tocan X, guardando las respuestas.
+En D estable, todo ganador cumple esa condición. Un paso actualiza
+X por XOR con la huella. Si el siguiente descenso llevaría el total
+por encima de s, devolver cero. En una corrida que pasa,
+
+                      Σδ = |D⊕σ|−|D| ≤ s.                           (2)
+
+Al parar se comprueba X vacío, el soporte de las acciones y su carácter.
+En D inestable cualquier extensión da la misma (1). Para la comparación
+con medidas independientes de la sección 2 se usa la extensión descrita.
+
+El área A de un paso ejecutado satisface A≤100δ. Los checks que pudieron
+pertenecer a X en esta ejecución están entre los s iniciales y los
+checks conmutados, en total ≤101s. En los rectángulos incidentes a
+un check hay a lo sumo J₁=83810 sitios de medida. Se puede consultar
+además todo σ al principio. En cualquier hoja del árbol de decisiones
+se leen como máximo Ls sitios distintos, con
+
+                   L=101J₁+1=8464811,      s≤18e.                  (3)
+
+Esta afirmación incluye las hojas rechazadas y los candidatos rivales
+del código completo. Los sitios de medida exteriores al subhost tienen
+respuesta cero.
+
+2. Suma absoluta de las medidas, con todas sus correlaciones
+===========================================================
+
+Para una serie F(u)=Σ_k f_k u^k usar ||F||_y=Σ_k |f_k| y^|k|.
+Los multiíndices admiten potencias repetidas. Esta norma es
+submultiplicativa y controla también la evaluación compleja en el
+polidisco. Para p y q usar el radio inclinado
+
+                        x(r)=r exp(0.015)/(1−2r).
+
+Es mayor que las odds físicas multiplicadas por exp(0.015). El cálculo
+de las medidas utiliza y=x(q). La estabilidad es hereditaria al retirar
+luces. Equivale a prohibir las configuraciones que contienen suficientes
+luces dentro de la huella de algún candidato. Cada conjunto prohibido
+minimal tiene al menos nueve miembros y cabe en un rectángulo.
+
+Una asignación parcial fija algunos bits en cero o uno. Si sus unos ya
+contienen un conjunto prohibido, la rama tiene peso cero. En otra rama,
+para un sitio libre i, sean Z_− y Z_+ las funciones de partición
+condicionadas a i=0 y a i=1, excluyendo el factor u_i. El cociente de
+ocupación es R=u_i Z_+/Z_−. Si b satisface
+
+                  y(1+b)(1+2b)^(J₁−1) ≤ b,                          (4)
+
+la norma de la respuesta condicional uno es ≤b y la de la respuesta
+cero es ≤1+b, bajo cualquier asignación parcial admisible.
+
+Prueba por inducción en el número de sitios libres. Bajo i=0, Z_+/Z_−
+es la esperanza condicionada del indicador de que se puede añadir i.
+Ese indicador sólo lee los otros sitios de los rectángulos de i, como
+máximo J₁−1. Al recorrerlos por un orden fijo todas las leyes
+condicionadas necesarias tienen menos sitios libres. Por la inducción,
+la suma de normas de las hojas es ≤(1+2b)^(J₁−1). Así ||R||≤b/(1+b)<1.
+La partición actual es Z_−(1+R). La serie geométrica para R/(1+R)
+da la cota b y la respuesta cero es uno menos esa serie. Esto prueba a
+la vez la existencia de los inversos utilizados. Al ir fijando a cero
+todos los sitios, la suma de ||log(1+R)|| es ≤N_medidas b.
+
+Aplicar ahora esas cotas al árbol adaptativo (3). Cada respuesta conduce
+a un problema condicionado admisible o a una rama de peso cero. Los
+valores de hoja tienen módulo ≤1. Por submultiplicatividad se obtiene
+
+       ||h_σ||_y ≤ (1+2b)^(Ls) ≤ exp(2bLs).                        (5)
+
+En q=2·10⁻¹¹ sirve b=2.031·10⁻¹¹. Se obtiene exp(2bL)<1.000345 y
+exp(36bL)<1.0063. La cota es uniforme en la geometría de E. Cada
+conjunto de posiciones de datos por separado admite la suma de todas
+las medidas. Sumar también sobre las posiciones de datos exige la
+sección 3.
+
+Se puede cuantificar el efecto de la estabilidad del fondo. Sea
+h_libre la esperanza de la misma extensión f_σ bajo el campo de medidas
+independientes, con denominador ∏(1+u_j). Cualquier conjunto de hasta
+ocho medidas es estable. Numeradores y denominadores de ambas
+esperanzas coinciden hasta grado total ocho. Para y*=10⁻⁹, (4) vale con
+b*=1.001·10⁻⁹ y las dos normas son <1.36^e para e>0. Para el fondo
+independiente la norma de la respuesta uno es ≤y*/(1−y*)≤b*.
+Al bajar al radio físico se tiene
+
+       ||h_σ−h_libre||_y ≤ 2 (y/y*)⁹ 1.36^e < 1.18·10⁻¹⁵ 1.36^e.   (6)
+
+(6) estima el efecto de condicionar la estabilidad. Los errores de
+medida independientes siguen influyendo en la trayectoria de f_σ.
+
+La fijación de sitios mediante cocientes de particiones tiene un
+antecedente en A. Scott y A. Sokal, The repulsive lattice gas, the
+independent-set polynomial, and the Lovász local lemma (2005). La
+inducción (4) trata aquí las restricciones de todos los cortes FGL y
+(5) se aplica a las consultas del decoder.
+https://arxiv.org/abs/cond-mat/0309352
+
+2.1. Sumar las configuraciones de datos con un mismo síndrome
+============================================================
+
+Trabajar sobre las posiciones de datos permitidas V del subhost, con
+todas las filas del H_X físico. En el grafo H de V, dos columnas son
+vecinas cuando sus huellas comparten un check. Cada dato tiene ≤18
+checks y cada check a lo sumo 35 lectores. Por ello D_H=612 acota el
+grado. Para B⊆V, N[B] incluye B y todos sus vecinos en H. En esta
+sección la norma || ||_x suma los valores absolutos de los coeficientes
+en las variables de datos a radio x=x(p), incluidas potencias repetidas.
+
+Llamar neutro a C si H_X C=0 y definir para U⊆V
+
+         K_U=Σ_{C⊆U neutro} χ(C) z^C.
+
+Cada componente de H[C] es neutra si C lo es, porque sus huellas son
+disjuntas de las de las otras componentes. Así K_U es el gas de los
+conjuntos neutros conexos no vacíos contenidos en U, que se excluyen
+si se tocan o se solapan. Cada uno tiene tamaño ≥2. K_V es exactamente
+la clase de datos de síndrome vacío. Z₀, en cambio, suma el campo de
+medidas estable.
+
+Fijar un orden total de los soportes neutros minimales no vacíos
+(circuitos de la matriz binaria). Dado E, quitar el primer circuito
+contenido en E, repetir y llamar F=red(E) al conjunto final. F queda
+linealmente independiente, H_X F=H_X E y E menos F es neutro. Cada
+circuito es conexo en H. Por ello en partes separadas de H la reducción
+procede independientemente, cualquiera que sea el orden intercalado.
+Un conjunto neutro se reduce hasta vacío.
+
+Fijar ahora un F independiente. En C=E menos F, tomar la familia A de
+componentes de H[C] adyacentes a F. Sean U_A su unión y B=F∪U_A.
+Las demás componentes de C están en V menos N[B]. Recíprocamente se
+puede elegir cualquier familia compatible A de polímeros neutros
+disjuntos de F, cada uno adyacente a F, tal que red(B)=F, y completarla
+con un conjunto neutro arbitrario en V menos N[B]. El orden de
+reducción en la zona exterior no afecta a B. Esta correspondencia
+cuenta cada E exactamente una vez, incluso si un circuito toca tanto
+F como las posiciones de U_A. Se obtiene la identidad
+
+   W_F = Σ_A 1_{red(F∪U_A)=F} χ(U_A) z^(U_A) K_{V menos N[B]}/K_V,
+   Ξ_J/(Z₀ K_V) = Σ_{F independiente} χ(F) z^F W_F h_{H_X F}.   (6a)
+
+W_∅=1. El orden total fija la representación en (6a) y desaparece
+al sumar todos los representantes de un mismo síndrome.
+
+Para estimar W_F usar α=2·10⁻⁶, t=x exp(α), h=4D_H t,
+R=t h/(1−h) y ε=(D_H+1)R. En cualquier raíz hay ≤(4D_H)^(n−1)
+conjuntos conexos de tamaño n, por árboles planos enraizados. Sumando
+desde n=2 se obtiene R como cota de las actividades neutras a través de
+una raíz, con inclinación exp(αn). Para 0≤p≤10⁻⁶, h<1 y ε≤α. Por
+vecindad, la suma de actividades incompatibles con un polímero P es
+≤ε|P|. Se puede aplicar Kotecký–Preiss con presupuesto α|P|, incluidos
+los signos de las máscaras mediante valor absoluto. La expansión de
+log K_V tiene norma ≤|V|R, contando cada cúmulo desde un sitio.
+Para el cociente K_{V menos N[B]}/K_V sólo persisten cúmulos con un
+polímero que corta N[B]. La estimación enraizada del teorema 1 de
+Ueltschi citado en la sección 3 da
+
+          ||log(K_{V menos N[B]}/K_V)||_x ≤ |N[B]|R ≤ ε|B|.       (6b)
+
+El término con A vacía en W_F difiere de uno en norma a lo sumo
+exp(ε|F|)−1. Para los demás, (6b) cuesta ≤exp(ε|F|)∏_{P∈A} exp(ε|P|).
+Sumar los polímeros adyacentes a F con estos pesos cuesta ≤ε|F| antes
+de formar familias. Permitir familias arbitrarias en la serie
+exponencial mayora la suma sobre las compatibles. Incluyendo la
+familia vacía se concluye
+
+       ||W_F−1||_x ≤ exp(2ε|F|)−1,       ||W_F||_x ≤ exp(2ε|F|).    (6c)
+
+Se tiene 2ε<3.2·10⁻⁵⁴ en p=10⁻³⁰ y 2ε<3.2·10⁻⁶ en p=10⁻⁶.
+
+Para un síndrome σ alcanzable, w(σ) es el menor tamaño de un soporte
+de datos en V que lo produce. Un representante mínimo es independiente.
+Para un σ no vacío fijo hay a lo sumo 35^n representantes independientes
+de tamaño n. Para codificar uno, tomar el primer check del síndrome
+residual en un orden fijo. Entre sus ≤35 lectores elegir el primero
+que esté en el soporte que queda. Existe porque la paridad es impar.
+Registrar su índice dentro de la lista fija de lectores, retirar el
+dato y conmutar su columna. Una parte independiente no vacía tiene
+síndrome no vacío, así que el proceso da exactamente n índices. A partir
+de σ, esos índices reconstruyen cada columna por el mismo orden de checks.
+Esto prueba la inyección sin elegir una posición inicial del código.
+La elección de un lector de un check también se usó en
+H5A_fusiones_sin_repetir.txt, §1, para cubiertas de una huella local.
+Aquí se utiliza en toda la clase de una matriz, tras retirar sus circuitos.
+
+Escribir P_σ=Σ_{E⊆V, H_X E=σ} χ(E) z^E y v=35x exp(2ε). De (6a–c)
+y de la inyección se deduce para σ no vacío
+
+                    ||P_σ/K_V||_x ≤ v^w(σ)/(1−v).                  (6d)
+
+Para un síndrome inalcanzable el numerador es cero y para σ vacío el
+cociente es uno. Como |σ|≤18w(σ), (5) se puede aplicar al mismo w.
+En la norma conjunta de datos y medidas se tiene así
+
+              ||h_σ P_σ/K_V||_{x,y} ≤ [1.0063 v]^w(σ)/(1−v).       (6e)
+
+En p=10⁻³⁰ sirve v<3.554·10⁻²⁹ y 1.0063v<3.58·10⁻²⁹. En p=10⁻⁶
+sirven 3.554·10⁻⁵ y 3.58·10⁻⁵ respectivamente. En los dos cálculos
+q≤2·10⁻¹¹ y el resultado cubre todos los tamaños y subhosts. (6e)
+controla los pesos por clase. Aún hay que acotar el efecto conjunto
+de clases con síndromes distintos en el logaritmo de la suma (6a).
+Una estimación por clase multiplicada por el número total de síndromes
+del código perdería uniformidad local.
+
+3. Un solo criterio sobre las posiciones de los datos
+=====================================================
+
+L_c es el grafo de checks que comparten rectángulo. Para la meta fijar
+G sobre los datos, con arista entre sitios distintos cuyas huellas
+están a distancia ≤5 en L_c. Para un conjunto E no vacío tomar las
+componentes A₁,…,A_m de G[E]. Para I⊆[m] poner M(I)=G_{∪_{j∈I} A_j},
+usando (1). Definir el peso conectado de estas componentes por
+
+       d(E)=Σ_{π partición de [m]} (−1)^(|π|−1)(|π|−1)!
+                                      ∏_{I∈π} M(I).                 (7)
+
+Como al quitar componentes enteras las demás siguen siendo componentes,
+la inversión de (7) expresa exactamente Ξ_J/Z₀ como un gas de bloques
+E con actividad z^E d(E). Dos bloques son incompatibles si se solapan
+o se tocan en G. La inversión es la de
+H5A_cumulantes_y_componentes.txt, §3, ahora exclusivamente en los datos
+y con coeficientes que ya contienen todo el campo de medidas.
+
+Si m≥2 y H_X A_j=∅ para algún j, los momentos que lo contienen son
+χ(A_j) por los momentos sin él. Esto vale para todas las subfamilias.
+La inversión da d(E)=0 idénticamente para cualesquiera actividades de
+medida. Incluye grupos grandes, aún si los datos de su interior se
+solapan o admiten distintas representaciones de síndrome.
+
+Para v dato sea N_G[v] su vecindad cerrada. Una condición suficiente
+para el acceso a las particiones físicas completas es, para todo v,
+
+        Σ_{E: E∩N_G[v]≠∅} ||d(E)||_y [x(p) exp(1)]^|E| ≤ 1.        (8)
+
+Sumar por los datos de un bloque cubre todos sus incompatibles, incluido
+él mismo, con presupuesto |E|. La norma absoluta permite aplicar la
+estimación de Kotecký–Preiss y la forma enraizada, también con productos
+de series de medida. La suma total del logaritmo inclinado es O(N_datos)
+para el gas de bloques. La parte log Z₀ cuesta ≤N_medidas b. La
+inclinación 0.015 en ambos tipos da una cola O(N exp(−0.015 M)) al
+cortar el logaritmo por grado total de fuentes M. La positividad real
+se obtiene por continuidad desde actividades cero. El polinomio es el
+físico original. Sus coeficientes hasta M se pueden calcular por la
+enumeración de soportes físicos conexos de tamaño ≤135M y el oráculo
+global del manuscrito, como en H5A_cumulantes_y_componentes.txt, §2.
+Así el criterio alternativo conserva la precisión relativa elegible y
+el coste polinómico a parámetros fijos. La transferencia al fallo
+silencioso positivo conserva sus hipótesis adicionales.
+
+La desigualdad enraizada utilizada es la del teorema 1 de D. Ueltschi,
+Cluster expansions and correlation functions (2004).
+https://arxiv.org/abs/math-ph/0304003
+
+Para m=1, d(E)=G_E y basta (5). La cota de grado de G es
+Δ=1404424171116984396229339141, permitiendo también el sitio raíz.
+La serie de conjuntos conexos con raíz está mayorada por la de árboles
+T=x(p)·1.0063·exp(1) exp(ΔT). En un árbol enraizado los hijos reales
+son distintos y se permiten todos los subárboles. En la meta, con
+la cota sin redondear de (5), T=2.80·10⁻³⁰ es una supersolución.
+La contribución de todos los bloques de una componente a (8) es
+≤(Δ+1)T<0.00394. Se permiten todos los tamaños y todas las medidas.
+
+4. Dos grupos y el coste de atravesar un hueco
+==============================================
+
+Sean A,B dos componentes de datos con síndromes no vacíos. Escribir
+a=|A|, b'=|B|, e=a+b', s=|σ_A|+|σ_B| y ω=w(σ_A)+w(σ_B)≤e. Poner
+
+       l=min(s,13ω),      r=dist_{L_c}(σ_A,σ_B).
+
+La letra b' cuenta datos en B. En esta sección b de (4) conserva el
+significado de cota de ocupación de una medida. Si r>l+2, para todo
+fondo estable la marca conjunta es el producto de las dos marcas
+aisladas. En particular, (7) es exactamente la covarianza de las
+respuestas aisladas bajo la ley estable, con sus signos de máscara.
+
+Para probarlo, una ejecución que pasa tiene ≤|σ| pasos por (2).
+Por el perfil 3446943/272272 de H5A_cadenas_y_medidas.txt, §1, también
+tiene menos de 13w(σ) pasos si σ es no vacío. En efecto, ejecutar un
+representante mínimo en el mismo subhost y sobre el mismo D reproduce
+la lista íntegra de acciones, incluidos los usos repetidos, el paso
+final y el soporte de las acciones. La aceptación es la misma porque
+ambos conjuntos iniciales ya están en el subhost. El signo se separó
+en (1). El síndrome conjunto admite un representante de tamaño ≤ω por
+XOR de los dos mínimos. Hasta un primer contacto se puede
+asignar cada paso al único lado cuya discrepancia lee. Si ya han
+avanzado n_A y n_B pasos, sus discrepancias están respectivamente a
+distancia ≤n_A y ≤n_B de sus propios síndromes iniciales. Una huella
+que lea ambos lados exigiría r≤n_A+n_B+1. En la ejecución conjunta
+que pasa la suma de pasos es ≤l. En dos ejecuciones aisladas que pasan
+también lo es, sumando sus topes individuales. Por tanto, si ambas
+pasan, se intercalan sus ganadores con su prioridad física. Si la
+conjunta pasa, las dos proyecciones reproducen sus listas aisladas y
+terminan con ambas discrepancias vacías. La contención del soporte y
+el carácter se componen. Esto trata también marcas nulas.
+
+Para el observable de A bajo el fondo estable se puede truncar la
+consulta en min(|σ_A|,13w(σ_A)) pasos y devolver cero si se exceden. La
+truncación preserva todas las entradas que podrían pasar. La región de
+consulta está contenida en la bola de ese radio más uno alrededor de
+σ_A. Análogamente para B. Sus regiones están a distancia al menos
+r−l−2. Esta cota sobre las regiones admite todas las respuestas a las
+consultas, incluidas las que van a invalidarse.
+
+Fijar el soporte U de un monomio cualquiera de la covarianza y poner
+en cero las demás actividades de medida. Sólo pueden importar los
+conjuntos prohibidos minimales contenidos enteramente en U. Forman un
+hipergrafo. La ley estable restringida factoriza sobre sus componentes,
+incluidos los vértices aislados. Si ninguna componente toca las dos
+regiones de consulta, los dos observables son independientes y el
+coeficiente se anula. Si existe tal conexión, escoger una cadena
+mínima de conjuntos prohibidos que une las regiones. Cada conjunto
+es un clique de L_c. Para atravesar una distancia g≥1 hacen falta
+al menos g conjuntos. Los conjuntos en lugares alternos de la cadena
+son disjuntos, porque cualquier intersección no consecutiva daría un
+atajo. Cada uno requiere al menos nueve medidas distintas. El grado
+total del monomio es, pues, al menos 9 ceil(g/2).
+
+Para y'=10⁻⁷, b_aux=1.02·10⁻⁷ en (4) como parámetro de ocupación, se tiene
+C=exp(2b_aux L)<5.623 por check inicial. Con ρ=y/y', el control de las
+dos esperanzas de la covarianza en ese radio da
+
+        ||d(A∪B)||_y ≤ 2 C^s ρ^[9 ceil((r−l−2)/2)]    si r>l+2.    (9)
+
+La prueba admite potencias repetidas y suma todos los sitios de medida.
+Para una separación infinita la actividad es cero.
+
+La anulación por corte se extiende a cualquier m. Separar las
+componentes en dos familias y usar las uniones de sus síndromes como
+regiones iniciales a ambos lados. Tomar l=min(Σ_j |σ_j|,13 Σ_j w(σ_j)).
+Todos los submomentos de (7) respetan la misma separación y los mismos
+topes. Si r>l+2 y el soporte de medidas carece de una cadena entre las
+regiones de consulta, cada submomento factoriza por los dos lados.
+Entonces (7) se anula. El mismo grado mínimo subsiste. Para mayorar la
+norma en y' se puede reemplazar el 2 de (9) por
+Σ_π (|π|−1)!. La suma espacial y en m de ese mayorante queda abierta.
+
+5. Suma en todas las posiciones de dos grupos muy separados
+============================================================
+
+Se evalúa la fila completa (8) de las parejas que satisfacen
+
+                  r ≥ 2 + ceil(3l/2).                              (10)
+
+El índice cuenta la distancia entre síndromes, que puede ser mayor que
+la distancia entre huellas de datos. (10) usa s y el peso mínimo ω.
+En la meta la fila de estas parejas es
+<7·10⁻¹⁷. La demostración suma e, ambas formas internas y todo r permitido.
+
+Con γ=273², la bola de datos de radio r desde la huella de un dato
+tiene tamaño ≤Δ γ^(r−5) para r≥5. Esto se deduce de las cuatro bolas
+de Tanner de H5A_propagacion_entre_fuentes.txt, §3. Cada factor crece
+a lo sumo 273 por paso. Elegir η=2.5·10⁻¹⁷ de modo que ρ⁹<η² y poner
+θ=γη<1. Fijar la raíz vecinal de (8). Hay ≤Δ+1 datos para anclar A
+y ≤(4Δ)^(a−1) conjuntos conexos de tamaño a desde el ancla, por los
+árboles planos enraizados. Hay a posibles datos de A para el encuentro.
+Un par de checks a distancia r entre los síndromes da un dato de B
+con huella a distancia ≤r de uno de esos datos. Desde ese dato se
+permiten ≤(4Δ)^(b'−1) formas para B. En dos componentes distintas
+r≥6. Para e,s,l fijos, al sumar las bolas y el factor η^(r−l−2) desde
+(10) se obtiene a lo sumo
+
+                      Δ γ^(l−3) θ^ceil(l/2)/(1−θ).
+
+Sea M=γ sqrt(θ), w=x(p)exp(1). Para e,s fijos se tiene ω≥ceil(s/18),
+y por ello l≥l₀=min(s,13 ceil(s/18)). Se verifica MC<1. Si l₀=s se
+obtiene (CM)^s≤1. En el otro caso usar s≤18 ceil(s/18) y ceil(s/18)≤e.
+Así C^s M^l₀ ≤ max(1,M^13 C^18)^e. Para sumar sobre todas las posibles
+l con esos e,s se usa Σ_{l≥l₀} M^l=M^l₀/(1−M). Definir
+
+                      v=4Δ w max(1,M^13 C^18)<0.064.
+
+Hay como máximo 18e valores de s y Σ_{a=1}^{e−1}a=e(e−1)/2. Incluyendo
+el factor dos de (9), la fila queda acotada por
+
+       2(Δ+1)Δ / [(4Δ)² γ³ (1−θ)(1−M)] · 18v²(2+v)/(1−v)⁴ < 7·10⁻¹⁷.
+
+El último factor procede de sumar la derivada de la serie geométrica.
+La suma incluye todas las distancias de (10) y todos los órdenes
+en las medidas.
+
+5.1. Todos los pares con al menos 2900 datos, a cualquier distancia
+===================================================================
+
+El síndrome final D permite localizar la trayectoria desde σ aunque D
+tenga luces arbitrariamente lejos. Para s=|σ|>0 sea d(j) la distancia
+en L_c del check j a σ. Tomar λ=101/99, un radio entero k≥0 y el potencial
+
+         Φ_k(S)=Σ_{j∈S} λ^min(d(j),k)
+
+del síndrome observado S. Un check en una componente disjunta recibe
+peso λ^k. En una acción, h checks pasan de uno a cero y c de cero a uno.
+Su descenso δ=h−c cumple h≥λc por β=1/100. Los checks de esa huella
+están en un único rectángulo. Sus pesos difieren a lo sumo por λ, así
+que Φ_k nunca aumenta. Si la menor distancia d_t de la huella es ≥k,
+todos sus checks tienen exactamente el mismo peso λ^k. Ese paso
+disminuye Φ_k exactamente en δ_t λ^k.
+
+En una historia aceptada, Φ_k(D⊕σ)−Φ_k(D)=s−2|σ∩D|≤s, porque sólo
+las posiciones de σ cambian entre los extremos y allí el peso vale
+uno. Al telescopar
+
+       Σ_{t: d_t≥k} δ_t ≤ s λ^(−k),     R(s)=1+floor(log_λ s).      (11)
+
+Toda celda conmutada está a distancia ≤R(s) de σ, pues δ_t≥1 y una
+celda dista a lo sumo d_t+1. Un paso en una componente disjunta
+exigiría λ^k≤s para todo k y así se excluye. Con σ vacío el fondo
+estable no ejecuta acciones. El argumento de H5A_consumo_y_alcance.txt,
+§§4–5, situaba el centro en todas las fuentes, incluidas las medidas.
+El peso constante fuera de k da el descenso exacto en cada paso
+exterior. Restar los dos extremos permite situar el centro sólo en
+el síndrome de datos.
+
+Para evaluar f_σ sobre el fondo estable, se puede rechazar una hoja
+en cuanto el ganador fuese a conmutar algo fuera de R(s). Hasta ese
+momento basta leer la bola de radio R(s)+1 porque sólo se puntúan los
+rectángulos que tocan la discrepancia. La restricción conserva todo
+valor de f_σ. Para cualquier corte de una familia de grupos de síndrome
+no vacío, si las uniones de síndromes a ambos lados están a distancia
+>2R(s)+2, con s la suma de sus cardinalidades, toda ejecución conjunta
+que pasa se proyecta en las dos aisladas, y las dos aisladas que pasan
+se intercalan. En efecto, para cada subentrada toda discrepancia queda
+en las bolas de (11) de los grupos originales de esa subentrada, y
+ningún candidato ve discrepancia a ambos lados. Esta afirmación usa
+pasos de una trayectoria que pasa, o de dos trayectorias aisladas que
+pasan. Evaluar un observable aislado incluye también el rechazo por
+salida de su bola. Así se puede aplicar la prueba del hipergrafo de la
+sección 4 a la covarianza en las medidas.
+
+Para dos grupos con e datos, fijar K_e=2R(18e)+2. A radio auxiliar
+y'=3.2·10⁻¹⁰, (4) se cumple con b'=3.201·10⁻¹⁰ y exp(36b'L)<1.104.
+De (5) se obtiene ||d(A∪B)||≤2·1.104^e en todas las posiciones,
+sumando el momento conjunto y el producto de los aislados. Si r>K_e, por
+(11) la diferencia es una covarianza. Para un monomio no nulo, alguna
+componente del hipergrafo de medidas debe unir las regiones de lectura
+separadas por r−K_e. En el radio y=x(q), con η=5·10⁻⁶, resulta
+
+        ||d(A∪B)||_y ≤ 2·1.104^e η^max(0,r−K_e).                  (12)
+
+En efecto, (y/y')⁹<η² y la sección 4 da grado ≥9 ceil((r−K_e)/2).
+Para r≤K_e la cota directa de los dos momentos ya prueba (12), aun
+cuando las respuestas aisladas y conjuntas sean diferentes.
+
+Para anclar los dos grupos usar el recuento de la sección 5. Para las
+formas de tamaño n que contienen una raíz, usar T^(n−1) con
+T=11Δ/4. En efecto, etiquetar los n vértices desde la raíz, elegir un
+árbol de Cayley y colocar cada hijo de ≤Δ maneras da como mayorante
+n^(n−2)Δ^(n−1)/(n−1)!, porque cada conjunto admite al menos (n−1)!
+etiquetados con un árbol. Para n≥2, integrar log x entre 1 y n da
+n!≥exp(1)(n/exp(1))^n, luego el mayorante es ≤[exp(1)Δ]^(n−1).
+El caso n=1 tiene sólo la raíz. Contar de una vez toda la bola r≤K_e. Por
+encima usar las bolas con crecimiento γ=273² y la cola geométrica de
+(12). Por cada elección de dato de encuentro en A, la suma sobre las
+posiciones del dato de entrada a B, con la atenuación de (12), es
+≤Δ γ^(K_e−5)/(1−γη). Para e≥2900 se cumple λ^(3e/16)>18e. Basta
+comprobar e=2900 y λ³>(2901/2900)^16 para el avance por inducción.
+Entonces K_e−5≤3e/8 y γ^(K_e−5)≤68^e. Poner
+
+                 ν=T x(p) exp(1)·1.104·68 < 0.801.
+
+Al sumar los tamaños a y e−a, hay Σa=e(e−1)/2 elecciones del dato de
+encuentro de A. El 2 del coste (12) cancela ese divisor. La parte de
+la fila (8) de todas las parejas con e≥2900 es por tanto a lo sumo
+
+    [(Δ+1)Δ / (T²(1−γη))] Σ_{e≥2900} e(e−1)ν^e < 10⁻²⁶⁰.          (13)
+
+Para la última serie el cociente entre dos sumandos consecutivos es
+≤0.801·2901/2899. El umbral 2900 se elige para esa desigualdad numérica.
+El tamaño del código y el número de medidas pueden ser arbitrarios.
+
+5.2. Asignar a la vez todos los pasos de una ejecución a su síndrome
+===================================================================
+
+Hay una versión que conserva las posiciones de cada check inicial y
+sirve para cualquier número de grupos. En una trayectoria aceptada
+numerar sus huellas φ_t y descensos δ_t. Poner a=99/100. Existen
+cantidades b_{jt}≥0, para j∈σ y todos los pasos, que satisfacen
+
+          Σ_t b_{jt} ≤ 1   para cada j∈σ,
+          Σ_{j∈σ} a^dist(j,φ_t) b_{jt} ≥ δ_t/2   para cada t.      (14)
+
+La contribución de un check se reparte entre los pasos. La distancia
+reduce el valor que llega a cada corrección. Permitir un fondo de
+medidas arbitrario deja el mismo presupuesto por check de σ.
+
+Para probarlo, fijar precios no negativos u_t y dar a cada check i el
+peso W(i)=max_t u_t a^dist(i,φ_t), usando a^∞=0. Entre vecinos el
+valor mayor es ≤(100/99) veces el menor. En la huella t todos los
+pesos son ≥u_t. En ese paso el descenso del síndrome ponderado es
+al menos min_{φ_t}W [δ_t−(1/99)c_t] ≥ u_t δ_t/2, por c_t≤99δ_t/2.
+Restar los dos extremos de la trayectoria da, para todos los precios,
+
+             Σ_t u_t δ_t/2 ≤ Σ_{j∈σ} max_t u_t a^dist(j,φ_t).
+
+El lado derecho es el máximo del valor entregado a esos precios al
+distribuir una unidad por cada j bajo las primeras restricciones de
+(14). Los vectores no negativos dominados por entregas factibles
+forman un politopo convexo compacto y cerrado hacia abajo. Si el
+vector (δ_t/2)_t quedara fuera, un hiperplano separador tendría un
+normal que se puede tomar no negativo por ese cierre hacia abajo.
+Los precios obtenidos contradirían la desigualdad anterior. Esto
+demuestra (14), incluso con repeticiones del mismo candidato.
+
+Por ejemplo, tomando u_t=(100/99)^dist(σ,φ_t) en las componentes que
+tocan σ, resulta Σ_t δ_t(100/99)^dist(σ,φ_t)≤2s. Con una sola zona U
+hay una versión más fuerte para los pasos que tocan U. Dar peso
+(99/101)^dist(i,N[U]) al check i, con el vecindario cerrado en L_c.
+Una huella que corta U queda toda en N[U] y consume δ_t con peso uno.
+Los demás pasos tienen descenso ponderado no negativo. Por tanto
+
+        Σ_{t: φ_t∩U≠∅} δ_t ≤ Σ_{j∈σ} (99/101)^dist(j,N[U]).       (15)
+
+Un lado derecho menor que uno excluye todo paso que conmute esa zona.
+(14) y (15) valen para la trayectoria completa con cualquier cantidad
+de grupos. La fila (8) todavía requiere sumar sobre las distintas
+configuraciones que admiten esas trayectorias.
+
+6. Prueba de decisión, ejemplos y límite actual
+==============================================
+
+En la nueva fila (8), después de los bloques de una componente, los
+ceros exactos y las parejas de (10) o (13), basta demostrar que el
+resto es ≤0.996 por vecindad de datos. Son las parejas de menos de
+2900 datos fuera de (10) y los bloques de tres o más componentes con
+síndromes propios no vacíos. Este presupuesto corresponde al gas (7),
+con inclinación exp(|E|) ya incluida. La condición anterior de 0.004298
+se refería a la fila por fuente de otra expansión. Ninguna de las dos
+desigualdades pendientes se ha probado para todo el modelo en 10⁻³⁰.
+
+Las comprobaciones siguientes documentan el alcance de las identidades.
+En la semilla binaria toda-unos de 17 filas y 18 columnas, tomar un dato
+de una fila física y dejar variables nueve medidas de su huella. Priorizar
+su singleton entre los equivalentes, con máscara trivial y host completo.
+Con h luces en la fila, un múltiple ve a lo sumo h de al menos 33 celdas
+y una columna ve a lo sumo una de 18. El singleton de la fila es el
+ganador si h≥9. Así se comprueban las 512 entradas. G_E=1 en el fondo
+estable. A odds comunes t, la extensión libre de la sección 1 da
+1−[t/(1+t)]⁹. El efecto de la estabilidad puede aparecer exactamente
+en el grado nueve anunciado.
+
+En la misma semilla se toman cinco datos VV, tres en una fila física y
+dos en otra, y tres datos CC, dos con la misma huella vertical y uno con
+una huella distinta. Con pesos racionales distintos con signo, el
+verificador compara las preimágenes de red y la suma local (6a) para cada
+representante. Las cuentas exactas reproducen las 16 clases de síndrome
+de los 256 soportes. Se verifican el código de lectores para los 72
+representantes independientes y la coexistencia en una preimagen de
+componentes neutras próximas y lejanas a F. Otra entrada tiene dos
+datos en dos filas y dos medidas, una en el síndrome y otra fuera.
+Su ejecución física tiene descensos 17 y 15. Se verifica el potencial
+de (14) para varios precios racionales.
+
+En la familia de dos brazos de H5A_encuentro_de_dos_frentes.txt, §2,
+cada extremo es una componente de G si los brazos tienen al menos tres
+niveles de avance. Sin medidas, cada brazo por separado deja una frontera
+encendida y los dos juntos alcanzan síndrome cero. Con máscara trivial
+y host completo, (7) vale 1 a q=0. El argumento de aquella nota admite
+distancia inicial arbitraria al crecer las poblaciones. El verificador
+reproduce las fronteras 8192, 8192 y 0 para profundidad tres. Entre los
+dos extremos se reúnen 2916 datos, por lo que el ejemplo concreto de
+interacción física ya está incluido en la suma (13). Cada dato
+ocupado al inicio tiene un check de salida al interior que ningún otro
+dato inicial toca. Por ello la unión de los dos extremos ya es un
+representante independiente. En el monomio de esa unión no cabe ningún
+factor neutro no constante de K_V. La diferencia de marcas conjuntas y
+aisladas subsiste al agrupar los datos como en (6a). El problema
+que persiste es cómo sumar las posiciones de grupos con síndrome propio
+no vacío que sí pueden cambiar la corrección antes de agotar (2).
+
+En 05_COMPROBACIONES, con los verificadores previos del proyecto, ejecutar
+
+    python -I -B -X utf8 verificar_H5A_sindrome_y_medidas.py
+
+Las comparaciones decisorias utilizan fracciones y cotas superiores de
+Taylor. La aritmética se reprodujo. La derivación combinatoria de la nota
+queda pendiente de revisión independiente.

@@ -1,0 +1,249 @@
+HGP binario (3,4) · Probabilidad de fallo silencioso en el piloto de 225 qubits
+23 de noviembre de 2026 · G2 y G4 · Derivación pendiente de revisión independiente
+
+En el piloto conectado del plan, con p=10⁻¹² y q=10⁻³ independientes por
+sitio en una ronda, se obtiene el intervalo redondeado hacia fuera
+
+       2.9110·10⁻²⁵ < P_sil < 3.2142·10⁻²⁵.
+
+La estimación 3.05513·10⁻²⁵ tiene error relativo garantizado <4.95 %.
+P_sil es la probabilidad conjunta de síndrome físico residual cero y
+clase X residual no trivial. Usamos una suma determinista de sectores
+positivos, con el resto acotado para toda configuración de medidas y
+datos. La semilla es la que ya se usó en el contraste de fondo pasivo.
+
+1. Código y decodificador reproducibles
+---------------------------------------
+
+H es la incidencia de los nueve puntos y las doce rectas del plano afín
+de orden tres. El punto (x,y) tiene índice 3x+y. Las primeras nueve
+rectas son y=sx+b en orden 3s+b, y las otras tres son x constante.
+Las filas de H, codificadas en hexadecimal con el bit j en la columna j,
+son 249, 292, 324, 4a1, 50a, 454, 911, 862, 88c. Toda fila tiene peso
+cuatro, toda columna peso tres y dos puntos cualesquiera determinan una
+recta. Esto da conectividad. La eliminación binaria da rango 9 y los
+4096 vectores de longitud 12 dan ocho palabras de núcleo, una de peso
+cero, seis de peso seis y una de peso doce.
+
+En el producto consigo misma, los 144 qubits VV se indexan por 12i+j y
+los 81 CC por 144+9r+c. Hay 108 checks de síndrome, con índice 9i+c.
+H_X y H_Z se construyen como en el manuscrito y tienen rango 108 cada
+una. Hay nueve qubits lógicos. Para una matriz VV residual U y a∈ker H,
+definir g_a=aᵀU. Si el síndrome físico es cero, g_a pertenece a ker H
+porque U Hᵀ+HᵀV=0. Se pueden probar las coordenadas de g_a para tres a
+de base y tres columnas de información de ker H. Las nueve pruebas
+conmutan con los estabilizadores X y juntas aumentan el rango de H_X
+de 108 a 117. Por tanto, en síndrome cero, cualquier clase X no trivial
+da algún g_a distinto de cero. Su peso es al menos seis y no excede el
+peso de U. El testigo X tiene los seis sitios VV 0,1,2,3,4,5 en la
+fila cero. Tiene síndrome cero y una de las nueve pruebas vale uno.
+La distancia X es seis. La transposición de los dos bloques intercambia
+las comprobaciones X y Z en este autoproducto, por lo que el código
+tiene parámetros [[225,9,6]].
+
+Para cada generador se consideran los subconjuntos F no vacíos de sus
+siete qubits con 2|H_XF|≥3|F|. La puntuación es el descenso dividido por
+el tamaño de la huella φ=H_XF, con β=1/100 y máximo global. Se conserva
+el desempate del contraste anterior. A igual puntuación se prefiere
+mayor |F| y luego menor máscara entera física de 225 bits. A huella
+idéntica siempre gana su primer representante. Quedan 6273 huellas.
+Se tabula la mejor acción local para los 4096 síndromes de cada tipo de
+rectángulo y se compara entre todos los generadores pertinentes. Una
+segunda implementación que recorre directamente las huellas contrasta
+el síndrome terminal y la clase de la corrección en estados de prueba.
+La aceptación exige síndrome observado terminal D, equivalente a
+síndrome físico final cero.
+
+2. Por qué bastan dos errores de datos en una fila y un bit de medida
+--------------------------------------------------------------------
+
+Sea E la entrada de datos, D el conjunto de medidas alteradas, σ=H_X E
+y φ la huella de una acción elegida. En una corrida aceptada el síndrome
+observado pasa de σ△D a D. El descenso total disponible es
+
+       B=|σ|−2|σ∩D|=Σ δ,        δ=2|φ∩s_obs|−|φ|≥1.
+
+D es estable al parar. En cada fila VV de nueve puntos D tiene a lo
+sumo un uno. De haber dos, su recta afín da un singleton de tres checks
+con al menos dos luces, elegible con el β prescrito.
+
+Un paso en el generador (r,j) puede cambiar en g_a solamente la
+coordenada j, porque todos sus VV están en esa columna de qubits. Si
+el resultado es un fallo silencioso, elegir a con palabra final c=g_a(R)
+no nula. Para alcanzar c se necesitan al menos |T| pasos, con
+T=c△g_a(E). Si v es el número de datos VV iniciales, |T|≥6−v.
+Con cero o un dato, B≤4|E|−v<6−v. Por ello estos sectores son neutros
+para P_sil incluso con medidas arbitrarias.
+
+Con exactamente dos datos, sean o el número de checks en la intersección
+de sus dos huellas y t=|σ∩D|. Entonces |σ|=8−v−2o, y todo fallo exige
+
+       Σ_pasos(δ−1) ≤ B−|T| ≤ 2−2(o+t).                              (1)
+
+Si o=0, hace falta t≤1 y al menos una franja original sigue completamente
+encendida al inicio. El primer ganador es perfecto, con δ=|φ|≥3. Por
+(1) ha de ser δ=3, t=0, y cada paso restante tiene δ=1. Debe haber
+exactamente |T|=6−v pasos y cada uno cambia una coordenada distinta de
+T. La igualdad |T|=6−v exige que las v etiquetas VV originales sean
+distintas y pertenezcan a c, por lo que ninguna está en T. El primer
+paso es una franja VV de tres puntos con una etiqueta de recta nueva.
+Se verifica esa forma en el catálogo de huellas. Cada original aporta
+como máximo un punto a esa franja. Para un VV se usa que dos rectas
+distintas se cortan a lo sumo una vez, y para un CC que su franja tiene
+un único punto en la fila. Como D aporta a lo sumo un punto en esa fila,
+ambos originales aportan uno. Si alguno fuera CC, aún tendría al menos
+tres luces de cuatro tras el primer paso. Ningún ganador de δ=1 puede
+igualar esa densidad, pues |φ|≥3 implica |φ∩s_obs|/|φ|≤2/3. Todavía
+se necesitan otros pasos. Quedan dos VV cuyas dos huellas tocan la
+misma fila, luego ambos son de esa fila.
+
+Si o>0, (1) exige o=1, t=0 y todos los pasos tienen δ=1. Un CC tendría
+al inicio al menos tres luces en sus cuatro checks, lo que vuelve a
+impedir el primer paso. Los dos originales son VV y su check común
+los sitúa en la misma fila. La desigualdad también excluye o+t>1.
+
+En ambos casos sólo queda probar que la corrida silenciosa se mantiene
+en la fila i de los originales. En el caso disjunto su primer paso ya
+está en ella. Mientras el síndrome físico residual difiera de cero sólo
+en esa fila, las otras filas observadas coinciden con D. Con dos o más
+luces observadas en i, su recta compite con densidad ≥2/3. Un ganador
+de δ=1 con esa densidad tiene necesariamente tamaño tres, una franja VV.
+En otra fila sólo leería el D estable y por tanto debe estar en i. Con
+a lo sumo una luz en i queda un descenso total ≤1 hasta el D terminal.
+Si falta un paso, su huella debe igualar el síndrome físico residual
+completo y por tanto estar contenida en i. Esto demuestra la afirmación
+por inducción y admite cualquier patrón de medida fuera de i.
+
+Quitar todos los bits de D fuera de i conserva una corrida silenciosa
+así obtenida. Cada acción elegida retiene su puntuación, sus rivales
+sólo pueden perder luces y el orden físico de empate sigue fijo. El
+estado terminal reducido también es estable. Así se obtiene una
+condición necesaria que se puede contar exactamente. A la inversa,
+poner todas las medidas exteriores a cero realiza cada patrón silencioso
+encontrado por esa enumeración.
+
+3. Intervalos y coste medido
+----------------------------
+
+Para cada una de las 12 filas se prueban sus 66 parejas VV, con D vacío
+o uno de los nueve puntos de esa fila alterado. De las 7920 entradas
+fallan cero con D vacío y 324 con un bit, 27 por fila. Cada combinación
+(E,D restringido a su fila) representa un evento disjunto. Sean
+
+       w₂=p²(1−p)²²³,          L=324 w₂ q(1−q)¹⁰⁷,
+       U=324 w₂ q(1−q)⁸ + binom(225,3) p³.
+
+Para L se exigen las otras 107 medidas correctas. En U quedan libres
+las 99 externas y son correctas las ocho restantes de la fila. El
+último sumando, 1.8732·10⁻³⁰, domina por unión de tríos toda la
+probabilidad de al menos tres errores de datos. En consecuencia
+
+       L ≤ P_sil ≤ U,     P_estimado=2LU/(L+U),
+       error relativo ≤ (U−L)/(U+L) = 0.0494872232… .
+
+El cálculo utiliza fracciones exactas. Los extremos son aproximadamente
+2.9110673296595·10⁻²⁵ y 3.2141892700699·10⁻²⁵. Con datos vacíos y
+como máximo una medida se acepta con certeza, de modo que
+P₀≥P_min=(1−p)²²⁵[(1−q)¹⁰⁸+108q(1−q)¹⁰⁷]>0.9946146, y P₀≤1.
+Se sigue L≤Q_sil≤U/P_min<3.23160·10⁻²⁵.
+
+En Windows 11 Pro x64, Intel Core i5-14400F, CPython 3.12.10, una
+ejecución usó 0.368554 s en preparación, 0.034924 s en evaluación y
+0.530282 s de pared incluyendo el arranque del proceso. El pico del
+conjunto de trabajo del proceso completo fue 27.191 MiB. La clasificación
+previa permite sumar los sectores directamente. Se usaron 7920 entradas
+del decodificador, sin consultas a máscaras de sesgo pequeño ni expansión
+en clústeres. Estos costes se refieren a este estimador por sectores para
+la instancia elegida. La ventaja frente a un método de referencia queda
+para la fase 7.
+
+Como contraste, en una fila iluminada un singleton de la recta con más
+luces domina cualquier huella que también salga de esa fila. Dicha huella
+lee a lo sumo las mismas luces en la recta del generador y tiene área
+mayor que tres. Un decodificador separado de nueve bits, que sólo usa
+esa regla, coincide con el global en los 512 síndromes en las doce
+posiciones de fila. También se enumeraron todas las ubicaciones de
+datos y medidas de los tres sectores siguientes con el decodificador global.
+
+    |E|   |D|      entradas       aceptadas       fallos silenciosos
+     2     0        25200             24876                 0
+     2     1      2721600           2679129               324
+     3     0      1873200           1790256                36
+
+Reproducción desde 05_COMPROBACIONES con la biblioteca estándar
+
+    python -I -B -X utf8 piloto_HGP_225.py
+    python -I -B -X utf8 piloto_HGP_225.py --contraste
+
+El segundo comando añade el contraste posterior a la medición del
+estimador. La cota de contribuciones omitidas se demuestra en §§2–3.
+
+4. Segundo punto de la misma instancia en el extremo uniforme
+-------------------------------------------------------------
+
+La primera corrida del plan fijó p=10⁻¹² y q=10⁻³. En esta segunda
+corrida se eleva p a 3.75·10⁻⁷ y se conserva q=10⁻³. Se usa el mismo
+SSF, el mismo desempate y el mismo filtro físico. El intervalo de §3
+usado sin afinar daría un error relativo garantizado del 55.73 % en este
+punto. Para cumplir el 10 % se separan las contribuciones de tres datos
+y se mejora la cota inferior del sector de dos datos.
+
+Para cada uno de los 324 patrones silenciosos de §3 se añadió, por turno,
+una medida en cada uno de los 99 checks exteriores a su fila. Las 32076
+entradas fallan, comprobadas con el decodificador completo. Definir
+w_k=p^k(1−p)^(225−k) y a_j=q^j(1−q)^(108−j), la probabilidad de una
+asignación concreta de cada tipo. El sector de dos datos aporta al menos
+w₂(324a₁+32076a₂), y su techo sigue siendo 324w₂q(1−q)⁸ por §2.
+En tres datos con medidas vacías, la enumeración de las 1873200 entradas
+da exactamente 36 fallos.
+
+Hay una clase de tres datos y una medida que se puede excluir en bloque.
+Los tres qubits son VV en filas físicas distintas. El error de medida
+está en una cuarta fila. Exigir que esas cuatro etiquetas de fila, que
+son rectas del plano afín, no sean las cuatro rectas de un mismo punto.
+Todo rectángulo contenedor tiene entonces al menos una fila local oscura.
+Mientras quede algún dato por corregir, su franja entera compite con
+puntuación perfecta. Dentro de cada rectángulo, la huella local es
+x_i⊕y_c. Si una de sus filas es idénticamente cero, todos los y_c
+son iguales y la huella es unión de filas enteras. Una huella perfecta
+sólo puede tomar franjas de originales que todavía estén encendidas.
+Cada una queda identificada por sus tres puntos, que determinan su
+recta. En la cuarta fila sólo hay una luz. La acción efectuada y los
+originales correspondientes difieren a lo sumo en el generador completo,
+pues las únicas asignaciones locales de huella cero son los siete bits
+todos iguales. Por inducción se limpian todos los datos módulo
+estabilizadores. El único bit de medida que queda es estable.
+
+Hay binom(12,3)·9 elecciones de las tres etiquetas y de la cuarta.
+Se excluyen 9·4, una por punto y por elección de la recta de la medida
+en su haz. Los tres originales tienen 12 opciones independientes de
+segunda coordenada y el error de medida tiene 9 opciones de punto.
+Resultan S=[binom(12,3)·9−9·4]·12³·9=30233088 entradas sin fallo.
+El verificador contrasta esta cuenta directamente con las nueve filas
+de la matriz H y comprueba la propiedad de las huellas locales.
+
+Se obtienen así las siguientes cotas, incluyendo cualquier peso de ruido.
+
+  L = w₂(324a₁+32076a₂) + 36w₃a₀.
+  U = 324w₂q(1−q)⁸ + w₃[36a₀+binom(225,3)(1−a₀)−Sa₁] + binom(225,4)p⁴.
+
+El último término domina el sector de cuatro o más datos por unión de
+cuádruplas y es <2.056·10⁻¹⁸. El intervalo redondeado hacia fuera es
+
+          4.49916·10⁻¹⁴ < P_sil < 5.38835·10⁻¹⁴.
+
+La estimación 2LU/(L+U) es aproximadamente 4.9037706761·10⁻¹⁴ y el
+error relativo garantizado es 8.99294444… %. El valor mostrado
+4.90377·10⁻¹⁴ también cumple el 9 % mediante comprobación racional.
+El evento de datos vacíos y como máximo una medida de §3 da
+P₀≥P_min>0.99453 y L≤Q_sil≤U/P_min<5.41798·10⁻¹⁴.
+
+En el equipo de §3 se midieron 0.365743 s de preparación, 34.683965 s
+de evaluación, 35.181496 s de pared desde el arranque del proceso y
+30.824 MiB de memoria pico. Esta medición incluye recalcular los tríos
+de datos con D vacío desde cero. En total se evaluaron 1913196 entradas
+de los sectores y se contaron los 30233088 casos anteriores por geometría.
+Los dos puntos del piloto permiten comparar costes a precisión del 10 %
+en la fase 7. La meta uniforme G3 en p=10⁻⁶ sigue abierta.
+
+    python -I -B -X utf8 piloto_HGP_225.py --extremo

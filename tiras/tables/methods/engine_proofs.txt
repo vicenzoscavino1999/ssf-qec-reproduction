@@ -1,0 +1,188 @@
+T2-1M: MOTOR POR ANCLAS CON PUNTO FIJO DIRIGIDO PARA T2-1 (INGENIERIA)
+13/11/2026 (Lima). Por orden del usuario, tras T2-0 (DEC-054): "Me
+gustaria hacer la opcion 2 con 48 pero antes de eso podemos abordar el
+problema de ingenieria si lo solucionamos entonces seria esa via"; "Ok
+esta bien continua". Aplica METODOLOGIA_FIJACION_PARAMETROS.txt. Plan
+escrito y sellado (SELLO_PLAN.json) antes de escribir el programa. Antes
+de sellarlo solo se ejecutaron las medidas de medidas_previas/ (coste de
+la aritmetica y firmas por polimero en m = 6), que no calculan ninguna
+magnitud de resultado. Es una unidad de ingenieria: construye y valida
+el motor, y mide si T2-1 cabe. No calcula intervalos de P_sil.
+
+POR QUE (dos problemas, no uno)
+- Memoria. La DP de B1 tiene todos los polimeros en memoria a la vez y
+  copia los datos de cada uno al preparar el gas. En m = 48 con circuito
+  se proyectan unos 4.2e7 polimeros, que ocuparian unos 36 GiB.
+- Aritmetica (hallada al preparar este plan). Con las leyes del circuito,
+  cada sitio aporta unos 150 bits a los enteros exactos (con r_c = 1e-6),
+  frente a 20 en B4. Medido (SALIDA_MEDIDA_ARITMETICA.txt): un producto de
+  la DP cuesta 1.4e-4 s en m = 48 con enteros exactos, frente a 3e-6 s en
+  B4. Con 1.6e9 a 1.9e9 terminos serian cientos de horas por celda.
+  Esto corrige la estimacion de 1 a 3 h por celda que se dio al usuario
+  tras T2-0. En punto fijo de 384 bits el producto cuesta 2.4e-7 s.
+
+QUE CAMBIA Y QUE NO
+- No cambian: el decoder (SSF), el evento (P_sil del sector X), el
+  ruido (circuito del apendice C, una ronda), las tiras, la regla de
+  crecimiento del catalogo, la recurrencia de la DP (estados y terminos)
+  ni las magnitudes que se certifican (eps_comp, L_comp, P_0). B1, B4 y
+  T2-0 no se modifican; se reutilizan sus funciones tras comprobar su
+  SHA-256.
+- Cambian tres cosas de implementacion:
+  (1) El catalogo se guarda en disco, partido por ancla. Por soporte Y y
+      por firma de clases se guardan tres recuentos (n_all, n_plus,
+      n_minus). Son independientes de la tasa, como los de B1.
+  (2) La DP se recorre hacia adelante, ancla por ancla, cargando solo los
+      polimeros de cada ancla.
+  (3) Aritmetica de punto fijo con redondeo dirigido: cada magnitud sale
+      como un intervalo riguroso [inferior, superior] y no como una
+      fraccion exacta. La garantia sigue siendo determinista; la anchura
+      del intervalo se controla (C-anch).
+
+DEFINICIONES
+- Orden de la DP: el de producto de B4 (coordenadas, luego indice). La
+  ancla de un polimero o de un estado J es su sitio minimo en ese orden.
+- Firma de una decoracion valida (F, clases): el multiconjunto de los
+  simbolos (tipo de ley del sitio, indice de clase) de sus sitios no
+  nulos. Su peso con odds o_s es prod_s o_s. |F| es el numero de simbolos.
+- Odds por celda: o = p_c / p_0 de la ley exacta del sitio (law_of de
+  T2-0). En el modelo fenomenologico, o = p/(1 - p) en datos y
+  q/(1 - q) en checks. B = prod_b p_0(b) es la probabilidad de que todos
+  los sitios sean nulos.
+- Canales (k_log = 1 en las tiras): n_all cuenta las asignaciones validas;
+  n_plus, las que pasan con caracter +1; n_minus, las que pasan con
+  caracter -1 (silenciosas). Equivalen a los de B1: count = n_all,
+  passes = n_plus + n_minus, chi = n_plus - n_minus.
+
+LEMAS (escritos aqui; sin contraste del revisor)
+- Lema A (anclas). Si J tiene ancla x, sus hijos J - {x} y J - NB(g),
+  con g anclado en x, tienen ancla > x, porque x esta en Y(g), que esta
+  contenido en NB(g). Por tanto, recorrer las anclas en orden creciente
+  y empujar valores de padres a hijos visita cada estado con todos sus
+  padres ya procesados. Los estados alcanzables desde el conjunto total
+  son los de explore de B1 (sus semillas son sufijos, alcanzables por
+  pasos nulos), y los terminos son los mismos.
+- Lema N (normalizacion). Al dividir la recurrencia de B1 por el peso
+  nulo de cada sitio, el paso nulo pesa 1, el polimero g pesa
+  W(g) = suma de n x prod o sobre sus firmas, y los sitios de la frontera
+  pesan 1. Entonces X0 / T = B x U(vacio), donde U es la suma hacia
+  adelante desde el conjunto total. Es la misma recurrencia escalada.
+- Lema EO. Por la recomposicion (thm:recomp), una historia pasa si y solo
+  si pasan todas sus componentes, y su clase logica es el XOR de las de
+  sus componentes. Con dos canales positivos E (numero par de componentes
+  silenciosas) y O (impar), E' = E W+ + O W- y O' = E W- + O W+. Entonces
+  P_0 = B (E + O) y L_comp = B O. Coincide con finish_cell de B1.
+- Lema R (redondeo dirigido). Todas las cantidades son sumas de productos
+  de numeros no negativos. Si se redondea cada entrada (odds, pesos) y
+  cada estado ya completo por abajo (por arriba) a P bits fraccionarios,
+  el resultado es una cota inferior (superior), por monotonia. La
+  acumulacion dentro de cada estado es exacta; se redondea una vez por
+  estado y canal.
+- Precision: P = 384 bits. El error absoluto es <= (estados + terminos)
+  x 2^-384 x U_max x (1 + W_max), que vale menos de 1e-90 con 1e10
+  operaciones. Lo mas pequeno que hay que resolver es x^k = 1e-72 (regla
+  de suma con D <= 1e18 y k = 4) y eps_comp >= 1e-26 (B4). Queda un
+  margen de mas de 15 ordenes.
+
+MOTOR (piezas nuevas)
+- Catalogo: la misma regla de crecimiento y las mismas pruebas que T2-0
+  (classify), con 64 x 14 trozos por f. Cada proceso agrega su trozo por
+  Y y por firma y lo devuelve agrupado en 256 grupos de anclas
+  consecutivas, comprimido (zlib). El proceso principal lo anade a los
+  ficheros de grupo. Despues se fusiona cada grupo (soportes repetidos
+  entre trozos), en procesos paralelos.
+- Pasada hacia adelante: grupos y anclas en orden creciente. En cada
+  ancla se cargan sus polimeros (filtrados por k: firmas con |F| <= k), se
+  calculan sus mascaras (anchor_masks de B1, por ancla), los pesos por
+  celda y canal (inferior y superior) y se procesan los estados pendientes
+  de esa ancla. Modos: solo estructura (estados y terminos), punto fijo
+  (celdas) y exacto (fracciones; solo para el control C-exacto).
+
+CONTROLES (cada uno detiene)
+- C-anc: ningun hijo con ancla <= la de su padre (recuento = 0). Ningun
+  soporte repetido tras fusionar; los polimeros de los grupos suman los
+  soportes distintos.
+- C-B4 (fenomenologico, m = 6, 12, 24 y 48): con las clases restringidas,
+  las validas por f, los polimeros, los estados y los terminos con k = 3
+  y 4 deben ser iguales a los de RESULTADO_B4.json. En las 12 celdas de B4
+  y con k = 3 y 4, el intervalo de eps_comp, L_comp y P_0 debe contener
+  la fraccion exacta sellada en B4, con anchura relativa <= 1e-30.
+- C-T20 (circuito, m = 6 y 12 con k = 1..4; m = 24 con k = 1..3): las
+  validas y las asignaciones por f, los polimeros, los estados y los
+  terminos deben ser iguales a los de RESULTADO_T2_0.json. Regla de suma
+  con D = 1e14 (odds 1/D en todas las clases): veredictos COMPLETO, y el
+  negativo de m = 6 (regla de T2-0 sobre la clave (na, nb)) INCOMPLETO.
+  Margenes y peso del orden siguiente iguales a los de T2-0, con una
+  diferencia absoluta <= 1e-6 en el margen y relativa <= 1e-9 en el peso.
+- C-exacto (m = 6, k = 3): en dos celdas, (r_c = 1e-3, r_m = r_c) y
+  (r_c = 1e-6, r_m = 0), U(vacio), E y O exactos (fracciones, misma
+  pasada) caen dentro de los intervalos de punto fijo.
+- C-dom (m = 6 y 12, k = 4, r_c = 1e-6, r_m = r_c): L_comp dividido por
+  el termino dominante de T2-0 debe estar entre 1 - 1e-12 y 1 + 1e-2. La
+  diferencia la dan las familias silenciosas con mas de f_s sitios (con
+  otras componentes que pasan, o con 4 sitios). Son positivas y de orden
+  NS x r_c, unos 1e-4. Un error en los pesos por clase daria una
+  diferencia de orden 1.
+- C-anch: en todos los intervalos que se informan, la anchura relativa es
+  <= 1e-30; en la regla de suma, la anchura es <= 1e-12 x^k.
+- I4 y leyes: silenciosa si y solo si el caracter vale -1, sin
+  discrepancias; las leyes suman 1 (como en T2-0).
+
+MEDIDAS (circuito, k = 4; m = 24 y 48, y k = 3 en m = 48)
+- Candidatos, asignaciones (llamadas) y validas por f; polimeros;
+  entradas (Y, firma); bytes en disco.
+- Estados, terminos, polimeros por ancla (maximo) y estados pendientes
+  (maximo), con la pasada de solo estructura.
+- Tiempo por termino con pesos: una celda (r_c = 1e-4, r_m = r_c) en las
+  anclas de los primeros 16 de 256 grupos de m = 12 y de m = 48. Sus
+  valores se descartan y no se informan.
+- Tiempo y memoria por etapa.
+
+DECISIONES (fijadas antes)
+- D-m1: motor VALIDADO si todos los controles pasan. Si alguno falla, se
+  detiene y se informa que el motor no queda validado.
+- D-m2: factibilidad de T2-1 con k = 4 en m = 6, 12, 24 y 48 y 8 celdas
+  (r_c en {1e-3, 1e-4, 1e-5, 1e-6}, con r_m = r_c y r_m = 0).
+  - Tiempo previsto: suma sobre m de terminos_4(m) x t_celda x 8 /
+    procesos, mas los tiempos medidos del catalogo y de los pesos.
+    t_celda es la medida de m = 48 (m = 12 para m <= 12), y los procesos
+    son los que caben en memoria, como mucho 14.
+  - CABE si el tiempo previsto es <= 6 h (el extremo alto de
+    EVALUACION_T2.txt, seccion 8) y la memoria y el disco quedan dentro de
+    los techos. CABE_CON_MAS_TIEMPO si solo falla el tiempo (se informan
+    las horas). NO_CABE si fallan la memoria o el disco.
+
+TECHOS (R)
+8 h de reloj; 7.5e9 llamadas al decoder; 24 GiB de memoria en total
+(75 % de los 31.8 GiB de la maquina), 12 GiB en el proceso principal,
+1.5 GiB por proceso del catalogo y 4 GiB por proceso de la DP; 14
+procesos; 60 GB de disco en trabajo/. Si se alcanza un techo, la etapa
+pendiente queda NO_MEDIDA y se informa asi.
+Prevision (no medida): unas 6.3e9 llamadas (circuito) mas 1e7 (B4), y de
+3 a 5 h. Lo que mas pesa es la pasada de estructura de m = 48 (1.6e9 a
+1.9e9 terminos, de 1 a 1.5 h) y su catalogo (unos 25 min).
+
+LIMITES QUE PESAN IGUAL (M10)
+- Los lemas A, N, EO y R estan escritos aqui, sin contraste del revisor.
+  Se controlan por sus consecuencias (C-B4, C-T20, C-exacto, C-dom), no se
+  prueban por otra via.
+- Los resultados pasan de fracciones exactas a intervalos rigurosos de
+  anchura despreciable. Si se quiere la fraccion exacta en algun caso
+  pequeno, el modo exacto la da.
+- Es una unidad de ingenieria: no da intervalos de P_sil ni compara con
+  rivales. Las medidas de m = 24 y 48 sustituyen a las proyecciones de
+  T2-0, pero no son resultados de T2-1.
+
+FUERA DE ALCANCE
+No se calculan intervalos de P_sil del circuito ni la regla de suma de
+m = 24 y 48 con k = 4 (son de T2-1). No hay Monte Carlo, splitting ni
+varias rondas. No se toca el manuscrito ni el paquete del revisor. No se
+inicia HGP5, H5-B, N11/N12, M2 ni C3. No se descarga nada. T2-1 necesita
+su propio plan sellado.
+
+ARCHIVOS
+Ahora: PLAN_T2_1M.txt, SELLO_PLAN.json y medidas_previas/. Despues:
+t2_motor.py, RESULTADO_T2_1M.json, RECURSOS_T2_1M.json, SALIDA_T2_1M.txt
+e INFORME_T2_1M.txt. trabajo/ guarda los catalogos por grupo con un
+manifiesto de SHA-256. No es un entregable; T2-1 puede reutilizarlo o
+regenerarlo.

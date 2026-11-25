@@ -1,0 +1,413 @@
+H5-A · Qué correcciones pueden sostener el resto a p = 10⁻³⁰
+18 de noviembre de 2026
+
+Resultado
+=========
+
+Se conserva q = 2·10⁻¹¹. En p = 10⁻³⁰ queda acotada la contribución
+de todas las cadenas de correcciones individuales VV y CC, con longitudes,
+distancias, números de fuentes y números de medidas arbitrarios. Entran
+también términos con arbitrariamente muchos generadores múltiples si el
+primer uso de cada uno reduce en al menos cuatro el peso del síndrome.
+Para los descensos de uno, dos o tres, (3b) da el presupuesto que aún
+se puede gastar. En paralelo, (3) cubre siempre hasta un generador
+múltiple distinto por cada cinco datos originales, con cualquier
+descenso. Los primeros usos se cuentan por generador y por ejecución
+de cada decoración.
+
+Una segunda estimación cuenta interacciones en las que las fuentes se
+pueden enlazar localmente. La ejecución que se cuenta es la física
+completa. Algunas pueden explorar regiones lejanas a todas sus fuentes.
+En particular se cubren todas las interacciones cuyos núcleos permanecen
+a dos pasos de sus datos originales en el grafo L de checks.
+
+Las dos estimaciones se aplican al resto que superaba cuatro átomos de
+acción por dato en H5A_comparacion_de_ejecuciones.txt. Sumadas a lo ya
+cubierto, las filas siguen siendo <1.94·10⁻⁵ por dato y <0.00070 por
+medida. Para obtener un certificado general en la meta falta la
+desigualdad (5). El rectángulo completo demostrado sigue en
+p ≤ 4.24·10⁻³⁶, q ≤ 2·10⁻¹¹. Rigen los grados binarios (17,18), FGL
+completo con β=1/100, el máximo global, el desempate fijo, los subhosts
+y las máscaras del manuscrito. La derivación requiere revisión independiente.
+
+1. Cuánto descenso pueden financiar los datos originales
+=========================================================
+
+Sean E el conjunto de datos con error y D el de errores de medida. En
+una ejecución que pasa el filtro, el síndrome observado acaba en D y D
+es estable. Comparar la corrida s₀=H_X E⊕D con la corrida estacionaria
+desde D. Toda acción elegible en la primera supera en su huella la
+fracción encendida de la segunda, donde quedó bajo el umbral. Por lo
+tanto toda acción lee una discrepancia. El descenso δ es la disminución
+del número total de checks encendidos al ejecutar esa acción.
+La procedencia de las luces permite además medir el combustible de las
+correcciones. Poner I=(H_X E)∖D. Son luces iniciales que deben apagarse
+al menos una vez. Asignar cada check de I a un dato original que lo lee,
+con un orden fijo para resolver empates.
+
+La primera vez que se apaga una luz asignada a v, sea k el número de
+luces asignadas a v aún por apagar, incluyéndose a sí misma. Cuando se
+apagan varias juntas se les dan rangos consecutivos en un orden fijo.
+Si n=17 o 18 es la anchura de v, su singleton compite con densidad
+al menos k/n. Así, para el ganador de área A, con h luces, se cumple
+h/A ≥ k/n. Es válido también cuando el singleton queda bajo el umbral.
+Escribir c=A−h, δ=h−c. El descenso total es |I|−|(H_X E)∩D| ≤ |I|.
+
+Un ejemplo de la cuenta es el descenso de las acciones cuyas huellas
+son disjuntas de todas las huellas de los datos originales. Un paso con
+m luces de I apagadas por primera vez aporta al menos mδ/h de descenso
+fuera de esa cuenta. Al restar del descenso total, cada luz de rango k
+deja a lo sumo max c/h entre firmas con h/A ≥ k/n. Sumar en k da
+menos de 11.110 por dato VV y 11.811 por CC, independientemente de D.
+
+La versión ponderada se usa para contar posiciones. Dar a los primeros
+usos de singleton VV, singleton CC y generador múltiple las constantes
+
+          l_V=0.003,       l_C=0.00016,       l_M=0.00000016.
+
+Para cualquier tipo j definir w_j(h) como el menor múltiplo de 1/64
+con 2^(−w_j(h)) ≤ h l_j. Se emplea el bit como unidad del logaritmo.
+Para las dos familias de singletons y todos sus h elegibles definir
+
+    K=max w_j(h)/δ = 167/32,
+    B_n(k)=max [Kc+w_j(h)]/h,     sobre singletons con h/A ≥ k/n.
+
+Se obtiene 0<B_n(k)≤K, con B_n decreciente en sentido amplio, y
+
+    Σ_{k=1}^17 B₁₇(k)<63.4,          Σ_{k=1}^18 B₁₈(k)<68.5.         (1)
+
+En un múltiple de firma (A,h), el coste que ya entra en este saldo es
+
+    b=min{ w_M(h), Kδ, min_{n=17,18}[h B_n(⌊nh/A⌋)−Kc] },
+    r(A,h)=w_M(h)−b.                                                 (2)
+
+En un singleton usar b=w_j(h). Para las 9967 firmas elegibles de área
+y descenso que permite la fórmula FGL de un múltiple, se verifica b≥0
+y r≤425/32. El máximo se alcanza con A=33, δ=1. Si A≥62 y δ≥4,
+el recargo es cero. La enumeración acota todos los pasos en cualquier
+semilla, pues sólo usa A=17x+18y−2xy, 2A≥17(x+y), la paridad y β.
+
+Para cada luz que se apaga por primera vez en el paso t se tiene
+K−B_n(k)≤(Kδ_t−b_t)/h_t. El lado derecho es no negativo. El paso puede
+asumir todas esas cargas porque son a lo sumo h_t. Al sumar se obtiene
+
+    Σ_t b_t ≤ K Σ_t δ_t − Σ_{luces de I}[K−B_n(k)]
+            ≤ 63.4 |E_VV| + 68.5 |E_CC|.
+
+Para cada átomo basta registrar su primer uso. Los usos siguientes
+tienen b_t≥0. En los primeros usos múltiples se añade r. En un término
+sin repetición de fuentes del logaritmo, sumar esos recargos sobre todas
+las decoraciones y llamar R a su suma. Sea e el número total de datos.
+El primer criterio de esta nota es
+
+                              R ≤ 3e.                                 (3)
+
+Por (2) basta que haya ≤(96/425)e primeros usos múltiples, en particular
+≤e/5. Pueden coexistir arbitrariamente muchos usos de recargo cero.
+El conteo respeta la tabla fija de generadores de los candidatos deduplicados.
+
+Hay una segunda forma de repartir el mismo coste. Para un múltiple usar
+b'=min(w_M(h),Kδ) y r'=w_M(h)−b'. Para un singleton mantener b'=w_j(h).
+Ampliar el máximo que define B_n(k) a todas las acciones elegibles,
+usando (Kc+b')/h. Llamar B'_n(k) al resultado. Como b'≤Kδ, sigue siendo
+B'_n(k)≤K. Para cada luz de rango k, su acción y su densidad aparecen
+en ese máximo, de modo que K−B'_n(k)≤(Kδ−b')/h. La misma suma sobre
+primeros apagados da, por dato respectivo, los presupuestos exactos
+
+    Σ B'₁₇(k) = 664916069/10250240 < 64.869,
+    Σ B'₁₈(k) = 920606373/13404160 < 68.681.
+
+En toda la tabla, r'=0 para δ≥4. Para δ=1, 2 y 3 los máximos de r' son
+425/32, 255/32 y 11/4, respectivamente. Sean R_bajo la suma de r' sobre
+los primeros usos múltiples y e_V, e_C los números de datos fuente VV y
+CC del término completo, incluidos los retirados en la sección 2. El
+segundo criterio es
+
+                       R_bajo ≤ 1.5 e_V + 2.8 e_C.                   (3b)
+
+En efecto, los presupuestos por tipo, más las asignaciones de (3b), son
+menores que 66.4 y 71.5, los mismos límites totales de (1) y (3).
+Además de cubrir cualquier número de descensos ≥4, (3b) admite por
+ejemplo hasta un primer uso de descenso menor que cuatro por cada diez
+datos originales, junto a cualquier cantidad de los demás. Basta sumar
+los recargos reales para aplicar la regla más precisa.
+
+2. Sumar las historias que satisfacen (3) o (3b)
+================================================
+
+Se reutilizan los bosques causales de H5A_p_general.txt, §§2–3,
+la retirada inicial y los testigos de H5A_interacciones_por_fuentes.txt,
+§§1, 3–6, y la compresión de caminos de H5A_cadenas_y_medidas.txt, §§3–4.
+Las modificaciones al recuento se detallan a continuación.
+
+Retirar los datos sin testigo con su corrección perfecta individual.
+Se conservan como fuentes individuales de precio l₀=10⁻²⁵. Su corrección
+tiene la misma huella y vecindad que su fuente. Los signos, la unión del
+soporte y la ejecución restante se recuperan exactamente. Cada dato restante
+tiene un compañero de contacto o pertenece a tres lectores originales de
+un mismo generador. Todos los datos de ese testigo quedan señalados.
+Agrupar esos datos y las medidas vecinas por las aristas dato–dato y
+dato–medida de K. Las demás medidas quedan como fuentes individuales.
+Para definir R y R_bajo se puede usar la ejecución restante, que
+conserva todos los usos múltiples y las puntuaciones de su primer uso.
+
+Por cada átomo de acción en la ejecución restante elegir uniformemente
+uno de los h checks encendidos en su primer uso. Su padre es la acción
+que encendió por última vez ese check o, si seguía intacto desde el
+inicio, un lector fuente fijado por orden. Queda un bosque dirigido al
+pasado, con orígenes en grupos o fuentes individuales. La conectividad
+del soporte físico permite completar un árbol con puentes de K.
+Conservar el subárbol mínimo que contiene la raíz física y todos los
+orígenes. Comprimir sus puntos interiores de grado dos en que las dos
+flechas causales siguen el mismo sentido. Conservar en el tramo los
+checks de sus aristas y los tipos de los átomos comprimidos.
+
+Para formar una actividad auxiliar dar a cada átomo usado el factor h l_j
+de su primer uso. Es <1. Para cada elección de su check padre, el factor
+con su probabilidad es exactamente l_j. Un singleton sólo permite un
+desplazamiento en su línea, incluso si emitió en un uso posterior el
+check que leyó el hijo. Para un múltiple, los dos checks pertenecen al
+rectángulo del generador. Desde un check fijo hay como máximo 289
+posiciones en fila, 290 en columna y 83810 en la unión de todos los
+rectángulos que lo contienen, incluidas las diagonales.
+La suma de pasos de un tramo es así geométrica con razón
+
+    Λ=289 l_V+290 l_C+83810 l_M=0.9268096,
+    J_ij=f_i l'_j/(1−Λ),
+    f=(17,18,1,17,18,306),    l'=(18,17,1,18,17,306).
+
+El orden de tipos es VV, CC, medida, acción VV, acción CC, múltiple.
+El registro conserva las fuentes, que determinan la ejecución. Dado el
+extremo cronológicamente posterior de un tramo, su check padre determina
+el último encendido o lector inicial, y así recupera el siguiente átomo.
+Las probabilidades de las elecciones ocultas suman a lo sumo uno para
+cada registro. Esta regla uniforme tampoco depende del número de hijos.
+
+Para reproducir las filas, M es la matriz de puentes pq-M del manuscrito
+en este orden. N es su bloque fuente con entrada medida–medida cero.
+S significa entrada desde un puente o la raíz. Para acciones, P significa
+entrada desde su causa y C desde un hijo. Con O los tipos fuente y I_a
+los de acción, poner L=J[:,I_a]P, W=MS, Z=W+L y
+H=J[:,O]S_O + J[:,I_a]C. Son suficientes las filas, para j de acción,
+
+    S_j ≥ l_j H_j exp(Z_j),
+    P_j ≥ l_j [exp(Z_j)−1−L_j],
+    C_j ≥ l_j H_j [exp(Z_j)−1].
+
+En P se eliminan la hoja sin hijos y el nodo con un único hijo causal,
+que ya se podaron o comprimieron. En C se distingue el padre pendiente
+y se elimina el caso sin otro hijo, también comprimido. Las ramas de
+la raíz permiten todos los grados. La inducción en altura cuenta caminos
+y árboles de tamaño arbitrario. Si el ancla es una fuente que se agrupó,
+la rama empieza en ese miembro del grupo.
+
+Usar x=(1.4·10⁻¹⁰, 4.8·10⁻⁹, 2.032·10⁻¹¹) y U_i≥x_i exp[Z_i+(NU)_i].
+Para las filas de grupo, V=max(U_VV,U_CC), m=U_med, y=10133V+306m.
+El testigo exigido en una entrada por dato cuesta
+b_v=28200V+40m+5508 y²/2. La entrada por medida cuesta
+b_m=800V+2766309V b_v+306·10133V y. Se elige un árbol del grupo que
+contenga las aristas del testigo de entrada, como en la sección 6 de la
+nota de interacciones. Por tanto las tres filas son
+S_i≥U_i b_i+x'_i exp(Z_i), con x'=(l₀,l₀,x_med). El último sumando cubre
+los datos retirados y las medidas individuales. El programa contiene
+las quince entradas racionales de la supersolución.
+
+Dar al polímero auxiliar el producto de precios de fuentes y de h l_j
+descrito arriba, multiplicado por exp(−0.28e−0.00030d). Los árboles
+mayoran sus actividades absolutas con ese presupuesto ya restituido.
+Una raíz de datos puede ser fuente, dato de corrección o miembro de un
+generador. Se permite incluso el factor 18 en toda la fila de fuente
+para la corrección equivalente de un dato retirado. Por ello
+
+    R_v=max(18S₁+S₄+17S₆,18S₂+S₅+18S₆)<3.68·10⁻¹¹,
+    R_m=S₃<2.04·10⁻¹¹.
+
+La fila de incompatibles está acotada por K_E e+K_D d, con
+K_E=135(46870021R_v+1420146R_m)<0.28 y K_D=2766309R_v+83810R_m
+<0.00030. Se usa |Y∩datos|≤135e para las historias filtradas.
+El teorema enraizado de Ueltschi acota así la suma de módulos de los
+términos del logaritmo auxiliar que pasan por una fuente fija.
+https://arxiv.org/pdf/math-ph/0304003
+
+Sea s(r)=[r/(1−2r)]exp(0.015), con P₀=10⁻³⁰ y Q=2·10⁻¹¹. Se verifica
+
+    s(P₀)exp(0.28) 2^(63.4+3) < x_VV,
+    s(P₀)exp(0.28) 2^(68.5+3) < x_CC,
+    s(P₀)exp(0.28) 2³ < l₀,         s(Q)exp(0.00030)<x_med.
+
+El producto de actividades auxiliares domina al físico en cada término
+que cumple (3) o (3b). En el primer caso se asignan 3 bits adicionales
+por dato. En el segundo caso se asignan 1.5 o 2.8 según su tipo. Los
+datos retirados también aportan esa asignación, pues su conversión
+admite 3 bits. El saldo se puede compartir entre las decoraciones del
+término completo. Ambas comparaciones usan el mismo producto auxiliar,
+de modo que su unión entra una sola vez en la fila. Los signos y los
+coeficientes de incompatibilidad son los mismos en ambos productos.
+
+3. Qué interacciones pueden contarse a partir de sus fuentes
+============================================================
+
+Este criterio también permite pagar términos que superan (3) y (3b).
+Usar el grafo L de checks que comparten rectángulo. En cada decoración
+retirar sólo las medidas pasivas, fuera de las huellas de los datos
+originales y de todas las acciones. Al quitarlas se preservan la
+puntuación de cada ganador y la parada. Las componentes en K del soporte
+restante son núcleos físicamente filtrados por recomposición. Cada uno
+contiene datos, y cada medida conservada toca la huella de algún dato
+visitado. Su vecindad en K está dominada por la de ese dato. Las piezas
+elementales son dichos núcleos y los singletons de medidas pasivas.
+
+En cada núcleo que se cuenta exigir que sus datos originales formen un
+conjunto conexo al unir huellas a distancia ≤5 en L. Cada medida activa
+debe distar ≤2 de una de esas huellas. Para una arista real entre piezas
+se admite el enlace núcleo–núcleo si hay dos huellas de datos fuente,
+una por extremo, a distancia ≤5. Un enlace de medida pasiva a núcleo
+requiere contacto físico y distancia ≤3 entre esa medida y alguna huella
+de dato fuente del núcleo. Dos pasivas se enlazan a distancia ≤1.
+
+Precisar la suma mediante árboles. En cada decoración elegir un árbol
+interno de contacto físico de sus piezas, con preferencia por enlaces
+admitidos si permiten conectarlas. Para el coeficiente de conjuntos
+distintos del logaritmo físico usar la identidad de subgrafos conexos
+en el grafo de incompatibilidad. Con un orden fijo de aristas, el
+algoritmo de Kruskal agrupa los subgrafos conexos por su árbol mínimo.
+Las aristas opcionales se cancelan en la suma de signos. Cada árbol
+superviviente da una unidad con signo (−1)^(n−1), n el número de
+decoraciones. En cada arista de ese árbol elegir por orden un contacto
+real entre dos piezas, prefiriendo un enlace admitido si lo hay.
+Contar los árboles supervivientes para los que se cumplen las condiciones
+de núcleo y todos los enlaces elegidos son admitidos.
+
+El resultado es un árbol de piezas con dos clases de aristas, internas
+y entre decoraciones. Al cortar las segundas se recuperan las fuentes
+de cada decoración, sus ejecuciones físicas y el árbol original entre
+ellas. Al fijar una fuente raíz hay una sola pieza que la contiene,
+pues el monomio usa cada fuente una vez. Permitir dos colores por arista
+y todos los árboles enraizados sólo puede aumentar el recuento. Esta
+construcción cubre trayectorias que pueden alejarse a distancia arbitraria
+si sus fuentes y los contactos elegidos cumplen las condiciones.
+
+Las condiciones son automáticas si, en cada núcleo, las huellas completas
+de sus datos visitados están en la unión de las bolas de radio 2 alrededor
+de las huellas de sus propios datos originales. Los datos visitados
+tienen huellas conexas entre sí en L porque las medidas activas están
+dominadas por sus lectores. Las bolas de datos que así se enlazan dan
+distancia ≤5. Un contacto con una pasiva da distancia ≤3. Esto prueba
+la afirmación inicial sobre dos pasos.
+
+Para el recuento se usan bolas de Tanner en la semilla. Si la distancia
+en L es ≤j, cada coordenada está a distancia de Tanner ≤2j. Poner
+g_j=(272^j−1)/271, V_j=1+289g_j, C_j=1+288g_j, A_j=17g_(j+1),
+B_j=18g_(j+1). Son cotas de las bolas del mismo tipo y del opuesto.
+Desde datos VV o CC, a distancia ≤5 de las huellas hay a lo sumo
+
+    N_vv = (V₅ V₆ + A₅², B₅² + C₅ C₆)
+
+datos de ambos tipos en total, respectivamente. Desde un dato hay a lo
+sumo N_vm(j)=(V_j A_j,C_j B_j) medidas a distancia ≤j de su huella.
+Desde una medida hay N_mv(j)=V_j B_j+C_j A_j datos. Contienen posibles
+coincidencias, ciclos y candidatos repetidos.
+
+Tomar T=1.1·10⁻²⁹ por dato fuente de un núcleo, M=2.031·10⁻¹¹ por
+pasiva, B_v=0.025 y B_m=0.000002. El verificador comprueba por tipo
+
+    N_vv T +135·1420146 M < B_v,
+    s(P₀) exp[2B_v+N_vm(2)s(Q)+N_vv T] < T,
+    N_mv(3)T+83810 M < B_m,           s(Q) exp(2B_m) < M.           (4)
+
+Para una pasiva hija de un núcleo fijo se conocen los sitios reales del
+núcleo. Por dato fuente hay a lo sumo 135 sitios de datos visitados y
+1420146 medidas vecinas por sitio. En la otra dirección se usan las
+bolas de radio tres de la pasiva fija. En el interior de un núcleo se
+enumera un árbol abarcador de los datos a distancia cinco y se permiten
+libremente las medidas activas a distancia dos. Las fuentes reconstruyen
+la ejecución completa, de modo que contar cada elección cuesta una sola
+actividad. El factor exp(2B_v) por dato o exp(2B_m) por pasiva paga
+todos los hijos exteriores con sus dos colores de arista. La inducción
+en ambos árboles, por positividad, da T por raíz de datos y
+M+N_mv(2)T<2.04·10⁻¹¹ por raíz de medida, incluida la medida activa.
+
+4. Un caso de alcance arbitrario que queda cubierto
+===================================================
+
+En una fila física representar datos mediante los vértices de un grafo
+de grado 17 y checks mediante sus aristas. Cada columna lee las
+17 aristas incidentes. Hacer 17 copias y añadir, por cada arista, 16
+columnas que leen esa coordenada en todas las copias. La matriz es
+binaria de grados (17,18). Con una sola fila física encendida, el lema
+de las ocho filas de H5A_cortes_y_huecos.txt, §1, fuerza que el ganador
+sea un singleton de esa fila. Las columnas de relleno ven ≤1 luz. En el
+grafo original el síndrome es el corte entre vértices ocupados y vacíos.
+
+Construir m+1 capas con n_j=2·8^j·9^(m−j) vértices. Cada capa interior
+recibe nueve incidencias por vértice de la anterior y emite ocho hacia
+la siguiente, pues 8n_j=9n_(j+1). Para m≥3, completar la capa cero con
+un grafo conexo 9-regular y la última con uno 8-regular. Se pueden usar
+los cuatro vecinos siguientes y anteriores de un ciclo y, para el grado
+impar, el opuesto. Las incidencias entre capas se emparejan, admitiendo
+aristas paralelas con checks distintos.
+
+Poner errores de datos en toda la capa cero y tomar D vacío. Un vértice
+ocupado de esa capa tiene a lo sumo ocho aristas del corte. Un vértice
+vacío se voltea sólo con nueve o más vecinos ocupados. Una vez volteado
+permanece estable porque el conjunto ocupado sólo crece. Mientras quede
+una capa incompleta, cualquiera de sus vértices vacíos en la primera
+capa incompleta tiene nueve incidencias hacia la anterior, ya ocupada.
+Por tanto el máximo global termina ocupando todos los vértices y el
+síndrome final es cero. Las correcciones pueden llegar a distancia m−1
+o más de las huellas iniciales. En el grafo de checks L, un paso cambia
+el índice de capa de la coordenada del grafo original a lo sumo en uno,
+también en la semilla completada.
+
+La razón de átomos distintos a datos originales es
+H/e=8[1−(8/9)^m]. Supera cuatro desde m=6 y tiende a ocho.
+Para el término de una sola decoración y m≥6 se cumplen los dos cortes
+de historias largas de la nota anterior, pues d=0 y H>4e. El criterio
+(3) lo cubre con R=0. También cumple la condición espacial por la
+conectividad de las fuentes en la capa cero. El valor de un cumulante
+puede incluir otras decoraciones con signos. El programa ejecuta además
+el máximo global reducido a la fila en una variante de nueve capas con
+100 datos originales, 466 correcciones distintas y síndrome terminal cero.
+
+5. Qué queda pendiente en la esquina
+====================================
+
+Usar las mismas k, k⋆ y s que en H5A_comparacion_de_ejecuciones.txt.
+Partir de los términos k_largo allí definidos y expandir sus coeficientes
+de incompatibilidad por los árboles supervivientes de la sección 3.
+Retirar los que satisfacen (3) o (3b) y, entre los restantes, los
+cubiertos por la sección 3. El primer recuento es válido con árboles porque
+para una familia fija todos los supervivientes tienen el mismo signo.
+Denotar por k_pend(B) la suma con signo que queda. En una misma familia,
+el exceso de recargo y el enlace geométrico pendiente pueden estar en
+lugares distintos.
+
+Al mayorante de la nota anterior se añaden una vez las dos nuevas filas.
+Con los valores racionales, antes de redondear, se obtiene
+
+    Σ_{B∋i, |B|≥4}|k(B)−k⋆(B)−k_pend(B)| s^B
+       < 1.94·10⁻⁵ si i es dato,      < 0.00070 si i es medida.
+
+Para certificar la esquina basta que los términos restantes cumplan
+
+                  Σ_{B∋i, |B|≥4}|k_pend(B)| s^B ≤ 0.004298.          (5)
+
+Todo término pendiente tiene al menos tres datos, menos de quince medidas
+por dato, H>4e, H>(10/3)e+(5/8)d, R>3e y R_bajo>1.5e_V+2.8e_C.
+Este último exceso requiere primeros usos múltiples con descensos de uno,
+dos o tres. También hace falta un núcleo o un contacto fuera de la regla
+espacial de la sección 3. Para (5) queda por acotar la suma conjunta de
+esos términos en el modelo completo.
+
+Comprobación
+============
+
+Desde 05_COMPROBACIONES, con el verificador de la nota anterior y sus
+dependencias ya existentes en la carpeta, ejecutar
+
+    python -I -B -X utf8 verificar_H5A_propagacion_entre_fuentes.py
+
+Las comparaciones de tasas, bits, recargos, vecindades y filas de ambos
+árboles se deciden con enteros y fracciones. La prueba de uniformidad
+está en las desigualdades y en la inducción, y la corrida de nueve capas
+sirve como contraste físico.

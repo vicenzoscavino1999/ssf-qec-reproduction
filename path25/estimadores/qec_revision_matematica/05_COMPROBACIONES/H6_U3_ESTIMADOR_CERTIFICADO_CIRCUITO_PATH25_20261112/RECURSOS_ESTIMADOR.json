@@ -1,0 +1,24 @@
+{
+ "nota": "tiempos de reloj en segundos y memoria; no deterministas; no son resultado",
+ "tiempos": {
+  "preparacion": 0.0009,
+  "catalogo_tamano_1": 0.0003,
+  "gas_k_1": 0.0005,
+  "catalogo_tamano_2": 0.001,
+  "gas_k_2": 0.0054,
+  "catalogo_tamano_3": 0.0032,
+  "gas_k_3": 0.0165,
+  "catalogo_tamano_4": 0.0097,
+  "gas_k_4": 0.0423,
+  "catalogo_tamano_5": 0.0212,
+  "gas_k_5": 0.1102,
+  "catalogo_tamano_6": 0.029,
+  "gas_k_6": 0.2083,
+  "catalogo_tamano_7": 0.0228,
+  "gas_k_7": 0.2671,
+  "catalogo_tamano_8": 0.007,
+  "gas_k_8": 0.2744,
+  "total": 1.0318
+ },
+ "pico_memoria_bytes": 23146496
+}

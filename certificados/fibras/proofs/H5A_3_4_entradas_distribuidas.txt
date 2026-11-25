@@ -1,0 +1,315 @@
+H5-A · Entradas de una cruz desde correcciones distintas en el HGP (3,4)
+23 de noviembre de 2026 · Derivación pendiente de revisión independiente
+
+En G3, con p=10⁻⁶ y q=10⁻³, las direcciones de entrada de tres ramas de
+un árbol ocupan sólo 1/4 de las posiciones si deben formar las tres luces
+que apaga una cruz de coste uno. Una regla que distingue el brazo horizontal
+antes de colocar las ramas da factores cinco u ocho en los casos de §2,
+suficientes para compensar una unidad completa de exceso. La estimación
+incluye todos los órdenes y la situación de camino único en ambos
+factores. Depende de qué contactos registra el árbol. En cambio, la
+desigualdad de capas (1) vale para toda especie aceptada. La subfila con
+marca direccional al menos uno es <0.000167809. La suma de las entradas
+que faltan sigue abierta. Se mantiene el rectángulo general de acceso
+a las particiones filtradas p≤3.40·10⁻⁷, q≤10⁻³.
+
+Se usan las hipótesis de H5A_3_4_episodios_compartidos.txt (v12) y
+H5A_3_4_cierres_simultaneos.txt (v13). La semilla binaria tiene peso
+columna 3 y fila 4. El producto consigo misma admite cualquier tamaño,
+máscara y subhost inducido de esas notas. Se usa una ronda Bernoulli,
+la familia completa de acciones FGL, β=1/100 y el mismo máximo global
+con desempate físico fijo. La precisión relativa de fallo silencioso
+positivo requiere además las hipótesis y el testigo del Teorema 1.
+
+1. Cuánto descenso puede llegar lejos por un eje
+------------------------------------------------
+
+En una especie aceptada, O es la unión de las huellas de los datos
+originales, σ su síndrome y D las medidas activas. El síndrome observado
+parte de σ△D y acaba en D. En un eje conectar dos coordenadas cuando
+pertenecen a la misma vecindad de Tanner N(r) de cuatro filas, o N(j)
+de tres columnas en el otro eje. Una unidad de esta distancia son dos
+aristas de Tanner. Medir la distancia a la proyección de O. El nivel de
+un paso es la mínima distancia entre las coordenadas de su rectángulo
+y esa proyección. Sea T_l la suma de sus descensos δ en niveles ≥l,
+con todas las repeticiones. Se obtiene, en cada eje por separado,
+
+                 2T_l ≤ T_(l−1)       para l≥1.                       (1)
+
+En cada uno de los 771 posibles ganadores la suma de los aumentos
+positivos por filas es ≤δ. Lo mismo vale por columnas (v12, §1). Para
+l≥1 considerar la unión de las líneas a distancia ≥l. Al principio y al
+final contiene los mismos bits de D. Un paso de nivel ≥l baja su peso
+en δ. Los de nivel <l−1 la evitan porque las coordenadas de un mismo
+rectángulo están a distancia mutua ≤1. El aumento que pueden producir los
+de nivel l−1 es ≤T_(l−1)−T_l. Sumar los cambios demuestra (1). En una
+componente del eje a distancia infinita los rectángulos quedan enteramente
+dentro y la misma identidad impide cualquier paso. No se condiciona D.
+
+Con n datos, T_0≤|σ|≤4n. Además, todo paso de nivel ≥1 es lejano. En
+una especie de varios grupos su descenso total lejano es ≤K (v12, §1).
+Si b ocurrencias distintas están a partir del nivel l≥1 en el mismo
+eje, entonces K≥2^(l−1)Σδ de esas ocurrencias, en particular
+K≥2^(l−1)b. Por ejemplo, una cruz y tres antecesores, todos de nivel ≥3,
+requieren al menos 16. Si alguno está más cerca se aplica la cuenta a
+los que sí alcanzan el nivel. Un retorno por una medida activa no cambia
+la desigualdad. Los saldos de los dos ejes se aplican al mismo K.
+
+Hay un segundo modo de eliminar posiciones a partir de O. En cada eje,
+tomar su proyección y añadir todas las coordenadas de una vecindad de
+Tanner cuando ya contiene al menos dos. Sea A el conjunto al detenerse.
+Todo rectángulo usado toca A en ese eje. En efecto, si toca A en una sola
+línea, el descenso fuera de esa línea es ≥0 para los 771 ganadores (v9,
+§2). Si todas sus líneas pertenecen a A, el exterior queda fijo. Si lo
+evita, el descenso exterior sería δ>0. Como el exterior de A empieza y
+termina en los mismos bits, todos esos descensos tienen que ser cero.
+Para una cruz con una única fila interior, esa fila tiene que ser una
+de las dos filas de entrada en el brazo vertical. Con una sola columna
+interior, ha de ser la columna del pivote o la de la entrada horizontal.
+
+Este cierre admite una cuenta exacta incluso con ciclos. Empezar con s
+coordenadas y añadir de una vez cada centro activado con todas sus
+incidencias. Sean κ las componentes finales, contando coordenadas
+aisladas, y r el número de ciclos independientes del grafo bipartito
+así generado. Si un centro toca a coordenadas ya presentes en cantidad
+a, entonces Σ_centros(a−1)=s−κ+r. Se sigue de aristas menos vértices
+o añadiendo los centros sucesivamente. Se activan ≤s−κ+r centros. En
+un bosque quedan ≤s+2(s−κ) coordenadas en el primer eje y ≤s+(s−κ)
+en el segundo. Un límite proporcional a s solo no vale en toda semilla.
+Para verlo, tomar t pares disjuntos U_i de variables, con t par ≥6. Las
+filas U_i∪U_(i+1) con índices módulo t y U_i∪U_(i+t/2) para 0≤i<t/2
+dan peso fila 4 y columna 3. Desde U_0∪U_1 se activan las 2t variables.
+Es un límite del cierre geométrico. La visita física sigue sujeta a (1).
+
+Una consecuencia para los coeficientes físicos completos. Para E fijo
+se puede usar O(E) y K⁺=Σ_A max(0,k_A) sobre sus grupos originales,
+con contribución cero de un aislado. Esto domina K en cualquier especie
+de varios grupos de E. Poner R=0 si K⁺=0 y R=1+⌊log₂ K⁺⌋ en otro caso.
+En cada eje unir dos grupos si sus huellas originales proyectadas están
+a distancia ≤2R+2. Todos los originales de una especie quedan en una
+misma componente en cada eje. En efecto, por (1), cada rectángulo usado
+tiene una coordenada a distancia ≤R de alguna huella original, y todas
+las demás a distancia ≤R+1. Rectángulos que comparten un check enlazan
+por ello las dos huellas elegidas a distancia ≤2R+2. La intersección
+con una huella original cumple el mismo límite. Las aristas de G entre
+originales ya están contraídas dentro de su grupo. Éstas son todas las
+formas de conexión de una especie de v4. La afirmación para un solo
+grupo es inmediata. Si los pares de etiquetas de componente en los dos
+ejes distinguen todos los grupos de E, todas sus especies admisibles son
+de un solo grupo. Así puede verificarse una parte de la clase ya cubierta
+de v12 usando solamente E, aunque se desconozcan las medidas.
+
+2. Colocar juntas las ramas que entran en un mismo generador
+-----------------------------------------------------------
+
+Una cruz de coste uno en P=N(r)×N(j) borra tres luces H. Dos están en
+la misma columna, en filas distintas. La tercera está en otra columna
+y en una tercera fila. Esas tres celdas fijan el pivote y, en P, las
+dos celdas de salida. De hecho, al ganar esta cruz no hay ninguna otra
+luz en P. Entre los 4096 estados locales, el máximo de |φ∩s|/|φ| es
+≤3/5 exactamente cuando hay ≤3 luces, cada fila lleva ≤1 y cada columna
+≤2. En sus 72 casos de igualdad gana una única huella y, tras conmutarla,
+el máximo local es 2/5. Esto atañe también a los empates entre centros.
+
+Considerar ahora un generador lejano visible en un árbol comprimido
+admisible de v12. Un enlace exterior se representa en cada factor por un
+paseo sin retroceso de la capa física de v13. Mirando desde el generador,
+los primeros vecinos de los dos paseos nombran una de sus 12 celdas. En
+el enlace entrante se leen los últimos vecinos en sentido inverso. Si una
+longitud es cero, la dirección en el rectángulo queda sin definir.
+
+Para k direcciones tomar la siguiente condición. Para k=3 han de ser
+las tres entradas de una cruz. Para k=4 o 5 han de ser distintas y caber
+en la huella de una sola cruz, pudiendo incluir entradas y salidas. A
+longitudes positivas fijas, los hijos se colocan en los recubrimientos
+semirregulares. Cada dirección tiene el mismo número de prolongaciones.
+Las fracciones en la enumeración de direcciones ordenadas son
+
+  k   conjuntos admitidos   casos si se fija la entrada del padre    fracción
+  3           72                         36 / 144                       1/4
+  4           60                        120 / 1728                     5/72
+  5           12                        120 / 20736                    5/864
+
+Las permutaciones de filas y columnas actúan transitivamente sobre la
+celda del padre. Para k=4 ninguna selección de cuatro celdas cabe en
+dos cruces distintas del mismo rectángulo. Las fracciones anteriores
+son conteos de posiciones del recubrimiento, sin ninguna hipótesis de
+independencia probabilística entre correcciones del decodificador.
+
+Dar puntuación g igual al inverso de la fracción si se cumple la
+condición y cero si se incumple. Cuando un paseo de longitud cero deja
+sin definir una fila o una columna, promediar g sobre sus cuatro o tres
+valores posibles, respectivamente, por separado en cada casilla vacía.
+Este promedio usa la dirección que sí se conoce. Para una terna, las
+filas han de ser distintas (fracción 3/8) y las columnas deben tener
+multiplicidades 2+1 (fracción 2/3). Con sólo las tres filas conocidas y
+distintas, g=8/3. Con sólo las tres columnas conocidas en el patrón
+2+1, g=3/2. Con dos celdas y una tercera totalmente desconocida, el
+factor es 4/3 para filas distintas y cero para filas iguales. La
+igualdad de las dos columnas por sí sola no cambia la media.
+
+Se puede superar el factor cuatro cuando los propios enlaces distinguen
+la entrada horizontal (la que está sola en su columna). Para las tres
+ramas, ordenar las claves (longitud en el primer eje, longitud en el
+segundo, tipo del otro extremo con VV<CC<generador). Las claves quedan
+fijas antes de sumar las direcciones y son las mismas al reenraizar.
+En una segunda prueba, designar como horizontal el enlace de menor
+clave, promediando uniformemente los empates. Con una rama horizontal
+designada, sólo 12 de los 144 pares de hijos son válidos para cualquier
+celda del padre, tanto si el padre es la rama designada como si es otra.
+El factor normalizado es 12 si se acierta y cero si se falla. En (2)
+usar para un vértice de grado tres la media, con pesos 1/2 y 1/2, de
+la prueba simétrica y esta segunda prueba. Para una terna completa
+compatible la puntuación resulta
+
+       8 si la horizontal tiene la menor clave sin empate,
+       5 si comparte la menor clave con una sola de las verticales,
+       4 si las tres claves coinciden,         2 si la horizontal queda fuera.
+
+Para direcciones parciales se promedian ambas pruebas sobre todas las
+completaciones. Las cifras 8/3, 3/2 y 4/3 anteriores corresponden a la
+prueba simétrica. Se puede conservar su norma por separado. Esta regla
+fija cómo se elige la rama antes de mirar qué celda se apagó.
+
+En cada generador visible de grado exterior d≥3 usar k=min(d,5).
+Si tiene padre, promediar g sobre los subconjuntos de k incidentes que
+lo incluyen. En la raíz promediar sobre todos los subconjuntos de k.
+En un generador visible de grado dos usar la terna con una tercera
+celda desconocida. Este promedio G_v impide elegir las ramas a
+posteriori sin pagar la selección. Otros vértices tienen G_v=1. La
+media de G_v sobre los hijos es exactamente uno incluso fijando todas
+las longitudes y la parte conocida de la dirección del padre. Para
+verlo, completar cada ranura sin dato con un valor uniforme auxiliar.
+Las dos coordenadas de cada hijo son entonces uniformes en el conteo
+libre, y la identidad de la tabla vale para cada posible celda del
+padre. Se vuelve a promediar en las ranuras del padre que falten. Las
+completaciones calculan la puntuación, sin añadir paseos físicos.
+
+3. Qué entra en la suma para todas las tallas
+--------------------------------------------
+
+Para un árbol físico T fijar sus extremos y sus capas mínimas. En cada
+factor del enlace de radio base r y distancia física d, la capa cero
+admite longitudes ≤r de la paridad correspondiente. Para d>r se exige
+longitud d. Como en v13 se admiten todos los paseos sin retroceso de la
+capa que proyectan sobre el extremo físico. Definir
+
+  μ_dir(T) = Σ_registros de esos paseos   ∏_v G_v ,
+  w_dir(c) = min(1, min_ρ max_T μ_dir(T) ξ^[B_T+J_T−K]₊),
+  M_dir(E) = τ^m min_descomposiciones de E ∏_c w_dir(c).               (2)
+
+Aquí ρ recorre los requisitos de raíz y marca física de v12, m es el
+número de grupos de G[E], ξ=9/40 y τ=33/20. Para un único grupo se
+prescribe w_dir(c)=1. El último mínimo incluye todas las especies,
+sus medidas y estados admisibles como en v13, §3. Un levantamiento que
+se retrae o acorta antes de llegar a su extremo puede tener una dirección
+distinta del contacto físico. Sólo cuentan las direcciones de los paseos
+admitidos en la capa. La coincidencia se puede verificar, por ejemplo,
+si los caminos por los contactos son geodésicos en ambos factores.
+
+La norma de v12 para los dos ejes da, con las mismas actividades z,y y
+el mismo coeficiente físico d(E) de v10,
+
+         Σ_(E de la fila, m≥2) z^|E| M_dir(E) ||d(E)||_y
+                      ≤ A = 0.000167808400963… .                      (3)
+
+Prueba. Para cada requisito de raíz elegir un árbol que alcanza el
+máximo en (2). Al contar un árbol y sus extremos físicos, expandir
+μ_dir como suma conjunta antes de sumar las posiciones. Enraizar en la
+posición fijada. En cada arista y factor extender la suma a todos los
+paseos de las longitudes de la capa, soltando la exigencia de que su
+proyección sea de distancia mínima en esa capa. La positividad permite
+esta ampliación. En el árbol libre a longitudes fijas, eliminar desde
+las hojas. Una rama descendiente tiene cota uniforme para cada posición
+de su raíz y para cada dirección por la que llegó. Por la media uno de
+§2, al sumar los hijos de un generador recuperamos las mismas cuentas
+por longitud de v12. Las direcciones a los dos extremos de una misma
+arista pueden estar correlacionadas. La inducción condiciona la del
+extremo hijo antes de usar la del padre. En un vértice de datos no hay
+prueba de direcciones. Los histogramas enraizados y los descuentos de
+limpieza son uniformes en el dato anclado. Para un registro físico y sus
+paseos los G_v quedan fijos antes de sumar los testigos de medidas de
+v12, §2. Al aplicar el descuento de limpieza se conserva el reembolso
+de esa nota por la reducción del saldo del grupo.
+
+Esto conserva los mayorantes por cada combinación de capas y techos de
+grupo. En el enlace distinguido se puede por ello conservar el mismo
+corte de longitudes y el mismo saldo restante de v11, §2. La simetría
+entre hijos conserva los factores de árboles sin orden. Un núcleo de
+un grupo mantiene su radio y sus sustracciones previas. La proyección
+sin repeticiones se hace en variables por especie. La desigualdad
+triangular y el mínimo de (2) dan (3) también después de identificar E.
+Si se requieren radios formales estrictamente positivos, sustituir cada
+G_v por ε+(1−ε)G_v con 0<ε<1. Conserva la media uno. En un host finito
+los máximos, mínimos y sumas de levantamientos de (2) son finitos y
+continuos al hacer ε↓0. El límite da (3), incluidos los radios nulos.
+Se reutiliza la supersolución racional de v12. La uniformidad se usa
+al sumar las posiciones libres del recubrimiento.
+
+Así, para las tres direcciones (0,1),(1,0),(2,0) y un único levantamiento,
+la primera celda es la horizontal. El factor vale ocho si su enlace
+tiene la menor clave sin empate. Con (0,0),(1,1),(2,2) se obtiene cero.
+Son ejemplos de posiciones, sin atribuirles un peso físico no nulo.
+Aunque 4ξ=0.9, se tienen 5ξ=1.125 y 8ξ=1.8. Por eso una sola de las
+ternas con puntuación cinco u ocho compensa una unidad completa de
+exceso incluso con caminos únicos en ambos factores. Con cuatro o cinco
+contactos compatibles los factores locales son 72/5 y 864/5. Compensan
+una o tres unidades, respectivamente, antes del tope uno. Si hay más
+vértices probados, sus factores intervienen conjuntamente en (2).
+
+El criterio se extiende a un número arbitrario de grupos. Para cada
+especie c asignar un entero l_c≥0 (cero si tiene un solo grupo). En
+cada raíz requerida debe existir un árbol y un levantamiento en que se
+obtengan b créditos. Cada terna con G_v≥5 y cada vértice con G_v≥72/5
+da uno. Un vértice con G_v≥864/5 da tres. Cada vértice se cobra una sola
+vez y los factores restantes de ese levantamiento han de ser ≥1. Si
+h_T≤b+l_c, se obtiene w_dir(c)≥ξ^l_c. Por tanto, si para cada
+descomposición se consigue 3Σ_c l_c≤m, entonces
+M_dir(E)≥(τ³ξ)^(m/3)≥1. No se requiere que las distintas especies
+puedan coexistir en una misma trayectoria para aplicar el mínimo de (2).
+
+Por ejemplo, con tres grupos y dos unidades de exceso, un único
+levantamiento sin marca de direcciones da τ³ξ²=0.2274… <2/7 si determina
+la marca de v13. Supóngase que, en toda
+descomposición y para toda raíz requerida, o bien las especies son de un
+solo grupo, o bien hay un único núcleo de varios grupos que admite un
+árbol con h_T≤2, una terna con puntuación ≥5 en un levantamiento y los
+demás factores de ese levantamiento ≥1. Entonces M_dir(E)≥
+τ³ min(1,5ξ²)>1. Por (3), la subfila así descrita es <0.000147580.
+Con puntuación al menos ocho en vez de cinco es <0.000092238. La medida
+de los E que cumplen estas condiciones dentro del resto original está
+sin determinar.
+
+4. Balance en G3
+----------------
+
+En cualquier subconjunto con M_dir(E)≥1 y m≥2, la fila física ordinaria
+es <0.000167809 por (3). Con umbral 2/7 es <0.000587330. La antigua
+marca de multiplicidad M y la nueva pueden favorecer posiciones distintas.
+Se dispone de ambas desigualdades por separado y también de su combinación
+convexa. Tomar el máximo de las marcas en la fila no conserva el mismo A.
+
+Una partición del presupuesto sin solapamientos es la siguiente.
+
+  clase cubierta de v13, §4, primer punto                          <0.003409213
+  fuera de ella, entradas con M_dir(E)≥1                           <0.000167809
+  presupuesto que basta para lo que queda                          0.00042297
+  suma de los tres números                                         0.003999992
+
+El último presupuesto es una condición suficiente. La masa de esa última
+clase sigue sin cota suficiente. Tampoco se ha cuantificado cuánta masa
+del antiguo resto cambia de clase. No corresponde sumar una vez más
+0.000587330 por el otro criterio. Para mejorar p falta demostrar cuánto
+pesan las descomposiciones de marca pequeña en las que las entradas de
+una cruz quedan dentro de cadenas comprimidas o cuyos paseos admisibles
+no conservan los contactos. La desigualdad (1) ya restringe esos casos
+incluso sin conocer D.
+
+Reproducción desde 05_COMPROBACIONES
+
+    python -I -B -X utf8 verificar_H5A_3_4_entradas_distribuidas.py
+
+Se comprueban los estados locales completos, las cuentas por cada celda
+padre, dos ramificaciones consecutivas con direcciones correlacionadas,
+la construcción (3,4) de §1 y las dos filas racionales de v12. La
+extensión a todo tamaño procede de los argumentos de §§1–3.

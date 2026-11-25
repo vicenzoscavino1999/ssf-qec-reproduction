@@ -1,0 +1,8 @@
+{
+ "archivo": "u3_estimador_k2_4.json",
+ "sha256": "3f84e6130135acb3060b82d01f01c9804fa56afa5c1cb203103bbf201db8e8b4",
+ "sellado": "2026-11-12T15:56:55.905740-05:00",
+ "estimador_sha256": "6b6812fb1a315ae40f0a75d3b8f12d94fcd3bfdc417bc72936e0cabf79682ac2",
+ "status": "PASS",
+ "kmax": 2
+}

@@ -1,0 +1,68 @@
+{
+  "stratum": [
+    2,
+    1
+  ],
+  "data_readout_sites": [
+    225,
+    108
+  ],
+  "rates": [
+    "1e-6",
+    "1e-4"
+  ],
+  "model_sha256": "8581eadc0e728ef7c6d1b97f82a7e8b1807f1859e5dd7beb049c2194897b12fe",
+  "sample": {
+    "mode": "sample",
+    "hits": 119,
+    "calls": 1000000,
+    "winner_calls": 1938971,
+    "seed": 202611242151,
+    "load_s": 0.0116917,
+    "evaluation_s": 0.307973,
+    "process_s": 0.3448927000281401
+  },
+  "census": {
+    "mode": "census",
+    "hits": 324,
+    "calls": 2721600,
+    "winner_calls": 5278203,
+    "seed": null,
+    "load_s": 0.0116454,
+    "evaluation_s": 0.7637936,
+    "process_s": 0.7953157999436371
+  },
+  "f_exact": "1/8400",
+  "weight": 2.692032292698334e-10,
+  "true_contribution": 3.204800348450398e-14,
+  "full_reference_pilot": [
+    "3.24009158171737E-14",
+    "3.26238668184343E-14"
+  ],
+  "share_of_full_reference": [
+    0.9823484034821731,
+    0.9891079519276221
+  ],
+  "sample_f": "119/1000000",
+  "cp95": [
+    "0.000098582590359792571621522228042522328905761241912841796875",
+    "0.00014239957565207359813097554024352575652301311492919921875"
+  ],
+  "sample_relative_error": 0.0004,
+  "sample_relative_interval_from_point": [
+    0.17157487092611284,
+    0.1966350895132235
+  ],
+  "weighted_sample": 3.2035184283110173e-14,
+  "weighted_cp95": [
+    2.6538751674641306e-14,
+    3.833442561219215e-14
+  ],
+  "var_f_exact": "8399/70560000000000",
+  "relative_variance_exact": "8399/1000000",
+  "relative_sd": 0.09164605828948673,
+  "normal_planning_calls": {
+    "1/10": 3226442,
+    "1/100": 322644127
+  }
+}

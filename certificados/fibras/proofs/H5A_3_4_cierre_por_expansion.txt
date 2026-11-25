@@ -1,0 +1,255 @@
+HGP binario (3,4) · Cierre por expansión y ubicación conjunta de cuatro datos
+23 de noviembre de 2026 · Nota para revisión independiente
+
+Resultado
+=========
+
+Para el modelo, las máscaras y el calendario de H5A_3_4_reuniones_cruzadas.txt
+(v27), los siguientes extremos superiores tienen testigos racionales. Las cotas
+son uniformes en el tamaño del código. V denota un dato VV y C un dato CC.
+
+  Tasa a q o r_m ≤ 10⁻³             v27          Ahora, general      Ahora, E32
+  p, Bernoulli                       5.26·10⁻⁷    5.30·10⁻⁷           5.30·10⁻⁷
+  r_c, calendario VV primero         9.90·10⁻⁸    9.92·10⁻⁸           9.95·10⁻⁸
+  r_c, cualquier orden admitido      9.02·10⁻⁸    9.05·10⁻⁸           9.08·10⁻⁸
+
+E32 es la hipótesis de expansión bilateral del §1. El avance general viene de
+contar la unión de posiciones del cuarto dato (§2). El corolario usa además
+restricciones sobre las coincidencias y los enlaces de lectura múltiple (§3).
+Los grupos de tres datos identifican una obstrucción remanente en G3 (§4).
+
+1. Qué cierra la expansión
+==========================
+
+En la semilla binaria, las columnas (variables) tienen grado tres y las filas
+(checks) grado cuatro. E32 exige |N(S)| ≥ 3|S| para conjuntos de hasta 32
+checks y |N(T)| ≥ 2|T| para conjuntos de hasta 32 variables. Es la elección
+ε=1, M=32. Una familia suficiente son las semillas birregulares (3,4) de
+girth >64. El grafo de incidencias de ≤32 centros con todos sus vecinos es
+entonces un bosque. El Teorema A de Füredi, Lazebnik, Seress, Ustimenko y
+Woldar proporciona semillas de grados fijos y girth arbitrariamente grande.
+https://bpb-us-w2.wpmucdn.com/sites.udel.edu/dist/3/7714/files/2022/02/RSG5.pdf
+
+Más precisamente, cada componente conexa de una incidencia con ≤32 centros
+tiene rango de ciclos a lo sumo uno. Con t centros de grado d y todas sus
+aristas, una componente conexa tiene rango (d−1)t−|N|+1. Esto equivale a
+la desigualdad de E32 al aplicarla a cada componente. Un 4-ciclo aislado
+es compatible con esta cuenta. En el piloto de 225 qubits del proyecto,
+la semilla tiene 9 checks y 12 variables (H5A_3_4_fondo_pasivo.txt).
+Sus 9 checks juntos tienen 12 vecinos y E32 exigiría al menos 27.
+El piloto queda cubierto por la columna general.
+
+Para el cierre geométrico de v14 §1, partir de las huellas de todos los datos
+iniciales E de la historia aceptada. En un eje hay b estrellas iniciales
+distintas de grado d, además de coordenadas sueltas, y s₀ coordenadas iniciales
+en total. Activar cualquier centro nuevo que ya toque dos coordenadas e incluir
+todos sus vecinos. Tras t activaciones las coordenadas son a lo sumo
+s₀+(d−2)t. Para la hipótesis |N(U)|≥(d−2+ε)|U| mientras |U|≤M se obtiene
+
+        (d−2+ε)(b+t) ≤ s₀+(d−2)t,
+        εt ≤ s₀−(d−2+ε)b.
+
+El límite se aplica a todo el cierre si M admite el primer entero que lo
+rebasaría junto con las b estrellas iniciales. Esto precisa el alcance del
+argumento O(|E|/ε) con expansión sólo hasta M. En las dos composiciones con
+cuatro datos y E32 se tiene t≤4 por eje incluso contando centros que no añaden
+coordenadas. En efecto s₀≤db+u, con u coordenadas iniciales sueltas y b+u≤4.
+
+Al detenerse, el número de centros incidentes a A es d'|A|−(d−1)(b+t),
+donde d' es el grado del otro lado. Cada centro activado toca d coordenadas
+y los demás centros incidentes tocan una. Con subhosts se usa el grafo
+completo para mayorar. Si hay v datos V y c datos C, en filas hay ≤c
+estrellas y ≤v sueltas, en columnas ≤v estrellas y ≤c sueltas. El número
+de centros incidentes está acotado por 3v+9c+3(v+c) en el primer eje y
+por 10v+4c+2(v+c) en el otro. La regla de descenso exterior de v14 implica
+que cada rectángulo usado toca ambos cierres, también con medidas activas,
+pues el exterior comienza y acaba con los mismos bits.
+
+  E completo                  |A_filas|, |A_cols|        centros        rectángulos
+  1 V, 3 C                       ≤21, ≤10               ≤42, ≤30          ≤1260
+  2 V, 2 C                       ≤18, ≤12               ≤36, ≤36          ≤1296
+
+Estos totales localizan los rectángulos para E fijado y completo. Una componente
+de cuatro datos dentro de una historia mayor puede recibir ramas procedentes de
+fuera de sus dos cierres. Por tanto, las cifras 1260 y 1296 no sustituyen a
+las pendientes L de la fila global.
+
+2. Posiciones que se pueden descontar incluso con otros grupos
+=============================================================
+
+La prueba de v19 §2 asigna al donante cada luz original cuando se apaga por
+primera vez. En un grupo con tres o cuatro datos, o todos esos pasos tienen
+≤2 donantes, o existe un lector g y una terna T de datos distintos del
+grupo que donan en ese paso. Cada uno de los tres tiene al menos una luz
+propia en el rectángulo. En el primer caso se usa el débito de v19. En el
+segundo se reconstruye la siguiente cota uniforme para los originales.
+
+Trabajar en el producto de los dos árboles birregulares de recubrimiento
+con g fijado. Su rectángulo tiene 12 celdas, hasta 40 posibles donantes V
+y 27 C. Para cada terna se intersecta cada franja con ese rectángulo.
+Los tres conjuntos no vacíos admiten representantes distintos si cada
+unión de dos tiene al menos dos celdas y la unión total al menos tres.
+Es suficiente conservar las ternas que pasan esta condición necesaria.
+Si hay un cuarto dato de tipo j, la conectividad lo sitúa en la unión
+
+                  ( ⋃_{x∈T} N_G[x] ) ∩ tipo j, fuera de T,
+
+donde G es el grafo de fuentes con lector común. Para V,V las dos bolas
+cerradas de Tanner tienen radios (2,4), para V,C o C,V (3,3) y para C,C
+(4,2), tomando la paridad correspondiente. Contar la unión elimina el
+recuento repetido del mismo cuarto dato adyacente a varios donantes.
+
+Validez con ciclos. Para una configuración física elegir un g testigo,
+tres donantes y una luz donada por cada uno. Si hay cuarto dato, elegir
+un donante vecino. Las tres incidencias g–donante y la cuarta conexión
+forman un árbol de restricciones. Desde una elevación fija del dato raíz,
+levantar hacia fuera los caminos en cada factor. Para g–donante, elegir
+los caminos que pasan por la luz designada. Para la cuarta conexión
+basta levantar caminos de las longitudes admitidas. Las luces físicas
+distintas se elevan a celdas distintas y la proyección recupera el grupo
+físico. Elegir una elevación admisible por grupo da una inyección en los
+objetos contados con raíz fija. No se requiere levantar simultáneamente
+todos los contactos entre pares.
+
+El conteo por g se convierte en conteo por raíz de tipo i multiplicando
+por el número de originales de ese tipo y por |G_generadores|/|datos_i|,
+igual a 3/4 para V y 4/3 para C. Para justificar el doble conteo en el
+recubrimiento, tomar un cociente birregular finito con girth mayor que dos
+veces el radio de la configuración, con margen para sus aristas. Las bolas
+consideradas son árboles, cada raíz del mismo tipo tiene el mismo conteo
+local y las razones de tamaños se deducen de 3|variables|=4|checks|.
+El cociente sólo sirve para contar en el árbol universal.
+
+  Composición y raíz         Mayorante v19 por lector y ramas     Nueva unión
+  1 V, 3 C, raíz V                        20 607 210                15 617 916
+  1 V, 3 C, raíz C                       109 867 680                83 295 552
+  2 V, 2 C, raíz V                        90 558 000                66 985 812
+  2 V, 2 C, raíz C                       160 982 640               119 085 888
+
+La suma de los casos de dos donantes y de terna se cruza con el mayorante
+libre de v19 en cada umbral de saldo. Este paso se aplica al grupo marcado
+con independencia de la cantidad de otros grupos en la historia.
+
+3. Ahorros propios de E32
+========================
+
+A. Para cada bloque conexo de solapamiento de hasta cuatro originales,
+enumerar las celdas compartidas según el conjunto exacto de sus franjas
+incidentes. Dos franjas de igual orientación comparten a lo sumo dos
+celdas, pues tres vecinos comunes dan dos ciclos independientes en dos
+centros. Dos de orientación opuesta comparten a lo sumo una. Además, para
+cada subconjunto J de franjas de igual orientación,
+
+            Σ_celdas (multiplicidad_J−1)₊ ≤ |J|.
+
+A coordenada transversal fija, el miembro izquierdo es d|J'|−|N(J')|
+para los centros J' de esa fibra. E32 lo acota por |J'|. Se suman las
+fibras. El programa permite toda tabla que cumpla estas condiciones, los
+anchos y la conectividad del bloque.
+
+Asignar cada celda de multiplicidad impar a la primera franja incidente
+en un orden fijo. Las de multiplicidad par se cancelan. Con u_i celdas
+impares propias y r_i fuera del fondo estable D, el saldo del bloque
+es 2Σr_i−Σu_i. La estabilidad del singleton exige que D contenga a lo
+sumo ⌊d_i/2⌋ celdas de la franja. Así r_i≥max(0,u_i−⌊d_i/2⌋).
+Al tomar el máximo por multiconjunto de rangos se pueden intersectar
+estos techos con los de v19. Después se aplican los débitos por donantes
+y los cortes entre componentes fuertes de esa nota.
+
+B. Para las aristas débiles con alguna lectura múltiple de v22 §§1–2,
+considerar las distancias mínimas en la semilla física. Una doble lectura
+en el eje correspondiente requiere un 4-ciclo. Dos 4-ciclos distintos
+implicados dentro de radio cuatro del mismo origen darían un subgrafo
+conexo con dos ciclos, conectando cada testigo al origen con su camino
+de longitud ≤4. Su número de centros es <32. E32 lo excluye.
+
+En V→V el eje largo tiene distancia cuatro. Si el inicio pertenece al
+ciclo y se duplica la primera pareja, el intermedio es el vértice
+opuesto y quedan ≤(3−2)(4−1)=3 extremos. Si se duplica la última
+pareja, sus dos vértices variables son los del ciclo. Uno ha de estar
+a distancia dos del origen y el otro a cuatro, por lo que el extremo
+es único y el inicio está fuera del ciclo. En el otro eje hay ≤9
+posiciones. En C→C las cifras correspondientes son ≤4 y ≤8. En pares
+mixtos hay distancia tres en ambos ejes. En el eje donde se duplica el
+comienzo, el vértice opuesto del ciclo deja ≤d−2 destinos exteriores.
+Donde se duplica el final, de los dos posibles extremos sobre el ciclo
+uno está a distancia uno y el otro a tres. Hay a lo sumo un destino de
+este tipo. Cada eje permite ≤18 destinos desde V o ≤24 desde C. La unión
+de las dos clases con eje especial es a lo sumo 18²−17² o 24²−22·23.
+El argumento usa sólo cotas superiores en cada clase, completando los
+conjuntos hasta dichos tamaños en el producto.
+
+  Destinos múltiples B, filas y columnas V,C           27    35
+                                                       70    32
+
+El mayorante positivo de v22 se completa hasta W posiciones, con hasta
+B promociones a lectura múltiple. En sus matrices ponderadas las M_ij
+promovidas valen B_ij/W_ij por la entrada débil ponderada, pues todas
+tienen el mismo desplazamiento. Las posiciones unitarias pesan W−M y
+las múltiples M, con el recargo no negativo de v22. Se usa la misma
+matriz en la serie y en todos sus coeficientes truncados. Sin E32 se
+usa la promoción original hasta W/2.
+
+En circuito, cuando todos los marcados son reales valen los mismos límites
+por composición y saldo que en Bernoulli. Para paridades arbitrarias, el
+nuevo límite sólo se aplica por encima del presupuesto de cualquier subconjunto
+real propio, siguiendo v19 §3. El recargo por etiquetas múltiples se evalúa
+con su ley circuital. Las tasas de la tabla se han calculado por separado
+para los dos calendarios.
+
+4. Prueba global y presupuesto abierto de G3
+===========================================
+
+En la fila completa se actualizan los histogramas de tres y cuatro originales
+con los §§2–3. Los órdenes 5–10 y las colas de cualquier tamaño conservan
+sus mayorantes previos, con la mejora matricial del §3B sólo bajo E32.
+Se reconstruyen las tablas de v21 y los descuentos de cobertura y pares
+de v27. La notación y los ocho suelos de campos son los de v27, §7.
+
+  Raíz CC, posiciones con saldo ≥5         v27         General          E32
+  1 V, 3 C                             154 769 832    128 197 704    127 333 704
+  2 V, 2 C                             175 231 216    133 334 464    132 590 272
+
+  Máximo cociente al extremo verificado       General            E32
+  Bernoulli                                 .999997803468      .999995499516
+  Circuito, VV primero                      .999930049012      .999906511667
+  Circuito, cualquier orden admitido        .999900559567      .999902874515
+
+Los cocientes de esta tabla se redondean sólo para mostrarlos. Las seis
+desigualdades de máximo <1 se comprueban con fracciones. La extensión
+al rectángulo de tasas inferiores usa la dominación de los pesos primitivos
+de v22 §4. Para precisión relativa se conservan las condiciones y el testigo
+lógico del Teorema 1 del manuscrito.
+
+En G3, p=10⁻⁶, q=10⁻³, se evalúa el diagnóstico necesario h_C ≥ Σ c_j exp(L_j h_C).
+Para cada composición con al menos un C se usa la estrella centrada en C de
+v22 §5. Las tasas primitivas y el término de inclinación tienen aquí exponente
+v+c. Los signos de los campos descartados se verifican para cada composición.
+Las fuentes de los distintos pares (v,c) se suman como monomios disjuntos de
+la fila. Para h_C>0, exp(L_j h_C)≥e L_j h_C. Un minorante racional >1 para
+eΣ c_jL_j imposibilita esta supersolución en los parámetros especificados.
+
+                                      (.567,.685)          (.569,.673)
+  Sólo 1V+3C y 2V+2C, v27              >1.0009189           >1.0181109
+  Sólo esos dos, nuevo general          0.8167992            0.8312394
+  Sólo esos dos, E32                    0.8123137            0.8266868
+  Añadiendo 3C y 1V+2C, general        >1.07884             >1.10644
+  Añadiendo 3C y 1V+2C, E32            >1.07436             >1.10189
+
+Los decimales de los dos pares aislados muestran el minorante racional
+redondeado. En (.567,.685), las pendientes de las dos composiciones de cuatro
+siguen en 2 799 115 y 2 679 614. El §2 reduce los coeficientes de posiciones.
+La cota ≤0.00078558 para el complemento físico de G3 queda abierta. Ese
+presupuesto y el test necesario eΣ c_j L_j pertenecen a sumas diferentes.
+Las dos elecciones anteriores dejan margen para otros parámetros o para
+una nueva estimación conjunta de salidas y posiciones en historias mayores.
+
+Reproducción desde 05_COMPROBACIONES
+====================================
+
+  python -I -B -X utf8 verificar_H5A_3_4_cierre_por_expansion.py
+  python -I -B -X utf8 verificar_H5A_3_4_cierre_por_expansion.py --global
+
+El primer comando comprueba la geometría y el segundo reconstruye desde las
+definiciones los histogramas, las filas de cualquier tamaño y los minorantes.
+

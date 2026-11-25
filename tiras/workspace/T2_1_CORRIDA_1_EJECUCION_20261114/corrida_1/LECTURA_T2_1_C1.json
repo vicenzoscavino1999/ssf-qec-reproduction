@@ -1,0 +1,143 @@
+{
+ "unidad": "T2-1",
+ "corrida": 1,
+ "programa_sha256": "95799c8ed77625ebc66bf84b183f306513271e57ea2010083faab08f815ae559",
+ "sello_sha256": "525b8b1734f85d71d1f3f0864394113805e309be12eb232862f88ed9f2996c6a",
+ "resultado": {
+  "archivo": "T2_1_CORRIDA_1_EJECUCION_20261114/corrida_1/RESULTADO_T2_1_C1.json",
+  "sha256": "f005e1665db16cbc21135918ba3bc74352bd5e3a8a3db9de29354ffdbd94f076"
+ },
+ "estado_corrida": "PASS",
+ "etapas": [
+  {
+   "etapa": "certificado",
+   "segundos": 0.397,
+   "estado": "PASS"
+  },
+  {
+   "etapa": "monte_carlo",
+   "segundos": 2326.805,
+   "estado": "PASS"
+  }
+ ],
+ "certificado": {
+  "archivo": "T2_1_CORRIDA_1_EJECUCION_20261114/corrida_1/CERTIFICADO_DMC.json",
+  "sha256": "a7fb8bd689275e609555a24b58393bcba1ae42aeb285096381f4c83caaa8582e",
+  "origen": {
+   "archivo": "T2_1_CORRIDA_1_EJECUCION_20261114/corrida_1/RESULTADO_T2_1_C1.json",
+   "sha256": "f005e1665db16cbc21135918ba3bc74352bd5e3a8a3db9de29354ffdbd94f076"
+  },
+  "intervalo": [
+   "6.509812238430120150769846E-8",
+   "0.000007851027797222717470229308"
+  ]
+ },
+ "D_mc": {
+  "arbol": {
+   "plazo_trabajo_s": 5400.0,
+   "margen_cierre_s": 600.0,
+   "reserva_limpieza_s": 60.0,
+   "plazo_aceptacion_s_desde_inicio": 5940.0,
+   "plazo_duro_s_desde_inicio": 6000.0,
+   "entorno": {
+    "sistema": "Windows-11-10.0.26200-SP0",
+    "windows": [
+     10,
+     0,
+     26200
+    ],
+    "python": "3.12.10",
+    "bits": "64bit",
+    "interfaz": "Job Object (kernel32) y NtResumeProcess (ntdll); acreditada solo en este entorno"
+   },
+   "nota": "Job Object propio; solo sus procesos. null = no medido (una medida que falla nunca es 0)",
+   "pid_t2_mc": 38308,
+   "salida_observada_s_desde_inicio": 2326.791,
+   "terminacion_forzada": false,
+   "procesos_activos_al_final": 0,
+   "procesos_totales": 15,
+   "pico_memoria_comprometida_arbol_bytes": 1250586624,
+   "cierre_confirmado": true,
+   "problemas_de_cierre": [],
+   "pids": [
+    6924,
+    17916,
+    28208,
+    32636,
+    33596,
+    37680,
+    38208,
+    38308,
+    38556,
+    38648,
+    39108,
+    39432,
+    39672,
+    40356,
+    41812
+   ],
+   "pico_memoria_total_bytes": 1629536256,
+   "pico_memoria_principal_bytes": 276713472,
+   "errores_api": [],
+   "segundos": 2326.791,
+   "exceso_sobre_plazo_de_trabajo_s": 0.0,
+   "exceso_sobre_plazo_duro_s": 0.0,
+   "fin_menos_techo_de_la_corrida_s": -11451.976
+  },
+  "segundos": 2326.791,
+  "salida_consola": "T2_1_CORRIDA_1_EJECUCION_20261114/corrida_1/SALIDA_DMC.txt",
+  "codigo": 0,
+  "salida": {
+   "archivo": "T2_1_CORRIDA_1_EJECUCION_20261114/corrida_1/RESULTADO_DMC.json",
+   "sha256": "15c71efe0690a858310ec4953c417ab86182dc48d032a2c45a310faf96f03325"
+  },
+  "decision_de_t2_mc": "COMPATIBLE",
+  "recuento": {
+   "archivo": "RESULTADO_DMC_recuento.json",
+   "sha256": "ea15813d48b8d5f1d6e75b4715a139a4ea8ab5c541cb88133ae86c6221daeb4d"
+  },
+  "clopper_pearson": {
+   "x": 477,
+   "N": 7000000000,
+   "alfa": "0.001",
+   "p_inf": "5.8341793859917873175748224769319806780133928571428571428571E-8",
+   "p_sup": "7.90331855811449973511376551219395228794642857142857142857135E-8",
+   "p_inf_raiz_menor_que": "5.8341793859948860959515773824283054896763392857142857142857E-8",
+   "p_sup_raiz_mayor_que": "7.9033185581098450711579062044620513916015624999999999999999E-8",
+   "pasos": [
+    41,
+    42
+   ],
+   "biseccion_detenida": [
+    false,
+    false
+   ],
+   "precision_cifras": 60,
+   "ulps_ensanche": 2,
+   "anchura_relativa_objetivo": "1e-12"
+  },
+  "coste": {
+   "llamadas_decoder_total": 54014630,
+   "atajo": 279049,
+   "monte_carlo": 53735581,
+   "techo_llamadas": 200000000,
+   "segundos": 2326.386,
+   "techo_segundos": 5400.0,
+   "exceso_sobre_el_plazo_s": 0.0,
+   "decodificacion_max_s": 0.18783760000951588,
+   "bloques_completos": 7000,
+   "bloques": 7000
+  },
+  "decision": "COMPATIBLE",
+  "motivo": null
+ },
+ "regla_de_paso": "LANZAR_CORRIDA_2",
+ "regla": "la corrida 2 solo se lanza si todos los controles de la corrida 1 pasan y D-mc es COMPATIBLE",
+ "D_t4": {
+  "decision": "PASA",
+  "R_3_cota_superior_max": "1.000963509628309645658825",
+  "regla": "PASA si R_3 < 2 (cota superior) en las 12 celdas de S2",
+  "lectura": ""
+ },
+ "segundos_total": 11948.038
+}

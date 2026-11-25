@@ -1,0 +1,397 @@
+H5-A · Contacto entre huellas y coste de grupos arbitrarios en (3,4)
+22 de noviembre de 2026
+
+Para el producto de una semilla binaria de peso columna 3 y peso fila 4
+consigo misma se deriva acceso uniforme a las particiones filtradas en
+
+                 0 ≤ p ≤ 4.5·10⁻⁸,          0 ≤ q ≤ 10⁻³.             (1)
+
+Se usa una ronda Bernoulli independiente, la familia completa FGL de SSF,
+β=1/100, máximo global de descenso por tamaño de huella y desempate físico
+fijo independiente del síndrome. El filtro exige síndrome físico residual
+cero. Se admiten cualquier tamaño, máscara y subhost físico inducido J,
+con el oráculo y el orden del manuscrito. La estimación relativa de un
+fallo silencioso positivo requiere además el testigo lógico y las
+hipótesis del Teorema 1. La derivación espera revisión independiente.
+
+El extremo anterior era p=10⁻⁸ al mismo q. La mejora es de 4.5 veces.
+La fila completa con presupuesto α=.001 es <.00023447 en (1). Aquí se
+incluyen las interacciones entre cualquier número de componentes y toda
+la cola de grupos con cinco o más datos. En la meta p=10⁻⁶ la suma sigue
+abierta. En p=10⁻⁷ se identifica una obstrucción a los pesos de esta nota.
+
+1. Descomponer una ejecución por los checks que realmente conmuta
+================================================================
+
+En una entrada filtrada (E,D) crear un vértice por cada dato original x
+con huella ψ_x y otro por cada ocurrencia de paso F con huella φ_F=H_X F.
+Unir vértices cuyas huellas tengan una celda común y también los pares de
+originales vecinos en el grafo de datos G del manuscrito. Para cada
+componente c llamar S_c a la unión de sus huellas y τ_c a la subsecuencia
+ordenada de pasos. Escribir E_c para sus originales, D_c=D∩S_c, y P para
+las medidas de D fuera de la unión de los S_c. Dos componentes tienen S
+disjuntos y originales separados en G. En cada S_c la discrepancia
+física termina en cero. Si E_c fuese vacío, la corrida local partiría y
+terminaría en D_c y cada paso reduciría su peso. Por tanto todo núcleo
+tiene al menos un dato original.
+
+La ejecución proyecta sobre cualquier subfamilia de núcleos y cualquier
+subconjunto de P. Al retirar otros núcleos desaparecen sus luces en
+checks disjuntos. Antes de cada paso conservado, su puntuación es la
+misma y todo rival sólo puede perder luces respecto del instante
+correspondiente de la ejecución completa. Los pasos omitidos sólo
+cambiaban las huellas retiradas. La misma comparación demuestra la
+parada. En particular cada τ_c es la corrida física aislada de (E_c,D_c).
+P es estable por proyección a la familia vacía. Una especie es una de
+estas entradas aisladas y filtradas con un único núcleo y D_c⊆S_c. Se
+impone la contención en J del soporte físico original y visitado y de
+las medidas. Las comparaciones siguen usando el código completo.
+
+Para recomponer especies con S disjuntos, originales G-separados y P
+estable disjunto de los S, formar la lista que intercala las τ eligiendo
+en cada paso la mejor de sus cabeceras según puntuación y desempate.
+Cada cabecera depende sólo de su propio estado. El orden relativo que
+resulta para una subfamilia coincide con la intercalación de esa misma
+subfamilia. Esto se sigue comparando las cabeceras en cada paso retenido,
+incluso si las puntuaciones suben después de ejecutar un paso.
+
+Para un candidato físico H, tomar las listas con S_c∩φ_H no vacío.
+En cada prefijo de su intercalación, puntuar H con esas listas y
+P∩φ_H. Si H es elegible, la siguiente cabecera de esas listas ha de
+ganarle o ser H. Cuando se han agotado, H debe ser inelegible. Sin
+listas sólo se verifica la parada para H. La necesidad se sigue de la
+proyección. Para la suficiencia, en cada prefijo global la siguiente
+cabecera general domina a la siguiente de este conjunto de lectores, y
+las restantes listas no cambian la puntuación de H. Por inducción en
+los pasos, se obtiene exactamente la corrida global y su parada. Al
+acabar, las discrepancias físicas se anulan y las marcas de carácter
+se multiplican, también si dos correcciones comparten un qubit. La
+partición de huellas se recupera de la corrida. Esto prueba la biyección.
+
+Este criterio se aplica a todos los lectores de H simultáneamente.
+El verificador incluye un ejemplo abstracto donde cada pareja de tres
+historias se recompone, pero un rival cambia la corrección al reunir
+las tres. Se contrasta el criterio local con decodificación directa en
+192 selecciones de historias, fondos y prioridades. La generalidad en
+(1) procede de la proyección y del recuento que sigue.
+
+2. Fijación de especies y alcance de las comparaciones
+=====================================================
+
+En el grafo L de checks que comparten rectángulo, poner Q_c=N_L[S_c],
+con vecindad cerrada. Un sitio pasivo j sólo cambia las pruebas de los
+rivales cuya huella contiene j. Su admisibilidad depende de los otros
+≤89 sitios pasivos de N_L[j] y de los núcleos con S_c∩N_L[j] no vacío.
+Añadir un núcleo c sólo cambia las pruebas de los rivales que tocan S_c,
+la separación de originales y la disjunción de los soportes de checks.
+Por tanto basta conocer P∩Q_c, los núcleos con S'∩Q_c no vacío y
+los que tienen originales en la vecindad cerrada de E_c en G.
+
+Escribir u_V,u_C para cotas de la suma de los pesos mayores b_c de los
+núcleos con un original determinado de tipo VV,CC. Sea g una cota por
+generador determinado retenido en el recuento del §4. Los simples allí
+descritos sólo conmutan su propia ψ. Usar
+
+ R=max(640u_V+441u_C,784u_V+513u_C),   I=280u_V+189u_C+588g.
+
+R cubre una vecindad de originales. I cubre los núcleos que tocan
+N_L[j] para un check fijo. En efecto, se cobra una huella ψ o un
+rectángulo de generador que intersecta N_L[j]. Las bolas de los dos
+factores dan respectivamente 10·28, 21·9 y 21·28 posibles centros.
+
+Para A en los checks, sean T_V(A), T_C(A), T_g(A) los conjuntos de centros
+cuyas ψ de tipo VV, CC o cuyo rectángulo de generador, respectivamente,
+intersectan N_L[A]. Poner
+
+ M(A)=u_V |T_V(A)| + u_C |T_C(A)| + g |T_g(A)|.
+
+En el álgebra de series con norma de coeficientes absolutos del §2 de
+H5A_3_4_fondo_pasivo.txt, usar x(r)=r exp(.015)/(1−2r), z=x(p)exp(α),
+y=x(q), η=.0001, b=.001155 y
+
+ b_c=z^|E_c| y^|D_c| exp[(η+2R)|E_c| + b|Q_c| + 2M(S_c)].          (2)
+
+Las marcas de carácter y las marcas por componente original tienen
+radio uno. Para una especie libre i, su cociente condicionado R_i es
+su actividad por la partición con i presente dividida por la partición
+con i ausente, omitiendo los factores ya fijados. Se prueba por
+inducción que ||R_i||≤b_i/(1+b_i), con b_i=b para un sitio pasivo. La
+biyección del §1 da herencia al borrar especies o medidas pasivas.
+
+Para un sitio pasivo j cuya adición es viable con vecinos libres a cero,
+leerlos uno por uno. Una respuesta positiva tiene norma ≤b_i y una
+respuesta cero ≤1+b_i por inducción. El error respecto del indicador
+uno se acota por la suma de ramas con alguna respuesta positiva.
+Poniendo ℓ=89b+I y usando los polinomios simétricos elementales e_k,
+
+ ∏(1+2b_i)−∏(1+b_i)=Σ_{k≥1}(2^k−1)e_k(b_i) ≤ exp(2ℓ)−exp(ℓ)=ε.
+
+Se ha usado e_k≤ℓ^k/k!. Si las fijaciones ya impiden añadir j, la
+herencia da R_j=0. En el otro caso R_j es su actividad por (1+error)
+con error de norma ≤ε. Las condiciones ε<1 e y(1+b)(1+ε)≤b prueban
+la inducción para j.
+
+Para añadir c a fijaciones viables, fijar a cero en ambas particiones
+todos los núcleos libres que pueden intervenir en sus comparaciones o
+compartir originales adyacentes. Para cada especie a borrada, el
+cociente entre sus dos factores 1+R_a tiene norma ≤1+2b_a, ya que
+||R_a||≤b_a/(1+b_a) en cada uno y la norma del inverso es ≤1+b_a.
+El producto cuesta ≤exp(2R|E_c|+2M(S_c)). Fijar luego a cero las
+medidas pasivas libres de Q_c. La diferencia de las dos respuestas R_j
+tiene norma ≤y max(1+ε,2ε) y cada cociente cuesta ≤1+b. Las demás
+especies libres tienen los mismos conjuntos de extensiones en ambas
+particiones por el criterio local del §1. Una adición imposible da
+cociente cero. En conjunto ||R_c||≤b_c exp(−η|E_c|)≤b_c/(1+b_c),
+pues todo c tiene un original y b_c≤max(u_V,u_C)<η. Las filas que
+justifican los u y g se cierran simultáneamente en el §5.
+
+3. Cobertura por los centros que pueden ver el mismo paso
+========================================================
+
+Para los cuatro conjuntos N_L[A], T_V(A), T_C(A), T_g(A), la tabla
+da el coste inicial de cubrir la huella de un original de cada tipo,
+el coste de una celda de medida y el coste final por original tras
+incluir las huellas de todos los pasos de una ejecución filtrada.
+
+  Centros        inicial VV,CC     medida      final VV,CC
+  medidas         210, 252           90         414, 536
+  VV              640, 784          280        1264, 1652
+  CC              441, 513          189        1719/2, 1095
+  generadores    1344,1596          588        5247/2, 3374
+
+Para probar la tabla se inicia la cobertura con las ψ originales y D_c.
+En cada paso el conjunto H de luces de φ ya fue cubierto, porque cada luz
+procedía del estado inicial o de un paso anterior. Para un subconjunto
+no vacío A de ese rectángulo, la cobertura sobre el producto de árboles
+de Tanner tiene cardinal
+
+ K(A)=a₁a₂+b₁a₂ filas(A)+a₁b₂ columnas(A)+b₁b₂|A|,   K(∅)=0.
+
+En un eje con centro generador, las bolas de distancia dos en las
+celdas variables de sus cuatro filas tienen 4 centros comunes y 6
+privados por fila. Las bolas de distancia tres hacia checks tienen
+9 comunes y 12 privados. En las tres columnas, hacia checks a
+distancia dos se obtienen 3 comunes y 6 privados, y hacia variables a
+distancia tres, 10 comunes y 18 privados. Por tanto (a₁,b₁,a₂,b₂) es
+(4,6,3,6), (4,6,10,18), (9,12,3,6) o (9,12,10,18), por fila de la
+tabla. La proyección del recubrimiento a una semilla con ciclos cubre
+los conjuntos físicos. El incremento sobre H es ≤K(φ)−K(H), pues la
+imagen de los centros ya cubiertos por H también estaba presente.
+
+Con v=|φ|, h=|H|, δ=2h−v y k=K(φ)−K(H), tomar B=max k/δ y para cada
+rango j de un dato de anchura n el máximo de [B(v−h)+k]/h sujeto a
+nh≥jv. Al restar los primeros apagados de B veces el descenso total se
+obtiene Σ k ≤ la suma de esos máximos por original. Es la cuenta del
+§1 de H5A_3_4_dos_componentes.txt aplicada a los cuatro incrementos.
+Sumarlos a las coberturas iniciales da la última columna. Cada medida
+activa paga una sola vez su columna de la tabla. El verificador usa
+las 25 órbitas de las 771 parejas de luces y celdas oscuras ganadoras.
+
+4. Qué fuentes pueden recibir juntas los primeros apagados
+==========================================================
+
+Un original VV(i,j) tiene huella {i}×N(j), y un CC(r,c) la tiene
+N(r)×{c}. Una arista de G entre originales es fuerte si sus huellas
+comparten alguna coordenada en cualquiera de los dos ejes. Las demás
+aristas son débiles. Las filas de posibles vecinos, VV y CC por orden,
+son mayoradas por
+
+      débil W=((486,324),(576,384)),   fuerte B=((154,117),(208,129)).
+
+Para VV con VV hay ≤64 vecinos de igual fila y ≤9·10 adicionales que
+comparten proyección en el otro eje. Quedan ≤9·54 débiles. Para CC con CC
+los números correspondientes son 57, 8·9 y 8·48. En el par mixto,
+si ambos ejes quedan a distancia tres hay ≤18² o ≤24² según la raíz.
+Con un eje incidente hay ≤3·21+18·3 o ≤4·28+24·4. Todas son cotas por
+caminos en las bolas de Tanner y admiten identificaciones en el código.
+
+En una componente original A con al menos dos datos, asignar cada check
+de (H_X A) fuera de D_c a uno de sus originales. Un dato se llama aquí
+aislado en el grafo fuerte si carece de vecinos fuertes en A. Para éste
+el saldo inicial es 2r−n con r celdas asignadas, porque su huella es
+disjunta de las demás. Para los otros, el saldo conjunto es ≤Σr.
+Cada primer apagado cuesta un crédito según el rango que aún queda.
+Los créditos en unidades de 1/6 son
+
+                          VV de rango 1,2,3       CC de rango 1,2,3,4
+  aislado en el fuerte       20,33,72                20,20,66,68
+  demás                      20,30,64                20,20,42,64
+
+Todo paso con primeros apagados es cercano y permite descontar
+11δ−1. Para verificar que los créditos caben, un dato tiene sus
+primeros apagados en una sola fila o columna. Si quedan r, la
+comparación con su singleton exige rv≤nh. Si apaga a de esas luces recibe
+los créditos consecutivos de r−a+1 a r. Dos datos que el rectángulo
+lee son vecinos en G. Luego todo dato aislado en el fuerte usa tanto
+filas como columnas disjuntas de las de los otros contribuyentes.
+El verificador coloca cada máscara positiva de esos datos sobre H. En
+cada celda libre concede al resto el mayor crédito de rango permitido.
+Si uno de los contribuyentes aislados conserva rango n, su singleton
+ha sido perfecto desde el inicio. Todo ganador anterior ha sido
+perfecto, por lo que sólo apagaba luces. Las celdas de H que comparten
+fila o columna con las máscaras ya colocadas y aún no se asignaron
+debían pertenecer a D_c. Se exige que formen un subconjunto estable
+de D_c. Se verifica 6(11δ−1) como techo en las 25 órbitas, incluyendo
+todos los empates de las 101 acciones FGL y 4096 estados locales.
+
+Al sumar, los costes por VV y CC aislados en el fuerte son ≤73/6 y 15.
+Para los demás se obtienen 14 y 59/3. En particular, m datos CC sin
+enlaces fuertes cuestan ≤15m en cualquier tamaño, una ganancia de 14m/3
+unidades en el exponente anterior. Cada paso se descuenta en un solo
+grupo original, porque su rectángulo sólo puede leer un grupo de G[E].
+
+Para grupos de hasta cuatro datos, la partición en componentes fuertes
+permite mejorar también los costes de pocos originales. En un bloque
+fuerte de varios datos, si n es la suma de las anchuras y r la de las
+celdas asignadas inicialmente, el saldo es ≤r−((n−r) mod 2). En efecto,
+el tamaño del síndrome tiene paridad n y es ≥r. El singleton fuerte
+conserva el valor exacto 2r−n. En cada transición enumerar máscaras de
+primeros apagados disjuntas, en una franja por dato y sin compartir
+fila ni columna entre bloques fuertes distintos. Si queda algún rango
+n, las luces del paso sin asignar forman un subconjunto del fondo
+estable. Minimizar 11δ−1+L(r−a) desde L(0)=0 y maximizar once veces
+el saldo inicial menos L. La inducción en Σr da una cota para todos
+los grupos reales de ese perfil. Para tres y cuatro CC sin aristas
+fuertes salen respectivamente 15 y 16 para todo el grupo. Se toma el
+menor entre este coste, el de créditos y el del §2 de la nota de franjas.
+
+Los costes de pares débiles VV–VV, VV–CC y CC–CC son 2,13,3. Con los
+pares de igual coordenada y los solapados de la nota de franjas se usa
+
+ P_VV,VV=486/t²+90/t³+64/t¹⁴+9/t²⁴,     P_VV,CC=324/t¹³+117/t¹⁴+9/t²⁴,
+ P_CC,VV=576/t¹³+208/t¹⁴+16/t²⁴,          P_CC,CC=384/t³+72/t¹⁴+65/t²⁵.
+
+Queda construir un árbol para cada núcleo. El aislado simple del §1
+de H5A_3_4_franjas.txt conmuta su ψ en un solo paso y ningún otro
+rectángulo usado toca esa ψ. Por la nueva definición forma por sí solo
+un núcleo con S=ψ y todas sus posibles medidas dentro de ψ. Se retira
+su generador. Un aislado excepcional conserva el coste ≤−9 de esa nota.
+
+En cualquier otro núcleo, usar un átomo por original y por generador
+distinto usado. Un generador cercano elige como padre un original
+cuya ψ toca su rectángulo. En el primer uso de un lejano, alguna luz
+fuera de D_c y de las ψ debe proceder de un paso anterior porque D_c
+es estable. Su último encendido da como padre un generador anterior.
+Este bosque se une por un árbol de originales en cada componente de G[E],
+tomando primero un árbol en cada bloque fuerte y completando con aristas
+débiles. Si un paso comparte un check con una ψ, su generador es cercano
+y su padre pertenece a esa misma componente original. El contacto de dos
+ψ también está ya conectado. Por definición del núcleo, para completar
+el árbol sólo hacen falta puentes entre rectángulos de generadores
+distintos con un check común. Hay ≤9·10−1=89 opciones por extremo.
+Se conservan las fuentes, las medidas activas y el ancla al podar o
+comprimir según H5A_3_4_dos_medidas.txt, §4. Éstas recuperan la historia
+mediante el decodificador. Las etiquetas de medida pertenecen a su ψ o
+a una huella realmente conmutada. El recuento permite el rectángulo entero.
+
+5. Filas positivas y comprobación de la cola
+============================================
+
+Fijar r=.98735, a=r⁵, t=a⁶, Y=t¹¹ para los precios de generador cercano
+y lejano. Se cumple 36Y<1. Los ocho techos de extremos comprimidos
+(j,f_V,f_C,k_V,k_C,m_V,m_C,m_g) de la nota de dos medidas son
+(206,2902,3443,3870,2582,474,565,1293).
+
+En la tabla del §3, ponderar las cuatro filas por (b,2u_V,2u_C,2g).
+Llamar F_i a la suma ponderada de la columna final para el tipo i y
+A_i a la de la columna inicial. De (2) resultan los precios
+
+ C_i≥z exp(η+2R+F_i),      s≥y exp(90b+2I).
+
+Un simple cuesta S_i=z exp(η+2R+A_i)(1+y)^n_i. Para cada original
+de otro núcleo poner x_i=C_i V_i, donde J_V=30, J_C=36 y
+
+ V_i=(1+s)^n_i exp[J_i v_n+t(f_i v_f+m_i s)].
+
+Estas ramas describen etiquetas y generadores causales con la poda y
+compresión indicadas. Para sumar grupos de cualquier tamaño, un vértice
+del árbol original usa el coste alto si incide en alguna arista fuerte
+del árbol. El orden de construcción asegura esa incidencia siempre que
+tenía un vecino fuerte en la configuración. Congelar los pesos x_i por
+exceso y poner w_i=x_i/t^γ_i, w'_i=x_i/t^κ_i, con γ=(73/6,15) y
+κ=(14,59/3). Para entrada por arista débil o raíz usar D_i y para entrada
+por fuerte usar E_i. Un árbol de ramas opcionales queda mayorado por
+
+ X_i=Σ W_ij D_j,   Z_i=Σ B_ij E_j,
+ D_i≥exp(X_i)[w_i+w'_i(exp(Z_i)−1)],        E_i≥w'_i exp(X_i+Z_i).   (3)
+
+La serie positiva se domina por iteración desde cero. Una raíz sin
+padre fuerte paga el coste alto si y sólo si tiene un hijo fuerte.
+De la primera expresión de (3) se restan sus coeficientes exactos
+de grado uno a cuatro evaluados en los mismos x congelados. Así se
+mayora la cola desde cinco, aunque D_i,E_i sean sólo cotas superiores.
+Para esos coeficientes el verificador enumera árboles etiquetados por
+Prüfer, raíz 0, tipos de sus datos y colores de aristas. Se multiplica
+el número de posiciones por 1/(n−1)!, que quita las etiquetas distintas
+de la raíz. Es la expansión de (3) por grados. El recuento admite todas
+las posiciones de los árboles reales. Al olvidar colores reproduce los
+coeficientes sin colores de la nota anterior hasta grado cuatro.
+
+Calcular h_i sumando x_i t⁹ para un aislado excepcional, x_i ΣP_ij x_j
+para pares, los grados tres y cuatro con los costes específicos del §4,
+y la cola de (3). Exigir u_i≥S_i+h_i. Con las entradas de generador
+u_n,u_f por ancla o puente, v_n,v_f por causa y c_n,c_f por hijo, usar
+
+ g=u_n+u_f,   L=j v_f+Y m_g s,   G₀=(1+s)¹² exp(89g+L),
+ H_n=40h_V+27h_C,                H_f=j(c_n+c_f)+t(k_V h_V+k_C h_C),
+ u_n≥tH_nG₀,                     u_f≥YH_fG₀,
+ v_n≥t(G₀−1−L−12s),              v_f≥Y(G₀−1−L−12s),
+ c_n≥tH_n(G₀−1),                 c_f≥YH_f(G₀−1).
+
+Los únicos puentes son los 89 del §4. Las sustracciones quitan la hoja
+vacía, la extensión causal única y la etiqueta trasladada al extremo
+comprimido según la nota de dos medidas. Quedan coeficientes positivos.
+La inducción en la altura del árbol enraizado, también al anclar en un
+generador retenido, cierra las cotas por centro usadas en (2).
+
+Con los testigos racionales del archivo adjunto, el cociente de la fila
+pasiva es <.999096. Los demás cocientes de núcleo son <.999881 y los
+dos tipos de entrada en (3) dan cocientes <.999999999. La cola desde
+cinco por raíz VV es <1.119·10⁻⁸ y por raíz CC es <1.234·10⁻⁷. La
+fila integrada en el extremo de (1) satisface R<.00023447<.001.
+
+En efecto, cada componente original de G[E] pertenece a un único núcleo.
+Se la puede marcar con su propia variable. Al tomar el logaritmo, el
+coeficiente sin repeticiones en las marcas de componentes distintas y
+compatibles es el cumulante de esos grupos, después de integrar el fondo
+estable. Retirar las marcas que tocan N_G[v] elimina precisamente los
+núcleos con un original en esa vecindad. La norma del cambio de logaritmo
+está acotada por la suma de sus b_c, a lo sumo R. Es la extracción del
+§4 de H5A_3_4_fondo_pasivo.txt y da el presupuesto α por dato. En
+p'=10⁻⁸, x(p')/x(4.5·10⁻⁸)≤2/9, luego la parte con tres o más
+componentes queda por debajo de (2/9)³R<2.574·10⁻⁶. La monotonía de
+los pesos físicos da el rectángulo entero. Al retirar todas las especies
+se conserva la cola del logaritmo ≤N exp[−.015(m+1)] en grado total m
+de fuentes para N sitios, con la evaluación del apéndice A del manuscrito.
+
+6. Prueba en p=10⁻⁷ y reproducción
+==================================
+
+Con p=10⁻⁷, q=.001, t,b,α de esta nota, incluso al omitir TODOS los
+grupos desde cinco, las filas exigen más respuesta pasiva que la admitida.
+Para comprobarlo usar E₃(v)=1+v+v²/2+v³/6 y s₀=q E₃(90b). Una cota
+inferior de x_i en ese mayorante es p E₃(b h⁰_i)(1+s₀)^n_i E₃(t m_i s₀),
+con h⁰=(414,536). Evaluar con ella el aislado excepcional, los pares y los
+grados tres y cuatro de h. Con estos h inferiores, tomar
+
+ g₀=[t(40h_V+27h_C)+Yt(k_V h_V+k_C h_C)](1+s₀)¹² E₃(Ym_g s₀),
+ ℓ₀=89b+280h_V+189h_C+588g₀.
+
+Usar ε≥ℓ₀+3ℓ₀²/2+7ℓ₀³/6 en la fila y(1+b)(1+ε)/b. El resultado
+racional es >1.009, cuando se requiere ≤1. La obstrucción corresponde
+a esta elección de pesos y a estas mayoraciones. Para probar 10⁻⁷
+merece prioridad el coste local de las medidas que pueden alterar un
+ganador, o una estimación menor de las ramas no simples con pocos datos.
+Reducir únicamente la cola de cinco o más deja vigente esta desigualdad.
+
+Desde 05_COMPROBACIONES, con Python 3.10 o superior, ejecutar
+
+    python -I -B -X utf8 verificar_H5A_3_4_contacto_de_checks.py
+
+El programa usa la biblioteca estándar y los verificadores anteriores
+incluidos en el ZIP. Los testigos, las sumas de árboles y las comparaciones
+se evalúan con enteros y fracciones. Los decimales que imprime son de
+lectura. Como antecedentes del SSF con medidas ruidosas y de los cocientes
+de particiones, véanse Fawzi, Grospellier y Leverrier (2018),
+https://arxiv.org/abs/1808.03821, y Scott y Sokal (2005),
+https://arxiv.org/abs/cond-mat/0309352.

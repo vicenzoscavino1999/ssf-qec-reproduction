@@ -1,0 +1,111 @@
+== etapa sello
+  [PASS] N3 sello: SHA-256 del plan y de los 5 programas = SELLO_PLAN.json
+== etapa previa
+  [PASS] N3 previa: lectura de la corrida 1 con regla de paso LANZAR_CORRIDA_2, del mismo programa y sello
+  [PASS] N3 previa: resultado de la corrida 1 PASS, del mismo programa
+  [PASS] N3 previa: entrega de la corrida 1 completa (contrato de --verificar: instancias, celdas, cortes, trabajos, decisiones, sello y programa)
+  [PASS] N3 circ_TIRA_12x6 k=1: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [277, 1455, 2341]
+  [PASS] N3 circ_TIRA_12x6 k=2: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [7420, 3993, 109752]
+  [PASS] N3 circ_TIRA_12x6 k=3: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [244836, 15417, 5246465]
+  [PASS] N3 circ_TIRA_12x6 k=4: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [8884859, 80599, 279352061]
+  [PASS] N3 C-anc circ_TIRA_12x6: ningun hijo con ancla <= la de su padre en los trabajos de la tira
+  [PASS] N3 circ_TIRA_12x6: extremo inferior <= superior en los intervalos de eps_comp, L_comp y P_0 (32 filas)
+  [PASS] N3 C-anch circ_TIRA_12x6: anchura relativa de eps_comp, L_comp y P_0 <= 1e-30 en las 32 filas (maxima 6.890e-88)
+  [PASS] N3 I2 circ_TIRA_12x6: 0 <= eps_comp <= eps_ing (extremos) en las 32 filas
+  [PASS] N3 I5 circ_TIRA_12x6: L_ing <= L_comp (L_ing exacto: <= L_lo; con L_cat como cota: L_cat <= L_hi)
+  [PASS] N3 I6 circ_TIRA_12x6: e_comp <= e_ing donde L_ing es exacto
+  [PASS] N3 I3 circ_TIRA_12x6: L no decrece y eps no crece con k en los dos rivales (extremos)
+  [PASS] N3 circ_TIRA_24x6 k=1: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [565, 3123, 5041]
+  [PASS] N3 circ_TIRA_24x6 k=2: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [15844, 9165, 254484]
+  [PASS] N3 circ_TIRA_24x6 k=3: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [548196, 39945, 13479557]
+  [PASS] N3 circ_TIRA_24x6 k=4: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [20925047, 247927, 837562421]
+  [PASS] N3 circ_TIRA_24x6 regla de suma: la copia con D explicito = t2_motor.odds_sum, sum_interval y t2_calibracion.criterion con D = 1e14 (4 valores de X0)
+  [PASS] N3 C-anch circ_TIRA_24x6 regla de suma k=4, D = 1e16: anchura acumulada de U medida 4.219e-107 <= 1e-12 D^-k = 1e-76 (837562421 terminos)
+  [PASS] N3 circ_TIRA_24x6 regla de suma k=4: misma estructura que las celdas
+  circ_TIRA_24x6 regla de suma k=4 (D = 1e16): COMPLETO; anchura de U / umbral = 4.219e-43
+  [PASS] N3 C-anc circ_TIRA_24x6: ningun hijo con ancla <= la de su padre en los trabajos de la tira
+  [PASS] N3 circ_TIRA_24x6: extremo inferior <= superior en los intervalos de eps_comp, L_comp y P_0 (32 filas)
+  [PASS] N3 C-anch circ_TIRA_24x6: anchura relativa de eps_comp, L_comp y P_0 <= 1e-30 en las 32 filas (maxima 6.642e-88)
+  [PASS] N3 I2 circ_TIRA_24x6: 0 <= eps_comp <= eps_ing (extremos) en las 32 filas
+  [PASS] N3 I5 circ_TIRA_24x6: L_ing <= L_comp (L_ing exacto: <= L_lo; con L_cat como cota: L_cat <= L_hi)
+  [PASS] N3 I6 circ_TIRA_24x6: e_comp <= e_ing donde L_ing es exacto
+  [PASS] N3 I3 circ_TIRA_24x6: L no decrece y eps no crece con k en los dos rivales (extremos)
+  [PASS] N3 circ_TIRA_6x6 k=1: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [133, 621, 991]
+  [PASS] N3 circ_TIRA_6x6 k=2: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [3208, 1407, 37386]
+  [PASS] N3 circ_TIRA_6x6 k=3: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [93156, 3215, 1143002]
+  [PASS] N3 circ_TIRA_6x6 k=4: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [2866787, 5530, 25848067]
+  [PASS] N3 C-anc circ_TIRA_6x6: ningun hijo con ancla <= la de su padre en los trabajos de la tira
+  [PASS] N3 circ_TIRA_6x6: extremo inferior <= superior en los intervalos de eps_comp, L_comp y P_0 (32 filas)
+  [PASS] N3 C-anch circ_TIRA_6x6: anchura relativa de eps_comp, L_comp y P_0 <= 1e-30 en las 32 filas (maxima 7.954e-88)
+  [PASS] N3 I2 circ_TIRA_6x6: 0 <= eps_comp <= eps_ing (extremos) en las 32 filas
+  [PASS] N3 I5 circ_TIRA_6x6: L_ing <= L_comp (L_ing exacto: <= L_lo; con L_cat como cota: L_cat <= L_hi)
+  [PASS] N3 I6 circ_TIRA_6x6: e_comp <= e_ing donde L_ing es exacto
+  [PASS] N3 I3 circ_TIRA_6x6: L no decrece y eps no crece con k en los dos rivales (extremos)
+  [PASS] N3 previa: las filas de la corrida 1 se reproducen desde su evidencia (punto fijo, B y rival)
+== etapa capacidad
+== etapa trabajo
+  [PASS] N3 trabajo/: 1412 ficheros con el SHA-256 de MANIFIESTO.json (4671bab0a5ee...)
+== etapa rival_circuito
+  [PASS] N1 circ_TIRA_48x6: validas por f = T2-1M [3517, 300524, 31714687, 3554496331]
+  [PASS] N1 circ_TIRA_48x6: polimeros y entradas por k y numero de firmas = T2-1M
+  [PASS] N1 circ_TIRA_48x6: todas las decoraciones de un sitio son validas (3517 = suma de clases)
+  [PASS] N1 circ_TIRA_48x6: n_plus + n_minus <= n_all en el total del catalogo
+  [PASS] N1 circ_TIRA_48x6: P3C aplicable, ninguna decoracion silenciosa con < 3 sitios (f_s = 3)
+  [PASS] N1 circ_TIRA_48x6: B = Pr[|F| = 0] en las 8 celdas
+== etapa DP
+  [PASS] N3 U6: condicion previa de la regla de suma cierta con D = 1e16 y k = 4 en m = 48, antes de la DP {'48': '0.44'}
+== DP: 33 trabajos en 14 procesos
+  c48_k3_1/100000|1/100000: estados=89001 terminos=29945741 polimeros=1154916 (888.3s)
+  c48_k3_1/10000|0: estados=89001 terminos=29945741 polimeros=1154916 (888.5s)
+  c48_k3_1/10000|1/10000: estados=89001 terminos=29945741 polimeros=1154916 (888.6s)
+  c48_k3_1/1000|0: estados=89001 terminos=29945741 polimeros=1154916 (889.9s)
+  c48_k3_1/1000|1/1000: estados=89001 terminos=29945741 polimeros=1154916 (890.7s)
+  c48_k2_1/1000|1/1000: estados=19509 terminos=543948 polimeros=32692 (549.7s)
+  c48_k2_1/1000|0: estados=19509 terminos=543948 polimeros=32692 (549.1s)
+  c48_k3_1/1000000|1/1000000: estados=89001 terminos=29945741 polimeros=1154916 (911.8s)
+  c48_k3_1/1000000|0: estados=89001 terminos=29945741 polimeros=1154916 (915.1s)
+  c48_k3_1/100000|0: estados=89001 terminos=29945741 polimeros=1154916 (918.4s)
+  c48_k2_1/10000|1/10000: estados=19509 terminos=543948 polimeros=32692 (567.2s)
+  c48_k2_1/10000|0: estados=19509 terminos=543948 polimeros=32692 (567.3s)
+  c48_k2_1/100000|1/100000: estados=19509 terminos=543948 polimeros=32692 (575.7s)
+  c48_k2_1/100000|0: estados=19509 terminos=543948 polimeros=32692 (574.7s)
+  c48_k2_1/1000000|1/1000000: estados=19509 terminos=543948 polimeros=32692 (576.2s)
+  c48_k1_1/1000|1/1000: estados=6459 terminos=10441 polimeros=1141 (590.0s)
+  c48_k2_1/1000000|0: estados=19509 terminos=543948 polimeros=32692 (590.7s)
+  c48_k1_1/1000|0: estados=6459 terminos=10441 polimeros=1141 (578.0s)
+  c48_k1_1/10000|0: estados=6459 terminos=10441 polimeros=1141 (571.3s)
+  c48_k1_1/10000|1/10000: estados=6459 terminos=10441 polimeros=1141 (576.0s)
+  c48_k1_1/100000|0: estados=6459 terminos=10441 polimeros=1141 (537.0s)
+  c48_k1_1/100000|1/100000: estados=6459 terminos=10441 polimeros=1141 (537.7s)
+  c48_k1_1/1000000|0: estados=6459 terminos=10441 polimeros=1141 (453.5s)
+  c48_k1_1/1000000|1/1000000: estados=6459 terminos=10441 polimeros=1141 (453.8s)
+  c48_suma_k4_D1e16: estados=582583 terminos=1953983141 polimeros=45005423 (9714.7s)
+  c48_k4_1/1000000|1/1000000: estados=582583 terminos=1953983141 polimeros=45005423 (15161.9s)
+  c48_k4_1/1000000|0: estados=582583 terminos=1953983141 polimeros=45005423 (15162.8s)
+  c48_k4_1/100000|1/100000: estados=582583 terminos=1953983141 polimeros=45005423 (15173.2s)
+  c48_k4_1/100000|0: estados=582583 terminos=1953983141 polimeros=45005423 (15173.9s)
+  c48_k4_1/10000|1/10000: estados=582583 terminos=1953983141 polimeros=45005423 (15224.2s)
+  c48_k4_1/1000|1/1000: estados=582583 terminos=1953983141 polimeros=45005423 (15230.9s)
+  c48_k4_1/10000|0: estados=582583 terminos=1953983141 polimeros=45005423 (15230.9s)
+  c48_k4_1/1000|0: estados=582583 terminos=1953983141 polimeros=45005423 (15253.5s)
+  [PASS] N3 DP: 33 trabajos recibidos de 33
+== etapa evaluacion
+  [PASS] N3 circ_TIRA_48x6 k=1: polimeros, estados y terminos iguales en las 8 celdas (sin referencia anterior)
+  [PASS] N3 circ_TIRA_48x6 k=2: polimeros, estados y terminos iguales en las 8 celdas (sin referencia anterior)
+  [PASS] N3 circ_TIRA_48x6 k=3: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [1154916, 89001, 29945741]
+  [PASS] N3 circ_TIRA_48x6 k=4: polimeros, estados y terminos iguales en las 8 celdas y = T2-0/T2-1M [45005423, 582583, 1953983141]
+  [PASS] N3 circ_TIRA_48x6 regla de suma: la copia con D explicito = t2_motor.odds_sum, sum_interval y t2_calibracion.criterion con D = 1e14 (4 valores de X0)
+  [PASS] N3 C-anch circ_TIRA_48x6 regla de suma k=4, D = 1e16: anchura acumulada de U medida 9.103e-107 <= 1e-12 D^-k = 1e-76 (1953983141 terminos)
+  [PASS] N3 circ_TIRA_48x6 regla de suma k=4: misma estructura que las celdas
+  circ_TIRA_48x6 regla de suma k=4 (D = 1e16): COMPLETO; anchura de U / umbral = 9.103e-43
+  [PASS] N3 C-anc circ_TIRA_48x6: ningun hijo con ancla <= la de su padre en los trabajos de la tira
+  [PASS] N3 circ_TIRA_48x6: extremo inferior <= superior en los intervalos de eps_comp, L_comp y P_0 (32 filas)
+  [PASS] N3 C-anch circ_TIRA_48x6: anchura relativa de eps_comp, L_comp y P_0 <= 1e-30 en las 32 filas (maxima 6.550e-88)
+  [PASS] N3 I2 circ_TIRA_48x6: 0 <= eps_comp <= eps_ing (extremos) en las 32 filas
+  [PASS] N3 I5 circ_TIRA_48x6: L_ing <= L_comp (L_ing exacto: <= L_lo; con L_cat como cota: L_cat <= L_hi)
+  [PASS] N3 I6 circ_TIRA_48x6: e_comp <= e_ing donde L_ing es exacto
+  [PASS] N3 I3 circ_TIRA_48x6: L no decrece y eps no crece con k en los dos rivales (extremos)
+== etapa decisiones
+== etapa llamadas
+  [PASS] N3: ninguna llamada al decoder en el conductor (S2 reutilizado de SOLO_U)
+CORRIDA 2: PASS

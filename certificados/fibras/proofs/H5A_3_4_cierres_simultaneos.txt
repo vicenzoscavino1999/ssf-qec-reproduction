@@ -1,0 +1,278 @@
+H5-A · Dos cierres simultáneos en la familia binaria (3,4)
+23 de noviembre de 2026 · Resultado parcial, pendiente de revisión independiente
+
+En G3, p=10⁻⁶ y q=10⁻³. En el resto (7) de la nota de episodios, la
+parte con marca física M(E)≥2/7 tiene fila <0.000587330, incluyendo
+todas las tallas, medidas activas y pasivas y descomposiciones. M(E)
+se define en (4). El umbral suficiente para el resto completo era
+0.00059078. Falta controlar la parte de marca pequeña. La cota uniforme
+de acceso a las particiones filtradas sigue en p≤3.40·10⁻⁷, q≤10⁻³.
+Rigen el modelo, las máscaras, los subhosts inducidos y el decodificador
+físico de H5A_3_4_episodios_compartidos.txt (v12).
+
+1. Cuánto da imponer dos cierres en un mismo conteo espacial
+-----------------------------------------------------------
+
+Un generador P=(r,j) lee N(r)×N(j), de cuatro filas por tres columnas.
+Para un conjunto de checks fijado, con proyecciones I y C, los centros
+que los leen a todos forman exactamente (∩_{i∈I}N(i))×(∩_{c∈C}N(c)).
+La elección del centro es única en el registro, aunque se lean varias
+celdas. Para dos centros físicos escribir W(P,Q)=|P∩Q|. Vale también
+para dos ocurrencias en el mismo centro. En la semilla completa
+
+       Σ_Q W(P,Q)=144,        0≤W(P,Q)≤12.                           (1)
+
+Cada una de las doce celdas de P tiene doce lectores. Sea A=W/144.
+En un multigrafo conexo fijo de ocurrencias de generador, fijar la
+posición de la raíz y sumar el producto de A sobre todas las aristas
+y todas las demás posiciones. Si el exceso es r=e−v+1, la suma es
+≤12^(−r). En efecto, cada arista exterior a un árbol generador aporta
+≤1/12 y el árbol restante suma uno por eliminación de hojas. Se
+requieren simultáneamente los contactos en los mismos vértices. Esto
+cubre subdivisiones arbitrarias de las tres formas mínimas con dos
+ciclos, así como cualquier prolongación de un patrón fijo. Para tres
+caminos de longitudes a,b,c que unen los mismos extremos, la suma
+exacta es Σ_t A^a(s,t)A^b(s,t)A^c(s,t). Para dos ciclos que se tocan
+es A^a(s,s)A^b(s,s). Si están unidos por un camino de longitud k es
+A^a(s,s)Σ_t A^k(s,t)A^b(t,t).
+
+El 1/144 para dos ciclos es óptimo en esta relajación. En la semilla
+bipartita completa con tres checks y cuatro variables, A=1/12 entre
+cualesquiera de sus doce centros y se alcanza la igualdad para todo
+patrón conexo. Al deshacer la normalización, alargar un brazo en un
+paso multiplica por 144 ese recuento. Incluso al cobrar Yξ por cada
+paso añadido, con Y=.64⁶ y ξ=.225 de v12, se tiene 144Yξ>2. La serie
+de este contador espacial libre diverge. El ejemplo permite reutilizar
+lectores y olvida los ganadores, el tiempo y las fuentes. Establece el
+límite del contador, sin estimar la fila física de esa semilla. Un grupo
+original contraído puede tener varios lectores y requiere explicitar las
+ocurrencias pertinentes para aplicarle (1).
+
+2. Qué fijan realmente los contactos de una corrección
+-----------------------------------------------------
+
+Un episodio en un check exterior une un encendido con el apagado
+siguiente en orden circular. Sean t<u dos ocurrencias lejanas y k el
+número de episodios entre ambas. Usan k checks distintos. Un episodio
+hacia delante sale de una celda encendida por t y apagada por u. Uno
+hacia atrás sale de una celda encendida por u y apagada por t, y cruza
+el comienzo de la ronda. Esa celda pertenecía a las medidas activas D.
+Cada ganador enciende a lo sumo dos celdas. Luego k≤4 y por lo menos
+(k−2)₊ episodios cruzan el comienzo. En cada sitio sólo un episodio
+puede cruzarlo en toda la ejecución de esa especie.
+
+Una cruz de coste uno con pivote (i,c) conmuta dos celdas en la fila
+i, fuera de c, y tres en la columna c, fuera de i. Enciende una por
+brazo y apaga una en la fila y dos en la columna. Dos cruces así con
+al menos tres episodios entre ellas tienen necesariamente el MISMO
+pivote. Con ambas coordenadas de pivote distintas sus huellas se
+intersectan en a lo sumo dos celdas. Con exactamente una coordenada
+igual, la intersección cabe en una sola línea, en la que las dos
+ocurrencias pueden originar a lo sumo dos episodios en total. Con
+pivote igual cada brazo puede aportar a lo sumo dos episodios. Se
+deducen las dos cotas conjuntas
+
+       k=3 implica |P∩Q|≥6,        k=4 implica |P∩Q|≥9.               (2)
+
+Si hay h celdas compartidas en el brazo horizontal y v en el vertical,
+ambos rectángulos contienen las v+1 filas y las h+1 columnas, contando
+el pivote. Para k=3 los tamaños son 1 y 2 en algún orden. Para k=4
+son 2 y 2. Cuando los dos centros difieren en ambos factores, |P∩Q|
+es también el producto de los números de caminos de Tanner de longitud
+dos entre sus centros en los dos factores.
+
+En una semilla sin ciclos de cuatro, dos centros con ese solape tienen
+que coincidir en los dos factores, pues comparten al menos dos filas y
+dos columnas. Dos ocurrencias en ese mismo generador lo usan al menos
+dos veces. Por tanto dos generadores del conjunto M₅ de v12 (uso único)
+no pueden suministrarse tres episodios entre sí en dichas semillas.
+La familia uniforme incluye este régimen, aun cuando el producto tenga
+ciclos. El obstáculo distribuido subsiste al estudiar los usos únicos.
+
+Toda red conexa formada por estas parejas de tres o cuatro episodios
+tiene un solo pivote, por transitividad. En cualquier semilla hay
+como máximo 3·4=12 centros que leen ese pivote. Hay a lo sumo ocho
+celdas horizontales fuera de él (cuatro franjas con dos sitios) y
+nueve verticales (tres franjas con tres sitios). Por estabilidad de D,
+cada franja horizontal lleva como máximo un error y cada vertical,
+dos. Si hay un error horizontal, cada franja vertical lleva como
+máximo uno fuera del pivote. De lo contrario, el rectángulo formado
+por ese par de franjas tendría tres luces en la cruz de cinco y esa
+acción sería elegible en D. Así, entre los 17 sitios hay como máximo
+max(6,4+3)=7 errores. Para un pivote fijo, si B₃ y B₄ cuentan parejas
+de ocurrencias de estos dos tipos en la especie entera,
+
+                           B₃+2B₄≤7.                                 (3)
+
+Con cuatro episodios hace falta un retorno por cada brazo. Para un
+pivote fijado antes de mirar las medidas, la ley Bernoulli auxiliar
+de v6 da probabilidad ≤8·9·θ² de tener al menos un uno en cada brazo.
+En general b retornos distintos dan ≤binom(17,b)θ^b. Los eventos que
+reproducen una historia de v6 fijan D en su soporte S. Por ello estas
+condiciones necesarias siguen valiendo al sumar sus hojas incluso si
+hay otras correcciones. La selección adaptativa de un pivote exige
+sumar sus posibles posiciones. Ninguno de estos factores de medida se
+ha usado para descontar la fila numérica de §3.
+
+También hay una restricción para contactos que llegan desde tres
+ocurrencias distintas. Las tres celdas que apaga una cruz de coste uno
+determinan su pivote. Dos están en la misma columna c, en filas
+i₁,i₂, y la tercera está en otra columna c₁ y en la fila i. El centro
+debe pertenecer a
+
+       [N(i)∩N(i₁)∩N(i₂)] × [N(c)∩N(c₁)].
+
+Elegido el centro, la cuarta fila y la tercera columna determinan las
+dos salidas. En una semilla sin ciclos de cuatro hay a lo sumo una
+solución porque dos vértices del mismo tipo tienen a lo sumo un vecino
+común. La fórmula de las intersecciones vale también con ciclos de
+cuatro. Para un pivote fijo, la suma de los números de centros sobre
+todos los triples de entrada es exactamente 12·3·2=72 en la semilla
+completa. Para un patrón cronológico con las entradas de frontera, los
+retornos iniciales y los brazos de cada episodio especificados, se puede
+aplicar esta regla sucesivamente, cualquiera que sea la longitud.
+
+Un corte da además un control sobre posibles prolongaciones. Sea U
+cualquier conjunto de ocurrencias lejanas. Al sumar sus descensos,
+los episodios interiores desaparecen de la diferencia entre entradas
+y salidas. Si todos sus episodios con el exterior llegan o salen por
+k ocurrencias exteriores concretas, Σ_{t∈U}δ_t≤2k, pues esas
+ocurrencias pueden encender a lo sumo 2k celdas en total. En particular
+un interior sin fuentes separado por dos ocurrencias contiene a lo sumo
+cuatro pasos, aunque incluya ciclos o relecturas. En una theta con esos
+dos extremos como única frontera, el cuatro rige para la unión de los
+tres brazos y sus prolongaciones interiores, con cualquier longitud inicial
+propuesta. Un grupo original con muchas ocurrencias cercanas no puede
+contarse como una sola ocurrencia.
+
+Se obtiene más usando el orden. En el último paso t de U sean b_t y
+h_t las luces que enciende y apaga. Si w de sus encendidos retornan a
+un paso de U, esos w episodios deben cruzar el comienzo, en checks
+distintos de D. Al menos b_t−w episodios salen de U. Por tanto
+
+                  |U|−1+h_t ≤ 2k+w,
+
+porque todos los demás pasos tienen δ≥1 y δ_t+b_t=h_t. Con dos
+ocurrencias de frontera y sin retornos de ese tipo caben como máximo
+tres pasos, y dos si el último es una cruz de coste uno. Cuatro cruces
+en el interior necesitan al menos dos errores de medida distintos,
+aunque cada pareja sólo comparta un episodio. Esta restricción se
+aplica a cierres distribuidos. Las conexiones adicionales del interior
+al exterior deben contarse en k.
+
+3. Cómo introducir la multiplicidad en el coeficiente físico completo
+--------------------------------------------------------------------
+
+Se conservan los árboles, los presupuestos K, B_T, J_T y las raíces
+de v12. En un enlace exterior orientado e, cada extremo tiene dos
+coordenadas de Tanner. En cada factor, sean d la distancia verdadera
+entre extremos, r el radio base y i=max(0,(d−r)/2). Contar los paseos
+sin retroceso entre esos mismos extremos cuya longitud tiene la misma
+extensión i. Para i=0 se incluyen longitudes ≤r de la paridad correcta,
+y para i>0 la longitud es d. El producto de los dos conteos es μ_e.
+Es ≥1. Poner μ(T)=∏_e μ_e sobre los enlaces exteriores del árbol
+comprimido. En los árboles de un solo grupo no se necesita esta cuenta.
+
+Sea ξ=9/40 y τ=33/20. Para una especie c con varios grupos, una raíz
+o marca requerida ρ y un árbol admisible T, poner h_T=[B_T+J_T−K]₊.
+En un host finito definir
+
+ w(c) = min(1, min_ρ max_T μ(T) ξ^h_T),       w(c)=1 con un grupo,
+ M(E) = τ^m min_{descomposiciones admisibles de E} ∏_c w(c).           (4)
+
+El mínimo recorre las mismas elecciones de especies, medidas y estados
+que el máximo de H₁₂(E) en v12. E tiene m grupos. Como μ_e≥1, se tiene
+M(E)≥τ^m ξ^H₁₂(E). La marca no se asigna mirando sólo la ejecución más
+propicia de los datos físicos.
+
+Prueba de la norma. En el árbol de recubrimiento de un factor, cada
+paseo sin retroceso que parte de la raíz tiene un extremo levantado
+propio. Una posición física aporta ahora todas sus preimágenes en la
+misma capa en lugar de escoger una. Su suma en la capa cero es ≤la
+bola base del recubrimiento. En la capa i>0 es ≤el correspondiente
+incremento de la bola. Esto da las mismas cotas por capa en el producto
+de los dos factores, incluidos los términos ξ^min(i,j).
+
+Para cada requisito elegir un árbol que alcanza el máximo de (4).
+Entonces w(c)≤μ(T)ξ^h_T. En el registro con árbol y extremos físicos
+fijos, μ(T) es independiente de los bits de medida. Las elecciones de
+preimágenes de enlaces distintos se pueden contar por separado, sin
+restringir sus proyecciones mutuas. El árbol no contiene ciclos. En el
+enlace distinguido de v11 la nueva cuenta por capas tiene los mismos
+índices (i,j), por lo que respeta tanto el saldo restante como la suma
+parcial usada para el techo M de ese enlace. Los descuentos de limpieza
+de v12 se aplican al mismo registro. Al sustituir K por el saldo K'
+se conserva el reembolso ξ^(−(K−K')) y no cambia μ(T). Se pueden
+sumar las hojas de medidas para cada registro como en v12, permitiendo
+todos los registros que lo atestiguan como mayoración. Las especies de
+un grupo conservan marca uno para las sustracciones y derivadas.
+
+Por consiguiente, las mismas supersoluciones racionales de v12 dominan
+las actividades con factor τ^(número de grupos de c) w(c). Aplicar
+la proyección sin repeticiones en las variables independientes por
+especie antes de identificar a qué E pertenecen. Para cada E, cada
+término lleva al menos M(E). La desigualdad triangular da, a raíz
+física fija, la suma siguiente con z,y y d(E) de v10,
+
+      Σ_{E con m≥2 en la fila} z^|E| M(E) ||d(E)||_y
+          ≤ A_ang = 0.000167808400963… .                             (5)
+
+El decimal representa el mayorante del verificador. Esta prueba permite
+cualquier prolongación y cualquier orden del logaritmo. Un ahorro en un
+único historial posible de E no basta para dividir su coeficiente.
+
+Ejemplo de uso de (2). Si el paso entre dos centros distintos en ambos
+factores forma parte de caminos mínimos de un enlace, las elecciones
+de un vecino común en cada factor dan al menos 6 levantamientos de ese
+tramo para k≥3. Se pueden combinar las elecciones en tramos distintos
+de caminos mínimos. La concatenación tiene la misma longitud mínima
+y por ello sigue siendo sin retroceso. Para b tramos así seleccionados
+en un árbol, μ(T)≥6^b. Al ser 6ξ=1.35, cada tramo compensa al menos
+una unidad de h_T en (4), hasta el tope uno en w(c). Contar una sola
+vez cada tramo. Una repetición de centro o un cambio en un solo eje
+requiere usar su multiplicidad real. En ciclos divididos entre varios
+generadores también se admiten caminos alternativos si sus proyecciones
+dan levantamientos distintos en las capas exigidas.
+
+4. Balance en G3 y límite de la prueba
+--------------------------------------
+
+• Con M(E)≥τ⁴ξ², la suma de la clase de v10, la proyección dispersa de
+  v12 y la proyección de (5) dividida por τ⁴ξ² es <0.003409213. El
+  criterio incluye toda la clase anterior 3H₁₂(E)≤m+2 para m≥3.
+  Sigue bastando 0.00059078 para su complemento. La inclusión es
+  demostrada, pero no se ha medido la masa de la diferencia de clases.
+• Dentro del resto ORIGINAL (7), toda la subfila con M(E)≥2/7 pesa
+  a lo sumo (7/2)A_ang <0.000587330, para todos los tamaños juntos.
+  Esta cifra puede solaparse con la clase del punto anterior y no se
+  suma a ese subtotal para descontar dos veces una misma configuración.
+• Si se usa directamente la fila de v10, la proyección dispersa y (5),
+  bastaría M(E)≥0.162 en todas las entradas que las dos primeras
+  todavía dejan. En efecto, 0.002903264+0.000058738+A_ang/0.162<0.004.
+  Ni esta condición uniforme ni el peso residual de los E de marca
+  pequeña se han establecido.
+
+Dos ciclos pueden estar subdivididos sin que haya tres episodios entre
+ninguna pareja de ocurrencias. En factores de Tanner arbóreos hay un
+solo paseo sin retroceso entre dos extremos, de modo que μ_e=1 incluso
+si el producto admite circuitos. Queda cuantificar los cierres en que
+las tres entradas de §2 proceden de distintos generadores, incluyendo
+el coste de situar esas entradas y todos los términos del mismo E.
+Acumular más longitudes en el contador espacial de §1 no resuelve ese
+problema. La presente nota no aumenta el extremo uniforme en p.
+
+Reproducción desde 05_COMPROBACIONES
+
+    python -I -B -X utf8 verificar_H5A_3_4_cierres_simultaneos.py
+
+El programa recorre ganadores y solapes locales, contrasta las tres
+formas en dos semillas de prueba y reevalúa las dos proyecciones de v12
+con fracciones. La validez a tamaño arbitrario depende de las pruebas
+de §§1–3. Las cifras y los ejemplos no sustituyen la revisión de esas
+pruebas.
+
+Referencias. Las tres formas mínimas están descritas por Funk, Mayhew
+y Newman, https://dillon128.github.io/FMN-III.pdf . El enfoque de
+contar extensiones condicionadas por coordenadas comunes se expone en
+Abo Khamis, Nakos, Olteanu y Suciu, https://arxiv.org/abs/2306.14075 .
+Las cotas específicas para esta dinámica de SSF se derivan arriba.

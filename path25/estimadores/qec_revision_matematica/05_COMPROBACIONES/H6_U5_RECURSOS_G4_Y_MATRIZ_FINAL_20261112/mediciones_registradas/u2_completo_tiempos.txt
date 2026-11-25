@@ -1,0 +1,10 @@
+Tiempos de reloj en segundos (no deterministas; no son resultado)
+codigo                                        0.006
+decoders                                      0.361
+host                                          0.000
+circuito                                      0.000
+clases_estructurales                          0.337
+referencia_global                             1.684
+oraculo                                       7.314
+gas                                           0.606
+total                                        10.342

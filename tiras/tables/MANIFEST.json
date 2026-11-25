@@ -1,0 +1,102 @@
+[
+  {
+    "path": "methods/calibration_and_fibres.txt",
+    "sha256": "29c7c4949f314958db4f5a61d9b5e94d9a05e3c5face9359683be900312a0aa3"
+  },
+  {
+    "path": "methods/circuit_protocol.txt",
+    "sha256": "dd52e6028cf6aad1afffe19afd8b0ec0452e2f4f39c4245ad5d92c0e8113c3a9"
+  },
+  {
+    "path": "methods/completeness.txt",
+    "sha256": "759eb8297d93d1007478be6eab36bfc99f05bf3b73966900845c053994fc43bd"
+  },
+  {
+    "path": "methods/engine_proofs.txt",
+    "sha256": "81f475fe847d9968239d79fa6196f581f682da7b66013ce3cff83d6485ef27a7"
+  },
+  {
+    "path": "PROVENANCE.json",
+    "sha256": "b425bff59262127d08acb03d8ff52ac4091289af49e596e7fb6369d2b98da6fa"
+  },
+  {
+    "path": "README.txt",
+    "sha256": "325e6806944a99ab036f37ce6d45cc5b4b135b2d47d60ff668c17f6b86461864"
+  },
+  {
+    "path": "reproduce_tables.py",
+    "sha256": "999cd15d0b0d9390382ac9066283e9fac4eb8135a3409f5184e81963e9fe4055"
+  },
+  {
+    "path": "results/calibration.json",
+    "sha256": "fb56c4324034549476813bd1a0d2bacd6f46c27d552fbf71ba2d0813d62df38e"
+  },
+  {
+    "path": "results/catalogue_manifest.json",
+    "sha256": "4671bab0a5eec923b1fd7b9fdd7af499bd64dddf9efce4aedd372495d8f35730"
+  },
+  {
+    "path": "results/circuit.json",
+    "sha256": "9769c76eae7d54a5377b0397d3ad0e0ee6f68207cef8f3c70ec4971fe9f6df69"
+  },
+  {
+    "path": "results/circuit_resources.json",
+    "sha256": "52cc6f48786a923332f99e1fd21d448d7a7f37649368e94fb19853eab58c1eac"
+  },
+  {
+    "path": "results/completeness_phenomenological.json",
+    "sha256": "934496151bcc32a0d636bd54b37ef1c9e159a8e9ff04bb2b84b74ce91d677953"
+  },
+  {
+    "path": "results/direct_sampling.json",
+    "sha256": "15c71efe0690a858310ec4953c417ab86182dc48d032a2c45a310faf96f03325"
+  },
+  {
+    "path": "results/engine.json",
+    "sha256": "573e4e0f39b853a7f40acc4b4d2d7dce2155aa3ff521e5ae165e2c62719b6358"
+  },
+  {
+    "path": "results/phenomenological.json",
+    "sha256": "cfb6ab3674464274ebb1bb14473a185d2d82206b8473ac7e5a8359746ecd289d"
+  },
+  {
+    "path": "source_snapshot/B4_TIRAS_ESCALADO_N_20261113/b4_tiras.py",
+    "sha256": "b1a2cb8f93affcc3713eadd4ff860a2d74756b91752011cd6b16da44def2dd15"
+  },
+  {
+    "path": "source_snapshot/B4_TIRAS_ESCALADO_N_20261113/calibracion/rect.py",
+    "sha256": "358442f672f616c63861080ad32051d23cf470d8c46ef981aa50d2666b1a6254"
+  },
+  {
+    "path": "source_snapshot/D1_CONTROL_EXACTO_Y_METODOLOGIA_20261113/control_exacto.py",
+    "sha256": "c003050183a14364750a33784c7c815c0c07b5814f552a8b52a14d142db3306b"
+  },
+  {
+    "path": "source_snapshot/T2_0_CALIBRACION_CIRCUITO_TIRAS_20261113/t2_calibracion.py",
+    "sha256": "195bf3317f7af114f4cdc1daad714e828534ddd57abab29c81daa7126d17cc61"
+  },
+  {
+    "path": "source_snapshot/T2_1_INTERVALOS_CIRCUITO_TIRAS_20261114/t2_cp.py",
+    "sha256": "7e1a913b84ddb11941bcd8c09d26a7a37b23ced7173b51ccd0f9cd0c098f9565"
+  },
+  {
+    "path": "source_snapshot/T2_1_INTERVALOS_CIRCUITO_TIRAS_20261114/t2_intervalos.py",
+    "sha256": "95799c8ed77625ebc66bf84b183f306513271e57ea2010083faab08f815ae559"
+  },
+  {
+    "path": "source_snapshot/T2_1_INTERVALOS_CIRCUITO_TIRAS_20261114/t2_mc.py",
+    "sha256": "fcf0323c280381c19c807f95e2f475ae670902d3254e8dfbf9e48aff3634a957"
+  },
+  {
+    "path": "source_snapshot/T2_1_INTERVALOS_CIRCUITO_TIRAS_20261114/t2_rival.py",
+    "sha256": "72174b6f0fb3c8f9138da0686daff516500ffc666383f9344d0d6453696930c7"
+  },
+  {
+    "path": "source_snapshot/T2_1_INTERVALOS_CIRCUITO_TIRAS_20261114/t2_solo_u.py",
+    "sha256": "30d2a0fc8ae069d42bd1e0e03692874155b6372d457ca153a10e90a7657281be"
+  },
+  {
+    "path": "source_snapshot/T2_1M_MOTOR_ANCLAS_PUNTO_FIJO_20261113/t2_motor.py",
+    "sha256": "c0d297805a55ecfe514fd623c21ac5a1f272dd2b26a2f52a6f10a87205e6cf3a"
+  }
+]

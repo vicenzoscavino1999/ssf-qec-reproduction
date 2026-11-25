@@ -1,0 +1,68 @@
+{
+  "status": "PASS_RECEPTION_WITH_EXPLICIT_SCOPE",
+  "run_count": 1,
+  "run_elapsed_seconds": 0.8772211000323296,
+  "reference_validation": "Two decoder implementations; one quotient DP, checked at weights 0,1,2 by physical sources",
+  "fixed_candidate_analysis": {
+    "all_candidates": 103,
+    "footprint_leaders": 43,
+    "dominated": 60,
+    "eta_raw": "2",
+    "eta_after_fixed_order_dominance": "1",
+    "generic_kappa": "1/9",
+    "integer_decrease_kappa_without_dominance": "1/5",
+    "order_sensitive_kappa": "1/3",
+    "sharp_density_witness": {
+      "E": 65536,
+      "f": 1,
+      "s0": 9,
+      "Y": 65553,
+      "R": 65553,
+      "syndrome": 0,
+      "class": 0,
+      "trace": [
+        0,
+        4
+      ]
+    }
+  },
+  "finite_uniform_activity_certificate": {
+    "p_max_certified": "1/250000000",
+    "degree": 36,
+    "margin": "1/2",
+    "alpha": "2/657",
+    "e_upper": "8877691/3265920",
+    "entropy_raised_lhs": "9/333333332",
+    "alpha_cubed": "8/283593393",
+    "old_kappa_1_9_fails_same_rate": true,
+    "all_supports_basis": "proved descent/dominance bound, NOT extrapolation of incomplete catalogue",
+    "estimator_not_executed": true
+  },
+  "exact_activity_obstruction_at_p_1_100": {
+    "Y": 65553,
+    "polynomial": "z+2z^2+z^3",
+    "W0_equals_WT": "10000/970299",
+    "Ws": "0",
+    "weaker_uniform_rhs": "1/389017",
+    "scope": "This sufficient envelope with unchanged original weights; no divergence/impossibility claim"
+  },
+  "zero_syndrome_logical_cancellation_pairs": [
+    {
+      "X": 15,
+      "Y": 3840,
+      "xor_is_stabilizer": true
+    },
+    {
+      "X": 15,
+      "Y": 61440,
+      "xor_is_stabilizer": true
+    },
+    {
+      "X": 240,
+      "Y": 61440,
+      "xor_is_stabilizer": true
+    }
+  ],
+  "new_decoder_or_oracle_calls_in_reception": 0,
+  "elapsed_seconds": 0.006818499998189509
+}

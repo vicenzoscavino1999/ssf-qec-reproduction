@@ -1,0 +1,300 @@
+H5-A · Fila conjunta y grupos con exceso sin compensar en HGP (3,4)
+Entrega v10 · 22 de noviembre de 2026
+
+A p=10⁻⁶, q=10⁻³ y α=0.004, sea R₉(v) la fila de v9 que quedaba por
+acotar por 0.001203. Es la suma de z^|E| ||d(E)||_y sobre las entradas
+que tocan N_G[v], tienen exceso positivo según v9 y satisfacen n≤9m−9.
+G une dos datos cuando son vecinos en el grafo de lectores. Se incluyen todos los tamaños, subhosts inducidos,
+máscaras y medidas de una ronda Bernoulli independiente. Las acciones
+SSF/FGL, β=1/100, el máximo global de descenso por tamaño de huella,
+el desempate físico, el filtro de síndrome físico residual cero y las
+actividades z=x(p)exp(α), y=x(q) son los de v8/v9.
+
+La parte de R₉(v) cubierta aquí suma <0.001180 uniformemente en el ancla v.
+Quedan cubiertas todas las configuraciones de dos grupos y, con cualquier
+número de grupos, todas las que tienen a lo sumo una unidad de exceso
+según (1). También se cubre n≥9m−9, con n datos y m componentes de G[E].
+La cota de 0.001203 para R₉ completo sigue abierta. Bastaría ≤0.0000234
+en el resto de esta nota para verificarla. Sumando de nuevo toda la fila,
+incluso ≤0.0010967 en ese mismo resto bastaría para certificar G3.
+
+El extremo completo demostrado pasa de p=3.25·10⁻⁷ a p=3.28·10⁻⁷,
+con q≤10⁻³. La transferencia a precisión relativa sobre fallo silencioso
+positivo mantiene el testigo lógico y las demás hipótesis del Teorema 1.
+
+1. Una marca física necesita dos conmutaciones
+===============================================
+
+S es la unión de las huellas originales y las realmente conmutadas.
+En el modelo por contactos de checks, los vecinos de una especie sólo
+requieren cubrir S además de sus originales. Las condiciones sobre el
+soporte físico visitado se comprueban al admitir la especie. Para esta
+cobertura, asignar cada celda de S a un original, a un rectángulo
+cercano usado o a un rectángulo lejano usado que la contenga. Dar
+preferencia al nivel de menor profundidad, con orden fijo en empates.
+Un núcleo simple se cubre directamente por su huella de origen.
+
+Si la profundidad mínima es t≥1, el check está fuera de las huellas
+originales. Al principio y al final tiene el mismo bit observado de D.
+Como pertenece a S, alguna acción lo conmuta y el número de
+conmutaciones es par. Al menos dos ocurrencias pertenecen a rectángulos
+de profundidad ≥t. En la notación de la nota de propagación, T_t≥2.
+La desigualdad T_{j−1}≥⌈3T_j/2⌉ da el nuevo presupuesto mínimo para
+poder marcar profundidades 1,2,3,4,… igual a 2,3,5,8,… . Si k es el
+saldo disponible, f_i(k) para un generador físico fijado es cero hasta
+k=1 inclusive. En profundidad t la bola desde el generador sigue siendo
+T_gi(t−1) de v7. No se elimina ninguna acción de la ejecución. Para
+enlazar grupos se sigue permitiendo todo el árbol de rectángulos usados.
+
+2. Qué grupos entran en la fila conjunta
+=========================================
+
+Para una componente A de tres o más datos escribir k(A) para el menor
+de los techos de saldo válidos de v9 y de los techos por bloque fuerte,
+trío y número de lectores de v6/v7 que se apliquen a A. Se puede tomar
+el mínimo sobre los árboles que conectan internamente sus bloques
+fuertes y sobre las elecciones válidas de raíz. Es una función del
+conjunto físico de datos. Cada techo domina su aporte en toda historia.
+
+Usar T(A)=|A|−1. Para A sin coordenada física común, sea
+j(A)=máx(−1,k(A)−T(A)). Para un grupo alineado de v9 poner
+j(A)=mín(0,máx(−1,k(A)−T(A))). Los grupos de uno o dos datos tienen j=0.
+Si h(E) cuenta las componentes con j>0, definir
+
+            Δ(E)=Σ_A j(A),   L(E)=Y^Δ(E) 6^h(E),  Y=43/2000.          (1)
+
+Cada componente lleva su propia variable formal de v4. Al extraer del
+logaritmo el monomio sin repeticiones de las componentes de E, el
+producto de sus radios introduce exactamente L(E). En particular
+Δ(E)≤1 implica L(E)≥6Y. Si Δ=1, al menos un factor tiene j>0.
+El criterio L(E)≥6Y también admite configuraciones con más exceso.
+Como k(A) sólo disminuye y |A|−1≥⌊2|A|/3⌋ desde tres datos, el nuevo
+j(A) es ≤ al de v9. Por tanto todos los E con Δ de v9 no positivo
+satisfacen L(E)≥6Y. La nueva capa de densidad también contiene la de
+v9. Tras cubrir m=1 y m=2, el resto de ambas filas es el mismo.
+
+Detallamos el mayorante del peso enraizado. A composición y tipo de
+raíz fijos, se acota para cada l el número de grupos con techo ≥l.
+Usar los árboles ordinarios, los árboles por bloques fuertes de v6 y
+los histogramas de tres y cuatro datos. Hasta seis datos, si el techo
+K_{d−1} de v7 con d−1 lectores es menor que l, también sirve la cuenta
+de grupos con d lectores en algún rectángulo. Si l>K_n la cuenta es
+cero. Para dos datos el precio-test (0,1,2) acota la cantidad con techo
+≥1 por P₁+2P₂ y el precio (0,0,1) acota la de techo ≥2 por P₂.
+Restar términos sucesivos de la misma sucesión decreciente de mayorantes
+produce una medida que domina todos los precios crecientes por suma
+por partes. Las restas no se interpretan como conteos físicos exactos.
+
+Provisionalmente usar r(k)=Y^máx(−1,k−T) para k≤T y
+r(k)=6Y^(k−T) para k>T. El precio ordinario r(k)Y^−k es creciente y
+≤6Y^−T. Para la marca de generador se suma por capas. En cada l se
+multiplica el número enraizado con techo ≥l por r(l)[f_i(l)−f_i(l−1)]
+con el f de §1. Los radios son decrecientes. Cada posición que aparece
+por primera vez en una bola del host tiene una preimagen nueva en
+la misma capa del recubrimiento. En las dos direcciones alineadas de
+v9, si su techo k_d>T, añadir C_d(n)[Y^(−k_d)−6Y^(−T)] al precio
+ordinario y C_d(n)[f_d(k_d)−f_d(T)] al físico. Hasta T ya se pagó
+por lo menos uno. En la línea de síndrome f_d conserva la coordenada
+fija de v9. Estas adiciones cubren la marca uno del grupo alineado.
+
+Desde once datos, 6Y·(1/Y)^n domina el precio ordinario sin alineación.
+Restar en esos mismos pesos los diez grados exactos de los árboles de G.
+Añadir las dos colas de Cayley en una coordenada como en v9. Para el
+grupo único en una raíz de dato la marca es ≤1/Y desde tres datos.
+La fijación de medidas y los restantes enlaces son los de v9. Con
+s=.9999, b=.00115, η=.0001, el verificador cierra estas filas a todos
+los órdenes. Para extraer m≥2 empleamos la proyección siguiente.
+
+3. Retirar del logaritmo las contribuciones de un solo grupo
+=============================================================
+
+Trabajar primero con una variable por especie nuclear y por medida
+pasiva. Una estrella indica que se han anulado todas las variables
+nucleares libres. Las especies fijadas siguen con su estado. Usar las
+filas de v7 para el cociente condicionado R_a y la respuesta positiva
+P_a=R_a/(1+R_a). Sus normas son ≤b_a/(1+b_a) y ≤b_a. Para las
+medidas b_a=b. Para un sitio pasivo fijo, I domina la suma de los b_a
+de sus vecinos nucleares y ℓ=89b+I. Poner ε=exp(ℓ)[exp(ℓ)−1].
+
+Sea D₁ un mayorante de ||R_j−R_j*|| para j pasivo. En el árbol de
+decisión de sus vecinos, el sufijo que decide si se puede añadir j es
+cero si ya es imposible. Si es viable, difiere de uno en norma ≤ε,
+pues sólo las ramas con alguna respuesta positiva pueden cambiar el
+indicador. Lo mismo vale tras cualquier prefijo y en el sistema
+proyectado. Las dos respuestas condicionales del sufijo difieren por
+tanto en norma ≤máx(1+ε,2ε)=1+ε. Al cambiar la probabilidad P_a de
+la bifurcación, la respuesta cambia en (P_a−P_a*) multiplicado por
+la diferencia de esos dos sufijos. El resto se transmite con factores
+de norma total ≤1+2b_a por vecino. Para a pasivo,
+||P_a−P_a*||≤(1+b)²D₁. Para a nuclear basta b_a. Por inducción en
+las especies libres se puede tomar
+
+  C=y exp(2ℓ)(1+ε),       D₁=C I/[1−89 C(1+b)²].                      (2)
+
+El denominador es positivo en todos los certificados donde se usa (2).
+La misma estimación se aplica tanto a la fila de densidad como a los
+coeficientes de primer orden usados en §4.
+
+Al retirar un núcleo c bajo un ancla se expande log(1+R_c). Cada
+potencia R_c^t con t≥2 repite las variables de las componentes de c.
+Su proyección sobre las componentes originales distintas que definen
+d(E) es cero. Si c comprende un grupo, para que m≥2 la parte restante
+de R_c debe contener otra especie nuclear. En el producto de fijación
+de v5, un factor nuclear (1+R_a⁺)/(1+R_a⁻) proyecta a uno. Su
+variación cuesta ≤2b_a. Para a simple cuesta ≤b_a si b_a≤2|w_a|.
+En efecto, si ambas adiciones son viables, los cocientes comparten el
+mismo monomio de actividad w_a con coeficiente uno. Su diferencia cuesta
+≤2b_a/(1+b_a)−2|w_a|. Con una sola adición viable basta b_a/(1+b_a).
+Al multiplicar por el inverso se obtiene el límite indicado. El
+verificador comprueba la condición suficiente exp(η+2B_a+b|Q_a|)<2
+para las dos formas simples, donde B_a=R|E_a|+M(S_a).
+
+Cada factor pasivo tiene norma ≤1+b tanto antes como después de
+proyectar. La identidad para la diferencia de los dos cocientes
+y (2) dan coste ≤d_p=(2+b)(1+b)D₁ por check. Al telescopar el
+producto, los demás factores se mayoran por la exponencial que ya
+está en b_c. En un c simple de tipo i, los vecinos cuestan así
+B_i+B_i^{ns}+|Q_i|d_p, donde B_i=R+M(ψ_i). Para B_i^{ns} se usan
+H_V,H_C en lugar de U_V,U_C y se conserva g. La masa de simples
+en la raíz es ≤U_i−H_i por la desigualdad de la supersolución que
+suma el mayorante simple y H_i. Se puede conservar H_i completo para
+los no simples. Esto da una fila ponderada <0.000117617 para m≥2.
+Dividir por 6Y permite extraer todos los m≥2 con L(E)≥6Y.
+
+4. Dos grupos de cualquier tamaño
+=================================
+
+Para exactamente dos componentes originales, introducir una variable t
+por grupo, con radio común t, y extraer el coeficiente de grado dos.
+En cada host finito las desigualdades de fijación valen para t positivo
+suficientemente pequeño. En efecto, se pueden fijar presupuestos de
+núcleos arbitrariamente pequeños y luego tomar t pequeño en la suma
+finita de especies. Las desigualdades pasivas y de la suma de medidas
+son estrictas ya en t=0. Los mayorantes siguientes se obtienen al
+dividir por t o t² y dejar t tender a cero. Las cotas resultantes sí
+son uniformes en el host. Esto evita suponer convergencia sin marcas
+en G3.
+
+En ese límite usar b=.001139, θ=.001145, η=.0001 y pesos por dato
+m_V=1.846·10⁻⁶, m_C=2.141·10⁻⁶. Para una componente de G fijada,
+la suma sobre todas sus medidas activas está dominada por el producto
+de sus pesos por el argumento de eventos disjuntos de v6. La parte
+simple lleva su peso más preciso de v7. Los demás grupos individuales
+se cuentan por los árboles de G con dos o más datos. Si t_i=1.01m_i,
+entonces t_i≥m_i exp((Nt)_i), con N de v7. Así su masa es
+H_i≤m_i[exp((Nt)_i)−1]. Para el primer momento en el número de fuentes,
+diferenciar la ecuación del árbol al multiplicar los dos pesos por una
+misma variable. Un mayorante de la derivada es t_i/(1−máx(Nt)).
+Esto justifica la expresión con sustracción de m_i del código.
+
+Para el generador físico usar §1 hasta diez datos. Desde once,
+f_i(k)≤2000 n⁹ porque k≤5n/3, la recurrencia empieza en 2, los
+coeficientes líderes de las bolas son ≤2000 y (3/2)⁹>36. El árbol
+enraizado tiene a lo sumo n^(n−2)1297^(n−1)/(n−1)! posiciones. La
+razón entre los términos mayores con el factor n⁹ es ≤e·1297·máx(m_i)
+(12/11)⁹<1. Se obtienen g,I y R de primer orden. Para (2) en este
+límite se pone ℓ=89b en la exponencial y se conserva el coeficiente
+de primer orden de I en el numerador. Evaluar también la exponencial
+con ese I positivo, como hace el programa, sigue siendo un mayorante.
+
+Hay dos maneras de obtener el segundo grado. Si los grupos están en
+núcleos distintos, aplicar §3. Para un núcleo de un grupo y n≥2
+bastan B_c≤(R+24I)n y |Q_c|≤2160n. En efecto, en cada ganador se
+verifica |φ|≤5δ, y el descenso total de una ejecución filtrada es
+≤4n. Luego |S_c|≤4n+20n y |Q_c|≤90|S_c|. El primer momento anterior
+financia el factor n. Para un simple se emplea el coste más ajustado
+de §3. La contribución de especies distintas es <0.000012047.
+
+Si ambos grupos están en un núcleo, contraer cada grupo a un origen
+con sus zonas B_x y elegir la cadena más corta de rectángulos lejanos
+que los conecta. Si tiene l interiores, sus profundidades son
+mín(j,l+1−j), j=1,…,l. Un atajo a cualquiera de los dos orígenes
+acortaría la cadena. En cada nivel j hay a_j iguales a 1 o 2 en
+esa cadena. Partiendo desde el centro con u=0, poner sucesivamente
+u←u+máx(a_j,⌈u/2⌉). Por T_j≤2n_{j−1}, u da al final un mínimo de
+pasos lejanos necesarios. El caso l=0 admite contacto directo de
+zonas. Para un presupuesto total K, el volumen entre los extremos es
+el producto de bolas de v7 al mayor l permitido por esta recurrencia.
+K es la suma de los dos techos. Un grupo de un dato en este núcleo aporta −1.
+
+Con el ancla en el primer grupo, elegir un dato de ese grupo como
+extremo y colocar un dato del segundo grupo en la capa del otro
+extremo. Para una posición nueva de esa capa, el segundo grupo
+necesita el saldo restante. Se aplican sus cuentas acumuladas por
+alcance, uniformes en la raíz, y luego las del primer grupo. La suma
+por partes en las dos variables da el producto de las dos medidas
+mayorantes de §2 con el volumen del enlace. Para una restricción
+adicional creciente en los dos saldos se intersectan sus umbrales
+en cada capa antes de sumar. Así se permite que las formas admisibles
+cambien entre las posiciones del extremo.
+
+Desde 26 datos totales el radio de la cadena es a lo sumo
+2+2log_(3/2)(5n/3) en unidades de l. El coeficiente líder de las
+bolas de datos es <50000. Para cada ancla, sumar las particiones
+en dos tamaños y los extremos del primer grupo da la cola mayorada por
+la suma de 2 n² m_máx² (e·1297 m_máx)^(n−2)·50000·36²(5n/3)¹⁸.
+La razón está acotada por e·1297 m_máx (27/26)²⁰<1. Las sumas
+anteriores usan histogramas hasta diez por grupo y el árbol de grado
+1297 para los tamaños individuales mayores. De esta forma se incluyen
+todas las cardinalidades. Los dos grupos con al menos uno de tamaño
+tres o mayor aportan en conjunto <0.000121.
+
+5. Densidad y suma final
+========================
+
+Usar el testigo de densidad verificado en v9 con marca 4^(n−9m).
+Para aplicar §3 a los no simples, distinguir el caso de un único grupo
+con dos o más datos, usando su primer momento de árbol en los pesos de
+ese testigo y el factor 4⁻⁹. Cuando hay más grupos, el árbol con un
+dato fijo tiene al menos un hijo exterior. Para grados hasta diez se
+distingue ese hijo con el coste físico M de v7. Para la cola se usa el
+primer momento de las ramas débiles y fuertes de v6. Con d,e mayorantes
+de esas ramas y matrices W,B de v7, sus derivadas al dilatar los pesos
+admiten las supersoluciones
+
+ d'_i ≥ d_i(1+(Wd')_i)+e_i(Be')_i,   e'_i ≥ e_i(1+(Wd')_i+(Be')_i).
+
+Se restan los primeros diez grados de la misma serie, ponderados por
+su grado, antes de multiplicar la cola por el máximo coste de señalar
+un hijo exterior. Los restantes hijos se cuentan en los pesos usuales w.
+Puede tomarse el menor con H_i, que ya domina todos los no simples.
+Aplicada a m≥2, la división por la marca cuesta ≤4⁹ cuando n≥9m−9.
+
+Las tres contribuciones para cubrir R₉(v) son las siguientes. Los
+números de la derecha están redondeados hacia arriba.
+
+  m≥2 y L(E)≥6Y                                              0.000911752
+  m≥2 y n≥9m−9                                               0.000156022
+  dos grupos fuera de esas condiciones                       0.000111820
+  suma                                                      <0.001180
+
+En la última fila de dos grupos quedan a lo sumo ocho datos y Δ≥2.
+Al contar el núcleo directo basta exigir que la suma de las partes
+positivas de k(A)−|A|+1 sobre los grupos de tamaño ≥3 alcance dos.
+Para las especies distintas se conserva su mayorante completo. Las
+intersecciones entre clases sólo incrementan la suma de mayorantes.
+
+Para toda la fila añadir, una sola vez, todos los términos con m=1.
+Su mayorante de primer orden de §4 es <0.001723672. Con las fracciones
+antes del redondeo se obtiene <0.002903264 sobre 0.004. El resto exige
+simultáneamente m≥3, n≤9m−10 y L(E)<6Y. Esto implica Δ(E)≥2. Aún
+puede tener tamaño arbitrario. La cota general de G3 sigue abierta.
+
+Para el nuevo extremo incondicional se usa el certificado completo de
+v8. Para las posiciones de marca física se toma el menor entre el
+mayorante anterior y el que usa §1 con los histogramas de §2. Para
+la fila ordinaria de grupos de tres o más, en cada composición se
+toma también el menor con la suma por capas al precio a^(−6k). Ambas
+filas tienen el descuento anterior de exposición cuando se conoce.
+Se usan a=.5488, s=.86, b=.0011475 y α=.004. La fila de todos los
+conjuntos es <0.000588. Por monotonía en las actividades se obtiene todo el
+rectángulo hasta p=3.28·10⁻⁷, q=10⁻³.
+
+Reproducción en 05_COMPROBACIONES con Python 3.10 o posterior
+
+    python -I -B -X utf8 verificar_H5A_3_4_exceso_sin_compensar.py
+
+La comprobación aritmética usa enteros y fracciones. La derivación
+está pendiente de revisión matemática independiente. El argumento de
+fijación continúa el de las notas anteriores y el formalismo de Scott
+y Sokal (https://arxiv.org/abs/cond-mat/0309352).

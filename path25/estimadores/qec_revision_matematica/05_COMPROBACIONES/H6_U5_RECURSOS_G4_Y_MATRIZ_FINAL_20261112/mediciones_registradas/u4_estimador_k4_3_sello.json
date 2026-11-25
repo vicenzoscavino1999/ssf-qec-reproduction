@@ -1,0 +1,9 @@
+{
+ "archivo": "u4_estimador_k4_3.json",
+ "sha256": "8fe8b175c5c1029c20e9220883df483bbb8020c2c18d1353ff25334723ebe6bd",
+ "sellado": "2026-11-12T15:57:01.633484-05:00",
+ "estimador_sha256": "620f8bea31171c1f2f7b7bd67f2415a2350018fb79cf1ab32f342bba893546b2",
+ "status": "PASS",
+ "kmax": 4,
+ "k_completados": 4
+}

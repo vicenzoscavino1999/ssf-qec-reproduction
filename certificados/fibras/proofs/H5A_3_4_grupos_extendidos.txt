@@ -1,0 +1,331 @@
+H5-A · Grupos con síndrome extendido e interacciones en G3 para HGP (3,4)
+22 de noviembre de 2026
+
+Se trabaja en p=10⁻⁶, q=10⁻³ con el mismo presupuesto α=.004 y las
+mismas actividades x(r)=r exp(.015)/(1−2r), z=x(p)exp(α), y=x(q) de
+H5A_3_4_sindrome_efectivo.txt. Sean n=|E| y m el número de componentes
+de G[E], donde G es el grafo de lectores entre datos originales. Para un
+ancla v, S(v) es la parte todavía abierta tras aquella nota, es decir,
+la suma de zⁿ||d(E)||_y para E que tocan N_G[v] e incumplen su condición (6).
+El límite suficiente para S(v) es 0.002008.
+
+Aquí se demuestra, uniformemente en v,
+
+  parte de S(v) con Δ(E)≤0 o con n≥9m−8      < 0.001471.                 (1)
+
+La primera condición suma el saldo que pueden aportar los grupos definidos
+en (3). La segunda admite geometría arbitraria. Incluye en particular toda
+configuración con una componente y todas las de dos componentes desde diez
+datos. En ambas se admiten todos los tamaños del código, todas las medidas
+y las interacciones entre los grupos. Para alcanzar G3 basta que el resto
+aporte ≤0.000537 en la misma fila. También hay un criterio directo para
+certificar p=10⁻⁶ con el mismo α. Una cota de 0.001203 para ese
+mismo resto permite cubrir toda la fila de una vez (§5). Ambos siguen abiertos.
+
+Se conservan la semilla binaria de peso de columna 3 y de fila 4 en producto
+consigo misma, una ronda Bernoulli independiente, SSF con todos los candidatos
+FGL, β=1/100, máximo global de descenso por tamaño de huella y desempate
+físico fijo. El filtro exige síndrome físico residual cero. Las marcas de
+signo, los subhosts físicos inducidos, el oráculo y el orden son los del
+manuscrito. El último rectángulo uniforme completo sigue siendo p≤3.25·10⁻⁷,
+q≤10⁻³ para las particiones filtradas. La transferencia a error relativo
+sobre fallo silencioso positivo conserva las hipótesis del Teorema 1.
+
+1. Créditos por cada dato que lee un generador
+==============================================
+
+En una historia aceptada, el síndrome observado pasa de (H_X E)△D a D
+estable. Para una componente A, asignar cada check inicialmente encendido
+de (H_X A) fuera de D a un único dato original cuya franja lo contiene.
+Cada uno debe apagarse por primera vez. Un paso con h luces en una huella
+de v sitios paga δ=2h−v≥1. Si r primeros apagados de un dato de anchura
+b=3 o 4 siguen pendientes, su candidato individual exige rv≤bh. Si ese
+paso registra a de ellos, se pueden cobrar los créditos de los rangos
+r−a+1,…,r. Cuando r=b, hay una franja encendida desde el principio.
+Todos los pasos hasta el actual son perfectos. Cada luz H del ganador
+que no es un primer apagado de las fuentes que lee su rectángulo pertenece
+entonces al D estable. Esta es la comparación del primer contacto empleada
+en las notas previas. Los primeros apagados de un paso pertenecen a un
+solo grupo, pues dos fuentes que lee el mismo rectángulo son vecinas en G.
+
+En cada rectángulo P mirar las intersecciones no vacías R_x=P∩ψ_x de
+las franjas originales con P. Se dicen separadas si, para cada par,
+difieren todas sus coordenadas de fila y también todas las de columna.
+P tiene lectura de una celda por fuente si además |R_x|=1 cuando P lee
+al menos dos fuentes. Con una sola fuente se admiten toda su fila o columna.
+Clasificar cada fuente por todos los rectángulos que la leen. La siguiente
+tabla presenta créditos en sextos de descenso y el techo por fuente,
+también en sextos. Se usa la primera fila aplicable.
+
+       Lectura en todos sus P                     VV         CC           techos VV,CC
+       Separadas, una celda por fuente          2,4,12     2,2,8,12             0,0
+       Separadas                               2,4,8      2,2,7,9              4,4
+       Resto                                   2,3,6      2,2,4,6              7,10
+
+Para verificar cada paso bastan las 25 órbitas de los 771 ganadores posibles
+en P, con empates. Se colocan las máscaras de primeros apagados en la fila
+o columna de cada fuente y se recorren sus rangos admisibles. Para fuentes
+separadas se reservan las filas y columnas de las máscaras ya colocadas.
+En la lectura de una celda, con varias fuentes positivas, cada una aporta
+una sola posición. Si hay rango pleno se comprueba que H menos los primeros
+apagados sea estable. En cada caso la suma de créditos es ≤6δ. Las tres
+tablas son crecientes entre clases, entrada a entrada. Por ello un P con
+mejor geometría puede contener fuentes a las que otro P les impone la
+tabla más modesta. En un P sin separación todas sus fuentes reciben la
+tabla ordinaria.
+
+Una fuente de las dos primeras clases tiene franja disjunta de las demás.
+Con r primeros apagados iniciales, su saldo inicial firmado es 2r−b.
+Para el resto, el saldo colectivo es ≤Σr incluso si hay cancelaciones.
+Se resta la suma de créditos desde el rango 1 al inicial y se maximiza
+en r. Así se obtienen los techos de la tabla para cualquier número de
+fuentes. Su suma sobre A, dividida por seis y redondeada hacia abajo,
+es una cota entera del aporte de A al total de pasos lejanos.
+
+Hay una mejora cuando A contiene un solo tipo y sus franjas son disjuntas.
+Supóngase que un P compartido lee una celda por fuente. El eje propio es
+la fila para VV y la columna para CC. Si un P tiene como máximo dos de
+estas celdas por eje propio y una por eje transversal, sirven los créditos
+(3,3,9) y (2,2,6,9), respectivamente. Los techos por fuente son 1/2 y 5/6
+en unidades de descenso. Si los máximos son uno por eje propio y dos por
+transversal, los créditos son (2,3,9) y (3,3,6,9), con techos 2/3 y 1/2.
+Se comprueban, para cada máscara de primeros apagados, las multiplicidades
+en ambos ejes y todas las combinaciones de rangos. Las lecturas de una
+sola fuente se comprueban con su máscara completa. Así también se controlan
+algunos grupos que comparten una coordenada local.
+
+Por ejemplo, tomar la semilla con variables (x,y) módulo cuatro y checks
+las doce rectas de las tres familias y=t, x=t, y−x=t. Cada variable tiene
+grado tres y cada check grado cuatro. Considerar tres CC cuyas primeras
+coordenadas son las horizontales y=0,1,2 y cuyas segundas coordenadas son,
+respectivamente, una horizontal, una vertical y una diagonal por (0,0).
+Su síndrome tiene doce checks, rebasa un generador y es conexo en L.
+Todo P compartido entre las tres franjas tiene intersecciones de una
+celda en filas y columnas distintas. El saldo del grupo es ≤0. Si en las
+segundas coordenadas se repite la horizontal dos veces y se usa la vertical
+para la tercera, el techo es ⌊3·5/6⌋=2.
+
+Los dos ejemplos pertenecían al complemento de v8. Un parche que lee
+varias franjas tiene descuento g=0 en estas formas. En una franja CC
+completa g=8 y en cualquiera de sus partes propias g≤3. Para los parches
+de una franja, la suma de sus pesos factibles es ≤1 por un P que la
+contiene. Un P central toca las tres franjas, de modo que los pesos de
+los tres parches completos suman ≤1. El descuento fraccionario total es
+por ello ≤3·3+(8−3)=14. El techo (5) de v8 vale al menos
+⌊(24−14)/3⌋=3. El ejemplo distingue efectivamente las clases. La
+demostración por créditos se hizo en el generador universal y vale para
+todo host y toda cardinalidad.
+
+2. Grupos que comparten una coordenada física
+============================================
+
+Para cada ganador local y cada fila o columna L₀ de su rectángulo se
+comprueba 2|H fuera de L₀|−|φ fuera de L₀|≥0. Por tanto el peso observado
+fuera de cualquier fila o columna global no aumenta durante una corrida.
+Si todo el síndrome físico original está en una línea L₀, la configuración
+inicial y la terminal coinciden fuera de ella. La suma de los descensos
+exteriores es cero, por lo que cada paso tiene descenso exterior cero.
+Todo paso toca L₀, ya que, si la evita, su descenso exterior sería δ≥1.
+Esto incluye los fondos de medida estables permitidos por el filtro.
+
+Si todo A consta de VV en la misma fila de síndrome o de CC en la misma
+columna, todos los primeros apagados están en una línea. En esa línea se
+pueden usar los créditos (3,3,6) para VV y (3,3,4,6) para CC. Se permiten
+todos los repartos disjuntos entre fuentes sobre esa línea. Con la cota
+inicial Σr y el mismo test de prefijo perfecto se obtiene k≤n_A para
+VV y k≤⌊4 n_A/3⌋ para CC, donde n_A=|A|. En los tríos de CC alineados
+sirve además k≤3 al recorrer las relaciones 0,3,4 de la nota de medidas
+aisladas. Para la otra coordenada física común se usan los techos
+⌊7n_A/6⌋ o ⌊10n_A/6⌋ de aquella nota, con 3 y 4 para los tríos.
+
+Llamaremos aquí alineada a una componente que consta de datos de un
+mismo tipo y coincide en alguna de las dos coordenadas físicas. Para
+cada dirección, los grados abiertos disponibles para colocar un vecino
+en un árbol interno son
+
+                  línea de síndrome       otra coordenada común
+         VV               63                         9
+         CC               56                         8.
+
+En la primera dirección se permiten cuatro pasos Tanner en la coordenada
+libre, en la segunda dos. Son las bolas de cada factor con el origen
+retirado. Con un dato de A fijado, el número de posiciones de n_A≥2 es
+≤C_d(n_A)=n_A^(n_A−2)d^(n_A−1)/(n_A−1)! por la fórmula de árboles
+etiquetados de Cayley. En la marca física de un generador lejano para un
+núcleo con A como único grupo, el párrafo inicial restringe también las
+posiciones de llegada. En f_i(k) de v7 se sustituye la primera bola por
+4 en VV de fila común, o la segunda por 3 en CC de columna común.
+En efecto, un rectángulo de generador fijado sólo tiene esas posiciones
+para la línea que debe tocar. En la otra dirección se conserva f_i(k).
+
+3. Compensar saldos entre grupos dentro del cumulante
+======================================================
+
+Para un grupo A de tres o más datos, tomar k(A) como el menor del κ(A)
+de v8 y los techos enteros aplicables de §§1–2. Todos mayoran el saldo
+firmado cercano de A en cualquier historia. Sea T(A)=⌊2|A|/3⌋ y sea
+
+  j(A) = máx(−1,k(A)−T(A))                         para A sin alineación,
+  j(A) = mín(0,máx(−1,k(A)−T(A)))                  para A alineada,
+  Δ(E) = suma de j(A) sobre las componentes de tamaño al menos tres.     (3)
+
+Las parejas conservan sus cuatro filas geométricas de v8. El aislado
+excepcional conserva el crédito por primer contacto. En la partición
+formal, dar radio t_A=Y^j(A) a la variable de cada grupo de tres o más
+y radio uno a los grupos menores. Las variables de grupos son exactamente
+las de H5A_3_4_fondo_pasivo.txt, §4. Como los datos de núcleos compatibles
+son G-separados, en el logaritmo el coeficiente sin repetición de los
+grupos de E adquiere el factor Y^Δ(E). Para Δ(E)≤0 este factor es ≥1.
+La compensación se aplica al coeficiente completo y conserva las
+subhistorias que entran en el cumulante.
+
+Usar Y=1/50, s=.9999, b=.001174 y η=.0001. Para el árbol enraizado en
+un dato, el precio ordinario t_A Y^(−k) es ≤Y^(−T), salvo la exención
+de saldo positivo de los grupos alineados. Para la marca física, fijar
+el generador lejano g y usar las bolas crecientes B_i(l) del §5 de la
+nota de propagación. Su volumen en el recubrimiento es f_i(l), con
+f_i(0)=0. Un dato que entra por primera vez en la capa l requiere l≤k
+en el recuento de un único grupo que llega a g. Cada posición nueva en
+el host tiene una preimagen en la capa correspondiente del recubrimiento,
+pues su preimagen no podría estar en una bola más pequeña.
+
+Para n_A entre tres y diez y a composición (n_V,n_C) fija, sea C_i(l)
+una cota uniforme, con un dato de tipo i fijado, del número de grupos
+con presupuesto suficiente para llegar a esa capa. Sirve el número total
+de árboles enraizados. Para los grados tres y cuatro se toma el menor
+con la suma, en los histogramas anteriores, de las multiplicidades con
+techo de alcance ≥l. Para tres se usa también el histograma por los
+tres pares de datos. En la nota de contacto se puede elegir un árbol
+que conecte internamente cada bloque fuerte. Las multiplicidades de
+esos árboles dominan los grupos que precisan cada alcance. Por tanto
+el precio físico de base, sumado sobre los grupos, es a lo sumo
+
+   Σ_l C_i(l) [f_i(l)−f_i(l−1)] mín(50,Y^(l−T)),
+                     1≤l≤⌊(7n_V+10n_C)/6⌋.                           (4)
+
+En efecto, la marca provisional Y^máx(−1,k−T) es decreciente en k y
+k≥l. Se cuenta cada posible posición del dato por su capa mínima y
+luego las configuraciones con el dato en esa posición. Las decisiones
+sobre el alcance del grupo pueden así variar entre posiciones.
+
+Por cada dirección alineada de grado d y techo k_d>T, añadir al precio
+ordinario C_d(n_A)[Y^(−k_d)−Y^(−T)]. En el precio físico, la exención
+en (3) da peso uno. Las capas hasta T ya reciben peso al menos uno en
+(4). Las posiciones adicionales dentro de la bola de k_d cuestan a lo
+sumo C_d(n_A)[f_d(k_d)−f_d(T)]. Aquí f_d es f_i para la otra coordenada
+común y la bola con el factor fijo 4 o 3 del §2 para la línea de
+síndrome. Para esta última, en cada capa no vacía la coordenada de la
+línea ya pertenece a la primera bola. Sólo crece la otra coordenada.
+La diferencia cuenta capas nuevas del mismo recubrimiento. Estas
+adiciones para grupos alineados son innecesarias cuando k_d≤T.
+Las colas ordinarias desde once se tratan antes de introducir las marcas
+de ramas físicas. Para todos los árboles usar c=13.58, con
+c³≥Y⁻², y sustraer sus primeros diez grados exactos a pesos congelados.
+Añadir las dos colas alineadas con precios por dato (50,96) para VV y
+(185,679) para CC. Dado el peso w_i y el precio c_d, la razón entre
+términos sucesivos de C_d(n)(c_d w_i)^n es ≤exp(1)d c_d w_i<1.
+Multiplicar el término de once por la suma geométrica mayorante basta.
+
+Las dos sustracciones de ramas con y sin hijos exteriores son las del §5
+de H5A_3_4_propagacion_lejana.txt. En el término de un único grupo
+conexo, sin precio geométrico, las marcas t_A para n_A≥3 pueden costar
+50. Si x_i≥m_i exp((Nx)_i) y U₂=m_i(exp((Nx)_i)−1), usar
+U₂+49[U₂−m_i(Nm)_i]. Se retira el grado dos exacto antes de multiplicar
+la cola a partir de tres. Este detalle también cubre los grupos que
+aportan una unidad a la compensación. La fijación de los sitios pasivos
+y el recuento de medidas activas son los mismos de v7/v8.
+
+4. Quitar el término de un solo dato de ambas filas auxiliares
+==============================================================
+
+La prueba por fijación retira los núcleos c cuyo dato original toca el
+ancla. El cambio del logaritmo en cada retirada tiene norma ≤b_c. Antes
+de sustituir las variables físicas puede usarse una variable independiente
+por especie nuclear y por sitio pasivo. En ese álgebra, el monomio de
+grado uno de un núcleo simple, sin otras especies, tiene módulo exactamente
+|w_c|. En efecto, al anular las demás variables sólo queda 1+w_c,
+y la configuración de ese núcleo se admite por sí sola. Las retiradas
+anteriores de otras especies preservan la configuración vacía que lo
+acompaña. La sustitución física de ese monomio contiene un único dato.
+Para cualquier clase con al menos tres datos se puede acotar lo que
+aporta esta retirada por b_c−|w_c|. La proyección se hace antes de tomar
+la mayoración universal en el host.
+
+Para un dato fijo de tipo i, la cota previa de los núcleos simples es
+S_i=W_i Z_i, siendo Z_i=z_aux(1+y)^(3+i) veces la marca de grupo del
+singleton y W_i el factor exponencial de fijación. La cota de los
+restos es (W_i−1) Z_i. Esto sigue de b_c≤W_i |w_c| y de que para un
+D activo en la franja hay a lo sumo un núcleo simple. La estimación vale
+aunque J o el desempate admitan menos núcleos. Así, si U_i≥S_i+H_i*
+es el testigo, se puede sustituir U_i por U_i−Z_i en la proyección.
+El verificador usa la cota inferior
+exp(.019)≥1+.019+.019²/2 junto con (1+y)^(3+i)≥(1+q)^(3+i).
+
+Aplicada a (3), la fila auxiliar completa es <.001992. La contribución
+de la clase de S(v) con Δ(E)≤0 queda por debajo de .000666.
+
+5. Muchas fuentes por componente, para cualquier geometría
+============================================================
+
+Repetir el cálculo completo de v8 en G3 con marca 4^(|A|−9) para
+cada componente, incluidas las menores. El peso por dato recibe un
+factor 4 y cada grupo enraizado, uno de 4⁻⁹. Así, una configuración
+E recibe exactamente 4^(n−9m) también en su cumulante. Se usan a=2/3,
+Y=a⁶, s=.3, b=.00117 y η=.0001. Los pesos geométricos satisfacen
+Y/s²<1 y 36Ys<1. Permanecen todos los polinomios ordinarios y físicos de
+v8, incluidos los grados uno y dos. Para la cola de once o más se usan
+las dos ramas de aristas débiles y fuertes con sus coeficientes exactos
+hasta diez, antes de aplicar el factor 4⁻⁹ al grupo.
+
+El testigo completo da una fila <3.253·10⁻⁸. Al retirar los términos
+simples de §4 se obtiene <1.22907·10⁻⁸. Si n≥9m−8, se puede dividir
+por la marca a coste ≤4⁸. Esta parte de S(v) queda por debajo de
+.000806 sin condición sobre saldos, tipos o posición de los grupos.
+
+El verificador usa los valores racionales de los dos testigos, antes de
+redondear las contribuciones. Redondeando cada mayorante proyectado hacia arriba, su suma queda en
+
+                0.000665076346 + 0.000805478463 < 0.001471.
+
+Sumarlos cubre su unión aunque haya intersección. El resto de S(v)
+exige simultáneamente Δ(E)≥1 y n≤9m−9. Por tanto contiene al menos
+dos componentes y algún grupo de tres o más datos, sin una coordenada
+física común de las consideradas, cuyo techo actual supera T(A).
+En un E con dos componentes sólo quedan por tratar así los que tienen
+a lo sumo nueve datos entre ambas. Con tres o más componentes el
+resto permite cardinalidades arbitrarias.
+
+También puede acotarse la fila completa sin volver a sumar la clase
+previa de v8. En efecto, la condición (6) de v8 implica k(A)≤T(A)
+para cada A de tres o más datos y, por tanto, Δ(E)≤0. Más directamente,
+el testigo de §3 antes de la proyección cubre todos los E con Δ(E)≤0,
+incluidos los de uno o dos datos. Para los E con Δ(E)>0 y n≥9m−8 se
+usa la fila proyectada de densidad, pues contienen al menos tres datos.
+La parte cubierta de la fila completa tiene así el mayorante
+
+             0.001991450116 + 0.000805478463 < 0.00279693.
+
+Si la contribución del mismo resto es ≤0.001203, la suma total es
+<0.004 y se obtiene el extremo p=10⁻⁶ con q=10⁻³. La cifra 0.000537
+anterior sirve para la cuestión más específica de verificar la cota
+separada 0.002008 del complemento de v8. Ninguna de esas dos condiciones
+sobre el resto se ha verificado.
+
+Para contrastar un intento de cerrar ese resto sin distinguir geometría,
+cobrar 5/3 por cada CC y darle a cada uno las 513 continuaciones del
+árbol ordinario exigiría d≥p exp(.628) Y^(−5/3) exp(513d) en la
+geometría de §3, por la cota mínima del peso de datos de v7. Pero
+máx d exp(−513d)=1/(513 exp(1)) y el lado exigido es mayor. Esta
+incompatibilidad afecta a ese mayorante. La contribución física del
+resto todavía carece de una cota suficiente para G3.
+
+Reproducción desde 05_COMPROBACIONES con Python 3.10 o posterior
+
+    python -I -B -X utf8 verificar_H5A_3_4_grupos_extendidos.py
+
+El cálculo incluye todos los empates y verifica las desigualdades con
+enteros y fracciones. Los decimales impresos resumen esas fracciones.
+La derivación matemática está pendiente de revisión independiente.
+El antecedente del argumento de fijación aparece en Scott y Sokal,
+The repulsive lattice gas, the independent-set polynomial, and the Lovász
+local lemma (https://arxiv.org/abs/cond-mat/0309352).
