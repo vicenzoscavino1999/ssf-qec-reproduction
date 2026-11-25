@@ -1,8 +1,14 @@
 """Exact rational bounds on the total Bernoulli probability, including every source weight."""
-from decimal import Decimal,localcontext,ROUND_FLOOR,ROUND_CEILING
+from decimal import Decimal, localcontext, ROUND_FLOOR, ROUND_CEILING, ROUND_HALF_EVEN
 from fractions import Fraction as Q
 from math import comb
-from mayorante import false_perfect,no_perfect
+from pathlib import Path
+import json
+
+if __package__:
+    from .mayorante import false_perfect, no_perfect
+else:
+    from mayorante import false_perfect, no_perfect
 
 
 def render(x,direction=ROUND_CEILING):
@@ -10,6 +16,36 @@ def render(x,direction=ROUND_CEILING):
         ctx.prec=15
         ctx.rounding=direction
         return str(Decimal(x.numerator)/Decimal(x.denominator))
+
+
+def regional_interval(qubits, p, q):
+    """Corollary 6 for the paper's two Bernoulli codes, using rational rates."""
+    remainder = {225: Q(".0180"), 900: Q(".1728")}
+    if qubits not in remainder:
+        raise ValueError("Choose the 225- or 900-qubit code.")
+    if not 0 <= q <= Q(1, 10_000) or not 0 <= p < Q(1, 2):
+        raise ValueError("The query requires 0 <= q <= 1e-4 and 0 <= p < 1/2.")
+    if p == 0:
+        return {"lower": "0", "upper": "0", "estimate": "0", "max_relative_percent": None}
+    # Cross-multiplication also excludes q=0 when p>0.
+    if p * (1 - q) > Q(9999, 999999) * q * (1 - p):
+        raise ValueError("Outside Corollary 6. For p > 0, require q > 0 and "
+                         "(p/(1-p))/(q/(1-q)) <= 9999/999999.")
+
+    reference = Path(__file__).resolve().parent / "referencia" / f"resultado_{qubits}.json"
+    data = json.loads(reference.read_text(encoding="utf-8-sig"))
+    checks = data["geometry"]["checks"]
+    count = data["interval"]["positive_census"]["2,1"]
+    rho = remainder[qubits]
+    t21 = count * p**2 * q * (1 - p)**(qubits - 2) * (1 - q)**(checks - 1)
+    lower = render(t21, ROUND_FLOOR)
+    upper = render(t21 * (1 + rho), ROUND_CEILING)
+    estimate = render(t21 * 2 * (1 + rho) / (2 + rho), ROUND_HALF_EVEN)
+    # Certify the printed estimate against both outward-rounded endpoints.
+    point = Q(estimate)
+    error = max(point / Q(lower) - 1, 1 - point / Q(upper))
+    return {"lower": lower, "upper": upper, "estimate": estimate,
+            "max_relative_percent": render(100 * error, ROUND_CEILING)}
 
 
 def certificate(meta, counts, exceptional):

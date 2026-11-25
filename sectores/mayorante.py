@@ -3,7 +3,10 @@ from fractions import Fraction as Q
 from functools import lru_cache
 from itertools import product
 from math import comb
-from modelo import bits,mask
+if __package__:
+    from .modelo import bits, mask
+else:
+    from modelo import bits, mask
 
 
 def choose(n,k):

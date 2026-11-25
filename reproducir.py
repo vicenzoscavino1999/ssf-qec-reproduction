@@ -1,4 +1,5 @@
 """Reproducción de Silent logical failure in small-set-flip decoding, versión limpia."""
+from fractions import Fraction
 from pathlib import Path
 import argparse
 import hashlib
@@ -21,7 +22,7 @@ STRIPS = ROOT / "tiras"
 WORK = STRIPS / "workspace"
 PILOT61 = "T2_2_PILOTO_M6_EJECUCION_20261115/corrida"
 CODE61 = WORK / "T2_2_CODIGO_PILOTO_20261115"
-ACTIONS = ("rapido","tasas","f17","sectores","piloto","path25","comparaciones",
+ACTIONS = ("rapido","tasas","f17","sectores","regional","piloto","marca-tasas","marca-circuito","path25","comparaciones",
            "splitting-225","dss-225","splitting-61","tiras-1","tiras-2","catalogos","pdf")
 
 def read(path):
@@ -67,6 +68,7 @@ def run(action, out, previous):
     def py(script, *args, cwd=None):
         execute(script.stem, [*python, script, *args], cwd or script.parent)
 
+    flag_pilot = ROOT/"sectores/flag_rates/run_pilot.py"
     if action=="rapido":
         integrity()
         py(ROOT/"calculos_del_articulo.py")
@@ -74,13 +76,15 @@ def run(action, out, previous):
         py(CERT/"cero/H5A_limite_del_10_por_ciento.py")
         py(CERT/"fibras/verify_fibres.py")
         py(COMP/DSS/"comprobar_tabla.py")
+        py(flag_pilot, ROOT, "--output", out/"marca-tasas.json")
         summary = read(out/logs[0])
         for size, record in summary["Bernoulli"].items():
             lo, hi = record["P_sil"]
             print(f"  {size} cúbits: P_sil en [{lo}, {hi}]",flush=True)
+        print("  Figura 1: ambas trayectorias de SSF reproducidas.",flush=True)
         strips = read(out/"tablas_tiras/POSTPROCESSING.json")
-        print(f"  Tiras: {strips['circuit_rows']} filas. Figuras 4–6: "
-              f"{summary['coordenadas_cotejadas_figuras_4_5_6']} valores cotejados.",flush=True)
+        print(f"  Tiras: {strips['circuit_rows']} filas. Figuras 5–7: "
+              f"{summary['coordenadas_cotejadas']} valores cotejados.",flush=True)
     elif action=="tasas":
         py(CERT/"f17/verify.py")
         for name in ("verify_first_contact","verify_fibres","verificar_FASE5_circuito_propagacion",
@@ -103,6 +107,12 @@ def run(action, out, previous):
         local = Path(shutil.copytree(ROOT/"sectores",out/"codigo"))
         py(local/"reproducir.py","--out",out/"censo")
         py(local/"contrastar.py",out/"censo",ROOT/"sectores/referencia")
+    elif action=="marca-tasas":
+        py(flag_pilot, ROOT, "--recount", "--output", out/"marca-tasas.json")
+    elif action=="marca-circuito":
+        result = out/"marca-circuito.json"
+        py(flag_pilot.with_name("circuit_flag.py"), ROOT, "--output", result)
+        scientific_equal(result, flag_pilot.with_name("circuit-flag.json"))
     elif action=="piloto":
         name = "piloto_HGP_225_esquinas_20261124.json"
         local = out/"piloto"
@@ -177,6 +187,10 @@ def main():
     parser.add_argument("accion",choices=ACTIONS,nargs="?",default="rapido")
     parser.add_argument("--salida",type=Path,help="Carpeta nueva para este bloque. Por defecto fuera del paquete.")
     parser.add_argument("--previa",type=Path,help="Carpeta de salida del bloque tiras-1.")
+    rates = parser.add_argument_group("regional", "Bernoulli interval on the two published codes")
+    rates.add_argument("--qubits", type=int, choices=(225, 900), help="Code size for regional.")
+    rates.add_argument("--p", metavar="RATE", help="Independent data fault probability.")
+    rates.add_argument("--q", metavar="RATE", help="Independent readout fault probability.")
     args = parser.parse_args()
     if sys.version_info<(3,12) or sys.maxsize<=2**32 or not __debug__:
         parser.error("Se requiere Python 3.12+ de 64 bits con las aserciones activas.")
@@ -186,6 +200,22 @@ def main():
         parser.error("--previa se requiere exclusivamente para tiras-2.")
     if args.previa and not (args.previa/"calculo/LECTURA_T2_1_C1.json").is_file():
         parser.error("La corrida previa debe contener calculo/LECTURA_T2_1_C1.json.")
+    regional = None
+    if args.accion == "regional":
+        from sectores.intervalo import regional_interval
+        if args.qubits is None or args.p is None or args.q is None:
+            parser.error("regional requires --qubits, --p and --q.")
+        try:
+            p, q = Fraction(args.p), Fraction(args.q)
+        except (ValueError, ZeroDivisionError):
+            parser.error("Enter --p and --q as decimals, scientific notation or rational fractions.")
+        try:
+            bounds = regional_interval(args.qubits, p, q)
+        except ValueError as err:
+            parser.error(str(err))
+        regional = {"qubits": args.qubits, "p": args.p, "q": args.q, **bounds}
+    elif any(value is not None for value in (args.qubits, args.p, args.q)):
+        parser.error("--qubits, --p and --q apply only to regional.")
     if args.salida:
         out=args.salida.resolve()
         if out.is_relative_to(ROOT):
@@ -201,7 +231,11 @@ def main():
     start=time.monotonic()
     result={"accion":args.accion, "python":platform.python_version(), "plataforma":platform.platform()}
     try:
-        result["registros"]=run(args.accion,out,args.previa.resolve() if args.previa else None)
+        if regional is None:
+            result["registros"]=run(args.accion,out,args.previa.resolve() if args.previa else None)
+        else:
+            result["regional"] = regional
+            print(json.dumps(regional, indent=2))
         result["estado"]="OK"
     except KeyboardInterrupt:
         result.update(estado="INTERRUMPIDO", detalle="Interrumpido por el usuario.")

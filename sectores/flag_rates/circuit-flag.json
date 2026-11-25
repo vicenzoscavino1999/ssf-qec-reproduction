@@ -1,0 +1,165 @@
+{
+  "code": "[[225,9,6]]",
+  "observed_masks": 1575,
+  "nonzero_fibre_labels": 2331,
+  "distinct_observed_masks_flagged": 756,
+  "distinct_mask_pairs_tested": 1239525,
+  "distinct_mask_pairs_flagged": 1118556,
+  "pure_readout_triples": 204156,
+  "pure_readout_triples_flagged": 51732,
+  "silent_data_triples_without_offset": 36,
+  "rows": [
+    {
+      "order": "VV first",
+      "rc": "1.005e-7",
+      "rm": "1e-3",
+      "unfiltered_deterministic_lower": "7.26514602427751E-15",
+      "discards_per_million": [
+        "4.634692079599E+2",
+        "4.689949820287E+2"
+      ],
+      "unflagged_joint": [
+        "1.343276241177E-19",
+        "1.409157719576E-19"
+      ],
+      "risk_per_retained_round": [
+        "1.343899097027E-19",
+        "1.409818917574E-19"
+      ],
+      "gain_lower": "5.153247650260E+4"
+    },
+    {
+      "order": "CC first",
+      "rc": "9.18e-8",
+      "rm": "1e-3",
+      "unfiltered_deterministic_lower": "2.19681587444965E-14",
+      "discards_per_million": [
+        "4.625044132735E+2",
+        "4.680074104887E+2"
+      ],
+      "unflagged_joint": [
+        "6.996860662167E-19",
+        "7.042004577211E-19"
+      ],
+      "risk_per_retained_round": [
+        "7.000098238496E-19",
+        "7.045301830676E-19"
+      ],
+      "gain_lower": "3.118128828611E+4"
+    },
+    {
+      "order": "VV first",
+      "rc": "1.85e-7",
+      "rm": "1e-4",
+      "unfiltered_deterministic_lower": "2.51974762121357E-15",
+      "discards_per_million": [
+        "4.929385529244E+1",
+        "4.930627140970E+1"
+      ],
+      "unflagged_joint": [
+        "9.216251925157E-19",
+        "1.008803112642E-18"
+      ],
+      "risk_per_retained_round": [
+        "9.216706252141E-19",
+        "1.008852855415E-18"
+      ],
+      "gain_lower": "2.497636407223E+3"
+    },
+    {
+      "order": "CC first",
+      "rc": "1.68e-7",
+      "rm": "1e-4",
+      "unfiltered_deterministic_lower": "7.52058569587213E-15",
+      "discards_per_million": [
+        "4.755655515324E+1",
+        "4.756843402578E+1"
+      ],
+      "unflagged_joint": [
+        "4.720433480622E-18",
+        "4.778142337777E-18"
+      ],
+      "risk_per_retained_round": [
+        "4.720657978853E-18",
+        "4.778369637338E-18"
+      ],
+      "gain_lower": "1.573881107293E+3"
+    },
+    {
+      "order": "VV first",
+      "rc": "1.975e-7",
+      "rm": "1e-5",
+      "unfiltered_deterministic_lower": "3.25116839944075E-16",
+      "discards_per_million": [
+        "4.716111254376E+1",
+        "4.716128098528E+1"
+      ],
+      "unflagged_joint": [
+        "1.132065840865E-18",
+        "1.247518566869E-18"
+      ],
+      "risk_per_retained_round": [
+        "1.132119232868E-18",
+        "1.247577404218E-18"
+      ],
+      "gain_lower": "2.605985318787E+2"
+    },
+    {
+      "order": "CC first",
+      "rc": "1.781e-7",
+      "rm": "1e-5",
+      "unfiltered_deterministic_lower": "9.41547001503879E-16",
+      "discards_per_million": [
+        "4.503055636744E+1",
+        "4.503071324367E+1"
+      ],
+      "unflagged_joint": [
+        "5.678180929231E-18",
+        "5.752253718433E-18"
+      ],
+      "risk_per_retained_round": [
+        "5.678436632392E-18",
+        "5.752512758185E-18"
+      ],
+      "gain_lower": "1.636757780613E+2"
+    },
+    {
+      "order": "VV first",
+      "rc": "2.00e-7",
+      "rm": "1e-5",
+      "unfiltered_deterministic_lower": "3.33938803357307E-16",
+      "discards_per_million": [
+        "4.775770396627E+1",
+        "4.775787516070E+1"
+      ],
+      "unflagged_joint": [
+        "1.175595536614E-18",
+        "1.297471936700E-18"
+      ],
+      "risk_per_retained_round": [
+        "1.175651683039E-18",
+        "1.297533904162E-18"
+      ],
+      "gain_lower": "2.573642216872E+2"
+    },
+    {
+      "order": "CC first",
+      "rc": "1.803e-7",
+      "rm": "1e-5",
+      "unfiltered_deterministic_lower": "9.66286195610492E-16",
+      "discards_per_million": [
+        "4.558640661479E+1",
+        "4.558656595893E+1"
+      ],
+      "unflagged_joint": [
+        "5.891182742002E-18",
+        "5.969254746883E-18"
+      ],
+      "risk_per_retained_round": [
+        "5.891451312097E-18",
+        "5.969526877114E-18"
+      ],
+      "gain_lower": "1.618698123824E+2"
+    }
+  ]
+}

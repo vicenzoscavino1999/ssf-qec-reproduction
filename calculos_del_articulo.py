@@ -28,7 +28,7 @@ def exp_lower(x):
 
 def finite_codes():
     sys.path.insert(0, str(SECTORES))
-    from intervalo import certificate
+    from intervalo import certificate, regional_interval
     p, q = F("1e-6"), F("1e-4")
     results = {}
     for n, m, c, cuts, lower, upper, static_limit in [
@@ -42,13 +42,79 @@ def finite_codes():
         fresh = certificate(data["geometry"], counts, stored["first_step_exceptional_triples"])
         assert fresh == stored
         assert F(lower) <= F(fresh["lower"]) <= F(fresh["upper"]) <= F(upper)
+        regional = regional_interval(n, p, q)
+        t21 = c*p**2*q*(1-p)**(n-2)*(1-q)**(m-1)
+        if n == 225:
+            pilot = read(COMPARACIONES / "piloto_HGP_225_esquinas_20261124.json")
+            cap = next(F(row["U"]) for row in pilot["Bernoulli"] if (F(row["p"]), F(row["q"])) == (p, q))
+        else:
+            cap = F(fresh["upper"])
+        rho, share, target = (F(".0180"), F("98.23"), F(".90")) if n == 225 else (F(".1728"), F("85.26"), F(8))
+        assert F(regional["lower"]) <= t21 <= cap <= (1+rho)*t21 <= F(regional["upper"])
+        assert 100/(1+rho) >= share and F(regional["max_relative_percent"]) < target
         witness = 1/(1+((1-p)/p)**6)
         sector = c*p*p*q*(1-(n-2)*p-(m-1)*q)
         for order, mass in zip(cuts, [witness,sector]):
             assert exp_lower(F(".015")*(order+1))*mass > 5120*(n+m)
         assert comb(n,6)*p**6 / F(lower) < F(static_limit)
-        results[str(n)] = {"P_sil": [fresh["lower"],fresh["upper"]], "C21": c,
+        results[str(n)] = {"P_sil": [fresh["lower"],fresh["upper"]], "C21": c, "regional": regional,
                           "cortes_suficientes": cuts, "fraccion_sin_flip_menor_que": static_limit}
+    return results
+
+def opening_figure():
+    """Replay both Figure 1 inputs with the paper's complete FGL family."""
+    from itertools import combinations
+
+    audit = runpy.run_path(str(COMPARACIONES / "auditar_esquinas_HGP_225.py"))
+    _, checks, generators = audit["incidence"]()
+    tags, decode, _ = audit["decoder"](checks, generators)
+    xor_sum, mask, sites = audit["bit_sum"], audit["mask"], audit["positions"]
+
+    candidates = set()
+    for generator in generators:
+        for weight in range(1, len(generator) + 1):
+            for qubits in combinations(generator, weight):
+                footprint = xor_sum(checks[v] for v in qubits)
+                if 2 * footprint.bit_count() >= 3 * weight:
+                    candidates.add((footprint, weight, mask(qubits)))
+
+    # Rows v0..v2 intersect columns v3..v5 at the checks drawn in panel (a).
+    grid = [[list(sites(checks[row] & checks[col])) for col in (3, 4, 5)]
+            for row in (0, 1, 2)]
+    assert grid == [[[0], [6], [3]], [[4], [1], [7]], [[8], [5], [2]]]
+    data = mask((3, 4))
+    physical = checks[3] ^ checks[4]
+    assert list(sites(physical)) == [0, 1, 4, 5, 6, 8]
+    tex = next((ROOT / "manuscrito").glob("*.tex")).read_text(encoding="utf-8")
+    end = tex.index(r"\label{fig:affine-trace}")
+    figure = tex[tex.rindex(r"\begin{figure}", 0, end):end]
+    results = {}
+    for label, discrepancy, expected in (("correct", 0, [3, 4]), ("inverted", 1 << 2, [2, 0, 1, 5])):
+        observed = physical ^ discrepancy
+        residual, syndrome = data, observed
+        flips = []
+        while True:
+            # Global maximum score, then largest action, then smallest physical mask.
+            score, _, neg_action, footprint = max(
+                (F(2 * (syndrome & phi).bit_count(), phi.bit_count()) - 1, weight, -action, phi)
+                for phi, weight, action in candidates
+            )
+            if score < F(1, 100):
+                break
+            action = -neg_action
+            flips.append(list(sites(action)))
+            residual ^= action
+            syndrome ^= footprint
+
+        assert flips == [[v] for v in expected]
+        assert "$" + r"\to ".join(f"v_{v}" for v in expected) + "$" in figure
+        assert list(sites(residual)) == (list(range(6)) if discrepancy else [])
+        assert syndrome == discrepancy and xor_sum(checks[v] for v in sites(residual)) == 0
+        logical_tag = xor_sum(tags[v] for v in sites(residual))
+        assert bool(logical_tag) == bool(discrepancy)
+        assert decode(observed) == (syndrome, xor_sum(tags[v] for v in sites(data ^ residual)))
+        results[label] = {"flips": flips, "residual": list(sites(residual)),
+                          "recorded_checks": list(sites(syndrome)), "logical_X": bool(logical_tag)}
     return results
 
 def affine_17():
@@ -161,7 +227,9 @@ if __name__ == "__main__":
     if not __debug__:
         raise SystemExit("Use Python con las aserciones activas.")
     sys.set_int_max_str_digits(100000)
+    coordinates = plot_coordinates()
     data = {"Bernoulli":finite_codes(), "F17":affine_17(), "splitting":comparisons(),
-            "coordenadas_cotejadas_figuras_4_5_6":plot_coordinates()}
+            "opening_figure":opening_figure(), "coordenadas_cotejadas":coordinates,
+            "coordenadas_cotejadas_figuras_4_5_6":coordinates}  # Zenodo v2 field name
     print(json.dumps(data, indent=2))
 
