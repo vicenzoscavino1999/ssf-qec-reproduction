@@ -1,7 +1,7 @@
 T2-1 -- COMPLETE REPRODUCTION MATERIALS
 16 November 2026
 
-START HERE / LEER PRIMERO
+START HERE
 
 This release adds the production dependencies and all 1,412 catalogue
 shards to the compact strip-table release. It covers T2-1 (both circuit
@@ -133,11 +133,3 @@ Historical absolute paths occur in reports, metadata and an unused helper
 in rect.py. The supported entry points use the bundled relative paths.
 Do not run archived administrative scripts; none are included as entry
 points. No protected manuscript, result or project-control file is changed.
-
-RESUMEN EN ESPANOL
-
-El paquete incluye los catalogos completos, las dependencias y las dos
-corridas guardadas. "integrity", "tables" y "verify-recorded" no repiten
-experimentos. Los comandos de produccion quedan preparados para otro
-momento y requieren --execute-production. T2-2 queda fuera. La comprobacion
-de portabilidad de esta entrega no equivale a una nueva corrida cientifica.

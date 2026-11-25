@@ -8,8 +8,8 @@
     },
     {
       "path": "README.txt",
-      "bytes": 7538,
-      "sha256": "5571a0998db1247cfb25bee364bca5d69c126a1a3f3289627e16df8f503a57b7"
+      "bytes": 7137,
+      "sha256": "33524d134e1bab1c2106a8d480128ee37d79bcdac5b66289af0be0228c664af7"
     },
     {
       "path": "reproduce.py",

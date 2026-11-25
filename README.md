@@ -2,7 +2,7 @@
 
 Reproduction code and numerical certificates for the paper by Vicenzo Scavino Alfaro. The complete archive, including the 1,412 binary strip-catalog fragments, is available on Zenodo.
 
-[Paper (PDF)](manuscrito/Silent_logical_failure_in_small_set_flip_decoding.pdf) · [Reproduction guide in Spanish](LEEME.md) · [Archived release on Zenodo](https://doi.org/10.5281/zenodo.24520836)
+[Paper (PDF)](manuscrito/Silent_logical_failure_in_small_set_flip_decoding.pdf) · [Reproduction guide](REPRODUCTION.md) · [Archived release on Zenodo](https://doi.org/10.5281/zenodo.24521353)
 
 ## Run the quick check
 
@@ -14,7 +14,7 @@ cd ssf-qec-reproduction
 python reproducir.py rapido
 ```
 
-On Windows, `py -3.12` also selects Python 3.12. The command verifies the SHA-256 hashes of the 1,382 scientific files in the checkout. It then recomputes the Bernoulli intervals from the archived counts, regenerates 128 strip-table rows and checks 62 numerical values in Figures 4–6. The final line reports `OK` and the path to `resultado.json`.
+On Windows, `py -3.12` also selects Python 3.12. The command verifies the SHA-256 hashes of the 1,383 files in the checkout. It then recomputes the Bernoulli intervals from the archived counts, regenerates 128 strip-table rows and checks 62 numerical values in Figures 4–6. The final line reports `OK` and the path to `resultado.json`.
 
 For Table 2 at `p = 10^-6` and `q = 10^-4`, the deterministic bounds on the silent-failure probability, rounded outward, are
 
@@ -29,10 +29,10 @@ Run `python reproducir.py sectores` to compile the C++17 decoder, build the two 
 
 ## Reproduce the full strip runs
 
-Download the archived ZIP and extract it into an empty directory. From the extracted directory, `python reproducir.py rapido` verifies all 2,795 files in the archive. The guide gives the commands, time and storage requirements for `tiras-1`, `tiras-2` and `catalogos`. The GitHub checkout contains the same scientific source files byte for byte. Its SHA-256 manifest covers the files distributed here. [Download the full ZIP from Zenodo](https://zenodo.org/records/24520836/files/REPRODUCCION_SSF_QEC_20261124.zip?download=1) · [Full reproduction instructions](LEEME.md)
+Download the archived ZIP and extract it into an empty directory. From the extracted directory, `python reproducir.py rapido` verifies all 2,796 files in the archive. The guide gives the commands, time and storage requirements for `tiras-1`, `tiras-2` and `catalogos`. The GitHub checkout contains the same scientific source files byte for byte. Its SHA-256 manifest covers the files distributed here. [Download the full ZIP from Zenodo](https://zenodo.org/records/24521353/files/REPRODUCCION_SSF_QEC_20261124.zip?download=1) · [Full reproduction instructions](REPRODUCTION.md)
 
-The SHA-256 of `REPRODUCCION_SSF_QEC_20261124.zip` is `fcd93ba2a013488593dce01a5b7d0b034beafc1793fd263e4c190d361187bd5d`.
+The SHA-256 of `REPRODUCCION_SSF_QEC_20261124.zip` is `4c4bf3b511714db87015952f4edb0b41100985aee681a513d5ed4412682c174c`.
 
 ## Citation and license
 
-Cite the Zenodo release using DOI **10.5281/zenodo.24520836**. The author's original material is distributed under Creative Commons Attribution 4.0 International. [Citation metadata](CITATION.cff) · [License](LICENSE)
+Cite the Zenodo release using DOI **10.5281/zenodo.24521353**. The author's original material is distributed under Creative Commons Attribution 4.0 International. [Citation metadata](CITATION.cff) · [License](LICENSE)
