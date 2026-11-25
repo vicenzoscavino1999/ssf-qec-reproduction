@@ -75,4 +75,4 @@ The first run took 3.32 h on the reference machine, with a 6.5 h budget. The sec
 | `PATH25_VALIDATION_20261106.zip` and `PATH25_CERTIFIED_ESTIMATORS_20261112.zip` | `path25/validacion/` and `path25/estimadores/`, respectively |
 | `STRIP_COMPONENT_CERTIFICATES_20261116.zip` and `T2_1_REPRODUCCION_COMPLETA_20261116.zip` | `tiras/tables/` and `tiras/`, respectively |
 
-Version 3 of the full package contains the manuscript, the launcher and the strip catalogs. The compact source is tagged `circuit-postselection-v3`. [Zenodo archive](https://doi.org/10.5281/zenodo.24542801) · [GitHub release](https://github.com/vicenzoscavino1999/ssf-qec-reproduction/releases/tag/circuit-postselection-v3)
+Version 3.1 of the full package contains the manuscript, the launcher and the strip catalogs. The compact source is tagged `circuit-postselection-v3.1`. [Zenodo archive](https://doi.org/10.5281/zenodo.24542801) · [GitHub release](https://github.com/vicenzoscavino1999/ssf-qec-reproduction/releases/tag/circuit-postselection-v3.1)

@@ -1418,12 +1418,12 @@ and for being by his side throughout this work.\par
 \section*{AI Use Disclosure}
 \addcontentsline{toc}{section}{AI Use Disclosure}
 \begingroup\small
-The author used OpenAI Codex (model \texttt{gpt-6.2-astra}) to explore
-proof strategies, search the literature, develop verification code,
-prepare figures, and draft and revise the manuscript. The author set
-the mathematical questions, noise rates and benchmarks, repeated the
-reproduction checks on a second machine, and takes responsibility for
-the proofs, computations and conclusions.\par
+The author formulated the mathematical questions and selected the noise
+rates and benchmarks. He used OpenAI Codex (model \texttt{gpt-6.2-astra})
+to explore proof strategies, search the literature, develop verification
+code, prepare figures, and draft and revise the manuscript. He also used
+Claude Opus 5.5 to improve the reproduction package. The author takes
+responsibility for the proofs, computations, and conclusions.\par
 \endgroup
 
 \phantomsection\pdfbookmark[1]{References}{article-references}
@@ -3216,7 +3216,7 @@ its Bernoulli rectangle, including passive readouts
 (Table~\ref{tab:fibre-34}). At
 $(p,q)=(10^{-6},10^{-4})$ the largest of the twelve row ratios is
 below $0.999526$. The
-\href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/blob/circuit-postselection-v3/certificados/fibras/proofs/H5A_3_4_esquina_2.txt}{derivation of the row bounds}
+\href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/blob/circuit-postselection-v3.1/certificados/fibras/proofs/H5A_3_4_esquina_2.txt}{derivation of the row bounds}
 gives the witness, the sums through size ten and the bound for
 larger groups (Appendix~\ref{app:support}).
 
@@ -4911,14 +4911,14 @@ in its circuit timing.
 \raggedend
 \section{Numerical data and code}\label{app:support}
 \begingroup\raggedright
-From the \href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/tree/circuit-postselection-v3}{\texttt{circuit-postselection-v3} repository root},
+From the \href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/tree/circuit-postselection-v3.1}{\texttt{circuit-postselection-v3.1} repository root},
 \mbox{\texttt{python reproducir.py rapido}} checks hashes and reproduces
 the Bernoulli intervals in Table~\ref{tab:two-volumes}.
 Run \mbox{\texttt{python reproducir.py marca-circuito}} for the eight
 circuit bounds in Table~\ref{tab:abort-flag}. The
-\href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/tree/circuit-postselection-v3/sectores/flag_rates}{flag directory}
+\href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/tree/circuit-postselection-v3.1/sectores/flag_rates}{flag directory}
 supplies inputs and reference outputs. The
-\href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/blob/circuit-postselection-v3/REPRODUCTION.md}{guide}
+\href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/blob/circuit-postselection-v3.1/REPRODUCTION.md}{guide}
 covers \texttt{tasas} (rational rate bounds), \texttt{regional}
 (Corollary~\ref{cor:regional-sector}) and \texttt{marca-tasas}
 (Bernoulli postselection and higher rates).
@@ -4927,7 +4927,7 @@ for the sector tails.
 
 The \href{https://zenodo.org/records/24542801/files/REPRODUCTION.md?download=1}{archive guide}
 locates the strip catalogues and supplements below in
-\path{REPRODUCCION_SSF_QEC_20261125.zip}, Zenodo version~3
+\path{REPRODUCCION_SSF_QEC_20261125.zip}, Zenodo release~3.1
 (DOI \href{https://doi.org/10.5281/zenodo.24542801}{\nolinkurl{10.5281/zenodo.24542801}}).
 
 \paragraph{Uniform rates.}
