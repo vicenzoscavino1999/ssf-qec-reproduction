@@ -3,7 +3,7 @@ Finite-code pilot for a one-round SSF abort flag and higher Bernoulli rates
 
 Inputs and scope
 ----------------
-Use the paper's ssf-qec-reproduction checkout at tag circuit-postselection-v1.
+Use the paper's ssf-qec-reproduction checkout at tag circuit-postselection-v2.
 Python 3.10+ is sufficient
 to check the arithmetic from the archived tallies. To rebuild them, use
 a C++17 compiler, as for the paper's sector census.

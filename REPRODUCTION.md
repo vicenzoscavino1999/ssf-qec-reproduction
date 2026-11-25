@@ -1,6 +1,6 @@
 # Reproduction guide
 
-This guide accompanies *Certified estimates of silent logical failure in small-set-flip decoding with noisy readout* by Vicenzo Scavino Alfaro. It covers the manuscript in this checkout, the numerical certificates and the programs that reproduce the tables and figures. The GitHub checkout contains the code and the inputs for the quick check, the finite-code censuses and the flag and high-rate experiments. The complete Zenodo archive also contains all 1,412 binary strip-catalog fragments used by the production runs. [Source for this manuscript, tag `circuit-postselection-v1`](https://github.com/vicenzoscavino1999/ssf-qec-reproduction/tree/circuit-postselection-v1) · [Complete archive](https://doi.org/10.5281/zenodo.24521353)
+This guide accompanies *Certified estimates of silent logical failure in small-set-flip decoding with noisy readout* by Vicenzo Scavino Alfaro. It covers the manuscript in this checkout, the numerical certificates and the programs that reproduce the tables and figures. The GitHub checkout contains the code and the inputs for the quick check, the finite-code censuses and the flag and high-rate experiments. The complete Zenodo archive also contains all 1,412 binary strip-catalog fragments used by the production runs. [Source for this manuscript, tag `circuit-postselection-v2`](https://github.com/vicenzoscavino1999/ssf-qec-reproduction/tree/circuit-postselection-v2) · [Complete archive](https://doi.org/10.5281/zenodo.24521353)
 
 ## Run the quick check
 

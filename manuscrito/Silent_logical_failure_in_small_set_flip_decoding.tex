@@ -77,24 +77,26 @@ in small-set-flip decoding with noisy readout}
 \maketitle
 
 \begin{abstract}
-A logical $X$ error left by a decoder passes an ideal $Z$-syndrome
-measurement. We give deterministic bounds on the probability of this
-silent failure after one round of small-set-flip (SSF) decoding with
-noisy readout. We recover the decoder's global sequence of flips,
-including ties and stopping, from connected pieces of the fault history
-and certify convergence of the resulting expansions for regular
-$(3,4)$ and $(17,18)$ hypergraph products.
-At independent data and readout fault rates $(p,q)=(10^{-6},10^{-4})$,
-we estimate the silent-failure probability on the 225-qubit code at
-$3.26\cdot10^{-14}$. Two data faults and one wrong readout account for
-over $98\%$ of this probability. In these cases SSF makes a flip and
-stops with a check lit in its record. We use this observable trace to
-flag a round for discard. To evaluate the flag under circuit noise, we factor the joint law of
-the final data error and readouts. This identity holds for any binary
-CSS code in our one-round extraction model.
-On the same code with variable--variable qubits coupled first, at
-operation and readout fault rates $(r_c,r_m)=(2\cdot10^{-7},10^{-5})$,
-the flag reduces the risk per retained round at least $257$-fold while
+After decoding, a logical $X$ error gives zero syndrome in an ideal
+measurement of the $Z$ checks. We bound the probability of this silent
+failure after one round of small-set-flip (SSF) decoding with noisy
+readout. Connected pieces of the fault history determine the global
+flip sequence, including ties and stopping. We certify convergence of
+the resulting expansions for regular $(3,4)$ and $(17,18)$ hypergraph
+products. On the 225-qubit code at independent data and readout fault
+rates $(p,q)=(10^{-6},10^{-4})$, the silent-failure probability lies in
+$[3.240,3.274]\cdot10^{-14}$. Two data faults and one wrong readout
+account for over $98\%$ of this probability. We flag a round if the
+decoder flips qubits and stops with a nonzero recorded syndrome. On
+any binary CSS code whose decoder lowers the recorded syndrome weight
+at every flip, the flag catches every silent failure in which the input
+syndrome differs from its ideal value and the data error weighs less
+than the logical $X$ distance.
+Independent wire and check contributions give the exact joint law of
+the final $X$ error and readouts in our one-round extraction model.
+On 225 qubits with variable--variable qubits coupled first, at
+$(r_c,r_m)=(2\cdot10^{-7},10^{-5})$ for operation and readout faults,
+the flag reduces risk per retained round at least $257$-fold while
 discarding fewer than 48 rounds per million.
 \end{abstract}
 \begingroup
@@ -140,7 +142,8 @@ logical failure on $[[225,9,6]]$. (a) Faults on $v_3$ and $v_4$ violate
 the six filled checks. The grid shows the nine checks in one product row.
 (b) Both residuals have zero physical syndrome. With check 2 inverted,
 SSF stops with that check still lit and leaves $X$ on $v_0,\ldots,v_5$.
-This is one of the 324 silent inputs with two data faults and one wrong readout.}
+The rule in Section~\ref{sec:abort-flag} flags the second round, one of
+the 324 silent inputs with two data faults and one wrong readout.}
 \label{fig:affine-trace}
 \end{figure}
 \endgroup
@@ -148,71 +151,84 @@ This is one of the 324 silent inputs with two data faults and one wrong readout.
 
 \section{Introduction}\label{sec:intro}
 
-A logical $X$ error can pass an ideal measurement of every $Z$ check
-after decoding~\cite[Prop.~5]{ABKL00}. We write $P_{\rm sil}$ for the
-per-round probability of this silent failure. On the two distance-six
-codes studied here, $10^{12}$ independent rounds would yield less
-than one silent failure on average at data and readout fault rates
-of $10^{-6}$ and $10^{-4}$.
-We compute the probability for one round of small-set-flip (SSF)
-decoding with noisy readout.
+An ideal measurement of every $Z$ check gives zero syndrome for a
+nontrivial logical $X$ error~\cite[Prop.~5]{ABKL00}. We write
+$P_{\rm sil}$ for the per-round probability of this silent failure
+after decoding. At independent data and readout fault rates
+$(p,q)=(10^{-6},10^{-4})$, direct sampling on 900 qubits would require
+about $3.23\cdot10^{15}$ independent rounds for a $5.82\%$ relative
+root-mean-square error at our point estimate. We compute deterministic
+bounds for one round of small-set-flip (SSF) decoding with noisy
+readout.
 
-Figure~\ref{fig:affine-trace} shows how the decoder can complete a
-logical operator. Two data faults on the 225-qubit code are corrected
-when the readout is accurate. Inverting just one check sends the same
-decoder through four different qubits. The resulting weight-six
-logical error passes the physical check even though the decoder
-stops with one check lit in its record.
-A protocol can flag a round whenever SSF makes a flip and stops with
-a check lit. On 225 qubits this catches every silent failure with two
-data faults. At the stated rates it costs fewer than seven discarded
-rounds per million (Table~\ref{tab:abort-flag}).
+Figure~\ref{fig:affine-trace} shows how SSF can complete a logical
+operator. With accurate readout it corrects two data faults on the
+225-qubit code. Inverting one check sends the same decoder through
+four other qubits. The resulting weight-six logical error has zero
+ideal syndrome, yet the decoder stops with one check lit in its
+record. A protocol that can discard a round can use this record even
+when the ideal syndrome is zero.
 
-Leverrier, Tillich and Z\'emor introduced SSF for quantum expander
-codes~\cite{LTZ15}. With global score maximization, a distant candidate
-can change which flip wins. Fawzi, Grospellier and Leverrier (FGL)
-show how to restrict a known execution to a connected
-component~\cite[Prop.~12 and Lemma~21]{FGL17},
-including a restriction lemma for noisy readouts~\cite[Lemma~19]{FGL18}.
-We use the following results to estimate $P_{\rm sil}$.
 \begin{itemize}
 \setlength{\itemsep}{3pt}
-\item \emph{Which faults dominate.} On $n=225$ and $900$ qubits, the
-Bernoulli mass of two data faults and one wrong readout is
-$T_{21}=C_{21}p^2q(1-p)^{n-2}(1-q)^{m-1}$. The readout counts $m$
-are 108 and 432, and the silent counts $C_{21}$ are 324 and 864.
-For $0<q\le10^{-4}$ and $0<z_p/z_q\le z_{10^{-6}}/z_{10^{-4}}$, with
-$z_x=x/(1-x)$, the remaining mass is at most $1.80\%$ of $T_{21}$ on
-225 qubits and $17.28\%$ on 900 (Corollary~\ref{cor:regional-sector}).
-At the upper corner the sector counts take $1.10$ and $32.79$ s,
-including setup with the decoder compiled (Table~\ref{tab:two-volumes}).
-For full-row-rank $(3,4)$ self-products of logical $X$ distance
-greater than six, two data faults cannot cause silent failure for
-any readout pattern (Lemma~\ref{lem:data-fault-distance}).
-\item \emph{Reconstructing the decoder.} Executions on compatible
-connected histories determine the full sequence of flips, tie decisions
-and stopping time for any fixed finite action family with nonempty
-footprints under our global score rule and a fixed tie order
-(Theorem~\ref{thm:recomp}). For regular products with full FGL,
-physical acceptance factors over components and their residual logical
-classes add modulo two.
-\item \emph{Certified rates at every code size.} For $(3,4)$ products
-with full FGL at $\beta=1/100$, the expansion converges at every code
-size for independent data and readout fault probabilities up to $10^{-6}$
-and $10^{-4}$, respectively (Corollary~\ref{cor:certified-34}).
-Section~\ref{sec:certificates} gives a second certified range for
-$(17,18)$ products.
-\item \emph{Circuit noise and finite estimates.} For any binary CSS
-code in our one-round extraction model, we keep each wire's final
-error together with the readouts affected by faults on that wire.
-On 225 qubits the four CC-first point estimates are $2.89$--$3.02$
-times their VV-first counterparts at the same readout rate, each
-with a lower operation rate (Fig.~\ref{fig:affine-estimates}(a)).
-On strips, at $\beta=1/2$, we can count distant groups of faults
-together by limiting the number of sites that respond within each group.
+\item \emph{Which faults dominate.} Two data faults and one wrong
+readout account for at least $98.23\%$ of silent failures on 225
+qubits and $85.26\%$ on 900. This holds for $0<q\le10^{-4}$ when
+the ratio of data-fault odds to readout-fault odds is positive and
+at most its value at $(10^{-6},10^{-4})$. Each such input contributes
+$p^2q$ times the probability that the other sites are fault-free
+(Corollary~\ref{cor:regional-sector}). On full-row-rank $(3,4)$
+self-products with logical $X$ distance above six, two data faults
+cannot cause silent failure for any readout mask
+(Lemma~\ref{lem:data-fault-distance}).
+\item \emph{Postselection from the decoder's record.} We discard a
+round if SSF flips qubits and ends with a nonzero recorded syndrome.
+Proposition~\ref{prop:flag-escape} identifies the silent failures
+that can escape on any binary CSS code under strictly
+weight-decreasing syndrome updates. At the Bernoulli rates above
+on 225 qubits, the rule discards fewer than seven rounds per million
+and reduces risk per retained round at least $909.5$-fold. Requiring
+a zero observed syndrome at input would discard $1\,590$--$1\,643$
+times as many rounds (Table~\ref{tab:abort-flag} and
+Section~\ref{sec:abort-flag}).
+\item \emph{Reference intervals for rare-event estimators.} With the
+decoder compiled, sector counting takes $1.10$ and $32.79$~s on
+225 and 900 qubits at the stated rates (Table~\ref{tab:two-volumes}).
+On a 61-qubit strip at equal circuit rates $10^{-5}$, the nominal
+$95\%$ interval from one poorly mixed splitting run lay above the
+deterministic upper bound.
+On 523 qubits at those rates, a cutoff of four responding sites per
+connected component lowers the relative-error bound from $99.513\%$
+for a cutoff of four in the whole strip to $1.221\%$. The
+\href{https://doi.org/10.5281/zenodo.24521353}{archived intervals}
+give reference values for both kinds of finite code.
 \end{itemize}
 
+Our construction recovers the global flip sequence, ties and stopping
+time from compatible connected histories for a fixed finite action
+family with nonempty syndrome footprints, our score rule and a fixed
+tie order (Theorem~\ref{thm:recomp}). For regular products with the
+full Fawzi--Grospellier--Leverrier (FGL) candidate family, physical
+acceptance factors over the pieces and their residual logical classes
+add modulo two. At $\beta=1/100$ we certify convergence at every size
+of the $(3,4)$ family up to $p=10^{-6}$ and $q=10^{-4}$
+(Corollary~\ref{cor:certified-34}), and give separate rates for
+$(17,18)$ products. For any binary CSS code in our one-round
+extraction model, the circuit calculation keeps each wire's final
+error together with the readouts its faults affect
+(Proposition~\ref{prop:wire-check-fibres}). On 225 qubits the four
+CC-first point estimates are $2.89$--$3.02$ times their VV-first
+counterparts at matched readout rates. Each CC-first point uses a
+lower operation rate (Fig.~\ref{fig:affine-estimates}(a)).
+
 \paragraph{Relation to prior work.}
+Leverrier, Tillich and Z\'emor introduced SSF for quantum expander
+codes~\cite{LTZ15}. With global score maximization, a distant
+candidate can change which flip wins. Fawzi, Grospellier and
+Leverrier show how to restrict a known execution to a connected
+component~\cite[Prop.~12 and Lemma~21]{FGL17}, including a
+restriction lemma for noisy readouts~\cite[Lemma~19]{FGL18}.
+
 We use cluster expansions with computable
 weights~\cite{KP86,HPR20,MW25}. Midha and Zhang control free-energy
 density under a loop-decay condition~\cite{MZ26}. Related expansions
@@ -227,17 +243,13 @@ sampled syndromes~\cite{CP26}, bound it by fault searches and polynomial
 optimization~\cite{MSA26}, or compute success for partition-function
 decoders~\cite{WHMG26}. Sampling methods include splitting~\cite{BV13,BCCY25},
 circuit-location sampling~\cite{Mayer26} and fault stratification~\cite{HWRM24}.
-On a 61-qubit strip at operation and readout rates of $10^{-5}$, one
-splitting run gave a nominal $95\%$ interval entirely above our
-deterministic upper bound. The split $\widehat R$ of $3.87$ for the
-ratio estimate indicates poor mixing (Section~\ref{sec:splitting-comparison}).
-The \href{https://doi.org/10.5281/zenodo.24521353}{archived deterministic
-intervals} for this strip and the two Bernoulli codes provide reference
-values for testing rare-event estimators.
 
-Sections~\ref{sec:block1}--\ref{sec:conditioned} derive the representation
-used for the rate bounds in Section~\ref{sec:certificates} and the finite
-estimates in Section~\ref{sec:finite-estimates}.
+Section~\ref{sec:setting} defines the decoder and states the main
+theorem. Sections~\ref{sec:block1}--\ref{sec:conditioned} derive the
+representation used to certify the rates in Section~\ref{sec:certificates}.
+Readers interested in the finite estimates and the discard rule
+can go directly from Section~\ref{sec:setting} to
+Section~\ref{sec:finite-estimates}.
 
 \section{Decoder and main theorem}\label{sec:setting}
 
@@ -999,7 +1011,7 @@ physical bit mask.
 A sector $(i,j)$ fixes the data and readout weights, as in split
 data--syndrome enumerators~\cite[Sec.~V]{ALB20}. Fault-weight sectors
 also occur in postselected trapped-ion experiments~\cite{Linke17}.
-On both codes $(2,0)$ contains no silent failures. In a silent $(2,1)$
+On both codes the $(2,0)$ sector contains no silent failures. In a silent $(2,1)$
 history the residual has weight at least six and the initial data error
 has weight two. The net correction therefore changes at least four
 qubits outside the initial pair. Exact counts in $(2,1),(2,2),(3,0)$
@@ -1098,35 +1110,61 @@ Table~\ref{tab:fibre-34}. The ratios of CC-first to VV-first point
 estimates range from about $2.89$ to $3.02$.
 
 \subsection{A flag for postselection after SSF}\label{sec:abort-flag}
-In a protocol that can discard a round, flag it if SSF makes a flip
-and stops with at least one observed check lit. Every flip strictly
-decreases syndrome weight, so the flag can be read from the two weights,
+A state preparation can be discarded and restarted. Flag the round if
+the decoder flips qubits and stops with at least one observed check
+lit. Each SSF move strictly lowers the recorded syndrome weight, so
+the flag is determined by the initial and final weights,
 \[
  \mathcal A=\{\,0<|s_{\rm stop}|<|s_0|\,\}.
 \]
-At silent failure, $s_{\rm stop}=D$, with $D=D_{\rm eff}$ in the
-circuit. If $D\ne\varnothing$, a silent
-history that escapes the flag has no flip. Its data error is already
-logical and has weight at least six on both codes. For example, the
-six VV sites $0,\ldots,5$ in row zero of the 225-qubit code form a
-logical. A single wrong readout leaves one check lit and SSF makes no move.
 
-With $D=\varnothing$, every silent history is retained. Neither code
-has a silent $(2,0)$ input, and both have silent $(3,0)$ inputs.
-Thus the flag removes every silent failure with two data faults.
-For Bernoulli noise with fixed $0<q\le10^{-4}$ and $p\to0$, the unfiltered risk scales as
-$p^2$ and the risk per retained round as $p^3$ (Appendix~\ref{app:flag-proof}).
-Along $q=cp$ in the region of Corollary~\ref{cor:regional-sector},
-the dominant unfiltered contribution $p^2q$ and the surviving
-$p^3$ term are both cubic in $p$.
+\begin{proposition}[Silent failures that escape the flag]\label{prop:flag-escape}
+Consider one round on a binary CSS code. Write $d_X$ for the minimum
+weight in $\ker H_X\setminus S_X$, taking $d_X=\infty$ if the set is
+empty. Let $E$ be the data $X$ error at the start of decoding, and
+$D=s_0\oplus H_XE$ the discrepancy in the recorded syndrome. Suppose
+each accepted data flip $F$ updates that record by
+$s\leftarrow s\oplus H_XF$ and strictly lowers its weight. If a silent
+failure escapes $\mathcal A$ with $D\ne0$, the decoder made no move
+and $E\in\ker H_X\setminus S_X$. Thus the flag catches every silent
+failure with $D\ne0$ and $|E|<d_X$.
+\end{proposition}
+\begin{proof}
+Let $C$ be the XOR of the accepted flips. The stopping record is
+$H_X(E\oplus C)\oplus D$. At silent failure the residual $R=E\oplus C$
+is a nontrivial logical error, so $s_{\rm stop}=D$. If $D\ne0$, even
+one move would give $0<|s_{\rm stop}|<|s_0|$ and raise the flag.
+With no move, $E=R$ and hence $|E|\ge d_X$.
+\end{proof}
+
+The proposition holds for each history, including correlated data
+and readout errors. Under independent Bernoulli noise $D$ is the set
+of wrong readouts. In the extraction circuit $E$ is the final $X$
+error before decoding and $D=D_{\rm eff}$ is the net readout
+discrepancy. Individual fault contributions can cancel. Every silent
+history with $D=0$ is retained. The weight bound for $D\ne0$ is
+attained on 225 qubits. The six VV sites $0,\ldots,5$ in row zero
+form a logical error, and one wrong readout leaves a single check
+lit with no SSF move.
+
+Both distance-six codes have silent $(3,0)$ inputs. Since neither
+has a silent $(2,0)$ input, the flag removes every silent failure
+with two erroneous data qubits on either code. Under Bernoulli noise at fixed
+$0<q\le10^{-4}$ as $p\to0$, the unfiltered risk scales as $p^2$
+and the risk per retained round as $p^3$. Along $q=cp$ with fixed
+$c>0$ in the region of Corollary~\ref{cor:regional-sector}, both
+risks scale as $p^3$. Throughout that odds region the gain is at least
+$900$ on 225 qubits and $584$ on 900 (Appendix~\ref{app:flag-proof}).
 
 \begin{table}[H]
 \centering\small
 \setlength{\tabcolsep}{2.5pt}
-\caption{Deterministic bounds on the cost and benefit of discarding
-flagged rounds. The gain is $P_{\rm sil}$ divided by the silent-failure
-probability per retained round. The circuit rows use the two schedules
-and their respective operation rates from Table~\ref{tab:affine225-pilot}.}
+\caption{Deterministic bounds for the SSF flag. At nonzero effective
+readout discrepancy, a retained silent failure already carried a
+logical data error (Proposition~\ref{prop:flag-escape}). The gain is
+$P_{\rm sil}$ divided by the silent-failure probability per retained
+round. The circuit rows use the schedules and their respective
+operation rates from Table~\ref{tab:affine225-pilot}.}
 \label{tab:abort-flag}
 \begin{tabular}{@{}lrrr@{}}
 \toprule
@@ -1152,12 +1190,8 @@ $(10^{-5},1.803)$ & $[45.58,45.59]$ & $5.970\cdot10^{-18}$ & $161$\\
 \end{tabular}
 \end{table}
 
-Throughout the odds region of Corollary~\ref{cor:regional-sector},
-the gain remains at least $900$ on 225 qubits and $584$ on 900
-(Appendix~\ref{app:flag-proof}). Requiring zero observed syndrome
-at input would discard $1.0964$--$1.0966\%$ of rounds on 225
+Requiring zero observed syndrome at input would discard $1.0964$--$1.0966\%$ of rounds on 225
 qubits and $4.3130$--$4.3144\%$ on 900 at the Bernoulli rates in the table.
-On 225 qubits this costs $1\,590$--$1\,643$ times as many rounds.
 
 In the 225-qubit extraction circuit, the rule uses only the recorded
 syndrome weights. At $r_m=10^{-3}$ the two schedules each discard fewer
@@ -1166,9 +1200,7 @@ and $31\,181$ (CC first) at their respective $r_c$. At the VV-first point
 $(r_c,r_m)=(2\cdot10^{-7},10^{-5})$, fewer than 48 discards per million
 suffice for a risk below $1.298\cdot10^{-18}$ per retained round.
 Appendix~\ref{app:circuit-flag} counts the flags and the failures that
-survive. Soft-output decoders~\cite{MPP24} and cluster-based
-postselection on HGP codes~\cite{LEB26} also trade acceptance for
-logical reliability.
+survive.
 
 \subsection{Compatible histories on growing strips}\label{sec:strip-certificates}
 The strips are planar surface codes formed from two open repetition
@@ -1316,24 +1348,34 @@ $\widehat R=6.03$. Appendix~\ref{app:rare-methods} gives the schedules,
 transition counts and Bernoulli subset-sampling comparison.
 
 \section{Discussion}\label{sec:limits}\label{sec:conclusion}
-On the two distance-six products, SSF can complete a logical
-operator from two data faults and one wrong readout
-(Fig.~\ref{fig:affine-trace}). Counting this sector gives a relative
-estimate throughout the region of Corollary~\ref{cor:regional-sector}.
-On strips, summing compatible components also captures failures
-spread across distant sites.
+On the two distance-six products, the fault sector that dominates
+throughout the region of Corollary~\ref{cor:regional-sector} leaves
+a distinct trace. SSF completes a logical operator and stops with
+the one inverted readout still lit. The corrected data pass an ideal
+$Z$-syndrome measurement, while the recorded stopping syndrome lets
+a preparation protocol discard this history. Proposition~\ref{prop:flag-escape}
+states which silent failures can survive the same rule on other
+binary CSS codes. The finite intervals also provide benchmarks for
+sampling these rare histories. On the growing strips they include
+failures spread across distant components.
 
 \paragraph{Relation to postselection.}
-The SSF flag retains the correctly decoded history in
-Fig.~\ref{fig:affine-trace}, whose initial syndrome has six lit
-checks (Section~\ref{sec:abort-flag}). Zero-input-syndrome selection,
-as studied for the toric code by English et al.~\cite{ERBDW26}, retains
-only empty SSF traces in our model. At the Bernoulli rates of Table~\ref{tab:abort-flag}
-it retains less than $5.21\cdot10^{-12}$ of the original silent mass on
-225 qubits and $8.42\cdot10^{-9}$ on 900. With perfect readout at
-$p=0.01$, Stambler et al.\ found that about $99.9\%$ of observed SSF
-failures on a 900-qubit $(3,4)$ product ended with a nonzero
-syndrome~\cite[Table~1]{SKB23}.
+Requiring a zero observed syndrome at input, as in the toric-code
+postselection studied by English et al.~\cite{ERBDW26}, retains only
+empty SSF traces in our model. At the Bernoulli rates in
+Table~\ref{tab:abort-flag} it keeps less than $5.21\cdot10^{-12}$ of
+the original silent mass on 225 qubits and $8.42\cdot10^{-9}$ on 900.
+The SSF flag retains the correctly decoded round in
+Fig.~\ref{fig:affine-trace}, despite its six lit input checks. Data
+errors differing by a logical operator give identical records for the
+same readout discrepancy (Section~\ref{sec:conditioned}). Table~\ref{tab:abort-flag}
+therefore reports the fraction discarded and the risk per retained
+round. Soft-output
+decoders~\cite{MPP24} and cluster-based postselection on HGP
+codes~\cite{LEB26} also trade acceptance for lower logical risk. With
+perfect readout at $p=0.01$, Stambler et al.\ found that about
+$99.9\%$ of observed SSF failures on a 900-qubit $(3,4)$ product
+ended with a nonzero syndrome~\cite[Table~1]{SKB23}.
 
 \paragraph{Scope and precision.}
 Theorem~\ref{thm:recomp} covers fixed finite action families with
@@ -1342,8 +1384,11 @@ and a fixed syndrome-independent tie order. For regular products with
 full FGL, physical acceptance also factors. Proposition~\ref{prop:wire-check-fibres} gives the exact wire and check
 law for any binary CSS code under the stated independent primitive
 faults in one extraction round, including the $X$ component of $Y$
-faults. A joint logical $X,Z$ prediction would require both sectors,
-and time correlations would require a model of successive rounds.
+faults. A joint logical $X,Z$ prediction would require both sectors.
+In repeated single-shot decoding, the residual data error enters a
+new correction cycle with a fresh syndrome measurement~\cite{FGL18}.
+Evaluating a discard rule across cycles requires their joint fault
+history.
 The finite cutoffs also depend on noise. At equal circuit rates
 $r_c=r_m=10^{-4}$, cutoff four gives relative-error bounds of
 $37.411\%$ to $58.849\%$ across the four strips
@@ -3184,7 +3229,7 @@ corner dominate those throughout its Bernoulli rectangle, including
 the passive readouts (Table~\ref{tab:fibre-34} and Appendix~\ref{app:support}).
 At $(p,q)=(10^{-6},10^{-4})$ the largest of the twelve row ratios is
 below $0.999526$. The
-\href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/blob/circuit-postselection-v1/certificados/fibras/proofs/H5A_3_4_esquina_2.txt}{derivation of the row bounds}
+\href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/blob/circuit-postselection-v2/certificados/fibras/proofs/H5A_3_4_esquina_2.txt}{derivation of the row bounds}
 gives the witness and the sums through size ten, with a bound for all
 larger groups. Running \mbox{\texttt{python reproducir.py tasas}} checks
 the inequalities with rational arithmetic.
@@ -4190,10 +4235,10 @@ Every input of weight one or two has nonzero initial syndrome. Thus
 $\Pr(1\le J+K\le2)$ and $\Pr(J+K\ge1)$ bound the discard probability
 for zero-input-syndrome postselection.
 
-Let $\mathcal S$ denote silent failure. If $D=\varnothing$, it always
-escapes the flag. For $D\ne\varnothing$, an unflagged silent history
-has no flip, hence a logical input of weight at least six. With $k=5$
-on 225 qubits and $k=6$ on 900 this gives
+Let $\mathcal S$ denote silent failure. All silent inputs with
+$D=0$ are retained. For $D\ne0$, Proposition~\ref{prop:flag-escape}
+requires a retained silent input to have at least six erroneous data
+qubits. With $k=5$ on 225 qubits and $k=6$ on 900 this gives
 \begin{align*}
  \Pr(\mathcal S\cap\mathcal A^c)\le U_{\rm keep}
  &:=\sum_{e=3}^{k-1}\bar C_{e0}w_{e0}
@@ -4264,8 +4309,8 @@ $b_v=\Pr(\epsilon_v=0,\delta_v\ne0)$ and $t=h/(1-h)$.
 Here each independent check bit has probability
 $h=[1-(1-4r_c/3)^5(1-2r_m)]/2$ from five ancilla operations and the
 classical readout flip.
-A silent input with $D_{\rm eff}\ne0$ escapes only with an empty trace
-and at least six erroneous wires. For $D_{\rm eff}=0$ the decoder sees
+For $D_{\rm eff}\ne0$, Proposition~\ref{prop:flag-escape} requires at
+least six erroneous wires in a retained silent input. For $D_{\rm eff}=0$ the decoder sees
 the ideal readout of the final data. There are no silent pairs, 36
 silent triples and 14\,904 silent quadruples
 (Appendix~\ref{app:finite-orbits} and Table~\ref{tab:two-volumes}).
@@ -4911,15 +4956,15 @@ Section~\ref{sec:finite-estimates} includes setup.
 \raggedend
 \section{Numerical data and code}\label{app:support}
 \begingroup\raggedright
-The \href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/tree/circuit-postselection-v1}{source repository at tag
-\texttt{circuit-postselection-v1}} contains the manuscript, code and counts for
+The \href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/tree/circuit-postselection-v2}{source repository at tag
+\texttt{circuit-postselection-v2}} contains the manuscript, code and counts for
 this revision. From its root, run \mbox{\texttt{python reproducir.py rapido}}
 to verify the file hashes and reproduce the Bernoulli intervals in
 Table~\ref{tab:two-volumes}. Run \mbox{\texttt{python reproducir.py marca-circuito}}
 to reproduce the eight circuit postselection bounds in Table~\ref{tab:abort-flag}.
-The \href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/tree/circuit-postselection-v1/sectores/flag_rates}{circuit and Bernoulli flag
+The \href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/tree/circuit-postselection-v2/sectores/flag_rates}{circuit and Bernoulli flag
 calculations} include the finite-code inputs and reference outputs.
-The \href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/blob/circuit-postselection-v1/REPRODUCTION.md}{reproduction guide}
+The \href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/blob/circuit-postselection-v2/REPRODUCTION.md}{reproduction guide}
 also gives the \texttt{regional} command for Corollary~\ref{cor:regional-sector}
 and \texttt{marca-tasas} for the Bernoulli flag and higher noise rates.
 The footprint and blocked-original counts for the sector tails are in

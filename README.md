@@ -9,7 +9,7 @@ Reproduction code and numerical certificates for the paper by Vicenzo Scavino Al
 Use 64-bit Python 3.12 with assertions enabled. The quick check uses the standard library and runs from a fresh clone.
 
 ```sh
-git clone --branch circuit-postselection-v1 --depth 1 https://github.com/vicenzoscavino1999/ssf-qec-reproduction.git
+git clone --branch circuit-postselection-v2 --depth 1 https://github.com/vicenzoscavino1999/ssf-qec-reproduction.git
 cd ssf-qec-reproduction
 python reproducir.py rapido
 ```
