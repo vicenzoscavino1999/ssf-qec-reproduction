@@ -29,7 +29,7 @@ Run `python reproducir.py sectores` to compile the C++17 decoder, build the two 
 
 ## Reproduce the full strip runs
 
-Download the archived ZIP and extract it into an empty directory. From the extracted directory, `python reproducir.py rapido` verifies all 2,796 files in the archive. The guide gives the commands, time and storage requirements for `tiras-1`, `tiras-2` and `catalogos`. The GitHub checkout contains the same scientific source files byte for byte. Its SHA-256 manifest covers the files distributed here. [Download the full ZIP from Zenodo](https://zenodo.org/records/24521353/files/REPRODUCCION_SSF_QEC_20261124.zip?download=1) · [Full reproduction instructions](REPRODUCTION.md)
+Download the archived ZIP and extract it into an empty directory. From the extracted directory, `python reproducir.py rapido` verifies all 2,796 files in the archive. The guide gives the commands, time and storage requirements for `tiras-1`, `tiras-2` and `catalogos`. The computational source files in this checkout match the archived copies byte for byte. Appendix F in the repository manuscript links to the archive and the source repository. Its SHA-256 manifest covers the files distributed here. [Download the full ZIP from Zenodo](https://zenodo.org/records/24521353/files/REPRODUCCION_SSF_QEC_20261124.zip?download=1) · [Full reproduction instructions](REPRODUCTION.md)
 
 The SHA-256 of `REPRODUCCION_SSF_QEC_20261124.zip` is `4c4bf3b511714db87015952f4edb0b41100985aee681a513d5ed4412682c174c`.
 
