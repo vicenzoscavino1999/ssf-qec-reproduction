@@ -1,50 +1,28 @@
-STRIP COMPONENT CERTIFICATES -- 16 November 2026
+Strip table inputs and outputs
+=============================
 
-Companion data and code snapshot for the growing-strip sections of
-Exact canonical recomposition and silent-failure estimation for
-small-set-flip decoding.
+The quick check in ../../REPRODUCTION.md builds the tables from the stored
+endpoints. To run just the table calculation, use Python 3.11 or later from
+this directory and choose a new output directory.
 
-PORTABLE POSTPROCESSING (Python 3.11 or newer; standard library only)
-  python reproduce_tables.py --output /absolute/path/to/new-output
-Use a new output directory. This checks the package hashes, reconstructs
-the 128 circuit intervals from exact B and fixed-point U/E/O endpoints,
-checks rational phenomenological interval identities, and regenerates
-the two displayed error tables and the resource data. It also checks the
-stored direct-sampling totals and compatibility. It does NOT rerun the
-decoder, the catalogue producers, the gas DP, or Monte Carlo. It does not
-independently recompute the binomial interval or catalogue completeness.
+    python reproduce_tables.py --output ../../../strip-tables
 
-DATA
-  results/circuit.json: final combined 32-cell, 4-cutoff circuit output.
-  results/phenomenological.json: corrected phenomenological output.
-  results/completeness_phenomenological.json: auxiliary-weight sum rules.
-  results/calibration.json: circuit fibres and small-cutoff calibration.
-  results/engine.json: catalogue and engine output.
-  results/direct_sampling.json: the T2-1 direct-sampling control, with
-    integer counts and the nominal 99.9% binomial interval.
-  results/circuit_resources.json: measured production resources.
-  results/catalogue_manifest.json: identities of the large catalogue shards.
-Exact fractions and fixed-point endpoints are authoritative; display
-decimals are rounded summaries. Resource measurements are historical
-observations and are not reproduced by the postprocessing command.
+circuit_rows.tex and phenomenological_rows.tex contain the table entries.
+resources.json contains the recorded timing and memory data.
+POSTPROCESSING.json reports how many circuit rows were checked (128).
+The endpoints are exact fractions or fixed-point bounds. The tables round
+the displayed error bounds upward.
 
-PRODUCTION SNAPSHOT
-  source_snapshot/ preserves selected original producer programs and
-    their original paths, hashes and import conventions.
-  methods/ contains the frozen protocol and derivations.
-This is a compact evidence release, not a self-contained full-production
-launcher. The production code uses additional original workspace modules
-and about 6.8 GB of catalogue shards, which are NOT included. The original
-catalogues and their dependencies remain in the research workspace. A
-fresh production reproduction must restore those dependencies and follow
-the original resource limits. Do not run these scripts as a side effect
-of table postprocessing. No new scientific computation was performed
-while preparing this release.
+Reference inputs under results/
+-------------------------------
+circuit.json gives the 32 circuit cells at four cutoffs. phenomenological.json
+and completeness_phenomenological.json give the independent-noise endpoints
+and their auxiliary weight sums. calibration.json and engine.json contain the
+small-cutoff checks and catalog counts. circuit_resources.json records the
+production costs. direct_sampling.json contains the sampling counts and their
+nominal 99.9% binomial interval. catalogue_manifest.json identifies the binary
+catalog fragments.
 
-SCOPE
-Four fixed-width strips with one logical qubit, beta=1/2, cutoffs 1..4;
-phenomenological noise and one specified noisy extraction round. This
-release supports finite cutoff comparisons, not a global runtime
-speedup or new F17 noise or asymptotic guarantees. The independent T2-2
-transport/splitting pilot and subsequent H5 exploration are outside this
-release and are not used in the manuscript's new claims.
+methods/ gives the derivations and source_snapshot/ contains the corresponding
+producer code. To repeat the original strip runs, use the full distribution
+and section 4 of the main guide.

@@ -1,6 +1,6 @@
 # Muestreo por subconjuntos en el código de 225 cúbits
 
-24 de noviembre de 2026. Resultados de la tabla 13 del manuscrito y comparación con la tabla 2 de las tiras.
+La Tabla 9 reúne las estimaciones de muestreo. La Tabla 4 compara los cortes en las tiras.
 
 ## Un millón de llamadas y censo completo
 
@@ -40,23 +40,8 @@ En las tiras de 61, 127, 259 y 523 cúbits, \(W\) cuenta sitios de respuesta efe
 | Tira de 61 cúbits | A \(r_c=r_m=10^{-5}\), un 34,46–36,07 % por encima del valor compatible con el intervalo determinista. A \(10^{-6}\), un 36,10–36,13 % por encima. | 2,49 h por las cuatro tasas en una escalera compartida con su verificación. |
 | Afín de 225 cúbits, VV primero, \(r_c=2\times10^{-7}\) y \(r_m=10^{-5}\) | \(4,91234\times10^{-16}\) con splitting y \(3,34223\times10^{-16}\) por sectores. Si cubre el intervalo del piloto, el exceso de splitting está entre 46,85 % y 47,11 %. La cobertura simultánea de las ocho filas de circuito supera el 98,54 %. | Splitting en 161,91 s. Sectores en 8,31 s, mediana de tres corridas con preparación. |
 
-Estas dos filas miden el fallo total de circuito. La fila Bernoulli de la tabla 13 mide \(f_{21}\). El control a \(p=3,75\times10^{-7},q=10^{-3}\) con medianas de 1,075 y 1,065 s queda como nota de pequeño volumen en el apéndice N.
+Estas dos filas miden el fallo total de circuito. La fila Bernoulli de la Tabla 9 mide la frecuencia condicional \(f_{21}\).
 
 ## Reproducir
 
-En el paquete **QEC_RARE_EVENT_COMPARISONS_20261124.zip**, extraer todos los archivos y entrar en la carpeta **DSS_HGP_225_BERNOULLI_20261124**. Python 3.12 y su biblioteca estándar bastan para el análisis. El binario suministrado es para Windows x64 con AVX2/BMI2.
-
-~~~powershell
-python -I -B comprobar_tabla.py
-python -I -B ejecutar.py --output repeticion.json
-~~~
-
-El primer comando contrasta la fila de las tiras, las dos filas de splitting y la del estrato a partir de los registros. Comprueba también las colas binomiales del intervalo con una suma independiente de masas. El segundo reproduce los sorteos y el censo con la semilla publicada en dos procesos nuevos. Los recuentos y el intervalo son reproducibles. Cada ejecución mide sus propios tiempos.
-
-Para recompilar en Windows, ejecutar **compilar.cmd** desde la misma carpeta con las herramientas de Visual C++ 2022 instaladas. En sistemas x86-64 con GCC, la orden equivalente es **g++ -O3 -std=c++17 -mbmi2 -mpopcnt estrato_225.cpp -o estrato_225**. Los resultados publicados se obtuvieron con MSVC. El paquete incluye el código fuente del decodificador. La orden siguiente reconstruye las tablas desde la geometría.
-
-~~~powershell
-python -I -B -c "from runpy import run_path; run_path('../SPLITTING_HGP_225_VV_20261124/modelo_225.py')['build']('.')"
-~~~
-
-La carpeta de la tira de 61 cúbits contiene los registros de la corrida previa y su dictamen. El paquete independiente de *splitting* en 225 cúbits incluye sus cadenas, histogramas y productor completos. El nuevo experimento es el muestreo Bernoulli y su censo.
+Desde la raíz del paquete, `python reproducir.py comparaciones` recalcula las cifras a partir de los registros. `python reproducir.py dss-225` compila el evaluador, repite la muestra con la semilla publicada y enumera el estrato completo. Los recuentos y los tiempos de esa ejecución quedan en `dss225.json`. [Guía de reproducción en inglés](../../REPRODUCTION.md)

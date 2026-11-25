@@ -8,8 +8,8 @@
     },
     {
       "path": "README.txt",
-      "bytes": 7137,
-      "sha256": "33524d134e1bab1c2106a8d480128ee37d79bcdac5b66289af0be0228c664af7"
+      "bytes": 1095,
+      "sha256": "9c56b7744f4ac8064e11423d73a68e40a5789d6c976468a2cb3cbc6ce5ce3f9f"
     },
     {
       "path": "reproduce.py",
@@ -19,7 +19,7 @@
     {
       "path": "tables/MANIFEST.json",
       "bytes": 3802,
-      "sha256": "5a8027620bbaae842c849bd43a134b1c43859b5507fb87bb11c60c24591c6d88"
+      "sha256": "b5b86421228fc397d8240f95e2f895dc34017eec9778c24df7f1aa3b5d018b1a"
     },
     {
       "path": "tables/methods/calibration_and_fibres.txt",
@@ -48,8 +48,8 @@
     },
     {
       "path": "tables/README.txt",
-      "bytes": 2879,
-      "sha256": "325e6806944a99ab036f37ce6d45cc5b4b135b2d47d60ff668c17f6b86461864"
+      "bytes": 1407,
+      "sha256": "11695d6d586406a0fa48bf132e748ac9f3ded133936a4d1d13cdc0b2ab1e01e9"
     },
     {
       "path": "tables/reproduce_tables.py",

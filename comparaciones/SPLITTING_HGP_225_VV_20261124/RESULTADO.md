@@ -34,13 +34,6 @@ Antes de examinar las cadenas se fijó este criterio para interpretar el presupu
 
 ## Reproducción
 
-Extraiga el paquete en una carpeta de trabajo. Desde la subcarpeta SPLITTING_HGP_225_VV_20261124, con Python 3.12, el primer comando revisa los resultados ya guardados. Los comandos siguientes regeneran las salidas en esa copia.
+Desde la raíz del paquete, `python reproducir.py comparaciones` recalcula las estimaciones y los diagnósticos a partir de las cadenas guardadas. `python reproducir.py splitting-225` compila el evaluador y regenera las cadenas en una carpeta de resultados nueva. [Guía de reproducción en inglés](../../REPRODUCTION.md)
 
-~~~
-python -I -B -X utf8 verificar_resultado.py
-.\compilar.cmd
-python -I -B -X utf8 ejecutar_225.py
-python -I -B -X utf8 medir_certificado.py
-~~~
-
-En Windows, compilar.cmd usa Visual Studio Build Tools para x64. La secuencia pseudoaleatoria se fijó para la biblioteca estándar de esa compilación. Los histogramas incluyen los rechazos de Metropolis con su multiplicidad. Los tiempos y el pico de memoria pueden variar al reproducir el cálculo. El modelo y los resultados de entrada proceden del piloto de 225 cúbits. Las funciones estadísticas de Bennett, Student y Clopper–Pearson proceden de los experimentos previos de la investigación. [Bravyi y Vargo](https://doi.org/10.1103/PhysRevA.88.062308) · [Beverland et al., §5](https://arxiv.org/html/2511.15177v1#S5)
+La secuencia pseudoaleatoria se fijó para la biblioteca estándar de esa compilación. Los histogramas incluyen los rechazos de Metropolis con su multiplicidad. Los tiempos y el pico de memoria pueden variar al reproducir el cálculo. El modelo y los resultados de entrada proceden del piloto de 225 cúbits. Las funciones estadísticas de Bennett, Student y Clopper–Pearson proceden de los experimentos previos de la investigación. [Bravyi y Vargo](https://doi.org/10.1103/PhysRevA.88.062308) · [Beverland et al., §5](https://arxiv.org/html/2511.15177v1#S5)

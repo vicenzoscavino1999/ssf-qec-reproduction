@@ -1,4 +1,4 @@
-"""Reproducción de Silent logical failure in small-set-flip decoding, versión limpia."""
+"""Reproduce the one-round small-set-flip results in REPRODUCTION.md."""
 from fractions import Fraction
 from pathlib import Path
 import argparse
@@ -184,22 +184,25 @@ def run(action, out, previous):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("accion",choices=ACTIONS,nargs="?",default="rapido")
-    parser.add_argument("--salida",type=Path,help="Carpeta nueva para este bloque. Por defecto fuera del paquete.")
-    parser.add_argument("--previa",type=Path,help="Carpeta de salida del bloque tiras-1.")
+    parser.add_argument("accion",choices=ACTIONS,nargs="?",default="rapido",
+                        help="Calculation to run. The default is rapido.")
+    parser.add_argument("--salida",type=Path,metavar="DIR",
+                        help="New output directory outside the source tree.")
+    parser.add_argument("--previa",type=Path,metavar="DIR",
+                        help="Completed tiras-1 output directory, required for tiras-2.")
     rates = parser.add_argument_group("regional", "Bernoulli interval on the two published codes")
     rates.add_argument("--qubits", type=int, choices=(225, 900), help="Code size for regional.")
     rates.add_argument("--p", metavar="RATE", help="Independent data fault probability.")
     rates.add_argument("--q", metavar="RATE", help="Independent readout fault probability.")
     args = parser.parse_args()
     if sys.version_info<(3,12) or sys.maxsize<=2**32 or not __debug__:
-        parser.error("Se requiere Python 3.12+ de 64 bits con las aserciones activas.")
+        parser.error("Use 64-bit Python 3.12 or later with assertions enabled.")
     if args.accion in ("path25","splitting-61","splitting-225","tiras-1","tiras-2","catalogos") and os.name!="nt":
-        parser.error("Este productor utiliza la configuración original de Windows x64. Consulte LEEME.md.")
+        parser.error("This action requires Windows x64. See REPRODUCTION.md.")
     if (args.previa is not None)!=(args.accion=="tiras-2"):
-        parser.error("--previa se requiere exclusivamente para tiras-2.")
+        parser.error("Use --previa only with tiras-2, which requires the tiras-1 output directory.")
     if args.previa and not (args.previa/"calculo/LECTURA_T2_1_C1.json").is_file():
-        parser.error("La corrida previa debe contener calculo/LECTURA_T2_1_C1.json.")
+        parser.error("The tiras-1 output directory must contain calculo/LECTURA_T2_1_C1.json.")
     regional = None
     if args.accion == "regional":
         from sectores.intervalo import regional_interval
@@ -219,9 +222,9 @@ def main():
     if args.salida:
         out=args.salida.resolve()
         if out.is_relative_to(ROOT):
-            parser.error("Elija una carpeta nueva fuera del paquete para las salidas.")
+            parser.error("Choose a new output directory outside the source tree.")
         if out.exists():
-            parser.error("La carpeta de salida ya existe. Elija otra.")
+            parser.error("The output directory already exists. Choose a new directory.")
         out.mkdir(parents=True)
     else:
         parent=ROOT.parent/"resultados_ssf"

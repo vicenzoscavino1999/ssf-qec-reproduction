@@ -1,26 +1,28 @@
-PATH25 CONNECTED-HOST VALIDATION
-Archived results: 28 October 2026. Package: 6 November 2026.
+PATH25 syndrome census
+======================
 
-This package copies the existing scientific code, frozen inputs and outputs
-byte for byte. No decoder or oracle was executed during packaging.
-Requirements: Windows and Python 3.10+; standard library only.
+The path25 action in ../../REPRODUCTION.md runs the validation on a fresh copy
+and compares its results with expected/. The literal and optimized decoders
+agree on all 4,096 syndromes and all 8,192 quotient-class comparisons.
 
-From a fresh extraction run:
-  python -B -X utf8 run/supervisor.py
-Never use python -O (assertions are scientific checks).
-The supervisor creates run/attempt_01 and refuses an existing directory.
-It uses a hidden single worker with 60 s, 256 MiB and 32 MiB stop ceilings.
-A slow computer can reach the stop limit; partial results are not success.
-The immutable reference outputs are in expected/, separate from new output.
-RESULTS.json records 4096 matched syndromes, 12438 oracle queries, 1664
-supports and 565 recomposition sources, including 123 multi-component
-cases and 111 with actions. ORACLE.json and RECOMPOSITION.json give scope.
-Timing, process memory, paths and native-endian binary hashes are provenance
-fields; compare integer/rational scientific results directly. The archived
-revision records three stationary cancellation pairs (empty traces).
+To run just the syndrome census on Windows x64, copy run/ into a fresh
+working directory. Keep worker.py and inputs/ beside supervisor.py. From the
+folder containing supervisor.py, run the following command with assertions
+enabled.
 
-The catalogue covers the supports specified in the manuscript; it is not
-a complete instance catalogue or a global probability estimator. The code
-imports pinned P1 functions, without invoking that worker's historical main.
-Original scientific files retain historical names and metadata.
-MANIFEST_SHA256.json covers every supplied file except itself.
+    python -B -X utf8 supervisor.py
+
+The supervisor writes attempt_01/RESULTS.json. The single worker has limits of
+60 seconds, 256 MiB of memory and 32 MiB of output. A completed reference run
+has status PASS_BOUNDED_PATH25.
+
+Reference values
+----------------
+The census makes 12,438 oracle queries on 1,664 supports, with 376 decorations.
+Of 565 recomposition sources, 123 have multiple components and 111 of those
+contain decoder actions. The first three total-failure coefficients by weight
+are [0, 4, 115], and the silent-failure coefficients are [0, 0, 14].
+
+expected/ORACLE.json and expected/RECOMPOSITION.json contain the detailed
+counts. For cross-machine comparisons use the JSON values. Raw binary table
+hashes depend on native byte order, and timings depend on the machine.

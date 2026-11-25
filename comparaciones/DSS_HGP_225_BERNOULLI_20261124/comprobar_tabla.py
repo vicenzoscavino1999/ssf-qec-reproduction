@@ -1,4 +1,4 @@
-"""Comprueba las cifras de las tablas 2 y 13 desde los registros de cada experimento."""
+"""Check the strip cutoff and rare-event comparisons against the recorded data."""
 import json
 import sys
 from decimal import Decimal as D, localcontext
@@ -87,7 +87,7 @@ def main():
     assert 324 == pilot['patrones_de_pareja']
     assert F('.9823') <= contribution/F(reference['U']) <= contribution/F(reference['L']) <= F('.9892')
     assert out['normal_planning_calls'] == {'1/10':3226442,'1/100':322644127}
-    print('Tablas 2 y 13 verificadas. CP del estrato contrastado por suma de masas binomiales.')
+    print('Strip cutoff, splitting estimates and subset-sampling results verified, including both binomial confidence limits.')
 
 if __name__ == '__main__':
     main()

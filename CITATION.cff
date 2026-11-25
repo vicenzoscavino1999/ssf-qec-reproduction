@@ -1,13 +1,14 @@
 cff-version: 1.2.0
-message: "Please cite the archived reproduction package when using this work."
-title: 'Reproduction package for "Estimating silent logical failure in small-set-flip decoding"'
+message: "Please cite this software and the archived version used for your results."
 type: software
-version: "2"
+title: 'Reproduction package for "Certified estimates of silent logical failure in small-set-flip decoding with noisy readout"'
 authors:
   - family-names: "Scavino Alfaro"
     given-names: "Vicenzo"
-doi: "10.5281/zenodo.24521353"
-date-released: "2026-11-25"
+    orcid: "https://orcid.org/0009-0000-2472-9785"
 repository-code: "https://github.com/vicenzoscavino1999/ssf-qec-reproduction"
-url: "https://doi.org/10.5281/zenodo.24521353"
 license: CC-BY-4.0
+version: "3"
+date-released: "2026-11-25"
+doi: "10.5281/zenodo.24542801"
+url: "https://github.com/vicenzoscavino1999/ssf-qec-reproduction/releases/tag/circuit-postselection-v3"
