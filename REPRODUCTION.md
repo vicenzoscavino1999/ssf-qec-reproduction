@@ -1,28 +1,30 @@
 # Reproduce the silent logical failure estimates
 
-## 1. Reproduce the intervals in Table 2
+## 1. Check the archived results
 
-Use the repository at tag `circuit-postselection-v4` or extract a source
-ZIP of that tag. Both contain the manuscript, the postselection comparisons
-and their reference data. Section 4 explains how to obtain the large catalogues for verifying or
-repeating the full strip runs.
+Use software release **4** (Git tag `circuit-postselection-v4`), cited in
+Appendix F of the [manuscript](manuscrito/Silent_logical_failure_in_small_set_flip_decoding.pdf).
+The tagged checkout and its source ZIP both include the 225-qubit
+postselection comparisons and their reference data. Section 4 covers the
+large catalogues for the full strip runs.
 
-Open a terminal beside `reproducir.py` and run the quick check using
-64-bit Python 3.12 with assertions enabled. On Windows, `py -3.12` can
-replace `python`. This check uses only the Python standard library.
+Open a terminal beside `reproducir.py` and run these two commands with
+64-bit Python 3.12 and assertions enabled. Both use the standard library.
+On Windows, `py -3.12` can replace `python`.
 
 ```sh
 python reproducir.py rapido
+python reproducir.py revision-v2
 ```
 
-At independent data and readout fault rates `p = 1e-6` and `q = 1e-4`, the command reconstructs Table 2 from the stored counts. The expected bounds on silent logical failure are rounded outward.
+`rapido` reconstructs Table 2 from the stored counts at independent data and readout fault rates `p = 1e-6` and `q = 1e-4`. The expected bounds on silent logical failure are rounded outward.
 
 | Code | Lower bound | Upper bound |
 | --- | ---: | ---: |
 | 225 qubits | 3.24009 × 10⁻¹⁴ | 3.27319 × 10⁻¹⁴ |
 | 900 qubits | 8.63039 × 10⁻¹⁴ | 9.69644 × 10⁻¹⁴ |
 
-The final line prints `OK` and the path to the run summary, `resultado.json`. In that directory, `01-calculos_del_articulo.log` gives both intervals at full output precision and `marca-tasas.json` gives the Bernoulli flag bounds from the stored counts. The quick check also builds the strip tables, replays both SSF trajectories in Figure 1, verifies the negative zero in Appendix B.3 and checks the values plotted in Figures 5–7.
+Each command prints `OK` and the path to its own `resultado.json`. In the `rapido` directory, `01-calculos_del_articulo.log` gives both intervals at full output precision and `marca-tasas.json` gives the Bernoulli flag bounds. This check also builds the strip tables, replays the two SSF trajectories in Figure 1, verifies the negative zero in Appendix B.3 and checks the values plotted in Figures 5–7. In the `revision-v2` directory, `04-comparison_table.log` gives the nine rows of Table 6 assembled from the archived numerical results. Section 2 gives the commands to recompute them.
 
 Each run creates a directory under `resultados_ssf/` beside the source directory. To choose where it goes, pass `--salida` followed by a new directory outside the source tree.
 
@@ -39,7 +41,7 @@ Run `python reproducir.py ACTION` with the action in the middle column. Output p
 | Strip cutoff and resource comparisons, Tables 4, 9 and 10 | `rapido` | In `tablas_tiras/`, `circuit_rows.tex` and `phenomenological_rows.tex` give the table entries. `resources.json` gives the recorded times and memory. |
 | Affine F17 instance, Table 5 and Appendix D | `f17` | Logical masks, implicit comparisons, 1,214 circuit traces in `certificate.jsonl`, and sufficient truncation orders 253,000 and 126,000. [Finite-sector inputs](certificados/sector_f17/README.txt) |
 | 225-qubit pilot, Table 7 | `piloto` | `piloto/piloto_HGP_225_esquinas_20261124.json` contains three deterministic Bernoulli intervals and eight stratified circuit intervals. The latter have simultaneous coverage of at least `1 − 16 exp(−7)` under independent sampling within each stratum. |
-| Twelve family-wide row inequalities, the Bernoulli density rule and gate order at matched rates (Table 8 and Figure 5(a)) | `revision-v2` | Four logs reproduce the twelve row ratios, the 225-qubit density bounds, the four matched schedules and the printed rows of Table 6. Uses the standard library. |
+| Twelve family-wide row inequalities, the Bernoulli density rule and gate order at matched rates (Table 8 and Figure 5(a)) | `revision-v2` | The first three logs give the twelve row ratios, the 225-qubit density bounds and the four pairs of matched schedules. The fourth checks Table 6 against the manuscript. |
 | 225-qubit postselection, Table 6 | `postseleccion-v2` | Rebuilds `comparison.json` with the discard bounds for one Bernoulli and eight circuit points, and the circuit risk bounds. The next command computes the tighter Bernoulli risks used in the table. |
 | Lee and the HGP adaptation of Meister at equal expected discard, Appendix E.1.6 | `meister-225` | Rebuilds `meister-225.json` from the affine seed at `p=1e-6, q=1e-4`, including both risk intervals and the seven-check refinement. Uses the same optional environment as the preceding command. |
 | PATH25, Appendix E.3 | `path25` | Two decoder implementations agree on 4,096 syndromes. On the test circuit, enumeration covers 524,288 assignments and the component cutoff is complete at eight noisy locations. [Estimator outputs](path25/estimadores/README.txt) |
@@ -48,10 +50,18 @@ Run `python reproducir.py ACTION` with the action in the middle column. Output p
 
 **Software.** The reference runs used Windows x64 and Python 3.12.10. Use Windows for `path25`, the 61-qubit chain checks in `comparaciones`, both splitting runs and strip production. Four actions compile C++17 code. On Windows, `sectores`, `marca-tasas`, `dss-225` and `splitting-225` use Visual Studio x64 Build Tools on a CPU supporting AVX2 and BMI2. On x86-64, `sectores`, `marca-tasas` and `dss-225` also support GNU C++. The PDF requires pdfLaTeX, TikZ, PGFPlots and the other packages in the [preamble](manuscrito/Silent_logical_failure_in_small_set_flip_decoding.tex).
 
-### Optional environment for the cluster score
+### Recompute the postselection comparisons in Table 6
 
-Use a Python 3.12 virtual environment with Git available. With its
-interpreter active, run these commands from the repository root.
+With Python 3.12 and Git on your path, create a virtual environment
+from the repository root.
+
+~~~sh
+python -m venv ../ssf-env
+~~~
+
+Activate it with `..\ssf-env\Scripts\Activate.ps1` in PowerShell or
+`. ../ssf-env/bin/activate` in a POSIX shell. In PowerShell you can
+also use `..\ssf-env\Scripts\python.exe` for `python` in the commands below.
 
 ~~~sh
 python -m pip install -r comparaciones/postselection_v2/requirements.txt
@@ -71,18 +81,30 @@ per million rounds, and the silent risk per retained round. Circuit
 `risk_stratified` intervals reuse the sixteen bounds from the original
 pilot, with joint coverage above 98.54%. `risk_deterministic` uses the
 full deterministic remainder. Both coincide under Bernoulli noise.
-The full command took about seven minutes with four workers on the
-reference Windows machine. To run just the main VV-first
-point, use `python comparaciones/postselection_v2/compare_rules.py --point 6 --output vv.json`.
+The nine-point run took about seven minutes with four workers on the
+reference Windows machine. The Bernoulli refinement took about two
+minutes with one BP+LSD thread. Both commands can run directly after
+installation and check their scientific outputs against the archived values.
+The risk bounds in the JSON files are probabilities per retained round.
+Table 6 displays those probabilities in units of `1e-18`.
 
-The single-point distance calculation takes about two minutes with one
-BP+LSD thread on the reference machine. Its boundary coin is calibrated
-from the marginal input law. Both cluster rules discard 2.58762–2.60134
-rounds per million in expectation. Of 59,184 silent three-data, one-readout
-histories, the Lee score keeps zero and the distance score keeps 324.
-The launcher compares all scientific output fields to the archived
-[result](comparaciones/postselection_v2/meister_225/results.json).
-Either command can run directly after installation. [Calculation and bounds](comparaciones/postselection_v2/meister_225/README.md)
+- **Bernoulli, `p=1e-6, q=1e-4`.** The upper endpoint of
+  `risk_per_retained_round.lee` in `meister-225.json` is
+  `1.68889439986e-25`, which gives the abstract’s bound of `1.69e-25`.
+  The same file gives the risk of the HGP adaptation of Meister’s score
+  in `risk_per_retained_round.cluster_geometry`. Both rules discard
+  2.58762–2.60134 rounds per million in expectation. [Calculation and reference output](comparaciones/postselection_v2/meister_225/README.md)
+- **Circuit, VV first, `r_c=2e-7, r_m=1e-5`.** Select the matching
+  schedule and rates in both files. In `comparison.json`, the upper
+  endpoint of `cluster.risk_stratified` is below `5.70e-19`. In
+  `marca-circuito.json` (from `python reproducir.py marca-circuito`), the SSF lower endpoint
+  of `risk_per_retained_round` exceeds `1.17e-18`, and `gain_lower`
+  exceeds 257 relative to keeping all rounds. Lee discards fewer than
+  30.43 rounds per million and SSF discards more than 47.75. The risk
+  comparison uses the joint stratified coverage above 98.54%.
+
+To recompute just this circuit point with the cluster scorer, run
+`python comparaciones/postselection_v2/compare_rules.py --point 6 --output ../vv-first-225.json`.
 
 ## 3. Evaluate another pair of Bernoulli rates
 
