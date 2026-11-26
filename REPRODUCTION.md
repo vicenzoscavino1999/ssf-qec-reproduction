@@ -4,9 +4,7 @@
 
 Use software release **4** (Git tag `circuit-postselection-v4`), cited in
 Appendix F of the [manuscript](manuscrito/Silent_logical_failure_in_small_set_flip_decoding.pdf).
-The tagged checkout and its source ZIP both include the 225-qubit
-postselection comparisons and their reference data. Section 4 covers the
-large catalogues for the full strip runs.
+Download `ssf-qec-reproduction-v4.zip` from [Zenodo release 4](https://doi.org/10.5281/zenodo.24548710) or use the tagged Git checkout. Both include the 225-qubit postselection comparisons and their reference data. Section 4 covers the large catalogues for the full strip runs.
 
 Open a terminal beside `reproducir.py` and run these two commands with
 64-bit Python 3.12 and assertions enabled. Both use the standard library.
@@ -120,7 +118,7 @@ For the example above, the interval is approximately `[6.7622e-15, 7.9308e-15]` 
 
 `dss-225` repeats one million draws with replacement from the two-data, one-readout stratum, then enumerates all 2,721,600 inputs in that stratum. In `dss225.json` the reference sample has 119 silent failures and the census has 324. The sampling commands use the recorded seeds. To regenerate the splitting chains, run `splitting-225` or `splitting-61`. The recorded runs took 161.91 s on 225 qubits (28 rate levels) and 2.49 h on 61 qubits.
 
-For strip production on Windows x64, extract the full version 3.1 ZIP linked below into a separate directory (15 GB for download and extraction together). Run the strip commands in that directory. Its 1,412 catalog fragments and strip programs are the ones used for this revision. The runs allow 24 GiB of aggregate memory. A 32 GiB machine is recommended. To verify the recorded runs, use `python tiras/reproduce.py verify-recorded`. This command includes the catalog checks. To recompute the intervals, run the two commands below in order. The second reads the output directory of the first.
+For strip production on Windows x64, extract `REPRODUCCION_SSF_QEC_20261125.zip` from the same Zenodo record into a separate directory (15 GB for download and extraction together). Run the strip commands in that directory. Its 1,412 catalog fragments and strip programs are the ones used for this revision. The runs allow 24 GiB of aggregate memory. A 32 GiB machine is recommended. To verify the recorded runs, use `python tiras/reproduce.py verify-recorded`. This command includes the catalog checks. To recompute the intervals, run the two commands below in order. The second reads the output directory of the first.
 
 ```powershell
 python reproducir.py tiras-1 --salida ../ssf-results/strip-1
@@ -143,4 +141,4 @@ The first run took 3.32 h on the reference machine, with a 6.5 h budget. The sec
 | `PATH25_VALIDATION_20261106.zip` and `PATH25_CERTIFIED_ESTIMATORS_20261112.zip` | `path25/validacion/` and `path25/estimadores/`, respectively |
 | `STRIP_COMPONENT_CERTIFICATES_20261116.zip` and `T2_1_REPRODUCCION_COMPLETA_20261116.zip` | `tiras/tables/` and `tiras/`, respectively |
 
-The 1,412 full strip catalog fragments are in `REPRODUCCION_SSF_QEC_20261125.zip` in the [version 3.1 Zenodo archive](https://doi.org/10.5281/zenodo.24542801). The code and reference output for the postselection comparisons are in `comparaciones/postselection_v2/` in tag `circuit-postselection-v4`.
+The 1,412 full strip catalog fragments are in `REPRODUCCION_SSF_QEC_20261125.zip` in release 4. The same file is also available in the [version 3.1 Zenodo archive](https://doi.org/10.5281/zenodo.24542801). The code and reference output for the postselection comparisons are in `comparaciones/postselection_v2/` in tag `circuit-postselection-v4`.
