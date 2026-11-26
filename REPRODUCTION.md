@@ -2,7 +2,14 @@
 
 ## 1. Reproduce the intervals in Table 2
 
-Use 64-bit Python 3.12 with assertions enabled (on Windows, you can use `py -3.12` for `python`). If you have the full `REPRODUCCION_SSF_QEC_20261125.zip`, extract it into an empty directory and leave its nested ZIPs intact. Allow 15 GB for download and extraction together. From the extracted folder or the compact source copy, open a terminal beside `reproducir.py` and run the quick check. It uses only the Python standard library.
+Use the repository at tag `circuit-postselection-v4` or extract a source
+ZIP of that tag. Both contain the manuscript, the postselection comparisons
+and their reference data. Section 4 explains how to obtain the large catalogues for verifying or
+repeating the full strip runs.
+
+Open a terminal beside `reproducir.py` and run the quick check using
+64-bit Python 3.12 with assertions enabled. On Windows, `py -3.12` can
+replace `python`. This check uses only the Python standard library.
 
 ```sh
 python reproducir.py rapido
@@ -29,14 +36,53 @@ Run `python reproducir.py ACTION` with the action in the middle column. Output p
 | Distance-six codes, Table 2 and Figure 5(b) | `sectores` | `censo/resultado_225.json` and `censo/resultado_900.json` give the counts from the two code seeds. Two data faults and one wrong readout give 324 silent inputs on 225 qubits and 864 on 900. |
 | Bernoulli flag, Table 3 and Appendix E.1.3. Higher rates, Appendix E.2.1 | `marca-tasas` | Repeats the census and orbit counts. `marca-tasas.json` gives the discard and retained-risk bounds. At `(p,q) = (1e-4,1e-3)` the 225-qubit estimate has relative error below 5.396%. [Output fields](sectores/flag_rates/README.txt) |
 | Circuit flag, Table 3 and Appendix E.1.4 | `marca-circuito` | `marca-circuito.json` gives all eight circuit rows. At `(r_c,r_m) = (2e-7,1e-5)` with VV first, fewer than 48 rounds per million are discarded and the silent-failure risk per retained round falls by a factor of at least 257. |
-| Strip cutoff and resource comparisons, Tables 4, 7 and 8 | `rapido` | In `tablas_tiras/`, `circuit_rows.tex` and `phenomenological_rows.tex` give the table entries. `resources.json` gives the recorded times and memory. |
+| Strip cutoff and resource comparisons, Tables 4, 9 and 10 | `rapido` | In `tablas_tiras/`, `circuit_rows.tex` and `phenomenological_rows.tex` give the table entries. `resources.json` gives the recorded times and memory. |
 | Affine F17 instance, Table 5 and Appendix D | `f17` | Logical masks, implicit comparisons, 1,214 circuit traces in `certificate.jsonl`, and sufficient truncation orders 253,000 and 126,000. [Finite-sector inputs](certificados/sector_f17/README.txt) |
-| 225-qubit pilot, Table 6 and Figure 5(a) | `piloto` | `piloto/piloto_HGP_225_esquinas_20261124.json` contains three deterministic Bernoulli intervals and eight stratified circuit intervals. The latter have simultaneous coverage of at least `1 − 16 exp(−7)` under independent sampling within each stratum. |
+| 225-qubit pilot, Table 7 | `piloto` | `piloto/piloto_HGP_225_esquinas_20261124.json` contains three deterministic Bernoulli intervals and eight stratified circuit intervals. The latter have simultaneous coverage of at least `1 − 16 exp(−7)` under independent sampling within each stratum. |
+| Twelve family-wide row inequalities, the Bernoulli density rule and gate order at matched rates (Table 8 and Figure 5(a)) | `revision-v2` | Four logs reproduce the twelve row ratios, the 225-qubit density bounds, the four matched schedules and the printed rows of Table 6. Uses the standard library. |
+| 225-qubit postselection, Table 6 | `postseleccion-v2` | Rebuilds `comparison.json` with the discard bounds for one Bernoulli and eight circuit points, and the circuit risk bounds. The next command computes the tighter Bernoulli risks used in the table. |
+| Lee and the HGP adaptation of Meister at equal expected discard, Appendix E.1.6 | `meister-225` | Rebuilds `meister-225.json` from the affine seed at `p=1e-6, q=1e-4`, including both risk intervals and the seven-check refinement. Uses the same optional environment as the preceding command. |
 | PATH25, Appendix E.3 | `path25` | Two decoder implementations agree on 4,096 syndromes. On the test circuit, enumeration covers 524,288 assignments and the component cutoff is complete at eight noisy locations. [Estimator outputs](path25/estimadores/README.txt) |
-| Rare-event comparisons, Tables 9–10 and Appendix E.4 | `comparaciones` | Recomputes the estimates and mixing diagnostics from stored samples. The 61-qubit reference is deterministic. The 225-qubit circuit comparison includes both deterministic and stratified reference intervals. |
+| Rare-event comparisons, Tables 11–12 and Appendix E.4 | `comparaciones` | Recomputes the estimates and mixing diagnostics from stored samples. The 61-qubit reference is deterministic. The 225-qubit circuit comparison includes both deterministic and stratified reference intervals. |
 | Manuscript and Figures 1–7 | `pdf` | Compiles the PDF with three pdfLaTeX passes. The figures and bibliography are in the TeX source. |
 
 **Software.** The reference runs used Windows x64 and Python 3.12.10. Use Windows for `path25`, the 61-qubit chain checks in `comparaciones`, both splitting runs and strip production. Four actions compile C++17 code. On Windows, `sectores`, `marca-tasas`, `dss-225` and `splitting-225` use Visual Studio x64 Build Tools on a CPU supporting AVX2 and BMI2. On x86-64, `sectores`, `marca-tasas` and `dss-225` also support GNU C++. The PDF requires pdfLaTeX, TikZ, PGFPlots and the other packages in the [preamble](manuscrito/Silent_logical_failure_in_small_set_flip_decoding.tex).
+
+### Optional environment for the cluster score
+
+Use a Python 3.12 virtual environment with Git available. With its
+interpreter active, run these commands from the repository root.
+
+~~~sh
+python -m pip install -r comparaciones/postselection_v2/requirements.txt
+python reproducir.py postseleccion-v2
+python reproducir.py meister-225
+~~~
+
+The pinned Lee–English–Bartlett decoder scores the recorded input.
+SSF supplies the correction and the terminal test in all nine rows.
+Graph columns are sorted by the integer encoding the recorded bits
+in positions 0–107 and the final data bits in positions 108–332.
+BP uses the parallel product-sum schedule, one thread per worker and
+at most 30 iterations. Order-zero LSD runs even when BP converges.
+The threshold is calibrated from the input distribution before classifying
+silent histories. Each row records the cutoff in millionths, discards
+per million rounds, and the silent risk per retained round. Circuit
+`risk_stratified` intervals reuse the sixteen bounds from the original
+pilot, with joint coverage above 98.54%. `risk_deterministic` uses the
+full deterministic remainder. Both coincide under Bernoulli noise.
+The full command took about seven minutes with four workers on the
+reference Windows machine. To run just the main VV-first
+point, use `python comparaciones/postselection_v2/compare_rules.py --point 6 --output vv.json`.
+
+The single-point distance calculation takes about two minutes with one
+BP+LSD thread on the reference machine. Its boundary coin is calibrated
+from the marginal input law. Both cluster rules discard 2.58762–2.60134
+rounds per million in expectation. Of 59,184 silent three-data, one-readout
+histories, the Lee score keeps zero and the distance score keeps 324.
+The launcher compares all scientific output fields to the archived
+[result](comparaciones/postselection_v2/meister_225/results.json).
+Either command can run directly after installation. [Calculation and bounds](comparaciones/postselection_v2/meister_225/README.md)
 
 ## 3. Evaluate another pair of Bernoulli rates
 
@@ -52,7 +98,7 @@ For the example above, the interval is approximately `[6.7622e-15, 7.9308e-15]` 
 
 `dss-225` repeats one million draws with replacement from the two-data, one-readout stratum, then enumerates all 2,721,600 inputs in that stratum. In `dss225.json` the reference sample has 119 silent failures and the census has 324. The sampling commands use the recorded seeds. To regenerate the splitting chains, run `splitting-225` or `splitting-61`. The recorded runs took 161.91 s on 225 qubits (28 rate levels) and 2.49 h on 61 qubits.
 
-For strip production, use the full ZIP with its 1,412 catalog fragments on Windows x64. The runs allow 24 GiB of aggregate memory. A 32 GiB machine is recommended. To verify the recorded runs, use `python tiras/reproduce.py verify-recorded`. This command includes the catalog checks. To recompute the intervals, run the two commands below in order. The second reads the output directory of the first.
+For strip production on Windows x64, extract the full version 3.1 ZIP linked below into a separate directory (15 GB for download and extraction together). Run the strip commands in that directory. Its 1,412 catalog fragments and strip programs are the ones used for this revision. The runs allow 24 GiB of aggregate memory. A 32 GiB machine is recommended. To verify the recorded runs, use `python tiras/reproduce.py verify-recorded`. This command includes the catalog checks. To recompute the intervals, run the two commands below in order. The second reads the output directory of the first.
 
 ```powershell
 python reproducir.py tiras-1 --salida ../ssf-results/strip-1
@@ -75,4 +121,4 @@ The first run took 3.32 h on the reference machine, with a 6.5 h budget. The sec
 | `PATH25_VALIDATION_20261106.zip` and `PATH25_CERTIFIED_ESTIMATORS_20261112.zip` | `path25/validacion/` and `path25/estimadores/`, respectively |
 | `STRIP_COMPONENT_CERTIFICATES_20261116.zip` and `T2_1_REPRODUCCION_COMPLETA_20261116.zip` | `tiras/tables/` and `tiras/`, respectively |
 
-Version 3.1 of the full package contains the manuscript, the launcher and the strip catalogs. The compact source is tagged `circuit-postselection-v3.1`. [Zenodo archive](https://doi.org/10.5281/zenodo.24542801) · [GitHub release](https://github.com/vicenzoscavino1999/ssf-qec-reproduction/releases/tag/circuit-postselection-v3.1)
+The 1,412 full strip catalog fragments are in `REPRODUCCION_SSF_QEC_20261125.zip` in the [version 3.1 Zenodo archive](https://doi.org/10.5281/zenodo.24542801). The code and reference output for the postselection comparisons are in `comparaciones/postselection_v2/` in tag `circuit-postselection-v4`.

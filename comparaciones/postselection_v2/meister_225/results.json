@@ -1,0 +1,200 @@
+{
+  "code": "affine [[225,9,6]]",
+  "noise": "one-round independent Bernoulli, X sector",
+  "p": "1/1000000",
+  "q": "1/10000",
+  "lee_cutoff_millionths": 3368,
+  "discard_per_million_both": [
+    "2.58762651824E+0",
+    "2.60133648934E+0"
+  ],
+  "discard_calibration": {
+    "unclassified_input_mass": [
+      "1.37099710938E-8",
+      "1.37099710939E-8"
+    ],
+    "known_gap_mass_per_million": {
+      "0": [
+        "0E+0",
+        "0E+0"
+      ],
+      "1": [
+        "0E+0",
+        "0E+0"
+      ],
+      "2": [
+        "0E+0",
+        "0E+0"
+      ],
+      "3": [
+        "0E+0",
+        "0E+0"
+      ],
+      "4": [
+        "1.42421327485E-4",
+        "1.42421327486E-4"
+      ],
+      "5": [
+        "1.43937835463E+2",
+        "1.43937835464E+2"
+      ],
+      "6": [
+        "9.99856048312E+5",
+        "9.99856048313E+5"
+      ]
+    },
+    "randomized_gap": 5,
+    "boundary_discard_probability": [
+      "1.78794476853E-2",
+      "1.80716491925E-2"
+    ]
+  },
+  "enumerated_silent_histories": {
+    "2,1": {
+      "total": 324,
+      "lee_retains": 0,
+      "gap_histogram": {
+        "3": 324
+      },
+      "always_retained": 0,
+      "on_randomized_boundary": 0,
+      "counts_by_gap_and_lee_discards": {
+        "3,1": 324
+      }
+    },
+    "2,2": {
+      "total": 32076,
+      "lee_retains": 0,
+      "gap_histogram": {
+        "3": 32076
+      },
+      "always_retained": 0,
+      "on_randomized_boundary": 0,
+      "counts_by_gap_and_lee_discards": {
+        "3,1": 32076
+      }
+    },
+    "3,0": {
+      "total": 36,
+      "lee_retains": 0,
+      "gap_histogram": {
+        "2": 9,
+        "3": 27
+      },
+      "always_retained": 0,
+      "on_randomized_boundary": 0,
+      "counts_by_gap_and_lee_discards": {
+        "2,1": 9,
+        "3,1": 27
+      }
+    },
+    "3,1": {
+      "total": 59184,
+      "lee_retains": 0,
+      "gap_histogram": {
+        "2": 2079,
+        "3": 55809,
+        "4": 972,
+        "6": 324
+      },
+      "always_retained": 324,
+      "on_randomized_boundary": 0,
+      "counts_by_gap_and_lee_discards": {
+        "2,1": 2079,
+        "3,1": 55809,
+        "4,1": 972,
+        "6,1": 324
+      }
+    }
+  },
+  "two_data_three_readouts": {
+    "candidates": 1571724,
+    "silent": 1300536
+  },
+  "lee_certificate": {
+    "admissible_input_superset": 6112,
+    "weight_six_logicals": 72,
+    "possible_weight_five_data_supports": 432,
+    "confirmed_at_zero_readout": 432,
+    "upper_using_only_distance": "4.59515887356E-21",
+    "risk_factor_using_only_distance_lower": "6.97432218188E+0"
+  },
+  "disagreeing_example": {
+    "data_sites": [
+      0,
+      3,
+      4
+    ],
+    "readout_check": 3,
+    "lit_input_checks": [
+      1,
+      4,
+      5,
+      8
+    ],
+    "clustered_data_sites": [],
+    "gap": 6,
+    "lee_discards": true
+  },
+  "unclassified_silent_mass_upper": "1.62049659479E-18",
+  "seven_lit_checks": {
+    "silent_31_by_input_weight": {
+      "4": 324,
+      "6": 864,
+      "8": 324,
+      "9": 2916,
+      "10": 34668,
+      "11": 20088
+    },
+    "retained_31": 1188,
+    "discard_per_million": [
+      "1.33897417146E-2",
+      "1.33916146029E-2"
+    ],
+    "risk_per_retained_round": [
+      "1.17509465192E-19",
+      "4.46301587064E-19"
+    ]
+  },
+  "risk_per_retained_round": {
+    "lee": [
+      "4.27266369855E-28",
+      "1.68889439986E-25"
+    ],
+    "cluster_geometry": [
+      "3.20481184611E-20",
+      "1.65254892916E-18"
+    ]
+  },
+  "geometry_minus_lee_risk": [
+    "3.20479495716E-20",
+    "1.65254892873E-18"
+  ],
+  "paired_difference_without_lee_support_certificate": [
+    "2.76299670367E-21",
+    "1.65254892916E-18"
+  ],
+  "geometry_to_lee_risk_lower": "1.89757976957E+5",
+  "verdict": "Lee has strictly lower retained risk at the same discard probability.",
+  "work": {
+    "unique_syndromes": 347548,
+    "unique_data_erasure_sets": 80194,
+    "metric_solver_calls": {
+      "geometric_bounds_agree": 80194
+    },
+    "crosschecked_erasure_patterns": 87
+  },
+  "runtime": {
+    "gap_calculation_seconds": 0.27429879999544937,
+    "two_data_three_readouts_seconds": 144.47087839999585,
+    "input_geometry_seconds": 15.55916220000654,
+    "common_features_seconds": 116.22755450000113,
+    "feature_stage_seconds": 131.7927936000051,
+    "analysis_stage_seconds": 159.8487274000072,
+    "total_measured_seconds": 291.6415210000123,
+    "command_seconds": 293.25537350001105,
+    "reused_features": false,
+    "python": "3.12.10",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel"
+  }
+}

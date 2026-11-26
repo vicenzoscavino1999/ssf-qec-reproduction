@@ -23,7 +23,8 @@ WORK = STRIPS / "workspace"
 PILOT61 = "T2_2_PILOTO_M6_EJECUCION_20261115/corrida"
 CODE61 = WORK / "T2_2_CODIGO_PILOTO_20261115"
 ACTIONS = ("rapido","tasas","f17","sectores","regional","piloto","marca-tasas","marca-circuito","path25","comparaciones",
-           "splitting-225","dss-225","splitting-61","tiras-1","tiras-2","catalogos","pdf")
+           "splitting-225","dss-225","splitting-61","tiras-1","tiras-2","catalogos","pdf",
+           "revision-v2","postseleccion-v2","meister-225")
 
 def read(path):
     return json.loads(path.read_text(encoding="utf-8-sig"))
@@ -113,6 +114,26 @@ def run(action, out, previous):
         result = out/"marca-circuito.json"
         py(flag_pilot.with_name("circuit_flag.py"), ROOT, "--output", result)
         scientific_equal(result, flag_pilot.with_name("circuit-flag.json"))
+    elif action=="revision-v2":
+        folder = COMP/"postselection_v2"
+        py(folder/"check_row_certificate.py")
+        py(folder/"compare_input_density.py", ROOT)
+        py(folder/"matched_schedules.py", ROOT)
+        scientific_equal(out/logs[-1], folder/"matched_schedules.json")
+        py(folder/"comparison_table.py")
+        manuscript = (ROOT/"manuscrito"/(PAPER+".tex")).read_text(encoding="utf-8")
+        if (out/logs[-1]).read_text(encoding="utf-8").strip() not in manuscript:
+            raise ValueError("The printed comparison table differs from its reference results.")
+    elif action=="postseleccion-v2":
+        folder = COMP/"postselection_v2"
+        result = out/"comparison.json"
+        py(folder/"compare_rules.py", "--jobs", "4", "--output", result)
+        scientific_equal(result, folder/"comparison.json")
+    elif action=="meister-225":
+        folder = COMP/"postselection_v2"/"meister_225"
+        result = out/"meister-225.json"
+        py(folder/"pilot.py", "--repo", ROOT, "--cache", out/"features.gz", "--output", result)
+        scientific_equal(result, folder/"results.json", ("runtime",))
     elif action=="piloto":
         name = "piloto_HGP_225_esquinas_20261124.json"
         local = out/"piloto"

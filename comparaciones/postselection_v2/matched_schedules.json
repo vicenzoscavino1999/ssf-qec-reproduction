@@ -1,0 +1,235 @@
+{
+  "trials_per_stratum": 120000,
+  "exponent": 7,
+  "joint_noncoverage_bound": "16*exp(-7)",
+  "rows": [
+    {
+      "rc": "9.18e-8",
+      "rm": "1e-3",
+      "first_VV": {
+        "L": "6.06146584493486E-15",
+        "U": "6.09826878634712E-15",
+        "estimacion": "6.07981162131305E-15",
+        "error_relativo_pct_sup": "3.02662373219718E-1"
+      },
+      "first_CC": {
+        "L": "2.19681587444965E-14",
+        "U": "2.20728888153679E-14",
+        "estimacion": "2.20203992553313E-14",
+        "error_relativo_pct_sup": "2.37801043966919E-1"
+      },
+      "first_VV_deterministic": {
+        "L": "6.06146584493486E-15",
+        "U": "7.35444757061296E-14",
+        "estimacion": "1.11998506365355E-14",
+        "error_relativo_pct_sup": "8.47713230273238E+1"
+      },
+      "ratio_lower": "3.60235986870225E+0",
+      "ratio_upper": "3.64151005384493E+0",
+      "ratio_point": "3.62188841149910E+0",
+      "first_VV_strata": {
+        "3": {
+          "ensayos": 120000,
+          "semilla": 2026112503,
+          "decodificados": 17495,
+          "silenciosos_con_marca_si_corresponde": 1,
+          "limite_exitos": 16
+        },
+        "4": {
+          "ensayos": 120000,
+          "semilla": 2026112504,
+          "decodificados": 20956,
+          "silenciosos_con_marca_si_corresponde": 0,
+          "limite_exitos": 7
+        }
+      },
+      "first_CC_strata": {
+        "3": {
+          "ensayos": 120000,
+          "semilla": 2026112503,
+          "decodificados": 17747,
+          "silenciosos_con_marca_si_corresponde": 0,
+          "limite_exitos": 7
+        },
+        "4": {
+          "ensayos": 120000,
+          "semilla": 2026112504,
+          "decodificados": 22689,
+          "silenciosos_con_marca_si_corresponde": 1,
+          "limite_exitos": 16
+        }
+      }
+    },
+    {
+      "rc": "1.68e-7",
+      "rm": "1e-4",
+      "first_VV": {
+        "L": "2.07541851175129E-15",
+        "U": "2.07804479979219E-15",
+        "estimacion": "2.07673082545396E-15",
+        "error_relativo_pct_sup": "6.32312805938825E-2"
+      },
+      "first_CC": {
+        "L": "7.52058569587213E-15",
+        "U": "7.52817914770669E-15",
+        "estimacion": "7.52438050600059E-15",
+        "error_relativo_pct_sup": "5.04589706429763E-2"
+      },
+      "first_VV_deterministic": {
+        "L": "2.07541851175129E-15",
+        "U": "4.40101961968287E-14",
+        "estimacion": "3.96390832455142E-15",
+        "error_relativo_pct_sup": "9.09932046046251E+1"
+      },
+      "ratio_lower": "3.61906812433697E+0",
+      "ratio_upper": "3.62730654327364E+0",
+      "ratio_point": "3.62318525529461E+0",
+      "first_VV_strata": {
+        "3": {
+          "ensayos": 120000,
+          "semilla": 2026112603,
+          "decodificados": 18429,
+          "silenciosos_con_marca_si_corresponde": 0,
+          "limite_exitos": 7
+        },
+        "4": {
+          "ensayos": 120000,
+          "semilla": 2026112604,
+          "decodificados": 21295,
+          "silenciosos_con_marca_si_corresponde": 0,
+          "limite_exitos": 7
+        }
+      },
+      "first_CC_strata": {
+        "3": {
+          "ensayos": 120000,
+          "semilla": 2026112703,
+          "decodificados": 18746,
+          "silenciosos_con_marca_si_corresponde": 3,
+          "limite_exitos": 20
+        },
+        "4": {
+          "ensayos": 120000,
+          "semilla": 2026112704,
+          "decodificados": 22508,
+          "silenciosos_con_marca_si_corresponde": 1,
+          "limite_exitos": 16
+        }
+      }
+    },
+    {
+      "rc": "1.781e-7",
+      "rm": "1e-5",
+      "first_VV": {
+        "L": "2.61065411623302E-16",
+        "U": "2.61453077003035E-16",
+        "estimacion": "2.61259100505390E-16",
+        "error_relativo_pct_sup": "7.41917057809647E-2"
+      },
+      "first_CC": {
+        "L": "9.41547001503879E-16",
+        "U": "9.42544990119072E-16",
+        "estimacion": "9.42045731498140E-16",
+        "error_relativo_pct_sup": "5.29692084903211E-2"
+      },
+      "first_VV_deterministic": {
+        "L": "2.61065411623302E-16",
+        "U": "5.97797194062259E-15",
+        "estimacion": "5.00282853664724E-16",
+        "error_relativo_pct_sup": "9.16312278037789E+1"
+      },
+      "ratio_lower": "3.60120834031320E+0",
+      "ratio_upper": "3.61037865666822E+0",
+      "ratio_point": "3.60579106976871E+0",
+      "first_VV_strata": {
+        "3": {
+          "ensayos": 120000,
+          "semilla": 2026112703,
+          "decodificados": 18956,
+          "silenciosos_con_marca_si_corresponde": 0,
+          "limite_exitos": 7
+        },
+        "4": {
+          "ensayos": 120000,
+          "semilla": 2026112704,
+          "decodificados": 21150,
+          "silenciosos_con_marca_si_corresponde": 1,
+          "limite_exitos": 16
+        }
+      },
+      "first_CC_strata": {
+        "3": {
+          "ensayos": 120000,
+          "semilla": 2026112903,
+          "decodificados": 19110,
+          "silenciosos_con_marca_si_corresponde": 3,
+          "limite_exitos": 20
+        },
+        "4": {
+          "ensayos": 120000,
+          "semilla": 2026112904,
+          "decodificados": 22630,
+          "silenciosos_con_marca_si_corresponde": 2,
+          "limite_exitos": 18
+        }
+      }
+    },
+    {
+      "rc": "1.803e-7",
+      "rm": "1e-5",
+      "first_VV": {
+        "L": "2.67940482654300E-16",
+        "U": "2.68317348246530E-16",
+        "estimacion": "2.68128783025613E-16",
+        "error_relativo_pct_sup": "7.02769396573923E-2"
+      },
+      "first_CC": {
+        "L": "9.66286195610492E-16",
+        "U": "9.67410916967660E-16",
+        "estimacion": "9.66848229195933E-16",
+        "error_relativo_pct_sup": "5.81642983200879E-2"
+      },
+      "first_VV_deterministic": {
+        "L": "2.67940482654300E-16",
+        "U": "6.20950921023443E-15",
+        "estimacion": "5.13714184971013E-16",
+        "error_relativo_pct_sup": "9.17269760366196E+1"
+      },
+      "ratio_lower": "3.60128110211743E+0",
+      "ratio_upper": "3.61054405584477E+0",
+      "ratio_point": "3.60590988511507E+0",
+      "first_VV_strata": {
+        "3": {
+          "ensayos": 120000,
+          "semilla": 2026112803,
+          "decodificados": 18793,
+          "silenciosos_con_marca_si_corresponde": 0,
+          "limite_exitos": 7
+        },
+        "4": {
+          "ensayos": 120000,
+          "semilla": 2026112804,
+          "decodificados": 21168,
+          "silenciosos_con_marca_si_corresponde": 0,
+          "limite_exitos": 7
+        }
+      },
+      "first_CC_strata": {
+        "3": {
+          "ensayos": 120000,
+          "semilla": 2026113103,
+          "decodificados": 18864,
+          "silenciosos_con_marca_si_corresponde": 4,
+          "limite_exitos": 22
+        },
+        "4": {
+          "ensayos": 120000,
+          "semilla": 2026113104,
+          "decodificados": 22571,
+          "silenciosos_con_marca_si_corresponde": 1,
+          "limite_exitos": 16
+        }
+      }
+    }
+  ]
+}

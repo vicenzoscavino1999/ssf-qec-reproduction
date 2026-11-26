@@ -31,7 +31,7 @@
 \usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
 
 \hypersetup{
- pdftitle={Certified estimates of silent logical failure in small-set-flip decoding with noisy readout},
+ pdftitle={Certified estimates of silent logical failure after one noisy round of small-set-flip decoding},
  pdfauthor={Vicenzo Scavino Alfaro},
  pdfsubject={Silent logical failure under noisy syndrome readout and deterministic small-set-flip decoding},
  bookmarksnumbered=true, bookmarksopen=true, bookmarksopenlevel=1
@@ -65,7 +65,7 @@
 \raggedbottom
 
 \title{Certified estimates of silent logical failure\\
-in small-set-flip decoding with noisy readout}
+after one noisy round of small-set-flip decoding}
 \author{Vicenzo Scavino Alfaro\\[2pt]
   {\small Independent researcher}\\
   {\small\urlstyle{same}\href{mailto:vicenzoscavino@hotmail.com}{\nolinkurl{vicenzoscavino@hotmail.com}}
@@ -80,24 +80,29 @@ in small-set-flip decoding with noisy readout}
 With one syndrome readout inverted, small-set-flip (SSF) can turn
 two correctable data faults into a logical $X$ error. The data then
 pass every ideal $Z$ check, yet the misread check can remain lit in
-the decoder's final record. We bound the probability of silent failure
-after one noisy round. Compatible connected histories determine the
-global flip sequence, including ties and stopping. The resulting
-expansions converge in certified noise regions for regular $(3,4)$
-and $(17,18)$ hypergraph products. On 225 qubits at independent data
+the decoder's final record. We bound this probability for one noisy
+extraction round followed by an ideal terminal data measurement.
+Compatible connected histories determine the global flip sequence,
+including ties and stopping. For regular $(3,4)$ and $(17,18)$
+hypergraph products, the resulting expansion gives a uniform cost
+bound of $\exp[O(\sqrt n)]$ times polynomial factors at fixed positive
+data rate in the certified region. On 225 qubits at independent data
 and readout fault rates $(p,q)=(10^{-6},10^{-4})$, the silent-failure
 probability lies in $[3.240,3.274]\cdot10^{-14}$, with over $98\%$ from two data
-faults and one wrong readout. We flag a round if the decoder flips
-qubits and stops with a nonzero recorded syndrome. On any binary CSS
+faults and one wrong readout. Our sector counts bound the risk per round
+retained by Lee et al.'s cluster score below $1.69\cdot10^{-25}$.
+The SSF flag uses only the decoder's record of a flip and a nonzero
+final syndrome. On any binary CSS
 code, if each flip updates the record by its syndrome and strictly lowers the
 recorded weight, the flag catches every silent failure with a
 misrecorded input syndrome and data-error weight below the logical
 $X$ distance. Independent wire and check contributions give the exact
 joint law of final $X$ errors and readouts in our extraction model.
-On 225 qubits with variable--variable qubits coupled first, at operation
-and readout rates $(r_c,r_m)=(2\cdot10^{-7},10^{-5})$, the flag
-reduces risk per retained round at least $257$-fold while discarding
-fewer than 48 rounds per million.
+On 225 qubits with variable--variable gates first at
+$(r_c,r_m)=(2\cdot10^{-7},10^{-5})$, the flag cuts silent risk per
+retained round at least $257$-fold relative to keeping all rounds.
+Lee et al.'s additional BP+LSD pass retains more rounds at lower risk
+there (joint stratified coverage above $98.54\%$).
 \end{abstract}
 \begingroup
 \setlength{\columnwidth}{\textwidth}
@@ -143,8 +148,7 @@ the six filled checks in this nine-check product row. (b) Both residuals
 have zero physical syndrome. With check 2 inverted, SSF stops with
 that check lit and leaves $X$ on $v_0,\ldots,v_5$. This is one of the
 324 silent two-data, one-readout inputs caught by the flag
-(Section~\ref{sec:abort-flag}). OpenAI Codex assisted with the TikZ
-layout of the two decoder traces.}
+(Section~\ref{sec:abort-flag}).}
 \label{fig:affine-trace}
 \end{figure}
 \endgroup
@@ -185,10 +189,13 @@ Proposition~\ref{prop:flag-escape} identifies the silent failures
 that can escape on any binary CSS code under strictly
 weight-decreasing syndrome updates. At the Bernoulli rates above
 on 225 qubits, the rule discards fewer than seven rounds per million
-and reduces risk per retained round at least $909.5$-fold. Requiring
-a zero observed syndrome at input would discard $1\,590$--$1\,643$
-times as many rounds (Table~\ref{tab:abort-flag} and
-Section~\ref{sec:abort-flag}).
+and reduces risk per retained round at least $909.5$-fold. An input
+threshold of seven lit checks discards about $500$ times fewer rounds
+and further reduces the risk. Across the eight circuit points this
+threshold also discards fewer rounds, but leaves more silent failures per
+retained round. At the Bernoulli point, Lee et al.'s cluster score
+gives the lowest certified risk among the rules compared
+(Section~\ref{sec:abort-flag}).
 \item \emph{Counting several components in one round.}
 Theorem~\ref{thm:recomp} recovers the global flip sequence, including
 ties and stopping, from compatible connected histories. The strip
@@ -210,6 +217,13 @@ of the $(3,4)$ family up to $p=10^{-6}$ and $q=10^{-4}$
 (Corollary~\ref{cor:certified-34}), and give separate rates for
 $(17,18)$ products.
 
+The uniform algorithm gives a complexity bound at fixed positive data
+rate. The finite intervals below come from enumerating fault sectors on
+the affine codes and connected components on the strips. On 225 qubits
+the sector calculation also reaches $(p,q)=(10^{-4},10^{-3})$ with
+relative error below $5.396\%$. This is a finite Bernoulli estimate.
+The low-rate circuit points instead give benchmarks where direct
+sampling rarely produces even one silent failure.
 The mass of a counted failure sector gives a lower bound on silent
 failure conditional on zero physical syndrome. A larger lower bound
 allows a shorter truncation of the uniform expansion at fixed relative
@@ -232,10 +246,10 @@ deterministic upper bound (Section~\ref{sec:splitting-comparison}).
 For any binary CSS code in our one-round extraction model, the
 circuit calculation keeps each wire's final error together with the
 readouts its faults affect (Proposition~\ref{prop:wire-check-fibres}).
-On 225 qubits the four
-CC-first point estimates are $2.89$--$3.02$ times their VV-first
-counterparts at matched readout rates. Each CC-first point uses a
-lower operation rate (Fig.~\ref{fig:affine-estimates}(a)).
+On 225 qubits, coupling CC qubits first gives about $3.6$ times the
+silent-failure probability of coupling VV qubits first at each of
+four identical pairs of operation and readout rates
+(Table~\ref{tab:matched-gates}).
 
 \paragraph{Relation to prior work.}
 Leverrier, Tillich and Z\'emor introduced SSF for quantum expander
@@ -265,7 +279,8 @@ theorem. Sections~\ref{sec:block1}--\ref{sec:conditioned} derive the
 representation used to certify the rates in Section~\ref{sec:certificates}.
 Readers interested in the finite estimates and the discard rule
 can go directly from Section~\ref{sec:setting} to
-Section~\ref{sec:finite-estimates}.
+Section~\ref{sec:finite-estimates}. Figure~\ref{fig:recomposition}(b)
+maps the proof to the uniform and finite estimates.
 
 \section{Decoder and main theorem}\label{sec:setting}
 
@@ -349,8 +364,7 @@ inverted readout ($t_v=1$) leaves three checks lit and the singleton
 score at $1/2$ until first contact. In a physically accepted history
 with $0<\beta\le1/4$, the winner then scores at least $1/2$ on a
 footprint of size three or more, giving an integer syndrome decrease
-of at least two (Lemma~\ref{lem:first-contact}(b)). The generator and
-first-contact diagrams were drawn in TikZ with assistance from OpenAI Codex.}
+of at least two (Lemma~\ref{lem:first-contact}(b)).}
 \label{fig:hgp-contact}
 \end{figure}
 
@@ -433,14 +447,26 @@ Definition~\ref{def:polymer} gives the precise support test.
 
 \subsection{Physical filtering and the main theorem}
 Write $S=S_X$ and $T=\ker H_X$. The physical acceptance probability
-is $P_0=\Pr[R\in T]$ and the per-round silent-failure probability is
-$P_{\rm sil}=\Pr[R\in T\setminus S]$. Their ratio
-$Q_{\rm sil}=P_{\rm sil}/P_0$ is the failure probability conditional
-on acceptance. Under circuit noise $R$ is the $X$ component of the
-residual Pauli error, including the contribution from $Y$ faults.
-The no-fault history gives $P_0\ge B_0>0$. An ideal
-terminal measurement of the data in the computational basis yields
-the physical check parities.
+is $P_0=\Pr[R\in T]$. An ideal terminal measurement of the data in the
+computational basis yields these check parities. Let $\mathcal S$ denote
+the event $R\in T\setminus S$, and $\mathcal A$ a discard decision
+based on the observed record. The three probabilities have the following
+experimental meanings.
+\[
+\begin{array}{ll}
+\text{per attempted round}      & P_{\rm sil}=\Pr(\mathcal S),\\
+\text{given zero physical syndrome} & Q_{\rm sil}=P_{\rm sil}/P_0,\\
+  \text{per retained round}       & \Pr(\mathcal S\cap\mathcal A^c)/\Pr(\mathcal A^c).
+\end{array}
+\]
+The last quantity is reported together with the discard fraction
+$\Pr(\mathcal A)$ in Section~\ref{sec:abort-flag}. Its numerator
+counts silent failures that survive the discard rule per attempted
+round. We use $(p,q)$ for independent data and readout faults and
+$(r_c,r_m)$ for operation and readout faults in the extraction circuit
+(Section~\ref{sec:circuit}). The no-fault
+history gives $P_0\ge B_0>0$. Under circuit noise $R$ includes the
+$X$ component of $Y$ faults.
 
 Define the physically filtered activities and their formal partitions by
 \begin{equation}\label{eq:filtered-weights-definition}
@@ -597,7 +623,8 @@ empty family. Under this bijection,
 \end{theorem}
 
 Figure~\ref{fig:recomposition} illustrates the two directions proved
-in Appendix~\ref{app:execution-proofs}.
+in Appendix~\ref{app:execution-proofs} and locates the finite
+calculations within the argument.
 
 \begin{figure}[!htb]
 \centering
@@ -606,6 +633,7 @@ in Appendix~\ref{app:execution-proofs}.
                  inner sep=0pt,font=\sffamily\bfseries\footnotesize},
     flipped/.style={site,fill=graphink,text=white},
     selected/.style={site,fill=white,text=graphink}]
+  \node[panel title] at (.02,2.96) {(a) One execution on two components};
   \node at (1.65,2.48) {Support $Y_1$};
   \node at (5.75,2.48) {Support $Y_2$};
   \draw[graphink,line width=.9pt] (.92,1.92)--(2.38,1.92)
@@ -621,6 +649,27 @@ in Appendix~\ref{app:execution-proofs}.
   \node at (4.84,.62) {$11\xrightarrow{\{1\}}01\xrightarrow{\{3\}}00$};
   \node[anchor=west] at (.02,.03) {Residual class};
   \node at (4.84,.03) {$[1100]\oplus[0011]=[1111]=0$};
+  \node[panel title] at (.02,-.62) {(b) From the decoder to the estimates};
+  \begin{scope}[every node/.style={font=\sffamily\footnotesize,text=graphink},
+    box/.style={draw=graphgrid,rounded corners=1pt,align=center,inner sep=3pt},
+    flow/.style={->,draw=graphteal,semithick}]
+    \node[box,fill=graphteal!6,text width=6.82cm] (exec) at (3.70,-1.25)
+      {Fixed actions, positive threshold, fixed ties\\
+       $\longrightarrow$ exact SSF histories (Theorem~\ref{thm:recomp})};
+    \node[box,text width=3.18cm] (uniform) at (1.80,-2.59)
+      {\mbox{Regular HGP, full FGL}\\
+       Uniform rate bounds\\
+       (Sections~\ref{sec:conditioned}--\ref{sec:certificates})};
+    \node[box,text width=3.18cm] (strips) at (5.60,-2.59)
+      {Finite strips\\
+       Compatible components\\
+       (Appendix~\ref{app:strip-certificates})};
+    \draw[flow] (exec.south -| uniform.north)--(uniform.north);
+    \draw[flow] (exec.south -| strips.north)--(strips.north);
+    \node[box,fill=graphteal!6,text width=6.82cm] (finite) at (3.70,-4.05)
+      {Affine sector counts on 225 and 900 qubits\\
+       Full seed row rank gives the distance test (Lemma~\ref{lem:data-fault-distance}).};
+  \end{scope}
 \end{tikzpicture}
 \caption{Exact recomposition in a four-qubit CSS example. The two
 $Z$ checks measure parity on pairs $(1,2)$ and $(3,4)$, and
@@ -632,9 +681,22 @@ Silent failure occurs exactly when the initial fault bits at sites
 2 and 4 differ. Adding fault 4 to $\{2\}$ changes the residual class
 from $\ell$ to $[1111]=0$. The eight failing patterns form two
 connected components of four under single-site changes that preserve
-failure. OpenAI Codex assisted with the layout of the local histories.}
+failure. (b) Appendices~\ref{app:two-volumes}--\ref{app:pilot} give the affine sector counts. For the
+circuit, Proposition~\ref{prop:wire-check-fibres} supplies the
+one-round wire law on any binary CSS code.}
 \label{fig:recomposition}
 \end{figure}
+
+The same example shows why the tie order is fixed. Give the first
+pair priority over the second, and prefer site 1 to site 2 precisely
+when the second check is lit. With faults at 2 and 4 the first
+action is $\{1\}$. Restricted to the first pair, the same initial
+fault at 2 selects $\{2\}$. An implementation can preserve
+recomposition by comparing a fixed action index whenever scores tie.
+A positive threshold also ensures termination. With just one action
+whose footprint is a pair of checks, an input with exactly one lit
+check alternates forever between the two checks if zero-score moves
+are admitted.
 
 To compute the weight of a connected support $Y$, fix the readout
 faults to $Y\cap C_X$ and enumerate data faults $E\subseteq Y\cap V$.
@@ -761,7 +823,9 @@ operator gives a sufficient cutoff of $253\,000$ in total source
 degree for $10\%$ relative error. For each fixed tie order, $17$ of
 the $18$ parallel classes in each data row produce silent failures.
 Counting their mass lowers the cutoff to $126\,000$ with the same
-convergence bound. Appendix~\ref{app:affine-detail} derives both
+convergence bound. These sufficient orders quantify the cost of the
+uniform algorithm. The computation on F17 evaluates the witness
+mass and the sufficient order. Appendix~\ref{app:affine-detail} derives both
 cutoffs and the corresponding circuit-sector bound.\par
 \end{samepage}
 
@@ -833,8 +897,7 @@ SSF sees $s=H_XE_X\oplus B\oplus\bigoplus_v\delta_v$
 ancilla. (a) The first readout therefore disagrees with the syndrome
 of the final data. (b) The wire fibre records this discrepancy together
 with the final $X$ error. Reversing the CNOTs moves the discrepancy
-from $j_1$ to $j_2$ (Proposition~\ref{prop:wire-check-fibres}).
-OpenAI Codex assisted with the circuit diagram.}
+from $j_1$ to $j_2$ (Proposition~\ref{prop:wire-check-fibres}).}
 \label{fig:circuit-fibres}
 \end{figure}
 
@@ -901,9 +964,8 @@ fibres contain the ancilla operations and classical readout flips
 mass omitted from its count. For $0<L\le P_{\rm sil}\le U$, the
 harmonic estimate $2LU/(L+U)$ has worst relative error $(U-L)/(U+L)$
 (Lemma~\ref{lem:harmonic-point}). For sampled endpoints this bound
-holds on the joint coverage event. The author used OpenAI Codex to
-explore proof strategies and to develop the numerical verification
-code listed in Appendix~\ref{app:support}.
+holds on the joint coverage event. Appendix~\ref{app:support} lists
+the numerical verification code.
 
 \subsection{Fault sectors on 225 and 900 qubits}\label{sec:marked-volumes}
 \begin{figure*}[!t]
@@ -912,16 +974,13 @@ code listed in Appendix~\ref{app:support}.
   \node[panel title] at (0,5.05) {(a) 225 qubits, circuit noise};
   \node[panel title] at (9.55,5.05) {(b) Two code sizes, Bernoulli noise};
   \node at (.48,4.36) {$r_m$};
-  \node at (2.12,4.64) {$10^7 r_c$};
-  \node[text=graphteal] at (1.54,4.28) {VV};
-  \node[text=graphrust] at (2.70,4.28) {CC};
-  \foreach \row/\power/\vv/\cc in {4/-3/1.005/0.918,3/-4/1.85/1.68,
-                                      2/-5/1.975/1.781,1/-5/2.000/1.803}{
+  \node at (2.12,4.36) {$10^7 r_c$};
+  \foreach \row/\power/\rate in {4/-3/0.918,3/-4/1.680,
+                                      2/-5/1.781,1/-5/1.803}{
     \draw[graphgrid,line width=.3pt]
       (3.47,{1.20+(\row-.5)*.75})--(8.92,{1.20+(\row-.5)*.75});
     \node at (.48,{1.20+(\row-.5)*.75}) {$10^{\power}$};
-    \node at (1.54,{1.20+(\row-.5)*.75}) {\vv};
-    \node at (2.70,{1.20+(\row-.5)*.75}) {\cc};
+    \node at (2.12,{1.20+(\row-.5)*.75}) {\rate};
   }
   \begin{semilogxaxis}[paper axis,at={(3.47cm,1.20cm)},anchor=south west,
     width=5.45cm,height=3cm,xmin=.24,xmax=32,ymin=.5,ymax=4.5,
@@ -929,17 +988,17 @@ code listed in Appendix~\ref{app:support}.
     ytick={1,2,3,4},yticklabels=\empty,axis y line=none,
     axis x line*=bottom,ymajorgrids,xlabel={$10^{15}P_{\rm sil}$},
     tick label style={font=\sffamily\scriptsize}]
-    % Source: the eight interval rows in piloto_HGP_225_esquinas_20261124.json.
+    % Both schedules use the same physical rates in each row.
     \addplot+[only marks,graphteal,mark=*,mark size=1.9pt,
       mark options={solid,fill=graphteal,draw=graphteal},
       error bars/.cd,x dir=both,x explicit]
       table[x=est,y=row,x error minus expr=\thisrow{est}-\thisrow{lo},
                          x error plus expr=\thisrow{hi}-\thisrow{est}] {
         row est          lo           hi
-        4    7.287649080  7.265146024  7.310291972
-        3    2.521498433  2.519747621  2.523251681
-        2    0.325370226  0.325116839  0.325624008
-        1    0.334223095  0.333938803  0.334507872
+        4    6.079811621  6.061465844  6.098268787
+        3    2.076730825  2.075418511  2.078044800
+        2    0.261259101  0.261065411  0.261453078
+        1    0.268128783  0.267940482  0.268317349
       };
     \addplot+[only marks,graphrust,mark=square*,mark size=1.9pt,
       mark options={solid,fill=graphrust,draw=graphrust},
@@ -952,16 +1011,12 @@ code listed in Appendix~\ref{app:support}.
         2    0.942045731  0.941547001  0.942544991
         1    0.966848229  0.966286195  0.967410917
       };
-    \addplot[only marks,graphink,mark=x,mark size=2.8pt,line width=1pt]
-      coordinates {(.4912342963,1)};
   \end{semilogxaxis}
   \begin{scope}[yshift=-2.5mm]
   \fill[graphteal] (.31,.10) circle (1.9pt);
   \node[anchor=west] at (.48,.10) {VV first};
   \fill[graphrust] (2.47,.035) rectangle ++(.13,.13);
   \node[anchor=west] at (2.70,.10) {CC first};
-  \draw[graphink,line width=1pt] (4.89,.02)--(5.05,.18) (4.89,.18)--(5.05,.02);
-  \node[anchor=west] at (5.14,.10) {Splitting, VV first};
   \end{scope}
 
   \begin{axis}[paper axis,at={(11.07cm,2.88cm)},anchor=south west,
@@ -995,18 +1050,15 @@ code listed in Appendix~\ref{app:support}.
   \node[anchor=west] at (12.65,.83) {$\rho\le 0.0180$ on 225 qubits};
   \node[anchor=west] at (12.65,.34) {$\rho\le 0.1728$ on 900 qubits};
 \end{tikzpicture}
-\caption{(a) On 225 qubits each CC-first estimate exceeds its VV-first
-partner at the same readout rate and a lower operation rate. The eight
-stratified intervals have joint coverage above $98.54\%$ under
-independent trials within each stratum. At the last VV-first setting
-the splitting estimate (cross) lies above the stratified interval
-$[3.33938,3.34508]\cdot10^{-16}$ and inside the deterministic interval.
+\caption{(a) At identical rates on 225 qubits, coupling CC first raises
+the silent-failure probability by a factor above $3.60$ at each of
+the four points. The eight stratified intervals have joint coverage
+above $98.54\%$ under independent trials within each stratum.
 (b) Both codes have $d_X=6$. The dots and whiskers give the harmonic
 estimates and deterministic intervals at $(p_0,q_0)=(10^{-6},10^{-4})$.
 This point is the filled corner of the shaded region
 $0<z_p/z_{p_0}\le z_q/z_{q_0}\le1$, with $z_x=x/(1-x)$. There
-$P_{\rm sil}=T_{21}(1+\rho)$ by Corollary~\ref{cor:regional-sector}.
-OpenAI Codex assisted with plotting the intervals and the region.}
+$P_{\rm sil}=T_{21}(1+\rho)$ by Corollary~\ref{cor:regional-sector}.}
 \label{fig:affine-estimates}
 \end{figure*}
 
@@ -1108,10 +1160,12 @@ Throughout $0<p\le10^{-5}$, $0\le q\le3\cdot10^{-4}$, the relative
 error is below $1.352\%$. At $p=0$ the probability is zero.
 
 \paragraph{Gate order on 225 qubits.}
-Across the four pairs in Fig.~\ref{fig:affine-estimates}(a), the ratio
-of the CC-first to the VV-first point estimate ranges from $2.89$ to
-$3.02$. The schedules in each pair share $r_m$, with CC first at the
-lower, any-order $r_c$ of Table~\ref{tab:fibre-34}.
+Figure~\ref{fig:affine-estimates}(a) holds both noise rates fixed.
+The lower endpoints of the four CC-first to VV-first risk ratios all
+exceed $3.60$ on their joint coverage event
+(Table~\ref{tab:matched-gates}). At the separate operating ceilings
+of Table~\ref{tab:affine225-pilot}, the ratios of the point estimates
+range from $2.89$ to $3.02$.
 
 \subsection{A flag for postselection after SSF}\label{sec:abort-flag}
 In a protocol that can discard and restart a round, such as state
@@ -1121,6 +1175,11 @@ the flag is determined by the initial and final weights,
 \[
  \mathcal A=\{\,0<|s_{\rm stop}|<|s_0|\,\}.
 \]
+Write $\mathcal S$ for silent failure. The risk per attempted round
+is $P_{\rm sil}=\Pr(\mathcal S)$. After discarding a fraction
+$\Pr(\mathcal A)$, the risk per retained round is
+$\Pr(\mathcal S\cap\mathcal A^c)/(1-\Pr(\mathcal A))$. The reported
+gain divides the first risk by the second within the same noise model.
 
 \begin{proposition}[Silent failures that escape the flag]\label{prop:flag-escape}
 Consider one round on a binary CSS code. Write $d_X$ for the minimum
@@ -1142,6 +1201,9 @@ With no move, $E=R$ and hence $|E|\ge d_X$.
 \end{proof}
 
 The argument holds for each history, including correlated faults.
+Applying it to another decoder requires a sequence of data flips
+with these recorded-weight updates. A decoder that reports only a
+final correction need not supply such a sequence.
 Under Bernoulli noise $D$ is the set of wrong readouts. In the circuit
 $E$ is the final data $X$ error before decoding and $D=D_{\rm eff}$
 is the net discrepancy after cancellations. Every silent history with
@@ -1163,11 +1225,11 @@ $900$ on 225 qubits and $584$ on 900 (Appendix~\ref{app:flag-proof}).
 \setlength{\tabcolsep}{2.5pt}
 \caption{Deterministic bounds for the SSF flag. At nonzero effective
 readout discrepancy, a retained silent failure already carried a
-logical data error (Proposition~\ref{prop:flag-escape}). The gain is
-$P_{\rm sil}$ divided by the silent-failure probability per retained
-round. The circuit rows use the schedules and their respective
+logical data error (Proposition~\ref{prop:flag-escape}). The circuit
+rows use the schedules and their respective
 operation rates from Table~\ref{tab:affine225-pilot}.}
 \label{tab:abort-flag}
+\smallskip
 \begin{tabular}{@{}lrrr@{}}
 \toprule
 \shortstack[l]{Code or\\$(r_m,10^7r_c)$} & \shortstack{Discards per\\million rounds} &
@@ -1200,6 +1262,42 @@ at most 469 rounds per million and reduce the risk per retained
 round by more than four orders of magnitude at their respective
 operation rates. Appendix~\ref{app:circuit-flag} derives both bounds
 from the joint wire and readout probabilities.
+
+\paragraph{Comparing discard decisions.}
+On the affine 225-qubit code a silent two-data input has seven lit
+checks in its faulty row. Discarding whenever $|s_0|\ge7$ also catches
+all $36$ silent triples with perfect readout in the Bernoulli model.
+At $(10^{-6},10^{-4})$ this rule discards at most $0.01340$ rounds per
+million. Its risk per retained round lies between $1.175\cdot10^{-19}$
+and $4.47\cdot10^{-19}$. In the circuit,
+$324$ silent three-wire patterns reach the decoder with just four
+lit checks. At $(r_c,r_m)=(2\cdot10^{-7},10^{-5})$ with VV first,
+these histories alone give a retained risk above $3.121\cdot10^{-18}$.
+The SSF flag bounds it by $1.298\cdot10^{-18}$. The same ordering of
+risks holds deterministically at each of the eight circuit points.
+
+We also use the published BP+LSD cluster score of Lee, English and
+Bartlett~\cite{LEB26} to select rounds, with SSF still applying
+every correction. At the Bernoulli point it discards
+$2.58762$--$2.60134$ rounds per million and gives a retained risk
+of at most $1.689\cdot10^{-25}$. We compared it at equal expected
+discard with a distance score adapted from Meister, Pattison and
+Preskill~\cite[Alg.~2]{MPP24} to the same BP+LSD clusters. The
+adaptation retains 324 silent inputs with three data faults and one
+wrong readout that Lee's rule discards. These alone give it at least
+$189\,000$ times Lee's retained risk at this point
+(Appendix~\ref{app:cluster-distance}).
+At the same VV-first circuit point the Lee risk is at
+most $5.70\cdot10^{-19}$ on the stratified coverage event. Its upper
+bound is below the SSF lower bound at all four points with
+$r_m=10^{-5}$. At the higher readout rates the intervals overlap.
+Table~\ref{tab:input-postselection} reports the discard and retained
+risk for the stopping, density and Lee rules. Each alternative fits
+the SSF discard budget.
+For a common discard probability $a_\star$, a rule with discard
+probability $a\le a_\star$ can discard each survivor independently
+with probability $(a_\star-a)/(1-a)$. Its risk per retained round is
+unchanged.
 
 \subsection{Compatible histories on growing strips}\label{sec:strip-certificates}
 The strips are planar surface codes formed from two open repetition
@@ -1250,8 +1348,7 @@ one logical qubit in every strip.
 sites overall to four per component lowers the relative-error bound
 from $99.513\%$ to $1.221\%$. (b) On 61 qubits the splitting estimate
 ($1.10704\cdot10^{-13}$) lies above the deterministic interval
-$[8.1358,8.2332]\cdot10^{-14}$. Both panels use $r_c=r_m=10^{-5}$.
-OpenAI Codex assisted with the plotting code.}
+$[8.1358,8.2332]\cdot10^{-14}$. Both panels use $r_c=r_m=10^{-5}$.}
 \label{fig:strip-comparison}
 \end{figure}
 
@@ -1335,8 +1432,10 @@ The four-rate run took $2.49$ h.
 
 On 225 qubits at $(r_c,r_m)=(2\cdot10^{-7},10^{-5})$ with VV first,
 the splitting estimate of $4.91234\cdot10^{-16}$ in $161.91$ s lies
-inside the deterministic interval and above the narrower stratified
-interval (Fig.~\ref{fig:affine-estimates}(a)). The sector estimate
+inside the deterministic interval
+$[3.33938\cdot10^{-16},8.56802\cdot10^{-15}]$
+and above the stratified interval $[3.33938,3.34508]\cdot10^{-16}$
+(Table~\ref{tab:affine225-pilot}). The sector estimate
 was $3.34223\cdot10^{-16}$ in $8.31$ s (median of three runs).
 On the joint coverage event for the eight stratified intervals, the
 splitting estimate exceeds $P_{\rm sil}$ by $46.85$--$47.11\%$. This
@@ -1370,10 +1469,20 @@ in that round leaves the recorded input syndrome unchanged for the
 same readout discrepancy (Section~\ref{sec:conditioned}). SSF applies
 the same correction to $E\oplus L$, leaving $L$ as the residual.
 The flag thus retains this silent failure as well.
-Table~\ref{tab:abort-flag} gives the fraction of attempts discarded
-and the silent-failure probability per retained round. Related
-postselection rules use a decoder's soft estimate of correction
-risk~\cite{MPP24} or cluster information on HGP codes~\cite{LEB26}. With
+The threshold of seven uses the geometry of this seed. At the Bernoulli
+point it improves both acceptance and retained risk. In the circuit,
+the gate at which a data fault occurs also changes the input seen by
+the rule. Table~\ref{tab:input-postselection} compares all three rules
+with this correlation preserved. Lee et al.\ studied BP+LSD correction
+and any-observable failure at uniform circuit noise
+$10^{-3}$~\cite[Fig.~5]{LEB26}. Here their cluster information serves
+as a discard signal for a fixed SSF correction and silent-failure
+event. For the Bernoulli example in Appendix~\ref{app:cluster-distance},
+BP+LSD assigns only readout mechanisms to the active clusters. Their
+likelihood weights trigger Lee's rule while the physical distance to
+a logical operator stays at six. This distinction concerns the
+one-round HGP adaptation of the surface-code distance~\cite{MPP24}.
+With
 perfect readout at $p=0.01$, Stambler et al.\ found that about
 $99.9\%$ of observed SSF failures on a 900-qubit $(3,4)$ product
 ended with a nonzero syndrome~\cite[Table~1]{SKB23}.
@@ -1429,7 +1538,8 @@ responsibility for the proofs, computations, and conclusions.\par
 \phantomsection\pdfbookmark[1]{References}{article-references}
 \begin{thebibliography}{99}
 \setlength{\itemsep}{0pt}
-\setlength{\parskip}{0.5pt plus 0.5pt minus 0.25pt}
+\setlength{\parskip}{0pt plus 0.25pt}
+\addtolength{\baselineskip}{-0.2pt}
 
 \bibitem{ABKL00}
 A.~E.~Ashikhmin, A.~M.~Barg, E.~Knill, and S.~N.~Litsyn,
@@ -2890,8 +3000,9 @@ of another fault. A qubit belonging to a parent has its singleton
 footprint inside that rectangle, so this also excludes (K2).
 Consequently $v$ has degree zero in $K[E]$.
 
-Put the three checks $(i,d_j)$ in $D$ and choose three further
-checks on $X$ away from row $i$. Then $t_v=3$ and $b_v=B-6$.
+Put the three checks $(i,d_j)$ in $D$. They lie outside $X$.
+Put three checks of $X$ in $D$ away from row $i$.
+Then $t_v=3$ and $b_v=B-6$.
 Give priority, from left to right, to the physical actions
 \[
  (i,H_1),\ \ldots,\ (i,H_k),\quad (i,L),\quad
@@ -3120,7 +3231,36 @@ with the winner. Counting the initially bright checks of its footprint
 that have yet to be extinguished tightens the descent bound. A positive
 linear combination of the crossing inequalities bounds the number of
 data sites in the execution support by $135e$, and hence its total size
-by $135(e+d)$.
+by $135(e+d)$. To see the numerical bound, let $A_j,\delta_j$ be the
+footprint size and syndrome decrease at step $j$, $g_j=\delta_j/A_j$
+and $c_j=(A_j-\delta_j)/2$. At the first step with $g_j<t$ every
+original singleton has score below $t$, so at most
+$b(t)e=(\lceil9(1+t)\rceil-1)e$ checks in their union are lit.
+Outside the union, extra lit checks must have been created in the
+prefix. Summing decreases in the suffix therefore gives
+\[
+ \sum_{g_j<t}\delta_j-\sum_{g_j\ge t}c_j\le b(t)e .
+\]
+If there is no crossing, the left-hand side is nonpositive.
+Use weight $2/17$ on the total decrease and the following weights
+on this inequality for $t=k/9$, in increasing $k$. Each row lists
+three successive weights:
+\[
+\begin{pmatrix}
+169/85&15314/8415&5101/3366\\
+5105/3978&2186/1989&2188/2295\\
+15301/18360&53/72&100/153
+\end{pmatrix}.
+\]
+For $0\le x\le18,\ 0\le y\le17$ put $s=x+y>0$ and
+$A=17x+18y-2xy$. Keep $2A\ge17s$ and test the integers
+$A/100\le\delta\le A$ of the same parity as $A$.
+For each such triple the coefficient of the step in the weighted
+sum is at least $s$: it is $(2/17)\delta$ plus each listed weight
+times $\delta$ if $\delta/A<t$, or times $-(A-\delta)/2$ otherwise.
+The weighted right side is $349988081e/2625480$.
+Adding the $e$ original data sites gives fewer than $135e$ for $e>0$.
+At $e=0$ the total decrease vanishes.
 
 Apply Lemma~\ref{lem:first-contact}(a) at $(17,18)$ to each source group. In a group
 with one marked singleton action and no adjacent measurement faults,
@@ -3148,9 +3288,74 @@ At the upper corner of \eqref{eq:mixed-source-region} the three group
 rows (VV, CC and measurement) are bounded respectively by
 $6\cdot10^{-24}$, $1.3\cdot10^{-23}$ and $1.5\cdot10^{-25}$.
 
-Substitution into the fifteen rooted-tree inequalities and restoration
-of the removed singleton pieces give physical loads bounded by
-$\widehat R_i$. The incompatible load for a decoration is at most
+To state the fifteen tree inequalities, order the sources
+$O=(\mathrm{VV},\mathrm{CC},\mathrm{readout})$ and the action types
+$I=(\mathrm{VV\ singleton},\mathrm{CC\ singleton},\mathrm{multiple})$.
+Write $o$ for the three group bounds just given. Put
+$f=(17,18,1,17,18,306)$, $\ell=(18,17,1,18,17,306)$,
+$H=f\ell^{\mathsf T}$ and $J=H/(1-\Lambda)$, where $\Lambda$ is the
+continuation sum above. Each entry of $H$ counts endpoint choices,
+and the geometric series sums the intervening steps. For the bridge
+incidences $M_{ij}=M^0_{\pi(i),\pi(j)}$ use
+$\pi=(1,2,3,1,2,4)$ and
+\begingroup\small\setlength{\arraycolsep}{2pt}
+\[
+M^0=\begin{pmatrix}
+22880420&21538881&1345890&366165618\\
+24147396&22722625&1420146&386363250\\
+1425060&1341249&83810&22805874\\
+387704772&364898625&22805874&6203355250
+\end{pmatrix}.
+\]
+\endgroup
+The action budgets $s,p,c$ correspond to arrival from a bridge or
+anchor, a preceding cause, and a later child. Direct links to a
+data source have budgets $v,g$ (arrivals from a bridge/child
+and a cause, respectively). All five vectors have three components.
+With $(a,b)$ denoting concatenation, compute
+\[
+\begin{aligned}
+ L &= J_{:,I}p,& D &= J(o,c+v),\\
+ Z &= M(o,s+v)+L .
+\end{aligned}
+\]
+Add $H_{\{1,2\},I}g$ to the first two components of $Z$.
+For an action row $i$ define $D_i^0=H_{i,\{1,2\}}o_{\{1,2\}}$,
+$b_i=f_i(2.055\cdot10^{-11})$,
+$a_i=.04b_i^3e^{Z_i+b_i}$ and $E_i=e^{Z_i+2b_i}$.
+If $\kappa_f,\kappa_c,\kappa_d$ are the three crossing weights in
+$\Lambda$, the three action weights $\gamma_j$ are
+$\max(\kappa_f,.04/17)$, $\max(\kappa_c,.04/18)$ and
+$\max(\kappa_f,\kappa_c,\kappa_d,.04/33)$. For $j=1,2,3$,
+$i=3+j$, the required upper budgets satisfy
+\[
+\begin{aligned}
+ s_j&\ge a_i+\gamma_jD_iE_i, &
+ p_j&\ge\gamma_j(E_i-1-L_i),\\
+ c_j&\ge a_i+\gamma_jD_i(E_i-1),\\
+ v_j&\ge .05D_i^0e^{Z_i}, &
+ g_j&\ge .05(e^{Z_i}-1).
+\end{aligned}
+\]
+Here $a_i$ counts an origin with at least three saved readouts.
+The subtraction in the $p$ row removes an empty continuation and a
+single causal child, both already accounted for. The $c$ row requires
+an additional branch when its incoming child is already distinguished.
+The $v,g$ rows terminate a direct link at a data source or require an
+onward branch. Induction on tree height now bounds every finite tree.
+The following witness satisfies all fifteen inequalities:
+\[
+\begin{array}{c|rrr}
+ &\mathrm{VV}&\mathrm{CC}&\mathrm{multiple}\\ \hline
+ 10^{19}s&7.27&7.27&103\\
+ 10^{11}p&1.07&1.07&15.9\\
+ 10^{24}c&5.51&5.83&1400\\
+ 10^{22}v&2.82&2.98&50.7\\
+ 10^7g&3.81&4.04&68.6
+\end{array}
+\]
+Restoring the removed singleton pieces gives physical loads bounded
+by $\widehat R_i$. The incompatible load for a decoration is at most
 $0.01(e+d)$, including its own contribution. These estimates use the
 per-source majorant $[r_i/(1-2r_i)]e^{0.025}$, which covers
 $|b_i|e^{a+\tau}$ and the additional physical budget $e^{0.01}$.
@@ -3213,12 +3418,236 @@ This count allows shared readers, four-cycles and arbitrary group
 sizes. It bounds every mask $u$ since $|(-1)^{u\cdot R}|=1$. The
 primitive activities at each upper corner dominate those throughout
 its Bernoulli rectangle, including passive readouts
-(Table~\ref{tab:fibre-34}). At
-$(p,q)=(10^{-6},10^{-4})$ the largest of the twelve row ratios is
-below $0.999526$. The
-\href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/blob/circuit-postselection-v3.1/certificados/fibras/proofs/H5A_3_4_esquina_2.txt}{derivation of the row bounds}
-gives the witness, the sums through size ten and the bound for
-larger groups (Appendix~\ref{app:support}).
+(Table~\ref{tab:fibre-34}). We give the certificate at the corner
+$(p,q)=(10^{-6},10^{-4})$ of Corollary~\ref{cor:certified-34}.
+
+\paragraph{Budgets and local counts.}
+Index data types $V,C$ by $i=0,1$. A row bounds the sum of the
+possible continuations at a specified root by a positive budget.
+The witness below gives the source weights $m$, the data-site
+budgets $u$, the ordinary group budgets $h$, and the budgets $H$
+for groups attached to a specified physical data site. All entries
+in the following array are in units of $10^{-6}$:
+\[
+\begin{array}{c|rr}
+ & V&C\\ \hline
+ m&1.103585668&1.125499296\\
+ u&1.064424176&1.087972930\\
+ h&.04753509019&.1387925312\\
+ H&.006387261997&.02275491635
+\end{array}
+\]
+The visible and fixed-generator budgets are respectively
+$v_*=.6862867109\cdot10^{-6}$ and $r_*=2.337412703\cdot10^{-6}$.
+Set $a=.568,\ s=.678,\ \lambda=.015,\ \alpha=.004,\ \eta=.0001$,
+$b_*=.0001085$ and $\theta=.000108$. The tilted readout and data
+weights are $y=q e^\lambda/(1-2q)$ and
+$z=p e^{\lambda+\alpha}/(1-2p)$. Write
+\[
+\begin{aligned}
+ L(x)&=x+x^2/[2(1-x)],\\
+ A&=L(\theta)-\tfrac{89}{2}L(\theta^2),\\
+ B&=b_*+89L(\theta^2)-L(\theta),\\
+ g&=40H_V+27H_C+r_*,\\
+ I&=280u_V+189u_C+588g .
+\end{aligned}
+\]
+Here $A$ charges a protected readout and $B$ its complement.
+With $N_D=\left(\begin{smallmatrix}640&441\\784&513\end{smallmatrix}\right)$,
+put $R=\|N_Du\|_\infty$, $\Phi=e^{89b_*+I}$ and
+$\epsilon=\Phi(\Phi-1)$. At this witness $A,B>0$,
+$y/(1+y)<\theta$, $R<.001393<\alpha$, $\max_i u_i<\eta$
+and $\epsilon<.01227$.
+
+To count the descendants of a group let $k=(h_V,h_C,v_*)^{\mathsf T}$.
+The following incidence arrays bound an unrestricted continuation
+and one with a distinguished destination. The rows and columns are
+ordered $V,C,\text{generator}$:
+\[
+\begin{aligned}
+ K&=\begin{pmatrix}1028316&685678&21163\\
+ 1218982&812566&25086\\28217&18815&547\end{pmatrix},\\
+ K^\bullet&=\begin{pmatrix}174179&116136&3657\\
+ 206463&137631&4335\\4876&3252&90\end{pmatrix}.
+\end{aligned}
+\]
+Thus $w_i=m_i e^{(Kk)_i}$ includes all ordinary children, while
+$d_i=(K^\bullet k)_i$ distinguishes one. Write $J=(Kk)_G$,
+$d_G=(K^\bullet k)_G$ for the generator row. For the initial
+data-site exposures put $\xi=(B,2u_V,2u_C,2g)^{\mathsf T}$,
+$\xi'=(b_*,2u_V,2u_C,2g)^{\mathsf T}$ and
+\[
+\begin{aligned}
+ C&=\begin{pmatrix}414&1264&859.5&2623.5\\536&1652&1095&3374\end{pmatrix},\\
+ C'&=\begin{pmatrix}210&640&441&1344\\252&784&513&1596\end{pmatrix}.
+\end{aligned}
+\]
+With $f=(504,628)$, the two contributions are
+\[
+\begin{aligned}
+ M_i&=z e^{\eta+2R+f_i A+(C\xi)_i},\\
+ M_i^0&=z(1+y)^{3+i}e^{\eta+2R+(C'\xi')_i}.
+\end{aligned}
+\]
+The second term counts the simple root and its $3+i$ readouts.
+
+\paragraph{The group series and its tail.}
+Two sources with a common generator rectangle have a strong edge
+when their strips overlap or have a common projection, and a weak
+edge otherwise. Count a tree inside each strong component and join
+these trees by weak edges. A source outside a strong component
+that shares a rectangle with a strong pair can attach to either
+member of the pair. This gives the factor $1/2$ in its extra weight.
+For a weak edge on which a strip occupies multiple cells, two
+distinct Tanner paths reach the same destination. If the weak
+multiplicity budget is $W^0_{ij}$, ordinary and multiple destinations
+therefore satisfy $n_1+2n_2\le W^0_{ij}$ before the common
+displacement weight is applied. Since a promotion to multiple has
+nonnegative extra cost, one can use half of the weighted weak
+budget for such promotions. The weighted weak and combined strong
+incidences at the witness are, in $V,C$ order,
+\[
+\begin{aligned}
+ W&=\begin{pmatrix}
+479.413463293782&319.712053370976\\
+568.376983770624&379.040194911360
+\end{pmatrix},\\
+ S&=\begin{pmatrix}
+146.995636562163&112.725959011272\\
+200.401704908928&123.178993446112
+\end{pmatrix}.
+\end{aligned}
+\]
+Before the overlap discounts the weak rows are $(486,324),(576,384)$
+and the strong rows are $(153,117),(208,128)$. For each displacement,
+multiply its two Tanner sphere multiplicities by its discount and
+sum over the displacements in that entry. The two kinds of strong
+edge have the same Bernoulli source weight here.
+
+For a root of type $i$, the unit, separated and strong weights are
+$1,c_s=a^{-4},c_i=a^{-(7+3i)}$. The extra weight on attachment to
+a strong pair is $j_i=(a^{-(7+i)}-1)/2$. At source weights $x$,
+let $U$ be the free tree, $Z$ a tree reached on a strong edge, $C_s$
+a root with a strong child, $T_s$ a root carrying the extra
+attachment weight, and $\Delta$ the surcharge on receiving a multiple
+weak edge. Products and exponentials act componentwise except for
+the indicated matrix actions. The associated child sums are
+\[
+\begin{gathered}
+ g_0=WU/2,\qquad b_0=g_0+W\Delta/2,\\
+ F=e^{g_0+b_0},\quad F_t=e^{WT_s},\quad D_s=SZ.
+\end{gathered}
+\]
+Summing unordered sets of children gives
+\[
+\begin{aligned}
+ C_s &= x c F F_t(e^{D_s}-1),\\
+ Z &= x c F F_t e^{D_s},\\
+ T_s &=x j F,\qquad \Delta=x(c_s-1)e^{g_0},\\
+ U   &=x e^{g_0}[1+c_s(e^{b_0}-1)]
+           +C_s+T_s(WC_s).
+\end{aligned}
+\]
+For example, $e^{D_s}-1$ requires a strong child, and $T_s(WC_s)$
+chooses the attached strong component. Every term includes the root
+source exactly once. At $x=w$ iterate from zero, rounding each new
+state upwards to the next multiple of $10^{-24}$ (with equality
+allowed). A stationary rounded state bounds the least solution by
+positivity. Denote its free coordinate by $U^+(w)$.
+For the coefficients, substitute $x=t w$ or $t m$, start at zero
+constant term, and use
+$n[t^n]e^f=\sum_{k=1}^n k[t^k]f\,[t^{n-k}]e^f$.
+Thus all coefficients through degree 13 are finite rational sums.
+The two truncations used below are
+\[
+\begin{aligned}
+ T_i &= U_i^+(w)-\sum_{n=1}^{10}[t^n]U_i(tw),\\
+ L_i &= \sum_{n=11}^{13}[t^n]U_i(tm).
+\end{aligned}
+\]
+The first subtraction uses coefficients of the very series bounded
+by the supersolution. When at least one external child is required,
+the no-child terms of degrees 11--13 can also be removed: at a fixed
+tree shape its contribution is proportional to the difference of
+its monomial at $w$ and at $m$. This gives the upper bound $T_i-L_i$.
+
+\paragraph{The twelve row tests.}
+For up to ten sources let $P_i(x)$ be the finite rooted placement
+polynomial, with a monomial $x_V^{n_V}x_C^{n_C}$ for each composition.
+Its coefficients use the first-contact credits of
+Lemma~\ref{lem:first-contact}: for a fixed composition sum placements
+by the number of strong links and the initial checks extinguished.
+For each coefficient take the smaller bound from this count and
+the tree coefficient times its coverage discount. For a pair also
+use the bound obtained by fixing its two Tanner displacements.
+The finite enumeration and its typed histograms are in the
+\href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/blob/circuit-postselection-v3.1/certificados/fibras/proofs/H5A_3_4_esquina_2.txt}{archived count}.
+Only three evaluations of this polynomial enter the row tests.
+With $P_i^\bullet=\sum_j d_jw_j\partial_jP_i(w)$, the inputs below
+are in units of $10^{-8}$, within one unit of the last digit printed:
+\[
+\begin{array}{c|rr}
+ &V&C\\ \hline
+ P_i(w)&4.732393468&13.765875275\\
+ P_i(m)&2.726968511&6.229548460\\
+ P_i^\bullet&.489174459&2.023387217\\
+ T_i&.016370937&.094225744\\
+ L_i&.002031421&.011364058
+\end{array}
+\]
+The marked single-group contribution, including its direct tail, is
+at most $\sigma=1.6902840\cdot10^{-8}$.
+For a fixed data site, either subtract placements without a child or
+distinguish a child. Together with directly connected data this costs
+\[
+\begin{aligned}
+ F_i^*={}&\min\{P_i(w)-P_i(m),P_i^\bullet\}+T_i-L_i\\
+           &{}+m_i\big(e^{(N_D(1.01m))_i}-1\big).
+\end{aligned}
+\]
+Here $m_i e^{(N_D(1.01m))_i}\le1.01m_i$ bounds the directly
+connected tree. For the generator put $\omega=a^6/s^2$ and
+\[
+\begin{aligned}
+ D_* &=e^J d_G-\sum_{i=V,C}K^\bullet_{Gi}\big(P_i(m)+L_i\big),\\
+ F_G^*&=\omega\{\omega D_*+(e^J-1)d_G/2\}+\sigma .
+\end{aligned}
+\]
+The subtraction removes the no-child contribution to a distinguished
+data branch. A second generator contact pays the outer factor in
+the first term, or distinguishes one of at least two children
+in the second. Consequently the twelve required comparisons, grouped
+in pairs, are
+\[
+\begin{array}{ll}
+ y(1+b_*)(1+\epsilon)< b_*,&
+ y(1-\theta)e^{99A+90B+2I}<\theta,\\
+ M_i<m_i,& P_i(w)+T_i<h_i,\\
+ F_i^*<H_i,& M_i^0+H_i<u_i,\\
+ \omega(e^J-1-J)<v_*,&F_G^*<r_* .
+\end{array}
+\]
+The middle two lines each run over both data types. Dividing by
+the budget on the right gives the following outward upper bounds:
+\[
+\begin{array}{l|rr}
+ \text{readouts (passive, active)}&.947357&.954746\\
+ \text{source }(V,C)&.99952024&.99952592\\
+ \text{ordinary group }(V,C)&.999002&.998621\\
+ \text{fixed group }(V,C)&.998307&.997744\\
+ \text{data site }(V,C)&.999509&.999491\\
+ \text{generator (visible, fixed)}&.998418&.998614
+\end{array}
+\]
+For rational upper arithmetic, round $c_s-1,c_i,j_i$ upwards to
+$10^{-13}$, use the degree-24 Taylor sum for $e^x$ plus
+$x^{25}/[25!(1-x/26)]$, and round each resulting exponential and
+each $w_i$ upwards on the $10^{-26}$ grid. The tightest comparison
+is the CC source. The evaluation gives $M_C<1.12496572\cdot10^{-6}$
+against $m_C=1.125499296\cdot10^{-6}$, hence $M_C/m_C<0.999526$.
+Freezing the local discounts at this witness and
+dominating the positive primitive weights by their values at the
+corner covers the full rectangle, including its axes.
 
 Multiply all source odds by $t$ and write the filtered log partition on
 $J$ as $\sum_{k\ge1}a_k t^k$. At radius $e^{0.015}$ the rooted bounds
@@ -3765,7 +4194,10 @@ $L_X=(e_jc^{\mathsf T},0)\in\ker H_X\setminus S_X$ of weight $34$.
 
 Stambler et al.\ reduce SSF to classical bit flipping when the syndrome
 is supported in one product line~\cite[Lemma~1]{SKB23}. For our FGL rule,
-fix a VV row $j$. A parent rectangle has eighteen VV rows and
+fix the first data coordinate, i.e., row $j$ of $U$. Its 306 VV
+sites $(j,\ell)$ vary in the second coordinate. A parent $(r,\ell)$
+contains the single site $(j,\ell)$ of this row when $j\in N(r)$,
+and none otherwise. Its check rectangle has eighteen VV rows and
 seventeen CC columns. If a candidate selects $b$ columns, its
 footprint~\eqref{eq:rect-footprint} contains $17-b$ checks on each
 selected row and $b$ on each unselected row. For $1\le b\le16$, the
@@ -4309,6 +4741,242 @@ $[H_-/(1-A_-),H_+/(1-A_+)]$. For the gain, the deterministic lower
 endpoint $L$ for the unfiltered circuit in Table~\ref{tab:affine225-pilot}
 gives $L(1-A_+)/H_+$.
 
+\subsubsection{Postselection from input density and cluster scores}\label{app:input-postselection}
+All three rules see the same $108$ recorded checks $s_0$. SSF makes
+the correction in every retained round. The ideal terminal parities
+and residual logical class enter only when evaluating $\mathcal S$.
+The density rule discards when $|s_0|\ge7$.
+For the cluster rule we use the global strategy of Lee, English and
+Bartlett~\cite[Defs.~1--2]{LEB26}. BP+LSD provides clusters $C_i$
+of the input fault mechanisms. With $w_j=\log[(1-\pi_j)/\pi_j]$ for
+a mechanism of probability $\pi_j$, the rule discards when
+\[
+ Q_{\rm LLR}^{(2)}
+ =\frac{\sqrt{\sum_i(\sum_{j\in C_i} w_j)^2}}{\sum_j w_j}>c .
+\]
+We use the authors' implementation, with 30 product-sum iterations
+at most and order-zero LSD even when BP converges. Its predicted
+correction is unused.
+
+\paragraph{Input graph.}
+Each column records an observed check mask and a final data-error
+mask. The second label distinguishes mechanisms when constructing the
+graph. Only the first mask supplies rows to BP. In Bernoulli noise
+the columns are the $225$ data faults and $108$ readout flips.
+For a CNOT on wire $v$, let $f$ be the checks coupled to $v$ after
+this gate and $b$ the current check. The two binary increments
+$(f,e_v)$ and $(b,0)$ generate the four projected Pauli outcomes.
+Each nonidentity outcome has probability $4r_c/15$. Independently
+toggling each generator and their sum with probability
+$u=(1-\sqrt{1-16r_c/15})/2$ gives the exact law because each
+nonconstant binary character has mean $(1-2u)^2=1-16r_c/15$.
+A data wait toggles $(f,e_v)$ with probability $2r_c/3$.
+The ancilla and readout contribution is $(b,0)$ with probability $h$
+as above. Columns with identical pairs of masks merge by parity.
+Columns having an empty recorded mask and a nonempty data label
+remain in the likelihood normalization. Direct propagation of the
+primitive circuit with Stim~\cite{Gidney21} gives the same $1\,089$
+labelled columns at each of the eight points. All column
+probabilities agree to within $5\cdot10^{-15}$ in absolute value.
+
+\paragraph{Discard budget.}
+For input-based rules, marginalize each wire law to its recorded
+increment $\phi_v\epsilon_v\oplus\delta_v$ and retain the independent
+check bits. For the density rule, let $k$ be the weight of the XOR
+of zero, one or two nonzero wire increments. The input weight has
+law $k-X+Y$, where $X\sim{\rm Bin}(k,h)$ and
+$Y\sim{\rm Bin}(108-k,h)$ are independent. Adding the entire
+probability of three or more nonzero wires bounds the omitted mass.
+For the cluster rule we tabulate zero increments, one nonzero wire
+alone, and one or two check bits alone, also including three check
+bits alone at $r_m=10^{-3}$. For this set $\mathcal C$, the discard
+interval is
+\[
+ [\,\Pr(Q>c,\mathcal C),\quad
+    \Pr(Q>c,\mathcal C)+1-\Pr(\mathcal C)\,].
+\]
+Here $Q=Q_{\rm LLR}^{(2)}$. We choose the smallest cutoff on a
+$10^{-6}$ grid whose upper endpoint fits the SSF discard lower
+bound, using only syndrome probabilities. At the Bernoulli point
+and the VV-first $(2\cdot10^{-7},10^{-5})$ circuit point we then
+also classify one wire with one check and pure check triples. At
+the Bernoulli point we include pairs of data wires alone. The
+threshold stays fixed during this refinement. All threshold
+decisions refer to the pinned numerical scorer in Appendix~\ref{app:support}.
+
+\paragraph{Retained silent mass.}
+For 225 qubits Lemma~\ref{lem:affine-row} confines every silent
+two-data input to two parallel lines and one faulty readout on
+the third line. Its recorded row has seven lit checks. In the
+Bernoulli model all $36$ silent $(3,0)$ inputs have nine lit checks.
+Write $w_{ab}=p^a(1-p)^{225-a}q^b(1-q)^{108-b}$ for the mass of
+one specified input. Of the $101\,088$ candidates in sector $(3,1)$
+allowed by arbitrary maximizing ties, $59\,184$ fail silently with
+the fixed physical order. Exactly $324$ have four lit input checks
+and $864$ have six. Every other silent input in the sector has at
+least eight. Thus the density rule retains $1\,188$ in this sector.
+Its joint silent mass is between $1\,188w_{31}$ and
+$1\,188w_{31}+U_>$, where $U_>$ sums the upper counts for
+$(3,2),(3,3),(4,0),(4,1)$ from Appendix~\ref{app:high-rate-225}
+times their respective $w_{ab}$, plus
+\[
+ \binom{225}3p^3\binom{108}4q^4+
+ \binom{225}4p^4\binom{108}2q^2+\binom{225}5p^5 .
+\]
+The Bernoulli cluster-score bound is derived below.
+
+In the circuit the seven-check condition still eliminates every
+silent two-data input for the density rule. For the cluster rule,
+the restricted nine-check inversion of Appendix~\ref{app:pilot}
+gives the mass of each of the $324$ reduced patterns with exterior
+wire offsets zero. Classify zero or one exterior check flip for
+each pattern. Their rejected mass lowers the upper bound for the
+retained two-data contribution by the same amount. For both rules,
+classify the $1\,656$ silent three-wire patterns with all other wire
+labels $(0,0)$ and all independent check bits zero.
+Their observed weights are four ($324$ patterns), eight ($324$) and
+nine ($1\,008$). For example, data faults at $0,3,4$ and effective
+readout offset at check $3$ give a silent four-check input.
+Sum the retained patterns using their exact joint wire laws.
+The existing bounds on the remaining three-wire and four-wire
+strata and the five-wire tail apply to every subset of those
+histories. The same sixteen one-sided bounds therefore suffice for
+all eight circuit comparisons, including both rules. The
+joint coverage with the additional matched-schedule intervals in
+Table~\ref{tab:matched-gates} is at least $1-24e^{-7}$.
+The supplement also gives the wider deterministic upper endpoints.
+For either construction, joint retained-mass bounds $[L,U]$ and
+discard bounds $[a_-,a_+]$ give conditional bounds
+$[L/(1-a_-),U/(1-a_+)]$.
+
+\begin{table*}[t]
+\centering\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Three postselection rules on the same 225-qubit SSF rounds.
+$A$ is the number of discards per million attempts, and $R$ is the silent
+risk per retained round in units of $10^{-18}$. Each point uses its
+own cluster cutoff $c$. Bernoulli entries and all discard intervals are
+deterministic for the specified rules. In the circuit, the SSF risk and
+the lower risk endpoints are deterministic. The density and cluster
+risk upper endpoints use the common stratified event of coverage above
+$98.54\%$. VV and CC specify the first gate block.}
+\label{tab:input-postselection}
+\smallskip
+\begin{tabular}{@{}lcc rr rr rrr@{}}
+\toprule
+ & & & \multicolumn{2}{c}{SSF stopping flag} &
+ \multicolumn{2}{c}{Seven lit input checks} &
+\multicolumn{3}{c}{Lee BP+LSD cluster score}\\
+\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(l){8-10}
+Model/first & $q$ or $r_m$ & $10^7(p\text{ or }r_c)$ &
+ $A$ & $R$ & $A$ & $R$ & $10^6c$ & $A$ & $R$, upper\\
+\midrule
+Bern. & $10^{-4}$ & 10 & [6.67,6.90] & [35.6,35.7] & [0.0133,0.0134] & [0.117,0.447] & 3368 & [2.58,2.61] & $1.69\cdot10^{-7}$ \\
+VV & $10^{-3}$ & 1.005 & [463,469] & [0.134,0.141] & [0.00476,0.00477] & [0.356,12.2] & 599 & [230,247] & 45.2 \\
+CC & $10^{-3}$ & 0.918 & [462,469] & [0.700,0.705] & [0.00169,0.00170] & [0.864,4.81] & 597 & [223,240] & 105 \\
+VV & $10^{-4}$ & 1.850 & [49.2,49.4] & [0.921,1.01] & [0.00276,0.00277] & [2.44,5.75] & 960 & [46.0,48.5] & 3.51 \\
+CC & $10^{-4}$ & 1.680 & [47.5,47.6] & [4.72,4.78] & [0.000876,0.000878] & [5.83,12.9] & 962 & [32.6,35.0] & 7.60 \\
+VV & $10^{-5}$ & 1.975 & [47.1,47.2] & [1.13,1.25] & [0.00311,0.00312] & [3.00,3.51] & 961 & [29.7,30.1] & 0.508 \\
+CC & $10^{-5}$ & 1.781 & [45.0,45.1] & [5.67,5.76] & [0.000955,0.000958] & [7.02,7.99] & 947 & [34.4,34.8] & 0.999 \\
+VV & $10^{-5}$ & 2.000 & [47.7,47.8] & [1.17,1.30] & [0.00319,0.00320] & [3.12,3.68] & 961 & [30.3,30.5] & 0.570 \\
+CC & $10^{-5}$ & 1.803 & [45.5,45.6] & [5.89,5.97] & [0.000979,0.000981] & [7.28,8.38] & 947 & [34.9,35.2] & 1.13 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsubsection{A cluster distance at matched discard}\label{app:cluster-distance}
+Use the Bernoulli point of Table~\ref{tab:input-postselection}.
+Meister, Pattison and Preskill assign zero length to edges inside
+decoder clusters before measuring a surface-code logical
+path~\cite[Def.~9 and Alg.~2]{MPP24}. On this HGP we take $J_s$ to
+be the physical data sites in the active BP+LSD clusters for the
+recorded input $s$. In units of one data-site cost the distance is
+\[
+ g(s)=\min_{L\in\ker H_X\setminus S_X}|\supp L\setminus J_s|.
+\]
+Readout columns influence the clusters and carry no physical data
+support. Both scores use the same clusters and the same SSF correction.
+
+\paragraph{Computing the distance.}
+For the full-row-rank seed, a nontrivial logical $(U,W)$ has
+$b^{\mathsf T}U$ a nonzero seed kernel word for some $b\in\ker H_0$.
+Indeed, if all contractions vanish, $U=H_0^{\mathsf T}Y$ for some
+$Y$. Equation~\eqref{eq:syndrome} and injectivity of $H_0^{\mathsf T}$
+then give $W=YH_0^{\mathsf T}$, a stabilizer. Each occupied column
+of $b^{\mathsf T}U$ therefore needs a VV site. The nonzero seed words
+have weights six (six words) and twelve (one word), and each gives a
+logical on any single VV row. For row subsets $J_i$ of $J_s$, put
+$f(J)=\min_{0\ne x\in\ker H_0}|\supp x\setminus J|$ and
+$u=\min_i f(J_i)$. When $W=0$, each row of $U$ is a kernel word and
+the minimum is $u$. When $W\ne0$, at least six VV sites and one CC
+site occur, so the cost is bounded below by both $7-|J_s|$ and
+\[
+ f\Bigl(\bigcup_iJ_i\Bigr)+\mathbf1_{\{J_s\cap V_{CC}=\varnothing\}}.
+\]
+The larger lower bound reaches or exceeds $u$ on all $80\,194$ distinct
+sets $J_s$ in the enumerated inputs. This computes $g$ exactly there.
+
+\paragraph{Matching discards.}
+Let $a_L$ be the true discard probability of Lee's rule at
+$c=0.003368$. Discard for $g<5$, retain for $g>5$, and at $g=5$
+discard with independent probability
+\[
+ \alpha=\frac{a_L-\Pr(g<5)}{\Pr(g=5)} .
+\]
+This matches discards in expectation. Enumerate the input sectors
+$(0,0),(0,1),(0,2),(0,3),(1,0),(1,1),(2,0)$ and allow all remaining
+probability, below $1.3710\cdot10^{-8}$, on either side of each
+cutoff. This gives $0.0178794\le\alpha\le0.0180717$. The risk bounds
+hold throughout this interval. The value defined by the equation
+matches the discard probability exactly.
+
+\paragraph{Which errors survive.}
+Both rules discard every silent $(2,1),(2,2)$ and $(3,0)$ input.
+Of the $59\,184$ silent $(3,1)$ inputs, the distance rule keeps
+$324$ at $g=6$ and has none at $g=5$. Lee's rule discards them all.
+For example, faults at data sites $0,3,4$ and readout $3$ light
+checks $1,4,5,8$. Their active clusters contain only readout columns.
+The joint mass retained by the distance rule is between $324w_{31}$
+and $324w_{31}+U_>+B_2$, where
+\[
+\begin{aligned}
+ B_2={}&324p^2(1-p)^{223}q(1-q)^8-324(w_{21}+99w_{22})\\
+       &{}-(1\,571\,724-1\,300\,536)w_{23}.
+\end{aligned}
+\]
+The first term allows every exterior readout pattern in
+Lemma~\ref{lem:affine-row}. In $(2,3)$ the lemma allows
+$324\binom{99}{2}=1\,571\,724$ inputs and direct SSF enumeration
+leaves $1\,300\,536$ silent. All their mass is included in $B_2$.
+
+For Lee's rule, write $w_p=\log 999999$ and $w_q=\log 9999$.
+Since $3/2<w_p/w_q<8/5$, the total column weight is below $468w_q$.
+Three active readout columns, two data columns, or one of each give
+a cluster 2-norm of at least $\sqrt{3}\,w_q$. Each exceeds the cutoff
+after normalization. Order-zero LSD assembles a syndrome-consistent
+solution on its active columns~\cite[Methods]{LEB26}. A retained
+syndrome is therefore zero, one or two readout columns, or one data
+column. On all $6\,112$ distinct candidates, enumerating SSF gives a
+correction equivalent modulo $S_X$ to at most one site. Thus
+$d_X=6$ requires at least five physical data faults for retained
+silent failure. At weight five the single site must complete a
+weight-six logical. The projection above confines all 72 such
+logicals to single VV rows. Deleting one site gives 432 distinct
+five-data supports, all retained and silent with perfect readout.
+For $A\sim{\rm Bin}(225,p)$ this bounds Lee's joint retained silent
+mass between $432w_{50}$ and
+$432p^5(1-p)^{220}+\Pr(A\ge6)$.
+
+Dividing the joint masses by $1-a_L$ gives the deterministic retained
+risks at $[2.58762,2.60134]$ discards per million,
+\[
+\begin{aligned}
+ R_{\rm Lee}&\in[4.2726\cdot10^{-28},\,1.689\cdot10^{-25}],\\
+ R_{\rm distance}&\in[3.2048\cdot10^{-20},\,1.653\cdot10^{-18}].
+\end{aligned}
+\]
+This comparison uses one Bernoulli point on the affine $[[225,9,6]]$ code.
+
 \subsection{Intervals on the affine 225-qubit code}\label{app:pilot}
 \begin{lemma}[Two data faults on the affine 225-qubit code]\label{lem:affine-row}
 Use the affine incidence seed, full maximum-score FGL at $\beta=1/100$,
@@ -4499,7 +5167,23 @@ $120\,000$ trials each. With three
 erroneous data wires, a nonzero background is counted at its first
 occupied fibre. With four, sampling is conditional on the number of
 erroneous wires. The upper bound includes the entire mass of five
-or more. The 16 one-sided bounds have total risk at most $16e^{-7}$.
+or more. Within each stratum the independent proposals give binary
+indicators, including a zero for a proposal discarded before decoding.
+If $k$ hits are observed in $n_s=120\,000$ trials, the upper bound on
+the hit probability $\pi$ is $\min(1,u(k)/n_s)$, where
+\[
+ u(0)=7,\qquad
+ u(k)=k+7+\lfloor\sqrt{49+14k}\rfloor+1\quad(k>0).
+\]
+Indeed, for $K\sim{\rm Bin}(n_s,\pi)$ with mean $\mu$, the lower-tail
+Chernoff bound is $\Pr(K\le k)\le\exp[-(\mu-k)^2/(2\mu)]$ for
+$k<\mu$. Solving $(\mu-k)^2=14\mu$ gives the larger root in the
+formula. At zero, $\Pr(K=0)=(1-\pi)^{n_s}\le e^{-\mu}$.
+Since $u(k)$ increases with $k$, noncoverage for fixed $\pi$ is one
+lower tail, of probability at most $e^{-7}$. Multiplying by the
+proposal mass gives the sector bound. For eight circuit points and
+two strata per point the union bound gives coverage at least
+$1-16e^{-7}>98.54\%$.
 Using the unrounded endpoints, the harmonic estimates have maximum
 relative error below $1.784\%$ in the Bernoulli model and below
 $0.310\%$ on the joint circuit coverage event.
@@ -4509,6 +5193,39 @@ winners and residual stabilizer classes reproduced all three Bernoulli
 and eight circuit intervals to the displayed precision. The two circuit
 implementations used the same proposals and random seeds for the
 $1\,920\,000$ stratified trials.
+
+\paragraph{Comparison at equal operation and readout rates.}
+We keep the four CC-first intervals of Table~\ref{tab:affine225-pilot}
+and evaluate VV first at the corresponding $(r_c,r_m)$. For row
+$j=0,1,2,3$ in table order, the archived routine
+\texttt{circuit\_point} uses seed $2026112500+100j$, with offsets
+$+3$ and $+4$ for its two strata. If the intervals for CC and VV
+are $[L_C,U_C]$ and $[L_V,U_V]$, respectively, the ratio lies in
+$[L_C/U_V,U_C/L_V]$. This set of eight intervals also has joint
+coverage at least $1-16e^{-7}$. For both tables together the four
+shared CC intervals are counted once, giving $1-24e^{-7}>97.81\%$.
+
+\begin{table}[H]
+\centering\small
+\setlength{\tabcolsep}{3pt}
+\caption{At identical rates on 225 qubits the silent-failure
+probability with CC first exceeds that with VV first at all four
+points on the joint coverage event (above $98.54\%$). Endpoints are
+rounded outwards.}
+\label{tab:matched-gates}
+\smallskip
+\begin{tabular}{@{}rrcc@{}}
+\toprule
+$r_m$ & $10^7r_c$ & $10^{15}P_{\rm sil}$, VV first &
+$P_{\rm sil}^{\rm CC}/P_{\rm sil}^{\rm VV}$\\
+\midrule
+$10^{-3}$ & 0.918 & $[6.0614,6.0983]$ & $[3.602,3.642]$\\
+$10^{-4}$ & 1.680 & $[2.0754,2.0781]$ & $[3.619,3.628]$\\
+$10^{-5}$ & 1.781 & $[0.26106,0.26146]$ & $[3.601,3.611]$\\
+$10^{-5}$ & 1.803 & $[0.26794,0.26832]$ & $[3.601,3.611]$\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Finite component certificates on strips}\label{app:strip-certificates}
 
@@ -4762,8 +5479,7 @@ $10^{-6}$ & $0$ & 0.005 & 0.008 & 0.009 & 0.009 & 58.472\\
 $r_c=r_m=10^{-6}$ and $10^{-5}$ with a component cutoff of four.
 Their bounds exceed $10\%$ at the two higher rates shown. Legend
 numbers give data-qubit counts. Crosses show the global-cutoff bound on
-523 qubits ($m=48$). OpenAI Codex assisted with plotting the bounds
-reported in Table~\ref{tab:strip-circuit}.}
+523 qubits ($m=48$). Table~\ref{tab:strip-circuit} gives the bounds.}
 \label{fig:strip-rate-target}
 \end{figure}
 
@@ -4911,23 +5627,24 @@ in its circuit timing.
 \raggedend
 \section{Numerical data and code}\label{app:support}
 \begingroup\raggedright
-From the \href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/tree/circuit-postselection-v3.1}{\texttt{circuit-postselection-v3.1} repository root},
-\mbox{\texttt{python reproducir.py rapido}} checks hashes and reproduces
-the Bernoulli intervals in Table~\ref{tab:two-volumes}.
-Run \mbox{\texttt{python reproducir.py marca-circuito}} for the eight
-circuit bounds in Table~\ref{tab:abort-flag}. The
-\href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/tree/circuit-postselection-v3.1/sectores/flag_rates}{flag directory}
-supplies inputs and reference outputs. The
-\href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction/blob/circuit-postselection-v3.1/REPRODUCTION.md}{guide}
-covers \texttt{tasas} (rational rate bounds), \texttt{regional}
-(Corollary~\ref{cor:regional-sector}) and \texttt{marca-tasas}
-(Bernoulli postselection and higher rates).
-\path{sectores/mayorante.py} counts footprints and blocked originals
-for the sector tails.
-
-The \href{https://zenodo.org/records/24542801/files/REPRODUCTION.md?download=1}{archive guide}
-locates the strip catalogues and supplements below in
-\path{REPRODUCCION_SSF_QEC_20261125.zip}, Zenodo release~3.1
+The \href{https://github.com/vicenzoscavino1999/ssf-qec-reproduction}{reproduction repository}
+at tag \texttt{circuit-postselection-v4} contains the manuscript,
+comparison code and reference results. Its \path{REPRODUCTION.md}
+gives the environment and commands.
+Run \mbox{\texttt{python reproducir.py rapido}} for the Bernoulli
+intervals and plotted values. With the same launcher,
+\texttt{marca-circuito} reproduces the SSF circuit bounds,
+\texttt{revision-v2} checks the twelve row tests and matched gate
+schedules, and \texttt{postseleccion-v2} recomputes the nine-point comparison
+using the \href{https://github.com/seokhyung-lee/ldpc-post-selection/tree/4e5989a6c0aed8f140840979652645423e2f21f1}{authors' cluster scorer}.
+The thresholds and both circuit bounds are in
+\path{comparaciones/postselection_v2/comparison.json}. In the same
+environment, \texttt{meister-225} reconstructs the Bernoulli refinements
+in Table~\ref{tab:input-postselection} and the matched-discard comparison
+in Appendix~\ref{app:cluster-distance}. The reference is
+\path{comparaciones/postselection_v2/meister_225/results.json}.
+Zenodo release~3.1 includes the full strip catalogues and
+\href{https://zenodo.org/records/24542801/files/REPRODUCTION.md?download=1}{archive guide}
 (DOI \href{https://doi.org/10.5281/zenodo.24542801}{\nolinkurl{10.5281/zenodo.24542801}}).
 
 \paragraph{Uniform rates.}
@@ -4944,16 +5661,12 @@ and \path{supplement/h3/} give the mask and competition calculations.
 for~\eqref{eq:finite-anchor}.
 
 \paragraph{Finite codes.}
-\path{SSF_SECTORES_225_900_20261124.zip} supplies \path{reproducir.py}
-for Table~\ref{tab:two-volumes} and Fig.~\ref{fig:affine-estimates}(b),
-and \path{referencia/directo_900.txt} for the direct 900-qubit census.
-\path{HGP225_PILOT.zip} supplies the strata for Table~\ref{tab:affine225-pilot}
-and the independent decoder \path{auditar_esquinas_HGP_225.py} used
-for the incidences in Fig.~\ref{fig:affine-trace}.
-In \path{QEC_RARE_EVENT_COMPARISONS_20261124.zip},
-\path{RESULTADO_T2_2.json} and \path{resultado_splitting.json} give
-the rates and chain diagnostics for 61 and 225 qubits, respectively
-(Figs.~\ref{fig:strip-comparison}(b) and~\ref{fig:affine-estimates}(a)).
+\path{SSF_SECTORES_225_900_20261124.zip} gives the two volumes in
+Table~\ref{tab:two-volumes} and the direct 900-qubit census.
+\path{HGP225_PILOT.zip} contains the circuit strata and the independent
+SSF implementation. Table~\ref{tab:matched-gates} specifies the
+matched rates and seeds. The 61- and 225-qubit splitting diagnostics
+are in \path{QEC_RARE_EVENT_COMPARISONS_20261124.zip}.
 For PATH25 (Appendix~\ref{app:strip-certificates}),
 \path{PATH25_VALIDATION_20261106.zip} gives the syndrome census and
 \path{PATH25_CERTIFIED_ESTIMATORS_20261112.zip} the circuit enumeration

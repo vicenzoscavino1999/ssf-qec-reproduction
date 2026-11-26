@@ -174,14 +174,14 @@ def plot_coordinates():
         unit = F(1,10**len(printed.partition(".")[2]))
         assert abs(F(printed)-value) < unit, (printed, float(value))
         checked += 1
-    pilot = read(COMPARACIONES/"piloto_HGP_225_esquinas_20261124.json")["circuito"]
+    matched = read(COMPARACIONES/"postselection_v2/matched_schedules.json")["rows"]
     tables = re.findall(r"row\s+est\s+lo\s+hi\s*([\d.\s]+)\}", tex)
     vv, cc, sizes = [t.strip().splitlines() for t in tables]
-    for group, source in ((vv,pilot[::2]),(cc,pilot[1::2])):
-        for idx,(row,record) in enumerate(zip(group,source,strict=True)):
+    for group, schedule in ((vv,"first_VV"),(cc,"first_CC")):
+        for idx,(row,record) in enumerate(zip(group,matched,strict=True)):
             tag, *values = row.split()
             assert int(tag)==4-idx
-            limits = record["intervalo_conjunto"]
+            limits = record[schedule]
             for printed,key in zip(values,("estimacion","L","U"),strict=True):
                 number(printed,10**15*F(limits[key]))
     for row,n in zip(sizes,(225,900),strict=True):
@@ -189,12 +189,13 @@ def plot_coordinates():
         data = read(SECTORES/"referencia"/f"resultado_{n}.json")["interval"]
         for printed,key in zip(values,("estimate","lower","upper"),strict=True):
             number(printed,10**14*F(data[key]))
-    split = read(COMPARACIONES/"SPLITTING_HGP_225_VV_20261124/resultado_splitting.json")
     def figure(label):
         stop = tex.index(r"\label{"+label+"}")
         return tex[tex.rindex(r"\begin{figure",0,stop):stop]
-    f4 = figure("fig:affine-estimates")
-    number(re.search(r"coordinates \{\(([\d.]+),1\)\}", f4)[1], 10**15*F(str(split["estimacion"])))
+    split = read(COMPARACIONES/"SPLITTING_HGP_225_VV_20261124/resultado_splitting.json")
+    section = tex.split(r"\label{sec:splitting-comparison}", 1)[1].split(r"\section{", 1)[0]
+    printed = re.search(r"splitting estimate of \$([\d.]+)\\cdot10\^\{-16\}", section)[1]
+    number(printed, 10**16*F(str(split["estimacion"])))
     strips = read(ROOT/"tiras/tables/results/circuit.json")["instancias"]
     def cell(length, power):
         rate = f"1/{10**(-power)}"

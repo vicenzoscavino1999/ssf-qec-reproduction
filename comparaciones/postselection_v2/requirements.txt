@@ -1,0 +1,7 @@
+# Optional numerical environment for postseleccion-v2 and meister-225 (Python 3.12).
+ldpc-post-selection @ git+https://github.com/seokhyung-lee/ldpc-post-selection.git@4e5989a6c0aed8f140840979652645423e2f21f1
+ldpc==2.4.1
+numpy==2.5.5
+scipy==1.18.1
+numba==0.68.1
+stim==1.16.0

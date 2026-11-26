@@ -1,4 +1,4 @@
-# Certified estimates of silent logical failure in small-set-flip decoding with noisy readout
+# Certified estimates of silent logical failure after one noisy round of small-set-flip decoding
 
 Code, input data and numerical certificates for the article by Vicenzo Scavino Alfaro.
 

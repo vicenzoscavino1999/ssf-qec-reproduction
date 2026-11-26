@@ -94,7 +94,7 @@ def product_grid(values):
     return result
 
 
-def pair_spectra(laws,patterns,normalizer):
+def pair_spectra(laws,patterns,normalizer, *, restricted_patterns=None):
     """Walsh por fila. En la cota inferior cada cable tiene D exterior vacío."""
     sums = [[0]*10 for _ in range(2)]
     rows = [defaultdict(list) for _ in range(12)]
@@ -134,10 +134,15 @@ def pair_spectra(laws,patterns,normalizer):
                                      *GRID//normalizer for row in pair) for pair in terms]
                 for (u,v),allowed in choices.items():
                     sign = sum(1 if (t & d).bit_count()%2==0 else -1 for d in allowed)
-                    if sign:
+                    if sign or (restricted_patterns is not None and not exterior_free):
                         coefficient = product_grid([background]+[
                             pair[int(j==u or j==v)] for j,pair in enumerate(transformed)])
                         total[t.bit_count()] += sign*coefficient
+                        if restricted_patterns is not None and not exterior_free:
+                            for d in allowed:
+                                key = (i, 12*i+u, 12*i+v, d << (9*i))
+                                moments = restricted_patterns.setdefault(key, [0]*10)
+                                moments[t.bit_count()] += (-1)**((t & d).bit_count()%2)*coefficient
     return sums
 
 
